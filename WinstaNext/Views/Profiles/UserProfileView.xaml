@@ -1,0 +1,19 @@
+﻿<views:BasePage
+    xmlns:views="using:WinstaNext.Views"
+    x:Class="WinstaNext.Views.Profiles.UserProfileView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinstaNext.Views.Profiles"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:VM="using:WinstaNext.ViewModels.Users"
+    mc:Ignorable="d">
+
+    <views:BasePage.DataContext>
+        <VM:UserProfileViewModel x:Name="ViewModel"/>
+    </views:BasePage.DataContext>
+
+    <Grid>
+        
+    </Grid>
+</views:BasePage>

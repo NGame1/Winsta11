@@ -1,0 +1,91 @@
+﻿<views:BasePage
+    xmlns:views="using:WinstaNext.Views"
+    x:Class="WinstaNext.Views.Directs.DirectsListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinstaNext"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:VM="using:WinstaNext.ViewModels.Directs" xmlns:Models="using:InstagramApiSharp.Classes.Models" xmlns:directs="using:WinstaNext.Models.TemplateSelectors.Directs" xmlns:directs1="using:WinstaNext.UI.Directs" xmlns:directs2="using:WinstaNext.Views.Directs"
+    mc:Ignorable="d">
+
+    <views:BasePage.Resources>
+        <DataTemplate x:DataType="Models:InstaDirectInboxThread" x:Key="PrivateDirectThread">
+            <directs1:PrivateDirectThread DirectThread="{Binding Mode=OneWay}"/>
+        </DataTemplate>
+
+        <DataTemplate x:DataType="Models:InstaDirectInboxThread" x:Key="GroupDirectThread">
+            <directs1:GroupDirectThread DirectThread="{Binding Mode=OneWay}"/>
+        </DataTemplate>
+
+        <directs:InstaDirectInboxThreadTemplateSelector 
+            x:Key="InstaDirectInboxThreadTemplateSelector"
+            GroupTemplate="{StaticResource GroupDirectThread}"
+            PrivateTemplate="{StaticResource PrivateDirectThread}"/>
+
+    </views:BasePage.Resources>
+
+    <views:BasePage.DataContext>
+        <VM:DirectsListViewModel x:Name="MyViewModel"/>
+    </views:BasePage.DataContext>
+
+    <Grid Margin="{x:Bind PageMargin}">
+        <controls:ListDetailsView 
+            Background="Transparent" 
+            ItemsSource="{x:Bind MyViewModel.Inbox, Mode=OneWay}"
+            ListPaneEmptyContent="{x:Bind local:LanguageManager.Instance.Instagram.NoDirectsYet}"
+            NoSelectionContent="{x:Bind local:LanguageManager.Instance.Instagram.SelectDirectToLoad}"
+            ListPaneItemTemplateSelector="{StaticResource InstaDirectInboxThreadTemplateSelector}"
+            CompactModeThresholdWidth="720" ScrollViewer.VerticalScrollMode="Disabled">
+
+            <!--What to show when there's no direct messages to show-->
+            <controls:ListDetailsView.ListPaneEmptyContentTemplate>
+                <DataTemplate>
+                    <StackPanel HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <SymbolIcon Symbol="Message"
+                                    RenderTransformOrigin=".5,.5">
+                            <SymbolIcon.RenderTransform>
+                                <CompositeTransform
+                                  ScaleX="2"
+                                  ScaleY="2"/>
+                            </SymbolIcon.RenderTransform>
+                        </SymbolIcon>
+                        <TextBlock Text="{Binding}"
+                                   FontSize="24"
+                                   Margin="0,12"/>
+                    </StackPanel>
+                </DataTemplate>
+            </controls:ListDetailsView.ListPaneEmptyContentTemplate>
+
+            <!--Detail pane content template-->
+            <controls:ListDetailsView.DetailsTemplate>
+                <DataTemplate x:DataType="Models:InstaDirectInboxThread">
+                    <directs2:DirectThreadView 
+                        DirectThread="{x:Bind Mode=OneWay}"/>
+                </DataTemplate>
+            </controls:ListDetailsView.DetailsTemplate>
+
+            <!--What to show on content pane while no directs selected to show the messages-->
+            <controls:ListDetailsView.NoSelectionContentTemplate>
+                <DataTemplate>
+                    <StackPanel HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <SymbolIcon Symbol="Message"
+                                    RenderTransformOrigin=".5,.5">
+                            <SymbolIcon.RenderTransform>
+                                <CompositeTransform
+                                  ScaleX="2"
+                                  ScaleY="2"/>
+                            </SymbolIcon.RenderTransform>
+                        </SymbolIcon>
+                        <TextBlock Text="{Binding}"
+                                   FontSize="24"
+                                   Margin="0,12"/>
+                    </StackPanel>
+                </DataTemplate>
+            </controls:ListDetailsView.NoSelectionContentTemplate>
+
+        </controls:ListDetailsView>
+    </Grid>
+</views:BasePage>

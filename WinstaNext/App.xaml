@@ -1,0 +1,35 @@
+﻿<Application
+    x:Class="WinstaNext.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinstaNext"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls">
+
+    <Application.Resources>
+        <controls:XamlControlsResources>
+
+            <controls:XamlControlsResources.MergedDictionaries>
+
+                <!-- Other app resources here -->
+                <ResourceDictionary>
+                    <FontFamily x:Key="FluentIcons">ms-appx:///Assets/Fonts/SegoeIcons.ttf#Segoe Fluent Icons</FontFamily>
+                    <FontFamily x:Key="FluentSystemIconsFilled">ms-appx:///Assets/Fonts/FluentSystemIcons-Filled.ttf#FluentSystemIcons-Filled</FontFamily>
+                    <FontFamily x:Key="FluentSystemIconsRegular">ms-appx:///Assets/Fonts/FluentSystemIcons-Regular.ttf#FluentSystemIcons-Regular</FontFamily>
+
+                    <Style x:Key="ListViewStretcher" TargetType="ListViewItem"
+                           BasedOn="{StaticResource DefaultListViewItemStyle}">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+
+                    <Style BasedOn="{StaticResource DefaultButtonStyle}"
+                           x:Key="FontIconButtonStyle" 
+                           TargetType="Button">
+                        <Setter Property="FontFamily" Value="{StaticResource FluentIcons}"/>
+                        <Setter Property="FontSize" Value="14"/>
+                    </Style>
+                </ResourceDictionary>
+            </controls:XamlControlsResources.MergedDictionaries>
+
+        </controls:XamlControlsResources>
+    </Application.Resources>
+</Application>

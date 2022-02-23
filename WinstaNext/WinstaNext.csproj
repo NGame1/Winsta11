@@ -1,0 +1,636 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <LangVersion>10.0</LangVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{B4747637-F8EB-49AD-9D22-1BF10C0E6B3A}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WinstaNext</RootNamespace>
+    <AssemblyName>WinstaNext</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22000.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <OutputPath>bin\ARM64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Abstractions\Direct\Converters\InstaDirectInboxItemListConverter.cs" />
+    <Compile Include="Abstractions\Direct\Models\InstaDirectInboxItemFullModel.cs" />
+    <Compile Include="Abstractions\Media\WinstaMediaLikerUser.cs" />
+    <Compile Include="Abstractions\Stories\WinstaStoryItem.cs" />
+    <Compile Include="Abstractions\WinstaObjectConverter.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationSettingsManager.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\Directs\DirectItemTimeConverter.cs" />
+    <Compile Include="Converters\Directs\HasUnreadToFontWeightConverter.cs" />
+    <Compile Include="Converters\Directs\UserIdToHorizontalAlignmentConverter.cs" />
+    <Compile Include="Converters\Directs\UserIdToProfilePictureVisibilityConverter.cs" />
+    <Compile Include="Converters\EnumToBooleanConverter.cs" />
+    <Compile Include="Converters\IntToIsEnabledConverter.cs" />
+    <Compile Include="Converters\Media\MediaDateTimeconverter.cs" />
+    <Compile Include="Converters\NullToBooleanConverter.cs" />
+    <Compile Include="Core\Collections\ExtendedObservableCollection.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Comments\IncrementalMediaComments.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Directs\IncrementalDirectInbox.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Directs\IncrementalDirectThread.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Media\IncrementalHomeMedia.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Media\IncrementalMediaLikers.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Search\IncrementalHashtagsSearch.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Search\IncrementalPeopleSearch.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Search\IncrementalPlacesSearch.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Stories\IncrementalFeedStories.cs" />
+    <Compile Include="Core\Dialogs\MessageDialogHelper.cs" />
+    <Compile Include="Core\Messages\ChangePageHeaderMessage.cs" />
+    <Compile Include="Core\Messages\ChangeSelectedMenuItemMessage.cs" />
+    <Compile Include="Core\Navigation\MediaCommentsViewParameter.cs" />
+    <Compile Include="Core\Navigation\NavigationParameter.cs" />
+    <Compile Include="Core\TaskCompletionNotifier.cs" />
+    <Compile Include="Core\Theme\AppTheme.cs" />
+    <Compile Include="ExtendedSplashScreen.xaml.cs">
+      <DependentUpon>ExtendedSplashScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ControlSizeHelper.cs" />
+    <Compile Include="Helpers\StringCipher.cs" />
+    <Compile Include="LanguageManager.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Core\LanguageDefinition.cs" />
+    <Compile Include="Models\Core\MenuItemModel.cs" />
+    <Compile Include="Models\TemplateSelectors\Directs\InstaDirectInboxItemTemplateSelector.cs" />
+    <Compile Include="Models\TemplateSelectors\Directs\InstaDirectInboxThreadTemplateSelector.cs" />
+    <Compile Include="Models\TemplateSelectors\Media\CarouselMediaTemplateSelector.cs" />
+    <Compile Include="Models\TemplateSelectors\Searches\SearchItemTemplateSelector.cs" />
+    <Compile Include="Models\TemplateSelectors\Searches\WinstaStoryFeedItemTemplateSelector.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="UI\Comments\InstaCommentPresenterUC.xaml.cs">
+      <DependentUpon>InstaCommentPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\CompositionControl.cs" />
+    <Compile Include="UI\Controls\ExpandableSettingControl.xaml.cs">
+      <DependentUpon>ExpandableSettingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\ExpandableSettingHeaderControl.xaml.cs">
+      <DependentUpon>ExpandableSettingHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\NoCastButtonMediaTransportControls.cs" />
+    <Compile Include="UI\Directs\ChatListView.cs" />
+    <Compile Include="UI\Directs\GroupDirectThread.xaml.cs">
+      <DependentUpon>GroupDirectThread.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainerUC.xaml.cs">
+      <DependentUpon>MessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\AnimatedGifMessageContainerUC.xaml.cs">
+      <DependentUpon>AnimatedGifMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\LinkMessageContainerUC.xaml.cs">
+      <DependentUpon>LinkMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\MediaMessageContainerUC.xaml.cs">
+      <DependentUpon>MediaMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\NotSupportedMessageContainerUC.xaml.cs">
+      <DependentUpon>NotSupportedMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\PlaceholderMessageContainerUC.xaml.cs">
+      <DependentUpon>PlaceholderMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\ProfileMessageContainerUC.xaml.cs">
+      <DependentUpon>ProfileMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\TextMessageContainerUC.xaml.cs">
+      <DependentUpon>TextMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\VoiceMessageContainerUC.xaml.cs">
+      <DependentUpon>VoiceMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\PrivateDirectThread.xaml.cs">
+      <DependentUpon>PrivateDirectThread.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Generic\InstaUserPresenterUC.xaml.cs">
+      <DependentUpon>InstaUserPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Generic\LikeButtonControl.xaml.cs">
+      <DependentUpon>LikeButtonControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Generic\SaveButtonControl.xaml.cs">
+      <DependentUpon>SaveButtonControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Media\InstaMediaCarouselPresenterUC.xaml.cs">
+      <DependentUpon>InstaMediaCarouselPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Media\InstaMediaImagePresenterUC.xaml.cs">
+      <DependentUpon>InstaMediaImagePresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Media\InstaMediaPresenterUC.xaml.cs">
+      <DependentUpon>InstaMediaPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Media\InstaMediaVideoPresenterUC.xaml.cs">
+      <DependentUpon>InstaMediaVideoPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Search\HashtagSearchUC.xaml.cs">
+      <DependentUpon>HashtagSearchUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Search\PeopleSearchUC.xaml.cs">
+      <DependentUpon>PeopleSearchUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Search\PlaceSearchUC.xaml.cs">
+      <DependentUpon>PlaceSearchUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Stories\InstaBroadcastPresenterUC.xaml.cs">
+      <DependentUpon>InstaBroadcastPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Stories\InstaReelFeedPresenterUC.xaml.cs">
+      <DependentUpon>InstaReelFeedPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Account\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Account\TwoFactorAuthViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Comments\MediaCommentsViewModel.cs" />
+    <Compile Include="ViewModels\Directs\DirectsListViewModel.cs" />
+    <Compile Include="ViewModels\Directs\DirectThreadViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\Media\InstaMediaPresenterUCViewModel.cs" />
+    <Compile Include="ViewModels\Media\MediaLikersViewModel.cs" />
+    <Compile Include="ViewModels\Search\SearchViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\Users\UserProfileViewModel.cs" />
+    <Compile Include="Views\Account\ChallengeRequiredView.xaml.cs">
+      <DependentUpon>ChallengeRequiredView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Account\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Account\TwoFactorAuthView.xaml.cs">
+      <DependentUpon>TwoFactorAuthView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BasePage.cs" />
+    <Compile Include="Views\BaseUserControl.cs" />
+    <Compile Include="Views\Comments\MediaCommentsView.xaml.cs">
+      <DependentUpon>MediaCommentsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Directs\DirectsListView.xaml.cs">
+      <DependentUpon>DirectsListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Directs\DirectThreadView.xaml.cs">
+      <DependentUpon>DirectThreadView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Media\MediaLikersView.xaml.cs">
+      <DependentUpon>MediaLikersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Profiles\UserProfileView.xaml.cs">
+      <DependentUpon>UserProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Search\SearchView.xaml.cs">
+      <DependentUpon>SearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Icons\WinstaLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="ExtendedSplashScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Comments\InstaCommentPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\ExpandableSettingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\ExpandableSettingHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\GroupDirectThread.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\AnimatedGifMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\LinkMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\MediaMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\MessageContainerResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\NotSupportedMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\PlaceholderMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\ProfileMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\TextMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\VoiceMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\PrivateDirectThread.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Generic\InstaUserPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Generic\LikeButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Generic\PersonPictureResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Generic\SaveButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Media\InstaMediaCarouselPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Media\InstaMediaImagePresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Media\InstaMediaPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Media\InstaMediaVideoPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Search\HashtagSearchUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Search\PeopleSearchUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Search\PlaceSearchUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Stories\InstaBroadcastPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Stories\InstaReelFeedPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Account\ChallengeRequiredView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Account\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Account\TwoFactorAuthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Comments\MediaCommentsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Directs\DirectsListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Directs\DirectThreadView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Media\MediaLikersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Profiles\UserProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Search\SearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Fody">
+      <Version>6.6.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Mapster">
+      <Version>7.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.13</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Mvvm">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Behaviors">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Lottie">
+      <Version>7.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Media">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml">
+      <Version>2.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody">
+      <Version>3.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.SfTabControl.UWP">
+      <Version>19.4.0.52</Version>
+    </PackageReference>
+    <PackageReference Include="System.Composition">
+      <Version>6.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\SegoeIcons.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en-US\General.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en-US\Instagram.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\fa-Ir\General.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\fa-Ir\Instagram.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en-US\Units.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Lottie\Insta-anim.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Lottie\circles-menu-1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Lottie\Dislike.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Lottie\Gears.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Lottie\Like.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Lottie\Loading.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Lottie\Upload.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Lottie\UploadingAnim.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\FluentSystemIcons-Filled.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\FluentSystemIcons-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\Collections\NormalSources\" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

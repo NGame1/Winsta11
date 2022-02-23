@@ -1,0 +1,37 @@
+﻿<UserControl x:DefaultBindMode="OneWay"
+    x:Class="WinstaNext.UI.Stories.InstaReelFeedPresenterUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinstaNext.UI.Stories"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="/UI/Generic/PersonPictureResources.xaml"/>
+    </UserControl.Resources>
+
+    <StackPanel Spacing="3">
+        <Border BorderThickness="{StaticResource StoryRingBorderThickness}"
+                BorderBrush="{StaticResource InstagramLogoBackgroundBrush}"
+                CornerRadius="30"
+                Height="60"
+                Width="60">
+            <Muxc:PersonPicture ProfilePicture="{x:Bind ReelFeed.User.ProfilePicture}"
+                                DisplayName="{x:Bind ReelFeed.User.UserName}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Height="58"
+                                Width="58"/>
+        </Border>
+
+        <TextBlock Text="{x:Bind ReelFeed.User.UserName}"
+                   TextTrimming="CharacterEllipsis"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap"
+                   MaxLines="1"/>
+
+    </StackPanel>
+</UserControl>

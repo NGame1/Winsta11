@@ -1,0 +1,80 @@
+﻿<directs:MessageContainerUC
+    x:Class="WinstaNext.UI.Directs.MessageContainer.VoiceMessageContainerUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinstaNext.UI.Directs.MessageContainer"
+    xmlns:System="using:System"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:directs="using:WinstaNext.UI.Directs" xmlns:ViewsDirect="using:WinstaNext.Views.Directs" xmlns:Muxc="using:Microsoft.UI.Xaml.Controls" xmlns:i="using:Microsoft.Xaml.Interactivity" xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <directs:MessageContainerUC.Resources>
+        <ResourceDictionary Source="ms-appx:///UI/Directs/MessageContainer/MessageContainerResources.xaml"/>
+    </directs:MessageContainerUC.Resources>
+
+    <StackPanel Spacing="{StaticResource MessageBubbleSpacing}" Orientation="Horizontal" 
+                HorizontalAlignment="{x:Bind DirectItem.UserId, Converter={StaticResource UserIdToHorizontalAlignmentConverter}, Mode=OneWay}">
+        <PersonPicture Width="{StaticResource ProfilePictureSize}" 
+                       Height="{StaticResource ProfilePictureSize}"
+                       VerticalAlignment="{StaticResource ProfileVerticalAlignment}"
+                       DisplayName="{x:Bind DirectUser.UserName, Mode=OneWay}"
+                       ProfilePicture="{x:Bind DirectUser.ProfilePicture, Mode=OneWay}"
+                       Visibility="{x:Bind DirectUser.Pk, Converter={StaticResource UserIdToProfilePictureVisibilityConverter}, Mode=OneWay}">
+
+            <i:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="Tapped">
+                    <core:InvokeCommandAction CommandParameter="{x:Bind DirectItem.User.UserName, Mode=OneWay}" Command="{x:Bind NavigateUserProfileCommand}"/>
+                </core:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+
+        </PersonPicture>
+
+        <StackPanel Padding="{StaticResource MessageBubblePadding}"
+                    Spacing="{StaticResource MessageBubbleSpacing}"
+                    MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+                    Background="#80B00000"
+                    CornerRadius="{StaticResource ControlCornerRadius}">
+
+            <StackPanel Orientation="Horizontal" Spacing="{StaticResource MessageBubbleSpacing}">
+                <Button CornerRadius="{StaticResource ProfilePictureCornerRadius}"
+                        Padding="0" Background="OrangeRed"
+                        Width="50" Height="50">
+                    <Grid>
+                        <Muxc:ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Value="85" Width="44" Height="44" Maximum="100" 
+                                       IsIndeterminate="False">
+                            
+                        </Muxc:ProgressRing>
+                        
+                        <SymbolIcon Symbol="Pause" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button>
+
+                <!--<ListView Background="OrangeRed" ItemsSource="{x:Bind DirectItem.VoiceMedia.Media.Audio.WaveformData, Mode=OneWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="System:Single">
+                            <Rectangle Width="1" Height="{x:Bind}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsStackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            --><!--<Setter Property="MinWidth" Value="0"/>--><!--
+                            <Setter Property="Width" Value="1"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>-->
+                
+            </StackPanel>
+            
+            <TextBlock Text="{x:Bind DirectItem.TimeStamp, Converter={StaticResource DirectItemTimeConverter}, Mode=OneWay}" HorizontalAlignment="Right"/>
+        </StackPanel>
+    </StackPanel>
+
+</directs:MessageContainerUC>

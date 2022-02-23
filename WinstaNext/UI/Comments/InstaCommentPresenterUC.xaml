@@ -1,0 +1,69 @@
+﻿<UserControl x:DefaultBindMode="OneWay"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    x:Class="WinstaNext.UI.Comments.InstaCommentPresenterUC"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:generic="using:WinstaNext.UI.Generic"
+    xmlns:Winsta="using:WinstaNext" 
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="/UI/Generic/PersonPictureResources.xaml"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0"
+              Padding="5">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Muxc:PersonPicture ProfilePicture="{x:Bind Comment.User.ProfilePicture}"
+                                DisplayName="{x:Bind Comment.User.UserName}"
+                                VerticalAlignment="Bottom"
+                                Width="55" Height="55"
+                                Grid.Column="0"/>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <HyperlinkButton Content="{x:Bind Comment.User.UserName}"
+                                 Grid.Row="0"/>
+
+                <TextBlock Text="{x:Bind Comment.Text, Mode=OneWay}"
+                           TextAlignment="DetectFromContent"
+                           TextTrimming="WordEllipsis"
+                           TextWrapping="Wrap"
+                           Padding="8,2"
+                           Grid.Row="1"/>
+
+                <HyperlinkButton Grid.Row="2">
+                    <TextBlock>
+                            <Run Text="{x:Bind Comment.LikesCount}"/>
+                            <Run Text="Likes"/>
+                    </TextBlock>
+                </HyperlinkButton>
+            </Grid>
+
+        </Grid>
+
+        <generic:LikeButtonControl IsLiked="{x:Bind Comment.HasLikedComment}"
+                                   Command="{x:Bind LikeCommecntCommand}"
+                                   Grid.Column="1"/>
+    </Grid>
+</UserControl>

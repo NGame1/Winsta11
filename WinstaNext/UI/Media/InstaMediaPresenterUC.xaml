@@ -1,0 +1,258 @@
+﻿<UserControl x:DefaultBindMode="OneWay" x:Name="thisUC"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="using:InstagramApiSharp.Classes.Models"
+    xmlns:lottie="using:Microsoft.Toolkit.Uwp.UI.Lottie" 
+    x:Class="WinstaNext.UI.Media.InstaMediaPresenterUC"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:converters="using:WinstaNext.Converters"
+    xmlns:Muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:generic="using:WinstaNext.UI.Generic"
+    xmlns:Media="using:Microsoft.UI.Xaml.Media"
+    xmlns:local="using:WinstaNext.UI.Media"
+    xmlns:Winsta="using:WinstaNext"
+    mc:Ignorable="d"
+    MaxWidth="800"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <StackPanel Padding="8" Spacing="5" CornerRadius="{StaticResource ControlCornerRadius}">
+        <StackPanel.Background>
+            <Media:RevealBackgroundBrush Color="#50000000"/>
+        </StackPanel.Background>
+
+        <!--#region Media Heading Region-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="0"
+                        Spacing="5">
+                <Muxc:PersonPicture Width="35" Height="35"
+                                    DisplayName="{x:Bind Media.User.UserName}"
+                                    ProfilePicture="{x:Bind Media.User.ProfilePicture}"/>
+
+                <!--#region Authors, Hashtag info and Location-->
+                <StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <HyperlinkButton FontWeight="SemiBold"
+                                         Padding="0">
+                            <TextBlock Text="{x:Bind Media.User.UserName}"/>
+                            <i:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="Click">
+                                    <core:InvokeCommandAction Command="{x:Bind ViewModel.NavigateToUserCommand}"
+                                                              CommandParameter="{x:Bind Media.User}"/>
+                                </core:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+
+                        </HyperlinkButton>
+
+                        <!--<TextBlock>
+                            <Run Text="&amp;"/>
+                            <Hyperlink>
+                                <Run Text="{x:Bind Media.CoAuthorsProducers[0].UserName}"/>
+                            </Hyperlink>
+                        </TextBlock>-->
+                    </StackPanel>
+
+                    <HyperlinkButton Padding="0">
+                        <TextBlock>
+                            <Run Text="{x:Bind Media.Location.Name}"/>
+                        </TextBlock>
+                    </HyperlinkButton>
+                </StackPanel>
+                <!--#endregion-->
+
+            </StackPanel>
+
+            <!--#region Date/Time presentation region-->
+            <StackPanel VerticalAlignment="Center"
+                        Grid.Column="1">
+                <TextBlock Text="Recently"/>
+            </StackPanel>
+            <!--#endregion-->
+
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region Media presentation region-->
+
+        <Grid>
+
+            <local:InstaMediaImagePresenterUC x:Load="{x:Bind ViewModel.ImagePresenterLoaded}"
+                                              SizeChanged="Presenter_SizeChanged"
+                                              Media="{x:Bind Media, Mode=OneWay}" 
+                                              x:FieldModifier="public"
+                                              x:Name="imagePresenter">
+
+                <i:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="DoubleTapped">
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.LikeMediaCommand}"/>
+                    </core:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+
+            </local:InstaMediaImagePresenterUC>
+
+            <local:InstaMediaVideoPresenterUC x:Load="{x:Bind ViewModel.VideoPresenterLoaded}"
+                                              SizeChanged="Presenter_SizeChanged"
+                                              Media="{x:Bind Media, Mode=OneWay}" 
+                                              x:FieldModifier="public"
+                                              x:Name="videoPresenter"
+                                              MinWidth="300">
+
+                <i:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="DoubleTapped">
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.LikeMediaCommand}"/>
+                    </core:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+
+            </local:InstaMediaVideoPresenterUC>
+
+            <local:InstaMediaCarouselPresenterUC x:Load="{x:Bind ViewModel.CarouselPresenterLoaded}"
+                                                 SizeChanged="Presenter_SizeChanged"
+                                                 Media="{x:Bind Media, Mode=OneWay}" 
+                                                 x:Name="carouselPresenter" 
+                                                 x:FieldModifier="public">
+
+                <i:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="DoubleTapped">
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.LikeMediaCommand}"/>
+                    </core:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+
+            </local:InstaMediaCarouselPresenterUC>
+
+            <Muxc:AnimatedVisualPlayer x:Load="{x:Bind ViewModel.LoadLikeAnimation}"
+                                   x:Name="LikeAnimationPlayer"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Width="150" Height="150"
+                                   AutoPlay="True">
+
+                <lottie:LottieVisualSource UriSource="ms-appx:///Assets/Lottie/Like.json"/>
+
+            </Muxc:AnimatedVisualPlayer>
+
+            <Muxc:AnimatedVisualPlayer x:Load="{x:Bind ViewModel.LoadUnLikeAnimation}"
+                                   x:Name="UnLikeAnimationPlayer"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Width="150" Height="150"
+                                   AutoPlay="True">
+
+                <lottie:LottieVisualSource UriSource="ms-appx:///Assets/Lottie/Dislike.json"/>
+
+            </Muxc:AnimatedVisualPlayer>
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region Buttons region -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Spacing="5" Orientation="Horizontal">
+                <generic:LikeButtonControl IsLiked="{x:Bind Media.HasLiked, Mode=TwoWay}"
+                                           Command="{x:Bind ViewModel.LikeMediaCommand}"/>
+
+                <Button Style="{StaticResource FontIconButtonStyle}"
+                        FontFamily="{StaticResource FluentSystemIconsRegular}"
+                        Command="{x:Bind ViewModel.NavigateToCommentsCommand}"
+                        Content="&#xF2FE;"/>
+
+                <Button Style="{StaticResource FontIconButtonStyle}"
+                        FontFamily="{StaticResource FluentSystemIconsRegular}"
+                        Content="&#xF6AF;"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Spacing="5" Orientation="Horizontal">
+
+                <generic:SaveButtonControl IsSaved="{x:Bind Media.HasViewerSaved, Mode=TwoWay}"
+                                           Command="{x:Bind ViewModel.SaveMediaCommand}"/>
+
+            </StackPanel>
+        </Grid>
+        <!--#endregion-->
+
+        <HyperlinkButton Command="{x:Bind ViewModel.NavigateToMediaLikersCommand}" 
+                         Padding="0">
+            <TextBlock FontWeight="SemiBold" FontSize="13">
+                    <Run Text="{x:Bind Media.LikesCount}"/>
+                    <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Likes}"/>
+            </TextBlock>
+        </HyperlinkButton>
+
+        <RichTextBlock TextTrimming="CharacterEllipsis" 
+                       IsTextSelectionEnabled="False"
+                       TextWrapping="Wrap" 
+                       x:Name="txtCaption"
+                       MaxLines="2">
+            <RichTextBlock.Blocks>
+                <Paragraph TextAlignment="DetectFromContent">
+                    <Run Text="{x:Bind Media.Caption.Text}"/>
+                </Paragraph>
+            </RichTextBlock.Blocks>
+        </RichTextBlock>
+
+        <HyperlinkButton Visibility="{x:Bind txtCaption.IsTextTrimmed, Mode=OneWay}"
+                         Command="{x:Bind ViewModel.MoreButtonCommand}"
+                         CommandParameter="{x:Bind txtCaption}"
+                         HorizontalAlignment="Stretch">
+            <TextBlock Text="{x:Bind Winsta:LanguageManager.Instance.General.More}"/>
+        </HyperlinkButton>
+
+        <ItemsControl ItemsSource="{x:Bind Media.PreviewComments}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="models:InstaComment">
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="{x:Bind User.UserName}"/>
+                        <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Muxc:PersonPicture ProfilePicture="{x:Bind Me.ProfilePicture}"
+                                DisplayName="{x:Bind Me.UserName}"
+                                Height="30"
+                                Width="30"/>
+
+            <TextBox PlaceholderText="{x:Bind Winsta:LanguageManager.Instance.Instagram.CommentPlaceholder}"
+                     Text="{x:Bind ViewModel.CommentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     x:Name="txtCooment"
+                     Margin="5,0,0,0" 
+                     Grid.Column="1">
+                <i:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="KeyDown">
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.CommentboxKeyDownCommand}"/>
+                    </core:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+            </TextBox>
+
+            <Button IsEnabled="{x:Bind ViewModel.IsSendCommentButtonEnabled}"
+                    FontFamily="{StaticResource FluentSystemIconsRegular}"
+                    Command="{x:Bind ViewModel.AddCommentCommand}"
+                    Content="&#xF699;" 
+                    Margin="5,0,0,0" 
+                    Grid.Column="2"/>
+        </Grid>
+
+    </StackPanel>
+</UserControl>
