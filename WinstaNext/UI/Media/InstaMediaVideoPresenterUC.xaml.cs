@@ -50,6 +50,8 @@ namespace WinstaNext.UI.Media
             set { SetValue(MediaProperty, value); }
         }
 
+        public event RoutedEventHandler MediaEnded;
+
         public InstaMediaVideoPresenterUC()
         {
             this.InitializeComponent();
@@ -97,6 +99,11 @@ namespace WinstaNext.UI.Media
                     mediaPlayer.Source = new Uri(Media.Videos[0].Uri);
                 }
             }
+        }
+
+        private void mediaPlayer_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            MediaEnded?.Invoke(sender, e);
         }
     }
 }

@@ -27,6 +27,7 @@ namespace WinstaNext
 
         string AppThemeSetting { get => "AppTheme"; }
         string AppLanguageSettings { get => "AppLanguage"; }
+        string AutoPlaySettings { get => "AutoPlay"; }
         string RemoveFeedAdsSetting { get => "RemoveFeedAds"; }
         string ShowLoginSetting { get => "ShowLogin"; }
         string UserNamesSetting { get => "UserNames"; }
@@ -76,6 +77,24 @@ namespace WinstaNext
             LocalSettings.Values[AppLanguageSettings] = lang;
             ApplicationLanguages.PrimaryLanguageOverride = lang;
             return lang;
+        }
+
+        public bool GetAutoPlay()
+        {
+            if (LocalSettings.Values.TryGetValue(AutoPlaySettings, out var autoplay))
+            {
+                return Convert.ToBoolean(autoplay);
+            }
+            else
+            {
+                return SetAutoPlay();
+            }
+        }
+
+        public bool SetAutoPlay(bool enabled = true)
+        {
+            LocalSettings.Values[AppLanguageSettings] = enabled;
+            return enabled;
         }
 
         public bool GetRemoveFeedAds()

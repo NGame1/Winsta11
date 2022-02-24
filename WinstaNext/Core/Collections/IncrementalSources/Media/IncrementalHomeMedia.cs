@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
 
 namespace WinstaNext.Core.Collections.IncrementalSources.Media
 {
@@ -48,5 +49,6 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Media
                 return result.Value.Medias;
             }
         }
+
     }
 }

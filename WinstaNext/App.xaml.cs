@@ -13,6 +13,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
 using Windows.Media.Playback;
+using Windows.System.Display;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -67,10 +68,16 @@ namespace WinstaNext
             serviceCollection.AddTransient<IInstaApi>(CreateInstaAPIInstance);
             serviceCollection.AddTransient<InstaUserShort>(CreateMyUserInstance);
             serviceCollection.AddTransient<NavigationService>(CreateNavigationService);
+            serviceCollection.AddSingleton<DisplayRequest>(CreateDisplayRequestInstance);
 
             serviceCollection.AddSingleton<MediaPlayer>(CreateMediaPlayerInstance);
 
             return serviceCollection.BuildServiceProvider();
+        }
+
+        DisplayRequest CreateDisplayRequestInstance(IServiceProvider arg)
+        {
+            return new DisplayRequest();
         }
 
         private MediaPlayer CreateMediaPlayerInstance(IServiceProvider arg)

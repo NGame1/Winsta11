@@ -21,7 +21,9 @@
         <Grid>
             <MediaElement Height="{x:Bind SV_ImageZoom.ViewportHeight}"
                           Width="{x:Bind SV_ImageZoom.ViewportWidth}"
+                          MediaEnded="mediaPlayer_MediaEnded"
                           AreTransportControlsEnabled="True"
+                          x:FieldModifier="public"
                           x:Name="mediaPlayer"
                           AutoPlay="False">
 

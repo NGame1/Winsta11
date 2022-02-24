@@ -20,7 +20,8 @@
 
         <DataTemplate x:DataType="models:InstaCarouselItem"
                       x:Key="VideoTemplate">
-            <local:InstaMediaVideoPresenterUC CarouselItem="{x:Bind Mode=OneWay}"/>
+            <local:InstaMediaVideoPresenterUC MediaEnded="InstaMediaVideoPresenterUC_MediaEnded"
+                                              CarouselItem="{x:Bind Mode=OneWay}"/>
         </DataTemplate>
 
         <media:CarouselMediaTemplateSelector x:Key="CarouselMediaTemplateSelector"

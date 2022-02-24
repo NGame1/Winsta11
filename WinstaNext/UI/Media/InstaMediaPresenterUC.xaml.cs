@@ -13,6 +13,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -62,10 +63,11 @@ namespace WinstaNext.UI.Media
             ViewModel = null;
         }
 
+        bool eventRegistered = false;
         private void OnMediaChanged()
         {
-            ViewModel.ImagePresenterLoaded = 
-                ViewModel.VideoPresenterLoaded = 
+            ViewModel.ImagePresenterLoaded =
+                ViewModel.VideoPresenterLoaded =
                     ViewModel.CarouselPresenterLoaded = false;
             switch (Media.MediaType)
             {
@@ -74,13 +76,80 @@ namespace WinstaNext.UI.Media
                     break;
                 case InstaMediaType.Video:
                     ViewModel.VideoPresenterLoaded = true;
+                    if(eventRegistered)
+                    {
+                        Media.PropertyChanged -= Media_PropertyChanged;
+                    }
+                    Media.PropertyChanged += Media_PropertyChanged;
+                    eventRegistered = true;
                     break;
                 case InstaMediaType.Carousel:
                     ViewModel.CarouselPresenterLoaded = true;
+                    if (eventRegistered)
+                    {
+                        Media.PropertyChanged -= Media_PropertyChanged;
+                    }
+                    Media.PropertyChanged += Media_PropertyChanged;
+                    eventRegistered = true;
                     break;
                 default:
                     break;
             }
+        }
+
+        void HandleVideoPlayback(InstaMediaVideoPresenterUC videoPresenter)
+        {
+            if (!Media.Play)
+                videoPresenter.mediaPlayer.Pause();
+            else videoPresenter.mediaPlayer.Play();
+        }
+
+        void HandleCarouselVideos()
+        {
+            if(!Media.Play)
+            {
+                for (int i = 0; i < Media.Carousel.Count; i++)
+                {
+                    var container = carouselPresenter.Gallery.ContainerFromIndex(i);
+                    var fvi = (FlipViewItem)container;
+                    if (container == null || fvi == null) return;
+                    if (fvi.ContentTemplateRoot is InstaMediaVideoPresenterUC videoPresenterUC)
+                        videoPresenterUC.mediaPlayer.Pause();
+                }
+            }
+            else
+            {
+                var i = carouselPresenter.Gallery.SelectedIndex;
+                var container = carouselPresenter.Gallery.ContainerFromIndex(i);
+                var fvi = (FlipViewItem)container;
+                if (container == null || fvi == null) return;
+                if (fvi.ContentTemplateRoot is InstaMediaVideoPresenterUC videoPresenterUC)
+                    videoPresenterUC.mediaPlayer.Play();
+            }
+        }
+
+        private void Media_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (!ApplicationSettingsManager.Instance.GetAutoPlay()) return;
+            if (Media.MediaType == InstaMediaType.Carousel)
+                CarouselMedia_PropertyChanged(sender, e);
+            else VideoMedia_PropertyChanged(sender, e);
+        }
+
+        private async void CarouselMedia_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != nameof(Media.Play)) return;
+            if (Dispatcher.HasThreadAccess)
+                HandleCarouselVideos();
+            else await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, HandleCarouselVideos);
+        }
+
+        private async void VideoMedia_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != nameof(Media.Play)) return;
+            if (Dispatcher.HasThreadAccess)
+                HandleVideoPlayback(videoPresenter);
+            else await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => HandleVideoPlayback(videoPresenter));
         }
 
         private void Presenter_SizeChanged(object sender, SizeChangedEventArgs e)

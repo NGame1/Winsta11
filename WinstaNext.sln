@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32113.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinstaNext", "WinstaNext\WinstaNext.csproj", "{B4747637-F8EB-49AD-9D22-1BF10C0E6B3A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstagramApiSharp.UWP", "..\InstagramApiSharpMine\src\InstagramApiSharp\InstagramApiSharp.UWP.csproj", "{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,26 @@ Global
 		{B4747637-F8EB-49AD-9D22-1BF10C0E6B3A}.Release|x86.ActiveCfg = Release|x86
 		{B4747637-F8EB-49AD-9D22-1BF10C0E6B3A}.Release|x86.Build.0 = Release|x86
 		{B4747637-F8EB-49AD-9D22-1BF10C0E6B3A}.Release|x86.Deploy.0 = Release|x86
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Debug|ARM.Build.0 = Debug|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Debug|x64.Build.0 = Debug|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Debug|x86.Build.0 = Debug|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Release|ARM.ActiveCfg = Release|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Release|ARM.Build.0 = Release|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Release|ARM64.Build.0 = Release|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Release|x64.ActiveCfg = Release|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Release|x64.Build.0 = Release|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Release|x86.ActiveCfg = Release|Any CPU
+		{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

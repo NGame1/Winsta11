@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -68,7 +69,7 @@ namespace WinstaNext.UI.Media
             NavigationService = App.Container.GetService<NavigationService>();
             this.InitializeComponent();
         }
-
+        
         private void Gallery_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SetFlipViewSize();
@@ -88,5 +89,26 @@ namespace WinstaNext.UI.Media
                 FlipWidth = s.Width;
             }
         }
+
+        private async void InstaMediaVideoPresenterUC_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            if (Dispatcher.HasThreadAccess)
+                SlideAndPlay();
+            else await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, SlideAndPlay);
+        }
+
+        void SlideAndPlay()
+        {
+            var currentIndex = Gallery.SelectedIndex;
+            if (Gallery.Items.Count - 1 == currentIndex) return;
+            currentIndex++;
+            Gallery.SelectedIndex = currentIndex;
+            var fvi = (FlipViewItem)Gallery.ContainerFromIndex(currentIndex);
+            if (fvi.ContentTemplateRoot is InstaMediaVideoPresenterUC videoPresenter)
+            {
+                videoPresenter.mediaPlayer.Play();
+            }
+        }
+
     }
 }
