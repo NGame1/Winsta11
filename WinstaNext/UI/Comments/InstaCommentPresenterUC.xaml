@@ -5,15 +5,22 @@
     x:Class="WinstaNext.UI.Comments.InstaCommentPresenterUC"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Models="using:InstagramApiSharp.Classes.Models"
+    xmlns:Converters="using:WinstaNext.Converters.Media"
     xmlns:Muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:generic="using:WinstaNext.UI.Generic"
-    xmlns:Winsta="using:WinstaNext" xmlns:local="using:WinstaNext.UI.Comments"
-             mc:Ignorable="d"
+    xmlns:local="using:WinstaNext.UI.Comments"
+    xmlns:Winsta="using:WinstaNext"
+    mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
 
     <UserControl.Resources>
-        <ResourceDictionary Source="/UI/Generic/PersonPictureResources.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/UI/Generic/PersonPictureResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Converters:MediaDateTimeconverter x:Key="MediaDateTimeconverter"/>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
@@ -58,12 +65,20 @@
                            Padding="8,2"
                            Grid.Row="1"/>
 
-                    <HyperlinkButton Grid.Row="2">
-                        <TextBlock>
-                            <Run Text="{x:Bind Comment.LikesCount}"/>
-                            <Run Text="Likes"/>
-                        </TextBlock>
-                    </HyperlinkButton>
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="2"
+                                Spacing="5">
+                        <HyperlinkButton>
+                            <TextBlock>
+                                <Run Text="{x:Bind Comment.LikesCount}"/>
+                                <Run Text="Likes"/>
+                            </TextBlock>
+                        </HyperlinkButton>
+                        
+                        <TextBlock Text="{x:Bind Comment.CreatedAt, Converter={StaticResource MediaDateTimeconverter}}"
+                                   VerticalAlignment="Center"/>
+
+                    </StackPanel>
                 </Grid>
 
             </Grid>

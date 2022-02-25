@@ -118,102 +118,102 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Ago" xml:space="preserve">
-    <value>Ago</value>
+    <value>پیش</value>
   </data>
   <data name="Billion" xml:space="preserve">
-    <value>B</value>
+    <value>می</value>
   </data>
   <data name="Day" xml:space="preserve">
-    <value>Day</value>
+    <value>روز</value>
   </data>
   <data name="DayAbbreviation" xml:space="preserve">
-    <value>d</value>
+    <value>ر</value>
   </data>
   <data name="Days" xml:space="preserve">
-    <value>Days</value>
+    <value>روز</value>
   </data>
   <data name="DaysAbbreviation" xml:space="preserve">
-    <value>d</value>
+    <value>ر</value>
   </data>
   <data name="Hour" xml:space="preserve">
-    <value>Hour</value>
+    <value>ساعت</value>
   </data>
   <data name="HourAbbreviation" xml:space="preserve">
-    <value>Hr</value>
+    <value>س</value>
   </data>
   <data name="Hours" xml:space="preserve">
-    <value>Hours</value>
+    <value>ساعت</value>
   </data>
   <data name="HoursAbbreviation" xml:space="preserve">
-    <value>hrs</value>
+    <value>س</value>
   </data>
   <data name="Kilo" xml:space="preserve">
-    <value>K</value>
+    <value>ه</value>
   </data>
   <data name="Million" xml:space="preserve">
-    <value>M</value>
+    <value>م</value>
   </data>
   <data name="Minute" xml:space="preserve">
-    <value>Minute</value>
+    <value>دقیقه</value>
   </data>
   <data name="MinuteAbbreviation" xml:space="preserve">
-    <value>Min</value>
+    <value>د</value>
   </data>
   <data name="Minutes" xml:space="preserve">
-    <value>Minutes</value>
+    <value>دقیقه</value>
   </data>
   <data name="MinutesAbbreviation" xml:space="preserve">
-    <value>mins</value>
+    <value>د</value>
   </data>
   <data name="Month" xml:space="preserve">
-    <value>Month</value>
+    <value>ماه</value>
   </data>
   <data name="MonthAbbreviation" xml:space="preserve">
-    <value>mo</value>
+    <value>م</value>
   </data>
   <data name="Months" xml:space="preserve">
-    <value>Months</value>
+    <value>ماه</value>
   </data>
   <data name="MonthsAbbreviation" xml:space="preserve">
-    <value>mos</value>
+    <value>م</value>
   </data>
   <data name="Recently" xml:space="preserve">
-    <value>Recently</value>
+    <value>به تازگی</value>
   </data>
   <data name="Second" xml:space="preserve">
-    <value>Second</value>
+    <value>ثانیه</value>
   </data>
   <data name="SecondAbbreviation" xml:space="preserve">
-    <value>sec</value>
+    <value>ث</value>
   </data>
   <data name="Seconds" xml:space="preserve">
-    <value>Seconds</value>
+    <value>ثانیه</value>
   </data>
   <data name="SecondsAbbreviation" xml:space="preserve">
-    <value>sec</value>
+    <value>ث</value>
   </data>
   <data name="Week" xml:space="preserve">
-    <value>Week</value>
+    <value>هفته</value>
   </data>
   <data name="WeekAbbreviation" xml:space="preserve">
-    <value>wk</value>
+    <value>ه</value>
   </data>
   <data name="Weeks" xml:space="preserve">
-    <value>Weeks</value>
+    <value>هفته</value>
   </data>
   <data name="WeeksAbbreviation" xml:space="preserve">
-    <value>wks</value>
+    <value>ه</value>
   </data>
   <data name="Year" xml:space="preserve">
-    <value>Year</value>
+    <value>سال</value>
   </data>
   <data name="YearAbbreviation" xml:space="preserve">
-    <value>yr</value>
+    <value>س</value>
   </data>
   <data name="Years" xml:space="preserve">
-    <value>Years</value>
+    <value>سال</value>
   </data>
   <data name="YearsAbbreviation" xml:space="preserve">
-    <value>yrs</value>
+    <value>س</value>
   </data>
 </root>
