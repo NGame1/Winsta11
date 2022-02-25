@@ -153,6 +153,9 @@
   <data name="Likes" xml:space="preserve">
     <value>لایک</value>
   </data>
+  <data name="LoadMoreComments" xml:space="preserve">
+    <value>بارگیری کامنت های بیشتر...</value>
+  </data>
   <data name="MediaComments" xml:space="preserve">
     <value>کامنت ها</value>
   </data>

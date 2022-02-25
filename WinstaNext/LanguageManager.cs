@@ -85,6 +85,7 @@ namespace WinstaNext
         public string Highlights { get => _resource.GetString(nameof(Highlights)); }
         public string Like { get => _resource.GetString(nameof(Like)); }
         public string Likes { get => _resource.GetString(nameof(Likes)); }
+        public string LoadMoreComments { get => _resource.GetString(nameof(LoadMoreComments)); }
         public string MediaComments { get => _resource.GetString(nameof(MediaComments)); }
         public string MediaLikers { get => _resource.GetString(nameof(MediaLikers)); }
         public string NoDirectsYet { get => _resource.GetString(nameof(NoDirectsYet)); }

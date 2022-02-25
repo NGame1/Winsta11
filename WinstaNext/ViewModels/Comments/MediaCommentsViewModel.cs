@@ -35,7 +35,7 @@ namespace WinstaNext.ViewModels.Comments
         IncrementalMediaComments Instance { get; set; }
         public IncrementalLoadingCollection<IncrementalMediaComments, InstaComment> Comments { get; private set; }
         public InstaUserShort Me { get; }
-        InstaMedia Media { get; set; }
+        public InstaMedia Media { get; set; }
 
         public AsyncRelayCommand<ListView> AddCommentCommand { get; set; }
 

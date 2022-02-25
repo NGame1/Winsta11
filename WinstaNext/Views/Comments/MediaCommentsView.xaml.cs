@@ -22,6 +22,7 @@ namespace WinstaNext.Views.Comments
     /// </summary>
     public sealed partial class MediaCommentsView : BasePage
     {
+        public string MediaId { get => ViewModel.Media.InstaIdentifier; }
         public MediaCommentsView()
         {
             this.InitializeComponent();

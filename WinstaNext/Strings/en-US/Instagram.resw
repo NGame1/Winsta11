@@ -153,6 +153,9 @@
   <data name="Likes" xml:space="preserve">
     <value>Likes</value>
   </data>
+  <data name="LoadMoreComments" xml:space="preserve">
+    <value>Load more comments...</value>
+  </data>
   <data name="MediaComments" xml:space="preserve">
     <value>Comments</value>
   </data>

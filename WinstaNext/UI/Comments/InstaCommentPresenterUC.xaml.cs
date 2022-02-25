@@ -1,4 +1,5 @@
-﻿using InstagramApiSharp.API;
+﻿using InstagramApiSharp;
+using InstagramApiSharp.API;
 using InstagramApiSharp.Classes;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.Services;
+using WinstaNext.Views.Comments;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -37,10 +40,14 @@ namespace WinstaNext.UI.Comments
             set { SetValue(CommentProperty, value); }
         }
 
+        PaginationParameters Pagination { get; set; } = PaginationParameters.MaxPagesToLoad(1);
+
         public AsyncRelayCommand LikeCommecntCommand { get; set; }
+        public AsyncRelayCommand LoadMoreCommentsCommand { get; set; }
 
         public InstaCommentPresenterUC()
         {
+            LoadMoreCommentsCommand = new(LoadMoreCommentsAsync);
             LikeCommecntCommand = new(LikeCommentAsync);
             this.InitializeComponent();
         }
@@ -74,6 +81,36 @@ namespace WinstaNext.UI.Comments
                     Comment.HasLikedComment = liked;
                     Comment.LikesCount = likesCount;
                 }
+            }
+        }
+
+        async Task LoadMoreCommentsAsync()
+        {
+            var NavigationService = App.Container.GetService<NavigationService>();
+            string mediaId = string.Empty;
+            if (NavigationService.Content is MediaCommentsView view)
+            {
+                mediaId = view.MediaId;
+            }
+            try
+            {
+                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+                {
+                    var result = await Api.CommentProcessor.GetMediaRepliesCommentsAsync(mediaId, 
+                                                            Comment.Pk.ToString(), Pagination);
+
+                    if (!result.Succeeded) throw result.Info.Exception;
+
+                    var childs = result.Value.ChildComments;
+                    for (int i = 0; i < childs.Count; i++)
+                    {
+                        Comment.ChildComments.Add(childs.ElementAt(i));
+                    }
+                    Comment.HasMoreHeadChildComments = result.Value.HasMoreHeadChildComments;
+                }
+            }
+            finally
+            {
             }
         }
 
