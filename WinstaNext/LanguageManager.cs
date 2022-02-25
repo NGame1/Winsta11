@@ -14,8 +14,10 @@ namespace WinstaNext
     public class LanguageManager
     {
         public static LanguageManager Instance { get; }
-        public GeneralStrings General { get; } = new GeneralStrings();
-        public InstagramStrings Instagram { get; } = new InstagramStrings();
+        public GeneralStrings General { get; } = new();
+        public InstagramStrings Instagram { get; } = new();
+        public SettingsStrings Settings { get; } = new();
+
         private LanguageManager() { }
         static LanguageManager()
         {
@@ -100,5 +102,12 @@ namespace WinstaNext
         public string VerificationMethod { get => _resource.GetString(nameof(VerificationMethod)); }
 
         internal InstagramStrings() { }
+    }
+    public class SettingsStrings
+    {
+        ResourceLoader _resource = new ResourceLoader("Settings");
+
+        public string Autoplay { get => _resource.GetString(nameof(Autoplay)); }
+        public string AutoplayDescription { get => _resource.GetString(nameof(AutoplayDescription)); }
     }
 }

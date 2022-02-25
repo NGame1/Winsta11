@@ -93,7 +93,7 @@ namespace WinstaNext
 
         public bool SetAutoPlay(bool enabled = true)
         {
-            LocalSettings.Values[AppLanguageSettings] = enabled;
+            LocalSettings.Values[AutoPlaySettings] = enabled;
             return enabled;
         }
 

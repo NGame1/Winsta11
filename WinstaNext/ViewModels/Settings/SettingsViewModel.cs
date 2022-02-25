@@ -20,6 +20,12 @@ namespace WinstaNext.ViewModels.Settings
 {
     public class SettingsViewModel : BaseViewModel
     {
+        public bool AutoPlayEnabled
+        {
+            get => ApplicationSettingsManager.Instance.GetAutoPlay();
+            set => ApplicationSettingsManager.Instance.SetAutoPlay(value);
+        }
+
         public override string PageHeader { get; protected set; } = LanguageManager.Instance.General.Settings;
 
         [OnChangedMethod(nameof(OnThemeChanged))]

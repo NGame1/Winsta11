@@ -25,6 +25,16 @@
             </StackPanel.ChildrenTransitions>
 
             <controls:ExpandableSettingControl 
+                Title="{x:Bind local:LanguageManager.Instance.Settings.Autoplay}"
+                Description="{x:Bind local:LanguageManager.Instance.Settings.AutoplayDescription}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xE102;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" 
+                              IsOn="{x:Bind ViewModel.AutoPlayEnabled, Mode=TwoWay}"/>
+            </controls:ExpandableSettingControl>
+
+            <controls:ExpandableSettingControl 
             Title="{x:Bind local:LanguageManager.Instance.General.Language}"
             Description="{x:Bind local:LanguageManager.Instance.General.LanguageDescription}">
                 <controls:ExpandableSettingControl.Icon>
