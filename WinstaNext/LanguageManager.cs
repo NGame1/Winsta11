@@ -17,6 +17,7 @@ namespace WinstaNext
         public GeneralStrings General { get; } = new();
         public InstagramStrings Instagram { get; } = new();
         public SettingsStrings Settings { get; } = new();
+        public UnitsStrings Units { get; } = new();
 
         private LanguageManager() { }
         static LanguageManager()
@@ -110,5 +111,44 @@ namespace WinstaNext
 
         public string Autoplay { get => _resource.GetString(nameof(Autoplay)); }
         public string AutoplayDescription { get => _resource.GetString(nameof(AutoplayDescription)); }
+    }
+
+    public class UnitsStrings
+    {
+        ResourceLoader _resource = new ResourceLoader("Units");
+
+        public string Ago { get => _resource.GetString(nameof(Ago)); }
+        public string Billion { get => _resource.GetString(nameof(Billion)); }
+        public string Day { get => _resource.GetString(nameof(Day)); }
+        public string DayAbbreviation { get => _resource.GetString(nameof(DayAbbreviation)); }
+        public string Days { get => _resource.GetString(nameof(Days)); }
+        public string DaysAbbreviation { get => _resource.GetString(nameof(DaysAbbreviation)); }
+        public string Hour { get => _resource.GetString(nameof(Hour)); }
+        public string HourAbbreviation { get => _resource.GetString(nameof(HourAbbreviation)); }
+        public string Hours { get => _resource.GetString(nameof(Hours)); }
+        public string HoursAbbreviation { get => _resource.GetString(nameof(HoursAbbreviation)); }
+        public string Kilo { get => _resource.GetString(nameof(Kilo)); }
+        public string Million { get => _resource.GetString(nameof(Million)); }
+        public string Minute { get => _resource.GetString(nameof(Minute)); }
+        public string MinuteAbbreviation { get => _resource.GetString(nameof(MinuteAbbreviation)); }
+        public string Minutes { get => _resource.GetString(nameof(Minutes)); }
+        public string MinutesAbbreviation { get => _resource.GetString(nameof(MinutesAbbreviation)); }
+        public string Month { get => _resource.GetString(nameof(Month)); }
+        public string MonthAbbreviation { get => _resource.GetString(nameof(MonthAbbreviation)); }
+        public string Months { get => _resource.GetString(nameof(Months)); }
+        public string MonthsAbbreviation { get => _resource.GetString(nameof(MonthsAbbreviation)); }
+        public string Recently { get => _resource.GetString(nameof(Recently)); }
+        public string Second { get => _resource.GetString(nameof(Second)); }
+        public string SecondAbbreviation { get => _resource.GetString(nameof(SecondAbbreviation)); }
+        public string Seconds { get => _resource.GetString(nameof(Seconds)); }
+        public string SecondsAbbreviation { get => _resource.GetString(nameof(SecondsAbbreviation)); }
+        public string Week { get => _resource.GetString(nameof(Week)); }
+        public string WeekAbbreviation { get => _resource.GetString(nameof(WeekAbbreviation)); }
+        public string Weeks { get => _resource.GetString(nameof(Weeks)); }
+        public string WeeksAbbreviation { get => _resource.GetString(nameof(WeeksAbbreviation)); }
+        public string Year { get => _resource.GetString(nameof(Year)); }
+        public string YearAbbreviation { get => _resource.GetString(nameof(YearAbbreviation)); }
+        public string Years { get => _resource.GetString(nameof(Years)); }
+        public string YearsAbbreviation { get => _resource.GetString(nameof(YearsAbbreviation)); }
     }
 }

@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:models="using:InstagramApiSharp.Classes.Models"
     xmlns:lottie="using:Microsoft.Toolkit.Uwp.UI.Lottie" 
+    xmlns:Converters="using:WinstaNext.Converters.Media"
     x:Class="WinstaNext.UI.Media.InstaMediaPresenterUC"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:converters="using:WinstaNext.Converters"
@@ -13,11 +14,15 @@
     xmlns:generic="using:WinstaNext.UI.Generic"
     xmlns:Media="using:Microsoft.UI.Xaml.Media"
     xmlns:local="using:WinstaNext.UI.Media"
-    xmlns:Winsta="using:WinstaNext"
+    xmlns:Winsta="using:WinstaNext" 
     mc:Ignorable="d"
     MaxWidth="800"
     d:DesignHeight="300"
     d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <Converters:MediaDateTimeconverter x:Key="MediaDateTimeconverter"/>
+    </UserControl.Resources>
 
     <StackPanel Padding="8" Spacing="5" CornerRadius="{StaticResource ControlCornerRadius}">
         <StackPanel.Background>
@@ -75,7 +80,7 @@
             <!--#region Date/Time presentation region-->
             <StackPanel VerticalAlignment="Center"
                         Grid.Column="1">
-                <TextBlock Text="Recently"/>
+                <TextBlock Text="{x:Bind Media.TakenAt, Converter={StaticResource MediaDateTimeconverter}}"/>
             </StackPanel>
             <!--#endregion-->
 
