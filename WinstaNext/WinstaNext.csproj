@@ -135,6 +135,7 @@
     <Compile Include="Converters\IntToIsEnabledConverter.cs" />
     <Compile Include="Converters\Media\MediaDateTimeconverter.cs" />
     <Compile Include="Converters\NullToBooleanConverter.cs" />
+    <Compile Include="Converters\Stories\StoryBorderColorConverter.cs" />
     <Compile Include="Core\Collections\ExtendedObservableCollection.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Comments\IncrementalMediaComments.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Directs\IncrementalDirectInbox.cs" />
