@@ -36,7 +36,8 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Search
             {
                 var result = await Api.DiscoverProcessor.SearchPeopleAsync(SearchQuerry, pagination,
                              cancellationToken: cancellationToken);
-                if (!result.Succeeded) throw result.Info.Exception;
+                if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
+                    throw result.Info.Exception;
                 HasMoreAvailable = result.Value.HasMoreAvailable;
                 return result.Value.Users;
             }

@@ -153,6 +153,9 @@ namespace WinstaNext.ViewModels.Media
                         inventorySource = InstaMediaInventorySource.MediaOrAdd;
                         break;
 
+                    case "coauthored_post_unconnected":
+                        break;
+
                     default:
                         break;
                 }

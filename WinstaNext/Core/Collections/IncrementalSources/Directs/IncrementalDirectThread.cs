@@ -37,7 +37,8 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Directs
                 var result = await Api.MessagingProcessor.GetDirectInboxThreadAsync(InboxThread.ThreadId, Pagination,
                     cancellationToken: cancellationToken,
                     seqId: seqId);
-                if (!result.Succeeded) throw result.Info.Exception;
+                if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
+                    throw result.Info.Exception;
                 hassOlder = result.Value.HasOlder;
                 result.Value.Items.Reverse();
                 return Convert(result.Value);

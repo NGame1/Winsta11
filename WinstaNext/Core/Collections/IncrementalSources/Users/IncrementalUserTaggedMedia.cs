@@ -3,7 +3,6 @@ using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Collections;
-using Org.BouncyCastle.Crypto.Tls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace WinstaNext.Core.Collections.IncrementalSources.Users
 {
-    public class IncrementalUserMedias : IIncrementalSource<InstaMedia>
+    public class IncrementalUserTaggedMedia : IIncrementalSource<InstaMedia>
     {
         PaginationParameters Pagination { get; }
         long UserId { get; set; } = -1;
 
-        public IncrementalUserMedias(long userId)
+        public IncrementalUserTaggedMedia(long userId)
         {
             Pagination = PaginationParameters.MaxPagesToLoad(1);
             UserId = userId;

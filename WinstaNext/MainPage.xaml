@@ -128,10 +128,16 @@
 
             <muxc:NavigationView.PaneHeader>
                 <muxc:NavigationViewItem>
+                    <i:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Tapped">
+                            <core:InvokeCommandAction CommandParameter="{x:Bind ViewModel.InstaUser, Mode=OneWay}"
+                                                      Command="{x:Bind ViewModel.NavigateToUserProfileCommand}"/>
+                        </core:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
                     <StackPanel Orientation="Horizontal" Spacing="10" Padding="0,5" BorderThickness="1" HorizontalAlignment="Left">
                         <muxc:PersonPicture Height="60" Width="60"
                             DisplayName="{x:Bind ViewModel.InstaUser.UserName, Mode=OneWay}" 
-                            ProfilePicture="{x:Bind ViewModel.InstaUser.ProfilePicUrl, Mode=OneWay}"/>
+                            ProfilePicture="{x:Bind ViewModel.InstaUser.ProfilePicture, Mode=OneWay}"/>
                         <StackPanel Spacing="4" VerticalAlignment="Center">
                             <TextBlock Text="{x:Bind ViewModel.InstaUser.UserName, Mode=OneWay}"/>
                             <TextBlock Text="Tap to switch accounts" />

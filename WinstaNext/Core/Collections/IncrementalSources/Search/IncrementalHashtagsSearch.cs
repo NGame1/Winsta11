@@ -33,7 +33,8 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Search
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
                 var result = await Api.HashtagProcessor.SearchHashtagAsync(SearchQuerry);
-                if (!result.Succeeded) throw result.Info.Exception;
+                if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
+                    throw result.Info.Exception;
                 HasMoreAvailable = false;
                 return result.Value;
             }

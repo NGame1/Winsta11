@@ -133,9 +133,12 @@
     <Compile Include="Converters\Directs\UserIdToProfilePictureVisibilityConverter.cs" />
     <Compile Include="Converters\EnumToBooleanConverter.cs" />
     <Compile Include="Converters\IntToIsEnabledConverter.cs" />
+    <Compile Include="Converters\Media\InstaMediaThumbnailConverter.cs" />
+    <Compile Include="Converters\Media\InstaMediaTypeIconConverter.cs" />
     <Compile Include="Converters\Media\MediaDateTimeconverter.cs" />
     <Compile Include="Converters\NullToBooleanConverter.cs" />
     <Compile Include="Converters\Stories\StoryBorderColorConverter.cs" />
+    <Compile Include="Core\Behaviors\SynchronizeHorizontalOffsetBehavior.cs" />
     <Compile Include="Core\Collections\ExtendedObservableCollection.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Comments\IncrementalMediaComments.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Directs\IncrementalDirectInbox.cs" />
@@ -148,6 +151,7 @@
     <Compile Include="Core\Collections\IncrementalSources\Stories\IncrementalFeedStories.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Users\IncrementalUserMedias.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Users\IncrementalUserReels.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Users\IncrementalUserTaggedMedia.cs" />
     <Compile Include="Core\Dialogs\MessageDialogHelper.cs" />
     <Compile Include="Core\Messages\ChangePageHeaderMessage.cs" />
     <Compile Include="Core\Messages\ChangeSelectedMenuItemMessage.cs" />
@@ -235,6 +239,9 @@
     </Compile>
     <Compile Include="UI\Media\InstaMediaPresenterUC.xaml.cs">
       <DependentUpon>InstaMediaPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Media\InstaMediaTileUC.xaml.cs">
+      <DependentUpon>InstaMediaTileUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Media\InstaMediaVideoPresenterUC.xaml.cs">
       <DependentUpon>InstaMediaVideoPresenterUC.xaml</DependentUpon>
@@ -441,6 +448,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Media\InstaMediaPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Media\InstaMediaTileUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

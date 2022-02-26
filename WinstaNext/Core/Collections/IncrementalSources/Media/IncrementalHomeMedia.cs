@@ -29,11 +29,11 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Media
         bool nomoreitems = false;
         public async Task<IEnumerable<InstaMedia>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken cancellationToken = default)
         {
+            if (nomoreitems) return null;
             var report = Windows.Devices.Power.Battery.AggregateBattery.GetReport();
             var charge = report.RemainingCapacityInMilliwattHours / report.FullChargeCapacityInMilliwattHours * 100;
             var isCharging = report.Status == Windows.System.Power.BatteryStatus.Charging;
             var isDark = new ThemeListener().CurrentTheme == ApplicationTheme.Dark;
-            if (nomoreitems) return null;
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
                 var result = await Api.FeedProcessor.GetUserTimelineFeedAsync(Pagination,
@@ -44,7 +44,8 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Media
                     isCharging: isCharging,
                     isDarkMode: isDark,
                     willSoundOn: true);
-                if (!result.Succeeded) throw result.Info.Exception;
+                if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
+                    throw result.Info.Exception;
                 if (!result.Value.MoreAvailable) nomoreitems = true;
                 RefreshRequested = false;
                 return result.Value.Medias;

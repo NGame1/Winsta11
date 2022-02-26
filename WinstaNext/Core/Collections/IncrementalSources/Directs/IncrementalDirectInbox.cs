@@ -26,7 +26,8 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Directs
             {
                 var result = await Api.MessagingProcessor.GetDirectInboxAsync(Pagination, 
                     cancellationToken: cancellationToken);
-                if (!result.Succeeded) throw result.Info.Exception;
+                if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
+                    throw result.Info.Exception;
                 if (!result.Value.Inbox.HasOlder) nomoreitems = true;
                 return result.Value.Inbox.Threads;
             }

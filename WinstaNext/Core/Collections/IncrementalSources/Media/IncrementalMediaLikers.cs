@@ -28,7 +28,8 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Media
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
                 var result = await Api.MediaProcessor.GetMediaLikersAsync(MediaId);
-                if (!result.Succeeded) throw result.Info.Exception;
+                if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
+                    throw result.Info.Exception;
 
                 var userIds = result.Value.Select(x => x.Pk).ToArray();
                 var friendshipstatusresult = await Api.UserProcessor.GetFriendshipStatusesAsync(userIds);

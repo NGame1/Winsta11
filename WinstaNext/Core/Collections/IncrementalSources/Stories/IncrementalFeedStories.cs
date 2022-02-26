@@ -43,7 +43,8 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Stories
                              forceRefresh: RefreshRequested);
                 }
 
-                if (!result.Succeeded) throw result.Info.Exception;
+                if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
+                    throw result.Info.Exception;
 
                 HasMoreAvailable = Pagination.NextMaxId != null;
 

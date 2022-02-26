@@ -40,8 +40,9 @@
                                 Width="58"/>
         </Border>
 
-        <HyperlinkButton CommandParameter="{x:Bind ReelFeed.User.UserName}"
+        <HyperlinkButton CommandParameter="{x:Bind ReelFeed.User}"
                          Command="{x:Bind NavigateToUserProfileCommand}"
+                         HorizontalAlignment="Stretch"
                          Padding="0">
             <HyperlinkButton.Content>
                 <TextBlock Text="{x:Bind ReelFeed.User.UserName}"

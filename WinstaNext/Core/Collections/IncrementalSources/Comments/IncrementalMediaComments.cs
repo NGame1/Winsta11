@@ -36,7 +36,8 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Comments
                                    cancellationToken: cancellationToken,
                                    targetCommentId: TargetCommentId);
 
-                if (!result.Succeeded) throw result.Info.Exception;
+                if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
+                    throw result.Info.Exception;
 
                 HasMoreAvailable = result.Value.MoreHeadLoadAvailable;
 

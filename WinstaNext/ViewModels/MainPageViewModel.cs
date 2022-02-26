@@ -44,6 +44,7 @@ namespace WinstaNext.ViewModels
         public RelayCommand<AutoSuggestBoxQuerySubmittedEventArgs> SearchBoxQuerySubmittedCommand { get; }
         public RelayCommand<AutoSuggestBoxSuggestionChosenEventArgs> SearchBoxSuggestionChosenCommand { get; }
         public RelayCommand<NavigationEventArgs> FrameNavigatedCommand { get; }
+        public RelayCommand<object> NavigateToUserProfileCommand { get; }
 
         /// <summary>
         /// Items at the top of the NavigationView.
@@ -77,8 +78,9 @@ namespace WinstaNext.ViewModels
             SearchBoxTextChangedCommand = new AsyncRelayCommand<AutoSuggestBoxTextChangedEventArgs>(SearchBoxTextChanged);
             SearchBoxQuerySubmittedCommand = new RelayCommand<AutoSuggestBoxQuerySubmittedEventArgs>(SearchBoxQuerySubmitted);
             SearchBoxSuggestionChosenCommand = new RelayCommand<AutoSuggestBoxSuggestionChosenEventArgs>(SearchBoxSuggestionChosen);
-            InstaUser = App.Container.GetService<InstaUserShort>();
+
             FrameNavigatedCommand = new RelayCommand<NavigationEventArgs>(FrameNavigated);
+            NavigateToUserProfileCommand = new(NavigateToUserProfile);
             _themeListener = new ThemeListener();
             SetupTitlebar(CoreApplication.GetCurrentView().TitleBar);
             MenuItems.Add(new MenuItemModel(LanguageManager.Instance.General.Home, "\uE10F", typeof(HomeView)));
@@ -96,10 +98,22 @@ namespace WinstaNext.ViewModels
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
                 var result = await Api.UserProcessor.GetCurrentUserAsync();
-                if (!result.Succeeded) return;
-                InstaUser = result.Value;
-                ((App)App.Current).SetMyUserInstance(result.Value);
+                UIContext.Post((a) =>
+                {
+                    if (!result.Succeeded)
+                    {
+                        InstaUser = App.Container.GetService<InstaUserShort>();
+                        return;
+                    }
+                    InstaUser = result.Value;
+                    ((App)App.Current).SetMyUserInstance(result.Value);
+                }, null);
             }
+        }
+
+        void NavigateToUserProfile(object obj)
+        {
+            NavigationService.Navigate(typeof(UserProfileView), obj);
         }
 
         bool SuggestionChosen = false;
