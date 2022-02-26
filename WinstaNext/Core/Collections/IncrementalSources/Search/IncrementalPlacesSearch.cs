@@ -32,7 +32,8 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Search
             if (!HasMoreAvailable) return null;
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
-                var result = await Api.LocationProcessor.SearchPlacesAsync(SearchQuerry, pagination);
+                var result = await Api.LocationProcessor.SearchPlacesAsync(SearchQuerry, pagination,
+                    cancellationToken: cancellationToken);
                 if (!result.Succeeded) throw result.Info.Exception;
                 HasMoreAvailable = result.Value.HasMore;
                 return result.Value.Items;

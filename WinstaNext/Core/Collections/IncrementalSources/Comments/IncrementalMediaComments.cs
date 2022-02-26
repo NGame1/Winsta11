@@ -33,6 +33,7 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Comments
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
                 var result = await Api.CommentProcessor.GetMediaCommentsAsync(MediaId, Pagination,
+                                   cancellationToken: cancellationToken,
                                    targetCommentId: TargetCommentId);
 
                 if (!result.Succeeded) throw result.Info.Exception;

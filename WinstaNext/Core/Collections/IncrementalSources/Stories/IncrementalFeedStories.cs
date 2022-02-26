@@ -38,6 +38,7 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Stories
                 using (IInstaApi Api = App.Container.GetService<IInstaApi>())
                 {
                     result = await Api.StoryProcessor.GetStoryFeedWithPostMethodAsync(
+                             cancellationToken: cancellationToken,
                              paginationParameters: Pagination,
                              forceRefresh: RefreshRequested);
                 }

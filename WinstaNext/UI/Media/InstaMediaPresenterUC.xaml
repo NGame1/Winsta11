@@ -21,7 +21,8 @@
     d:DesignWidth="400">
 
     <UserControl.Resources>
-        <Converters:MediaDateTimeconverter x:Key="MediaDateTimeconverter"/>
+        <Converters:MediaDateTimeconverter x:Key="MediaDateTimeconverter"
+                                           ConvertToLocalTime="True"/>
     </UserControl.Resources>
 
     <StackPanel Padding="8" Spacing="5" CornerRadius="{StaticResource ControlCornerRadius}">
@@ -249,6 +250,14 @@
                         <core:InvokeCommandAction Command="{x:Bind ViewModel.CommentboxKeyDownCommand}"/>
                     </core:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
+                
+                <TextBox.KeyboardAccelerators>
+                    <KeyboardAccelerator
+                            Key="Enter"
+                            Modifiers="None"
+                            Invoked="SendButtonKeyboardAccelerator_Invoked"
+                            IsEnabled="{x:Bind ViewModel.IsSendCommentButtonEnabled}"/>
+                </TextBox.KeyboardAccelerators>
             </TextBox>
 
             <Button IsEnabled="{x:Bind ViewModel.IsSendCommentButtonEnabled}"

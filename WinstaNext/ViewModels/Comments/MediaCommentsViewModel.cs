@@ -48,7 +48,6 @@ namespace WinstaNext.ViewModels.Comments
         async Task AddCommentAsync(ListView lst)
         {
             if (!IsSendCommentButtonEnabled) return;
-            _isSendenabled = false;
             try
             {
                 InstaCommentContainerModuleType containerModule = InstaCommentContainerModuleType.ModalCommentComposerFeedTimeline;

@@ -146,6 +146,8 @@
     <Compile Include="Core\Collections\IncrementalSources\Search\IncrementalPeopleSearch.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Search\IncrementalPlacesSearch.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Stories\IncrementalFeedStories.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Users\IncrementalUserMedias.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Users\IncrementalUserReels.cs" />
     <Compile Include="Core\Dialogs\MessageDialogHelper.cs" />
     <Compile Include="Core\Messages\ChangePageHeaderMessage.cs" />
     <Compile Include="Core\Messages\ChangeSelectedMenuItemMessage.cs" />

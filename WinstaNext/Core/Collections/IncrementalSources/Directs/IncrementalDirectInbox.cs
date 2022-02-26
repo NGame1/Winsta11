@@ -24,7 +24,8 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Directs
             if (nomoreitems) return null;
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
-                var result = await Api.MessagingProcessor.GetDirectInboxAsync(Pagination);
+                var result = await Api.MessagingProcessor.GetDirectInboxAsync(Pagination, 
+                    cancellationToken: cancellationToken);
                 if (!result.Succeeded) throw result.Info.Exception;
                 if (!result.Value.Inbox.HasOlder) nomoreitems = true;
                 return result.Value.Inbox.Threads;

@@ -91,7 +91,11 @@ namespace WinstaNext.ViewModels.Media
                       carouselIndex: carouselIndex);
 
                     if (!result.Succeeded)
+                    {
                         MessageDialogHelper.Show(result.Info.Message);
+                        return;
+                    }
+                    CommentText = string.Empty;
                 }
             }
             finally { }

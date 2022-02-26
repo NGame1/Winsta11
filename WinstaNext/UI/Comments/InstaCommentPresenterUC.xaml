@@ -19,7 +19,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/UI/Generic/PersonPictureResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <Converters:MediaDateTimeconverter x:Key="MediaDateTimeconverter"/>
+            <Converters:MediaDateTimeconverter x:Key="MediaDateTimeconverter"
+                                               ConvertToLocalTime="True"/>
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -43,10 +44,10 @@
                 </Grid.ColumnDefinitions>
 
                 <Muxc:PersonPicture ProfilePicture="{x:Bind Comment.User.ProfilePicture}"
-                                DisplayName="{x:Bind Comment.User.UserName}"
-                                VerticalAlignment="Bottom"
-                                Width="55" Height="55"
-                                Grid.Column="0"/>
+                                    DisplayName="{x:Bind Comment.User.UserName}"
+                                    VerticalAlignment="Bottom"
+                                    Width="55" Height="55"
+                                    Grid.Column="0"/>
 
                 <Grid Grid.Column="1" Margin="5,0">
                     <Grid.RowDefinitions>
@@ -56,14 +57,14 @@
                     </Grid.RowDefinitions>
 
                     <HyperlinkButton Content="{x:Bind Comment.User.UserName}"
-                                 Grid.Row="0"/>
+                                     Grid.Row="0"/>
 
                     <TextBlock Text="{x:Bind Comment.Text, Mode=OneWay}"
-                           TextAlignment="DetectFromContent"
-                           TextTrimming="WordEllipsis"
-                           TextWrapping="Wrap"
-                           Padding="8,2"
-                           Grid.Row="1"/>
+                                TextAlignment="DetectFromContent"
+                                TextTrimming="WordEllipsis"
+                                TextWrapping="Wrap"
+                                Padding="8,2"
+                                Grid.Row="1"/>
 
                     <StackPanel Orientation="Horizontal"
                                 Grid.Row="2"
@@ -84,8 +85,8 @@
             </Grid>
 
             <generic:LikeButtonControl IsLiked="{x:Bind Comment.HasLikedComment}"
-                                   Command="{x:Bind LikeCommecntCommand}"
-                                   Grid.Column="1"/>
+                                       Command="{x:Bind LikeCommecntCommand}"
+                                       Grid.Column="1"/>
         </Grid>
 
         <Grid Grid.Row="1">

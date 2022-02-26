@@ -178,5 +178,11 @@ namespace WinstaNext.UI.Media
             targetElement.Width = s.Width;
             targetElement.Height = s.Height;
         }
+
+        void SendButtonKeyboardAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+        {
+            ViewModel.AddCommentCommand.Execute(null);
+            args.Handled = true;
+        }
     }
 }

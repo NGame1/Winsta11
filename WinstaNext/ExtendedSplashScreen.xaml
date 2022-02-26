@@ -7,11 +7,18 @@
     x:Class="WinstaNext.ExtendedSplashScreen"
     mc:Ignorable="d">
 
-    <Grid Background="#464646">
-        <Canvas>
-            <Image x:Name="extendedSplashImage" Source="Assets/SplashScreen.png"/>
-            <ProgressRing Name="splashProgressRing" IsActive="True" Width="20" HorizontalAlignment="Center"></ProgressRing>
-        </Canvas>
+    <Grid>
+        <StackPanel Spacing="12" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Height="100" Width="100" Stretch="Uniform" Source="Assets/Icons/WinstaLogo.png"/>
+            <Muxc:ProgressRing IsActive="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </StackPanel>
+        
+        <Grid Visibility="Collapsed" Background="#464646">
+            <Canvas>
+                <Image x:Name="extendedSplashImage" Source="Assets/SplashScreen.png" Visibility="Collapsed"/>
+                <ProgressRing Name="splashProgressRing" IsActive="True" Width="85" HorizontalAlignment="Center"></ProgressRing>
+            </Canvas>
+        </Grid>
     </Grid>
 
 </Page>

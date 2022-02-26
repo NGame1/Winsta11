@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp.UI;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,5 +27,6 @@ namespace WinstaNext.Views.Profiles
         {
             this.InitializeComponent();
         }
+
     }
 }

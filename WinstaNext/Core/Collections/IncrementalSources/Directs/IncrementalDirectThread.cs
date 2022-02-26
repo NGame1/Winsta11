@@ -34,7 +34,9 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Directs
             if (!hassOlder) return null;
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
-                var result = await Api.MessagingProcessor.GetDirectInboxThreadAsync(InboxThread.ThreadId, Pagination, seqId);
+                var result = await Api.MessagingProcessor.GetDirectInboxThreadAsync(InboxThread.ThreadId, Pagination,
+                    cancellationToken: cancellationToken,
+                    seqId: seqId);
                 if (!result.Succeeded) throw result.Info.Exception;
                 hassOlder = result.Value.HasOlder;
                 result.Value.Items.Reverse();

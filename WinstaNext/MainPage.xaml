@@ -178,7 +178,7 @@
                     </AutoSuggestBox.ItemTemplate>
 
                     <AutoSuggestBox.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
                             <Setter Property="Padding" Value="8,4"/>
                             <Setter Property="Margin" Value="0,0,0,2"/>
                         </Style>

@@ -9,9 +9,12 @@ namespace WinstaNext.Converters.Media
 {
     internal class MediaDateTimeconverter : IValueConverter
     {
+        public bool ConvertToLocalTime { get; set; } = false;
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value is not DateTime dt) return null;
+            if (ConvertToLocalTime)
+                dt = dt.ToLocalTime();
             var sub = DateTime.Now.Subtract(dt);
             if ((int)sub.TotalSeconds < 60) return LanguageManager.Instance.Units.Recently;
             if ((int)sub.TotalMinutes == 1) return $"1 {LanguageManager.Instance.Units.MinuteAbbreviation} {LanguageManager.Instance.Units.Ago}";

@@ -37,12 +37,13 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Media
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
                 var result = await Api.FeedProcessor.GetUserTimelineFeedAsync(Pagination,
+                    removeAds: ApplicationSettingsManager.Instance.GetRemoveFeedAds(),
                     batteryLevel: charge.HasValue ? (ushort)charge : (ushort)100,
-                    isCharging: isCharging,
+                    cancellationToken: cancellationToken,
                     refreshRequest: RefreshRequested,
+                    isCharging: isCharging,
                     isDarkMode: isDark,
-                    willSoundOn: true,
-                    removeAds: ApplicationSettingsManager.Instance.GetRemoveFeedAds());
+                    willSoundOn: true);
                 if (!result.Succeeded) throw result.Info.Exception;
                 if (!result.Value.MoreAvailable) nomoreitems = true;
                 RefreshRequested = false;

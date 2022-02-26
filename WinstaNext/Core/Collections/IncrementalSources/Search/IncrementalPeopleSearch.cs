@@ -34,7 +34,8 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Search
 
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
-                var result = await Api.DiscoverProcessor.SearchPeopleAsync(SearchQuerry, pagination);
+                var result = await Api.DiscoverProcessor.SearchPeopleAsync(SearchQuerry, pagination,
+                             cancellationToken: cancellationToken);
                 if (!result.Succeeded) throw result.Info.Exception;
                 HasMoreAvailable = result.Value.HasMoreAvailable;
                 return result.Value.Users;
