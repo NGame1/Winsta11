@@ -82,8 +82,13 @@ namespace WinstaNext
         public string Directs { get => _resource.GetString(nameof(Directs)); }
         public string Explore { get => _resource.GetString(nameof(Explore)); }
         public string Feed { get => _resource.GetString(nameof(Feed)); }
+        public string Follow { get => _resource.GetString(nameof(Follow)); }
+        public string FollowBack { get => _resource.GetString(nameof(FollowBack)); }
+        public string Followers { get => _resource.GetString(nameof(Followers)); }
+        public string Followings { get => _resource.GetString(nameof(Followings)); }
         public string Hashtags { get => _resource.GetString(nameof(Hashtags)); }
         public string Highlights { get => _resource.GetString(nameof(Highlights)); }
+        public string IsFollowingYou { get => _resource.GetString(nameof(IsFollowingYou)); }
         public string Like { get => _resource.GetString(nameof(Like)); }
         public string Likes { get => _resource.GetString(nameof(Likes)); }
         public string LoadMoreComments { get => _resource.GetString(nameof(LoadMoreComments)); }
@@ -91,6 +96,7 @@ namespace WinstaNext
         public string MediaLikers { get => _resource.GetString(nameof(MediaLikers)); }
         public string NoDirectsYet { get => _resource.GetString(nameof(NoDirectsYet)); }
         public string Places { get => _resource.GetString(nameof(Places)); }
+        public string Posts { get => _resource.GetString(nameof(Posts)); }
         public string SelectDirectToLoad { get => _resource.GetString(nameof(SelectDirectToLoad)); }
         public string Stories { get => _resource.GetString(nameof(Stories)); }
         public string Share { get => _resource.GetString(nameof(Share)); }
@@ -99,6 +105,7 @@ namespace WinstaNext
         public string Top { get => _resource.GetString(nameof(Top)); }
         public string TrustThisDevice { get => _resource.GetString(nameof(TrustThisDevice)); }
         public string TwoFactorAuthentication { get => _resource.GetString(nameof(TwoFactorAuthentication)); }
+        public string Unfollow { get => _resource.GetString(nameof(Unfollow)); }
         public string UnsupportedMessageType { get => _resource.GetString(nameof(UnsupportedMessageType)); }
         public string VerificationCode { get => _resource.GetString(nameof(VerificationCode)); }
         public string VerificationMethod { get => _resource.GetString(nameof(VerificationMethod)); }

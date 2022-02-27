@@ -12,8 +12,8 @@ namespace WinstaNext.Helpers
         public static Size CalculateSizeInBox(double imageWidth, double imageHeight, double windowHeight, double windowWidth)
         {
             double dbl = imageWidth / imageHeight;
-            ////if (windowHeight == 0 && windowWidth == 0)
-            ////    return new Size(imageHeight / dbl, (imageWidth / dbl));
+            if (windowHeight <= 0 && windowWidth <= 0)
+                return new Size(imageHeight / dbl, (imageWidth / dbl));
             //calculate the ratio
 
             //set height of image to boxHeight and check if resulting width is less than boxWidth, 

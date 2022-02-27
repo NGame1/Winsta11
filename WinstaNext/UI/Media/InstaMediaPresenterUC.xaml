@@ -14,8 +14,8 @@
     xmlns:generic="using:WinstaNext.UI.Generic"
     xmlns:Media="using:Microsoft.UI.Xaml.Media"
     xmlns:local="using:WinstaNext.UI.Media"
-    xmlns:Winsta="using:WinstaNext" 
-    mc:Ignorable="d"
+    xmlns:Winsta="using:WinstaNext" xmlns:flyouts="using:WinstaNext.UI.Flyouts"
+             mc:Ignorable="d"
     MaxWidth="800"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -233,6 +233,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Muxc:PersonPicture ProfilePicture="{x:Bind Me.ProfilePicture}"
@@ -266,6 +267,18 @@
                     Content="&#xF699;" 
                     Margin="5,0,0,0" 
                     Grid.Column="2"/>
+
+            <Button FontFamily="{StaticResource FluentIcons}"
+                    RenderTransformOrigin="0.5, 0.5"
+                    Content="&#xE10C;" 
+                    Margin="5,0,0,0" 
+                    Grid.Column="3">
+                
+                <Button.Flyout>
+                    <flyouts:InstaMediaFlyout Media="{x:Bind Media}"/>
+                </Button.Flyout>
+                
+            </Button>
         </Grid>
 
     </StackPanel>

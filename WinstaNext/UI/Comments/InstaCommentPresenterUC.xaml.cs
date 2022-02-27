@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Services;
 using WinstaNext.Views.Comments;
+using WinstaNext.Views.Profiles;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -44,11 +45,13 @@ namespace WinstaNext.UI.Comments
 
         public AsyncRelayCommand LikeCommecntCommand { get; set; }
         public AsyncRelayCommand LoadMoreCommentsCommand { get; set; }
+        public RelayCommand<object> NavigateToUserProfileCommand { get; set; }
 
         public InstaCommentPresenterUC()
         {
             LoadMoreCommentsCommand = new(LoadMoreCommentsAsync);
             LikeCommecntCommand = new(LikeCommentAsync);
+            NavigateToUserProfileCommand = new(NavigateToUserProfile);
             this.InitializeComponent();
         }
 
@@ -96,7 +99,7 @@ namespace WinstaNext.UI.Comments
             {
                 using (IInstaApi Api = App.Container.GetService<IInstaApi>())
                 {
-                    var result = await Api.CommentProcessor.GetMediaRepliesCommentsAsync(mediaId, 
+                    var result = await Api.CommentProcessor.GetMediaRepliesCommentsAsync(mediaId,
                                                             Comment.Pk.ToString(), Pagination);
 
                     if (!result.Succeeded) throw result.Info.Exception;
@@ -112,6 +115,12 @@ namespace WinstaNext.UI.Comments
             finally
             {
             }
+        }
+
+        void NavigateToUserProfile(object obj)
+        {
+            var NavigationService = App.Container.GetService<NavigationService>();
+            NavigationService.Navigate(typeof(UserProfileView), obj);
         }
 
     }

@@ -3,6 +3,7 @@ using InstagramApiSharp.Classes.Models;
 using InstagramApiSharp.Enums;
 using Mapster;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using WinstaNext.Core.Collections.IncrementalSources.Users;
 using WinstaNext.Services;
 using WinstaNext.Views;
+using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;
 
 namespace WinstaNext.ViewModels.Users
@@ -26,19 +28,31 @@ namespace WinstaNext.ViewModels.Users
 
         public IncrementalUserMedias MediasInstance { get; set; }
         public IncrementalUserReels ReelsInstance { get; set; }
-        public IncrementalLoadingCollection<IncrementalUserReels, InstaMedia> UserReels{ get; private set; }
+        public IncrementalLoadingCollection<IncrementalUserReels, InstaMedia> UserReels { get; private set; }
         public IncrementalLoadingCollection<IncrementalUserMedias, InstaMedia> UserMedias { get; private set; }
 
-        public InstaUser User { get; private set; }
+        public InstaUserInfo User { get; private set; }
+
         public ScrollViewer ListViewScroll { get; set; }
+
+        public RelayCommand<ItemClickEventArgs> NavigateToMediaCommand { get; set; }
+
         public UserProfileViewModel() : base()
         {
+            NavigateToMediaCommand = new(NavigateToMedia);
+        }
+
+        void NavigateToMedia(ItemClickEventArgs args)
+        {
+            if (args.ClickedItem is not InstaMedia media) throw new ArgumentOutOfRangeException(nameof(args.ClickedItem));
+            NavigationService.Navigate(typeof(SingleInstaMediaView), media);
         }
 
         public override async Task OnNavigatedToAsync(NavigationEventArgs e)
         {
             if (e.Parameter is long userId)
             {
+                if (User != null && User.Pk == userId) return;
                 using (IInstaApi Api = App.Container.GetService<IInstaApi>())
                 {
                     var result = await Api.UserProcessor.GetUserInfoByIdAsync(userId,
@@ -49,11 +63,13 @@ namespace WinstaNext.ViewModels.Users
                             NavigationService.GoBack();
                         throw result.Info.Exception;
                     }
-                    User = result.Value.Adapt<InstaUser>();
+                    User = result.Value;
+                    //User = result.Value.Adapt<InstaUser>();
                 }
             }
-            else if(e.Parameter is string username && !string.IsNullOrEmpty(username))
+            else if (e.Parameter is string username && !string.IsNullOrEmpty(username))
             {
+                if (User != null && User.UserName.ToLower() == username.ToLower()) return;
                 using (IInstaApi Api = App.Container.GetService<IInstaApi>())
                 {
                     var result = await Api.UserProcessor.GetUserInfoByUsernameAsync(username,
@@ -64,16 +80,60 @@ namespace WinstaNext.ViewModels.Users
                             NavigationService.GoBack();
                         throw result.Info.Exception;
                     }
-                    User = result.Value.Adapt<InstaUser>();
+                    User = result.Value;
+                    //User = result.Value.Adapt<InstaUser>();
                 }
             }
-            else if(e.Parameter is InstaUserShortFriendshipFull user)
+            else if (e.Parameter is InstaUserShortFriendshipFull friendshipFull)
             {
-                User = new(user);
+                if (User != null && User.Pk == friendshipFull.Pk) return;
+                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+                {
+                    var result = await Api.UserProcessor.GetUserInfoByIdAsync(friendshipFull.Pk,
+                                       surfaceType: InstaMediaSurfaceType.Profile);
+                    if (!result.Succeeded)
+                    {
+                        if (NavigationService.CanGoBack)
+                            NavigationService.GoBack();
+                        throw result.Info.Exception;
+                    }
+                    User = result.Value;
+                    //User = result.Value.Adapt<InstaUser>();
+                }
             }
-            else if(e.Parameter is InstaCurrentUser currentUser)
+            else if (e.Parameter is InstaCurrentUser currentUser)
             {
-                User = new(currentUser);
+                if (User != null && User.Pk == currentUser.Pk) return;
+                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+                {
+                    var result = await Api.UserProcessor.GetUserInfoByIdAsync(currentUser.Pk,
+                                       surfaceType: InstaMediaSurfaceType.Profile);
+                    if (!result.Succeeded)
+                    {
+                        if (NavigationService.CanGoBack)
+                            NavigationService.GoBack();
+                        throw result.Info.Exception;
+                    }
+                    User = result.Value;
+                    //User = result.Value.Adapt<InstaUser>();
+                }
+            }
+            else if (e.Parameter is InstaUser instaUser)
+            {
+                if (User != null && User.Pk == instaUser.Pk) return;
+                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+                {
+                    var result = await Api.UserProcessor.GetUserInfoByIdAsync(instaUser.Pk,
+                                       surfaceType: InstaMediaSurfaceType.Profile);
+                    if (!result.Succeeded)
+                    {
+                        if (NavigationService.CanGoBack)
+                            NavigationService.GoBack();
+                        throw result.Info.Exception;
+                    }
+                    User = result.Value;
+                    //User = result.Value.Adapt<InstaUser>();
+                }
             }
             else
             {

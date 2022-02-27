@@ -141,11 +141,26 @@
   <data name="Feed" xml:space="preserve">
     <value>Feed</value>
   </data>
+  <data name="Follow" xml:space="preserve">
+    <value>Follow</value>
+  </data>
+  <data name="FollowBack" xml:space="preserve">
+    <value>FollowBack</value>
+  </data>
+  <data name="Followers" xml:space="preserve">
+    <value>Followers</value>
+  </data>
+  <data name="Followings" xml:space="preserve">
+    <value>Followings</value>
+  </data>
   <data name="Hashtags" xml:space="preserve">
     <value>Tags</value>
   </data>
   <data name="Highlights" xml:space="preserve">
     <value>Highlights</value>
+  </data>
+  <data name="IsFollowingYou" xml:space="preserve">
+    <value>is following you.</value>
   </data>
   <data name="Like" xml:space="preserve">
     <value>Like</value>
@@ -167,6 +182,9 @@
   </data>
   <data name="Places" xml:space="preserve">
     <value>Places</value>
+  </data>
+  <data name="Posts" xml:space="preserve">
+    <value>Posts</value>
   </data>
   <data name="SelectDirectToLoad" xml:space="preserve">
     <value>Select a direct thread to view</value>
@@ -191,6 +209,9 @@
   </data>
   <data name="TwoFactorAuthentication" xml:space="preserve">
     <value>Two factor authentication</value>
+  </data>
+  <data name="Unfollow" xml:space="preserve">
+    <value>Unfollow</value>
   </data>
   <data name="UnsupportedMessageType" xml:space="preserve">
     <value>This direct message type is not supported by Winsta yet.</value>

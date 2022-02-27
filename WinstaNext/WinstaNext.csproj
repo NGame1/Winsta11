@@ -137,6 +137,7 @@
     <Compile Include="Converters\Media\InstaMediaTypeIconConverter.cs" />
     <Compile Include="Converters\Media\MediaDateTimeconverter.cs" />
     <Compile Include="Converters\NullToBooleanConverter.cs" />
+    <Compile Include="Converters\PossibleLargeNumbersConverter.cs" />
     <Compile Include="Converters\Stories\StoryBorderColorConverter.cs" />
     <Compile Include="Core\Behaviors\SynchronizeHorizontalOffsetBehavior.cs" />
     <Compile Include="Core\Collections\ExtendedObservableCollection.cs" />
@@ -222,6 +223,9 @@
     <Compile Include="UI\Directs\PrivateDirectThread.xaml.cs">
       <DependentUpon>PrivateDirectThread.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Flyouts\InstaMediaFlyout.xaml.cs">
+      <DependentUpon>InstaMediaFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Generic\InstaUserPresenterUC.xaml.cs">
       <DependentUpon>InstaUserPresenterUC.xaml</DependentUpon>
     </Compile>
@@ -299,6 +303,9 @@
     </Compile>
     <Compile Include="Views\Media\MediaLikersView.xaml.cs">
       <DependentUpon>MediaLikersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Media\SingleInstaMediaView.xaml.cs">
+      <DependentUpon>SingleInstaMediaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Profiles\UserProfileView.xaml.cs">
       <DependentUpon>UserProfileView.xaml</DependentUpon>
@@ -423,6 +430,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Flyouts\InstaMediaFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Generic\InstaUserPresenterUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -508,6 +519,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Media\MediaLikersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Media\SingleInstaMediaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -56,7 +56,9 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <HyperlinkButton Content="{x:Bind Comment.User.UserName}"
+                    <HyperlinkButton CommandParameter="{x:Bind Comment.User.UserName}"
+                                     Command="{x:Bind NavigateToUserProfileCommand}"
+                                     Content="{x:Bind Comment.User.UserName}"
                                      Grid.Row="0"/>
 
                     <TextBlock Text="{x:Bind Comment.Text, Mode=OneWay}"
