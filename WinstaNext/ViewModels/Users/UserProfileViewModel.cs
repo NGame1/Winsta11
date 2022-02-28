@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Core.Collections.IncrementalSources.Users;
+using WinstaNext.Core.Navigation;
 using WinstaNext.Services;
 using WinstaNext.Views;
 using WinstaNext.Views.Media;
@@ -45,7 +46,8 @@ namespace WinstaNext.ViewModels.Users
         void NavigateToMedia(ItemClickEventArgs args)
         {
             if (args.ClickedItem is not InstaMedia media) throw new ArgumentOutOfRangeException(nameof(args.ClickedItem));
-            NavigationService.Navigate(typeof(SingleInstaMediaView), media);
+            var para = new IncrementalMediaViewParameter(UserMedias, media);
+            NavigationService.Navigate(typeof(IncrementalInstaMediaView), para);
         }
 
         public override async Task OnNavigatedToAsync(NavigationEventArgs e)

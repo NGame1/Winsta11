@@ -59,8 +59,9 @@ namespace WinstaNext.UI.Media
         ~InstaMediaPresenterUC()
         {
             Me = null;
-            Media = null;
             ViewModel = null;
+            if (Dispatcher.HasThreadAccess)
+                Media = null;
         }
 
         bool eventRegistered = false;

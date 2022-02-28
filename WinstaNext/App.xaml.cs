@@ -40,13 +40,20 @@ namespace WinstaNext
             this.Suspending += OnSuspending;
             
             this.UnhandledException += App_UnhandledException;
-
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
             //Enable reveal focus for visual elements
             this.FocusVisualKind = FocusVisualKind.Reveal;
 
             //Removes mouse pointer on XBOX
             if (SystemInformation.Instance.DeviceFamily == "Windows.Xbox")
                 this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
+        }
+
+        private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        {
+            e.SetObserved();
+            var stack = Environment.StackTrace;
+            MessageDialogHelper.Show(e.Exception.Message);
         }
 
         public void SetContainer()
@@ -56,9 +63,9 @@ namespace WinstaNext
 
         private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
         {
+            e.Handled = true;
             var stack = Environment.StackTrace;
             MessageDialogHelper.Show(e.Message);
-            e.Handled = true;
         }
 
         IServiceProvider ConfigureDependencyInjection()

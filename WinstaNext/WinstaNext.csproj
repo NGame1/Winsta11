@@ -156,6 +156,7 @@
     <Compile Include="Core\Dialogs\MessageDialogHelper.cs" />
     <Compile Include="Core\Messages\ChangePageHeaderMessage.cs" />
     <Compile Include="Core\Messages\ChangeSelectedMenuItemMessage.cs" />
+    <Compile Include="Core\Navigation\IncrementalMediaViewParameter.cs" />
     <Compile Include="Core\Navigation\MediaCommentsViewParameter.cs" />
     <Compile Include="Core\Navigation\NavigationParameter.cs" />
     <Compile Include="Core\TaskCompletionNotifier.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="ViewModels\Directs\DirectThreadViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\Media\IncrementalInstaMediaViewModel.cs" />
     <Compile Include="ViewModels\Media\InstaMediaPresenterUCViewModel.cs" />
     <Compile Include="ViewModels\Media\MediaLikersViewModel.cs" />
     <Compile Include="ViewModels\Search\SearchViewModel.cs" />
@@ -300,6 +302,9 @@
     </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Media\IncrementalInstaMediaView.xaml.cs">
+      <DependentUpon>IncrementalInstaMediaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Media\MediaLikersView.xaml.cs">
       <DependentUpon>MediaLikersView.xaml</DependentUpon>
@@ -515,6 +520,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Media\IncrementalInstaMediaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
