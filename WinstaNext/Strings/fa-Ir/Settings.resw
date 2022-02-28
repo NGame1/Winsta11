@@ -123,4 +123,16 @@
   <data name="AutoplayDescription" xml:space="preserve">
     <value>پخش خودکار ویدئو ها در زمان اسکرول و ورق زدن ویدئو های آلبوم.</value>
   </data>
+  <data name="ForceThreeColumns" xml:space="preserve">
+    <value>اجبار نمایش سه ستونه</value>
+  </data>
+  <data name="ForceThreeColumnsDescription" xml:space="preserve">
+    <value>پروفایل های کاربران، هشتگ ها و... را به صورت سه ستونه نمایش داده شود.</value>
+  </data>
+  <data name="RemoveFeedAds" xml:space="preserve">
+    <value>حذف تبلیغات خانه</value>
+  </data>
+  <data name="RemoveFeedAdsDescription" xml:space="preserve">
+    <value>حذف تبلیغات پیج هایی که فالو نکردیده اید از صفحه خانه.</value>
+  </data>
 </root>

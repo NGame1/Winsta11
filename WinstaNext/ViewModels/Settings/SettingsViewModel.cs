@@ -26,6 +26,18 @@ namespace WinstaNext.ViewModels.Settings
             set => ApplicationSettingsManager.Instance.SetAutoPlay(value);
         }
 
+        public bool ForceThreeColumns
+        {
+            get => ApplicationSettingsManager.Instance.GetForceThreeColumns();
+            set => ApplicationSettingsManager.Instance.SetForceThreeColumns(value);
+        }
+
+        public bool RemoveFeedAds
+        {
+            get => ApplicationSettingsManager.Instance.GetRemoveFeedAds();
+            set => ApplicationSettingsManager.Instance.SetRemoveFeedAds(value);
+        }
+
         public override string PageHeader { get; protected set; } = LanguageManager.Instance.General.Settings;
 
         [OnChangedMethod(nameof(OnThemeChanged))]

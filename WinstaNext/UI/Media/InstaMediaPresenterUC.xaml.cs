@@ -76,7 +76,7 @@ namespace WinstaNext.UI.Media
                     break;
                 case InstaMediaType.Video:
                     ViewModel.VideoPresenterLoaded = true;
-                    if(eventRegistered)
+                    if (eventRegistered)
                     {
                         Media.PropertyChanged -= Media_PropertyChanged;
                     }
@@ -90,11 +90,29 @@ namespace WinstaNext.UI.Media
                         Media.PropertyChanged -= Media_PropertyChanged;
                     }
                     Media.PropertyChanged += Media_PropertyChanged;
+                    carouselPresenter.Gallery.SelectionChanged += Gallery_SelectionChanged;
                     eventRegistered = true;
                     break;
                 default:
                     break;
             }
+        }
+
+        private void Gallery_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!ApplicationSettingsManager.Instance.GetAutoPlay() || !Media.Play) return;
+            var gallery = carouselPresenter.Gallery;
+            for (int i = 0; i < gallery.Items.Count; i++)
+            {
+                var item = (FlipViewItem)gallery.ContainerFromIndex(i);
+                if (item == null) continue;
+                if (item.ContentTemplateRoot is not InstaMediaVideoPresenterUC videoPresenter) continue;
+                videoPresenter.mediaPlayer.Pause();
+            }
+            var fvi = (FlipViewItem)gallery.ContainerFromIndex(gallery.SelectedIndex);
+            if (fvi == null) return;
+            if (fvi.ContentTemplateRoot is not InstaMediaVideoPresenterUC videoPresenterUC) return;
+            videoPresenterUC.mediaPlayer.Play();
         }
 
         void HandleVideoPlayback(InstaMediaVideoPresenterUC videoPresenter)
@@ -106,7 +124,7 @@ namespace WinstaNext.UI.Media
 
         void HandleCarouselVideos()
         {
-            if(!Media.Play)
+            if (!Media.Play)
             {
                 for (int i = 0; i < Media.Carousel.Count; i++)
                 {

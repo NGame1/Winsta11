@@ -1,12 +1,16 @@
 ﻿<views:BasePage
-    xmlns:views="using:WinstaNext.Views"
-    x:Class="WinstaNext.Views.Settings.SettingsView"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WinstaNext"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mucx="using:Microsoft.UI.Xaml.Controls" xmlns:controls="using:WinstaNext.UI.Controls" xmlns:VM="using:WinstaNext.ViewModels.Settings" xmlns:converters="using:WinstaNext.Converters"
-    mc:Ignorable="d" Margin="{x:Bind PageMargin}">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="WinstaNext.Views.Settings.SettingsView"
+    xmlns:VM="using:WinstaNext.ViewModels.Settings"
+    xmlns:converters="using:WinstaNext.Converters"
+    xmlns:controls="using:WinstaNext.UI.Controls" 
+    xmlns:views="using:WinstaNext.Views"
+    xmlns:local="using:WinstaNext"
+    Margin="{x:Bind PageMargin}"
+    mc:Ignorable="d" >
 
     <Page.Resources>
         <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
@@ -32,6 +36,26 @@
                 </controls:ExpandableSettingControl.Icon>
                 <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" 
                               IsOn="{x:Bind ViewModel.AutoPlayEnabled, Mode=TwoWay}"/>
+            </controls:ExpandableSettingControl>
+            
+            <controls:ExpandableSettingControl 
+                Title="{x:Bind local:LanguageManager.Instance.Settings.RemoveFeedAds}"
+                Description="{x:Bind local:LanguageManager.Instance.Settings.RemoveFeedAdsDescription}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xE733;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" 
+                              IsOn="{x:Bind ViewModel.RemoveFeedAds, Mode=TwoWay}"/>
+            </controls:ExpandableSettingControl>
+
+            <controls:ExpandableSettingControl 
+                Title="{x:Bind local:LanguageManager.Instance.Settings.ForceThreeColumns}"
+                Description="{x:Bind local:LanguageManager.Instance.Settings.ForceThreeColumnsDescription}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xE80A;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" 
+                              IsOn="{x:Bind ViewModel.ForceThreeColumns, Mode=TwoWay}"/>
             </controls:ExpandableSettingControl>
 
             <controls:ExpandableSettingControl 

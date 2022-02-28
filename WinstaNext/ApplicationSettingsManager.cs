@@ -28,6 +28,7 @@ namespace WinstaNext
         string AppThemeSetting { get => "AppTheme"; }
         string AppLanguageSettings { get => "AppLanguage"; }
         string AutoPlaySettings { get => "AutoPlay"; }
+        string ForceThreeColumnsSettings { get => "ForceThreeColumns"; }
         string RemoveFeedAdsSetting { get => "RemoveFeedAds"; }
         string ShowLoginSetting { get => "ShowLogin"; }
         string UserNamesSetting { get => "UserNames"; }
@@ -58,6 +59,24 @@ namespace WinstaNext
                 new LanguageDefinition("English","en-Us"),
                 new LanguageDefinition("Persian (پارسی)","fa-Ir"),
             };
+        }
+
+        public bool GetForceThreeColumns()
+        {
+            if (LocalSettings.Values.TryGetValue(ForceThreeColumnsSettings, out var ForceThreeColumns))
+            {
+                return Convert.ToBoolean(ForceThreeColumns);
+            }
+            else
+            {
+                return SetForceThreeColumns();
+            }
+        }
+
+        public bool SetForceThreeColumns(bool forceThreeColumns = false)
+        {
+            LocalSettings.Values[ForceThreeColumnsSettings] = forceThreeColumns;
+            return forceThreeColumns;
         }
 
         public string GetLanguage()

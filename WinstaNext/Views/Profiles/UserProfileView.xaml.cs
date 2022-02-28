@@ -25,6 +25,7 @@ namespace WinstaNext.Views.Profiles
     [AddINotifyPropertyChangedInterface]
     public sealed partial class UserProfileView : BasePage
     {
+        ItemsWrapGrid WrapGrid { get; set; }
         public UserProfileView()
         {
             this.InitializeComponent();
@@ -49,5 +50,25 @@ namespace WinstaNext.Views.Profiles
                 lst.ItemsSource = ViewModel.UserReels;
             }
         }
+
+        private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            WrapGrid = (ItemsWrapGrid)sender;
+        }
+
+        private void lst_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (WrapGrid == null) return;
+            if(!ApplicationSettingsManager.Instance.GetForceThreeColumns())
+            {
+                WrapGrid.ItemHeight = WrapGrid.ItemWidth = 185;
+                WrapGrid.SizeChanged -= lst_SizeChanged;
+                lst.SizeChanged -= lst_SizeChanged;
+                return;
+            }
+            var width = e.NewSize.Width / 3f;
+            WrapGrid.ItemHeight = WrapGrid.ItemWidth = width;
+        }
+
     }
 }

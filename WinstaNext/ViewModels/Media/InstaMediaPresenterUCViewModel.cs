@@ -150,10 +150,11 @@ namespace WinstaNext.ViewModels.Media
                         break;
 
                     case "follow_hashtag_story":
-                        inventorySource = InstaMediaInventorySource.MediaOrAdd;
+                        inventorySource = InstaMediaInventorySource.FollowHashtagStory;
                         break;
 
                     case "coauthored_post_unconnected":
+                        inventorySource = InstaMediaInventorySource.CoauthoredPostUnconnected;
                         break;
 
                     default:
@@ -166,9 +167,9 @@ namespace WinstaNext.ViewModels.Media
                     if (!liked)
                     {
                         result = await Api.MediaProcessor.LikeMediaAsync(Media.InstaIdentifier,
+                                 Media.InventorySource,
                                  isCarouselBumpedPost: Media.MediaType == InstaMediaType.Carousel,
                                  exploreSourceToken: exploreSourceToken,
-                                 inventorySource: inventorySource,
                                  containerModule: containerModule,
                                  carouselIndex: carouselIndex,
                                  feedPosition: feedPosition);
@@ -176,9 +177,9 @@ namespace WinstaNext.ViewModels.Media
                     else
                     {
                         result = await Api.MediaProcessor.UnLikeMediaAsync(Media.InstaIdentifier,
+                                 Media.InventorySource,
                                  isCarouselBumpedPost: Media.MediaType == InstaMediaType.Carousel,
                                  exploreSourceToken: exploreSourceToken,
-                                 inventorySource: inventorySource,
                                  containerModule: containerModule,
                                  carouselIndex: carouselIndex,
                                  feedPosition: feedPosition);

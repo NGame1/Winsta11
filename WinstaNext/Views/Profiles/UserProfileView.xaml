@@ -5,6 +5,7 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:models="using:InstagramApiSharp.Classes.Models" 
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="WinstaNext.Views.Profiles.UserProfileView"
     xmlns:behaviors="using:WinstaNext.Core.Behaviors"
     xmlns:Converters="using:WinstaNext.Converters"
@@ -12,8 +13,8 @@
     xmlns:VM="using:WinstaNext.ViewModels.Users"
     xmlns:media="using:WinstaNext.UI.Media" 
     xmlns:views="using:WinstaNext.Views"
-    xmlns:Winsta="using:WinstaNext" xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                mc:Ignorable="d">
+    xmlns:Winsta="using:WinstaNext"
+    mc:Ignorable="d">
 
     <views:BasePage.Resources>
         <Converters:PossibleLargeNumbersConverter x:Key="PossibleLargeNumbersConverter"/>
@@ -106,6 +107,7 @@
                           Height="{x:Bind ViewModel.ViewHeight, Mode=OneWay}"
                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                           ScrollViewer.HorizontalScrollMode="Disabled"
+                          SizeChanged="lst_SizeChanged"
                           IsItemClickEnabled="True"
                           SelectionMode="None"
                           Loaded="lst_Loaded"
@@ -116,9 +118,12 @@
                             <core:InvokeCommandAction Command="{x:Bind ViewModel.NavigateToMediaCommand}"/>
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
+
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <ItemsWrapGrid HorizontalAlignment="Center"
+                            <ItemsWrapGrid SizeChanged="lst_SizeChanged" 
+                                           Loaded="ItemsWrapGrid_Loaded"
+                                           HorizontalAlignment="Center"
                                            MaximumRowsOrColumns="10"
                                            Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
@@ -128,8 +133,6 @@
                         <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
                             <Setter Property="Margin" Value="4"/>
                             <Setter Property="Padding" Value="0"/>
-                            <Setter Property="Height" Value="150"/>
-                            <Setter Property="Width" Value="150"/>
                         </Style>
                     </ListView.ItemContainerStyle>
 

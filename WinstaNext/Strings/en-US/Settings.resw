@@ -123,4 +123,16 @@
   <data name="AutoplayDescription" xml:space="preserve">
     <value>Play videos automatically on scroll and slide carousels automatically.</value>
   </data>
+  <data name="ForceThreeColumns" xml:space="preserve">
+    <value>Force three columns</value>
+  </data>
+  <data name="ForceThreeColumnsDescription" xml:space="preserve">
+    <value>Forcibly show users, hashtags and etc. views with three columns</value>
+  </data>
+  <data name="RemoveFeedAds" xml:space="preserve">
+    <value>Remove feed ads</value>
+  </data>
+  <data name="RemoveFeedAdsDescription" xml:space="preserve">
+    <value>Remove advertisements in home page feed from pages you didn't follow.</value>
+  </data>
 </root>
