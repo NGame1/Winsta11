@@ -279,6 +279,7 @@
     <Compile Include="ViewModels\Media\MediaLikersViewModel.cs" />
     <Compile Include="ViewModels\Search\SearchViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\Stories\StoryCarouselViewModel.cs" />
     <Compile Include="ViewModels\Users\UserProfileViewModel.cs" />
     <Compile Include="Views\Account\ChallengeRequiredView.xaml.cs">
       <DependentUpon>ChallengeRequiredView.xaml</DependentUpon>
@@ -320,6 +321,12 @@
     </Compile>
     <Compile Include="Views\Settings\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stories\StoryCarouselView.xaml.cs">
+      <DependentUpon>StoryCarouselView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stories\StoryItemView.xaml.cs">
+      <DependentUpon>StoryItemView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -547,6 +554,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Stories\StoryCarouselView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Stories\StoryItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fody">
@@ -586,6 +601,9 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="NodaTime">
+      <Version>3.0.9</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
       <Version>3.4.0</Version>
@@ -661,12 +679,6 @@
     <Folder Include="Core\Collections\NormalSources\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\InstagramApiSharpMine\src\InstagramApiSharp\InstagramApiSharp.UWP.csproj">
-      <Project>{ecc0defb-3034-44c2-a4b6-aa443f07d942}</Project>
-      <Name>InstagramApiSharp.UWP</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <PRIResource Include="Strings\en-US\Settings.resw" />
   </ItemGroup>
   <ItemGroup>
@@ -674,6 +686,28 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\fa-Ir\Units.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\InstagramApiSharpMine\src\InstagramApiSharp\InstagramApiSharp.UWP.csproj">
+      <Project>{ecc0defb-3034-44c2-a4b6-aa443f07d942}</Project>
+      <Name>InstagramApiSharp.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotificationHandler\NotificationHandler.csproj">
+      <Project>{f2f2ee57-376b-4456-9d11-f641b86d771b}</Project>
+      <Name>NotificationHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinstaBackgroundHelpers\WinstaBackgroundHelpers.csproj">
+      <Project>{8acdb63f-98aa-4de6-95c5-c2d96f098cfa}</Project>
+      <Name>WinstaBackgroundHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinstaBackgroundTask\WinstaBackgroundTask.csproj">
+      <Project>{0d44f4ad-a357-44a8-8202-ebecd46c575d}</Project>
+      <Name>WinstaBackgroundTask</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinstaCore\WinstaCore.csproj">
+      <Project>{898C6B7E-C8FE-418F-9348-B32DA493FA10}</Project>
+      <Name>WinstaCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -1,9 +1,9 @@
 ﻿using InstagramApiSharp.API;
 using InstagramApiSharp.API.Builder;
 using InstagramApiSharp.Classes.Models;
-using Mapster;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Uwp.Helpers;
+using NodaTime.TimeZones;
 using Syncfusion.Licensing;
 using System;
 using System.Collections.Generic;
@@ -11,17 +11,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.ApplicationModel.Core;
 using Windows.Media.Playback;
 using Windows.System.Display;
-using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Core.Dialogs;
 using WinstaNext.Services;
-using WinstaNext.Views.Account;
 
 namespace WinstaNext
 {
@@ -120,8 +117,10 @@ namespace WinstaNext
         private InstaUserShort CreateMyUserInstance(IServiceProvider arg)
         {
             if (_myUser != null) return _myUser;
-            var api = CreateInstaAPIInstance(arg);
-            return api.GetLoggedUser().LoggedInUser;
+            using (var Api = arg.GetService<IInstaApi>())
+            {
+                return Api.GetLoggedUser().LoggedInUser;
+            }
         }
 
         string _session = "";
@@ -131,10 +130,27 @@ namespace WinstaNext
             var api = InstaApiBuilder
                 .CreateBuilder()
                 .Build();
+            var local = TimeZoneInfo.Local;
+            api.TimezoneOffset = Convert.ToInt32(local.BaseUtcOffset.TotalSeconds);
+            var tzd = TzdbDateTimeZoneSource.Default.WindowsToTzdbIds.FirstOrDefault(x => x.Key == local.StandardName);
+            api.SetTimezone(tzd.Value);
             if (!string.IsNullOrEmpty(_session))
             {
                 api.LoadStateDataFromString(_session);
             }
+            return api;
+        }
+
+        internal IInstaApi CreateInstaAPIInstance(string session)
+        {
+            var api = InstaApiBuilder
+                .CreateBuilder()
+                .Build();
+            var local = TimeZoneInfo.Local;
+            api.TimezoneOffset = Convert.ToInt32(local.BaseUtcOffset.TotalSeconds);
+            var tzd = TzdbDateTimeZoneSource.Default.WindowsToTzdbIds.FirstOrDefault(x => x.Key == local.StandardName);
+            api.SetTimezone(tzd.Value);
+            api.LoadStateDataFromString(session);
             return api;
         }
 
@@ -152,6 +168,12 @@ namespace WinstaNext
                 Window.Current.Content = extendedSplash;
             }
             Window.Current.Activate();
+        }
+
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+
+            base.OnActivated(args);
         }
 
         /// <summary>

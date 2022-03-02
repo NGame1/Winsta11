@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -76,6 +77,8 @@ namespace WinstaNext
         {
             InitializeUI(rootFrame);
 
+            RegisterQuickReplyBgTask();
+            
             if (launchActivatedEventArgs.PrelaunchActivated == false)
             {
                 TryEnablePrelaunch();
@@ -141,8 +144,9 @@ namespace WinstaNext
             }
             else
             {
-                var firstPk = ApplicationSettingsManager.Instance.GetUsersList().FirstOrDefault().Key;
-                var session = await ApplicationSettingsManager.Instance.GetUserSession(firstPk);
+                var lastpk = ApplicationSettingsManager.Instance.GetLastLoggedUser();
+                //var firstPk = ApplicationSettingsManager.Instance.GetUsersList().FirstOrDefault().Key;
+                var session = await ApplicationSettingsManager.Instance.GetUserSession(lastpk);
                 ((App)App.Current).SetCurrentUserSession(session);
             }
             if (rootFrame.Content == null)
@@ -169,6 +173,30 @@ namespace WinstaNext
                 element.RequestedTheme = ElementTheme.Dark;
             else if (theme == Core.Theme.AppTheme.Light)
                 element.RequestedTheme = ElementTheme.Light;
+        }
+
+        string ENTRY_POINT = "WinstaBackgroundTask.NotifyQuickReplyTask";
+        public async void RegisterQuickReplyBgTask()
+        {
+            try
+            {
+                if (BackgroundTaskRegistration.AllTasks.Any(i => i.Value.Name.Equals(ENTRY_POINT)))
+                {
+                    return;
+                }
+
+                BackgroundAccessStatus status = await BackgroundExecutionManager.RequestAccessAsync();
+                BackgroundTaskBuilder builder = new BackgroundTaskBuilder
+                {
+                    Name = ENTRY_POINT,
+                    TaskEntryPoint = ENTRY_POINT
+                };
+
+                builder.SetTrigger(new ToastNotificationActionTrigger());
+
+                builder.Register();
+            }
+            catch { }
         }
     }
 }

@@ -29,6 +29,9 @@ using System.Diagnostics;
 using InstagramApiSharp;
 using WinstaNext.Views.Profiles;
 using WinstaNext.Views.Search;
+using InstagramApiSharp.API.Push;
+using WinstaBackgroundHelpers.Push;
+using NotificationHandler;
 
 namespace WinstaNext.ViewModels
 {
@@ -90,10 +93,39 @@ namespace WinstaNext.ViewModels
             FooterMenuItems.Add(new MenuItemModel(LanguageManager.Instance.General.Settings, new AnimatedSettingsVisualSource(), typeof(SettingsView)));
             ToggleNavigationViewPane = new RelayCommand(ToggleNavigationPane);
             _themeListener.ThemeChanged += MainPageViewModel_ThemeChanged;
-            new Thread(TryGetMyUser).Start();
+            new Thread(SyncLauncher).Start();
+            new Thread(GetMyUser).Start();
         }
 
-        async void TryGetMyUser()
+        async void StartPushClient()
+        {
+            var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync();
+            IInstaApi Api = App.Container.GetService<IInstaApi>();
+
+            Api.PushClient = new PushClient(apis, Api);
+            Api.PushClient.MessageReceived += PushClient_MessageReceived;
+            await Api.PushProcessor.RegisterPushAsync();
+            Api.PushClient.Start();
+        }
+
+        async void PushClient_MessageReceived(object sender, PushReceivedEventArgs e)
+        {
+            if (e == null || e.NotificationContent == null) return;
+            var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync();
+            PushHelper.HandleNotify(e.NotificationContent, apis);
+        }
+
+        async void SyncLauncher()
+        {
+            using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+            {
+                await Api.LauncherSyncAsync();
+                await Api.PushProcessor.RegisterPushAsync();
+            }
+            StartPushClient();
+        }
+
+        async void GetMyUser()
         {
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {

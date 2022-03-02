@@ -10,9 +10,11 @@ namespace WinstaNext.Core.Navigation
         {
             MediaSource = source;
             TargetMedia = target;
+            //TargetIndex = index;
         }
 
         public ISupportIncrementalLoading MediaSource { get; }
+        //public int TargetIndex { get; }
         public InstaMedia TargetMedia { get; }
     }
 }

@@ -1,8 +1,8 @@
-﻿<views:BasePage  xmlns:views="using:WinstaNext.Views" 
-    x:Class="WinstaNext.MainPage"
+﻿<views:BasePage
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Models="using:InstagramApiSharp.Classes.Models" 
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
@@ -11,10 +11,11 @@
     xmlns:generic="using:WinstaNext.UI.Generic"
     xmlns:Model="using:WinstaNext.Models.Core" 
     xmlns:VM="using:WinstaNext.ViewModels" 
+    xmlns:views="using:WinstaNext.Views" 
     xmlns:local="using:WinstaNext"
+    x:Class="WinstaNext.MainPage"
     NavigationCacheMode="Enabled"
-    mc:Ignorable="d"
-    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+    mc:Ignorable="d">
 
     <Page.DataContext>
         <VM:MainPageViewModel x:Name="ViewModel"/>
@@ -196,7 +197,11 @@
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate>
                     <muxc:NavigationViewItem Icon="{Binding Icon}" 
-                                             Content="{Binding Text}"/>
+                                             Content="{Binding Text}">
+                        <!--<muxc:NavigationViewItem.InfoBadge>
+                            <muxc:InfoBadge Value="{Binding }"/>
+                        </muxc:NavigationViewItem.InfoBadge>-->
+                    </muxc:NavigationViewItem>
                 </DataTemplate>
             </muxc:NavigationView.MenuItemTemplate>
 

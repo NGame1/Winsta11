@@ -8,14 +8,9 @@
     mc:Ignorable="d">
 
     <Grid>
-        <StackPanel Spacing="12" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image Height="100" Width="100" Stretch="Uniform" Source="Assets/Icons/WinstaLogo.png"/>
-            <Muxc:ProgressRing IsActive="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </StackPanel>
-        
-        <Grid Visibility="Collapsed" Background="#464646">
+        <Grid>
             <Canvas>
-                <Image x:Name="extendedSplashImage" Source="Assets/SplashScreen.png" Visibility="Collapsed"/>
+                <Image x:Name="extendedSplashImage" Source="Assets\SplashScreen.png" Visibility="Collapsed"/>
                 <ProgressRing Name="splashProgressRing" IsActive="True" Width="85" HorizontalAlignment="Center"></ProgressRing>
             </Canvas>
         </Grid>

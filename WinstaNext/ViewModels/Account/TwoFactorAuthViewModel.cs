@@ -100,6 +100,8 @@ namespace WinstaNext.ViewModels.Account
                                     var loggedUser = Api.GetLoggedUser().LoggedInUser;
                                     await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName);
                                     NavigationService.Navigate(typeof(MainPage));
+                                    await Api.SendRequestsAfterLoginAsync();
+                                    Api.Dispose();
                                 }
                                 else
                                 {
@@ -181,6 +183,8 @@ namespace WinstaNext.ViewModels.Account
                                         var loggedUser = Api.GetLoggedUser().LoggedInUser;
                                         await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName);
                                         NavigationService.Navigate(typeof(MainPage));
+                                        await Api.SendRequestsAfterLoginAsync();
+                                        Api.Dispose();
                                     }
                                     else
                                     {
@@ -216,6 +220,8 @@ namespace WinstaNext.ViewModels.Account
                         var loggedUser = Api.GetLoggedUser().LoggedInUser;
                         await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName);
                         NavigationService.Navigate(typeof(MainPage));
+                        await Api.SendRequestsAfterLoginAsync();
+                        Api.Dispose();
                         break;
 
                     case InstaLoginTwoFactorResult.ChallengeRequired:

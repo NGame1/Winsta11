@@ -46,6 +46,7 @@ namespace WinstaNext.ViewModels.Users
         void NavigateToMedia(ItemClickEventArgs args)
         {
             if (args.ClickedItem is not InstaMedia media) throw new ArgumentOutOfRangeException(nameof(args.ClickedItem));
+            //var index = UserMedias.IndexOf(media);
             var para = new IncrementalMediaViewParameter(UserMedias, media);
             NavigationService.Navigate(typeof(IncrementalInstaMediaView), para);
         }

@@ -16,19 +16,20 @@ using WinstaNext.Models.Core;
 using Windows.Globalization;
 using System.Runtime.InteropServices.WindowsRuntime;
 using WinstaNext.Helpers;
+using System.Collections;
+using WinstaCore;
 
 namespace WinstaNext
 {
     internal class ApplicationSettingsManager
     {
-        string SessionEncryptionKey { get => "%NGame_Winstagram.App@GRANOW11/=$%! "; }
-
         string UserSessionsFolderName { get => "UserSessions"; }
 
         string AppThemeSetting { get => "AppTheme"; }
         string AppLanguageSettings { get => "AppLanguage"; }
         string AutoPlaySettings { get => "AutoPlay"; }
         string ForceThreeColumnsSettings { get => "ForceThreeColumns"; }
+        string LastLoggedUserSettings { get => "LastLoggedUser"; }
         string RemoveFeedAdsSetting { get => "RemoveFeedAds"; }
         string ShowLoginSetting { get => "ShowLogin"; }
         string UserNamesSetting { get => "UserNames"; }
@@ -49,6 +50,41 @@ namespace WinstaNext
             LocalFolder = ApplicationData.Current.LocalFolder;
             LocalSettings = ApplicationData.Current.LocalSettings;
             RoamingSettings = ApplicationData.Current.RoamingSettings;
+        }
+
+        public string GetLastLoggedUser()
+        {
+            if (LocalSettings.Values.TryGetValue(LastLoggedUserSettings, out var LastLoggedUser))
+            {
+                return LastLoggedUser.ToString();
+            }
+            else
+            {
+                var users = GetUsersList();
+                if (users == null || !users.Any())
+                    return null;
+                else return SetLastLoggedUser(users.FirstOrDefault().Key);
+            }
+        }
+
+        public string SetLastLoggedUser(string userPk)
+        {
+            LocalSettings.Values[LastLoggedUserSettings] = userPk;
+            return userPk;
+        }
+
+        public async Task<List<IInstaApi>> GetUsersApiListAsync()
+        {
+            var users = GetUsersList();
+            List<IInstaApi> apis = new List<IInstaApi>();
+            for (int i = 0; i < users.Count; i++)
+            {
+                var user = users.ElementAt(i);
+                var session = await GetUserSession(user.Key);
+                var api = ((App)App.Current).CreateInstaAPIInstance(session);
+                apis.Add(api);
+            }
+            return apis;
         }
 
         public LanguageDefinition[] GetSupportedLanguages()
@@ -207,7 +243,7 @@ namespace WinstaNext
             {
                 var file = await folder.GetFileAsync(userPk);
                 var str = await FileIO.ReadTextAsync(file, Windows.Storage.Streams.UnicodeEncoding.Utf8);
-                return DecryptString(SessionEncryptionKey, str);
+                return CryptoHelper.DecryptString(str);
                 //using (var read = await file.OpenReadAsync())
                 //{
                 //    var str = await read.ReadTextAsync(Encoding.UTF8);
@@ -232,7 +268,7 @@ namespace WinstaNext
             {
                 ((App)App.Current).SetCurrentUserSession(session);
                 var file = await folder.CreateFileAsync(userPk, CreationCollisionOption.OpenIfExists);
-                session = EncryptString(SessionEncryptionKey, session);
+                session = CryptoHelper.EncryptString(session);
                 await FileIO.WriteTextAsync(file, session, Windows.Storage.Streams.UnicodeEncoding.Utf8);
             }
             catch (Exception)
@@ -241,46 +277,5 @@ namespace WinstaNext
             }
         }
 
-        public string EncryptString(string key, string plainInput)
-        {
-            byte[] clearBytes = Encoding.Unicode.GetBytes(plainInput);
-            using (Aes encryptor = Aes.Create())
-            {
-                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(key, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-                encryptor.Key = pdb.GetBytes(32);
-                encryptor.IV = pdb.GetBytes(16);
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
-                    {
-                        cs.Write(clearBytes, 0, clearBytes.Length);
-                        cs.Close();
-                    }
-                    plainInput = Convert.ToBase64String(ms.ToArray());
-                }
-            }
-            return plainInput;
-        }
-
-        public string DecryptString(string key, string cipherText)
-        {
-            byte[] cipherBytes = Convert.FromBase64String(cipherText);
-            using (Aes encryptor = Aes.Create())
-            {
-                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(key, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-                encryptor.Key = pdb.GetBytes(32);
-                encryptor.IV = pdb.GetBytes(16);
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
-                    {
-                        cs.Write(cipherBytes, 0, cipherBytes.Length);
-                        cs.Close();
-                    }
-                    cipherText = Encoding.Unicode.GetString(ms.ToArray());
-                }
-            }
-            return cipherText;
-        }
     }
 }

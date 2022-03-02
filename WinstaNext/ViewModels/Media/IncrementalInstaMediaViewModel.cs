@@ -23,6 +23,7 @@ namespace WinstaNext.ViewModels.Media
 
         public ISupportIncrementalLoading MediaSource { get; set; }
         InstaMedia TargetMedia { get; set; }
+        //int TargetIndex { get; set; }
 
         public AsyncRelayCommand<ListView> ListViewLoadedCommand { get; set; }
 
@@ -33,20 +34,24 @@ namespace WinstaNext.ViewModels.Media
 
         async Task ListViewLoadedAsync(ListView lst)
         {
+            lst.ScrollIntoView(TargetMedia);
+            await Task.Delay(100);
             await lst.SmoothScrollIntoViewWithItemAsync(TargetMedia,
-                      itemPlacement: ScrollItemPlacement.Top);
+                      itemPlacement: ScrollItemPlacement.Top,
+                      disableAnimation: true);
         }
 
         public override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if(e.Parameter is not IncrementalMediaViewParameter parameter)
+            if (e.Parameter is not IncrementalMediaViewParameter parameter)
             {
-                if(NavigationService.CanGoBack)
+                if (NavigationService.CanGoBack)
                     NavigationService.GoBack();
                 throw new ArgumentOutOfRangeException(nameof(e.Parameter));
             }
             MediaSource = parameter.MediaSource;
             TargetMedia = parameter.TargetMedia;
+            //TargetIndex = parameter.TargetIndex;
             base.OnNavigatedTo(e);
         }
 
