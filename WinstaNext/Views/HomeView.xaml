@@ -48,8 +48,10 @@
                               ScrollViewer.VerticalScrollBarVisibility="Hidden"
                               ScrollViewer.HorizontalScrollMode="Enabled"
                               ScrollViewer.VerticalScrollMode="Disabled"
+                              ItemClick="StoriesList_ItemClick"
                               IsItemClickEnabled="True"
                               SelectionMode="None"
+                              x:Name="StoriesList"
                               Padding="0,16,8,16">
                         
                         <ListView.ItemContainerStyle>
@@ -57,6 +59,7 @@
                                 <Setter Property="MaxWidth" Value="85"/>
                             </Style>
                         </ListView.ItemContainerStyle>
+                        
                         <ListView.Header>
                             <TextBlock Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Stories}"
                                    RenderTransformOrigin="0.5,0.5" 

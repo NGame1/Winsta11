@@ -101,7 +101,7 @@ namespace WinstaNext.ViewModels
         {
             var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync();
             IInstaApi Api = App.Container.GetService<IInstaApi>();
-
+            
             Api.PushClient = new PushClient(apis, Api);
             Api.PushClient.MessageReceived += PushClient_MessageReceived;
             await Api.PushProcessor.RegisterPushAsync();

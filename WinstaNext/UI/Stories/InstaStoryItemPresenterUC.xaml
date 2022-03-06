@@ -1,0 +1,88 @@
+﻿<UserControl
+    xmlns:TemplateSelectors="using:WinstaNext.Models.TemplateSelectors.Media" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    x:Class="WinstaNext.UI.Stories.InstaStoryItemPresenterUC"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="using:InstagramApiSharp.Classes.Models"
+    xmlns:Converters="using:WinstaNext.Converters.Media"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:local="using:WinstaNext.UI.Stories" 
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <!--<DataTemplate x:Key="ImageTemplate" x:DataType="models:InstaStoryItem">
+            <local:StoryMediaPlayerTemplatedControl Story="{x:Bind Mode=OneWay}"/>
+        </DataTemplate>-->
+
+        <TemplateSelectors:CarouselMediaTemplateSelector x:Key="CarouselMediaTemplateSelector"/>
+        <Converters:MediaDateTimeconverter x:Key="MediaDateTimeconverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.RowSpan="2">
+
+            <Image x:Load="{x:Bind LoadImage, Mode=OneWay}"
+                   Source="{x:Bind Story.Images[0].Uri, Mode=OneWay}"
+                   x:FieldModifier="public"
+                   x:Name="imageviewer"
+                   Stretch="Fill"/>
+
+            <MediaElement x:Load="{x:Bind LoadMediaElement, Mode=OneWay}"
+                          PosterSource="{x:Bind Story.Images[0].Uri, Mode=OneWay}"
+                          x:FieldModifier="public"
+                          x:Name="videoplayer"
+                          AutoPlay="True"
+                          Stretch="Fill"/>
+            
+        </Grid>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="5" Padding="5">
+                <muxc:PersonPicture ProfilePicture="{x:Bind Story.User.ProfilePicture}" 
+                                    DisplayName="{x:Bind Story.User.UserName}"
+                                    Height="35"
+                                    Width="35"/>
+
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <TextBlock Text="{x:Bind Story.User.UserName}"/>
+
+                        <FontIcon Glyph="&#x02AC;" 
+                                  FontSize="12"
+                                  Foreground="SkyBlue" 
+                                  Visibility="{x:Bind Story.User.IsVerified}"
+                                  FontFamily="{StaticResource FluentSystemIconsFilled}"/>
+
+                        <TextBlock Text="{x:Bind Story.TakenAt, Converter={StaticResource MediaDateTimeconverter}, Mode=OneWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+
+
+        </Grid>
+    </Grid>
+</UserControl>
