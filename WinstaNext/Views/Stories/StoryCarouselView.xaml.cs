@@ -26,5 +26,6 @@ namespace WinstaNext.Views.Stories
         {
             this.InitializeComponent();
         }
+
     }
 }

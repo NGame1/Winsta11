@@ -164,12 +164,10 @@ namespace WinstaNext.ViewModels.Users
             (NavigationService.Content as UserProfileView).SizeChanged += UserProfileViewModel_SizeChanged;
             base.OnNavigatedTo(e);
         }
-
-        public override void OnNavigatedFrom(NavigationEventArgs e)
+        public override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             (NavigationService.Content as UserProfileView).SizeChanged -= UserProfileViewModel_SizeChanged;
-            base.OnNavigatedFrom(e);
+            base.OnNavigatingFrom(e);
         }
-
     }
 }

@@ -48,19 +48,31 @@ namespace WinstaNext.Views.Stories
         public double PageHeight { get; set; }
 
         public double PageWidth { get; set; }
+        [OnChangedMethod(nameof(OnPlayChanged))]
+        public bool Play { get; set; } = false;
 
         public StoryItemView()
         {
             this.InitializeComponent();
         }
 
-        ~StoryItemView()
+        int previousIndex = -1;
+        void StopAll()
         {
+            if (previousIndex == -1) return;
+            var fic = FlipView.ContainerFromIndex(previousIndex);
+            if (fic is FlipViewItem fi)
+            {
+                if (fi.ContentTemplateRoot is InstaStoryItemPresenterUC presenter)
+                {
+                    if (presenter.LoadMediaElement)
+                        presenter.videoplayer.Stop();
+                }
+            }
         }
 
-        private void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        void PlayCarouselItem()
         {
-            SetFlipViewSize();
             var container = FlipView.ContainerFromIndex(FlipView.SelectedIndex);
             if (container is FlipViewItem fvi)
             {
@@ -77,13 +89,53 @@ namespace WinstaNext.Views.Stories
             }
         }
 
+        void OnPlayChanged()
+        {
+            if (!Play) StopAll();
+            else
+            {
+                PlayCarouselItem();
+
+                if (FlipView.SelectedItem is InstaStoryItem currentStoryItem)
+                {
+                    if (currentStoryItem.TakenAtUnix > StoryItem.Seen)
+                    {
+                        StoryItem.Seen = currentStoryItem.TakenAtUnix;
+                        MarkStoryAsSeen(currentStoryItem.Id, currentStoryItem.TakenAtUnix);
+                    }
+                }
+            }
+        }
+
+        void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SetFlipViewSize();
+            StopAll();
+
+            previousIndex = FlipView.SelectedIndex;
+
+            if (!Play) return;
+
+            var unixItem = (FlipView.SelectedItem as InstaStoryItem).TakenAtUnix;
+            if (FlipView.SelectedItem is InstaStoryItem currentStoryItem)
+            {
+                if (currentStoryItem.TakenAtUnix > StoryItem.Seen)
+                {
+                    StoryItem.Seen = currentStoryItem.TakenAtUnix;
+                    MarkStoryAsSeen(currentStoryItem.Id, currentStoryItem.TakenAtUnix);
+                }
+            }
+
+            PlayCarouselItem();
+        }
+
         private void FlipView_Loaded(object sender, RoutedEventArgs e)
         {
             SetFlipViewSize();
             var lastseen = StoryItem.Seen;
             var seenitem = StoryItem.Items.FirstOrDefault(x => x.TakenAtUnix == lastseen);
             var index = StoryItem.Items.IndexOf(seenitem);
-            if (index != StoryItem.Items.Count - 1)
+            if (index > 0 && index != StoryItem.Items.Count - 1)
             {
                 FlipView.SelectedIndex = index + 1;
             }
@@ -114,5 +166,12 @@ namespace WinstaNext.Views.Stories
             }
         }
 
+        async void MarkStoryAsSeen(string storyItemId, long takenAtUnix)
+        {
+            using (var Api = App.Container.GetService<IInstaApi>())
+            {
+                await Api.StoryProcessor.MarkStoryAsSeenAsync(storyItemId, takenAtUnix);
+            }
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using WinstaNext.Abstractions.Stories;
 using WinstaNext.Core.Collections.IncrementalSources.Stories;
 using WinstaNext.Core.Navigation;
+using WinstaNext.Views.Stories;
 
 namespace WinstaNext.ViewModels.Stories
 {
@@ -22,15 +25,39 @@ namespace WinstaNext.ViewModels.Stories
 
         public IncrementalLoadingCollection<IncrementalFeedStories, WinstaStoryItem> Stories { get; private set; }
 
+        public RelayCommand<Carousel> CarouselSelectionChangedCommand { get; set; }
+
         [OnChangedMethod(nameof(OnSelectedItemChanged))]
         public WinstaStoryItem SelectedItem { get; set; }
 
         public double PageHeight { get; set; }
         public double PageWidth { get; set; }
-
+        
         public StoryCarouselViewModel()
         {
+            CarouselSelectionChangedCommand = new(CarouselSelectionChanged);
+        }
 
+        int previousindex = -1;
+        void CarouselSelectionChanged(Carousel carousel)
+        {
+            if (carousel == null || carousel.SelectedItem == null) return;
+            var container = (CarouselItem)carousel.ContainerFromItem(carousel.SelectedItem);
+            if (container == null) return;
+            if(previousindex != -1)
+            {
+                var previousContainer = (CarouselItem)carousel.ContainerFromIndex(previousindex);
+                if (previousContainer == null) return;
+                if (previousContainer.ContentTemplateRoot is StoryItemView previousStoryItemView)
+                {
+                    previousStoryItemView.Play = false;
+                }
+            }
+            previousindex = carousel.SelectedIndex;
+            if (container.ContentTemplateRoot is StoryItemView storyItemView)
+            {
+                storyItemView.Play = true;
+            }
         }
 
         public override void OnNavigatedTo(NavigationEventArgs e)
@@ -55,7 +82,6 @@ namespace WinstaNext.ViewModels.Stories
                         sti.User = StoryItem.User;
                     }
                 }
-
             }
             base.OnNavigatedTo(e);
         }
@@ -85,11 +111,18 @@ namespace WinstaNext.ViewModels.Stories
             }
         }
 
+        Dictionary<long, bool> loadingStories = new Dictionary<long, bool>();
         async void LoadStory(WinstaStoryItem story)
         {
-            if (story.ReelFeed != null)
+            if (story.ReelFeed == null) return;
+            var StoryItem = story.ReelFeed;
+            try
             {
-                var StoryItem = story.ReelFeed;
+                if (loadingStories.TryGetValue(StoryItem.User.Pk, out var isloading))
+                {
+                    if (isloading) return;
+                }
+                loadingStories[StoryItem.User.Pk] = true;
                 if (!StoryItem.Items.Any())
                 {
                     using (IInstaApi Api = App.Container.GetService<IInstaApi>())
@@ -105,6 +138,7 @@ namespace WinstaNext.ViewModels.Stories
                     }
                 }
             }
+            finally { loadingStories.Remove(StoryItem.User.Pk); }
         }
 
     }
