@@ -41,6 +41,8 @@ namespace WinstaNext.UI.Stories
         public bool LoadImage { get; set; } = false;
         public bool LoadMediaElement { get; set; } = false;
 
+        public event EventHandler<bool> TimerEnded;
+        DispatcherTimer timer;
         public InstaStoryItemPresenterUC()
         {
             this.InitializeComponent();
@@ -54,6 +56,31 @@ namespace WinstaNext.UI.Stories
             else LoadImage = true;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LoadImage)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LoadMediaElement)));
+        }
+
+        public void StartTimer()
+        {
+            timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(7000) };
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        public void StopTimer()
+        {
+            if (timer == null) return;
+            timer.Tick -= Timer_Tick;
+            timer.Stop();
+            timer = null;
+        }
+
+        private void Timer_Tick(object sender, object e)
+        {
+            TimerEnded?.Invoke(this, true);
+        }
+
+        private void videoplayer_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            TimerEnded?.Invoke(this, true);
         }
     }
 }

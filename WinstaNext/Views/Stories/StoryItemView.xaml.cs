@@ -3,21 +3,9 @@ using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using PropertyChanged;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Media.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using WinstaNext.Abstractions.Stories;
 using WinstaNext.Helpers;
 using WinstaNext.Services;
 using WinstaNext.UI.Stories;
@@ -48,44 +36,56 @@ namespace WinstaNext.Views.Stories
         public double PageHeight { get; set; }
 
         public double PageWidth { get; set; }
+
         [OnChangedMethod(nameof(OnPlayChanged))]
         public bool Play { get; set; } = false;
+
+        public double StoryDuration { get; set; } = 0;
+        public double ElapsedTime { get; set; }
+
+        public event EventHandler ItemsEnded;
 
         public StoryItemView()
         {
             this.InitializeComponent();
         }
 
+        InstaStoryItemPresenterUC GetStoryPresenter(int index)
+        {
+            var fic = FlipView.ContainerFromIndex(index);
+            if (fic is FlipViewItem fi)
+            {
+                if (fi.ContentTemplateRoot is InstaStoryItemPresenterUC presenter)
+                    return presenter;
+            }
+            return null;
+        }
+
         int previousIndex = -1;
         void StopAll()
         {
             if (previousIndex == -1) return;
-            var fic = FlipView.ContainerFromIndex(previousIndex);
-            if (fic is FlipViewItem fi)
-            {
-                if (fi.ContentTemplateRoot is InstaStoryItemPresenterUC presenter)
-                {
-                    if (presenter.LoadMediaElement)
-                        presenter.videoplayer.Stop();
-                }
-            }
+            var presenter = GetStoryPresenter(previousIndex);
+            if (presenter == null) return;
+            if (presenter.LoadMediaElement)
+                presenter.videoplayer.Stop();
+            else presenter.StopTimer();
         }
 
         void PlayCarouselItem()
         {
-            var container = FlipView.ContainerFromIndex(FlipView.SelectedIndex);
-            if (container is FlipViewItem fvi)
+            var itemPresenter = GetStoryPresenter(previousIndex);
+            if (itemPresenter == null) return;
+            if (itemPresenter.LoadMediaElement)
             {
-                if (fvi.ContentTemplateRoot is InstaStoryItemPresenterUC itemPresenter)
-                {
-                    if (itemPresenter.LoadMediaElement)
-                    {
-                        //itemPresenter.videoplayer.SetPlaybackSource(MediaSource.CreateFromUri(new Uri(itemPresenter.Story.Videos[0].Uri)));
-                        if (itemPresenter.videoplayer.Source == null)
-                            itemPresenter.videoplayer.Source = new Uri(itemPresenter.Story.Videos[0].Uri);
-                        itemPresenter.videoplayer.Play();
-                    }
-                }
+                //itemPresenter.videoplayer.SetPlaybackSource(MediaSource.CreateFromUri(new Uri(itemPresenter.Story.Videos[0].Uri)));
+                if (itemPresenter.videoplayer.Source == null)
+                    itemPresenter.videoplayer.Source = new Uri(itemPresenter.Story.Videos[0].Uri);
+                itemPresenter.videoplayer.Play();
+            }
+            else
+            {
+                itemPresenter.StartTimer();
             }
         }
 
@@ -116,7 +116,6 @@ namespace WinstaNext.Views.Stories
 
             if (!Play) return;
 
-            var unixItem = (FlipView.SelectedItem as InstaStoryItem).TakenAtUnix;
             if (FlipView.SelectedItem is InstaStoryItem currentStoryItem)
             {
                 if (currentStoryItem.TakenAtUnix > StoryItem.Seen)
@@ -172,6 +171,17 @@ namespace WinstaNext.Views.Stories
             {
                 await Api.StoryProcessor.MarkStoryAsSeenAsync(storyItemId, takenAtUnix);
             }
+        }
+
+        private void InstaStoryItemPresenterUC_TimerEnded(object sender, bool e)
+        {
+            if (sender is not InstaStoryItemPresenterUC presenter) return;
+            presenter.StopTimer();
+            if (FlipView.SelectedIndex < FlipView.Items.Count - 1)
+            {
+                FlipView.SelectedIndex++;
+            }
+            else ItemsEnded?.Invoke(this, EventArgs.Empty);
         }
     }
 }

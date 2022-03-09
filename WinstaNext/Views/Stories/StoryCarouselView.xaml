@@ -16,11 +16,12 @@
     mc:Ignorable="d">
 
     <views:BasePage.Resources>
-        
+
         <DataTemplate x:DataType="models:WinstaStoryItem" 
                       x:Key="StoryTemplate">
 
-            <storiesView:StoryItemView StoryItem="{x:Bind ReelFeed, Mode=OneWay}"/>
+            <storiesView:StoryItemView ItemsEnded="StoryItemView_ItemsEnded"
+                                       StoryItem="{x:Bind ReelFeed, Mode=OneWay}"/>
 
         </DataTemplate>
 
@@ -30,7 +31,7 @@
             <storiesView:LivePlayerView Live="{x:Bind Broadcast, Mode=OneWay}"/>
 
         </DataTemplate>
-        
+
         <DataTemplate x:DataType="models:WinstaStoryItem" 
                       x:Key="HashtagStoryTemplate">
 
@@ -42,7 +43,7 @@
                                                  HashtagStoryTemplate="{StaticResource HashtagStoryTemplate}"
                                                  StoryTemplate="{StaticResource StoryTemplate}"
                                                  LiveTemplate="{StaticResource LiveTemplate}"/>
-        
+
     </views:BasePage.Resources>
 
     <views:BasePage.DataContext>
@@ -64,17 +65,31 @@
                            ItemRotationZ ="0"
                            x:Name="carousel">
 
+            <controls:Carousel.ItemContainerStyle>
+                <Style TargetType="controls:CarouselItem">
+                    <Setter Property="IsFocusEngagementEnabled" Value="True"/>
+                </Style>
+            </controls:Carousel.ItemContainerStyle>
+
             <i:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="SelectionChanged">
                     <core:InvokeCommandAction CommandParameter="{x:Bind carousel, Mode=OneWay}"
                                               Command="{x:Bind ViewModel.CarouselSelectionChangedCommand}"/>
                 </core:EventTriggerBehavior>
+
+                <core:EventTriggerBehavior EventName="Loaded">
+                    <core:InvokeCommandAction CommandParameter="{x:Bind carousel, Mode=OneWay}"
+                                              Command="{x:Bind ViewModel.CarouselSelectionChangedCommand}"/>
+                </core:EventTriggerBehavior>
+
             </i:Interaction.Behaviors>
-            
+
             <controls:Carousel.EasingFunction>
                 <CubicEase EasingMode="EaseOut"/>
             </controls:Carousel.EasingFunction>
-            
+
+
+
             <!--<controls:Carousel.ItemTemplate>
                 <DataTemplate x:DataType="models:WinstaStoryItem">
                     <Image Width="200"
@@ -84,7 +99,7 @@
                            Stretch="Uniform" />
                 </DataTemplate>
             </controls:Carousel.ItemTemplate>-->
-            
+
         </controls:Carousel>
     </Grid>
 </views:BasePage>

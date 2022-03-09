@@ -85,6 +85,7 @@ namespace WinstaNext
         public string Follow { get => _resource.GetString(nameof(Follow)); }
         public string FollowBack { get => _resource.GetString(nameof(FollowBack)); }
         public string Followers { get => _resource.GetString(nameof(Followers)); }
+        public string Following { get => _resource.GetString(nameof(Following)); }
         public string Followings { get => _resource.GetString(nameof(Followings)); }
         public string Hashtags { get => _resource.GetString(nameof(Hashtags)); }
         public string Highlights { get => _resource.GetString(nameof(Highlights)); }
@@ -97,6 +98,7 @@ namespace WinstaNext
         public string NoDirectsYet { get => _resource.GetString(nameof(NoDirectsYet)); }
         public string Places { get => _resource.GetString(nameof(Places)); }
         public string Posts { get => _resource.GetString(nameof(Posts)); }
+        public string Requested { get => _resource.GetString(nameof(Requested)); }
         public string SelectDirectToLoad { get => _resource.GetString(nameof(SelectDirectToLoad)); }
         public string Stories { get => _resource.GetString(nameof(Stories)); }
         public string Share { get => _resource.GetString(nameof(Share)); }

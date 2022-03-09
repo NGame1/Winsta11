@@ -65,14 +65,14 @@
                                         <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Posts}"/>
                                     </TextBlock>
                                 </HyperlinkButton>
-                                
+
                                 <HyperlinkButton>
                                     <TextBlock>
                                         <Run Text="{x:Bind ViewModel.User.FollowerCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
                                         <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Followers}"/>
                                     </TextBlock>
                                 </HyperlinkButton>
-                                
+
                                 <HyperlinkButton>
                                     <TextBlock>
                                         <Run Text="{x:Bind ViewModel.User.FollowingCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
@@ -81,6 +81,11 @@
                                 </HyperlinkButton>
                             </StackPanel>
                         </StackPanel>
+
+                        <Button Content="{x:Bind ViewModel.FollowBtnContent, Mode=OneWay}"
+                                Command="{x:Bind ViewModel.FollowButtonCommand}"
+                                Style="{StaticResource AccentButtonStyle}"/>
+
                     </StackPanel>
                     <TextBlock Text="{x:Bind ViewModel.User.Biography}"
                                TextTrimming="WordEllipsis"
@@ -96,7 +101,7 @@
                             PaneDisplayMode="Top"
                             x:Name="navView"
                             Grid.Row="1">
-                
+
                 <NavigationView.MenuItems>
                     <NavigationViewItem Icon="People" Content="Medias" IsSelected="True"/>
                     <NavigationViewItem Icon="Play" Content="Reels"/>

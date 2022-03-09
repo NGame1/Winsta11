@@ -1,4 +1,5 @@
 ﻿using InstagramApiSharp.API;
+using InstagramApiSharp.Classes;
 using InstagramApiSharp.Classes.Models;
 using InstagramApiSharp.Enums;
 using Mapster;
@@ -27,6 +28,8 @@ namespace WinstaNext.ViewModels.Users
         public double ViewHeight { get; set; }
         public double ViewWidth { get; set; }
 
+        public string FollowBtnContent { get; set; }
+
         public IncrementalUserMedias MediasInstance { get; set; }
         public IncrementalUserReels ReelsInstance { get; set; }
         public IncrementalLoadingCollection<IncrementalUserReels, InstaMedia> UserReels { get; private set; }
@@ -38,9 +41,12 @@ namespace WinstaNext.ViewModels.Users
 
         public RelayCommand<ItemClickEventArgs> NavigateToMediaCommand { get; set; }
 
+        public AsyncRelayCommand FollowButtonCommand { get; set; }
+
         public UserProfileViewModel() : base()
         {
             NavigateToMediaCommand = new(NavigateToMedia);
+            FollowButtonCommand = new(FollowButtonFuncAsync);
         }
 
         void NavigateToMedia(ItemClickEventArgs args)
@@ -49,6 +55,30 @@ namespace WinstaNext.ViewModels.Users
             //var index = UserMedias.IndexOf(media);
             var para = new IncrementalMediaViewParameter(UserMedias, media);
             NavigationService.Navigate(typeof(IncrementalInstaMediaView), para);
+        }
+
+        async Task FollowButtonFuncAsync()
+        {
+            if (FollowButtonCommand.IsRunning) return;
+
+            var follow = !string.IsNullOrEmpty(FollowBtnContent) &&
+                         ((FollowBtnContent == LanguageManager.Instance.Instagram.Follow) ||
+                         (FollowBtnContent == LanguageManager.Instance.Instagram.FollowBack));
+
+            IResult<InstaFriendshipFullStatus> result;
+            using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+            {
+                if (follow)
+                    result = await Api.UserProcessor.FollowUserAsync(User.Pk,
+                             surfaceType: InstaMediaSurfaceType.Profile,
+                             mediaIdAttribution: null);
+                else result = await Api.UserProcessor.UnFollowUserAsync(User.Pk,
+                             surfaceType: InstaMediaSurfaceType.Profile,
+                             mediaIdAttribution: null);
+            }
+            if (!result.Succeeded) throw result.Info.Exception;
+            User.FriendshipStatus = result.Value.Adapt<InstaStoryFriendshipStatus>();
+            SetFollowButtonContent();
         }
 
         public override async Task OnNavigatedToAsync(NavigationEventArgs e)
@@ -144,12 +174,39 @@ namespace WinstaNext.ViewModels.Users
                     NavigationService.GoBack();
                 throw new ArgumentOutOfRangeException(nameof(e.Parameter));
             }
-
+            if (User.FriendshipStatus == null)
+            {
+                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+                {
+                    var result = await Api.UserProcessor.GetFriendshipStatusAsync(User.Pk);
+                    if (!result.Succeeded)
+                    {
+                        if (NavigationService.CanGoBack)
+                            NavigationService.GoBack();
+                        throw result.Info.Exception;
+                    }
+                    User.FriendshipStatus = result.Value;
+                    SetFollowButtonContent();
+                }
+            }
+            else SetFollowButtonContent();
             ReelsInstance = new(User.Pk);
             MediasInstance = new(User.Pk);
             UserReels = new(ReelsInstance);
             UserMedias = new(MediasInstance);
             await base.OnNavigatedToAsync(e);
+        }
+
+        void SetFollowButtonContent()
+        {
+            if (!User.FriendshipStatus.Following && !User.FriendshipStatus.FollowedBy)
+                FollowBtnContent = LanguageManager.Instance.Instagram.Follow;
+            else if (!User.FriendshipStatus.Following && User.FriendshipStatus.FollowedBy)
+                FollowBtnContent = LanguageManager.Instance.Instagram.FollowBack;
+            else if (User.FriendshipStatus.Following)
+                FollowBtnContent = LanguageManager.Instance.Instagram.Unfollow;
+            else if (User.FriendshipStatus.OutgoingRequest)
+                FollowBtnContent = LanguageManager.Instance.Instagram.Requested;
         }
 
         private void UserProfileViewModel_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)

@@ -1,5 +1,4 @@
 ﻿using InstagramApiSharp.API;
-using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
@@ -8,8 +7,6 @@ using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Abstractions.Stories;
@@ -32,10 +29,22 @@ namespace WinstaNext.ViewModels.Stories
 
         public double PageHeight { get; set; }
         public double PageWidth { get; set; }
-        
+
         public StoryCarouselViewModel()
         {
             CarouselSelectionChangedCommand = new(CarouselSelectionChanged);
+        }
+
+        void StopPreviousItem(Carousel carousel)
+        {
+            if (previousindex == -1) return;
+
+            var previousContainer = (CarouselItem)carousel.ContainerFromIndex(previousindex);
+            if (previousContainer == null) return;
+            if (previousContainer.ContentTemplateRoot is StoryItemView previousStoryItemView)
+            {
+                previousStoryItemView.Play = false;
+            }
         }
 
         int previousindex = -1;
@@ -44,15 +53,9 @@ namespace WinstaNext.ViewModels.Stories
             if (carousel == null || carousel.SelectedItem == null) return;
             var container = (CarouselItem)carousel.ContainerFromItem(carousel.SelectedItem);
             if (container == null) return;
-            if(previousindex != -1)
-            {
-                var previousContainer = (CarouselItem)carousel.ContainerFromIndex(previousindex);
-                if (previousContainer == null) return;
-                if (previousContainer.ContentTemplateRoot is StoryItemView previousStoryItemView)
-                {
-                    previousStoryItemView.Play = false;
-                }
-            }
+
+            StopPreviousItem(carousel);
+
             previousindex = carousel.SelectedIndex;
             if (container.ContentTemplateRoot is StoryItemView storyItemView)
             {
@@ -83,12 +86,14 @@ namespace WinstaNext.ViewModels.Stories
                     }
                 }
             }
+
             base.OnNavigatedTo(e);
         }
 
         public override void OnNavigatedFrom(NavigationEventArgs e)
         {
             (NavigationService.Content as FrameworkElement).SizeChanged -= StoryCarouselViewModel_SizeChanged;
+            
             base.OnNavigatedFrom(e);
         }
 
@@ -111,34 +116,40 @@ namespace WinstaNext.ViewModels.Stories
             }
         }
 
-        Dictionary<long, bool> loadingStories = new Dictionary<long, bool>();
+        Dictionary<string, bool> loadingStories = new Dictionary<string, bool>();
         async void LoadStory(WinstaStoryItem story)
         {
             if (story.ReelFeed == null) return;
             var StoryItem = story.ReelFeed;
+            string pk = StoryItem.User != null ? StoryItem.User.Pk.ToString() : StoryItem.Owner.Pk;
             try
             {
-                if (loadingStories.TryGetValue(StoryItem.User.Pk, out var isloading))
+                if (loadingStories.TryGetValue(pk, out var isloading))
                 {
                     if (isloading) return;
                 }
-                loadingStories[StoryItem.User.Pk] = true;
+                loadingStories[pk] = true;
                 if (!StoryItem.Items.Any())
                 {
                     using (IInstaApi Api = App.Container.GetService<IInstaApi>())
                     {
+                        //var result = await Api.StoryProcessor.GetUsersStoriesAsHighlightsAsync(pk);
                         var result = await Api.StoryProcessor.GetUserStoryFeedAsync(StoryItem.User.Pk);
                         if (result.Succeeded)
                         {
                             foreach (var item in result.Value.Items)
                             {
                                 StoryItem.Items.Add(item);
+                                //foreach (var storyitem in item.Items)
+                                //{
+                                //    StoryItem.Items.Add(storyitem);
+                                //}
                             }
                         }
                     }
                 }
             }
-            finally { loadingStories.Remove(StoryItem.User.Pk); }
+            finally { loadingStories.Remove(pk); }
         }
 
     }

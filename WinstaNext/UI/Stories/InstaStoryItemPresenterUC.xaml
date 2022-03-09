@@ -39,6 +39,7 @@
 
             <MediaElement x:Load="{x:Bind LoadMediaElement, Mode=OneWay}"
                           PosterSource="{x:Bind Story.Images[0].Uri, Mode=OneWay}"
+                          MediaEnded="videoplayer_MediaEnded"
                           x:FieldModifier="public"
                           x:Name="videoplayer"
                           AutoPlay="True"

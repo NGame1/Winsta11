@@ -150,6 +150,9 @@
   <data name="Followers" xml:space="preserve">
     <value>دنبال کننده ها</value>
   </data>
+  <data name="Following" xml:space="preserve">
+    <value>دنبال شده</value>
+  </data>
   <data name="Followings" xml:space="preserve">
     <value>دنبال شونده ها</value>
   </data>
@@ -185,6 +188,9 @@
   </data>
   <data name="Posts" xml:space="preserve">
     <value>پست ها</value>
+  </data>
+  <data name="Requested" xml:space="preserve">
+    <value>درخواست داده شده</value>
   </data>
   <data name="SelectDirectToLoad" xml:space="preserve">
     <value>جهت مشاهده دایرکت ها یکی از چت ها را انتخاب کنید</value>

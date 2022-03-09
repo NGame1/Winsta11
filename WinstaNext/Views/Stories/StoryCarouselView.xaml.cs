@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.Services;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,5 +29,16 @@ namespace WinstaNext.Views.Stories
             this.InitializeComponent();
         }
 
+        private void StoryItemView_ItemsEnded(object sender, EventArgs e)
+        {
+            if (carousel.SelectedIndex != carousel.Items.Count - 1)
+                carousel.SelectedIndex++;
+            else
+            {
+                var Navigation = App.Container.GetService<NavigationService>();
+                if(Navigation.CanGoBack)
+                    Navigation.GoBack();
+            }
+        }
     }
 }
