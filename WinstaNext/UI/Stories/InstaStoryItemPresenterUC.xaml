@@ -8,7 +8,7 @@
     xmlns:models="using:InstagramApiSharp.Classes.Models"
     xmlns:Converters="using:WinstaNext.Converters.Media"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:local="using:WinstaNext.UI.Stories" 
+    xmlns:local="using:WinstaNext.UI.Stories" xmlns:generic="using:WinstaNext.UI.Generic"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -48,6 +48,12 @@
         </Grid>
 
         <Grid Grid.Row="0">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#A0000000" Offset="0"/>
+                    <GradientStop Color="#00000000" Offset="0.8"/>
+                </LinearGradientBrush>
+            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -61,7 +67,18 @@
 
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="5">
-                        <TextBlock Text="{x:Bind Story.User.UserName}"/>
+
+                        <HyperlinkButton CommandParameter="{x:Bind Story.User}"
+                                         HorizontalAlignment="Stretch"
+                                         Padding="0">
+                            <HyperlinkButton.Content>
+                                <TextBlock Text="{x:Bind Story.User.UserName}"
+                                           TextTrimming="CharacterEllipsis"
+                                           TextAlignment="Center"
+                                           TextWrapping="Wrap"
+                                           MaxLines="1"/>
+                            </HyperlinkButton.Content>
+                        </HyperlinkButton>
 
                         <FontIcon Glyph="&#x02AC;" 
                                   FontSize="12"
@@ -76,13 +93,26 @@
 
         </Grid>
 
-        <Grid>
+        <Grid Grid.Row="2" Margin="8,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
+            <TextBox Text="{x:Bind ReplyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     AcceptsReturn="False"
+                     Grid.Column="0"/>
 
+            <generic:LikeButtonControl IsLiked="{x:Bind Story.HasLiked, Mode=TwoWay}"
+                                       Command="{x:Bind LikeStoryCommand}"
+                                       Grid.Column="1"
+                                       Margin="3,0"/>
+
+            <Button Command="{x:Bind ReplyStoryCommand, Mode=OneWay}" 
+                    FontFamily="{StaticResource FluentIcons}" 
+                    Content="&#xE122;"
+                    Grid.Column="2"/>
 
         </Grid>
     </Grid>

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Media.Playback;
+using Windows.Networking.BackgroundTransfer;
 using Windows.System.Display;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -72,11 +73,20 @@ namespace WinstaNext
             serviceCollection.AddTransient<IInstaApi>(CreateInstaAPIInstance);
             serviceCollection.AddTransient<InstaUserShort>(CreateMyUserInstance);
             serviceCollection.AddTransient<NavigationService>(CreateNavigationService);
-            serviceCollection.AddSingleton<DisplayRequest>(CreateDisplayRequestInstance);
 
+            serviceCollection.AddSingleton<DisplayRequest>(CreateDisplayRequestInstance);
+            serviceCollection.AddSingleton<BackgroundDownloader>(CreateBackgroundDownloaderInstance);
             serviceCollection.AddSingleton<MediaPlayer>(CreateMediaPlayerInstance);
 
             return serviceCollection.BuildServiceProvider();
+        }
+
+        BackgroundDownloader _bgdownloader = null;
+        BackgroundDownloader CreateBackgroundDownloaderInstance(IServiceProvider arg)
+        {
+            if(_bgdownloader == null)
+                _bgdownloader = new BackgroundDownloader();
+            return _bgdownloader;
         }
 
         DisplayRequest CreateDisplayRequestInstance(IServiceProvider arg)

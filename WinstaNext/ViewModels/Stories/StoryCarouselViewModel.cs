@@ -114,6 +114,14 @@ namespace WinstaNext.ViewModels.Stories
                     LoadStory(story);
                 }
             }
+            for (int i = storyindex; i > storyindex - 4; i--)
+            {
+                if (i > 0)
+                {
+                    var story = Stories.ElementAt(i);
+                    LoadStory(story);
+                }
+            }
         }
 
         Dictionary<string, bool> loadingStories = new Dictionary<string, bool>();
@@ -133,7 +141,11 @@ namespace WinstaNext.ViewModels.Stories
                 {
                     using (IInstaApi Api = App.Container.GetService<IInstaApi>())
                     {
-                        //var result = await Api.StoryProcessor.GetUsersStoriesAsHighlightsAsync(pk);
+                        if(StoryItem.User == null)
+                        {
+                            var res = await Api.StoryProcessor.GetUsersStoriesAsHighlightsAsync(pk);
+                        }
+
                         var result = await Api.StoryProcessor.GetUserStoryFeedAsync(StoryItem.User.Pk);
                         if (result.Succeeded)
                         {

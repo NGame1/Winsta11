@@ -4,21 +4,14 @@ using InstagramApiSharp.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.Networking.BackgroundTransfer;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -100,7 +93,54 @@ namespace WinstaNext.UI.Flyouts
 
         void DownloadContent()
         {
-            throw new NotImplementedException();
+            var bgdl = App.Container.GetService<BackgroundDownloader>();
+            switch (Media.MediaType)
+            {
+                case InstaMediaType.Image:
+                    DownloadImage(Media.Images[0].Uri);
+                    break;
+                case InstaMediaType.Video:
+                    DownloadVideo(Media.Videos[0].Uri);
+                    break;
+                case InstaMediaType.Carousel:
+                    for (int i = 0; i < Media.Carousel.Count; i++)
+                    {
+                        var ci = Media.Carousel.ElementAt(i);
+                        if (ci.MediaType == InstaMediaType.Image)
+                            DownloadImage(ci.Images[0].Uri);
+                        else
+                            DownloadVideo(ci.Videos[0].Uri);
+                    }
+                    break;
+            }
+        }
+
+        async void DownloadImage(string imageUri)
+        {
+            var bgdl = App.Container.GetService<BackgroundDownloader>();
+            var WinstaFolder = await KnownFolders.PicturesLibrary.CreateFolderAsync("Winsta", CreationCollisionOption.OpenIfExists);
+            var userDownloads = await WinstaFolder.CreateFolderAsync(Media.User.UserName, CreationCollisionOption.OpenIfExists);
+            var desfile = await userDownloads.CreateFileAsync($"{Media.InstaIdentifier}.jpg", CreationCollisionOption.GenerateUniqueName);
+            if (Uri.TryCreate(imageUri, UriKind.RelativeOrAbsolute, out var uri))
+            {
+                bgdl.TransferGroup = BackgroundTransferGroup.CreateGroup(Media.InstaIdentifier);
+                var dl = bgdl.CreateDownload(uri, desfile);
+                dl.StartAsync().AsTask();
+            }
+        }
+
+        async void DownloadVideo(string videoUri)
+        {
+            var bgdl = App.Container.GetService<BackgroundDownloader>();
+            var WinstaFolder = await KnownFolders.PicturesLibrary.CreateFolderAsync("Winsta", CreationCollisionOption.OpenIfExists);
+            var userDownloads = await WinstaFolder.CreateFolderAsync(Media.User.UserName, CreationCollisionOption.OpenIfExists);
+            var desfile = await userDownloads.CreateFileAsync($"{Media.InstaIdentifier}.mp4", CreationCollisionOption.GenerateUniqueName);
+            if (Uri.TryCreate(videoUri, UriKind.RelativeOrAbsolute, out var uri))
+            {
+                bgdl.TransferGroup = BackgroundTransferGroup.CreateGroup(Media.InstaIdentifier);
+                var dl = bgdl.CreateDownload(uri, desfile);
+                dl.StartAsync().AsTask();
+            }
         }
 
         async Task EnableCommentingAsync()
@@ -115,7 +155,7 @@ namespace WinstaNext.UI.Flyouts
             }
             finally { Hide(); }
         }
-        
+
         async Task DisableCommentingAsync()
         {
             try
