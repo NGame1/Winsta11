@@ -38,6 +38,7 @@ namespace WinstaNext.ViewModels.Account
 
         async Task LoginAsync()
         {
+            if (LoginCommand.IsRunning) return;
             IResult<InstaLoginResult> loginResult;
             try
             {

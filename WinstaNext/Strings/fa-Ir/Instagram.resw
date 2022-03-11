@@ -162,6 +162,9 @@
   <data name="Highlights" xml:space="preserve">
     <value>هایلایت ها</value>
   </data>
+  <data name="IGTV" xml:space="preserve">
+    <value>IGTV</value>
+  </data>
   <data name="IsFollowingYou" xml:space="preserve">
     <value>شما را دنبال میکند.</value>
   </data>
@@ -180,6 +183,9 @@
   <data name="MediaLikers" xml:space="preserve">
     <value>لایک کننده ها</value>
   </data>
+  <data name="MessagePlaceholder" xml:space="preserve">
+    <value>پیام ...</value>
+  </data>
   <data name="NoDirectsYet" xml:space="preserve">
     <value>پیام دایرکتی دریافت نشده.</value>
   </data>
@@ -188,6 +194,12 @@
   </data>
   <data name="Posts" xml:space="preserve">
     <value>پست ها</value>
+  </data>
+  <data name="Reels" xml:space="preserve">
+    <value>Reels</value>
+  </data>
+  <data name="ReplyPlaceholder" xml:space="preserve">
+    <value>ارسال پیام ...</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>درخواست داده شده</value>
@@ -206,6 +218,9 @@
   </data>
   <data name="Story" xml:space="preserve">
     <value>استوری</value>
+  </data>
+  <data name="Tagged" xml:space="preserve">
+    <value>تگ شده</value>
   </data>
   <data name="Top" xml:space="preserve">
     <value>تاپ</value>

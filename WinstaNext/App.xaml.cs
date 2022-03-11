@@ -1,6 +1,7 @@
 ﻿using InstagramApiSharp.API;
 using InstagramApiSharp.API.Builder;
 using InstagramApiSharp.Classes.Models;
+using InstagramApiSharp.Logger;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Uwp.Helpers;
 using NodaTime.TimeZones;
@@ -139,6 +140,9 @@ namespace WinstaNext
         {
             var api = InstaApiBuilder
                 .CreateBuilder()
+#if DEBUG
+                .UseLogger(new DebugLogger(LogLevel.All))
+#endif
                 .Build();
             var local = TimeZoneInfo.Local;
             api.TimezoneOffset = Convert.ToInt32(local.BaseUtcOffset.TotalSeconds);

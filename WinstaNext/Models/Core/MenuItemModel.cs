@@ -22,14 +22,14 @@ namespace WinstaNext.Models.Core
             Text = text;
         }
 
-        public MenuItemModel(string text, IAnimatedVisualSource2 visual, Type view)
+        public MenuItemModel(string text, IAnimatedVisualSource2 visual, Type view = null)
         {
             Icon = new AnimatedIcon() { Source = visual };
             Text = text;
             View = view;
         }
 
-        public MenuItemModel(string text, string glyph, Type view)
+        public MenuItemModel(string text, string glyph, Type view = null)
         {
             Icon = new FontIcon
             {
@@ -41,7 +41,7 @@ namespace WinstaNext.Models.Core
             View = view;
         }
 
-        public MenuItemModel(string text, Uri svguri, Type view)
+        public MenuItemModel(string text, Uri svguri, Type view = null)
         {
             Icon = new ImageIcon()
             {

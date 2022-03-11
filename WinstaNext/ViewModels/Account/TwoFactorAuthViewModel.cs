@@ -19,7 +19,7 @@ namespace WinstaNext.ViewModels.Account
     internal class TwoFactorAuthViewModel : BaseViewModel
     {
         IInstaApi Api { get; set; }
-        public RelayCommand VerifyCommand { get; set; }
+        public AsyncRelayCommand VerifyCommand { get; set; }
         public AsyncRelayCommand SendVerificationCodeSMSCommand { get; set; }
         public AsyncRelayCommand SendVerificationNotificationCommand { get; set; }
 
@@ -38,9 +38,9 @@ namespace WinstaNext.ViewModels.Account
 
         public TwoFactorAuthViewModel()
         {
-            VerifyCommand = new RelayCommand(VerifyAsync);
-            SendVerificationCodeSMSCommand = new AsyncRelayCommand(SendVerificationCodeSMS);
-            SendVerificationNotificationCommand = new AsyncRelayCommand(SendVerificationNotification);
+            VerifyCommand = new(VerifyAsync);
+            SendVerificationCodeSMSCommand = new(SendVerificationCodeSMSAsync);
+            SendVerificationNotificationCommand = new(SendVerificationNotificationAsync);
             OnVerificationMethodChanged();
         }
 
@@ -66,8 +66,9 @@ namespace WinstaNext.ViewModels.Account
             }
         }
 
-        private async Task SendVerificationNotification()
+        async Task SendVerificationNotificationAsync()
         {
+            if (SendVerificationNotificationCommand.IsRunning) return;
             try
             {
                 IsLoading = true;
@@ -123,8 +124,9 @@ namespace WinstaNext.ViewModels.Account
             finally { IsLoading = false; }
         }
 
-        private async Task SendVerificationCodeSMS()
+        async Task SendVerificationCodeSMSAsync()
         {
+            if (SendVerificationCodeSMSCommand.IsRunning) return;
             try
             {
                 IsLoading = true;
@@ -145,8 +147,9 @@ namespace WinstaNext.ViewModels.Account
             Api = (IInstaApi)e.Parameter;
         }
 
-        private async void VerifyAsync()
+        private async Task VerifyAsync()
         {
+            if (VerifyCommand.IsRunning) return;
             try
             {
                 IsLoading = true;

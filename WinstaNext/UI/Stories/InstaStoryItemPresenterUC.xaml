@@ -33,18 +33,22 @@
 
             <Image x:Load="{x:Bind LoadImage, Mode=OneWay}"
                    Source="{x:Bind Story.Images[0].Uri, Mode=OneWay}"
+                   PointerReleased="Story_PointerReleased"
+                   PointerPressed="Story_PointerPressed"
                    x:FieldModifier="public"
                    x:Name="imageviewer"
                    Stretch="Fill"/>
 
             <MediaElement x:Load="{x:Bind LoadMediaElement, Mode=OneWay}"
                           PosterSource="{x:Bind Story.Images[0].Uri, Mode=OneWay}"
+                          PointerReleased="Story_PointerReleased"
+                          PointerPressed="Story_PointerPressed"
                           MediaEnded="videoplayer_MediaEnded"
                           x:FieldModifier="public"
                           x:Name="videoplayer"
                           AutoPlay="True"
                           Stretch="Fill"/>
-            
+
         </Grid>
 
         <Grid Grid.Row="0">
@@ -93,7 +97,7 @@
 
         </Grid>
 
-        <Grid Grid.Row="2" Margin="8,0">
+        <Grid Grid.Row="2" Margin="8,3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -101,6 +105,8 @@
             </Grid.ColumnDefinitions>
 
             <TextBox Text="{x:Bind ReplyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     GotFocus="ReplyTextBox_GotFocus"
+                     LostFocus="ReplyTextBox_LostFocus"
                      AcceptsReturn="False"
                      Grid.Column="0"/>
 

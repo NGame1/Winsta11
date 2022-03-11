@@ -47,6 +47,7 @@ namespace WinstaNext.ViewModels.Comments
 
         async Task AddCommentAsync(ListView lst)
         {
+            if (AddCommentCommand.IsRunning) return;
             if (!IsSendCommentButtonEnabled) return;
             try
             {

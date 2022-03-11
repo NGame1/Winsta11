@@ -6,15 +6,19 @@ using Mapster;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.Core.Collections;
 using WinstaNext.Core.Collections.IncrementalSources.Users;
 using WinstaNext.Core.Navigation;
+using WinstaNext.Models.Core;
 using WinstaNext.Services;
 using WinstaNext.Views;
 using WinstaNext.Views.Media;
@@ -35,6 +39,8 @@ namespace WinstaNext.ViewModels.Users
         public IncrementalLoadingCollection<IncrementalUserReels, InstaMedia> UserReels { get; private set; }
         public IncrementalLoadingCollection<IncrementalUserMedias, InstaMedia> UserMedias { get; private set; }
 
+        public ISupportIncrementalLoading ItemsSource { get; set; }
+
         public InstaUserInfo User { get; private set; }
 
         public ScrollViewer ListViewScroll { get; set; }
@@ -42,6 +48,11 @@ namespace WinstaNext.ViewModels.Users
         public RelayCommand<ItemClickEventArgs> NavigateToMediaCommand { get; set; }
 
         public AsyncRelayCommand FollowButtonCommand { get; set; }
+
+        public ExtendedObservableCollection<MenuItemModel> ProfileTabs { get; set; } = new();
+
+        [OnChangedMethod(nameof(ONSelectedTabChanged))]
+        public MenuItemModel SelectedTab { get; set; }
 
         public UserProfileViewModel() : base()
         {
@@ -194,7 +205,45 @@ namespace WinstaNext.ViewModels.Users
             MediasInstance = new(User.Pk);
             UserReels = new(ReelsInstance);
             UserMedias = new(MediasInstance);
+            CreateProfileTabs();
             await base.OnNavigatedToAsync(e);
+        }
+
+        void ONSelectedTabChanged()
+        {
+            if (SelectedTab == null) return;
+            if (SelectedTab.Text == LanguageManager.Instance.Instagram.Posts)
+            {
+                ItemsSource = UserMedias;
+            }
+            else if (SelectedTab.Text == LanguageManager.Instance.Instagram.Reels)
+            {
+                ItemsSource = UserReels;
+            }
+            else if (SelectedTab.Text == LanguageManager.Instance.Instagram.IGTV)
+            {
+                ItemsSource = UserReels;
+            }
+            else if (SelectedTab.Text == LanguageManager.Instance.Instagram.Tagged)
+            {
+                ItemsSource = UserReels;
+            }
+        }
+
+        void CreateProfileTabs()
+        {
+            ProfileTabs.Add(new(LanguageManager.Instance.Instagram.Posts, "\uF0E2"));
+
+            if (User.TotalClipsCount != 0)
+                ProfileTabs.Add(new(LanguageManager.Instance.Instagram.Reels, "\uE102"));
+
+            if (User.TotalIGTVVideos != 0)
+                ProfileTabs.Add(new(LanguageManager.Instance.Instagram.IGTV, "\uE7F4"));
+
+            if (User.UsertagsCount != 0)
+                ProfileTabs.Add(new(LanguageManager.Instance.Instagram.Tagged, "\uE168"));
+
+            SelectedTab = ProfileTabs.FirstOrDefault();
         }
 
         void SetFollowButtonContent()

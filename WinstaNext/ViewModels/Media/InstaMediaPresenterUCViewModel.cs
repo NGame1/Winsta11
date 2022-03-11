@@ -67,6 +67,7 @@ namespace WinstaNext.ViewModels.Media
 
         async Task AddCommentAsync()
         {
+            if (AddCommentCommand.IsRunning) return;
             try
             {
                 InstaCommentContainerModuleType containerModule = InstaCommentContainerModuleType.FeedTimeline;
@@ -103,6 +104,7 @@ namespace WinstaNext.ViewModels.Media
 
         void CommentboxKeyDown(KeyRoutedEventArgs args)
         {
+            if (AddCommentCommand.IsRunning) return;
             if (!IsSendCommentButtonEnabled) return;
             if (args.Key != VirtualKey.Enter) return;
             AddCommentCommand.Execute(null);

@@ -34,6 +34,7 @@ namespace WinstaNext.ViewModels.Media
 
         async Task ListViewLoadedAsync(ListView lst)
         {
+            if (ListViewLoadedCommand.IsRunning) return;
             lst.ScrollIntoView(TargetMedia);
             await Task.Delay(100);
             await lst.SmoothScrollIntoViewWithItemAsync(TargetMedia,

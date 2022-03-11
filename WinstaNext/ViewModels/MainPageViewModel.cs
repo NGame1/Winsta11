@@ -39,7 +39,7 @@ namespace WinstaNext.ViewModels
     {
         ThemeListener _themeListener;
         public string SearchQuery { get; set; }
-        public string WindowTitle { get; set; } = "My App";
+        public string WindowTitle { get; set; } = LanguageManager.Instance.General.ApplicationName;
         public bool IsNavigationViewPaneOpened { get; set; }
 
         public RelayCommand ToggleNavigationViewPane { get; }

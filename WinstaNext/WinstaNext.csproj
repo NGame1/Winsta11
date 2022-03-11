@@ -133,6 +133,7 @@
     <Compile Include="Converters\Directs\UserIdToProfilePictureVisibilityConverter.cs" />
     <Compile Include="Converters\EnumToBooleanConverter.cs" />
     <Compile Include="Converters\IntToIsEnabledConverter.cs" />
+    <Compile Include="Converters\InvertBoolConverter.cs" />
     <Compile Include="Converters\Media\InstaMediaThumbnailConverter.cs" />
     <Compile Include="Converters\Media\InstaMediaTypeIconConverter.cs" />
     <Compile Include="Converters\Media\MediaDateTimeconverter.cs" />

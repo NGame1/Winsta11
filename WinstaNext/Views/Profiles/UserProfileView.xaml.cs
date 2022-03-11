@@ -34,21 +34,21 @@ namespace WinstaNext.Views.Profiles
         private void lst_Loaded(object sender, RoutedEventArgs e)
         {
             //ViewModel.ListViewScroll = lst.FindAscendantOrSelf<ScrollViewer>();
-            ViewModel.ListViewScroll = lst.FindDescendantOrSelf<ScrollViewer>();
+            //ViewModel.ListViewScroll = lst.FindDescendantOrSelf<ScrollViewer>();
             //var s = lst.FindChildOrSelf<ScrollViewer>();
         }
 
         private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            var item = args.SelectedItem as NavigationViewItem;
-            if (item.Content.ToString() == "Medias")
-            {
-                lst.ItemsSource = ViewModel.UserMedias;
-            }
-            else if (item.Content.ToString() == "Reels")
-            {
-                lst.ItemsSource = ViewModel.UserReels;
-            }
+            //var item = args.SelectedItem as NavigationViewItem;
+            //if (item.Content.ToString() == "Medias")
+            //{
+            //    lst.ItemsSource = ViewModel.UserMedias;
+            //}
+            //else if (item.Content.ToString() == "Reels")
+            //{
+            //    lst.ItemsSource = ViewModel.UserReels;
+            //}
         }
 
         private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)

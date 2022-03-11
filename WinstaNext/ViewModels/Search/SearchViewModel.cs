@@ -10,6 +10,7 @@ using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,7 +56,7 @@ namespace WinstaNext.ViewModels.Search
             MenuItems.Add(new MenuItemModel(LanguageManager.Instance.Instagram.Accounts) { Tag = "Accounts" });
             MenuItems.Add(new MenuItemModel(LanguageManager.Instance.Instagram.Places) { Tag = "Places" });
             MenuItems.Add(new MenuItemModel(LanguageManager.Instance.Instagram.Hashtags) { Tag = "Hashtags" });
-            
+
             HashtagsList = new(hashtagSearchinstance);
             PlacesList = new(placeSearchinstance);
             UsersList = new(peopleSearchinstance);
@@ -77,7 +78,7 @@ namespace WinstaNext.ViewModels.Search
                     break;
 
                 case InstaHashtag hashtag:
-                    
+
                     throw new NotImplementedException();
                     break;
 
@@ -144,12 +145,27 @@ namespace WinstaNext.ViewModels.Search
 
         public override void OnNavigatedTo(NavigationEventArgs e)
         {
-            SetHeader();
+            StopTimer = Stopwatch.StartNew();
             base.OnNavigatedTo(e);
         }
 
-        async void OnSearchQueryChanged()
+        public override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
+            StopTimer.Stop();
+            StopTimer = null;
+            base.OnNavigatingFrom(e);
+        }
+
+        Stopwatch StopTimer { get; set; }
+        void OnSearchQueryChanged() => OnSearchQueryChanged(false);
+        async void OnSearchQueryChanged(bool contexChanged)
+        {
+            if (!contexChanged)
+            {
+                StopTimer.Restart();
+                await Task.Delay(400);
+                if (StopTimer.ElapsedMilliseconds < 400) return;
+            }
             SearchResults.Clear();
             switch (SearchContext.ToLower())
             {
@@ -200,7 +216,7 @@ namespace WinstaNext.ViewModels.Search
                     break;
             }
             if (!SearchResults.Any())
-                OnSearchQueryChanged();
+                OnSearchQueryChanged(true);
         }
 
     }

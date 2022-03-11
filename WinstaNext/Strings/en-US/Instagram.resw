@@ -162,6 +162,9 @@
   <data name="Highlights" xml:space="preserve">
     <value>Highlights</value>
   </data>
+  <data name="IGTV" xml:space="preserve">
+    <value>IGTV</value>
+  </data>
   <data name="IsFollowingYou" xml:space="preserve">
     <value>is following you.</value>
   </data>
@@ -180,6 +183,9 @@
   <data name="MediaLikers" xml:space="preserve">
     <value>Media likers</value>
   </data>
+  <data name="MessagePlaceholder" xml:space="preserve">
+    <value>Message ...</value>
+  </data>
   <data name="NoDirectsYet" xml:space="preserve">
     <value>No direct messages yet.</value>
   </data>
@@ -188,6 +194,12 @@
   </data>
   <data name="Posts" xml:space="preserve">
     <value>Posts</value>
+  </data>
+  <data name="Reels" xml:space="preserve">
+    <value>Reels</value>
+  </data>
+  <data name="ReplyPlaceholder" xml:space="preserve">
+    <value>Send message ...</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>Requested</value>
@@ -206,6 +218,9 @@
   </data>
   <data name="Story" xml:space="preserve">
     <value>Story</value>
+  </data>
+  <data name="Tagged" xml:space="preserve">
+    <value>Tagged</value>
   </data>
   <data name="Top" xml:space="preserve">
     <value>Top</value>

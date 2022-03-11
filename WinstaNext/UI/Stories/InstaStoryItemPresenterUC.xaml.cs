@@ -64,6 +64,14 @@ namespace WinstaNext.UI.Stories
             ReplyStoryCommand = new(ReplyStoryAsync);
         }
 
+        ~InstaStoryItemPresenterUC()
+        {
+            NavigateToUserProfileCommand = null;
+            LikeStoryCommand = null;
+            ReplyStoryCommand = null;
+            StopTimer();
+        }
+
         async Task ReplyStoryAsync()
         {
             if (ReplyStoryCommand.IsRunning) return;
@@ -136,6 +144,26 @@ namespace WinstaNext.UI.Stories
         private void videoplayer_MediaEnded(object sender, RoutedEventArgs e)
         {
             TimerEnded?.Invoke(this, true);
+        }
+
+        private void ReplyTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            StopTimer();
+        }
+
+        private void ReplyTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            StartTimer();
+        }
+
+        private void Story_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            StopTimer();
+        }
+
+        private void Story_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            StartTimer();
         }
     }
 }

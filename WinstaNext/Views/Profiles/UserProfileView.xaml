@@ -11,9 +11,10 @@
     xmlns:Converters="using:WinstaNext.Converters"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:VM="using:WinstaNext.ViewModels.Users"
+    xmlns:core1="using:WinstaNext.Models.Core"
     xmlns:media="using:WinstaNext.UI.Media" 
     xmlns:views="using:WinstaNext.Views"
-    xmlns:Winsta="using:WinstaNext"
+    xmlns:Winsta="using:WinstaNext" 
     mc:Ignorable="d">
 
     <views:BasePage.Resources>
@@ -94,7 +95,8 @@
             </Grid>
 
             <NavigationView ScrollViewer.IsVerticalScrollChainingEnabled="True"
-                            SelectionChanged="NavigationView_SelectionChanged"
+                            MenuItemsSource="{x:Bind ViewModel.ProfileTabs}"
+                            SelectedItem="{x:Bind ViewModel.SelectedTab, Mode=TwoWay}"
                             IsBackButtonVisible="Collapsed"
                             Margin="{x:Bind PageMargin}"
                             IsSettingsVisible="False"
@@ -102,12 +104,19 @@
                             x:Name="navView"
                             Grid.Row="1">
 
-                <NavigationView.MenuItems>
-                    <NavigationViewItem Icon="People" Content="Medias" IsSelected="True"/>
+                <!--<NavigationView.MenuItems>
+                    <NavigationViewItem Icon="People" Content="Medias"/>
                     <NavigationViewItem Icon="Play" Content="Reels"/>
-                </NavigationView.MenuItems>
+                    <NavigationViewItem Icon="Account" Content="Tags"/>
+                </NavigationView.MenuItems>-->
 
-                <ListView ItemsSource="{x:Bind ViewModel.UserMedias, Mode=OneWay}"
+                <NavigationView.MenuItemTemplate>
+                    <DataTemplate x:DataType="core1:MenuItemModel">
+                        <NavigationViewItem Icon="{x:Bind Icon}" Content="{x:Bind Text}"/>
+                    </DataTemplate>
+                </NavigationView.MenuItemTemplate>
+
+                <ListView ItemsSource="{x:Bind ViewModel.ItemsSource, Mode=OneWay}"
                           ScrollViewer.IsVerticalScrollChainingEnabled="True"
                           Height="{x:Bind ViewModel.ViewHeight, Mode=OneWay}"
                           ScrollViewer.VerticalScrollBarVisibility="Auto"
