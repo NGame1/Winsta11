@@ -135,6 +135,9 @@
   <data name="Directs" xml:space="preserve">
     <value>دایرکت</value>
   </data>
+  <data name="EditProfile" xml:space="preserve">
+    <value>ویرایش پروفایل</value>
+  </data>
   <data name="Explore" xml:space="preserve">
     <value>اکسپلور</value>
   </data>

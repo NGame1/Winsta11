@@ -49,6 +49,7 @@
 
             <TextBox PlaceholderText="{x:Bind Winsta:LanguageManager.Instance.Instagram.CommentPlaceholder}"
                      Text="{x:Bind ViewModel.CommentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     AcceptsReturn="True"
                      x:Name="txtCooment"
                      Margin="5,0,0,0" 
                      Grid.Column="1">
@@ -73,8 +74,7 @@
                     Command="{x:Bind ViewModel.AddCommentCommand}"
                     Content="&#xF699;" 
                     Margin="5,0,0,0" 
-                    Grid.Column="2">
-            </Button>
+                    Grid.Column="2"/>
         </Grid>
     </Grid>
 </views:BasePage>

@@ -80,6 +80,7 @@ namespace WinstaNext
         public string Comment { get => _resource.GetString(nameof(Comment)); }
         public string CommentPlaceholder { get => _resource.GetString(nameof(CommentPlaceholder)); }
         public string Directs { get => _resource.GetString(nameof(Directs)); }
+        public string EditProfile { get => _resource.GetString(nameof(EditProfile)); }
         public string Explore { get => _resource.GetString(nameof(Explore)); }
         public string Feed { get => _resource.GetString(nameof(Feed)); }
         public string Follow { get => _resource.GetString(nameof(Follow)); }

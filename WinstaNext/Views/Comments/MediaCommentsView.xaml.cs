@@ -30,8 +30,8 @@ namespace WinstaNext.Views.Comments
 
         private async void SendButtonKeyboardAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
         {
-            args.Handled = true;
             await ViewModel.AddCommentCommand.ExecuteAsync(commentsListView);
+            args.Handled = true;
         }
     }
 }

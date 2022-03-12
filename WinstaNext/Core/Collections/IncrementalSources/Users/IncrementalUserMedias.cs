@@ -15,7 +15,7 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Users
     public class IncrementalUserMedias : IIncrementalSource<InstaMedia>
     {
         PaginationParameters Pagination { get; }
-        long UserId { get; set; } = -1;
+        public long UserId { get; private set; } = -1;
 
         public IncrementalUserMedias(long userId)
         {

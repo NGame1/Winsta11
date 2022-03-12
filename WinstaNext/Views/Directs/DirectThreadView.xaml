@@ -1,15 +1,23 @@
 ﻿<Page SizeChanged="Page_SizeChanged" 
-    x:Class="WinstaNext.Views.Directs.DirectThreadView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WinstaNext"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:directs="using:WinstaNext.Models.TemplateSelectors.Directs" xmlns:Models="using:InstagramApiSharp.Classes.Models" xmlns:models="using:WinstaNext.Abstractions.Direct.Models" xmlns:directs1="using:WinstaNext.UI.Directs" xmlns:messagecontainer="using:WinstaNext.UI.Directs.MessageContainer"
-    mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:messagecontainer="using:WinstaNext.UI.Directs.MessageContainer"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:directs="using:WinstaNext.Models.TemplateSelectors.Directs" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:models="using:WinstaNext.Abstractions.Direct.Models" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Models="using:InstagramApiSharp.Classes.Models"
+      x:Class="WinstaNext.Views.Directs.DirectThreadView"
+      xmlns:Converters="using:WinstaNext.Converters"
+      xmlns:directs1="using:WinstaNext.UI.Directs" 
+      xmlns:Winsta="using:WinstaNext" 
+      mc:Ignorable="d"
+      d:DesignHeight="300"
+      d:DesignWidth="400">
 
     <Page.Resources>
+        <Converters:InvertBoolConverter x:Key="InvertBoolConverter"/>
+        
         <Thickness x:Key="MessageBubblePadding">8,6</Thickness>
         <Thickness x:Key="MessagesMargin">0,3</Thickness>
 
@@ -77,11 +85,13 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
-        <directs1:ChatListView x:Name="lst" 
-            IncrementalLoadingThreshold="1"
-            SelectionMode="None" 
-            ItemTemplateSelector="{StaticResource InstaDirectInboxItemTemplateSelector}">
+
+        <directs1:ChatListView ItemTemplateSelector="{StaticResource InstaDirectInboxItemTemplateSelector}"
+                               ItemsSource="{x:Bind ViewModel.ThreadItems, Mode=OneWay}"
+                               IncrementalLoadingThreshold="1"
+                               SelectionMode="None"
+                               Padding="12,0"
+                               x:Name="lst">
 
             <!-- The ItemsStackPanel must be edited to update the following two properties -->
             <!-- These properties allow the list to grow from the bottom -->
@@ -113,7 +123,51 @@
         </directs1:ChatListView>
 
         <Grid Grid.Row="1" Margin="8,0,8,8">
-            <TextBox x:Name="txtMessage"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Text="{x:Bind ViewModel.MessageText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     PlaceholderText="{x:Bind Winsta:LanguageManager.Instance.Instagram.MessagePlaceholder}"
+                     AcceptsReturn="True"
+                     x:Name="txtMessage"
+                     Grid.Column="0">
+
+                <TextBox.KeyboardAccelerators>
+
+                    <KeyboardAccelerator
+                            Key="Enter"
+                            Modifiers="None"
+                            Invoked="SendMessageKeyboardAccelerator_Invoked"/>
+
+                </TextBox.KeyboardAccelerators>
+            </TextBox>
+
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="1"
+                        Margin="8,0"
+                        Spacing="3">
+
+                <Button FontFamily="{StaticResource FluentIcons}" 
+                        Content="&#xF4A9;"/>
+
+                <Button CommandParameter="{x:Bind emoBtn, Mode=OneWay}" 
+                        Command="{x:Bind ViewModel.OpenEmojisPanelCommand}"
+                        FontFamily="{StaticResource FluentIcons}" 
+                        Content="&#xE170;"
+                        x:Name="emoBtn"/>
+                
+                <Button IsEnabled="{x:Bind ViewModel.SendLikeCommand.IsRunning, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}"
+                        Command="{x:Bind ViewModel.SendLikeCommand}"
+                        FontFamily="{StaticResource FluentIcons}" 
+                        Content="&#xE006;"/>
+
+                <Button IsEnabled="{x:Bind ViewModel.SendMessageCommand.IsRunning, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}"
+                        Command="{x:Bind ViewModel.SendMessageCommand}"
+                        FontFamily="{StaticResource FluentIcons}" 
+                        Content="&#xE724;"/>
+                
+            </StackPanel>
         </Grid>
 
     </Grid>

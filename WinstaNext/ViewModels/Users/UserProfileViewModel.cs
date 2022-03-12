@@ -34,10 +34,15 @@ namespace WinstaNext.ViewModels.Users
 
         public string FollowBtnContent { get; set; }
 
-        public IncrementalUserMedias MediasInstance { get; set; }
-        public IncrementalUserReels ReelsInstance { get; set; }
-        public IncrementalLoadingCollection<IncrementalUserReels, InstaMedia> UserReels { get; private set; }
-        public IncrementalLoadingCollection<IncrementalUserMedias, InstaMedia> UserMedias { get; private set; }
+        IncrementalUserMedias MediasInstance { get; set; }
+        IncrementalUserReels ReelsInstance { get; set; }
+        IncrementalUserTaggedMedia TaggedInstance { get; set; }
+        IncrementalUserTVMedias IGTVInstance { get; set; }
+
+        IncrementalLoadingCollection<IncrementalUserReels, InstaMedia> UserReels { get; set; }
+        IncrementalLoadingCollection<IncrementalUserMedias, InstaMedia> UserMedias { get; set; }
+        IncrementalLoadingCollection<IncrementalUserTaggedMedia, InstaMedia> UserTaggedMedias { get; set; }
+        IncrementalLoadingCollection<IncrementalUserTVMedias, InstaMedia> TVMedias { get; set; }
 
         public ISupportIncrementalLoading ItemsSource { get; set; }
 
@@ -64,14 +69,17 @@ namespace WinstaNext.ViewModels.Users
         {
             if (args.ClickedItem is not InstaMedia media) throw new ArgumentOutOfRangeException(nameof(args.ClickedItem));
             //var index = UserMedias.IndexOf(media);
-            var para = new IncrementalMediaViewParameter(UserMedias, media);
+            var para = new IncrementalMediaViewParameter(ItemsSource, media);
             NavigationService.Navigate(typeof(IncrementalInstaMediaView), para);
         }
 
         async Task FollowButtonFuncAsync()
         {
             if (FollowButtonCommand.IsRunning) return;
-
+            if (FollowBtnContent == LanguageManager.Instance.Instagram.EditProfile)
+            {
+                throw new NotImplementedException();
+            }
             var follow = !string.IsNullOrEmpty(FollowBtnContent) &&
                          ((FollowBtnContent == LanguageManager.Instance.Instagram.Follow) ||
                          (FollowBtnContent == LanguageManager.Instance.Instagram.FollowBack));
@@ -197,14 +205,17 @@ namespace WinstaNext.ViewModels.Users
                         throw result.Info.Exception;
                     }
                     User.FriendshipStatus = result.Value;
-                    SetFollowButtonContent();
                 }
             }
-            else SetFollowButtonContent();
+            SetFollowButtonContent();
             ReelsInstance = new(User.Pk);
             MediasInstance = new(User.Pk);
+            TaggedInstance = new(User.Pk);
+            IGTVInstance = new(User.Pk);
             UserReels = new(ReelsInstance);
             UserMedias = new(MediasInstance);
+            UserTaggedMedias = new(TaggedInstance);
+            TVMedias = new(IGTVInstance);
             CreateProfileTabs();
             await base.OnNavigatedToAsync(e);
         }
@@ -222,16 +233,17 @@ namespace WinstaNext.ViewModels.Users
             }
             else if (SelectedTab.Text == LanguageManager.Instance.Instagram.IGTV)
             {
-                ItemsSource = UserReels;
+                ItemsSource = TVMedias;
             }
             else if (SelectedTab.Text == LanguageManager.Instance.Instagram.Tagged)
             {
-                ItemsSource = UserReels;
+                ItemsSource = UserTaggedMedias;
             }
         }
 
         void CreateProfileTabs()
         {
+            if (ProfileTabs.Any()) ProfileTabs.Clear();
             ProfileTabs.Add(new(LanguageManager.Instance.Instagram.Posts, "\uF0E2"));
 
             if (User.TotalClipsCount != 0)
@@ -243,12 +255,17 @@ namespace WinstaNext.ViewModels.Users
             if (User.UsertagsCount != 0)
                 ProfileTabs.Add(new(LanguageManager.Instance.Instagram.Tagged, "\uE168"));
 
+            if (SelectedTab != null)
+                SelectedTab = null;
+
             SelectedTab = ProfileTabs.FirstOrDefault();
         }
 
         void SetFollowButtonContent()
         {
-            if (!User.FriendshipStatus.Following && !User.FriendshipStatus.FollowedBy)
+            if (User.Pk == App.Container.GetService<InstaUserShort>().Pk)
+                FollowBtnContent = LanguageManager.Instance.Instagram.EditProfile;
+            else if (!User.FriendshipStatus.Following && !User.FriendshipStatus.FollowedBy)
                 FollowBtnContent = LanguageManager.Instance.Instagram.Follow;
             else if (!User.FriendshipStatus.Following && User.FriendshipStatus.FollowedBy)
                 FollowBtnContent = LanguageManager.Instance.Instagram.FollowBack;

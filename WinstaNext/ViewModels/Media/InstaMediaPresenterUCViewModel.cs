@@ -147,6 +147,10 @@ namespace WinstaNext.ViewModels.Media
                 }
                 switch (Media.InventorySource)
                 {
+                    case null:
+                        inventorySource = InstaMediaInventorySource.None;
+                        break;
+
                     case "media_or_ad":
                         inventorySource = InstaMediaInventorySource.MediaOrAdd;
                         break;

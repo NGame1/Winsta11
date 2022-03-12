@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace WinstaNext.Core.Collections.IncrementalSources.Users
 {
-    public class IncrementalUserTaggedMedia : IIncrementalSource<InstaMedia>
+    internal class IncrementalUserTVMedias : IIncrementalSource<InstaMedia>
     {
         PaginationParameters Pagination { get; }
         public long UserId { get; private set; } = -1;
 
-        public IncrementalUserTaggedMedia(long userId)
+        public IncrementalUserTVMedias(long userId)
         {
             Pagination = PaginationParameters.MaxPagesToLoad(1);
             UserId = userId;
@@ -29,11 +29,11 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Users
             if (!HasMoreAvailable) return null;
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
-                var result = await Api.UserProcessor.GetUserTagsAsync(UserId, Pagination, cancellationToken);
+                var result = await Api.TVProcessor.GetChannelByIdAsync(UserId, PaginationParameters.MaxPagesToLoad(1));
                 if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
                     throw result.Info.Exception;
-                HasMoreAvailable = !string.IsNullOrEmpty(result.Value.NextMaxId);
-                return result.Value;
+                HasMoreAvailable = result.Value.HasMoreAvailable;
+                return result.Value.Items;
             }
         }
     }

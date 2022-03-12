@@ -154,6 +154,7 @@
     <Compile Include="Core\Collections\IncrementalSources\Users\IncrementalUserMedias.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Users\IncrementalUserReels.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Users\IncrementalUserTaggedMedia.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Users\IncrementalUserTVMedias.cs" />
     <Compile Include="Core\Dialogs\MessageDialogHelper.cs" />
     <Compile Include="Core\Messages\ChangePageHeaderMessage.cs" />
     <Compile Include="Core\Messages\ChangeSelectedMenuItemMessage.cs" />

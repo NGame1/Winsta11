@@ -158,11 +158,15 @@ namespace WinstaNext.UI.Stories
 
         private void Story_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
+            if (LoadMediaElement)
+                videoplayer.Pause();
             StopTimer();
         }
 
         private void Story_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
+            if (LoadMediaElement)
+                videoplayer.Play();
             StartTimer();
         }
     }
