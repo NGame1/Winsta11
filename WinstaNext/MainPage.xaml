@@ -12,7 +12,7 @@
     xmlns:Model="using:WinstaNext.Models.Core" 
     xmlns:VM="using:WinstaNext.ViewModels" 
     xmlns:views="using:WinstaNext.Views" 
-    xmlns:local="using:WinstaNext"
+    xmlns:local="using:WinstaNext" xmlns:Converters="using:WinstaNext.Converters"
     x:Class="WinstaNext.MainPage"
     NavigationCacheMode="Enabled"
     mc:Ignorable="d">
@@ -22,6 +22,9 @@
     </Page.DataContext>
 
     <Page.Resources>
+        
+        <Converters:NullToBooleanConverter IsInverted="True" x:Key="NullToBooleanConverter"/>
+        
         <!--This top margin is the height of the custom TitleBar-->
         <Thickness x:Key="NavigationViewContentMargin">0,46,0,0</Thickness>
         <Thickness x:Key="NavigationViewContentGridBorderThickness">1,1,0,0</Thickness>
@@ -198,9 +201,13 @@
                 <DataTemplate>
                     <muxc:NavigationViewItem Icon="{Binding Icon}" 
                                              Content="{Binding Text}">
-                        <!--<muxc:NavigationViewItem.InfoBadge>
-                            <muxc:InfoBadge Value="{Binding }"/>
-                        </muxc:NavigationViewItem.InfoBadge>-->
+                        
+                        <muxc:NavigationViewItem.InfoBadge>
+                            <muxc:InfoBadge Visibility="{Binding Badge, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"
+                                            Value="{Binding Badge, Mode=OneWay}"
+                                            x:Name="badgePresenter"/>
+                        </muxc:NavigationViewItem.InfoBadge>
+                        
                     </muxc:NavigationViewItem>
                 </DataTemplate>
             </muxc:NavigationView.MenuItemTemplate>

@@ -12,9 +12,11 @@ using Windows.Services.Maps;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+using PropertyChanged;
 
 namespace WinstaNext.Models.Core
 {
+    [AddINotifyPropertyChangedInterface]
     public class MenuItemModel
     {
         public MenuItemModel(string text)
@@ -60,5 +62,7 @@ namespace WinstaNext.Models.Core
         public Type View { get; }
 
         public object Tag { get; set; }
+
+        public string Badge { get; set; }
     }
 }

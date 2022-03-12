@@ -72,36 +72,57 @@ namespace WinstaNext.ViewModels
 
         public Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode NavigationViewDisplayMode { get; set; }
 
+        [OnChangedMethod(nameof(OnInstaUserChanged))]
         public InstaUserShort InstaUser { get; private set; }
 
         public override string PageHeader { get; protected set; }
 
         public MainPageViewModel()
         {
-            SearchBoxTextChangedCommand = new AsyncRelayCommand<AutoSuggestBoxTextChangedEventArgs>(SearchBoxTextChanged);
-            SearchBoxQuerySubmittedCommand = new RelayCommand<AutoSuggestBoxQuerySubmittedEventArgs>(SearchBoxQuerySubmitted);
-            SearchBoxSuggestionChosenCommand = new RelayCommand<AutoSuggestBoxSuggestionChosenEventArgs>(SearchBoxSuggestionChosen);
+            SearchBoxTextChangedCommand = new(SearchBoxTextChanged);
+            SearchBoxQuerySubmittedCommand = new(SearchBoxQuerySubmitted);
+            SearchBoxSuggestionChosenCommand = new(SearchBoxSuggestionChosen);
 
-            FrameNavigatedCommand = new RelayCommand<NavigationEventArgs>(FrameNavigated);
+            FrameNavigatedCommand = new(FrameNavigated);
             NavigateToUserProfileCommand = new(NavigateToUserProfile);
-            _themeListener = new ThemeListener();
+            _themeListener = new();
             SetupTitlebar(CoreApplication.GetCurrentView().TitleBar);
-            MenuItems.Add(new MenuItemModel(LanguageManager.Instance.General.Home, "\uE10F", typeof(HomeView)));
-            MenuItems.Add(new MenuItemModel(LanguageManager.Instance.Instagram.Activities, "\uE006", null));
-            MenuItems.Add(new MenuItemModel(LanguageManager.Instance.Instagram.Explore, "\uF6FA", null));
-            MenuItems.Add(new MenuItemModel(LanguageManager.Instance.Instagram.Directs, "\uE15F", typeof(DirectsListView)));
-            FooterMenuItems.Add(new MenuItemModel(LanguageManager.Instance.General.Settings, new AnimatedSettingsVisualSource(), typeof(SettingsView)));
-            ToggleNavigationViewPane = new RelayCommand(ToggleNavigationPane);
+            MenuItems.Add(new(LanguageManager.Instance.General.Home, "\uE10F", typeof(HomeView)));
+            MenuItems.Add(new(LanguageManager.Instance.Instagram.Activities, "\uE006", null));
+            MenuItems.Add(new(LanguageManager.Instance.Instagram.Explore, "\uF6FA", null));
+            MenuItems.Add(new(LanguageManager.Instance.Instagram.Directs, "\uE15F", typeof(DirectsListView)));
+            FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, new AnimatedSettingsVisualSource(), typeof(SettingsView)));
+            ToggleNavigationViewPane = new(ToggleNavigationPane);
             _themeListener.ThemeChanged += MainPageViewModel_ThemeChanged;
+
+            new Thread(GetDirectsCountAsync).Start();
             new Thread(SyncLauncher).Start();
             new Thread(GetMyUser).Start();
+
+        }
+
+        async void GetDirectsCountAsync()
+        {
+            using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+            {
+                var result = await Api.MessagingProcessor
+                                      .GetDirectInboxAsync(PaginationParameters.MaxPagesToLoad(1));
+                if (!result.Succeeded) throw result.Info.Exception;
+                var value = result.Value;
+                var count = value.PendingRequestsCount + value.Inbox.UnseenCount;
+                UIContext.Post((e) =>
+                {
+                    var menu = MenuItems.FirstOrDefault(x => x.Text == LanguageManager.Instance.Instagram.Directs);
+                    menu.Badge = count.ToString();
+                }, null);
+            }
         }
 
         async void StartPushClient()
         {
             var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync();
             IInstaApi Api = App.Container.GetService<IInstaApi>();
-            
+
             Api.PushClient = new PushClient(apis, Api);
             Api.PushClient.MessageReceived += PushClient_MessageReceived;
             await Api.PushProcessor.RegisterPushAsync();
@@ -111,6 +132,16 @@ namespace WinstaNext.ViewModels
         async void PushClient_MessageReceived(object sender, PushReceivedEventArgs e)
         {
             if (e == null || e.NotificationContent == null) return;
+
+            UIContext.Post((s) =>
+            {
+                var directsmenu = MenuItems.FirstOrDefault(x => x.Text == LanguageManager.Instance.Instagram.Directs);
+                directsmenu.Badge = $"{e.NotificationContent.BadgeCount.Direct}";
+
+                var activitiesmenu = MenuItems.FirstOrDefault(x => x.Text == LanguageManager.Instance.Instagram.Activities);
+                activitiesmenu.Badge = $"{e.NotificationContent.BadgeCount.Activities}";
+            }, null);
+
             var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync();
             PushHelper.HandleNotify(e.NotificationContent, apis);
         }
@@ -142,7 +173,17 @@ namespace WinstaNext.ViewModels
                 }, null);
             }
         }
-
+        async void OnInstaUserChanged()
+        {
+            if (InstaUser == null) return;
+            using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+            {
+                Api.UpdateUser(InstaUser);
+                var state = Api.GetStateDataAsString();
+                await ApplicationSettingsManager.Instance.
+                            AddOrUpdateUser(InstaUser.Pk, state, InstaUser.UserName);
+            }
+        }
         void NavigateToUserProfile(object obj)
         {
             NavigationService.Navigate(typeof(UserProfileView), obj);
