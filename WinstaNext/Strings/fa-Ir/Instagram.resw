@@ -198,6 +198,9 @@
   <data name="Posts" xml:space="preserve">
     <value>پست ها</value>
   </data>
+  <data name="Recent" xml:space="preserve">
+    <value>اخیر</value>
+  </data>
   <data name="Reels" xml:space="preserve">
     <value>Reels</value>
   </data>

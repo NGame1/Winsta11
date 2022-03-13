@@ -5,6 +5,7 @@ using InstagramApiSharp.Classes.ResponseWrappers;
 using InstagramApiSharp.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
@@ -52,17 +53,33 @@ namespace WinstaNext.ViewModels.Media
         public RelayCommand NavigateToMediaLikersCommand { get; set; }
         public RelayCommand<InstaUser> NavigateToUserCommand { get; set; }
         public AsyncRelayCommand SaveMediaCommand { get; set; }
+        public RelayCommand<LinkClickedEventArgs> CaptionLinkClickedCommand { get; set; }
 
         public InstaMediaPresenterUCViewModel()
         {
             AddCommentCommand = new(AddCommentAsync);
             CommentboxKeyDownCommand = new(CommentboxKeyDown);
+            CaptionLinkClickedCommand = new(CaptionLinkClicked);
             LikeMediaCommand = new(LikeMediaAsync);
             MoreButtonCommand = new(MoreButton);
             NavigateToCommentsCommand = new(NavigateToComments);
             NavigateToMediaLikersCommand = new(NavigateToMediaLikers);
             NavigateToUserCommand = new(NavigateToUser);
             SaveMediaCommand = new(SaveMediaAsync);
+        }
+
+        void CaptionLinkClicked(LinkClickedEventArgs obj)
+        {
+            if (obj.Link.StartsWith("@"))
+            {
+                NavigationService.Navigate(typeof(UserProfileView),
+                                  obj.Link.Replace("@", string.Empty));
+            }
+            else if (obj.Link.StartsWith("#"))
+            {
+                NavigationService.Navigate(typeof(HashtagProfileView),
+                                  obj.Link.Replace("#", string.Empty));
+            }
         }
 
         async Task AddCommentAsync()

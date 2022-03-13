@@ -101,6 +101,7 @@ namespace WinstaNext
         public string NoDirectsYet { get => _resource.GetString(nameof(NoDirectsYet)); }
         public string Places { get => _resource.GetString(nameof(Places)); }
         public string Posts { get => _resource.GetString(nameof(Posts)); }
+        public string Recent { get => _resource.GetString(nameof(Recent)); }
         public string Reels { get => _resource.GetString(nameof(Reels)); }
         public string ReplyPlaceholder { get => _resource.GetString(nameof(ReplyPlaceholder)); }
         public string Requested { get => _resource.GetString(nameof(Requested)); }

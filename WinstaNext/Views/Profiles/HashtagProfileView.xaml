@@ -4,11 +4,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity" 
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    x:Class="WinstaNext.Views.Profiles.HashtagProfileView"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:models="using:InstagramApiSharp.Classes.Models" 
     xmlns:Converters1="using:WinstaNext.Converters.Media"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    x:Class="WinstaNext.Views.Profiles.UserProfileView"
     xmlns:behaviors="using:WinstaNext.Core.Behaviors"
     xmlns:Converters="using:WinstaNext.Converters"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
@@ -30,7 +30,7 @@
     </views:BasePage.Resources>
 
     <views:BasePage.DataContext>
-        <VM:UserProfileViewModel x:Name="ViewModel"/>
+        <VM:HashtagProfileViewModel x:Name="ViewModel"/>
     </views:BasePage.DataContext>
 
     <ScrollViewer x:Name="mainScroll"
@@ -52,64 +52,33 @@
             <Grid Margin="{x:Bind PageMargin}">
                 <StackPanel Spacing="5" Grid.Row="0">
                     <StackPanel Spacing="5" Orientation="Horizontal">
-                        <muxc:PersonPicture ProfilePicture="{x:Bind ViewModel.User.ProfilePicture}" 
-                                            DisplayName="{x:Bind ViewModel.User.UserName}"/>
+                        <muxc:PersonPicture  
+                                            DisplayName="{x:Bind ViewModel.Hashtag.Name}"/>
                         <StackPanel VerticalAlignment="Center">
                             <StackPanel Spacing="5" Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Text="{x:Bind ViewModel.User.UserName}" 
+                                <TextBlock Text="{x:Bind ViewModel.Hashtag.Name}" 
                                            FontWeight="SemiBold"/>
-
-                                <FontIcon Glyph="&#x02AC;" 
-                                          FontSize="12"
-                                          Foreground="SkyBlue" 
-                                          Visibility="{x:Bind ViewModel.User.IsVerified, Mode=OneWay}"
-                                          FontFamily="{StaticResource FluentSystemIconsFilled}"/>
                             </StackPanel>
-                            <TextBlock Text="{x:Bind ViewModel.User.FullName}"
+
+                            <TextBlock Text="{x:Bind ViewModel.Hashtag.Subtitle}"
                                        HorizontalAlignment="Center"/>
                             <StackPanel Orientation="Horizontal">
                                 <HyperlinkButton>
                                     <TextBlock>
-                                        <Run Text="{x:Bind ViewModel.User.MediaCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
+                                        <Run Text="{x:Bind ViewModel.Hashtag.MediaCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
                                         <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Posts}"/>
-                                    </TextBlock>
-                                </HyperlinkButton>
-
-                                <HyperlinkButton>
-                                    <TextBlock>
-                                        <Run Text="{x:Bind ViewModel.User.FollowerCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
-                                        <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Followers}"/>
-                                    </TextBlock>
-                                </HyperlinkButton>
-
-                                <HyperlinkButton>
-                                    <TextBlock>
-                                        <Run Text="{x:Bind ViewModel.User.FollowingCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
-                                        <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Followings}"/>
                                     </TextBlock>
                                 </HyperlinkButton>
                             </StackPanel>
                         </StackPanel>
 
-                        <Button Content="{x:Bind ViewModel.FollowBtnContent, Mode=OneWay}"
+                        <Button Visibility="{x:Bind ViewModel.Hashtag.ShowFollowDropDown, Mode=OneWay}"
+                                Content="{x:Bind ViewModel.FollowBtnContent, Mode=OneWay}"
                                 Command="{x:Bind ViewModel.FollowButtonCommand}"
                                 Style="{StaticResource AccentButtonStyle}"/>
 
                     </StackPanel>
 
-                    <controls:MarkdownTextBlock FlowDirection="{x:Bind ViewModel.User.Biography, Converter={StaticResource TextToFlowDirectionConverter}, Mode=OneWay}"
-                                                Text="{x:Bind ViewModel.User.Biography, Converter={StaticResource CaptionToMarkdownConverter}, Mode=OneWay}" 
-                                                IsTextSelectionEnabled="False"
-                                                Background="Transparent"
-                                                TextWrapping="Wrap">
-
-                        <!--<i:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="LinkClicked">
-                                <core:InvokeCommandAction Command="{x:Bind ViewModel.CaptionLinkClickedCommand}"/>
-                            </core:EventTriggerBehavior>
-                        </i:Interaction.Behaviors>-->
-
-                    </controls:MarkdownTextBlock>
                 </StackPanel>
             </Grid>
 

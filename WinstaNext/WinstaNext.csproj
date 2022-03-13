@@ -134,17 +134,21 @@
     <Compile Include="Converters\EnumToBooleanConverter.cs" />
     <Compile Include="Converters\IntToIsEnabledConverter.cs" />
     <Compile Include="Converters\InvertBoolConverter.cs" />
+    <Compile Include="Converters\Media\CaptionToMarkdownConverter.cs" />
     <Compile Include="Converters\Media\InstaMediaThumbnailConverter.cs" />
     <Compile Include="Converters\Media\InstaMediaTypeIconConverter.cs" />
     <Compile Include="Converters\Media\MediaDateTimeconverter.cs" />
     <Compile Include="Converters\NullToBooleanConverter.cs" />
     <Compile Include="Converters\PossibleLargeNumbersConverter.cs" />
     <Compile Include="Converters\Stories\StoryBorderColorConverter.cs" />
+    <Compile Include="Converters\TextToFlowDirectionConverter.cs" />
     <Compile Include="Core\Behaviors\SynchronizeHorizontalOffsetBehavior.cs" />
     <Compile Include="Core\Collections\ExtendedObservableCollection.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Comments\IncrementalMediaComments.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Directs\IncrementalDirectInbox.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Directs\IncrementalDirectThread.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Hashtags\IncrementalHashtagRecentMedias.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Hashtags\IncrementalHashtagTopMedias.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Media\IncrementalHomeMedia.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Media\IncrementalMediaLikers.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Search\IncrementalHashtagsSearch.cs" />
@@ -167,6 +171,7 @@
     <Compile Include="ExtendedSplashScreen.xaml.cs">
       <DependentUpon>ExtendedSplashScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CaptionParser.cs" />
     <Compile Include="Helpers\ControlSizeHelper.cs" />
     <Compile Include="Helpers\StringCipher.cs" />
     <Compile Include="LanguageManager.cs" />
@@ -287,6 +292,7 @@
     <Compile Include="ViewModels\Search\SearchViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
     <Compile Include="ViewModels\Stories\StoryCarouselViewModel.cs" />
+    <Compile Include="ViewModels\Users\HashtagProfileViewModel.cs" />
     <Compile Include="ViewModels\Users\UserProfileViewModel.cs" />
     <Compile Include="Views\Account\ChallengeRequiredView.xaml.cs">
       <DependentUpon>ChallengeRequiredView.xaml</DependentUpon>
@@ -319,6 +325,9 @@
     </Compile>
     <Compile Include="Views\Media\SingleInstaMediaView.xaml.cs">
       <DependentUpon>SingleInstaMediaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Profiles\HashtagProfileView.xaml.cs">
+      <DependentUpon>HashtagProfileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Profiles\UserProfileView.xaml.cs">
       <DependentUpon>UserProfileView.xaml</DependentUpon>
@@ -558,6 +567,10 @@
     <Page Include="Views\Media\SingleInstaMediaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Profiles\HashtagProfileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Profiles\UserProfileView.xaml">
       <SubType>Designer</SubType>
