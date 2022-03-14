@@ -13,12 +13,12 @@ namespace WinstaNext.Converters.Media
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value is not InstaMedia media) return string.Empty;
-            if (!string.IsNullOrEmpty(media.ProductType) && media.ProductType.ToLower() == "igtv") return "\uF358";
+            if (!string.IsNullOrEmpty(media.ProductType) && media.ProductType.ToLower() == "igtv") return "\uFAF3";
             if (!string.IsNullOrEmpty(media.ProductType) && media.ProductType.ToLower() == "clips") return "\uF55A";
             switch (media.MediaType)
             {
                 case InstaMediaType.Video: return "\uF84B";
-                case InstaMediaType.Carousel: return "\uF670";
+                case InstaMediaType.Carousel: return "\uF78C";
                 default:return string.Empty;
             }
         }

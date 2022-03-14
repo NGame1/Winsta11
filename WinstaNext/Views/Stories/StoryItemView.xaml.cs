@@ -94,6 +94,8 @@ namespace WinstaNext.Views.Stories
             if (!Play) StopAll();
             else
             {
+                StopAll();
+
                 PlayCarouselItem();
 
                 if (FlipView.SelectedItem is InstaStoryItem currentStoryItem)

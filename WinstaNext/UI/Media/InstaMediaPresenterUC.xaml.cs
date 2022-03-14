@@ -132,7 +132,7 @@ namespace WinstaNext.UI.Media
                 {
                     var container = carouselPresenter.Gallery.ContainerFromIndex(i);
                     var fvi = (FlipViewItem)container;
-                    if (container == null || fvi == null) return;
+                    if (container == null || fvi == null) continue;
                     if (fvi.ContentTemplateRoot is InstaMediaVideoPresenterUC videoPresenterUC)
                         videoPresenterUC.mediaPlayer.Pause();
                 }

@@ -130,6 +130,7 @@ namespace WinstaNext.UI.Stories
 
         public void StopTimer()
         {
+            if (LoadMediaElement) videoplayer.Stop();
             if (timer == null) return;
             timer.Tick -= Timer_Tick;
             timer.Stop();
@@ -148,26 +149,30 @@ namespace WinstaNext.UI.Stories
 
         private void ReplyTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            StopTimer();
+            if (LoadMediaElement)
+                videoplayer.Pause();
+            else StopTimer();
         }
 
         private void ReplyTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            StartTimer();
+            if (LoadMediaElement)
+                videoplayer.Play();
+            else StartTimer();
         }
 
         private void Story_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             if (LoadMediaElement)
                 videoplayer.Pause();
-            StopTimer();
+            else StopTimer();
         }
 
         private void Story_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
             if (LoadMediaElement)
                 videoplayer.Play();
-            StartTimer();
+            else StartTimer();
         }
     }
 }
