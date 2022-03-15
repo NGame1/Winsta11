@@ -82,7 +82,7 @@ namespace WinstaNext.ViewModels.Search
                     break;
 
                 case InstaPlace place:
-                    throw new NotImplementedException();
+                    NavigationService.Navigate(typeof(PlaceProfileView), place);
                     break;
 
                 default:

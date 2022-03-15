@@ -4,6 +4,7 @@ using InstagramApiSharp.Classes;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,13 +47,30 @@ namespace WinstaNext.UI.Comments
         public AsyncRelayCommand LikeCommecntCommand { get; set; }
         public AsyncRelayCommand LoadMoreCommentsCommand { get; set; }
         public RelayCommand<object> NavigateToUserProfileCommand { get; set; }
+        public RelayCommand<LinkClickedEventArgs> CaptionLinkClickedCommand { get; set; }
 
         public InstaCommentPresenterUC()
         {
+            CaptionLinkClickedCommand = new(CaptionLinkClicked);
             LoadMoreCommentsCommand = new(LoadMoreCommentsAsync);
             LikeCommecntCommand = new(LikeCommentAsync);
             NavigateToUserProfileCommand = new(NavigateToUserProfile);
             this.InitializeComponent();
+        }
+
+        void CaptionLinkClicked(LinkClickedEventArgs obj)
+        {
+            var NavigationService = App.Container.GetService<NavigationService>();
+            if (obj.Link.StartsWith("@"))
+            {
+                NavigationService.Navigate(typeof(UserProfileView),
+                                  obj.Link.Replace("@", string.Empty));
+            }
+            else if (obj.Link.StartsWith("#"))
+            {
+                NavigationService.Navigate(typeof(HashtagProfileView),
+                                  obj.Link.Replace("#", string.Empty));
+            }
         }
 
         async Task LikeCommentAsync()

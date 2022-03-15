@@ -151,6 +151,8 @@
     <Compile Include="Core\Collections\IncrementalSources\Hashtags\IncrementalHashtagTopMedias.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Media\IncrementalHomeMedia.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Media\IncrementalMediaLikers.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Places\IncrementalPlaceRecentMedias.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Places\IncrementalPlaceTopMedias.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Search\IncrementalHashtagsSearch.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Search\IncrementalPeopleSearch.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Search\IncrementalPlacesSearch.cs" />
@@ -295,6 +297,7 @@
     <Compile Include="ViewModels\Search\SearchViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
     <Compile Include="ViewModels\Stories\StoryCarouselViewModel.cs" />
+    <Compile Include="ViewModels\Users\PlaceProfileViewModel.cs" />
     <Compile Include="ViewModels\Users\HashtagProfileViewModel.cs" />
     <Compile Include="ViewModels\Users\UserProfileViewModel.cs" />
     <Compile Include="Views\Account\ChallengeRequiredView.xaml.cs">
@@ -328,6 +331,9 @@
     </Compile>
     <Compile Include="Views\Media\SingleInstaMediaView.xaml.cs">
       <DependentUpon>SingleInstaMediaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Profiles\PlaceProfileView.xaml.cs">
+      <DependentUpon>PlaceProfileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Profiles\HashtagProfileView.xaml.cs">
       <DependentUpon>HashtagProfileView.xaml</DependentUpon>
@@ -574,6 +580,10 @@
     <Page Include="Views\Media\SingleInstaMediaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Profiles\PlaceProfileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Profiles\HashtagProfileView.xaml">
       <Generator>MSBuild:Compile</Generator>
