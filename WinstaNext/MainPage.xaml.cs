@@ -46,7 +46,7 @@ namespace WinstaNext
             SizeChanged += MainPage_SizeChanged;
         }
 
-        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             this.Loaded -= MainPage_Loaded;
 

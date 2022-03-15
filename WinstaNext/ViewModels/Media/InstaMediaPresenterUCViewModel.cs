@@ -282,7 +282,7 @@ namespace WinstaNext.ViewModels.Media
 
         DependencyObject FindContainerInFeedTimeline(HomeView home)
         {
-            return home.FeedPostsList.ContainerFromItem(Media); ;
+            return home.FeedPostsList.ContainerFromItem(Media);
         }
 
         uint FindMediaIndexInFeedTimeline(HomeView home)

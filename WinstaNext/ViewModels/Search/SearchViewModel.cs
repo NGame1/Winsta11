@@ -78,8 +78,7 @@ namespace WinstaNext.ViewModels.Search
                     break;
 
                 case InstaHashtag hashtag:
-
-                    throw new NotImplementedException();
+                    NavigationService.Navigate(typeof(HashtagProfileView), hashtag);
                     break;
 
                 case InstaPlace place:
@@ -87,7 +86,7 @@ namespace WinstaNext.ViewModels.Search
                     break;
 
                 default:
-                    break;
+                    throw new NotImplementedException();
             }
         }
 

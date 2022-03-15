@@ -199,6 +199,9 @@
       <DependentUpon>ExpandableSettingHeaderControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\NoCastButtonMediaTransportControls.cs" />
+    <Compile Include="UI\Dialogs\BaseContentDialog.xaml.cs">
+      <DependentUpon>BaseContentDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Directs\ChatListView.cs" />
     <Compile Include="UI\Directs\GroupDirectThread.xaml.cs">
       <DependentUpon>GroupDirectThread.xaml</DependentUpon>
@@ -413,6 +416,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Controls\ExpandableSettingHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Dialogs\BaseContentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
