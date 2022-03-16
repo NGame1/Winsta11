@@ -6,6 +6,7 @@ using Mapster;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
@@ -51,6 +52,7 @@ namespace WinstaNext.ViewModels.Users
         public ScrollViewer ListViewScroll { get; set; }
 
         public RelayCommand<ItemClickEventArgs> NavigateToMediaCommand { get; set; }
+        public RelayCommand<LinkClickedEventArgs> CaptionLinkClickedCommand { get; set; }
 
         public AsyncRelayCommand FollowButtonCommand { get; set; }
 
@@ -61,8 +63,23 @@ namespace WinstaNext.ViewModels.Users
 
         public UserProfileViewModel() : base()
         {
+            CaptionLinkClickedCommand = new(CaptionLinkClicked);
             NavigateToMediaCommand = new(NavigateToMedia);
             FollowButtonCommand = new(FollowButtonFuncAsync);
+        }
+
+        void CaptionLinkClicked(LinkClickedEventArgs obj)
+        {
+            if (obj.Link.StartsWith("@"))
+            {
+                NavigationService.Navigate(typeof(UserProfileView),
+                                  obj.Link.Replace("@", string.Empty));
+            }
+            else if (obj.Link.StartsWith("#"))
+            {
+                NavigationService.Navigate(typeof(HashtagProfileView),
+                                  obj.Link.Replace("#", string.Empty));
+            }
         }
 
         void NavigateToMedia(ItemClickEventArgs args)

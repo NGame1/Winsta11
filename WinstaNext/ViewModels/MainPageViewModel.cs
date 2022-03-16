@@ -32,6 +32,7 @@ using WinstaNext.Views.Search;
 using InstagramApiSharp.API.Push;
 using WinstaBackgroundHelpers.Push;
 using NotificationHandler;
+using WinstaNext.Views.Activities;
 
 namespace WinstaNext.ViewModels
 {
@@ -88,7 +89,7 @@ namespace WinstaNext.ViewModels
             _themeListener = new();
             SetupTitlebar(CoreApplication.GetCurrentView().TitleBar);
             MenuItems.Add(new(LanguageManager.Instance.General.Home, "\uE10F", typeof(HomeView)));
-            MenuItems.Add(new(LanguageManager.Instance.Instagram.Activities, "\uE006", null));
+            MenuItems.Add(new(LanguageManager.Instance.Instagram.Activities, "\uE006", typeof(ActivitiesView)));
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Explore, "\uF6FA", null));
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Directs, "\uE15F", typeof(DirectsListView)));
             FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, new AnimatedSettingsVisualSource(), typeof(SettingsView)));
@@ -184,6 +185,7 @@ namespace WinstaNext.ViewModels
                             AddOrUpdateUser(InstaUser.Pk, state, InstaUser.UserName);
             }
         }
+
         void NavigateToUserProfile(object obj)
         {
             NavigationService.Navigate(typeof(UserProfileView), obj);
@@ -195,7 +197,7 @@ namespace WinstaNext.ViewModels
             SuggestionChosen = true;
             var user = (InstaUser)arg.SelectedItem;
             NavigationService.Navigate(typeof(UserProfileView), user);
-            SearchQuery = String.Empty;
+            SearchQuery = string.Empty;
         }
 
         private void SearchBoxQuerySubmitted(AutoSuggestBoxQuerySubmittedEventArgs arg)
@@ -203,7 +205,7 @@ namespace WinstaNext.ViewModels
             if (SuggestionChosen) { SuggestionChosen = false; return; }
             if (string.IsNullOrEmpty(SearchQuery)) return;
             NavigationService.Navigate(typeof(SearchView), SearchQuery);
-            SearchQuery = String.Empty;
+            SearchQuery = string.Empty;
         }
 
         Stopwatch stopwatch = null;
@@ -215,7 +217,6 @@ namespace WinstaNext.ViewModels
             else stopwatch.Restart();
             await Task.Delay(400);
             if (stopwatch.ElapsedMilliseconds < 400) return;
-            var offset = DateTime.Now.Subtract(DateTime.UtcNow).TotalSeconds;
             try
             {
                 using (IInstaApi Api = App.Container.GetService<IInstaApi>())
@@ -244,6 +245,10 @@ namespace WinstaNext.ViewModels
             {
                 case "HomeView":
                     SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(HomeView));
+                    break;
+
+                case "ActivitiesView":
+                    SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(ActivitiesView));
                     break;
 
                 case "DirectsListView":

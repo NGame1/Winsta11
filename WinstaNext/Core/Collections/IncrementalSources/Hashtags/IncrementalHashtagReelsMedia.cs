@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace WinstaNext.Core.Collections.IncrementalSources.Hashtags
 {
-    public class IncrementalHashtagTopMedias : IIncrementalSource<InstaMedia>
+    internal class IncrementalHashtagReelsMedia : IIncrementalSource<InstaMedia>
     {
         public string TagName { get; private set; }
         PaginationParameters Pagination { get; set; }
 
-        public IncrementalHashtagTopMedias(string tagName)
+        public IncrementalHashtagReelsMedia(string tagName)
         {
             TagName = tagName;
             Pagination = PaginationParameters.MaxPagesToLoad(1);
@@ -29,8 +29,8 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Hashtags
                 var result = await Api.HashtagProcessor.GetHashtagsSectionsAsync(TagName,
                     Pagination,
                     cancellationToken,
-                    InstagramApiSharp.Enums.InstaHashtagSectionType.Top);
-                //var result = await Api.HashtagProcessor.GetTopHashtagMediaListAsync(TagName,
+                    InstagramApiSharp.Enums.InstaHashtagSectionType.Clips);
+                //var result = await Api.HashtagProcessor.GetRecentHashtagMediaListAsync(TagName,
                 //                       Pagination,
                 //                       cancellationToken: cancellationToken);
 

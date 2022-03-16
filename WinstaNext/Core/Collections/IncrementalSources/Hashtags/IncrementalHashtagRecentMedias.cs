@@ -26,10 +26,14 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Hashtags
             if (!MoreAvailable) return null;
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
-                var result = await Api.HashtagProcessor.GetRecentHashtagMediaListAsync(TagName,
-                                       Pagination,
-                                       cancellationToken: cancellationToken);
-                
+                var result = await Api.HashtagProcessor.GetHashtagsSectionsAsync(TagName,
+                    Pagination,
+                    cancellationToken,
+                    InstagramApiSharp.Enums.InstaHashtagSectionType.Recent);
+                //var result = await Api.HashtagProcessor.GetRecentHashtagMediaListAsync(TagName,
+                //                       Pagination,
+                //                       cancellationToken: cancellationToken);
+
                 if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
                     throw result.Info.Exception;
 

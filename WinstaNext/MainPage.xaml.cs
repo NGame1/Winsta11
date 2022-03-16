@@ -40,7 +40,7 @@ namespace WinstaNext
         {
             this.InitializeComponent();
             WeakReferenceMessenger.Default.RegisterAll(this);
-            NavigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Left;
+            NavigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.LeftCompact;
             Window.Current.SetTitleBar(AppTitleBar);
             Loaded += MainPage_Loaded;
             SizeChanged += MainPage_SizeChanged;

@@ -1,0 +1,169 @@
+﻿<views:BasePage
+    xmlns:TemplateSelectors="using:WinstaNext.Models.TemplateSelectors.Activities"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Models="using:InstagramApiSharp.Classes.Models"
+    x:Class="WinstaNext.Views.Activities.ActivitiesView"
+    xmlns:VM="using:WinstaNext.ViewModels.Activities"
+    xmlns:local="using:WinstaNext.Views.Activities"
+    xmlns:views="using:WinstaNext.Views" xmlns:Converters="using:WinstaNext.Converters" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d">
+
+    <views:BasePage.Resources>
+
+        <Converters:RichTextToMarkdownTextConverter x:Key="RichTextToMarkdownTextConverter"/>
+        <Converters:TextToFlowDirectionConverter x:Key="TextToFlowDirectionConverter"/>
+        
+        <DataTemplate x:Key="FollowTemplate" x:DataType="Models:InstaRecentActivityFeed">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <PersonPicture ProfilePicture="{x:Bind InlineFollow.User.ProfilePicture}"
+                               DisplayName="{x:Bind InlineFollow.User.UserName}"
+                               Grid.Column="0"
+                               Height="55"
+                               Width="55"/>
+                
+                <controls:MarkdownTextBlock FlowDirection="{x:Bind Text, Converter={StaticResource TextToFlowDirectionConverter}, Mode=OneWay}"
+                                            Text="{x:Bind Text, Converter={StaticResource RichTextToMarkdownTextConverter}, Mode=OneWay}"
+                                            IsTextSelectionEnabled="False"
+                                            LinkClicked="TextLinkClicked"
+                                            VerticalAlignment="Center"
+                                            Background="Transparent"
+                                            TextWrapping="Wrap"
+                                            Grid.Column="1"
+                                            Margin="5,0"/>
+
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TaggedOrLikedOrCommentedYouTemplate" x:DataType="Models:InstaRecentActivityFeed">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <PersonPicture ProfilePicture="{x:Bind ProfileImage}"
+                               DisplayName="{x:Bind ProfileName}"
+                               Grid.Column="0"
+                               Height="55"
+                               Width="55"/>
+                <TextBlock VerticalAlignment="Center"
+                           Text="{x:Bind Text}"
+                           TextWrapping="Wrap"
+                           Grid.Column="1"
+                           Margin="5,0"/>
+                <Image Source="{x:Bind Medias[0].Image}"
+                       Grid.Column="2"
+                       Height="55"
+                       Width="55"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="SharedPostTemplate" x:DataType="Models:InstaRecentActivityFeed">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <PersonPicture ProfilePicture="{x:Bind ProfileImage}"
+                               DisplayName="{x:Bind ProfileName}"
+                               Grid.Column="0"
+                               Height="55"
+                               Width="55"/>
+                <TextBlock VerticalAlignment="Center"
+                           Text="{x:Bind Text}"
+                           TextWrapping="Wrap"
+                           Grid.Column="1"
+                           Margin="5,0"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CommentLikeTemplate" x:DataType="Models:InstaRecentActivityFeed">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <PersonPicture ProfilePicture="{x:Bind ProfileImage}"
+                               DisplayName="{x:Bind ProfileName}"
+                               Grid.Column="0"
+                               Height="55"
+                               Width="55"/>
+                <TextBlock VerticalAlignment="Center"
+                           Text="{x:Bind Text}"
+                           TextWrapping="Wrap"
+                           Grid.Column="1"
+                           Margin="5,0"/>
+
+                <Image Source="{x:Bind Images[0].Image}"
+                       Grid.Column="2"
+                       Height="55"
+                       Width="55"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="StoryLikeTemplate" x:DataType="Models:InstaRecentActivityFeed">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <PersonPicture ProfilePicture="{x:Bind ProfileImage}"
+                               DisplayName="{x:Bind ProfileName}"
+                               Grid.Column="0"
+                               Height="55"
+                               Width="55"/>
+
+                <controls:MarkdownTextBlock FlowDirection="{x:Bind RichText, Converter={StaticResource TextToFlowDirectionConverter}, Mode=OneWay}"
+                                            Text="{x:Bind RichText, Converter={StaticResource RichTextToMarkdownTextConverter}, Mode=OneWay}"
+                                            IsTextSelectionEnabled="False"
+                                            LinkClicked="TextLinkClicked"
+                                            VerticalAlignment="Center"
+                                            Background="Transparent"
+                                            TextWrapping="Wrap"
+                                            Grid.Column="1"
+                                            Margin="5,0"/>
+
+                <Image Source="{x:Bind Images[0].Image}"
+                       Grid.Column="2"
+                       Height="55"
+                       Width="55"/>
+                
+            </Grid>
+        </DataTemplate>
+
+        <TemplateSelectors:RecentActivityFeedItemTemplateSelector x:Key="RecentActivityFeedItemTemplateSelector"
+                                                                  CommentLikeTemplate="{StaticResource CommentLikeTemplate}"
+                                                                  TaggedOrLikedOrCommentedYouTemplate="{StaticResource TaggedOrLikedOrCommentedYouTemplate}"
+                                                                  SharedPostTemplate="{StaticResource SharedPostTemplate}"
+                                                                  StoryLikeTemplate="{StaticResource StoryLikeTemplate}"
+                                                                  FollowTemplate="{StaticResource FollowTemplate}"/>
+    </views:BasePage.Resources>
+
+    <views:BasePage.DataContext>
+        <VM:ActivitiesViewModel x:Name="ViewModel"/>
+    </views:BasePage.DataContext>
+
+    <ListView ItemTemplateSelector="{StaticResource RecentActivityFeedItemTemplateSelector}"
+              ItemsSource="{x:Bind ViewModel.Activities}"
+              Margin="{x:Bind PageMargin}"
+              SelectionMode="None"
+              Padding="0,0,13,0">
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
+                <Setter Property="Padding" Value="10"/>
+            </Style>
+        </ListView.ItemContainerStyle>
+    </ListView>
+    
+</views:BasePage>

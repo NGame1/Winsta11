@@ -89,6 +89,13 @@
                                     </TextBlock>
                                 </HyperlinkButton>
                             </StackPanel>
+
+                            <TextBlock Visibility="{x:Bind ViewModel.User.FriendshipStatus.FollowedBy}"
+                                       TextAlignment="Center">
+                                <Run Text="{x:Bind ViewModel.User.UserName}"/>
+                                <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.IsFollowingYou}"/>
+                            </TextBlock>
+                            
                         </StackPanel>
 
                         <Button Content="{x:Bind ViewModel.FollowBtnContent, Mode=OneWay}"
@@ -103,11 +110,11 @@
                                                 Background="Transparent"
                                                 TextWrapping="Wrap">
 
-                        <!--<i:Interaction.Behaviors>
+                        <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="LinkClicked">
                                 <core:InvokeCommandAction Command="{x:Bind ViewModel.CaptionLinkClickedCommand}"/>
                             </core:EventTriggerBehavior>
-                        </i:Interaction.Behaviors>-->
+                        </interactivity:Interaction.Behaviors>
 
                     </controls:MarkdownTextBlock>
                 </StackPanel>

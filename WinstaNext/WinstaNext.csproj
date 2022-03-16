@@ -140,13 +140,16 @@
     <Compile Include="Converters\Media\MediaDateTimeconverter.cs" />
     <Compile Include="Converters\NullToBooleanConverter.cs" />
     <Compile Include="Converters\PossibleLargeNumbersConverter.cs" />
+    <Compile Include="Converters\RichTextToMarkdownTextConverter.cs" />
     <Compile Include="Converters\Stories\StoryBorderColorConverter.cs" />
     <Compile Include="Converters\TextToFlowDirectionConverter.cs" />
     <Compile Include="Core\Behaviors\SynchronizeHorizontalOffsetBehavior.cs" />
     <Compile Include="Core\Collections\ExtendedObservableCollection.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Activities\IncrementalUserActivities.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Comments\IncrementalMediaComments.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Directs\IncrementalDirectInbox.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Directs\IncrementalDirectThread.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Hashtags\IncrementalHashtagReelsMedia.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Hashtags\IncrementalHashtagRecentMedias.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Hashtags\IncrementalHashtagTopMedias.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Media\IncrementalHomeMedia.cs" />
@@ -182,6 +185,7 @@
     </Compile>
     <Compile Include="Models\Core\LanguageDefinition.cs" />
     <Compile Include="Models\Core\MenuItemModel.cs" />
+    <Compile Include="Models\TemplateSelectors\Activities\RecentActivityFeedItemTemplateSelector.cs" />
     <Compile Include="Models\TemplateSelectors\Directs\InstaDirectInboxItemTemplateSelector.cs" />
     <Compile Include="Models\TemplateSelectors\Directs\InstaDirectInboxThreadTemplateSelector.cs" />
     <Compile Include="Models\TemplateSelectors\Media\CarouselMediaTemplateSelector.cs" />
@@ -203,6 +207,9 @@
     <Compile Include="UI\Controls\NoCastButtonMediaTransportControls.cs" />
     <Compile Include="UI\Dialogs\BaseContentDialog.xaml.cs">
       <DependentUpon>BaseContentDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dialogs\UserSelectionDialog.xaml.cs">
+      <DependentUpon>UserSelectionDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Directs\ChatListView.cs" />
     <Compile Include="UI\Directs\GroupDirectThread.xaml.cs">
@@ -240,6 +247,9 @@
     </Compile>
     <Compile Include="UI\Flyouts\InstaMediaFlyout.xaml.cs">
       <DependentUpon>InstaMediaFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Flyouts\SwitchUserFlyout.xaml.cs">
+      <DependentUpon>SwitchUserFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Generic\InstaUserPresenterUC.xaml.cs">
       <DependentUpon>InstaUserPresenterUC.xaml</DependentUpon>
@@ -285,6 +295,7 @@
     </Compile>
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\TwoFactorAuthViewModel.cs" />
+    <Compile Include="ViewModels\Activities\ActivitiesViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Comments\MediaCommentsViewModel.cs" />
     <Compile Include="ViewModels\Directs\DirectsListViewModel.cs" />
@@ -308,6 +319,9 @@
     </Compile>
     <Compile Include="Views\Account\TwoFactorAuthView.xaml.cs">
       <DependentUpon>TwoFactorAuthView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Activities\ActivitiesView.xaml.cs">
+      <DependentUpon>ActivitiesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\BaseUserControl.cs" />
@@ -429,6 +443,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Dialogs\UserSelectionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Directs\GroupDirectThread.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -478,6 +496,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Flyouts\InstaMediaFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Flyouts\SwitchUserFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -550,6 +572,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Account\TwoFactorAuthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Activities\ActivitiesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

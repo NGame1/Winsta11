@@ -13,18 +13,26 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+// The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace WinstaNext.UI.Dialogs
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public partial class BaseContentDialog : ContentDialog
+    public sealed partial class UserSelectionDialog : BaseContentDialog
     {
-        public BaseContentDialog()
+        private UserSelectionDialog()
         {
             this.InitializeComponent();
+        }
+
+        private void Select_Click(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+
+        }
+
+        private void Cancel_Click(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+
+
         }
     }
 }

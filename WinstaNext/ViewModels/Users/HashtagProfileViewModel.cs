@@ -37,9 +37,11 @@ namespace WinstaNext.ViewModels.Users
 
         IncrementalHashtagTopMedias TopMediasInstance { get; set; }
         IncrementalHashtagRecentMedias RecentInstance { get; set; }
+        IncrementalHashtagReelsMedia ReelsInstance { get; set; }
 
         IncrementalLoadingCollection<IncrementalHashtagTopMedias, InstaMedia> TopMedias { get; set; }
         IncrementalLoadingCollection<IncrementalHashtagRecentMedias, InstaMedia> RecentMedias { get; set; }
+        IncrementalLoadingCollection<IncrementalHashtagReelsMedia, InstaMedia> ReelsMedias { get; set; }
 
         public ISupportIncrementalLoading ItemsSource { get; set; }
 
@@ -121,8 +123,10 @@ namespace WinstaNext.ViewModels.Users
                 throw new ArgumentOutOfRangeException(nameof(e.Parameter));
             }
             SetFollowButtonContent();
+            ReelsInstance = new(Hashtag.Name);
             RecentInstance = new(Hashtag.Name);
             TopMediasInstance = new(Hashtag.Name);
+            ReelsMedias = new(ReelsInstance);
             RecentMedias = new(RecentInstance);
             TopMedias = new(TopMediasInstance);
             CreateProfileTabs();
@@ -142,7 +146,7 @@ namespace WinstaNext.ViewModels.Users
             }
             else if (SelectedTab.Text == LanguageManager.Instance.Instagram.Reels)
             {
-                //ItemsSource = TVMedias;
+                ItemsSource = ReelsMedias;
             }
         }
 

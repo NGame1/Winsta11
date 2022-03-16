@@ -4,11 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace WinstaNext.Helpers
 {
     public static class CaptionParser
     {
+        public static string RichTextToMarkdownText(this string RichText)
+        {
+            var pattern = @"\{(.*?)\}";
+            //var pattern2 = @"\=(.*?)}";
+            var matches = Regex.Matches(RichText, pattern);
+
+            foreach (Match m in matches)
+            {
+                var matchstr = m.Groups[1].Value;
+                if (matchstr.ToLower().Contains("user?"))
+                {
+                    var username = matchstr.Split('|').FirstOrDefault();
+                    RichText = RichText.Replace(m.Captures[0].Value, $"[{username}](@{username})");
+                }
+
+            }
+
+            return RichText;
+        }
+
         public static string ToMarkdownText(this string caption)
         {
             if (string.IsNullOrEmpty(caption)) return string.Empty;

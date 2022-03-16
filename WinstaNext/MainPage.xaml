@@ -6,13 +6,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Models="using:InstagramApiSharp.Classes.Models" 
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:Converters="using:WinstaNext.Converters"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:generic="using:WinstaNext.UI.Generic"
     xmlns:Model="using:WinstaNext.Models.Core" 
     xmlns:VM="using:WinstaNext.ViewModels" 
     xmlns:views="using:WinstaNext.Views" 
-    xmlns:local="using:WinstaNext" xmlns:Converters="using:WinstaNext.Converters"
+    xmlns:local="using:WinstaNext" xmlns:flyouts="using:WinstaNext.UI.Flyouts"
     x:Class="WinstaNext.MainPage"
     NavigationCacheMode="Enabled"
     mc:Ignorable="d">
@@ -147,6 +148,9 @@
                             <TextBlock Text="Tap to switch accounts" />
                         </StackPanel>
                     </StackPanel>
+                    <muxc:NavigationViewItem.ContextFlyout>
+                        <flyouts:SwitchUserFlyout/>
+                    </muxc:NavigationViewItem.ContextFlyout>
                 </muxc:NavigationViewItem>
             </muxc:NavigationView.PaneHeader>
 
@@ -199,7 +203,7 @@
 
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate>
-                    <muxc:NavigationViewItem Icon="{Binding Icon}" 
+                    <muxc:NavigationViewItem Icon="{Binding Icon}"
                                              Content="{Binding Text}">
                         
                         <muxc:NavigationViewItem.InfoBadge>
