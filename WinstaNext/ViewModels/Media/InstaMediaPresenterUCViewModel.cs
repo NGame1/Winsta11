@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using WinstaNext.Core.Dialogs;
 using WinstaNext.Core.Navigation;
+using WinstaNext.Helpers.ExtensionMethods;
 using WinstaNext.UI.Media;
 using WinstaNext.Views;
 using WinstaNext.Views.Comments;
@@ -69,18 +70,7 @@ namespace WinstaNext.ViewModels.Media
         }
 
         void CaptionLinkClicked(LinkClickedEventArgs obj)
-        {
-            if (obj.Link.StartsWith("@"))
-            {
-                NavigationService.Navigate(typeof(UserProfileView),
-                                  obj.Link.Replace("@", string.Empty));
-            }
-            else if (obj.Link.StartsWith("#"))
-            {
-                NavigationService.Navigate(typeof(HashtagProfileView),
-                                  obj.Link.Replace("#", string.Empty));
-            }
-        }
+            => obj.HandleClickEvent();
 
         async Task AddCommentAsync()
         {

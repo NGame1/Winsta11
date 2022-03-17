@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Navigation;
 using WinstaNext.Core.Collections;
 using WinstaNext.Core.Collections.IncrementalSources.Users;
 using WinstaNext.Core.Navigation;
+using WinstaNext.Helpers.ExtensionMethods;
 using WinstaNext.Models.Core;
 using WinstaNext.Services;
 using WinstaNext.Views;
@@ -69,18 +70,7 @@ namespace WinstaNext.ViewModels.Users
         }
 
         void CaptionLinkClicked(LinkClickedEventArgs obj)
-        {
-            if (obj.Link.StartsWith("@"))
-            {
-                NavigationService.Navigate(typeof(UserProfileView),
-                                  obj.Link.Replace("@", string.Empty));
-            }
-            else if (obj.Link.StartsWith("#"))
-            {
-                NavigationService.Navigate(typeof(HashtagProfileView),
-                                  obj.Link.Replace("#", string.Empty));
-            }
-        }
+            => obj.HandleClickEvent(NavigationService);
 
         void NavigateToMedia(ItemClickEventArgs args)
         {

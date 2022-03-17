@@ -178,6 +178,7 @@
     </Compile>
     <Compile Include="Helpers\CaptionParser.cs" />
     <Compile Include="Helpers\ControlSizeHelper.cs" />
+    <Compile Include="Helpers\ExtensionMethods\LinkClickedEventExtensions.cs" />
     <Compile Include="Helpers\StringCipher.cs" />
     <Compile Include="LanguageManager.cs" />
     <Compile Include="MainPage.xaml.cs">
