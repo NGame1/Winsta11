@@ -33,6 +33,8 @@ using InstagramApiSharp.API.Push;
 using WinstaBackgroundHelpers.Push;
 using NotificationHandler;
 using WinstaNext.Views.Activities;
+using Windows.UI.Xaml.Input;
+using Windows.System;
 
 namespace WinstaNext.ViewModels
 {
@@ -101,12 +103,23 @@ namespace WinstaNext.ViewModels
             FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, new AnimatedSettingsVisualSource(), typeof(SettingsView)));
             ToggleNavigationViewPane = new(ToggleNavigationPane);
             _themeListener.ThemeChanged += MainPageViewModel_ThemeChanged;
-            
+
             new Thread(GetDirectsCountAsync).Start();
             new Thread(SyncLauncher).Start();
             new Thread(GetMyUser).Start();
             SystemNavigationManager = SystemNavigationManager.GetForCurrentView();
             SystemNavigationManager.BackRequested += MainPageViewModel_BackRequested;
+            Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
+        }
+
+        private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs args)
+        {
+            if (args.VirtualKey == VirtualKey.Escape)
+            {
+                if (NavigationService.CanGoBack)
+                    NavigationService.GoBack();
+            }
+            args.Handled = true;
         }
 
         private void MainPageViewModel_BackRequested(object sender, BackRequestedEventArgs e)

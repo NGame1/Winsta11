@@ -1,12 +1,20 @@
-﻿<views:BasePage
+﻿<views:BasePage NavigationCacheMode="Enabled"
     xmlns:views="using:WinstaNext.Views"
-    x:Class="WinstaNext.Views.Search.SearchView"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:searches="using:WinstaNext.Models.TemplateSelectors.Searches" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WinstaNext"
     xmlns:syncfusion="using:Syncfusion.UI.Xaml.Controls.Navigation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:VM="using:WinstaNext.ViewModels.Search" xmlns:muxc="using:Microsoft.UI.Xaml.Controls" xmlns:i="using:Microsoft.Xaml.Interactivity" xmlns:core="using:Microsoft.Xaml.Interactions.Core" xmlns:Models="using:WinstaNext.Models.Core" xmlns:searches="using:WinstaNext.Models.TemplateSelectors.Searches" xmlns:search="using:WinstaNext.UI.Search" xmlns:models="using:InstagramApiSharp.Classes.Models"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="using:InstagramApiSharp.Classes.Models"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls" 
+    xmlns:VM="using:WinstaNext.ViewModels.Search" 
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    x:Class="WinstaNext.Views.Search.SearchView"
+    xmlns:Models="using:WinstaNext.Models.Core" 
+    xmlns:search="using:WinstaNext.UI.Search" 
+    xmlns:local="using:WinstaNext"
     mc:Ignorable="d">
 
     <views:BasePage.Resources>

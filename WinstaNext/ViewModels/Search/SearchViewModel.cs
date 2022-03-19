@@ -132,6 +132,7 @@ namespace WinstaNext.ViewModels.Search
 
         public override async Task OnNavigatedToAsync(NavigationEventArgs e)
         {
+            if (e.NavigationMode == NavigationMode.Back) return;
             if (e.Parameter != null && !string.IsNullOrEmpty(e.Parameter.ToString()))
             {
                 SearchQuery = e.Parameter.ToString();
