@@ -70,7 +70,7 @@ namespace WinstaNext.ViewModels.Media
         }
 
         void CaptionLinkClicked(LinkClickedEventArgs obj)
-            => obj.HandleClickEvent();
+            => obj.HandleClickEvent(NavigationService);
 
         async Task AddCommentAsync()
         {

@@ -123,6 +123,9 @@
   <data name="Activities" xml:space="preserve">
     <value>فعالیت ها</value>
   </data>
+  <data name="AddAccount" xml:space="preserve">
+    <value>افزودن حساب کاربری...</value>
+  </data>
   <data name="Biography" xml:space="preserve">
     <value>بیوگرافی</value>
   </data>

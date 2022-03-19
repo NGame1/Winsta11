@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.Services;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -33,22 +34,41 @@ namespace WinstaNext.UI.Flyouts
             var font = (FontFamily)App.Current.Resources["FluentIcons"];
             var FluentSystemIconsRegular = (FontFamily)App.Current.Resources["FluentSystemIconsRegular"];
 
-            Items.Add(new MenuFlyoutItem()
+            var addaccountitem = new MenuFlyoutItem()
             {
                 Icon = new FontIcon() { Glyph = "\uF5C3", FontFamily = FluentSystemIconsRegular },
-                Text = LanguageManager.Instance.Instagram.Accounts
-            });
+                Text = LanguageManager.Instance.Instagram.AddAccount,
+            };
+            addaccountitem.Click += Addaccountitem_Click;
+            Items.Add(addaccountitem);
+
             Items.Add(new MenuFlyoutSeparator());
+
             var Users = ApplicationSettingsManager.Instance.GetUsersList();
             for (int i = 0; i < Users.Count; i++)
             {
                 var user = Users.ElementAt(i);
-                Items.Add(new MenuFlyoutItem()
+                var useritem = new MenuFlyoutItem()
                 {
                     Icon = new FontIcon() { Glyph = "\uF5BE", FontFamily = FluentSystemIconsRegular },
-                    Text = user.Value
-                });
+                    Text = user.Value,
+                    Tag = user.Key,
+                };
+                useritem.Click += Useritem_Click;
+                Items.Add(useritem);
             }
+        }
+
+        private void Useritem_Click(object sender, RoutedEventArgs e)
+        {
+            var mfi = sender as MenuFlyoutItem;
+            var userpk = mfi.Tag.ToString();
+            AccountManagementService.SwitchToUser(userpk);
+        }
+
+        private void Addaccountitem_Click(object sender, RoutedEventArgs e)
+        {
+            AccountManagementService.LoginToAnotherUser();
         }
     }
 }

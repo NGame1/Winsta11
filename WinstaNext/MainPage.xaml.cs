@@ -46,7 +46,7 @@ namespace WinstaNext
             SizeChanged += MainPage_SizeChanged;
         }
 
-        async void MainPage_Loaded(object sender, RoutedEventArgs e)
+        void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             this.Loaded -= MainPage_Loaded;
 
@@ -62,8 +62,6 @@ namespace WinstaNext
             NavigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto;
 
             ViewModel.SelectedMenuItem = ViewModel.MenuItems.FirstOrDefault();
-
-            SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
         }
 
         private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -121,14 +119,6 @@ namespace WinstaNext
             }
         }
 
-        public void Receive(NavigateToPageMessage message)
-        {
-            ContentFrame.Navigate(
-                message.View,
-                new NavigationParameter(message.Parameter),
-                new EntranceNavigationTransitionInfo());
-        }
-
         private void SearchBoxKeyboardAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
         {
             SearchBox.Focus(FocusState.Keyboard);
@@ -140,13 +130,12 @@ namespace WinstaNext
             NavigationView.AlwaysShowHeader = message.ShowHeader;
         }
 
-        private void MainPage_BackRequested(object sender, BackRequestedEventArgs e)
+        public void Receive(NavigateToPageMessage message)
         {
-            if (ViewModel.NavigationService.CanGoBack)
-            {
-                ViewModel.NavigationService.GoBack();
-                e.Handled = true;
-            }
+            ContentFrame.Navigate(
+                message.View,
+                new NavigationParameter(message.Parameter),
+                new EntranceNavigationTransitionInfo());
         }
 
         private void NavigationView_BackRequested(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewBackRequestedEventArgs args)

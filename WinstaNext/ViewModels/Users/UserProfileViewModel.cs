@@ -61,7 +61,10 @@ namespace WinstaNext.ViewModels.Users
 
         [OnChangedMethod(nameof(ONSelectedTabChanged))]
         public MenuItemModel SelectedTab { get; set; }
+        ~UserProfileViewModel()
+        {
 
+        }
         public UserProfileViewModel() : base()
         {
             CaptionLinkClickedCommand = new(CaptionLinkClicked);
@@ -294,6 +297,7 @@ namespace WinstaNext.ViewModels.Users
             (NavigationService.Content as UserProfileView).SizeChanged += UserProfileViewModel_SizeChanged;
             base.OnNavigatedTo(e);
         }
+
         public override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             (NavigationService.Content as UserProfileView).SizeChanged -= UserProfileViewModel_SizeChanged;

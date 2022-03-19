@@ -10,10 +10,11 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:generic="using:WinstaNext.UI.Generic"
+    xmlns:flyouts="using:WinstaNext.UI.Flyouts"
     xmlns:Model="using:WinstaNext.Models.Core" 
     xmlns:VM="using:WinstaNext.ViewModels" 
     xmlns:views="using:WinstaNext.Views" 
-    xmlns:local="using:WinstaNext" xmlns:flyouts="using:WinstaNext.UI.Flyouts"
+    xmlns:local="using:WinstaNext" 
     x:Class="WinstaNext.MainPage"
     NavigationCacheMode="Enabled"
     mc:Ignorable="d">

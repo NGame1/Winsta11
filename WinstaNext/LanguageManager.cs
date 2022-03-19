@@ -75,6 +75,7 @@ namespace WinstaNext
         ResourceLoader _resource = new ResourceLoader("Instagram");
 
         public string Accounts { get => _resource.GetString(nameof(Accounts)); }
+        public string AddAccount { get => _resource.GetString(nameof(AddAccount)); }
         public string Activities { get => _resource.GetString(nameof(Activities)); }
         public string Biography { get => _resource.GetString(nameof(Biography)); }
         public string Comment { get => _resource.GetString(nameof(Comment)); }

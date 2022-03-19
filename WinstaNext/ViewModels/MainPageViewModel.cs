@@ -78,8 +78,14 @@ namespace WinstaNext.ViewModels
 
         public override string PageHeader { get; protected set; }
 
+        IInstaApi PushClientApi { get; set; }
+
+        public static MainPageViewModel mainPageViewModel = null;
+        SystemNavigationManager SystemNavigationManager = null;
         public MainPageViewModel()
         {
+            mainPageViewModel = this;
+
             SearchBoxTextChangedCommand = new(SearchBoxTextChanged);
             SearchBoxQuerySubmittedCommand = new(SearchBoxQuerySubmitted);
             SearchBoxSuggestionChosenCommand = new(SearchBoxSuggestionChosen);
@@ -95,11 +101,26 @@ namespace WinstaNext.ViewModels
             FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, new AnimatedSettingsVisualSource(), typeof(SettingsView)));
             ToggleNavigationViewPane = new(ToggleNavigationPane);
             _themeListener.ThemeChanged += MainPageViewModel_ThemeChanged;
-
+            
             new Thread(GetDirectsCountAsync).Start();
             new Thread(SyncLauncher).Start();
             new Thread(GetMyUser).Start();
+            SystemNavigationManager = SystemNavigationManager.GetForCurrentView();
+            SystemNavigationManager.BackRequested += MainPageViewModel_BackRequested;
+        }
 
+        private void MainPageViewModel_BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+                e.Handled = true;
+            }
+        }
+
+        ~MainPageViewModel()
+        {
+            mainPageViewModel = null;
         }
 
         async void GetDirectsCountAsync()
@@ -122,12 +143,25 @@ namespace WinstaNext.ViewModels
         async void StartPushClient()
         {
             var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync();
-            IInstaApi Api = App.Container.GetService<IInstaApi>();
+            PushClientApi = App.Container.GetService<IInstaApi>();
 
-            Api.PushClient = new PushClient(apis, Api);
-            Api.PushClient.MessageReceived += PushClient_MessageReceived;
-            await Api.PushProcessor.RegisterPushAsync();
-            Api.PushClient.Start();
+            PushClientApi.PushClient = new PushClient(apis, PushClientApi);
+            PushClientApi.PushClient.MessageReceived += PushClient_MessageReceived;
+            await PushClientApi.PushProcessor.RegisterPushAsync();
+            PushClientApi.PushClient.Start();
+        }
+
+        public void StopPushClient()
+        {
+            PushClientApi.PushClient.MessageReceived -= PushClient_MessageReceived;
+            PushClientApi.PushClient.Shutdown();
+            PushClientApi.Dispose();
+        }
+
+        public void RemoveNavigationEvents()
+        {
+            SystemNavigationManager.BackRequested -= MainPageViewModel_BackRequested;
+            SystemNavigationManager = null;
         }
 
         async void PushClient_MessageReceived(object sender, PushReceivedEventArgs e)
@@ -167,10 +201,12 @@ namespace WinstaNext.ViewModels
                     if (!result.Succeeded)
                     {
                         InstaUser = App.Container.GetService<InstaUserShort>();
+                        ApplicationSettingsManager.Instance.SetLastLoggedUser(InstaUser.Pk.ToString());
                         return;
                     }
                     InstaUser = result.Value;
                     ((App)App.Current).SetMyUserInstance(result.Value);
+                    ApplicationSettingsManager.Instance.SetLastLoggedUser(result.Value.Pk.ToString());
                 }, null);
             }
         }
