@@ -2,7 +2,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:messagecontainer="using:WinstaNext.UI.Directs.MessageContainer"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:directs="using:WinstaNext.Models.TemplateSelectors.Directs" 
+      xmlns:directs="using:WinstaNext.Models.TemplateSelectors.Directs"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:models="using:WinstaNext.Abstractions.Direct.Models" 
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -26,7 +26,13 @@
                     DirectUser="{x:Bind User}"
                     DirectItem="{x:Bind}"/>
         </DataTemplate>
-        
+
+        <DataTemplate x:Key="LikeMessageContainerUC" x:DataType="models:InstaDirectInboxItemFullModel">
+            <messagecontainer:LikeMessageContainerUC 
+                    DirectUser="{x:Bind User}"
+                    DirectItem="{x:Bind}"/>
+        </DataTemplate>
+
         <DataTemplate x:Key="LinkMessageDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:LinkMessageContainerUC 
                     DirectUser="{x:Bind User}"
@@ -35,6 +41,12 @@
         
         <DataTemplate x:Key="MediaMessageDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:MediaMessageContainerUC 
+                    DirectUser="{x:Bind User}"
+                    DirectItem="{x:Bind}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MediaShareMessageContainerUC" x:DataType="models:InstaDirectInboxItemFullModel">
+            <messagecontainer:MediaShareMessageContainerUC 
                     DirectUser="{x:Bind User}"
                     DirectItem="{x:Bind}"/>
         </DataTemplate>
@@ -71,8 +83,10 @@
 
         <directs:InstaDirectInboxItemTemplateSelector x:Key="InstaDirectInboxItemTemplateSelector"
                                                       AnimatedGifMessageDataTemplate="{StaticResource AnimatedGifMessageDataTemplate}"
+                                                      LikeTemplate="{StaticResource LikeMessageContainerUC}"
                                                       LinkMessageDataTemplate="{StaticResource LinkMessageDataTemplate}"
                                                       MediaMessageType="{StaticResource MediaMessageDataTemplate}"
+                                                      MediaShareTemplate="{StaticResource MediaShareMessageContainerUC}"
                                                       PlaceholderMessageDataTemplate="{StaticResource PlaceholderMessageDataTemplate}"
                                                       ProfileMessageDataTemplate="{StaticResource ProfileMessageDataTemplate}"
                                                       TextMessageDataTemplate="{StaticResource TextMessageDataTemplate}"
@@ -97,8 +111,10 @@
             <!-- These properties allow the list to grow from the bottom -->
             <directs1:ChatListView.ItemsPanel>
                 <ItemsPanelTemplate>
+                    
                     <ItemsStackPanel VerticalAlignment="Bottom"
-                            ItemsUpdatingScrollMode="KeepLastItemInView"/>
+                                     ItemsUpdatingScrollMode="KeepLastItemInView"/>
+                    
                 </ItemsPanelTemplate>
             </directs1:ChatListView.ItemsPanel>
 

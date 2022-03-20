@@ -52,8 +52,8 @@
             <Grid Margin="{x:Bind PageMargin}">
                 <StackPanel Spacing="5" Grid.Row="0">
                     <StackPanel Spacing="5" Orientation="Horizontal">
-                        <muxc:PersonPicture 
-                                            DisplayName="{x:Bind ViewModel.Hashtag.Name}"/>
+                        <muxc:PersonPicture DisplayName="{x:Bind ViewModel.Hashtag.Name}"/>
+                        
                         <StackPanel VerticalAlignment="Center">
                             <StackPanel Spacing="5" Orientation="Horizontal" HorizontalAlignment="Center">
                                 <TextBlock Text="{x:Bind ViewModel.Hashtag.Name}" 
@@ -62,6 +62,7 @@
 
                             <TextBlock Text="{x:Bind ViewModel.Hashtag.Subtitle}"
                                        HorizontalAlignment="Center"/>
+                            
                             <StackPanel Orientation="Horizontal">
                                 <HyperlinkButton>
                                     <TextBlock>
@@ -72,7 +73,7 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <Button Visibility="{x:Bind ViewModel.Hashtag.ShowFollowDropDown, Mode=OneWay}"
+                        <Button Visibility="{x:Bind ViewModel.Hashtag.AllowFollowing, Mode=OneWay}"
                                 Content="{x:Bind ViewModel.FollowBtnContent, Mode=OneWay}"
                                 Command="{x:Bind ViewModel.FollowButtonCommand}"
                                 Style="{StaticResource AccentButtonStyle}"/>

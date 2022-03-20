@@ -1,0 +1,105 @@
+﻿<directs:MessageContainerUC x:DefaultBindMode="OneWay"
+    x:Class="WinstaNext.UI.Directs.MessageContainer.MediaShareMessageContainerUC"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:WinstaNext.UI.Directs.MessageContainer"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core" 
+    xmlns:ViewsDirect="using:WinstaNext.Views.Directs" 
+    xmlns:controls="using:WinstaNext.UI.Controls"
+    xmlns:i="using:Microsoft.Xaml.Interactivity" 
+    xmlns:directs="using:WinstaNext.UI.Directs" 
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <directs:MessageContainerUC.Resources>
+        <ResourceDictionary Source="ms-appx:///UI/Directs/MessageContainer/MessageContainerResources.xaml"/>
+    </directs:MessageContainerUC.Resources>
+
+    <StackPanel HorizontalAlignment="{x:Bind DirectItem.UserId, Converter={StaticResource UserIdToHorizontalAlignmentConverter}, Mode=OneWay}"
+                Spacing="{StaticResource MessageBubbleSpacing}" 
+                Orientation="Horizontal" >
+
+        <PersonPicture Width="{StaticResource ProfilePictureSize}" 
+                       Height="{StaticResource ProfilePictureSize}"
+                       VerticalAlignment="{StaticResource ProfileVerticalAlignment}"
+                       DisplayName="{x:Bind DirectUser.UserName, Mode=OneWay}"
+                       ProfilePicture="{x:Bind DirectUser.ProfilePicture, Mode=OneWay}"
+                       Visibility="{x:Bind DirectUser.Pk, Converter={StaticResource UserIdToProfilePictureVisibilityConverter}, Mode=OneWay}">
+
+            <i:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="Tapped">
+                    <core:InvokeCommandAction CommandParameter="{x:Bind DirectItem.User.UserName, Mode=OneWay}" Command="{x:Bind NavigateUserProfileCommand}"/>
+                </core:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+
+        </PersonPicture>
+
+        <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+                    CornerRadius="{StaticResource ControlCornerRadius}"
+                    Padding="{StaticResource MessageBubblePadding}"
+                    Background="#80B00000"
+                    Spacing="2">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Spacing="{StaticResource MessageBubbleSpacing}"
+                            Orientation="Horizontal">
+                    <PersonPicture Visibility="{x:Bind DirectItem.MediaShare.User.Pk, Converter={StaticResource UserIdToProfilePictureVisibilityConverter}, Mode=OneWay}"
+                                   ProfilePicture="{x:Bind DirectItem.MediaShare.User.ProfilePicture, Mode=OneWay}"
+                                   VerticalAlignment="{StaticResource ProfileVerticalAlignment}"
+                                   DisplayName="{x:Bind DirectItem.MediaShare.User.UserName, Mode=OneWay}"
+                                   Height="{StaticResource ProfilePictureSize}"
+                                   Width="{StaticResource ProfilePictureSize}">
+
+                        <i:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="Tapped">
+                                <core:InvokeCommandAction CommandParameter="{x:Bind DirectItem.User.UserName, Mode=OneWay}" Command="{x:Bind NavigateUserProfileCommand}"/>
+                            </core:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
+                    </PersonPicture>
+
+                    <TextBlock FontWeight="SemiBold"
+                               Grid.Column="1">
+                        <Hyperlink FontWeight="SemiBold">
+                            <Run Text="{x:Bind DirectItem.MediaShare.User.UserName}"/>
+                            
+                            <i:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="Click">
+                                    <core:InvokeCommandAction CommandParameter="{x:Bind DirectItem.User.UserName, Mode=OneWay}"
+                                                              Command="{x:Bind NavigateUserProfileCommand}"/>
+                                </core:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+
+                <Button Style="{StaticResource FontIconButtonStyle}"
+                        Command="{x:Bind NavigateToMediaCommand}"
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                        Content="&#xE09B;"
+                        Grid.Column="1"/>
+            </Grid>
+            
+            <Image Source="{x:Bind DirectItem.MediaShare.Images[0].Uri, Mode=OneWay}" 
+                   x:Name="imgMedia"
+                   MaxWidth="185"/>
+
+            <MediaElement PosterSource="{x:Bind DirectItem.MediaShare.Images[0].Uri, Mode=OneWay}" 
+                          AreTransportControlsEnabled="False" 
+                          x:Name="vidMedia"
+                          IsLooping="True"
+                          AutoPlay="True"
+                          IsMuted="True"
+                          Width="185"/>
+        </StackPanel>
+    </StackPanel>
+
+</directs:MessageContainerUC>

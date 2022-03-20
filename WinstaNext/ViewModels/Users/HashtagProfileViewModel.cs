@@ -1,27 +1,22 @@
 ﻿using InstagramApiSharp.API;
 using InstagramApiSharp.Classes;
 using InstagramApiSharp.Classes.Models;
-using InstagramApiSharp.Enums;
 using Mapster;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
 using PropertyChanged;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Core.Collections;
 using WinstaNext.Core.Collections.IncrementalSources.Hashtags;
-using WinstaNext.Core.Collections.IncrementalSources.Users;
 using WinstaNext.Core.Navigation;
 using WinstaNext.Models.Core;
 using WinstaNext.Services;
-using WinstaNext.Views;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;
 

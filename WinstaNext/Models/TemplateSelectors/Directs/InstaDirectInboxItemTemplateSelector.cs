@@ -13,8 +13,10 @@ namespace WinstaNext.Models.TemplateSelectors.Directs
     public class InstaDirectInboxItemTemplateSelector : DataTemplateSelector
     {
         public DataTemplate AnimatedGifMessageDataTemplate { get; set; }
+        public DataTemplate LikeTemplate { get; set; }
         public DataTemplate LinkMessageDataTemplate { get; set; }
         public DataTemplate MediaMessageType { get; set; }
+        public DataTemplate MediaShareTemplate { get; set; }
         public DataTemplate NotSupportedMessageType { get; set; }
         public DataTemplate PlaceholderMessageDataTemplate { get; set; }
         public DataTemplate ProfileMessageDataTemplate { get; set; }
@@ -49,10 +51,10 @@ namespace WinstaNext.Models.TemplateSelectors.Directs
                     return MediaMessageType;
 
                 case InstaDirectThreadItemType.MediaShare:
-                    break;
+                    return MediaShareTemplate;
 
                 case InstaDirectThreadItemType.Like:
-                    break;
+                    return LikeTemplate;
 
                 case InstaDirectThreadItemType.ReelShare:
                     break;
