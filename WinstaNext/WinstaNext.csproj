@@ -231,6 +231,9 @@
     <Compile Include="UI\Directs\MessageContainer\AnimatedGifMessageContainerUC.xaml.cs">
       <DependentUpon>AnimatedGifMessageContainerUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Directs\MessageContainer\IGTVShareMessageContainerUC.xaml.cs">
+      <DependentUpon>IGTVShareMessageContainerUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Directs\MessageContainer\LikeMessageContainerUC.xaml.cs">
       <DependentUpon>LikeMessageContainerUC.xaml</DependentUpon>
     </Compile>
@@ -239,6 +242,9 @@
     </Compile>
     <Compile Include="UI\Directs\MessageContainer\MediaMessageContainerUC.xaml.cs">
       <DependentUpon>MediaMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\ClipMessageContainerUC.xaml.cs">
+      <DependentUpon>ClipMessageContainerUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Directs\MessageContainer\MediaShareMessageContainerUC.xaml.cs">
       <DependentUpon>MediaShareMessageContainerUC.xaml</DependentUpon>
@@ -475,6 +481,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Directs\MessageContainer\IGTVShareMessageContainerUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UI\Directs\MessageContainer\LikeMessageContainerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -486,6 +496,10 @@
     <Page Include="UI\Directs\MessageContainer\MediaMessageContainerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\ClipMessageContainerUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Directs\MessageContainer\MediaShareMessageContainerUC.xaml">
       <SubType>Designer</SubType>

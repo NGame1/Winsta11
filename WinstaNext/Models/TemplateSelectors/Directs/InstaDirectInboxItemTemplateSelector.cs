@@ -13,6 +13,8 @@ namespace WinstaNext.Models.TemplateSelectors.Directs
     public class InstaDirectInboxItemTemplateSelector : DataTemplateSelector
     {
         public DataTemplate AnimatedGifMessageDataTemplate { get; set; }
+        public DataTemplate ClipTemplate { get; set; }
+        public DataTemplate IGTVShareTemplate { get; set; }
         public DataTemplate LikeTemplate { get; set; }
         public DataTemplate LinkMessageDataTemplate { get; set; }
         public DataTemplate MediaMessageType { get; set; }
@@ -67,7 +69,7 @@ namespace WinstaNext.Models.TemplateSelectors.Directs
                 case InstaDirectThreadItemType.Location:
                     break;
                 case InstaDirectThreadItemType.FelixShare:
-                    break;
+                    return IGTVShareTemplate;
                 case InstaDirectThreadItemType.Hashtag:
                     break;
                 case InstaDirectThreadItemType.LiveViewerInvite:
@@ -78,8 +80,10 @@ namespace WinstaNext.Models.TemplateSelectors.Directs
                     break;
                 case InstaDirectThreadItemType.ArEffect:
                     break;
+
                 case InstaDirectThreadItemType.Clip:
-                    break;
+                    return ClipTemplate;
+
                 default:
                     return NotSupportedMessageType;
             }

@@ -36,8 +36,9 @@ namespace WinstaNext.UI.Directs.MessageContainer
             else
             {
                 imgMedia.Visibility = Visibility.Collapsed;
-                vidMedia.Source = MediaSource.CreateFromUri(new Uri(DirectItem.Media.Videos[0].Uri, UriKind.RelativeOrAbsolute));
-                vidMedia.MediaPlayer.IsMuted = true;
+                vidMedia.SetPlaybackSource(
+                    MediaSource.CreateFromUri(
+                        new Uri(DirectItem.Media.Videos[0].Uri, UriKind.RelativeOrAbsolute)));
             }
         }
     }

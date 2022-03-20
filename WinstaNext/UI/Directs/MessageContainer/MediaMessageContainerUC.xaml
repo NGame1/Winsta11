@@ -40,17 +40,22 @@
             <Image Source="{x:Bind DirectItem.Media.Images[0].Uri, Mode=OneWay}" 
                    MaxWidth="185" x:Name="imgMedia"/>
 
-            <MediaPlayerElement PosterSource="{x:Bind DirectItem.Media.Images[0].Uri, Mode=OneWay}" 
-                                AreTransportControlsEnabled="True" 
-                                Width="185" AutoPlay="True" x:Name="vidMedia">
+            <MediaElement PosterSource="{x:Bind DirectItem.Media.Images[0].Uri, Mode=OneWay}" 
+                          AreTransportControlsEnabled="True" 
+                          x:Name="vidMedia"
+                          IsLooping="True"
+                          AutoPlay="True"
+                          IsMuted="True"
+                          Width="185">
 
-                <MediaPlayerElement.TransportControls>
-                    <controls:NoCastButtonMediaTransportControls IsCompact="True" IsSeekEnabled="False"
+                <MediaElement.TransportControls>
+                    <controls:NoCastButtonMediaTransportControls IsCompact="True" 
+                                                                 IsSeekEnabled="False"
                                                                  IsSeekBarVisible="False" 
                                                                  IsZoomButtonVisible="False"/>
-                </MediaPlayerElement.TransportControls>
-                
-            </MediaPlayerElement>
+                </MediaElement.TransportControls>
+
+            </MediaElement>
 
         </StackPanel>
     </StackPanel>
