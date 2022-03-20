@@ -25,6 +25,9 @@
 
         <Converters:TextToFlowDirectionConverter x:Key="TextToFlowDirectionConverter"/>
 
+        <Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"
+                                           IsInverted="True"/>
+
         <Converters1:CaptionToMarkdownConverter x:Key="CaptionToMarkdownConverter"/>
 
     </views:BasePage.Resources>
@@ -117,6 +120,20 @@
                         </interactivity:Interaction.Behaviors>
 
                     </controls:MarkdownTextBlock>
+                    <TextBlock x:Load="{x:Bind ViewModel.User.ExternalUrl, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"
+                               x:Name="txtProfilExternalUrl">
+                        <Hyperlink>
+                            <Run Text="{x:Bind ViewModel.User.ExternalUrl}"/>
+                            
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="Click">
+                                    <core:InvokeCommandAction CommandParameter="{x:Bind ViewModel.User.ExternalLynxUrl}"
+                                                              Command="{x:Bind ViewModel.ExternalLinkClickCommand}"/>
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                            
+                        </Hyperlink>
+                    </TextBlock>
                 </StackPanel>
             </Grid>
 

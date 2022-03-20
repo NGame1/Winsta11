@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
@@ -54,6 +55,7 @@ namespace WinstaNext.ViewModels.Users
 
         public RelayCommand<ItemClickEventArgs> NavigateToMediaCommand { get; set; }
         public RelayCommand<LinkClickedEventArgs> CaptionLinkClickedCommand { get; set; }
+        public AsyncRelayCommand<string> ExternalLinkClickCommand { get; set; }
 
         public AsyncRelayCommand FollowButtonCommand { get; set; }
 
@@ -68,9 +70,13 @@ namespace WinstaNext.ViewModels.Users
         public UserProfileViewModel() : base()
         {
             CaptionLinkClickedCommand = new(CaptionLinkClicked);
+            ExternalLinkClickCommand = new(ExternalLinkClickAsync);
             NavigateToMediaCommand = new(NavigateToMedia);
             FollowButtonCommand = new(FollowButtonFuncAsync);
         }
+
+        async Task ExternalLinkClickAsync(string link)
+            => await Launcher.LaunchUriAsync(new Uri(link, UriKind.RelativeOrAbsolute));
 
         void CaptionLinkClicked(LinkClickedEventArgs obj)
             => obj.HandleClickEvent(NavigationService);
