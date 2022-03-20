@@ -252,4 +252,7 @@
   <data name="VerificationMethod" xml:space="preserve">
     <value>روش تائید</value>
   </data>
+  <data name="ViewProfile" xml:space="preserve">
+    <value>مشاهده پروفایل ...</value>
+  </data>
 </root>

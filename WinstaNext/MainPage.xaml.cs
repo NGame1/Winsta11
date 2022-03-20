@@ -28,7 +28,7 @@ namespace WinstaNext
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : BasePage, 
+    public sealed partial class MainPage : BasePage,
         IRecipient<ChangePageHeaderMessage>,
         IRecipient<NavigateToPageMessage>
     {
@@ -126,12 +126,15 @@ namespace WinstaNext
 
         public void Receive(ChangePageHeaderMessage message)
         {
+            if (!Dispatcher.HasThreadAccess) return;
             NavigationView.Header = message.Title;
             NavigationView.AlwaysShowHeader = message.ShowHeader;
+
         }
 
         public void Receive(NavigateToPageMessage message)
         {
+            if (!Dispatcher.HasThreadAccess) return;
             ContentFrame.Navigate(
                 message.View,
                 new NavigationParameter(message.Parameter),

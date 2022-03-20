@@ -119,6 +119,7 @@ namespace WinstaNext
         public string UnsupportedMessageType { get => _resource.GetString(nameof(UnsupportedMessageType)); }
         public string VerificationCode { get => _resource.GetString(nameof(VerificationCode)); }
         public string VerificationMethod { get => _resource.GetString(nameof(VerificationMethod)); }
+        public string ViewProfile { get => _resource.GetString(nameof(ViewProfile)); }
 
         internal InstagramStrings() { }
     }

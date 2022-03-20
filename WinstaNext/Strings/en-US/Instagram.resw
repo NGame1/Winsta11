@@ -252,4 +252,7 @@
   <data name="VerificationMethod" xml:space="preserve">
     <value>Verification methods</value>
   </data>
+  <data name="ViewProfile" xml:space="preserve">
+    <value>View profile ...</value>
+  </data>
 </root>

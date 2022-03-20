@@ -49,11 +49,22 @@ namespace WinstaNext.Models.TemplateSelectors.Directs
                 case InstaDirectThreadItemType.Placeholder:
                     return PlaceholderMessageDataTemplate;
 
+                    //Shared Video
                 case InstaDirectThreadItemType.Media:
                     return MediaMessageType;
 
+                    //Post shared
                 case InstaDirectThreadItemType.MediaShare:
                     return MediaShareTemplate;
+
+                    //IGTV
+                case InstaDirectThreadItemType.FelixShare:
+                    return IGTVShareTemplate;
+
+                    //Reels
+                case InstaDirectThreadItemType.Clip:
+                    return ClipTemplate;
+
 
                 case InstaDirectThreadItemType.Like:
                     return LikeTemplate;
@@ -68,8 +79,6 @@ namespace WinstaNext.Models.TemplateSelectors.Directs
                     break;
                 case InstaDirectThreadItemType.Location:
                     break;
-                case InstaDirectThreadItemType.FelixShare:
-                    return IGTVShareTemplate;
                 case InstaDirectThreadItemType.Hashtag:
                     break;
                 case InstaDirectThreadItemType.LiveViewerInvite:
@@ -80,9 +89,6 @@ namespace WinstaNext.Models.TemplateSelectors.Directs
                     break;
                 case InstaDirectThreadItemType.ArEffect:
                     break;
-
-                case InstaDirectThreadItemType.Clip:
-                    return ClipTemplate;
 
                 default:
                     return NotSupportedMessageType;

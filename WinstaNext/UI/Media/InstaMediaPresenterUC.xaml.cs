@@ -61,7 +61,7 @@ namespace WinstaNext.UI.Media
         {
             Me = null;
             ViewModel = null;
-            if (Dispatcher.HasThreadAccess)
+            if (Dispatcher != null && Dispatcher.HasThreadAccess)
                 Media = null;
         }
 
