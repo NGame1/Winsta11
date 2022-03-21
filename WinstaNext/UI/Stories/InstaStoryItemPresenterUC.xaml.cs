@@ -75,6 +75,7 @@ namespace WinstaNext.UI.Stories
         async Task ReplyStoryAsync()
         {
             if (ReplyStoryCommand.IsRunning) return;
+            if(string.IsNullOrEmpty(ReplyText)) return;
             using (var Api = App.Container.GetService<IInstaApi>())
             {
                 var result = await Api.StoryProcessor.ReplyToStoryAsync(Story.Id,
@@ -173,6 +174,12 @@ namespace WinstaNext.UI.Stories
             if (LoadMediaElement)
                 videoplayer.Play();
             else StartTimer();
+        }
+
+        private void SendMessageKeyboardAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+        {
+            ReplyStoryCommand.Execute(null);
+            args.Handled = true;
         }
     }
 }

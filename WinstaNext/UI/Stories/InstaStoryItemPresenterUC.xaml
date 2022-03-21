@@ -116,7 +116,17 @@
                      GotFocus="ReplyTextBox_GotFocus"
                      LostFocus="ReplyTextBox_LostFocus"
                      AcceptsReturn="False"
-                     Grid.Column="0"/>
+                     Grid.Column="0">
+
+                <TextBox.KeyboardAccelerators>
+
+                    <KeyboardAccelerator
+                            Key="Enter"
+                            Modifiers="None"
+                            Invoked="SendMessageKeyboardAccelerator_Invoked"/>
+
+                </TextBox.KeyboardAccelerators>
+            </TextBox>
 
             <generic:LikeButtonControl IsLiked="{x:Bind Story.HasLiked, Mode=TwoWay}"
                                        Command="{x:Bind LikeStoryCommand}"

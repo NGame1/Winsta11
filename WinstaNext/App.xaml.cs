@@ -37,7 +37,7 @@ namespace WinstaNext
             ApplicationViewScaling.TrySetDisableLayoutScaling(true);
             SyncfusionLicenseProvider.RegisterLicense("NTYxODMyQDMxMzkyZTM0MmUzMGlhcE44YWwwUi9yNGt2aUNYSjZUVmgxQWM1Qk5lSGsrZWM3NTZiS0FiamM9;NTYxODMzQDMxMzkyZTM0MmUzMEtKMmYyYitybjZpdkNELzhGay80QU1Ja1RPT2YrR0l4NFEvbVoweC9FK0U9;NTYxODM0QDMxMzkyZTM0MmUzMEJGKzBmWFBQb3U5ZklzMU1CUWpra1FNc1ZhYU5tZDl4cVZYbXZwOFY1eHc9;NTYxODM1QDMxMzkyZTM0MmUzMGZvQWY5N0VLcUVVdEtuSVE2VE1kVU9CMSsrR3BBcEJpU0Q0bVpnMERkSGs9;NTYxODM2QDMxMzkyZTM0MmUzMEFZdTlUOUlSckxuWDRhNEZsdWNGYzBaZXIrelgzV0t3a2UvVVp4R3dxUlk9;NTYxODM3QDMxMzkyZTM0MmUzMGtlcW1HRUNxSUs5d3RqT3ZzZkc0Mm4zaVZQMVEvczc4akNTWUI3ekQrNGc9;NTYxODM4QDMxMzkyZTM0MmUzMENLeTZHUHlaMGhYSUFEWmhCdjBWU1hqeU9Ua05CN0hqaCtDVy9RWkhPams9;NTYxODM5QDMxMzkyZTM0MmUzMFNXUStjOXY0cGJuUWRHWTFZWURJbUl2K1RUWCtuMmxxQTg2bzVqQXlUNms9;NTYxODQwQDMxMzkyZTM0MmUzMEI1aTVmeXZTVGJnc2V1STJmQWFUZ0lqRXlYbDZPREJRTjZwRGI2MnoxVnM9;NTYxODQxQDMxMzkyZTM0MmUzMFZsQlVqZVRMQjRBb1Z6cEtxcXM2NTEzU3hBeFdUVkJ0dnFyRTB3SkdzSDA9;NTYxODQyQDMxMzkyZTM0MmUzMFdLSmVnSEw2QS84cWZ2dFhzNUZZSlAzQmxCSWdBZWQ2SDRPa0dHY3lXVDg9");
             this.Suspending += OnSuspending;
-            
+
             this.UnhandledException += App_UnhandledException;
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
             //Enable reveal focus for visual elements
@@ -85,7 +85,7 @@ namespace WinstaNext
         BackgroundDownloader _bgdownloader = null;
         BackgroundDownloader CreateBackgroundDownloaderInstance(IServiceProvider arg)
         {
-            if(_bgdownloader == null)
+            if (_bgdownloader == null)
                 _bgdownloader = new BackgroundDownloader();
             return _bgdownloader;
         }
@@ -144,14 +144,22 @@ namespace WinstaNext
                 .UseLogger(new DebugLogger(LogLevel.All))
 #endif
                 .Build();
-            var local = TimeZoneInfo.Local;
-            api.TimezoneOffset = Convert.ToInt32(local.BaseUtcOffset.TotalSeconds);
-            var tzd = TzdbDateTimeZoneSource.Default.WindowsToTzdbIds.FirstOrDefault(x => x.Key == local.StandardName);
-            api.SetTimezone(tzd.Value);
             if (!string.IsNullOrEmpty(_session))
             {
                 api.LoadStateDataFromString(_session);
             }
+
+            var local = TimeZoneInfo.Local;
+            api.TimezoneOffset = Convert.ToInt32(local.BaseUtcOffset.TotalSeconds);
+            var tzd = TzdbDateTimeZoneSource.Default.WindowsToTzdbIds.FirstOrDefault(x => x.Key == local.StandardName);
+            api.SetTimezone(tzd.Value);
+
+            var applang = ApplicationSettingsManager.Instance.GetLanguage();
+            //api.SetAcceptLanguage(applang);
+            api.AppLocale = applang;
+            api.DeviceLocale = applang;
+            api.MappedLocale = applang;
+            api.AcceptLanguage = applang;
             return api;
         }
 
