@@ -19,7 +19,7 @@
         <ResourceDictionary Source="/UI/Generic/PersonPictureResources.xaml"/>
     </UserControl.Resources>
 
-    <StackPanel Spacing="3">
+    <StackPanel Spacing="3" Background="#01000000">
         <Border BorderThickness="{StaticResource StoryRingBorderThickness}"
                 BorderBrush="{StaticResource InstagramLogoBackgroundBrush}"
                 CornerRadius="30"

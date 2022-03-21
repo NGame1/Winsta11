@@ -31,7 +31,7 @@
         
     </UserControl.Resources>
 
-    <StackPanel Spacing="3">
+    <StackPanel Spacing="3" Background="#01000000">
         <Border BorderBrush="{x:Bind ReelFeed, Converter={StaticResource StoryBorderColorConverter}}"
                 BorderThickness="{StaticResource StoryRingBorderThickness}"
                 CornerRadius="30"

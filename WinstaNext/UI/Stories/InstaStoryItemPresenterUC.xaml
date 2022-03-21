@@ -9,7 +9,7 @@
     xmlns:Converters="using:WinstaNext.Converters.Media"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:generic="using:WinstaNext.UI.Generic"
-    xmlns:local="using:WinstaNext.UI.Stories" 
+    xmlns:Winsta="using:WinstaNext" 
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -30,7 +30,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.RowSpan="2">
+        <Grid Grid.Row="0" Grid.RowSpan="3">
 
             <Image x:Load="{x:Bind LoadImage, Mode=OneWay}"
                    Source="{x:Bind Story.Images[0].Uri, Mode=OneWay}"
@@ -98,7 +98,13 @@
 
         </Grid>
 
-        <Grid Grid.Row="2" Margin="8,3">
+        <Grid Grid.Row="2" Padding="8,3">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
+                    <GradientStop Color="#A0000000" Offset="0"/>
+                    <GradientStop Color="#00000000" Offset="0.8"/>
+                </LinearGradientBrush>
+            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -106,6 +112,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBox Text="{x:Bind ReplyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     PlaceholderText="{x:Bind Winsta:LanguageManager.Instance.Instagram.ReplyPlaceholder}"
                      GotFocus="ReplyTextBox_GotFocus"
                      LostFocus="ReplyTextBox_LostFocus"
                      AcceptsReturn="False"
