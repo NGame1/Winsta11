@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -26,7 +27,11 @@ namespace WinstaNext.ViewModels.Search
 {
     public class SearchViewModel : BaseViewModel
     {
+        public double ViewHeight { get; set; }
+        public double ViewWidth { get; set; }
+
         public RelayCommand<ItemClickEventArgs> ListViewItemClickCommand { get; set; }
+        public RelayCommand<SizeChangedEventArgs> ListViewSizeChangedCommand { get; set; }
         public RelayCommand<object> ListViewLoadedCommand { get; set; }
 
         public IncrementalLoadingCollection<IncrementalHashtagsSearch, InstaHashtag> HashtagsList { get; set; }
@@ -63,6 +68,7 @@ namespace WinstaNext.ViewModels.Search
 
             ListViewLoadedCommand = new(ListViewLoaded);
             ListViewItemClickCommand = new(ListViewItemClick);
+            ListViewSizeChangedCommand = new(ListViewSizeChanged);
 
             HashtagsList.CollectionChanged += HashtagsList_CollectionChanged;
             PlacesList.CollectionChanged += PlacesList_CollectionChanged;
@@ -93,13 +99,19 @@ namespace WinstaNext.ViewModels.Search
         void ListViewLoaded(object arg)
         {
             if (arg is not ListView lst) return;
-            var scroll = lst.FindAscendantOrSelf<ScrollViewer>();
-            scroll.ViewChanging += Scroll_ViewChanging;
+            //var scroll = lst.FindAscendantOrSelf<ScrollViewer>();
+            ViewHeight = lst.Height - 115;
+            ViewWidth = lst.Width;
         }
 
-        private void Scroll_ViewChanging(object sender, ScrollViewerViewChangingEventArgs e)
+        Size lastSize;
+        private void ListViewSizeChanged(SizeChangedEventArgs e)
         {
-
+            if (e.NewSize.Height <= 0 ) return;
+            if (lastSize != null && ViewHeight == e.NewSize.Height) return;
+            lastSize = e.NewSize;
+            ViewHeight = e.NewSize.Height - 115;
+            ViewWidth = e.NewSize.Width;
         }
 
         private void HashtagsList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

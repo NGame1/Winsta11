@@ -17,6 +17,15 @@
     xmlns:local="using:WinstaNext"
     mc:Ignorable="d">
 
+
+    <i:Interaction.Behaviors>
+
+        <core:EventTriggerBehavior EventName="SizeChanged">
+            <core:InvokeCommandAction Command="{x:Bind ViewModel.ListViewSizeChangedCommand}"/>
+        </core:EventTriggerBehavior>
+
+    </i:Interaction.Behaviors>
+
     <views:BasePage.Resources>
         <DataTemplate x:Key="UserTemplate" x:DataType="models:InstaUser">
             <search:PeopleSearchUC User="{x:Bind}">
@@ -58,14 +67,14 @@
                  PlaceholderText="{x:Bind local:LanguageManager.Instance.General.SearchPlaceHolder}"/>
 
         <NavigationView ScrollViewer.IsVerticalScrollChainingEnabled="True"
-                            MenuItemsSource="{x:Bind ViewModel.MenuItems}"
-                            SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}"
-                            IsBackButtonVisible="Collapsed"
-                            Margin="{x:Bind PageMargin}"
-                            IsSettingsVisible="False"
-                            PaneDisplayMode="Top"
-                            x:Name="navView"
-                            Grid.Row="1">
+                        MenuItemsSource="{x:Bind ViewModel.MenuItems}"
+                        SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}"
+                        IsBackButtonVisible="Collapsed"
+                        Margin="{x:Bind PageMargin}"
+                        IsSettingsVisible="False"
+                        PaneDisplayMode="Top"
+                        x:Name="navView"
+                        Grid.Row="1">
 
             <!--<NavigationView.MenuItems>
                     <NavigationViewItem Icon="People" Content="Medias"/>
@@ -82,6 +91,7 @@
             <ListView ItemTemplateSelector="{StaticResource SearchItemTemplateSelector}"
                       ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
                       ScrollViewer.IsVerticalScrollChainingEnabled="True"
+                      Height="{x:Bind ViewModel.ViewHeight,Mode=OneWay}"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       ScrollViewer.HorizontalScrollMode="Disabled"
                       IsItemClickEnabled="True"
@@ -89,9 +99,15 @@
                       x:Name="lst">
 
                 <i:Interaction.Behaviors>
+                    
                     <core:EventTriggerBehavior EventName="ItemClick">
                         <core:InvokeCommandAction Command="{x:Bind ViewModel.ListViewItemClickCommand}"/>
                     </core:EventTriggerBehavior>
+                    
+                    <core:EventTriggerBehavior EventName="Loaded">
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.ListViewLoadedCommand}"/>
+                    </core:EventTriggerBehavior>
+
                 </i:Interaction.Behaviors>
 
                 <ListView.ItemsPanel>
