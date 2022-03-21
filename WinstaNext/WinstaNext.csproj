@@ -273,6 +273,7 @@
       <DependentUpon>InstaMediaFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Flyouts\Stories\InstaBroadcastFlyout.cs" />
+    <Compile Include="UI\Flyouts\Stories\InstaReelFeedFlyout.cs" />
     <Compile Include="UI\Flyouts\SwitchUserFlyout.xaml.cs">
       <DependentUpon>SwitchUserFlyout.xaml</DependentUpon>
     </Compile>

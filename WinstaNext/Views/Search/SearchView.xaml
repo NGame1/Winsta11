@@ -57,16 +57,73 @@
                  Margin="0,0,0,8" 
                  PlaceholderText="{x:Bind local:LanguageManager.Instance.General.SearchPlaceHolder}"/>
 
-        <syncfusion:SfTabControl Grid.Row="1"
+        <NavigationView ScrollViewer.IsVerticalScrollChainingEnabled="True"
+                            MenuItemsSource="{x:Bind ViewModel.MenuItems}"
+                            SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}"
+                            IsBackButtonVisible="Collapsed"
+                            Margin="{x:Bind PageMargin}"
+                            IsSettingsVisible="False"
+                            PaneDisplayMode="Top"
+                            x:Name="navView"
+                            Grid.Row="1">
+
+            <!--<NavigationView.MenuItems>
+                    <NavigationViewItem Icon="People" Content="Medias"/>
+                    <NavigationViewItem Icon="Play" Content="Reels"/>
+                    <NavigationViewItem Icon="Account" Content="Tags"/>
+                </NavigationView.MenuItems>-->
+
+            <NavigationView.MenuItemTemplate>
+                <DataTemplate x:DataType="Models:MenuItemModel">
+                    <NavigationViewItem Icon="{x:Bind Icon}" Content="{x:Bind Text}"/>
+                </DataTemplate>
+            </NavigationView.MenuItemTemplate>
+
+            <ListView ItemTemplateSelector="{StaticResource SearchItemTemplateSelector}"
+                      ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
+                      ScrollViewer.IsVerticalScrollChainingEnabled="True"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollMode="Disabled"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
+                      x:Name="lst">
+
+                <i:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="ItemClick">
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.ListViewItemClickCommand}"/>
+                    </core:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid HorizontalAlignment="Center"
+                                       MaximumRowsOrColumns="10"
+                                       Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
+                        <Setter Property="Margin" Value="4"/>
+                        <Setter Property="Padding" Value="0"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+            </ListView>
+        </NavigationView>
+        
+        <!--<syncfusion:SfTabControl Grid.Row="1"
                                  HighlightOnSelection="True"
             ItemsSource="{x:Bind ViewModel.MenuItems, Mode=OneWay}"
             SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}">
+            
             <syncfusion:SfTabControl.ItemTemplate>
                 <DataTemplate x:DataType="Models:MenuItemModel">
                     <syncfusion:SfTabItem Header="{x:Bind Text}" 
                                           Tag="{x:Bind Tag}"/>
                 </DataTemplate>
             </syncfusion:SfTabControl.ItemTemplate>
+            
             <syncfusion:SfTabControl.ContentTemplate>
                 <DataTemplate>
                     <Grid/>
@@ -74,7 +131,9 @@
             </syncfusion:SfTabControl.ContentTemplate>
         </syncfusion:SfTabControl>
 
-        <ListView Grid.Row="2" x:Name="lst" 
+        <ListView Grid.Row="2" 
+                  x:Name="lst" 
+                  SelectionMode="None"
                   IsItemClickEnabled="True"
                   ItemTemplateSelector="{StaticResource SearchItemTemplateSelector}"
                   ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}">
@@ -107,6 +166,6 @@
                     <Setter Property="Margin" Value="5"/>
                 </Style>
             </ListView.ItemContainerStyle>
-        </ListView>
+        </ListView>-->
     </Grid>
 </views:BasePage>

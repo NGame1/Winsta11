@@ -5,12 +5,17 @@
     x:Class="WinstaNext.UI.Stories.InstaReelFeedPresenterUC"
     xmlns:converters="using:WinstaNext.Converters.Stories"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:stories="using:WinstaNext.UI.Flyouts.Stories"
     xmlns:Muxc="using:Microsoft.UI.Xaml.Controls" 
     xmlns:local="using:WinstaNext.UI.Stories"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
 
+    <UserControl.ContextFlyout>
+        <stories:InstaReelFeedFlyout ReelFeed="{x:Bind ReelFeed}"/>
+    </UserControl.ContextFlyout>
+    
     <UserControl.Resources>
 
         <ResourceDictionary>
