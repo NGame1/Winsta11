@@ -91,6 +91,7 @@ namespace WinstaNext.ViewModels.Users
 
         public override async Task OnNavigatedToAsync(NavigationEventArgs e)
         {
+            await Task.Delay(10);
             if (e.Parameter is string tagName && !string.IsNullOrEmpty(tagName))
             {
                 if (Hashtag != null && Hashtag.Name.ToLower() == tagName.ToLower()) return;
@@ -126,6 +127,7 @@ namespace WinstaNext.ViewModels.Users
             RecentMedias = new(RecentInstance);
             TopMedias = new(TopMediasInstance);
             CreateProfileTabs();
+            ListViewScroll.ChangeView(null, 0, null);
             await base.OnNavigatedToAsync(e);
         }
 

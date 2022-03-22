@@ -69,6 +69,7 @@ namespace WinstaNext.ViewModels.Users
 
         public override async Task OnNavigatedToAsync(NavigationEventArgs e)
         {
+            await Task.Delay(10);
             if (e.Parameter is string facebookPlaceId && !string.IsNullOrEmpty(facebookPlaceId))
             {
                 if (Place != null && Place.FacebookPlacesId.ToString() == facebookPlaceId) return;
@@ -110,6 +111,7 @@ namespace WinstaNext.ViewModels.Users
             RecentMedias = new(RecentInstance);
             TopMedias = new(TopMediasInstance);
             CreateProfileTabs();
+            ListViewScroll.ChangeView(null, 0, null);
             await base.OnNavigatedToAsync(e);
         }
 

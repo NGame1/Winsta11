@@ -118,6 +118,7 @@ namespace WinstaNext.ViewModels.Users
 
         public override async Task OnNavigatedToAsync(NavigationEventArgs e)
         {
+            await Task.Delay(10);
             if (e.Parameter is long userId)
             {
                 if (User != null && User.Pk == userId) return;
@@ -233,6 +234,7 @@ namespace WinstaNext.ViewModels.Users
             UserTaggedMedias = new(TaggedInstance);
             TVMedias = new(IGTVInstance);
             CreateProfileTabs();
+            ListViewScroll.ChangeView(null, 0, null);
             await base.OnNavigatedToAsync(e);
         }
 
