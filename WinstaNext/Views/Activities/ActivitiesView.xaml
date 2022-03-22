@@ -3,12 +3,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Models="using:InstagramApiSharp.Classes.Models"
     x:Class="WinstaNext.Views.Activities.ActivitiesView"
     xmlns:VM="using:WinstaNext.ViewModels.Activities"
     xmlns:local="using:WinstaNext.Views.Activities"
-    xmlns:views="using:WinstaNext.Views" xmlns:Converters="using:WinstaNext.Converters" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:Converters="using:WinstaNext.Converters"
+    xmlns:views="using:WinstaNext.Views" 
     mc:Ignorable="d">
 
     <views:BasePage.Resources>
@@ -23,6 +25,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
+                
                 <PersonPicture ProfilePicture="{x:Bind InlineFollow.User.ProfilePicture}"
                                DisplayName="{x:Bind InlineFollow.User.UserName}"
                                Grid.Column="0"
@@ -49,16 +52,23 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
+                
                 <PersonPicture ProfilePicture="{x:Bind ProfileImage}"
                                DisplayName="{x:Bind ProfileName}"
                                Grid.Column="0"
                                Height="55"
                                Width="55"/>
-                <TextBlock VerticalAlignment="Center"
-                           Text="{x:Bind Text}"
-                           TextWrapping="Wrap"
-                           Grid.Column="1"
-                           Margin="5,0"/>
+                
+                <controls:MarkdownTextBlock FlowDirection="{x:Bind Text, Converter={StaticResource TextToFlowDirectionConverter}, Mode=OneWay}"
+                                            Text="{x:Bind Text, Converter={StaticResource RichTextToMarkdownTextConverter}, Mode=OneWay}"
+                                            IsTextSelectionEnabled="False"
+                                            LinkClicked="TextLinkClicked"
+                                            VerticalAlignment="Center"
+                                            Background="Transparent"
+                                            TextWrapping="Wrap"
+                                            Grid.Column="1"
+                                            Margin="5,0"/>
+                
                 <Image Source="{x:Bind Medias[0].Image}"
                        Grid.Column="2"
                        Height="55"
@@ -73,16 +83,22 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
+
                 <PersonPicture ProfilePicture="{x:Bind ProfileImage}"
                                DisplayName="{x:Bind ProfileName}"
                                Grid.Column="0"
                                Height="55"
                                Width="55"/>
-                <TextBlock VerticalAlignment="Center"
-                           Text="{x:Bind Text}"
-                           TextWrapping="Wrap"
-                           Grid.Column="1"
-                           Margin="5,0"/>
+                
+                <controls:MarkdownTextBlock FlowDirection="{x:Bind Text, Converter={StaticResource TextToFlowDirectionConverter}, Mode=OneWay}"
+                                            Text="{x:Bind Text, Converter={StaticResource RichTextToMarkdownTextConverter}, Mode=OneWay}"
+                                            IsTextSelectionEnabled="False"
+                                            LinkClicked="TextLinkClicked"
+                                            VerticalAlignment="Center"
+                                            Background="Transparent"
+                                            TextWrapping="Wrap"
+                                            Grid.Column="1"
+                                            Margin="5,0"/>
             </Grid>
         </DataTemplate>
 
@@ -93,16 +109,22 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
+                
                 <PersonPicture ProfilePicture="{x:Bind ProfileImage}"
                                DisplayName="{x:Bind ProfileName}"
                                Grid.Column="0"
                                Height="55"
                                Width="55"/>
-                <TextBlock VerticalAlignment="Center"
-                           Text="{x:Bind Text}"
-                           TextWrapping="Wrap"
-                           Grid.Column="1"
-                           Margin="5,0"/>
+                
+                <controls:MarkdownTextBlock FlowDirection="{x:Bind Text, Converter={StaticResource TextToFlowDirectionConverter}, Mode=OneWay}"
+                                            Text="{x:Bind Text, Converter={StaticResource RichTextToMarkdownTextConverter}, Mode=OneWay}"
+                                            IsTextSelectionEnabled="False"
+                                            LinkClicked="TextLinkClicked"
+                                            VerticalAlignment="Center"
+                                            Background="Transparent"
+                                            TextWrapping="Wrap"
+                                            Grid.Column="1"
+                                            Margin="5,0"/>
 
                 <Image Source="{x:Bind Images[0].Image}"
                        Grid.Column="2"

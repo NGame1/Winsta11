@@ -70,7 +70,7 @@ namespace WinstaNext.ViewModels.Users
         {
             if (e.Parameter is string facebookPlaceId && !string.IsNullOrEmpty(facebookPlaceId))
             {
-                if (Place != null && Place.FacebookPlacesId.ToString().ToLower() == facebookPlaceId.ToLower()) return;
+                if (Place != null && Place.FacebookPlacesId.ToString() == facebookPlaceId) return;
                 IInstaApi Api = App.Container.GetService<IInstaApi>();
                 {
                     var result = await Api.LocationProcessor.GetLocationInfoAsync(facebookPlaceId);
@@ -85,10 +85,12 @@ namespace WinstaNext.ViewModels.Users
             }
             else if (e.Parameter is InstaPlaceShort placeShort)
             {
+                if (Place != null && Place.FacebookPlacesId == placeShort.FacebookPlacesId) return;
                 Place = placeShort;
             }
             else if (e.Parameter is InstaPlace place)
             {
+                if (Place != null && Place.FacebookPlacesId == place.Location.FacebookPlacesId) return;
                 Place = place.Location;
             }
             else

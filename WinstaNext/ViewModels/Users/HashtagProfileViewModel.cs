@@ -109,6 +109,7 @@ namespace WinstaNext.ViewModels.Users
             }
             else if (e.Parameter is InstaHashtag hashtag)
             {
+                if (Hashtag != null && Hashtag.Name.ToLower() == hashtag.Name.ToLower()) return;
                 Hashtag = hashtag;
             }
             else

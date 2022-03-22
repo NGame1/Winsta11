@@ -30,8 +30,14 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Users
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
                 var result = await Api.UserProcessor.GetUserMediaByIdAsync(UserId, Pagination, cancellationToken);
-                if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
-                    throw result.Info.Exception;
+                if (!result.Succeeded)
+                {
+                    if (result.Info.Exception != null && result.Info.Exception is not TaskCanceledException)
+                        throw result.Info.Exception;
+                    else if (result.Info.Exception != null)
+                        throw result.Info.Exception;
+                    else return null;
+                }
                 HasMoreAvailable = !string.IsNullOrEmpty(result.Value.NextMaxId);
                 return result.Value;
             }

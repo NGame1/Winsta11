@@ -1,11 +1,7 @@
 ﻿using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -68,11 +64,10 @@ namespace WinstaNext.UI.Flyouts.Stories
 
             Items.Add(new MenuFlyoutItem()
             {
-                Icon = new FontIcon() { Glyph = "\uE118", FontFamily = FluentSystemIconsRegular },
+                Icon = new FontIcon() { Glyph = "\uF150", FontFamily = FluentSystemIconsRegular },
                 Text = LanguageManager.Instance.General.Download,
                 Command = NavigateToUserProfileCommand
             });
-
             if (!Items.Any()) this.Hide();
         }
     }

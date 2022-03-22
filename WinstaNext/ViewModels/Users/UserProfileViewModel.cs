@@ -239,6 +239,7 @@ namespace WinstaNext.ViewModels.Users
         void ONSelectedTabChanged()
         {
             if (SelectedTab == null) return;
+
             if (SelectedTab.Text == LanguageManager.Instance.Instagram.Posts)
             {
                 ItemsSource = UserMedias;
