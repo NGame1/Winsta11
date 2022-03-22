@@ -195,6 +195,7 @@
     </Compile>
     <Compile Include="Models\Core\LanguageDefinition.cs" />
     <Compile Include="Models\Core\MenuItemModel.cs" />
+    <Compile Include="Models\Core\WinstaSynchContext.cs" />
     <Compile Include="Models\TemplateSelectors\Activities\RecentActivityFeedItemTemplateSelector.cs" />
     <Compile Include="Models\TemplateSelectors\Directs\InstaDirectInboxItemTemplateSelector.cs" />
     <Compile Include="Models\TemplateSelectors\Directs\InstaDirectInboxThreadTemplateSelector.cs" />

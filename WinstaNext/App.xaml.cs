@@ -8,10 +8,13 @@ using NodaTime.TimeZones;
 using Syncfusion.Licensing;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Globalization;
 using Windows.Media.Playback;
 using Windows.Networking.BackgroundTransfer;
 using Windows.System.Display;
@@ -21,6 +24,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Core.Dialogs;
 using WinstaNext.Services;
+using Windows.ApplicationModel.Resources.Core;
 
 namespace WinstaNext
 {
@@ -33,6 +37,14 @@ namespace WinstaNext
 
         public App()
         {
+            var lang = ApplicationSettingsManager.Instance.GetLanguage();
+            CultureInfo culture = new(lang);
+            CultureInfo.CurrentCulture = culture;
+            CultureInfo.CurrentUICulture = culture;
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+            ApplicationLanguages.PrimaryLanguageOverride = lang;
+
             this.InitializeComponent();
             ApplicationViewScaling.TrySetDisableLayoutScaling(true);
             SyncfusionLicenseProvider.RegisterLicense("NTYxODMyQDMxMzkyZTM0MmUzMGlhcE44YWwwUi9yNGt2aUNYSjZUVmgxQWM1Qk5lSGsrZWM3NTZiS0FiamM9;NTYxODMzQDMxMzkyZTM0MmUzMEtKMmYyYitybjZpdkNELzhGay80QU1Ja1RPT2YrR0l4NFEvbVoweC9FK0U9;NTYxODM0QDMxMzkyZTM0MmUzMEJGKzBmWFBQb3U5ZklzMU1CUWpra1FNc1ZhYU5tZDl4cVZYbXZwOFY1eHc9;NTYxODM1QDMxMzkyZTM0MmUzMGZvQWY5N0VLcUVVdEtuSVE2VE1kVU9CMSsrR3BBcEJpU0Q0bVpnMERkSGs9;NTYxODM2QDMxMzkyZTM0MmUzMEFZdTlUOUlSckxuWDRhNEZsdWNGYzBaZXIrelgzV0t3a2UvVVp4R3dxUlk9;NTYxODM3QDMxMzkyZTM0MmUzMGtlcW1HRUNxSUs5d3RqT3ZzZkc0Mm4zaVZQMVEvczc4akNTWUI3ekQrNGc9;NTYxODM4QDMxMzkyZTM0MmUzMENLeTZHUHlaMGhYSUFEWmhCdjBWU1hqeU9Ua05CN0hqaCtDVy9RWkhPams9;NTYxODM5QDMxMzkyZTM0MmUzMFNXUStjOXY0cGJuUWRHWTFZWURJbUl2K1RUWCtuMmxxQTg2bzVqQXlUNms9;NTYxODQwQDMxMzkyZTM0MmUzMEI1aTVmeXZTVGJnc2V1STJmQWFUZ0lqRXlYbDZPREJRTjZwRGI2MnoxVnM9;NTYxODQxQDMxMzkyZTM0MmUzMFZsQlVqZVRMQjRBb1Z6cEtxcXM2NTEzU3hBeFdUVkJ0dnFyRTB3SkdzSDA9;NTYxODQyQDMxMzkyZTM0MmUzMFdLSmVnSEw2QS84cWZ2dFhzNUZZSlAzQmxCSWdBZWQ2SDRPa0dHY3lXVDg9");

@@ -35,6 +35,8 @@ namespace WinstaNext.Services
             var session = await ApplicationSettingsManager.Instance.GetUserSession(userpk);
             ((App)App.Current).SetCurrentUserSession(session);
             var frame = new Frame();
+            if (LanguageManager.Instance.General.IsRightToLeft)
+                frame.FlowDirection = FlowDirection.RightToLeft;
             Window.Current.Content = frame;
             frame.Navigate(typeof(MainPage));
             var nav = App.Container.GetService<NavigationService>();

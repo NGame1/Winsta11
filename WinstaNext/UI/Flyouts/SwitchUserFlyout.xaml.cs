@@ -62,7 +62,7 @@ namespace WinstaNext.UI.Flyouts
         private void Useritem_Click(object sender, RoutedEventArgs e)
         {
             var mfi = sender as MenuFlyoutItem;
-            var userpk = mfi.Tag.ToString();
+            var userpk = mfi.Tag.ToString(); 
             AccountManagementService.SwitchToUser(userpk);
         }
 

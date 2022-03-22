@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Navigation;
 using System.Runtime.CompilerServices;
 using WinstaNext.Services;
 using Microsoft.Extensions.DependencyInjection;
+using WinstaNext.Models.Core;
 
 namespace WinstaNext.ViewModels
 {
@@ -21,12 +22,12 @@ namespace WinstaNext.ViewModels
         public bool IsLoading { get; set; }
         public abstract string PageHeader { get; protected set; }
 
-        protected SynchronizationContext UIContext { get; }
+        protected WinstaSynchronizationContext UIContext { get; }
         internal NavigationService NavigationService { get; private set; }
 
         public BaseViewModel()
         {
-            UIContext = SynchronizationContext.Current;
+            UIContext = new(SynchronizationContext.Current);
             NavigationService = App.Container.GetService<NavigationService>();
         }
 

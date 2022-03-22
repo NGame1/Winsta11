@@ -35,6 +35,8 @@ using NotificationHandler;
 using WinstaNext.Views.Activities;
 using Windows.UI.Xaml.Input;
 using Windows.System;
+using Windows.ApplicationModel.Resources;
+using System.Globalization;
 
 namespace WinstaNext.ViewModels
 {
@@ -145,9 +147,11 @@ namespace WinstaNext.ViewModels
                 if (!result.Succeeded) throw result.Info.Exception;
                 var value = result.Value;
                 var count = value.PendingRequestsCount + value.Inbox.UnseenCount;
+                
                 UIContext.Post((e) =>
                 {
-                    var menu = MenuItems.FirstOrDefault(x => x.Text == LanguageManager.Instance.Instagram.Directs);
+                    var DirectsText = LanguageManager.Instance.Instagram.Directs;
+                    var menu = MenuItems.FirstOrDefault(x => x.Text == DirectsText);
                     menu.Badge = count.ToString();
                 }, null);
             }

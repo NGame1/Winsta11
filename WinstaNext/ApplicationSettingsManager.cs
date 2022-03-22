@@ -18,6 +18,8 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using WinstaNext.Helpers;
 using System.Collections;
 using WinstaCore;
+using System.Globalization;
+using Windows.ApplicationModel.Resources.Core;
 
 namespace WinstaNext
 {
@@ -131,6 +133,15 @@ namespace WinstaNext
         {
             LocalSettings.Values[AppLanguageSettings] = lang;
             ApplicationLanguages.PrimaryLanguageOverride = lang;
+            CultureInfo culture = new(lang);
+            CultureInfo.CurrentCulture = culture;
+            CultureInfo.CurrentUICulture = culture;
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+            ResourceContext.GetForCurrentView().Reset();
+            ResourceContext.GetForViewIndependentUse().Reset();
+            
             return lang;
         }
 
