@@ -141,6 +141,9 @@
   <data name="Dark" xml:space="preserve">
     <value>تیره</value>
   </data>
+  <data name="Download" xml:space="preserve">
+    <value>دانلود...</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>ایمیل</value>
   </data>

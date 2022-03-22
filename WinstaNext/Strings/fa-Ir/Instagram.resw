@@ -126,6 +126,9 @@
   <data name="AddAccount" xml:space="preserve">
     <value>افزودن حساب کاربری...</value>
   </data>
+  <data name="Archive" xml:space="preserve">
+    <value>آرشیو</value>
+  </data>
   <data name="Biography" xml:space="preserve">
     <value>بیوگرافی</value>
   </data>
@@ -135,11 +138,29 @@
   <data name="CommentPlaceholder" xml:space="preserve">
     <value>دیدگاهتان را بنویسید...</value>
   </data>
+  <data name="CopyCaption" xml:space="preserve">
+    <value>کپی کپشن</value>
+  </data>
+  <data name="CopyURL" xml:space="preserve">
+    <value>کپی آدرس</value>
+  </data>
+  <data name="DeletePost" xml:space="preserve">
+    <value>حذف پست</value>
+  </data>
   <data name="Directs" xml:space="preserve">
     <value>دایرکت</value>
   </data>
+  <data name="DisableCommenting" xml:space="preserve">
+    <value>غیر فعالسازی کامنت ها</value>
+  </data>
+  <data name="EditPost" xml:space="preserve">
+    <value>ویرایش پست</value>
+  </data>
   <data name="EditProfile" xml:space="preserve">
     <value>ویرایش پروفایل</value>
+  </data>
+  <data name="EnableCommenting" xml:space="preserve">
+    <value>فعالسازی کامنت ها</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>اکسپلور</value>
@@ -192,6 +213,15 @@
   <data name="MessagePlaceholder" xml:space="preserve">
     <value>پیام ...</value>
   </data>
+  <data name="MutePosts" xml:space="preserve">
+    <value>بی صدا کردن پست ها</value>
+  </data>
+  <data name="MuteStories" xml:space="preserve">
+    <value>بی صدا کردن استوری ها</value>
+  </data>
+  <data name="MutingOptions" xml:space="preserve">
+    <value>گزینه های بی صدایی</value>
+  </data>
   <data name="NoDirectsYet" xml:space="preserve">
     <value>پیام دایرکتی دریافت نشده.</value>
   </data>
@@ -242,6 +272,12 @@
   </data>
   <data name="Unfollow" xml:space="preserve">
     <value>لغو دنبال کردن</value>
+  </data>
+  <data name="UnmutePosts" xml:space="preserve">
+    <value>صدا دار کردن پست ها</value>
+  </data>
+  <data name="UnmuteStories" xml:space="preserve">
+    <value>صدا دار کردن استوری ها</value>
   </data>
   <data name="UnsupportedMessageType" xml:space="preserve">
     <value>این نوع پیام دایرکت هنوز در وینستا پشتیبانی نمیشود.</value>

@@ -126,6 +126,9 @@
   <data name="AddAccount" xml:space="preserve">
     <value>Add account...</value>
   </data>
+  <data name="Archive" xml:space="preserve">
+    <value>Archive</value>
+  </data>
   <data name="Biography" xml:space="preserve">
     <value>Biography</value>
   </data>
@@ -135,11 +138,29 @@
   <data name="CommentPlaceholder" xml:space="preserve">
     <value>Add a comment...</value>
   </data>
+  <data name="CopyCaption" xml:space="preserve">
+    <value>Copy caption</value>
+  </data>
+  <data name="CopyURL" xml:space="preserve">
+    <value>Copy Url</value>
+  </data>
+  <data name="DeletePost" xml:space="preserve">
+    <value>Delete post</value>
+  </data>
   <data name="Directs" xml:space="preserve">
     <value>Directs</value>
   </data>
+  <data name="DisableCommenting" xml:space="preserve">
+    <value>Disable commenting</value>
+  </data>
+  <data name="EditPost" xml:space="preserve">
+    <value>Edit post</value>
+  </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Edit profile</value>
+  </data>
+  <data name="EnableCommenting" xml:space="preserve">
+    <value>Enable commenting</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Explore</value>
@@ -192,6 +213,15 @@
   <data name="MessagePlaceholder" xml:space="preserve">
     <value>Message ...</value>
   </data>
+  <data name="MutePosts" xml:space="preserve">
+    <value>Mute posts</value>
+  </data>
+  <data name="MuteStories" xml:space="preserve">
+    <value>Mute stories</value>
+  </data>
+  <data name="MutingOptions" xml:space="preserve">
+    <value>Muting Options</value>
+  </data>
   <data name="NoDirectsYet" xml:space="preserve">
     <value>No direct messages yet.</value>
   </data>
@@ -242,6 +272,12 @@
   </data>
   <data name="Unfollow" xml:space="preserve">
     <value>Unfollow</value>
+  </data>
+  <data name="UnmutePosts" xml:space="preserve">
+    <value>Unmute posts</value>
+  </data>
+  <data name="UnmuteStories" xml:space="preserve">
+    <value>Unmute stories</value>
   </data>
   <data name="UnsupportedMessageType" xml:space="preserve">
     <value>This direct message type is not supported by Winsta yet.</value>

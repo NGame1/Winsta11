@@ -141,6 +141,9 @@
   <data name="Dark" xml:space="preserve">
     <value>Dark</value>
   </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>

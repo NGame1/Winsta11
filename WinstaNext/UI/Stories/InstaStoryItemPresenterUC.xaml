@@ -9,7 +9,7 @@
     xmlns:Converters="using:WinstaNext.Converters.Media"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:generic="using:WinstaNext.UI.Generic"
-    xmlns:Winsta="using:WinstaNext" 
+    xmlns:Winsta="using:WinstaNext" xmlns:stories="using:WinstaNext.UI.Flyouts.Stories"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -109,6 +109,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <TextBox Text="{x:Bind ReplyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -130,14 +131,26 @@
 
             <generic:LikeButtonControl IsLiked="{x:Bind Story.HasLiked, Mode=TwoWay}"
                                        Command="{x:Bind LikeStoryCommand}"
-                                       Grid.Column="1"
-                                       Margin="3,0"/>
+                                       Margin="3,0,0,0"
+                                       Grid.Column="1"/>
 
             <Button Command="{x:Bind ReplyStoryCommand, Mode=OneWay}" 
                     FontFamily="{StaticResource FluentIcons}" 
                     Content="&#xE122;"
+                    Margin="3,0,0,0"
                     Grid.Column="2"/>
 
+            <Button FontFamily="{StaticResource FluentIcons}"
+                    Content="&#xE10C;"
+                    Margin="3,0,0,0"
+                    Grid.Column="3">
+                <Button.Flyout>
+                    <stories:InstaStoryItemFlyout Opening="InstaStoryItemFlyout_Opening"
+                                                  Closing="InstaStoryItemFlyout_Closing"
+                                                  StoryItem="{x:Bind Story}"/>
+                </Button.Flyout>
+            </Button>
+            
         </Grid>
     </Grid>
 </UserControl>

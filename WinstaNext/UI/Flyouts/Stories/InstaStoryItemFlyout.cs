@@ -14,44 +14,50 @@ using WinstaNext.Views.Profiles;
 
 namespace WinstaNext.UI.Flyouts.Stories
 {
-    internal class InstaBroadcastFlyout : MenuFlyout
+    internal class InstaStoryItemFlyout : MenuFlyout
     {
-        public static readonly DependencyProperty BroadcastProperty = DependencyProperty.Register(
-          "Broadcast",
-          typeof(InstaBroadcast),
-          typeof(InstaBroadcastFlyout),
+        public static readonly DependencyProperty StoryItemProperty = DependencyProperty.Register(
+          "StoryItem",
+          typeof(InstaStoryItem),
+          typeof(InstaStoryItemFlyout),
           new PropertyMetadata(null));
 
-        public InstaBroadcast Broadcast
+        public InstaStoryItem StoryItem
         {
-            get { return (InstaBroadcast)GetValue(BroadcastProperty); }
-            set { SetValue(BroadcastProperty, value); }
+            get { return (InstaStoryItem)GetValue(StoryItemProperty); }
+            set { SetValue(StoryItemProperty, value); }
         }
 
         RelayCommand NavigateToUserProfileCommand { get; set; }
 
-        public InstaBroadcastFlyout()
+        public InstaStoryItemFlyout()
         {
-            Opening += InstaBroadcastFlyout_Opening;
+            Opening += InstaStoryItemFlyout_Opening;
             NavigateToUserProfileCommand = new(NavigateToUserProfile);
         }
 
         void NavigateToUserProfile()
         {
             var NavigationService = App.Container.GetService<NavigationService>();
-            NavigationService.Navigate(typeof(UserProfileView), Broadcast.BroadcastOwner);
+            NavigationService.Navigate(typeof(UserProfileView), StoryItem.User);
         }
 
-        private void InstaBroadcastFlyout_Opening(object sender, object e)
+        private void InstaStoryItemFlyout_Opening(object sender, object e)
         {
-            if (Broadcast == null) return;
+            if (StoryItem == null) return;
             Items.Clear();
 
             //var font = (FontFamily)App.Current.Resources["FluentIcons"];
             var FluentSystemIconsRegular = (FontFamily)App.Current.Resources["FluentSystemIconsRegular"];
-
-            if(Broadcast.BroadcastOwner != null)
+            if(StoryItem.User != null)
             {
+                var me = App.Container.GetService<InstaUserShort>();
+                if(StoryItem.User.Pk == me.Pk)
+                {
+                    //Add my story related items
+
+                }
+                
                 Items.Add(new MenuFlyoutItem()
                 {
                     Icon = new FontIcon() { Glyph = "\uF5BE", FontFamily = FluentSystemIconsRegular },
@@ -59,6 +65,13 @@ namespace WinstaNext.UI.Flyouts.Stories
                     Command = NavigateToUserProfileCommand
                 });
             }
+
+            Items.Add(new MenuFlyoutItem()
+            {
+                Icon = new FontIcon() { Glyph = "\uE118", FontFamily = FluentSystemIconsRegular },
+                Text = LanguageManager.Instance.General.Download,
+                Command = NavigateToUserProfileCommand
+            });
 
             if (!Items.Any()) this.Hide();
         }

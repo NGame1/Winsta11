@@ -246,7 +246,7 @@ namespace WinstaNext.UI.Flyouts
                             FontFamily = font,
                             FontSize = 24
                         },
-                        Text = "Copy URL",
+                        Text = LanguageManager.Instance.Instagram.CopyURL,
                         Command = CopyUrlCommand
                     });
                     Items.Add(new MenuFlyoutSeparator());
@@ -260,7 +260,7 @@ namespace WinstaNext.UI.Flyouts
                         FontFamily = font,
                         FontSize = 24
                     },
-                    Text = "Download content",
+                    Text = LanguageManager.Instance.General.Download,
                     Command = DownloadContentCommand
                 });
                 Items.Add(new MenuFlyoutSeparator());
@@ -275,7 +275,7 @@ namespace WinstaNext.UI.Flyouts
                             FontFamily = font,
                             FontSize = 24
                         },
-                        Text = "Copy caption",
+                        Text = LanguageManager.Instance.Instagram.CopyCaption,
                         Command = CopyCaptionCommand
                     });
                     Items.Add(new MenuFlyoutSeparator());
@@ -290,7 +290,7 @@ namespace WinstaNext.UI.Flyouts
                             FontFamily = font,
                             FontSize = 24
                         },
-                        Text = "Archive",
+                        Text = LanguageManager.Instance.Instagram.Archive,
                         Command = ArchiveCommand
                     });
                     Items.Add(new MenuFlyoutItem()
@@ -301,7 +301,7 @@ namespace WinstaNext.UI.Flyouts
                             FontFamily = font,
                             FontSize = 24
                         },
-                        Text = "Edit Post",
+                        Text = LanguageManager.Instance.Instagram.EditPost,
                         Command = EditPostCommand
                     });
                     Items.Add(new MenuFlyoutItem()
@@ -312,7 +312,7 @@ namespace WinstaNext.UI.Flyouts
                             FontFamily = font,
                             FontSize = 24
                         },
-                        Text = "Delete Post",
+                        Text = LanguageManager.Instance.Instagram.DeletePost,
                         Command = DeletePostCommand
                     });
                     Items.Add(new MenuFlyoutSeparator());
@@ -325,7 +325,7 @@ namespace WinstaNext.UI.Flyouts
                                 FontFamily = FluentSystemIconsRegular,
                                 FontSize = 24
                             },
-                            Text = "Disable commenting",
+                            Text = LanguageManager.Instance.Instagram.DisableCommenting,
                             Command = DisableCommentingCommand
                         });
                     else
@@ -337,7 +337,7 @@ namespace WinstaNext.UI.Flyouts
                                 FontFamily = FluentSystemIconsRegular,
                                 FontSize = 24
                             },
-                            Text = "Enable commenting",
+                            Text = LanguageManager.Instance.Instagram.EnableCommenting,
                             Command = EnableCommentingCommand
                         });
                 }
@@ -351,7 +351,7 @@ namespace WinstaNext.UI.Flyouts
                             FontFamily = FluentSystemIconsRegular,
                             FontSize = 24
                         },
-                        Text = "Muting Options"
+                        Text = LanguageManager.Instance.Instagram.MutingOptions
                     };
                     mutingoptions.Items.Add(new MenuFlyoutItem
                     {
@@ -361,7 +361,7 @@ namespace WinstaNext.UI.Flyouts
                             FontFamily = FluentSystemIconsRegular,
                             FontSize = 24
                         },
-                        Text = "Mute Posts",
+                        Text = LanguageManager.Instance.Instagram.MutePosts,
                         Command = MutePostsCommand
                     });
                     mutingoptions.Items.Add(new MenuFlyoutItem
@@ -372,7 +372,7 @@ namespace WinstaNext.UI.Flyouts
                             FontFamily = FluentSystemIconsRegular,
                             FontSize = 24
                         },
-                        Text = "Unmute Posts",
+                        Text = LanguageManager.Instance.Instagram.UnmutePosts,
                         Command = UnmutePostsCommand
                     });
                     mutingoptions.Items.Add(new MenuFlyoutItem
@@ -383,7 +383,7 @@ namespace WinstaNext.UI.Flyouts
                             FontFamily = FluentSystemIconsRegular,
                             FontSize = 24
                         },
-                        Text = "Mute Stories",
+                        Text = LanguageManager.Instance.Instagram.MuteStories,
                         Command = MuteStoriesCommand
                     });
                     mutingoptions.Items.Add(new MenuFlyoutItem
@@ -394,7 +394,7 @@ namespace WinstaNext.UI.Flyouts
                             FontFamily = FluentSystemIconsRegular,
                             FontSize = 24
                         },
-                        Text = "Unmute Stories",
+                        Text = LanguageManager.Instance.Instagram.UnmuteStories,
                         Command = UnmuteStoriesCommand
                     });
                     Items.Add(mutingoptions);

@@ -38,6 +38,7 @@ namespace WinstaNext
         public string Close { get => _resource.GetString(nameof(Close)); }
         public string Copy { get => _resource.GetString(nameof(Copy)); }
         public string Dark { get => _resource.GetString(nameof(Dark)); }
+        public string Download { get => _resource.GetString(nameof(Download)); }
         public string Email { get => _resource.GetString(nameof(Email)); }
         public string Error { get => _resource.GetString(nameof(Error)); }
         public string Find { get => _resource.GetString(nameof(Find)); }
@@ -75,13 +76,20 @@ namespace WinstaNext
         ResourceLoader _resource = new ResourceLoader("Instagram");
 
         public string Accounts { get => _resource.GetString(nameof(Accounts)); }
-        public string AddAccount { get => _resource.GetString(nameof(AddAccount)); }
         public string Activities { get => _resource.GetString(nameof(Activities)); }
+        public string AddAccount { get => _resource.GetString(nameof(AddAccount)); }
+        public string Archive { get => _resource.GetString(nameof(Archive)); }
         public string Biography { get => _resource.GetString(nameof(Biography)); }
         public string Comment { get => _resource.GetString(nameof(Comment)); }
         public string CommentPlaceholder { get => _resource.GetString(nameof(CommentPlaceholder)); }
+        public string CopyCaption { get => _resource.GetString(nameof(CopyCaption)); }
+        public string CopyURL { get => _resource.GetString(nameof(CopyURL)); }
+        public string DeletePost { get => _resource.GetString(nameof(DeletePost)); }
         public string Directs { get => _resource.GetString(nameof(Directs)); }
+        public string DisableCommenting { get => _resource.GetString(nameof(DisableCommenting)); }
         public string EditProfile { get => _resource.GetString(nameof(EditProfile)); }
+        public string EditPost { get => _resource.GetString(nameof(EditPost)); }
+        public string EnableCommenting { get => _resource.GetString(nameof(EnableCommenting)); }
         public string Explore { get => _resource.GetString(nameof(Explore)); }
         public string Feed { get => _resource.GetString(nameof(Feed)); }
         public string Follow { get => _resource.GetString(nameof(Follow)); }
@@ -99,6 +107,9 @@ namespace WinstaNext
         public string MediaComments { get => _resource.GetString(nameof(MediaComments)); }
         public string MediaLikers { get => _resource.GetString(nameof(MediaLikers)); }
         public string MessagePlaceholder { get => _resource.GetString(nameof(MessagePlaceholder)); }
+        public string MutingOptions { get => _resource.GetString(nameof(MutingOptions)); }
+        public string MutePosts { get => _resource.GetString(nameof(MutePosts)); }
+        public string MuteStories { get => _resource.GetString(nameof(MuteStories)); }
         public string NoDirectsYet { get => _resource.GetString(nameof(NoDirectsYet)); }
         public string Places { get => _resource.GetString(nameof(Places)); }
         public string Posts { get => _resource.GetString(nameof(Posts)); }
@@ -116,6 +127,8 @@ namespace WinstaNext
         public string TrustThisDevice { get => _resource.GetString(nameof(TrustThisDevice)); }
         public string TwoFactorAuthentication { get => _resource.GetString(nameof(TwoFactorAuthentication)); }
         public string Unfollow { get => _resource.GetString(nameof(Unfollow)); }
+        public string UnmutePosts { get => _resource.GetString(nameof(UnmutePosts)); }
+        public string UnmuteStories { get => _resource.GetString(nameof(UnmuteStories)); }
         public string UnsupportedMessageType { get => _resource.GetString(nameof(UnsupportedMessageType)); }
         public string VerificationCode { get => _resource.GetString(nameof(VerificationCode)); }
         public string VerificationMethod { get => _resource.GetString(nameof(VerificationMethod)); }

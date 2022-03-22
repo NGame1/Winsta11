@@ -181,5 +181,19 @@ namespace WinstaNext.UI.Stories
             ReplyStoryCommand.Execute(null);
             args.Handled = true;
         }
+
+        private void InstaStoryItemFlyout_Opening(object sender, object e)
+        {
+            if (LoadMediaElement)
+                videoplayer.Pause();
+            else StopTimer();
+        }
+
+        private void InstaStoryItemFlyout_Closing(FlyoutBase sender, FlyoutBaseClosingEventArgs args)
+        {
+            if (LoadMediaElement)
+                videoplayer.Play();
+            else StartTimer();
+        }
     }
 }
