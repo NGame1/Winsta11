@@ -4,7 +4,9 @@ using InstagramApiSharp.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Networking.BackgroundTransfer;
@@ -12,8 +14,6 @@ using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-
-// The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace WinstaNext.UI.Flyouts
 {
@@ -57,7 +57,6 @@ namespace WinstaNext.UI.Flyouts
             MuteStoriesCommand = new(MuteStoriesAsync);
             UnmuteStoriesCommand = new(UnmuteStoriesAsync);
             EditPostCommand = new(EditPost);
-            this.InitializeComponent();
             Opening += InstaMediaFlyout_Opening;
         }
 

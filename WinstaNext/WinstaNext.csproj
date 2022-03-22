@@ -270,15 +270,11 @@
     <Compile Include="UI\Directs\PrivateDirectThread.xaml.cs">
       <DependentUpon>PrivateDirectThread.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Flyouts\InstaMediaFlyout.xaml.cs">
-      <DependentUpon>InstaMediaFlyout.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="UI\Flyouts\InstaMediaFlyout.cs" />
     <Compile Include="UI\Flyouts\Stories\InstaBroadcastFlyout.cs" />
     <Compile Include="UI\Flyouts\Stories\InstaReelFeedFlyout.cs" />
     <Compile Include="UI\Flyouts\Stories\InstaStoryItemFlyout.cs" />
-    <Compile Include="UI\Flyouts\SwitchUserFlyout.xaml.cs">
-      <DependentUpon>SwitchUserFlyout.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="UI\Flyouts\SwitchUserFlyout.cs" />
     <Compile Include="UI\Generic\InstaUserPresenterUC.xaml.cs">
       <DependentUpon>InstaUserPresenterUC.xaml</DependentUpon>
     </Compile>
@@ -536,14 +532,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Directs\PrivateDirectThread.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Flyouts\InstaMediaFlyout.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Flyouts\SwitchUserFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
