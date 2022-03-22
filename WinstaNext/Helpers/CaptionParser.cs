@@ -34,21 +34,28 @@ namespace WinstaNext.Helpers
         {
             if (string.IsNullOrEmpty(caption)) return string.Empty;
 
-            var hashtags = caption.GetHashtags().GroupBy(x => x.Value).Select(x => x.Key).ToArray();
-            var usernames = caption.GetUsernames().GroupBy(x => x.Value).Select(x => x.Key).ToArray();
+            //var hashtags = caption.GetHashtags();
+            //var usernames = caption.GetUsernames();
 
-            for (int i = 0; i < hashtags.Length; i++)
-            {
-                var h = hashtags.ElementAt(i);
-                caption = caption.Replace(h, $"[{h}]({h})");
-            }
-            for (int i = 0; i < usernames.Length; i++)
-            {
-                var u = usernames.ElementAt(i);
-                caption = caption.Replace(u, $"[{u}]({u})");
-            }
+            caption = caption.Replace("\n", Environment.NewLine + Environment.NewLine);
+            caption = caption.Replace("\t", string.Empty);
+
+            //Replace Hashtags
+            caption = Regex.Replace(Uri.UnescapeDataString(caption),
+                @"(?:#)([A-Za-z\u0600-\u06FF0-9_](?:(?:[A-Za-z\u0600-\u06FF0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z\u0600-\u06FF0-9_]))?)", 
+                new MatchEvaluator(Replacer));
+
+            //Replace Usernames
+            caption = Regex.Replace(Uri.UnescapeDataString(caption),
+                @"(?:@)([A-Za-z\u0600-\u06FF0-9_](?:(?:[A-Za-z\u0600-\u06FF0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z\u0600-\u06FF0-9_]))?)",
+                new MatchEvaluator(Replacer));
 
             return caption;
+        }
+
+        static string Replacer(Match match)
+        {
+            return $"[{match.Value}]({match.Value})";
         }
 
         public static MatchCollection GetHashtags(this string CaptionText)

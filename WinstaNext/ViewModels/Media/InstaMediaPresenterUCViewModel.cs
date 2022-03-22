@@ -53,6 +53,7 @@ namespace WinstaNext.ViewModels.Media
         public RelayCommand NavigateToCommentsCommand { get; set; }
         public RelayCommand NavigateToMediaLikersCommand { get; set; }
         public RelayCommand<InstaUser> NavigateToUserCommand { get; set; }
+        public RelayCommand NavigateToLocationCommand { get; set; }
         public AsyncRelayCommand SaveMediaCommand { get; set; }
         public RelayCommand<LinkClickedEventArgs> CaptionLinkClickedCommand { get; set; }
 
@@ -66,6 +67,7 @@ namespace WinstaNext.ViewModels.Media
             NavigateToCommentsCommand = new(NavigateToComments);
             NavigateToMediaLikersCommand = new(NavigateToMediaLikers);
             NavigateToUserCommand = new(NavigateToUser);
+            NavigateToLocationCommand = new(NavigateToLocation);
             SaveMediaCommand = new(SaveMediaAsync);
         }
 
@@ -228,6 +230,11 @@ namespace WinstaNext.ViewModels.Media
         void NavigateToUser(InstaUser user)
         {
             NavigationService.Navigate(typeof(UserProfileView), user);
+        }
+
+        void NavigateToLocation()
+        {
+            NavigationService.Navigate(typeof(PlaceProfileView), Media.Location);
         }
 
         async Task SaveMediaAsync()

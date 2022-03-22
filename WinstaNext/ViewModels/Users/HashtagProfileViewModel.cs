@@ -94,7 +94,7 @@ namespace WinstaNext.ViewModels.Users
             if (e.Parameter is string tagName && !string.IsNullOrEmpty(tagName))
             {
                 if (Hashtag != null && Hashtag.Name.ToLower() == tagName.ToLower()) return;
-                IInstaApi Api = App.Container.GetService<IInstaApi>();
+                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
                 {
                     var result = await Api.HashtagProcessor.GetHashtagInfoAsync(tagName);
                     if (!result.Succeeded)

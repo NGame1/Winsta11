@@ -79,6 +79,11 @@
                         <TextBlock>
                             <Run Text="{x:Bind Media.Location.Name}"/>
                         </TextBlock>
+                        <i:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="Click">
+                                <core:InvokeCommandAction Command="{x:Bind ViewModel.NavigateToLocationCommand}"/>
+                            </core:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
                     </HyperlinkButton>
                 </StackPanel>
                 <!--#endregion-->

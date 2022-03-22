@@ -10,6 +10,7 @@ using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
@@ -71,7 +72,7 @@ namespace WinstaNext.ViewModels.Users
             if (e.Parameter is string facebookPlaceId && !string.IsNullOrEmpty(facebookPlaceId))
             {
                 if (Place != null && Place.FacebookPlacesId.ToString() == facebookPlaceId) return;
-                IInstaApi Api = App.Container.GetService<IInstaApi>();
+                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
                 {
                     var result = await Api.LocationProcessor.GetLocationInfoAsync(facebookPlaceId);
                     if (!result.Succeeded)
@@ -92,6 +93,11 @@ namespace WinstaNext.ViewModels.Users
             {
                 if (Place != null && Place.FacebookPlacesId == place.Location.FacebookPlacesId) return;
                 Place = place.Location;
+            }
+            else if (e.Parameter is InstaLocation loc)
+            {
+                if (Place != null && Place.FacebookPlacesId == loc.FacebookPlacesId) return;
+                Place = loc.Adapt<InstaPlaceShort>();
             }
             else
             {
