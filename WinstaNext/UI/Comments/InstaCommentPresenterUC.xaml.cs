@@ -96,6 +96,7 @@ namespace WinstaNext.UI.Comments
 
         async Task LoadMoreCommentsAsync()
         {
+            if (LoadMoreCommentsCommand.IsRunning) return;
             var NavigationService = App.Container.GetService<NavigationService>();
             string mediaId = string.Empty;
             if (NavigationService.Content is MediaCommentsView view)
@@ -112,11 +113,12 @@ namespace WinstaNext.UI.Comments
                     if (!result.Succeeded) throw result.Info.Exception;
 
                     var childs = result.Value.ChildComments;
+                    childs.Reverse();
                     for (int i = 0; i < childs.Count; i++)
                     {
-                        Comment.ChildComments.Add(childs.ElementAt(i));
+                        Comment.ChildComments.Insert(0, childs.ElementAt(i));
                     }
-                    Comment.HasMoreHeadChildComments = result.Value.HasMoreHeadChildComments;
+                    Comment.HasMoreTailChildComments = result.Value.HasMoreTailChildComments;
                 }
             }
             finally

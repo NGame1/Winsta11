@@ -20,6 +20,9 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Core;
 using WinstaNext.Views;
+using Microsoft.Toolkit.Uwp.UI;
+using Windows.UI.Xaml.Automation.Peers;
+using Windows.UI.Xaml.Automation.Provider;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -92,6 +95,13 @@ namespace WinstaNext
         private void NavigationView_Loaded(object sender, RoutedEventArgs e)
         {
             ViewModel.IsNavigationViewPaneOpened = NavigationView.IsPaneOpen;
+            var backButton = NavigationView.FindDescendantOrSelf<Button>(x => x.Name.Contains("Back"));
+            var keyboardAccelerator = new KeyboardAccelerator()
+            {
+                Key = Windows.System.VirtualKey.Escape,
+                Modifiers = Windows.System.VirtualKeyModifiers.None,
+            };
+            backButton.KeyboardAccelerators.Add(keyboardAccelerator);
             UpdateVisualState();
         }
 
@@ -145,6 +155,13 @@ namespace WinstaNext
         {
             if (ViewModel.NavigationService.CanGoBack)
                 ViewModel.NavigationService.GoBack();
+        }
+
+        private void EscapeAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+        {
+            if (ViewModel.NavigationService.CanGoBack)
+                ViewModel.NavigationService.GoBack();
+            args.Handled = true;
         }
     }
 }

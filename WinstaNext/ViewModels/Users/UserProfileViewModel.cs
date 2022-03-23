@@ -241,7 +241,7 @@ namespace WinstaNext.ViewModels.Users
         void ONSelectedTabChanged()
         {
             if (SelectedTab == null) return;
-
+            
             if (SelectedTab.Text == LanguageManager.Instance.Instagram.Posts)
             {
                 ItemsSource = UserMedias;
@@ -262,6 +262,7 @@ namespace WinstaNext.ViewModels.Users
 
         void CreateProfileTabs()
         {
+            SelectedTab = null;
             if (ProfileTabs.Any()) ProfileTabs.Clear();
             ProfileTabs.Add(new(LanguageManager.Instance.Instagram.Posts, "\uF0E2"));
 

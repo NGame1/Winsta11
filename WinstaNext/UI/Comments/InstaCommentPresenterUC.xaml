@@ -116,7 +116,7 @@
             </Grid.RowDefinitions>
 
             <HyperlinkButton Content="{x:Bind Winsta:LanguageManager.Instance.Instagram.LoadMoreComments}"
-                             x:Load="{x:Bind Comment.HasMoreHeadChildComments}"
+                             x:Load="{x:Bind Comment.HasMoreTailChildComments}"
                              Command="{x:Bind LoadMoreCommentsCommand}"
                              x:Name="LoadMoreReplies"/>
 

@@ -225,12 +225,13 @@
             
         </controls:MarkdownTextBlock>
 
-        <!--<HyperlinkButton Visibility="{x:Bind txtCaption.IsTextTrimmed, Mode=OneWay}"
-                         Command="{x:Bind ViewModel.MoreButtonCommand}"
-                         CommandParameter="{x:Bind txtCaption}"
-                         HorizontalAlignment="Stretch">
-            <TextBlock Text="{x:Bind Winsta:LanguageManager.Instance.General.More}"/>
-        </HyperlinkButton>-->
+        <HyperlinkButton Command="{x:Bind ViewModel.NavigateToCommentsCommand}"
+                         Padding="0">
+            <TextBlock>
+                <Run Text="{x:Bind Media.CommentsCount}"/>
+                <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Comments}"/>
+            </TextBlock>
+        </HyperlinkButton>
 
         <ItemsControl ItemsSource="{x:Bind Media.PreviewComments}">
             <ItemsControl.ItemTemplate>

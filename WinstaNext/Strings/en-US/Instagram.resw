@@ -138,6 +138,9 @@
   <data name="CommentPlaceholder" xml:space="preserve">
     <value>Add a comment...</value>
   </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
   <data name="CopyCaption" xml:space="preserve">
     <value>Copy caption</value>
   </data>

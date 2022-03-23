@@ -134,6 +134,7 @@ namespace WinstaNext.ViewModels.Users
 
         void CreateProfileTabs()
         {
+            SelectedTab = null;
             if (ProfileTabs.Any()) ProfileTabs.Clear();
 
             ProfileTabs.Add(new(LanguageManager.Instance.Instagram.Recent, "\uE823"));

@@ -125,6 +125,7 @@
             PaneClosing="NavigationView_PaneClosing"
             PaneOpening="NavigationView_PaneOpening"
             Loaded="NavigationView_Loaded">
+            
             <!--<muxc:NavigationView.Header>
                 <Grid>
                     <TextBlock Text="Header" FontSize="24"/>

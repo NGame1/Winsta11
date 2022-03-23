@@ -53,21 +53,23 @@ namespace WinstaNext.UI.Flyouts.Stories
                     //Add my story related items
 
                 }
-                
-                Items.Add(new MenuFlyoutItem()
+                else
                 {
-                    Icon = new FontIcon() { Glyph = "\uF5BE", FontFamily = FluentSystemIconsRegular },
-                    Text = LanguageManager.Instance.Instagram.ViewProfile,
-                    Command = NavigateToUserProfileCommand
-                });
+                    Items.Add(new MenuFlyoutItem()
+                    {
+                        Icon = new FontIcon() { Glyph = "\uF5BE", FontFamily = FluentSystemIconsRegular },
+                        Text = LanguageManager.Instance.Instagram.ViewProfile,
+                        Command = NavigateToUserProfileCommand
+                    });
+                }
             }
 
-            Items.Add(new MenuFlyoutItem()
-            {
-                Icon = new FontIcon() { Glyph = "\uF150", FontFamily = FluentSystemIconsRegular },
-                Text = LanguageManager.Instance.General.Download,
-                Command = NavigateToUserProfileCommand
-            });
+            //Items.Add(new MenuFlyoutItem()
+            //{
+            //    Icon = new FontIcon() { Glyph = "\uF150", FontFamily = FluentSystemIconsRegular },
+            //    Text = LanguageManager.Instance.General.Download,
+            //    Command = NavigateToUserProfileCommand
+            //});
             if (!Items.Any()) this.Hide();
         }
     }
