@@ -1,4 +1,5 @@
 ﻿using InstagramApiSharp.Classes.Models;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,8 +19,22 @@ using Windows.UI.Xaml.Navigation;
 
 namespace WinstaNext.UI.Generic
 {
+    [AddINotifyPropertyChangedInterface]
     public sealed partial class InstaUserPresenterUC : UserControl
     {
+        public static readonly DependencyProperty UserShortProperty = DependencyProperty.Register(
+          "UserShort",
+          typeof(InstaUserShort),
+          typeof(InstaUserPresenterUC),
+          new PropertyMetadata(null));
+
+        [OnChangedMethod(nameof(OnUserShortChanged))]
+        public InstaUserShort UserShort
+        {
+            get { return (InstaUserShort)GetValue(UserShortProperty); }
+            set { SetValue(UserShortProperty, value); }
+        }
+
         public static readonly DependencyProperty UserProperty = DependencyProperty.Register(
           "User",
           typeof(InstaUser),
@@ -30,6 +45,11 @@ namespace WinstaNext.UI.Generic
         {
             get { return (InstaUser)GetValue(UserProperty); }
             set { SetValue(UserProperty, value); }
+        }
+
+        void OnUserShortChanged()
+        {
+            User = new(UserShort);
         }
 
         public InstaUserPresenterUC()

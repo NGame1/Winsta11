@@ -91,6 +91,8 @@ namespace WinstaNext.ViewModels.Comments
                 return;
             }
 
+            if (Media != null && Media.InstaIdentifier == parameter.Media.InstaIdentifier) return;
+
             Media = parameter.Media;
 
             Instance = new(Media.InstaIdentifier,

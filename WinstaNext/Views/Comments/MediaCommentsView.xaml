@@ -1,4 +1,4 @@
-﻿<views:BasePage x:DefaultBindMode="OneWay" x:Name="thisPage"
+﻿<views:BasePage x:DefaultBindMode="OneWay" x:Name="thisPage" NavigationCacheMode="Enabled"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"

@@ -1,12 +1,16 @@
-﻿<views:BasePage
+﻿<views:BasePage NavigationCacheMode="Enabled"
     xmlns:views="using:WinstaNext.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                xmlns:media="using:WinstaNext.Abstractions.Media"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:i="using:Microsoft.Xaml.Interactivity"
+                xmlns:generic="using:WinstaNext.UI.Generic" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     x:Class="WinstaNext.Views.Media.MediaLikersView"
     xmlns:VM="using:WinstaNext.ViewModels.Media"
-    xmlns:local="using:WinstaNext.Views.Media" xmlns:media="using:WinstaNext.Abstractions.Media" xmlns:generic="using:WinstaNext.UI.Generic"
+    xmlns:local="using:WinstaNext.Views.Media" 
     mc:Ignorable="d">
 
     <views:BasePage.DataContext>
@@ -14,8 +18,23 @@
     </views:BasePage.DataContext>
     
     <ListView ItemsSource="{x:Bind ViewModel.MediaLikers, Mode=OneWay}"
-              ItemContainerStyle="{StaticResource ListViewStretcher}">
+              Padding="{x:Bind PageMargin}"
+              IsItemClickEnabled="True"
+              SelectionMode="None">
 
+        <i:Interaction.Behaviors>
+            <core:EventTriggerBehavior EventName="ItemClick">
+                <core:InvokeCommandAction Command="{x:Bind ViewModel.NavigateToUserCommand}"/>
+            </core:EventTriggerBehavior>
+        </i:Interaction.Behaviors>
+        
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
+                <Setter Property="Padding" Value="8,4"/>
+                <Setter Property="Margin" Value="0,0,0,2"/>
+            </Style>
+        </ListView.ItemContainerStyle>
+        
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="media:WinstaMediaLikerUser">
                 <generic:InstaUserPresenterUC User="{x:Bind User, Mode=OneWay}"/>

@@ -78,14 +78,14 @@
                                     </TextBlock>
                                 </HyperlinkButton>
 
-                                <HyperlinkButton>
+                                <HyperlinkButton Command="{x:Bind ViewModel.NavigateToFollowersCommand}">
                                     <TextBlock>
                                         <Run Text="{x:Bind ViewModel.User.FollowerCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
                                         <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Followers}"/>
                                     </TextBlock>
                                 </HyperlinkButton>
 
-                                <HyperlinkButton>
+                                <HyperlinkButton Command="{x:Bind ViewModel.NavigateToFollowingsCommand}">
                                     <TextBlock>
                                         <Run Text="{x:Bind ViewModel.User.FollowingCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
                                         <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Followings}"/>

@@ -56,6 +56,8 @@ namespace WinstaNext.ViewModels.Users
         public RelayCommand<ItemClickEventArgs> NavigateToMediaCommand { get; set; }
         public RelayCommand<LinkClickedEventArgs> CaptionLinkClickedCommand { get; set; }
         public AsyncRelayCommand<string> ExternalLinkClickCommand { get; set; }
+        public RelayCommand NavigateToFollowingsCommand { get; set; }
+        public RelayCommand NavigateToFollowersCommand { get; set; }
 
         public AsyncRelayCommand FollowButtonCommand { get; set; }
 
@@ -73,6 +75,18 @@ namespace WinstaNext.ViewModels.Users
             ExternalLinkClickCommand = new(ExternalLinkClickAsync);
             NavigateToMediaCommand = new(NavigateToMedia);
             FollowButtonCommand = new(FollowButtonFuncAsync);
+            NavigateToFollowingsCommand = new(NavigateToFollowings);
+            NavigateToFollowersCommand = new(NavigateToFollowers);
+        }
+
+        void NavigateToFollowings()
+        {
+            NavigationService.Navigate(typeof(UserFollowingsView), User.Pk);
+        }
+
+        void NavigateToFollowers()
+        {
+            NavigationService.Navigate(typeof(UserFollowersView), User.Pk);
         }
 
         async Task ExternalLinkClickAsync(string link)
@@ -204,6 +218,22 @@ namespace WinstaNext.ViewModels.Users
                     //User = result.Value.Adapt<InstaUser>();
                 }
             }
+            else if(e.Parameter is InstaUserShort instaUsershort)
+            {
+                if (User != null && User.Pk == instaUsershort.Pk) return;
+                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+                {
+                    var result = await Api.UserProcessor.GetUserInfoByIdAsync(instaUsershort.Pk,
+                                       surfaceType: InstaMediaSurfaceType.Profile);
+                    if (!result.Succeeded)
+                    {
+                        if (NavigationService.CanGoBack)
+                            NavigationService.GoBack();
+                        throw result.Info.Exception;
+                    }
+                    User = result.Value;
+                }
+            }
             else
             {
                 if (NavigationService.CanGoBack)
@@ -285,14 +315,14 @@ namespace WinstaNext.ViewModels.Users
         {
             if (User.Pk == App.Container.GetService<InstaUserShort>().Pk)
                 FollowBtnContent = LanguageManager.Instance.Instagram.EditProfile;
+            else if (User.FriendshipStatus.OutgoingRequest)
+                FollowBtnContent = LanguageManager.Instance.Instagram.Requested;
             else if (!User.FriendshipStatus.Following && !User.FriendshipStatus.FollowedBy)
                 FollowBtnContent = LanguageManager.Instance.Instagram.Follow;
             else if (!User.FriendshipStatus.Following && User.FriendshipStatus.FollowedBy)
                 FollowBtnContent = LanguageManager.Instance.Instagram.FollowBack;
             else if (User.FriendshipStatus.Following)
                 FollowBtnContent = LanguageManager.Instance.Instagram.Unfollow;
-            else if (User.FriendshipStatus.OutgoingRequest)
-                FollowBtnContent = LanguageManager.Instance.Instagram.Requested;
         }
 
         private void UserProfileViewModel_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)

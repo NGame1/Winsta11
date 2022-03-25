@@ -168,6 +168,8 @@
     <Compile Include="Core\Collections\IncrementalSources\Search\IncrementalPeopleSearch.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Search\IncrementalPlacesSearch.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Stories\IncrementalFeedStories.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Users\IncrementalUserFollowings.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Users\IncrementalUserFollowers.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Users\IncrementalUserMedias.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Users\IncrementalUserReels.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Users\IncrementalUserTaggedMedia.cs" />
@@ -334,6 +336,8 @@
     <Compile Include="ViewModels\Stories\StoryCarouselViewModel.cs" />
     <Compile Include="ViewModels\Users\PlaceProfileViewModel.cs" />
     <Compile Include="ViewModels\Users\HashtagProfileViewModel.cs" />
+    <Compile Include="ViewModels\Users\UserFollowingsViewModel.cs" />
+    <Compile Include="ViewModels\Users\UserFollowersViewModel.cs" />
     <Compile Include="ViewModels\Users\UserProfileViewModel.cs" />
     <Compile Include="Views\Account\ChallengeRequiredView.xaml.cs">
       <DependentUpon>ChallengeRequiredView.xaml</DependentUpon>
@@ -375,6 +379,12 @@
     </Compile>
     <Compile Include="Views\Profiles\HashtagProfileView.xaml.cs">
       <DependentUpon>HashtagProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Profiles\UserFollowersView.xaml.cs">
+      <DependentUpon>UserFollowersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Profiles\UserFollowingsView.xaml.cs">
+      <DependentUpon>UserFollowingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Profiles\UserProfileView.xaml.cs">
       <DependentUpon>UserProfileView.xaml</DependentUpon>
@@ -646,6 +656,14 @@
     <Page Include="Views\Profiles\HashtagProfileView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Profiles\UserFollowersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Profiles\UserFollowingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Profiles\UserProfileView.xaml">
       <SubType>Designer</SubType>

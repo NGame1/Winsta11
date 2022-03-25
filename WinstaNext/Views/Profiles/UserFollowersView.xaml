@@ -1,0 +1,47 @@
+﻿<views:BasePage NavigationCacheMode="Enabled"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="WinstaNext.Views.Profiles.UserFollowersView"
+    xmlns:Models="using:InstagramApiSharp.Classes.Models"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:local="using:WinstaNext.Views.Profiles"
+    xmlns:i="using:Microsoft.Xaml.Interactivity" 
+    xmlns:VM="using:WinstaNext.ViewModels.Users" 
+    xmlns:generic="using:WinstaNext.UI.Generic"
+    xmlns:views="using:WinstaNext.Views"
+    mc:Ignorable="d">
+
+    <views:BasePage.DataContext>
+        <VM:UserFollowersViewModel x:Name="ViewModel"/>
+    </views:BasePage.DataContext>
+    
+    <Grid Padding="{x:Bind PageMargin}">
+        <ListView ItemsSource="{x:Bind ViewModel.UserFollowers, Mode=OneWay}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None">
+
+            <i:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="ItemClick">
+                    <core:InvokeCommandAction Command="{x:Bind ViewModel.NavigateToUserCommand}"/>
+                </core:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="Models:InstaUserShort">
+                    <generic:InstaUserPresenterUC 
+                                    UserShort="{x:Bind Mode=OneWay}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
+                    <Setter Property="Padding" Value="8,4"/>
+                    <Setter Property="Margin" Value="0,0,0,2"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+        </ListView>
+    </Grid>
+</views:BasePage>
