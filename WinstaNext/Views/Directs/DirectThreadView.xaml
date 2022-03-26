@@ -56,8 +56,15 @@
                     DirectUser="{x:Bind User}"
                     DirectItem="{x:Bind}"/>
         </DataTemplate>
+        
         <DataTemplate x:Key="ClipMessageContainerDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:ClipMessageContainerUC 
+                    DirectUser="{x:Bind User}"
+                    DirectItem="{x:Bind}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="StoryReplyDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
+            <messagecontainer:StoryReplyMessageContainerUC 
                     DirectUser="{x:Bind User}"
                     DirectItem="{x:Bind}"/>
         </DataTemplate>
@@ -102,6 +109,7 @@
                                                       MediaShareTemplate="{StaticResource MediaShareMessageContainerUC}"
                                                       PlaceholderMessageDataTemplate="{StaticResource PlaceholderMessageDataTemplate}"
                                                       ProfileMessageDataTemplate="{StaticResource ProfileMessageDataTemplate}"
+                                                      StoryReplyDataTemplate="{StaticResource StoryReplyDataTemplate}"
                                                       TextMessageDataTemplate="{StaticResource TextMessageDataTemplate}"
                                                       VoiceMessageDataTemplate="{StaticResource VoiceMessageDataTemplate}"
                                                       NotSupportedMessageType="{StaticResource NotSupportedDataTemplate}"/>

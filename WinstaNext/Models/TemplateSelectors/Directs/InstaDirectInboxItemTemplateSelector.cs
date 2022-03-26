@@ -22,6 +22,7 @@ namespace WinstaNext.Models.TemplateSelectors.Directs
         public DataTemplate NotSupportedMessageType { get; set; }
         public DataTemplate PlaceholderMessageDataTemplate { get; set; }
         public DataTemplate ProfileMessageDataTemplate { get; set; }
+        public DataTemplate StoryReplyDataTemplate { get; set; }
         public DataTemplate TextMessageDataTemplate { get; set; }
         public DataTemplate VoiceMessageDataTemplate { get; set; }
 
@@ -71,7 +72,7 @@ namespace WinstaNext.Models.TemplateSelectors.Directs
 
                 case InstaDirectThreadItemType.ReelShare:
                     //Story Reply
-                    return NotSupportedMessageType;
+                    return StoryReplyDataTemplate;
                 case InstaDirectThreadItemType.RavenMedia:
                     return NotSupportedMessageType;
                 case InstaDirectThreadItemType.StoryShare:
