@@ -1,5 +1,5 @@
 ﻿<directs:MessageContainerUC
-    x:Class="WinstaNext.UI.Directs.MessageContainer.StoryReplyMessageContainerUC"
+    x:Class="WinstaNext.UI.Directs.MessageContainer.StoryShareMessageContainerUC"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -41,7 +41,9 @@
                     MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
                     CornerRadius="{StaticResource ControlCornerRadius}">
 
-            <Image HorizontalAlignment="{x:Bind DirectItem.UserId, Converter={StaticResource UserIdToHorizontalAlignmentConverter}, Mode=OneWay}"
+            <TextBlock Text="{x:Bind DirectItem.StoryShare.Title, Mode=OneWay}"/>
+
+            <Image HorizontalAlignment="{x:Bind DirectItem.UserId, Converter={StaticResource UserIdToHorizontalAlignmentConverter}, Mode=OneWay}" 
                    x:Name="imgMedia"
                    MaxWidth="185"/>
 
@@ -49,9 +51,12 @@
                         CornerRadius="{StaticResource ControlCornerRadius}"
                         Padding="{StaticResource MessageBubblePadding}"
                         Spacing="{StaticResource MessageBubbleSpacing}"
-                        Background="#80B00000">
+                        Background="#80B00000"
+                        x:Name="txtStack">
 
-                <TextBlock Text="{x:Bind DirectItem.ReelShareMedia.Text, Mode=OneWay}"/>
+                <TextBlock Text="{x:Bind DirectItem.StoryShare.Text, Mode=OneWay}"
+                           x:Name="txtText"/>
+                
                 <TextBlock Text="{x:Bind DirectItem.TimeStamp, Converter={StaticResource DirectItemTimeConverter}, Mode=OneWay}" HorizontalAlignment="Right"/>
                 
             </StackPanel>

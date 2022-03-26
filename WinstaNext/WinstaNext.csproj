@@ -246,6 +246,9 @@
     <Compile Include="UI\Directs\MessageContainer\LinkMessageContainerUC.xaml.cs">
       <DependentUpon>LinkMessageContainerUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Directs\MessageContainer\StoryShareMessageContainerUC.xaml.cs">
+      <DependentUpon>StoryShareMessageContainerUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Directs\MessageContainer\StoryReplyMessageContainerUC.xaml.cs">
       <DependentUpon>StoryReplyMessageContainerUC.xaml</DependentUpon>
     </Compile>
@@ -508,6 +511,10 @@
     <Page Include="UI\Directs\MessageContainer\LinkMessageContainerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\StoryShareMessageContainerUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Directs\MessageContainer\StoryReplyMessageContainerUC.xaml">
       <Generator>MSBuild:Compile</Generator>

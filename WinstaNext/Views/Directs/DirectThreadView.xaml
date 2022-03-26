@@ -68,6 +68,12 @@
                     DirectUser="{x:Bind User}"
                     DirectItem="{x:Bind}"/>
         </DataTemplate>
+        
+        <DataTemplate x:Key="StoryShareDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
+            <messagecontainer:StoryShareMessageContainerUC 
+                    DirectUser="{x:Bind User}"
+                    DirectItem="{x:Bind}"/>
+        </DataTemplate>
 
         <DataTemplate x:Key="TextMessageDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:TextMessageContainerUC 
@@ -110,6 +116,7 @@
                                                       PlaceholderMessageDataTemplate="{StaticResource PlaceholderMessageDataTemplate}"
                                                       ProfileMessageDataTemplate="{StaticResource ProfileMessageDataTemplate}"
                                                       StoryReplyDataTemplate="{StaticResource StoryReplyDataTemplate}"
+                                                      StoryShareDataTemplate="{StaticResource StoryShareDataTemplate}"
                                                       TextMessageDataTemplate="{StaticResource TextMessageDataTemplate}"
                                                       VoiceMessageDataTemplate="{StaticResource VoiceMessageDataTemplate}"
                                                       NotSupportedMessageType="{StaticResource NotSupportedDataTemplate}"/>
