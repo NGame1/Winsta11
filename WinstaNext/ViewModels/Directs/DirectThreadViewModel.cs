@@ -32,6 +32,7 @@ namespace WinstaNext.ViewModels.Directs
 
         public DirectThreadViewModel(InstaDirectInboxThread directThread)
         {
+            if (DirectThread != null && DirectThread.ThreadId == directThread.ThreadId) return;
             DirectThread = directThread;
             Instance = new(DirectThread);
             ThreadItems = new(Instance);

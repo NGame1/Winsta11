@@ -53,7 +53,8 @@ namespace WinstaNext.ViewModels.Directs
 
         public override async Task OnNavigatedToAsync(NavigationEventArgs e)
         {
-            await Inbox.LoadMoreItemsAsync(1);
+            if (Inbox.Count == 0)
+                await Inbox.LoadMoreItemsAsync(1);
             await base.OnNavigatedToAsync(e);
         }
     }

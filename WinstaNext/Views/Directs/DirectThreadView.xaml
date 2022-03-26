@@ -1,4 +1,4 @@
-﻿<Page SizeChanged="Page_SizeChanged" 
+﻿<Page SizeChanged="Page_SizeChanged" NavigationCacheMode="Enabled"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:messagecontainer="using:WinstaNext.UI.Directs.MessageContainer"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
