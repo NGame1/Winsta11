@@ -119,6 +119,7 @@ namespace WinstaNext.UI.Media
 
         void HandleVideoPlayback(InstaMediaVideoPresenterUC videoPresenter)
         {
+            if (videoPresenter == null) return;
             if (!Media.Play)
                 videoPresenter.mediaPlayer.Pause();
             else videoPresenter.mediaPlayer.Play();

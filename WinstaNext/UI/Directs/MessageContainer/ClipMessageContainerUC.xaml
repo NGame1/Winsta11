@@ -51,33 +51,26 @@
 
                 <StackPanel Spacing="{StaticResource MessageBubbleSpacing}"
                             Orientation="Horizontal">
-                    <PersonPicture Visibility="{x:Bind DirectItem.MediaShare.User.Pk, Converter={StaticResource UserIdToProfilePictureVisibilityConverter}, Mode=OneWay}"
-                                   ProfilePicture="{x:Bind DirectItem.MediaShare.User.ProfilePicture, Mode=OneWay}"
+                    <PersonPicture Visibility="{x:Bind DirectItem.Clip.User.Pk, Converter={StaticResource UserIdToProfilePictureVisibilityConverter}, Mode=OneWay}"
+                                   ProfilePicture="{x:Bind DirectItem.Clip.User.ProfilePicture, Mode=OneWay}"
                                    VerticalAlignment="{StaticResource ProfileVerticalAlignment}"
-                                   DisplayName="{x:Bind DirectItem.MediaShare.User.UserName, Mode=OneWay}"
+                                   DisplayName="{x:Bind DirectItem.Clip.User.UserName, Mode=OneWay}"
                                    Height="{StaticResource ProfilePictureSize}"
                                    Width="{StaticResource ProfilePictureSize}">
 
                         <i:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="Tapped">
-                                <core:InvokeCommandAction CommandParameter="{x:Bind DirectItem.User.UserName, Mode=OneWay}" Command="{x:Bind NavigateUserProfileCommand}"/>
+                                <core:InvokeCommandAction CommandParameter="{x:Bind DirectItem.Clip.User.UserName, Mode=OneWay}" Command="{x:Bind NavigateUserProfileCommand}"/>
                             </core:EventTriggerBehavior>
                         </i:Interaction.Behaviors>
                     </PersonPicture>
 
-                    <TextBlock FontWeight="SemiBold"
-                               Grid.Column="1">
-                        <Hyperlink FontWeight="SemiBold">
-                            <Run Text="{x:Bind DirectItem.MediaShare.User.UserName}"/>
-                            
-                            <i:Interaction.Behaviors>
-                                <core:EventTriggerBehavior EventName="Click">
-                                    <core:InvokeCommandAction CommandParameter="{x:Bind DirectItem.User.UserName, Mode=OneWay}"
-                                                              Command="{x:Bind NavigateUserProfileCommand}"/>
-                                </core:EventTriggerBehavior>
-                            </i:Interaction.Behaviors>
-                        </Hyperlink>
-                    </TextBlock>
+                    <HyperlinkButton CommandParameter="{x:Bind DirectItem.Clip.User.UserName, Mode=OneWay}"
+                                     Content="{x:Bind DirectItem.Clip.User.UserName, Mode=OneWay}"
+                                     Command="{x:Bind NavigateUserProfileCommand}"
+                                     VerticalAlignment="Center"
+                                     FontWeight="SemiBold"
+                                     Grid.Column="1"/>
                 </StackPanel>
 
                 <Button Style="{StaticResource FontIconButtonStyle}"

@@ -70,30 +70,31 @@ namespace WinstaNext.Models.TemplateSelectors.Directs
                     return LikeTemplate;
 
                 case InstaDirectThreadItemType.ReelShare:
-                    break;
+                    //Story Reply
+                    return NotSupportedMessageType;
                 case InstaDirectThreadItemType.RavenMedia:
-                    break;
+                    return NotSupportedMessageType;
                 case InstaDirectThreadItemType.StoryShare:
-                    break;
+                    return NotSupportedMessageType;
                 case InstaDirectThreadItemType.ActionLog:
-                    break;
+                    return NotSupportedMessageType;
                 case InstaDirectThreadItemType.Location:
-                    break;
+                    return NotSupportedMessageType;
                 case InstaDirectThreadItemType.Hashtag:
-                    break;
+                    return NotSupportedMessageType;
                 case InstaDirectThreadItemType.LiveViewerInvite:
-                    break;
+                    return NotSupportedMessageType;
                 case InstaDirectThreadItemType.VideoCallEvent:
-                    break;
+                    return NotSupportedMessageType;
                 case InstaDirectThreadItemType.ProductShare:
-                    break;
+                    return NotSupportedMessageType;
                 case InstaDirectThreadItemType.ArEffect:
-                    break;
+                    return NotSupportedMessageType;
 
                 default:
                     return NotSupportedMessageType;
             }
-            return NotSupportedMessageType;
+            
         }
     }
 }

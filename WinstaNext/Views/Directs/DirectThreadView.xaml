@@ -51,6 +51,17 @@
                     DirectItem="{x:Bind}"/>
         </DataTemplate>
 
+        <DataTemplate x:Key="IGTVShareMessageContainerDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
+            <messagecontainer:IGTVShareMessageContainerUC 
+                    DirectUser="{x:Bind User}"
+                    DirectItem="{x:Bind}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="ClipMessageContainerDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
+            <messagecontainer:ClipMessageContainerUC 
+                    DirectUser="{x:Bind User}"
+                    DirectItem="{x:Bind}"/>
+        </DataTemplate>
+
         <DataTemplate x:Key="TextMessageDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:TextMessageContainerUC 
                     DirectUser="{x:Bind User}"
@@ -83,7 +94,9 @@
 
         <directs:InstaDirectInboxItemTemplateSelector x:Key="InstaDirectInboxItemTemplateSelector"
                                                       AnimatedGifMessageDataTemplate="{StaticResource AnimatedGifMessageDataTemplate}"
+                                                      IGTVShareTemplate="{StaticResource IGTVShareMessageContainerDataTemplate}"
                                                       LikeTemplate="{StaticResource LikeMessageContainerUC}"
+                                                      ClipTemplate="{StaticResource ClipMessageContainerDataTemplate}"
                                                       LinkMessageDataTemplate="{StaticResource LinkMessageDataTemplate}"
                                                       MediaMessageType="{StaticResource MediaMessageDataTemplate}"
                                                       MediaShareTemplate="{StaticResource MediaShareMessageContainerUC}"

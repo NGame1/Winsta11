@@ -60,24 +60,17 @@
 
                         <i:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="Tapped">
-                                <core:InvokeCommandAction CommandParameter="{x:Bind DirectItem.User.UserName, Mode=OneWay}" Command="{x:Bind NavigateUserProfileCommand}"/>
+                                <core:InvokeCommandAction CommandParameter="{x:Bind DirectItem.FelixShareMedia.User.UserName, Mode=OneWay}" Command="{x:Bind NavigateUserProfileCommand}"/>
                             </core:EventTriggerBehavior>
                         </i:Interaction.Behaviors>
                     </PersonPicture>
-
-                    <TextBlock FontWeight="SemiBold"
-                               Grid.Column="1">
-                        <Hyperlink FontWeight="SemiBold">
-                            <Run Text="{x:Bind DirectItem.FelixShareMedia.User.UserName}"/>
-                            
-                            <i:Interaction.Behaviors>
-                                <core:EventTriggerBehavior EventName="Click">
-                                    <core:InvokeCommandAction CommandParameter="{x:Bind DirectItem.User.UserName, Mode=OneWay}"
-                                                              Command="{x:Bind NavigateUserProfileCommand}"/>
-                                </core:EventTriggerBehavior>
-                            </i:Interaction.Behaviors>
-                        </Hyperlink>
-                    </TextBlock>
+                    
+                    <HyperlinkButton CommandParameter="{x:Bind DirectItem.FelixShareMedia.User.UserName, Mode=OneWay}"
+                                     Content="{x:Bind DirectItem.FelixShareMedia.User.UserName, Mode=OneWay}"
+                                     Command="{x:Bind NavigateUserProfileCommand}"
+                                     VerticalAlignment="Center"
+                                     FontWeight="SemiBold"
+                                     Grid.Column="1"/>
                 </StackPanel>
 
                 <Button Style="{StaticResource FontIconButtonStyle}"
