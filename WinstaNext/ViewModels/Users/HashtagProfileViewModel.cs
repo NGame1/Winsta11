@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.Core.Attributes;
 using WinstaNext.Core.Collections;
 using WinstaNext.Core.Collections.IncrementalSources.Hashtags;
 using WinstaNext.Core.Navigation;
@@ -34,9 +35,9 @@ namespace WinstaNext.ViewModels.Users
         IncrementalHashtagRecentMedias RecentInstance { get; set; }
         IncrementalHashtagReelsMedia ReelsInstance { get; set; }
 
-        IncrementalLoadingCollection<IncrementalHashtagTopMedias, InstaMedia> TopMedias { get; set; }
-        IncrementalLoadingCollection<IncrementalHashtagRecentMedias, InstaMedia> RecentMedias { get; set; }
-        IncrementalLoadingCollection<IncrementalHashtagReelsMedia, InstaMedia> ReelsMedias { get; set; }
+        RangePlayerAttribute TopMedias { get; set; }
+        RangePlayerAttribute RecentMedias { get; set; }
+        RangePlayerAttribute ReelsMedias { get; set; }
 
         public ISupportIncrementalLoading ItemsSource { get; set; }
 

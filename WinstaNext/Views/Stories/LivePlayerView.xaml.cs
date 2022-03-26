@@ -1,4 +1,5 @@
 ﻿using InstagramApiSharp.Classes.Models;
+using MinistaLivePlayback.Models;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,9 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Core;
+using Windows.Media.Playback;
+using Windows.Media.Streaming.Adaptive;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -37,15 +41,57 @@ namespace WinstaNext.Views.Stories
             get { return (InstaBroadcast)GetValue(LiveProperty); }
             set { SetValue(LiveProperty, value); }
         }
+        AdaptiveMediaSource ams;
 
         public LivePlayerView()
         {
             this.InitializeComponent();
         }
 
-        void OnLiveChanged()
+        async void OnLiveChanged()
         {
+            //InitializeAdaptiveMediaSource(new(Live.DashPlaybackUrl, UriKind.RelativeOrAbsolute));
+            var ministaPlayer = new MinistaLivePlayback.MinistaPlayer();
+            await ministaPlayer.Initialize(new(Live.DashPlaybackUrl, UriKind.RelativeOrAbsolute), mediaPlayerElement);
+            //ministaPlayer.GoToLive();
+        }
 
+        async private void InitializeAdaptiveMediaSource(System.Uri uri)
+        {
+            AdaptiveMediaSourceCreationResult result = await AdaptiveMediaSource.CreateFromUriAsync(uri);
+
+            result.MediaSource.AdvancedSettings.AllSegmentsIndependent = false;
+
+            if (result.Status == AdaptiveMediaSourceCreationStatus.Success)
+            {
+                ams = result.MediaSource;
+                //mediaPlayerElement.SetMediaPlayer(new MediaPlayer());
+                //mediaPlayerElement.MediaPlayer.Source = MediaSource.CreateFromAdaptiveMediaSource(ams);
+                mediaPlayerElement.SetPlaybackSource(MediaSource.CreateFromAdaptiveMediaSource(ams));
+                mediaPlayerElement.Play();
+
+
+                ams.InitialBitrate = ams.AvailableBitrates.Max<uint>();
+
+                //Register for download requests
+                //ams.DownloadRequested += DownloadRequested;
+
+                //Register for download failure and completion events
+                //ams.DownloadCompleted += DownloadCompleted;
+                //ams.DownloadFailed += DownloadFailed;
+
+                //Register for bitrate change events
+                //ams.DownloadBitrateChanged += DownloadBitrateChanged;
+                //ams.PlaybackBitrateChanged += PlaybackBitrateChanged;
+
+                //Register for diagnostic event
+                //ams.Diagnostics.DiagnosticAvailable += DiagnosticAvailable;
+            }
+            else
+            {
+                // Handle failure to create the adaptive media source
+                //MyLogMessageFunction($"Adaptive source creation failed: {uri} - {result.ExtendedError}");
+            }
         }
     }
 }

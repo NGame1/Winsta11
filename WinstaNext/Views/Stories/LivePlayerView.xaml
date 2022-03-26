@@ -4,10 +4,123 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WinstaNext.Views.Stories"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0" Grid.RowSpan="3">
+
+            <MediaElement x:Name="mediaPlayerElement"
+                          AutoPlay="True"
+                          Stretch="Fill"/>
+
+            <Grid Grid.Row="0">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#A0000000" Offset="0"/>
+                        <GradientStop Color="#00000000" Offset="0.8"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="5" Padding="5">
+                    <Muxc:PersonPicture ProfilePicture="{x:Bind Live.BroadcastOwner.ProfilePicture}" 
+                                        DisplayName="{x:Bind Live.BroadcastOwner.UserName}"
+                                        Height="35"
+                                        Width="35"/>
+
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+
+                            <HyperlinkButton CommandParameter="{x:Bind Live.BroadcastOwner}"
+                                             HorizontalAlignment="Stretch"
+                                             Padding="0">
+                                <HyperlinkButton.Content>
+                                    <TextBlock Text="{x:Bind Live.BroadcastOwner.UserName}"
+                                           TextTrimming="CharacterEllipsis"
+                                           TextAlignment="Center"
+                                           TextWrapping="Wrap"
+                                           MaxLines="1"/>
+                                </HyperlinkButton.Content>
+                            </HyperlinkButton>
+
+                            <FontIcon Glyph="&#x02AC;" 
+                                  FontSize="12"
+                                  Foreground="SkyBlue" 
+                                  Visibility="{x:Bind Live.BroadcastOwner.IsVerified}"
+                                  FontFamily="{StaticResource FluentSystemIconsFilled}"/>
+
+                            <!--<TextBlock Text="{x:Bind Live.ViewerCount, Converter={StaticResource MediaDateTimeconverter}, Mode=OneWay}"/>-->
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Grid.Row="2" Padding="8,3">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
+                        <GradientStop Color="#A0000000" Offset="0"/>
+                        <GradientStop Color="#00000000" Offset="0.8"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!--<TextBox Text="{x:Bind ReplyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     PlaceholderText="{x:Bind Winsta:LanguageManager.Instance.Instagram.ReplyPlaceholder}"
+                     GotFocus="ReplyTextBox_GotFocus"
+                     LostFocus="ReplyTextBox_LostFocus"
+                     AcceptsReturn="False"
+                     Grid.Column="0">
+
+                    <TextBox.KeyboardAccelerators>
+
+                        <KeyboardAccelerator
+                            Key="Enter"
+                            Modifiers="None"
+                            Invoked="SendMessageKeyboardAccelerator_Invoked"/>
+
+                    </TextBox.KeyboardAccelerators>
+                </TextBox>-->
+
+                <!--<generic:LikeButtonControl IsLiked="{x:Bind Story.HasLiked, Mode=TwoWay}"
+                                           Command="{x:Bind LikeStoryCommand}"
+                                           Margin="3,0,0,0"
+                                           Grid.Column="1"/>-->
+
+                <!--<Button Command="{x:Bind ReplyStoryCommand, Mode=OneWay}" 
+                    FontFamily="{StaticResource FluentIcons}" 
+                    Content="&#xE122;"
+                    Margin="3,0,0,0"
+                    Grid.Column="2"/>-->
+
+                <!--<Button FontFamily="{StaticResource FluentIcons}"
+                    Content="&#xE10C;"
+                    Margin="3,0,0,0"
+                    Grid.Column="3">
+                    <Button.Flyout>
+                        <stories:InstaStoryItemFlyout Opening="InstaStoryItemFlyout_Opening"
+                                                  Closing="InstaStoryItemFlyout_Closing"
+                                                  StoryItem="{x:Bind Story}"/>
+                    </Button.Flyout>
+                </Button>-->
+
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

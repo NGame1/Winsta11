@@ -5,6 +5,7 @@ using Microsoft.Toolkit.Uwp;
 using Microsoft.Toolkit.Uwp.UI;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,5 +57,9 @@ namespace WinstaNext.ViewModels.Media
             base.OnNavigatedTo(e);
         }
 
+        void OnpropertyChanged(PropertyChangedEventArgs e)
+        {
+
+        }
     }
 }

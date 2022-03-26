@@ -10,7 +10,7 @@
   <Identity
     Name="75eca5ea-4036-403b-954c-3ad7f07381b5"
     Publisher="CN=NGame"
-    Version="0.6.0.0" />
+    Version="0.6.2.0" />
 
   <mp:PhoneIdentity PhoneProductId="75eca5ea-40af-403b-954c-3ad7f07381b5" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

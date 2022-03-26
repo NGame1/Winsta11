@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.Core.Attributes;
 using WinstaNext.Core.Collections;
 using WinstaNext.Core.Collections.IncrementalSources.Hashtags;
 using WinstaNext.Core.Collections.IncrementalSources.Places;
@@ -38,8 +39,8 @@ namespace WinstaNext.ViewModels.Users
         IncrementalPlaceTopMedias TopMediasInstance { get; set; }
         IncrementalPlaceRecentMedias RecentInstance { get; set; }
 
-        IncrementalLoadingCollection<IncrementalPlaceTopMedias, InstaMedia> TopMedias { get; set; }
-        IncrementalLoadingCollection<IncrementalPlaceRecentMedias, InstaMedia> RecentMedias { get; set; }
+        RangePlayerAttribute TopMedias { get; set; }
+        RangePlayerAttribute RecentMedias { get; set; }
 
         public ISupportIncrementalLoading ItemsSource { get; set; }
 

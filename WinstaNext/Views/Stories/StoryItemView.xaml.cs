@@ -76,6 +76,7 @@ namespace WinstaNext.Views.Stories
         {
             var itemPresenter = GetStoryPresenter(previousIndex);
             if (itemPresenter == null) return;
+            itemPresenter.StopTimer();
             if (itemPresenter.LoadMediaElement)
             {
                 //itemPresenter.videoplayer.SetPlaybackSource(MediaSource.CreateFromUri(new Uri(itemPresenter.Story.Videos[0].Uri)));

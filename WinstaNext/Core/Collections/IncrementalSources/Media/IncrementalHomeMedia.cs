@@ -14,6 +14,7 @@ using Windows.Devices.Power;
 using Windows.System.Power;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
+using WinstaNext.Core.Attributes;
 using WinstaNext.Services;
 using WinstaNext.ViewModels;
 using WinstaNext.Views;
@@ -63,7 +64,7 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Media
             var Nav = App.Container.GetService<NavigationService>();
             if (Nav.Content is not HomeView home)
                 return null;
-            var src = (HomeMediaIncrementalLoadingCollection)home.FeedPostsList.ItemsSource;
+            var src = (RangePlayerAttribute)home.FeedPostsList.ItemsSource;
             var playingItem = src.Where(x => x.Play);
             if (!playingItem.Any()) return null;
             var seenMedias = src.IndexOf(playingItem.FirstOrDefault());

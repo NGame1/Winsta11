@@ -7,9 +7,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:models="using:InstagramApiSharp.Classes.Models"
     xmlns:Converters="using:WinstaNext.Converters.Media"
+    xmlns:stories="using:WinstaNext.UI.Flyouts.Stories"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:generic="using:WinstaNext.UI.Generic"
-    xmlns:Winsta="using:WinstaNext" xmlns:stories="using:WinstaNext.UI.Flyouts.Stories"
+    xmlns:Winsta="using:WinstaNext"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">

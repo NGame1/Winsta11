@@ -17,6 +17,7 @@ using Windows.System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.Core.Attributes;
 using WinstaNext.Core.Collections;
 using WinstaNext.Core.Collections.IncrementalSources.Users;
 using WinstaNext.Core.Navigation;
@@ -42,10 +43,10 @@ namespace WinstaNext.ViewModels.Users
         IncrementalUserTaggedMedia TaggedInstance { get; set; }
         IncrementalUserTVMedias IGTVInstance { get; set; }
 
-        IncrementalLoadingCollection<IncrementalUserReels, InstaMedia> UserReels { get; set; }
-        IncrementalLoadingCollection<IncrementalUserMedias, InstaMedia> UserMedias { get; set; }
-        IncrementalLoadingCollection<IncrementalUserTaggedMedia, InstaMedia> UserTaggedMedias { get; set; }
-        IncrementalLoadingCollection<IncrementalUserTVMedias, InstaMedia> TVMedias { get; set; }
+        RangePlayerAttribute UserReels { get; set; }
+        RangePlayerAttribute UserMedias { get; set; }
+        RangePlayerAttribute UserTaggedMedias { get; set; }
+        RangePlayerAttribute TVMedias { get; set; }
 
         public ISupportIncrementalLoading ItemsSource { get; set; }
 
