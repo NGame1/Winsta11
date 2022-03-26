@@ -64,30 +64,23 @@ namespace WinstaNext.Views.Stories
         int previousIndex = -1;
         void StopAll()
         {
-            if (previousIndex == -1) return;
-            var presenter = GetStoryPresenter(previousIndex);
-            if (presenter == null) return;
-            if (presenter.LoadMediaElement)
-                presenter.videoplayer.Stop();
-            else presenter.StopTimer();
+            //if (previousIndex == -1) return;
+            for (int i = 0; i < FlipView.Items.Count; i++)
+            {
+                var presenter = GetStoryPresenter(i);
+                if (presenter == null) continue;
+                presenter.StopTimer();
+            }
         }
 
         void PlayCarouselItem()
         {
             var itemPresenter = GetStoryPresenter(previousIndex);
             if (itemPresenter == null) return;
-            itemPresenter.StopTimer();
-            if (itemPresenter.LoadMediaElement)
-            {
-                //itemPresenter.videoplayer.SetPlaybackSource(MediaSource.CreateFromUri(new Uri(itemPresenter.Story.Videos[0].Uri)));
-                if (itemPresenter.videoplayer.Source == null)
-                    itemPresenter.videoplayer.Source = new Uri(itemPresenter.Story.Videos[0].Uri);
-                itemPresenter.videoplayer.Play();
-            }
-            else
-            {
-                itemPresenter.StartTimer();
-            }
+
+            //itemPresenter.StopTimer();
+
+            itemPresenter.StartTimer();
         }
 
         void OnPlayChanged()
@@ -119,6 +112,8 @@ namespace WinstaNext.Views.Stories
 
             if (!Play) return;
 
+            PlayCarouselItem();
+
             if (FlipView.SelectedItem is InstaStoryItem currentStoryItem)
             {
                 if (currentStoryItem.TakenAtUnix > StoryItem.Seen)
@@ -127,8 +122,6 @@ namespace WinstaNext.Views.Stories
                     MarkStoryAsSeen(currentStoryItem.Id, currentStoryItem.TakenAtUnix);
                 }
             }
-
-            PlayCarouselItem();
         }
 
         private void FlipView_Loaded(object sender, RoutedEventArgs e)

@@ -75,6 +75,7 @@
                     <StackPanel Orientation="Horizontal" Spacing="5">
 
                         <HyperlinkButton CommandParameter="{x:Bind Story.User}"
+                                         Command="{x:Bind NavigateToUserProfileCommand}"
                                          HorizontalAlignment="Stretch"
                                          Padding="0">
                             <HyperlinkButton.Content>

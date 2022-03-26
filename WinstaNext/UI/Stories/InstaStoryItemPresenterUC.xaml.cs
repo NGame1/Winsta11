@@ -124,6 +124,13 @@ namespace WinstaNext.UI.Stories
 
         public void StartTimer()
         {
+            if (LoadMediaElement)
+            {
+                if (videoplayer.Source == null)
+                    videoplayer.Source = new(Story.Videos[0].Uri);
+                videoplayer.Play();
+                return;
+            }
             timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(7000) };
             timer.Tick += Timer_Tick;
             timer.Start();
