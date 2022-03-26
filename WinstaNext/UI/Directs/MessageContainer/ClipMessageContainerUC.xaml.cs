@@ -24,7 +24,7 @@ namespace WinstaNext.UI.Directs.MessageContainer
         void NavigateToMedia()
         {
             var NavigationService =  App.Container.GetService<NavigationService>();
-            NavigationService.Navigate(typeof(SingleInstaMediaView), DirectItem.MediaShare);
+            NavigationService.Navigate(typeof(SingleInstaMediaView), DirectItem.Clip);
         }
 
         protected override void OnDirectItemChanged()
