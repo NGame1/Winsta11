@@ -3,13 +3,9 @@ using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Collections;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using WinstaNext.Abstractions;
 using WinstaNext.Abstractions.Direct.Converters;
 using WinstaNext.Abstractions.Direct.Models;
 

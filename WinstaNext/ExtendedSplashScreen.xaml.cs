@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
@@ -59,6 +60,26 @@ namespace WinstaNext
             rootFrame = new Frame();
             this.Loaded += ExtendedSplashScreen_Loaded;
             //ExtendedSplash_OnResize(null, null);
+            GetBetaVersionAvailability();
+        }
+
+        async void GetBetaVersionAvailability()
+        {
+            try
+            {
+                var http = new HttpClient();
+                var str = await http.GetStringAsync(new Uri("http://worldtimeapi.org/api/timezone/Etc/UTC", UriKind.RelativeOrAbsolute));
+                var json = Newtonsoft.Json.Linq.JObject.Parse(str);
+                var datetime = json.Value<DateTime>("datetime");
+                var end = new DateTime(2022, 04, 30);
+                var rdays = end.Subtract(datetime).Days;
+                if (rdays < 0)
+                    App.Current.Exit();
+            }
+            catch
+            {
+                App.Current.Exit();
+            }
         }
 
         void ExtendedSplash_OnResize(Object sender, WindowSizeChangedEventArgs e)
@@ -78,7 +99,7 @@ namespace WinstaNext
             InitializeUI(rootFrame);
 
             RegisterQuickReplyBgTask();
-            
+
             if (launchActivatedEventArgs.PrelaunchActivated == false)
             {
                 TryEnablePrelaunch();
@@ -90,7 +111,7 @@ namespace WinstaNext
                 Window.Current.Activate();
             }
 
-            
+
 
             ApplicationViewScaling.TrySetDisableLayoutScaling(false);
         }

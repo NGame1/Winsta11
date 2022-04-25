@@ -117,7 +117,7 @@ namespace WinstaNext
             return forceThreeColumns;
         }
 
-        public string GetLanguage()
+        public string GetLanguage(bool resetcontextifsetneeded = true)
         {
             if (LocalSettings.Values.TryGetValue(AppLanguageSettings, out var lang))
             {
@@ -125,11 +125,11 @@ namespace WinstaNext
             }
             else
             {
-                return SetLanguage();
+                return SetLanguage(resetcontextifsetneeded: resetcontextifsetneeded);
             }
         }
 
-        public string SetLanguage(string lang = "")
+        public string SetLanguage(string lang = "", bool resetcontextifsetneeded = true)
         {
             LocalSettings.Values[AppLanguageSettings] = lang;
             ApplicationLanguages.PrimaryLanguageOverride = lang;
@@ -139,9 +139,12 @@ namespace WinstaNext
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
 
-            ResourceContext.GetForCurrentView().Reset();
-            ResourceContext.GetForViewIndependentUse().Reset();
-            
+            if (resetcontextifsetneeded)
+            {
+                ResourceContext.GetForCurrentView().Reset();
+                ResourceContext.GetForViewIndependentUse().Reset();
+            }
+
             return lang;
         }
 

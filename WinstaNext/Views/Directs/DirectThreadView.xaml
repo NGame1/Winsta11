@@ -45,6 +45,12 @@
                     DirectItem="{x:Bind}"/>
         </DataTemplate>
 
+        <DataTemplate x:Key="XmaMediaShareMessageDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
+            <messagecontainer:XmaMediaShareMessageContainerUC 
+                    DirectUser="{x:Bind User}"
+                    DirectItem="{x:Bind}"/>
+        </DataTemplate>
+
         <DataTemplate x:Key="MediaShareMessageContainerUC" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:MediaShareMessageContainerUC 
                     DirectUser="{x:Bind User}"
@@ -107,19 +113,20 @@
 
         <directs:InstaDirectInboxItemTemplateSelector x:Key="InstaDirectInboxItemTemplateSelector"
                                                       AnimatedGifMessageDataTemplate="{StaticResource AnimatedGifMessageDataTemplate}"
-                                                      IGTVShareTemplate="{StaticResource IGTVShareMessageContainerDataTemplate}"
-                                                      LikeTemplate="{StaticResource LikeMessageContainerUC}"
-                                                      ClipTemplate="{StaticResource ClipMessageContainerDataTemplate}"
-                                                      LinkMessageDataTemplate="{StaticResource LinkMessageDataTemplate}"
-                                                      MediaMessageType="{StaticResource MediaMessageDataTemplate}"
-                                                      MediaShareTemplate="{StaticResource MediaShareMessageContainerUC}"
                                                       PlaceholderMessageDataTemplate="{StaticResource PlaceholderMessageDataTemplate}"
+                                                      IGTVShareTemplate="{StaticResource IGTVShareMessageContainerDataTemplate}"
+                                                      XmaMediaShareTemplate="{StaticResource XmaMediaShareMessageDataTemplate}"
                                                       ProfileMessageDataTemplate="{StaticResource ProfileMessageDataTemplate}"
+                                                      VoiceMessageDataTemplate="{StaticResource VoiceMessageDataTemplate}"
+                                                      NotSupportedMessageType="{StaticResource NotSupportedDataTemplate}"
+                                                      LinkMessageDataTemplate="{StaticResource LinkMessageDataTemplate}"
+                                                      MediaShareTemplate="{StaticResource MediaShareMessageContainerUC}"
+                                                      TextMessageDataTemplate="{StaticResource TextMessageDataTemplate}"
+                                                      ClipTemplate="{StaticResource ClipMessageContainerDataTemplate}"
                                                       StoryReplyDataTemplate="{StaticResource StoryReplyDataTemplate}"
                                                       StoryShareDataTemplate="{StaticResource StoryShareDataTemplate}"
-                                                      TextMessageDataTemplate="{StaticResource TextMessageDataTemplate}"
-                                                      VoiceMessageDataTemplate="{StaticResource VoiceMessageDataTemplate}"
-                                                      NotSupportedMessageType="{StaticResource NotSupportedDataTemplate}"/>
+                                                      MediaMessageType="{StaticResource MediaMessageDataTemplate}"
+                                                      LikeTemplate="{StaticResource LikeMessageContainerUC}"/>
     </Page.Resources>
 
     <Grid>

@@ -1,16 +1,7 @@
-﻿using PropertyChanged;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Resources;
-using Windows.UI.Xaml.Markup;
-using Windows.UI.Xaml.Media;
+﻿using Windows.ApplicationModel.Resources;
 
 namespace WinstaNext
 {
-    [AddINotifyPropertyChangedInterface]
     public class LanguageManager
     {
         public static LanguageManager Instance { get; }
@@ -28,7 +19,7 @@ namespace WinstaNext
 
     public class GeneralStrings
     {
-        ResourceLoader _resource = new ResourceLoader("General");
+        ResourceLoader _resource = new("General");
 
         public string ApplicationName { get => _resource.GetString(nameof(ApplicationName)); }
         public string AppTheme { get => _resource.GetString(nameof(AppTheme)); }
@@ -73,7 +64,7 @@ namespace WinstaNext
 
     public class InstagramStrings
     {
-        ResourceLoader _resource = new ResourceLoader("Instagram");
+        ResourceLoader _resource = new("Instagram");
 
         public string Accounts { get => _resource.GetString(nameof(Accounts)); }
         public string Activities { get => _resource.GetString(nameof(Activities)); }
@@ -92,6 +83,7 @@ namespace WinstaNext
         public string EditPost { get => _resource.GetString(nameof(EditPost)); }
         public string EnableCommenting { get => _resource.GetString(nameof(EnableCommenting)); }
         public string Explore { get => _resource.GetString(nameof(Explore)); }
+        public string FailureToastNotification { get => _resource.GetString(nameof(FailureToastNotification)); }
         public string Feed { get => _resource.GetString(nameof(Feed)); }
         public string Follow { get => _resource.GetString(nameof(Follow)); }
         public string FollowBack { get => _resource.GetString(nameof(FollowBack)); }
@@ -119,10 +111,11 @@ namespace WinstaNext
         public string ReplyPlaceholder { get => _resource.GetString(nameof(ReplyPlaceholder)); }
         public string Requested { get => _resource.GetString(nameof(Requested)); }
         public string SelectDirectToLoad { get => _resource.GetString(nameof(SelectDirectToLoad)); }
+        public string SendVerificationCode { get => _resource.GetString(nameof(SendVerificationCode)); }
         public string Stories { get => _resource.GetString(nameof(Stories)); }
         public string Share { get => _resource.GetString(nameof(Share)); }
         public string Story { get => _resource.GetString(nameof(Story)); }
-        public string SendVerificationCode { get => _resource.GetString(nameof(SendVerificationCode)); }
+        public string SuccessToastNotification { get => _resource.GetString(nameof(SuccessToastNotification)); }
         public string Tagged { get => _resource.GetString(nameof(Tagged)); }
         public string Top { get => _resource.GetString(nameof(Top)); }
         public string TrustThisDevice { get => _resource.GetString(nameof(TrustThisDevice)); }
@@ -137,9 +130,10 @@ namespace WinstaNext
 
         internal InstagramStrings() { }
     }
+
     public class SettingsStrings
     {
-        ResourceLoader _resource = new ResourceLoader("Settings");
+        ResourceLoader _resource = new("Settings");
 
         public string Autoplay { get => _resource.GetString(nameof(Autoplay)); }
         public string AutoplayDescription { get => _resource.GetString(nameof(AutoplayDescription)); }
@@ -151,7 +145,7 @@ namespace WinstaNext
 
     public class UnitsStrings
     {
-        ResourceLoader _resource = new ResourceLoader("Units");
+        ResourceLoader _resource = new("Units");
 
         public string Ago { get => _resource.GetString(nameof(Ago)); }
         public string Billion { get => _resource.GetString(nameof(Billion)); }

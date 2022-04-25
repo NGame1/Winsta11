@@ -23,6 +23,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Services;
 using WinstaNext.Views.Profiles;
+using WinstaNext.Views.Stories;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -55,7 +56,7 @@ namespace WinstaNext.UI.Stories
         public string ReplyText { get; set; }
 
         public event EventHandler<bool> TimerEnded;
-        DispatcherTimer timer;
+        
         public InstaStoryItemPresenterUC()
         {
             this.InitializeComponent();
@@ -126,18 +127,33 @@ namespace WinstaNext.UI.Stories
         {
             if (LoadMediaElement)
             {
+                StopExistingTimers();
                 if (videoplayer.Source == null)
                     videoplayer.Source = new(Story.Videos[0].Uri);
                 videoplayer.Play();
-                return;
             }
-            timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(7000) };
-            timer.Tick += Timer_Tick;
-            timer.Start();
+            else
+            {
+                StopExistingTimers();
+                var timer = StoryItemView.StoryTimer;
+                timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(7000) };
+                timer.Tick += Timer_Tick;
+                timer.Start();
+            }
+        }
+
+        void StopExistingTimers()
+        {
+            var timer = StoryItemView.StoryTimer;
+            if (timer == null) return;
+            timer.Tick -= Timer_Tick;
+            timer.Stop();
+            timer = null;
         }
 
         public void StopTimer()
         {
+            var timer = StoryItemView.StoryTimer;
             if (LoadMediaElement) videoplayer.Stop();
             if (timer == null) return;
             timer.Tick -= Timer_Tick;

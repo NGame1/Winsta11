@@ -1,17 +1,48 @@
-﻿<local:BaseContentDialog
+﻿<ContentDialog Loaded="ContentDialog_Loaded"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:directs="using:WinstaNext.Models.TemplateSelectors.Directs"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Models="using:InstagramApiSharp.Classes.Models" 
     x:Class="WinstaNext.UI.Dialogs.UserSelectionDialog"
-    xmlns:local="using:WinstaNext.UI.Dialogs"
+    xmlns:VM="using:WinstaNext.ViewModels.Dialogs"
+    xmlns:directs1="using:WinstaNext.UI.Directs"
+    xmlns:local="using:WinstaNext.UI.Dialogs" 
     mc:Ignorable="d"
+    CloseButtonText="Close"
     PrimaryButtonText="Select"
-    SecondaryButtonText="Cancel"
-    PrimaryButtonClick="Select_Click"
-    SecondaryButtonClick="Cancel_Click">
+    PrimaryButtonClick="Select_Click">
 
-    <ListView ItemContainerStyle="{StaticResource ListViewStretcher}">
-        
+    <ContentDialog.Resources>
+        <DataTemplate x:DataType="Models:InstaDirectInboxThread" x:Key="PrivateDirectThread">
+            <directs1:PrivateDirectThread DirectThread="{Binding Mode=OneWay}"/>
+        </DataTemplate>
+
+        <DataTemplate x:DataType="Models:InstaDirectInboxThread" x:Key="GroupDirectThread">
+            <directs1:GroupDirectThread DirectThread="{Binding Mode=OneWay}"/>
+        </DataTemplate>
+
+        <directs:InstaDirectInboxThreadTemplateSelector 
+            x:Key="InstaDirectInboxThreadTemplateSelector"
+            GroupTemplate="{StaticResource GroupDirectThread}"
+            PrivateTemplate="{StaticResource PrivateDirectThread}"/>
+
+    </ContentDialog.Resources>
+
+    <ContentDialog.DataContext>
+        <VM:UserSelectionDialogViewModel x:Name="ViewModel"/>
+    </ContentDialog.DataContext>
+
+    <ListView ItemTemplateSelector="{StaticResource InstaDirectInboxThreadTemplateSelector}"
+              ItemsSource="{x:Bind ViewModel.Threads}">
+
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
+                <Setter Property="Margin" Value="4"/>
+                <Setter Property="Padding" Value="4"/>
+            </Style>
+        </ListView.ItemContainerStyle>
+
     </ListView>
-</local:BaseContentDialog>
+</ContentDialog>

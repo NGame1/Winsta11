@@ -4,6 +4,7 @@ using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using Windows.Media.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media.Imaging;
 using WinstaNext.Services;
 using WinstaNext.Views.Media;
 
@@ -33,13 +34,32 @@ namespace WinstaNext.UI.Directs.MessageContainer
             if (DirectItem.MediaShare.MediaType == InstaMediaType.Image)
             {
                 vidMedia.Visibility = Visibility.Collapsed;
+                imgMedia.Source = new BitmapImage(new(DirectItem.MediaShare.Images[0].Uri));
             }
-            else
+            else if(DirectItem.MediaShare.MediaType == InstaMediaType.Video)
             {
                 imgMedia.Visibility = Visibility.Collapsed;
+                vidMedia.PosterSource = new BitmapImage(new(DirectItem.MediaShare.Images[0].Uri));
                 vidMedia.SetPlaybackSource(
                     MediaSource.CreateFromUri(
                         new Uri(DirectItem.MediaShare.Videos[0].Uri, UriKind.RelativeOrAbsolute)));
+            }
+            else
+            {
+                var firstSlide = DirectItem.MediaShare.Carousel[0];
+                if (firstSlide.MediaType == InstaMediaType.Image)
+                {
+                    vidMedia.Visibility = Visibility.Collapsed;
+                    imgMedia.Source = new BitmapImage(new(firstSlide.Images[0].Uri));
+                }
+                else if (firstSlide.MediaType == InstaMediaType.Video)
+                {
+                    imgMedia.Visibility = Visibility.Collapsed;
+                    vidMedia.PosterSource = new BitmapImage(new(firstSlide.Images[0].Uri));
+                    vidMedia.SetPlaybackSource(
+                        MediaSource.CreateFromUri(
+                            new Uri(firstSlide.Videos[0].Uri, UriKind.RelativeOrAbsolute)));
+                }
             }
         }
     }

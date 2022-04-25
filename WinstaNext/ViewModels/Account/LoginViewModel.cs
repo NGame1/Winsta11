@@ -2,15 +2,9 @@
 using InstagramApiSharp.Classes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.Xaml.Interactions.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Windows.UI.Core;
-using Windows.UI.Core.Preview;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Core.Dialogs;
 using WinstaNext.Views.Account;

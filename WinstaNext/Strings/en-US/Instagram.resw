@@ -168,6 +168,9 @@
   <data name="Explore" xml:space="preserve">
     <value>Explore</value>
   </data>
+  <data name="FailureToastNotification" xml:space="preserve">
+    <value>Download failed.</value>
+  </data>
   <data name="Feed" xml:space="preserve">
     <value>Feed</value>
   </data>
@@ -260,6 +263,9 @@
   </data>
   <data name="Story" xml:space="preserve">
     <value>Story</value>
+  </data>
+  <data name="SuccessToastNotification" xml:space="preserve">
+    <value>Download completed successfully.</value>
   </data>
   <data name="Tagged" xml:space="preserve">
     <value>Tagged</value>

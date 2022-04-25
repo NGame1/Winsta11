@@ -1,4 +1,6 @@
-﻿using InstagramApiSharp.Classes.Models;
+﻿using InstagramApiSharp.API;
+using InstagramApiSharp.Classes.Models;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -40,15 +42,43 @@ namespace WinstaNext.Views.Media
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        void GoBack(string para)
         {
-            if(e.Parameter is not InstaMedia media)
+            if (Frame.CanGoBack)
+                Frame.GoBack();
+            throw new ArgumentOutOfRangeException(para);
+        }
+
+        async void LoadMediaById(string mediaPk)
+        {
+            using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
-                if (Frame.CanGoBack)
-                    Frame.GoBack();
-                throw new ArgumentOutOfRangeException(nameof(e.Parameter));
+                var res = await Api.MediaProcessor.GetMediaByIdAsync(mediaPk.ToString());
+                if (!res.Succeeded)
+                    GoBack(nameof(mediaPk));
+                Media = res.Value;
+                return;
             }
-            Media = media;
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is string url)
+            {
+                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+                {
+                    var res = await Api.MediaProcessor.GetMediaIdFromUrlAsync(new(url));
+                    if (!res.Succeeded)
+                        GoBack(nameof(e.Parameter));
+                    LoadMediaById(res.Value);
+                    return;
+                }
+            }
+            if (e.Parameter is not InstaMedia media)
+            {
+                GoBack(nameof(e.Parameter));
+            }
+            else Media = media;
             base.OnNavigatedTo(e);
         }
     }

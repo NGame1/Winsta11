@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.ViewModels.Dialogs;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +26,14 @@ namespace WinstaNext.UI.Dialogs
         public BaseContentDialog()
         {
             this.InitializeComponent();
+        }
+
+        private void ContentDialog_Loaded(object sender, RoutedEventArgs e)
+        {
+            if(DataContext is BaseDialogViewModel vm)
+            {
+                vm.HideDialogAction = Hide;
+            }
         }
     }
 }

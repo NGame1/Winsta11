@@ -168,6 +168,9 @@
   <data name="Explore" xml:space="preserve">
     <value>اکسپلور</value>
   </data>
+  <data name="FailureToastNotification" xml:space="preserve">
+    <value>دانلود ناموفق بود.</value>
+  </data>
   <data name="Feed" xml:space="preserve">
     <value>Feed</value>
   </data>
@@ -260,6 +263,9 @@
   </data>
   <data name="Story" xml:space="preserve">
     <value>استوری</value>
+  </data>
+  <data name="SuccessToastNotification" xml:space="preserve">
+    <value>دانلود با موفقیت پایان یافت.</value>
   </data>
   <data name="Tagged" xml:space="preserve">
     <value>تگ شده</value>

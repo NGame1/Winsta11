@@ -37,6 +37,7 @@ using Windows.UI.Xaml.Input;
 using Windows.System;
 using Windows.ApplicationModel.Resources;
 using System.Globalization;
+using WinstaNext.Views.Media;
 
 namespace WinstaNext.ViewModels
 {
@@ -100,7 +101,7 @@ namespace WinstaNext.ViewModels
             SetupTitlebar(CoreApplication.GetCurrentView().TitleBar);
             MenuItems.Add(new(LanguageManager.Instance.General.Home, "\uE10F", typeof(HomeView)));
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Activities, "\uE006", typeof(ActivitiesView)));
-            MenuItems.Add(new(LanguageManager.Instance.Instagram.Explore, "\uF6FA", null));
+            MenuItems.Add(new(LanguageManager.Instance.Instagram.Explore, "\uF6FA", typeof(ExploreView)));
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Directs, "\uE15F", typeof(DirectsListView)));
             FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, new AnimatedSettingsVisualSource(), typeof(SettingsView)));
             ToggleNavigationViewPane = new(ToggleNavigationPane);

@@ -66,10 +66,7 @@ namespace WinstaNext.ViewModels.Users
 
         [OnChangedMethod(nameof(ONSelectedTabChanged))]
         public MenuItemModel SelectedTab { get; set; }
-        ~UserProfileViewModel()
-        {
-
-        }
+        
         public UserProfileViewModel() : base()
         {
             CaptionLinkClickedCommand = new(CaptionLinkClicked);

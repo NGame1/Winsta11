@@ -172,6 +172,7 @@ namespace WinstaNext.ViewModels.Search
         void OnSearchQueryChanged() => OnSearchQueryChanged(false);
         async void OnSearchQueryChanged(bool contexChanged)
         {
+            if (SearchQuery == string.Empty) return;
             if (!contexChanged)
             {
                 StopTimer.Restart();

@@ -49,10 +49,10 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Stories
                 HasMoreAvailable = Pagination.NextMaxId != null;
 
                 List<WinstaStoryItem> Stories = new();
-                for (int i = 0; i < result.Value.Broadcasts.Count; i++)
-                {
-                    Stories.Add(new WinstaStoryItem(result.Value.Broadcasts.ElementAt(i)));
-                }
+                //for (int i = 0; i < result.Value.Broadcasts.Count; i++)
+                //{
+                //    Stories.Add(new WinstaStoryItem(result.Value.Broadcasts.ElementAt(i)));
+                //}
 
                 for (int i = 0; i < result.Value.Items.Count; i++)
                 {

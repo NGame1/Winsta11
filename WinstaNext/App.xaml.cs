@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -23,9 +22,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Core.Dialogs;
-using WinstaNext.Services;
-using Windows.ApplicationModel.Resources.Core;
 using WinstaNext.Helpers;
+using WinstaNext.Services;
 
 namespace WinstaNext
 {
@@ -38,7 +36,7 @@ namespace WinstaNext
 
         public App()
         {
-            var lang = ApplicationSettingsManager.Instance.GetLanguage();
+            var lang = ApplicationSettingsManager.Instance.GetLanguage(false);
             CultureInfo culture = new(lang);
             CultureInfo.CurrentCulture = culture;
             CultureInfo.CurrentUICulture = culture;
@@ -99,7 +97,9 @@ namespace WinstaNext
         BackgroundDownloader CreateBackgroundDownloaderInstance(IServiceProvider arg)
         {
             if (_bgdownloader == null)
+            {
                 _bgdownloader = new BackgroundDownloader();
+            }
             return _bgdownloader;
         }
 

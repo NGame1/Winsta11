@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -17,7 +18,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace WinstaNext.UI.Dialogs
 {
-    public sealed partial class UserSelectionDialog : BaseContentDialog
+    public sealed partial class UserSelectionDialog : ContentDialog
     {
         private UserSelectionDialog()
         {
@@ -32,7 +33,18 @@ namespace WinstaNext.UI.Dialogs
         private void Cancel_Click(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
 
+        }
 
+        public static async Task SelectUsers()
+        {
+            var dialog = new UserSelectionDialog();
+            var result = await dialog.ShowAsync(ContentDialogPlacement.InPlace);
+            
+        }
+
+        private void ContentDialog_Loaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.HideDialogAction = Hide;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace WinstaNext.Views.Stories
             get { return (InstaReelFeed)GetValue(StoryItemProperty); }
             set { SetValue(StoryItemProperty, value); }
         }
-
+        public static DispatcherTimer StoryTimer { get; set; }
         public double PageHeight { get; set; }
 
         public double PageWidth { get; set; }

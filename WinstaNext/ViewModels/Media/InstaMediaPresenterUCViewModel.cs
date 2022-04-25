@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Input;
 using WinstaNext.Core.Dialogs;
 using WinstaNext.Core.Navigation;
 using WinstaNext.Helpers.ExtensionMethods;
+using WinstaNext.UI.Dialogs;
 using WinstaNext.UI.Media;
 using WinstaNext.Views;
 using WinstaNext.Views.Comments;
@@ -55,6 +56,7 @@ namespace WinstaNext.ViewModels.Media
         public RelayCommand<InstaUser> NavigateToUserCommand { get; set; }
         public RelayCommand NavigateToLocationCommand { get; set; }
         public AsyncRelayCommand SaveMediaCommand { get; set; }
+        public AsyncRelayCommand ShareMediaCommand { get; set; }
         public RelayCommand<LinkClickedEventArgs> CaptionLinkClickedCommand { get; set; }
 
         public InstaMediaPresenterUCViewModel()
@@ -69,6 +71,7 @@ namespace WinstaNext.ViewModels.Media
             NavigateToUserCommand = new(NavigateToUser);
             NavigateToLocationCommand = new(NavigateToLocation);
             SaveMediaCommand = new(SaveMediaAsync);
+            ShareMediaCommand = new(ShareMediaAsync);
         }
 
         void CaptionLinkClicked(LinkClickedEventArgs obj)
@@ -263,6 +266,11 @@ namespace WinstaNext.ViewModels.Media
                     Media.HasViewerSaved = isSaved;
                 }
             }
+        }
+
+        async Task ShareMediaAsync()
+        {
+            await UserSelectionDialog.SelectUsers();
         }
 
         async void UnloadLikeAnimation()

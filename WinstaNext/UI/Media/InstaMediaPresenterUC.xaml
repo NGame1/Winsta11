@@ -189,6 +189,8 @@
 
                 <Button Style="{StaticResource FontIconButtonStyle}"
                         FontFamily="{StaticResource FluentSystemIconsRegular}"
+                        Command="{x:Bind ViewModel.ShareMediaCommand}"
+                        Visibility="Collapsed"
                         Content="&#xF6AF;"/>
 
             </StackPanel>

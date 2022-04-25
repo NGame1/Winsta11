@@ -19,6 +19,7 @@ namespace WinstaNext.Models.TemplateSelectors.Directs
         public DataTemplate LinkMessageDataTemplate { get; set; }
         public DataTemplate MediaMessageType { get; set; }
         public DataTemplate MediaShareTemplate { get; set; }
+        public DataTemplate XmaMediaShareTemplate { get; set; }
         public DataTemplate NotSupportedMessageType { get; set; }
         public DataTemplate PlaceholderMessageDataTemplate { get; set; }
         public DataTemplate ProfileMessageDataTemplate { get; set; }
@@ -51,19 +52,23 @@ namespace WinstaNext.Models.TemplateSelectors.Directs
                 case InstaDirectThreadItemType.Placeholder:
                     return PlaceholderMessageDataTemplate;
 
-                    //Shared Video
+                //Shared Video
                 case InstaDirectThreadItemType.Media:
                     return MediaMessageType;
 
-                    //Post shared
+                //New Post share template
+                case InstaDirectThreadItemType.XmaMediaShare:
+                    return XmaMediaShareTemplate;
+
+                //Post shared
                 case InstaDirectThreadItemType.MediaShare:
                     return MediaShareTemplate;
 
-                    //IGTV
+                //IGTV
                 case InstaDirectThreadItemType.FelixShare:
                     return IGTVShareTemplate;
 
-                    //Reels
+                //Reels
                 case InstaDirectThreadItemType.Clip:
                     return ClipTemplate;
 
@@ -100,7 +105,7 @@ namespace WinstaNext.Models.TemplateSelectors.Directs
                 default:
                     return NotSupportedMessageType;
             }
-            
+
         }
     }
 }
