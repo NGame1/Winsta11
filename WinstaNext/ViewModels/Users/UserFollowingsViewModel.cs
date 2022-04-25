@@ -11,7 +11,7 @@ namespace WinstaNext.ViewModels.Users
 {
     internal class UserFollowingsViewModel : BaseViewModel
     {
-        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.Followers;
+        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.Followings;
 
         IncrementalUserFollowings UserFollowingsInstance { get; set; }
 
