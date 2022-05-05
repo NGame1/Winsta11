@@ -135,6 +135,9 @@
   <data name="Comment" xml:space="preserve">
     <value>Comment</value>
   </data>
+  <data name="CommentLikers" xml:space="preserve">
+    <value>Comment Likers</value>
+  </data>
   <data name="CommentPlaceholder" xml:space="preserve">
     <value>Add a comment...</value>
   </data>

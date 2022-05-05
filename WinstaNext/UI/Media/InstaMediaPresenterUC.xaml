@@ -28,6 +28,8 @@
 
         <Converters:CaptionToMarkdownConverter x:Key="CaptionToMarkdownConverter"/>
 
+        <GenericConverters:NullToBooleanConverter IsInverted="True" x:Key="NullToBooleanConverter"/>
+
         <GenericConverters:TextToFlowDirectionConverter x:Key="TextToFlowDirectionConverter"/>
         
     </UserControl.Resources>
@@ -182,15 +184,17 @@
                 <generic:LikeButtonControl IsLiked="{x:Bind Media.HasLiked, Mode=TwoWay}"
                                            Command="{x:Bind ViewModel.LikeMediaCommand}"/>
 
-                <Button Style="{StaticResource FontIconButtonStyle}"
+                <Button x:Load="{x:Bind ViewModel.Media.CommentsCount, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"
                         FontFamily="{StaticResource FluentSystemIconsRegular}"
                         Command="{x:Bind ViewModel.NavigateToCommentsCommand}"
+                        Style="{StaticResource FontIconButtonStyle}"
+                        x:Name="CommentsButton"
                         Content="&#xF2FE;"/>
 
                 <Button Style="{StaticResource FontIconButtonStyle}"
                         FontFamily="{StaticResource FluentSystemIconsRegular}"
                         Command="{x:Bind ViewModel.ShareMediaCommand}"
-                        Visibility="Collapsed"
+                        Visibility="Visible"
                         Content="&#xF6AF;"/>
 
             </StackPanel>
@@ -227,7 +231,9 @@
             
         </controls:MarkdownTextBlock>
 
-        <HyperlinkButton Command="{x:Bind ViewModel.NavigateToCommentsCommand}"
+        <HyperlinkButton x:Load="{x:Bind ViewModel.Media.CommentsCount, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"
+                         Command="{x:Bind ViewModel.NavigateToCommentsCommand}"
+                         x:Name="CommentsHyperlinkButton"
                          Padding="0">
             <TextBlock>
                 <Run Text="{x:Bind Media.CommentsCount}"/>

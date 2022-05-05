@@ -60,7 +60,8 @@ namespace WinstaNext
             rootFrame = new Frame();
             this.Loaded += ExtendedSplashScreen_Loaded;
             //ExtendedSplash_OnResize(null, null);
-            GetBetaVersionAvailability();
+
+            //GetBetaVersionAvailability();
         }
 
         async void GetBetaVersionAvailability()

@@ -22,7 +22,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Core.Dialogs;
-using WinstaNext.Helpers;
 using WinstaNext.Services;
 
 namespace WinstaNext

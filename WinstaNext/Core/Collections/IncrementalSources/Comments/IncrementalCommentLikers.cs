@@ -12,36 +12,32 @@ using System.Threading.Tasks;
 
 namespace WinstaNext.Core.Collections.IncrementalSources.Comments
 {
-    public class IncrementalMediaComments : IIncrementalSource<InstaComment>
+    public class IncrementalCommentLikers : IIncrementalSource<InstaUserShort>
     {
         PaginationParameters Pagination { get; set; }
 
-        public string MediaId { get; }
-        public string TargetCommentId { get; }
+        public string CommentPk { get; set; }
 
-        public IncrementalMediaComments(string mediaId, string targetCommentId = "")
+        public IncrementalCommentLikers(string pk)
         {
-            MediaId = mediaId;
-            TargetCommentId = targetCommentId;
+            CommentPk = pk;
             Pagination = PaginationParameters.MaxPagesToLoad(1);
         }
 
         bool HasMoreAvailable = true;
-        public async Task<IEnumerable<InstaComment>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<InstaUserShort>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken cancellationToken = default)
         {
             if (!HasMoreAvailable) return null;
             using (IInstaApi Api = App.Container.GetService<IInstaApi>())
             {
-                var result = await Api.CommentProcessor.GetMediaCommentsAsync(MediaId, Pagination,
-                                   cancellationToken: cancellationToken,
-                                   targetCommentId: TargetCommentId);
+                var result = await Api.CommentProcessor.GetMediaCommentLikersAsync(CommentPk);
 
                 if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
                     throw result.Info.Exception;
 
-                HasMoreAvailable = result.Value.MoreHeadLoadAvailable;
-                
-                return result.Value.Comments;
+                HasMoreAvailable = false;
+
+                return result.Value;
             }
         }
     }

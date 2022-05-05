@@ -156,6 +156,7 @@
     <Compile Include="Core\Behaviors\SynchronizeHorizontalOffsetBehavior.cs" />
     <Compile Include="Core\Collections\ExtendedObservableCollection.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Activities\IncrementalUserActivities.cs" />
+    <Compile Include="Core\Collections\IncrementalSources\Comments\IncrementalCommentLikers.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Comments\IncrementalMediaComments.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Directs\IncrementalDirectInbox.cs" />
     <Compile Include="Core\Collections\IncrementalSources\Directs\IncrementalDirectThread.cs" />
@@ -339,6 +340,7 @@
     <Compile Include="ViewModels\Account\TwoFactorAuthViewModel.cs" />
     <Compile Include="ViewModels\Activities\ActivitiesViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Comments\CommentLikersViewModel.cs" />
     <Compile Include="ViewModels\Comments\MediaCommentsViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\BaseDialogViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\UserSelectionDialogViewModel.cs" />
@@ -372,6 +374,9 @@
     </Compile>
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\BaseUserControl.cs" />
+    <Compile Include="Views\Comments\CommentLikersView.xaml.cs">
+      <DependentUpon>CommentLikersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Comments\MediaCommentsView.xaml.cs">
       <DependentUpon>MediaCommentsView.xaml</DependentUpon>
     </Compile>
@@ -652,6 +657,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Activities\ActivitiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Comments\CommentLikersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

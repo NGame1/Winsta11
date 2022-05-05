@@ -89,7 +89,7 @@
                     <StackPanel Orientation="Horizontal"
                                 Grid.Row="2"
                                 Spacing="5">
-                        <HyperlinkButton>
+                        <HyperlinkButton Command="{x:Bind NavigateToCommentLikersCommand}">
                             <TextBlock>
                                 <Run Text="{x:Bind Comment.LikesCount}"/>
                                 <Run Text="Likes"/>

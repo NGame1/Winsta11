@@ -48,7 +48,10 @@ namespace WinstaNext.UI.Comments
 
         public AsyncRelayCommand LikeCommecntCommand { get; set; }
         public AsyncRelayCommand LoadMoreCommentsCommand { get; set; }
+
         public RelayCommand<object> NavigateToUserProfileCommand { get; set; }
+        public RelayCommand NavigateToCommentLikersCommand { get; set; }
+
         public RelayCommand<LinkClickedEventArgs> CaptionLinkClickedCommand { get; set; }
 
         public InstaCommentPresenterUC()
@@ -57,6 +60,7 @@ namespace WinstaNext.UI.Comments
             LoadMoreCommentsCommand = new(LoadMoreCommentsAsync);
             LikeCommecntCommand = new(LikeCommentAsync);
             NavigateToUserProfileCommand = new(NavigateToUserProfile);
+            NavigateToCommentLikersCommand = new(NavigateToCommentLikers);
             this.InitializeComponent();
         }
 
@@ -133,5 +137,10 @@ namespace WinstaNext.UI.Comments
             NavigationService.Navigate(typeof(UserProfileView), obj);
         }
 
+        void NavigateToCommentLikers()
+        {
+            var NavigationService = App.Container.GetService<NavigationService>();
+            NavigationService.Navigate(typeof(CommentLikersView), this.Comment.Pk.ToString());
+        }
     }
 }

@@ -73,6 +73,7 @@ namespace WinstaNext
         public string Biography { get => _resource.GetString(nameof(Biography)); }
         public string Comment { get => _resource.GetString(nameof(Comment)); }
         public string Comments { get => _resource.GetString(nameof(Comments)); }
+        public string CommentLikers { get => _resource.GetString(nameof(CommentLikers)); }
         public string CommentPlaceholder { get => _resource.GetString(nameof(CommentPlaceholder)); }
         public string CopyCaption { get => _resource.GetString(nameof(CopyCaption)); }
         public string CopyURL { get => _resource.GetString(nameof(CopyURL)); }

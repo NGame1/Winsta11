@@ -135,6 +135,9 @@
   <data name="Comment" xml:space="preserve">
     <value>کامنت</value>
   </data>
+  <data name="CommentLikers" xml:space="preserve">
+    <value>لایک کننده های کامنت</value>
+  </data>
   <data name="CommentPlaceholder" xml:space="preserve">
     <value>دیدگاهتان را بنویسید...</value>
   </data>
