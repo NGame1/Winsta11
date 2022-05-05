@@ -48,6 +48,7 @@ namespace WinstaNext.UI.Comments
 
         public AsyncRelayCommand LikeCommecntCommand { get; set; }
         public AsyncRelayCommand LoadMoreCommentsCommand { get; set; }
+        public AsyncRelayCommand ReplyCommand { get; set; }
 
         public RelayCommand<object> NavigateToUserProfileCommand { get; set; }
         public RelayCommand NavigateToCommentLikersCommand { get; set; }
@@ -59,6 +60,7 @@ namespace WinstaNext.UI.Comments
             CaptionLinkClickedCommand = new(CaptionLinkClicked);
             LoadMoreCommentsCommand = new(LoadMoreCommentsAsync);
             LikeCommecntCommand = new(LikeCommentAsync);
+            ReplyCommand = new(ReplyAsync);
             NavigateToUserProfileCommand = new(NavigateToUserProfile);
             NavigateToCommentLikersCommand = new(NavigateToCommentLikers);
             this.InitializeComponent();
@@ -124,6 +126,32 @@ namespace WinstaNext.UI.Comments
                         Comment.ChildComments.Insert(0, childs.ElementAt(i));
                     }
                     Comment.HasMoreTailChildComments = result.Value.HasMoreTailChildComments;
+                }
+            }
+            finally
+            {
+            }
+        }
+
+        async Task ReplyAsync()
+        {
+            try
+            {
+                if (ReplyCommand.IsRunning) return;
+                var NavigationService = App.Container.GetService<NavigationService>();
+                string mediaId = string.Empty;
+                if (NavigationService.Content is MediaCommentsView view)
+                {
+                    mediaId = view.MediaId;
+                }
+                
+                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+                {
+                    Func<string, Task<IResult<InstaComment>>> del =
+                        async (string replyText) => await Api.CommentProcessor.ReplyCommentMediaAsync(
+                        mediaId, 
+                        Comment.Pk.ToString(), 
+                        replyText);
                 }
             }
             finally

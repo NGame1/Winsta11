@@ -93,7 +93,7 @@
                                 </HyperlinkButton>
                             </StackPanel>
 
-                            <TextBlock Visibility="{x:Bind ViewModel.User.FriendshipStatus.FollowedBy}"
+                            <TextBlock Visibility="{x:Bind ViewModel.User.FriendshipStatus.FollowedBy, Mode=OneWay}"
                                        TextAlignment="Center">
                                 <Run Text="{x:Bind ViewModel.User.UserName}"/>
                                 <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.IsFollowingYou}"/>

@@ -246,6 +246,9 @@
   <data name="Reels" xml:space="preserve">
     <value>Reels</value>
   </data>
+  <data name="Reply" xml:space="preserve">
+    <value>پاسخ</value>
+  </data>
   <data name="ReplyPlaceholder" xml:space="preserve">
     <value>ارسال پیام ...</value>
   </data>

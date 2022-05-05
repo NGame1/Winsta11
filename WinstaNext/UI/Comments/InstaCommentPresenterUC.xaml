@@ -92,7 +92,13 @@
                         <HyperlinkButton Command="{x:Bind NavigateToCommentLikersCommand}">
                             <TextBlock>
                                 <Run Text="{x:Bind Comment.LikesCount}"/>
-                                <Run Text="Likes"/>
+                                <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Likes}"/>
+                            </TextBlock>
+                        </HyperlinkButton>
+                        
+                        <HyperlinkButton>
+                            <TextBlock>
+                                <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Reply}"/>
                             </TextBlock>
                         </HyperlinkButton>
                         
