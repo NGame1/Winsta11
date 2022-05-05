@@ -63,7 +63,7 @@
                             <TextBlock Text="{x:Bind ViewModel.Hashtag.Subtitle}"
                                        HorizontalAlignment="Center"/>
                             
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                                 <HyperlinkButton>
                                     <TextBlock>
                                         <Run Text="{x:Bind ViewModel.Hashtag.MediaCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
