@@ -12,7 +12,7 @@
     xmlns:VM="using:WinstaNext.ViewModels.Stories"
     xmlns:i="using:Microsoft.Xaml.Interactivity" 
     xmlns:views="using:WinstaNext.Views"
-    xmlns:Winsta="using:WinstaNext" 
+    xmlns:Winsta="using:WinstaNext"
     mc:Ignorable="d">
 
     <views:BasePage.Resources>
@@ -20,8 +20,7 @@
         <DataTemplate x:DataType="models:WinstaStoryItem" 
                       x:Key="StoryTemplate">
 
-            <storiesView:StoryItemView ItemsEnded="StoryItemView_ItemsEnded"
-                                       StoryItem="{x:Bind ReelFeed, Mode=OneWay}"/>
+            <storiesView:StoryItemView StoryItem="{x:Bind ReelFeed, Mode=OneWay}"/>
 
         </DataTemplate>
 
@@ -87,18 +86,6 @@
             <controls:Carousel.EasingFunction>
                 <CubicEase EasingMode="EaseOut"/>
             </controls:Carousel.EasingFunction>
-
-
-
-            <!--<controls:Carousel.ItemTemplate>
-                <DataTemplate x:DataType="models:WinstaStoryItem">
-                    <Image Width="200"
-                           Height="200"
-                           VerticalAlignment="Bottom"
-                           Source="{Binding Thumbnail}"
-                           Stretch="Uniform" />
-                </DataTemplate>
-            </controls:Carousel.ItemTemplate>-->
 
         </controls:Carousel>
     </Grid>

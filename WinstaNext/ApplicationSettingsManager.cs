@@ -20,6 +20,7 @@ using System.Collections;
 using WinstaCore;
 using System.Globalization;
 using Windows.ApplicationModel.Resources.Core;
+#nullable enable
 
 namespace WinstaNext
 {
@@ -54,7 +55,7 @@ namespace WinstaNext
             RoamingSettings = ApplicationData.Current.RoamingSettings;
         }
 
-        public string GetLastLoggedUser()
+        public string? GetLastLoggedUser()
         {
             if (LocalSettings.Values.TryGetValue(LastLoggedUserSettings, out var LastLoggedUser))
             {

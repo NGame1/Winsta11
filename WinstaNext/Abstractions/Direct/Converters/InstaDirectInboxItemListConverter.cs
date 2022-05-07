@@ -1,24 +1,22 @@
-﻿using InstagramApiSharp;
-using InstagramApiSharp.API;
+﻿using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
-using Mapster;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WinstaNext.Abstractions.Direct.Models;
+#nullable enable
 
 namespace WinstaNext.Abstractions.Direct.Converters
 {
     internal class InstaDirectInboxItemListConverter : WinstaObjectConverter<List<InstaDirectInboxItemFullModel>, InstaDirectInboxThread>
     {
-        public InstaDirectInboxThread SourceObject { get; set; }
+        public InstaDirectInboxThread? SourceObject { get; set; }
 
         public List<InstaDirectInboxItemFullModel> Convert()
         {
-            var me = App.Container.GetService<IInstaApi>().GetLoggedUser().LoggedInUser;
+            if (SourceObject == null) throw new ArgumentNullException(nameof(SourceObject));
+            var me = App.Container?.GetService<IInstaApi>()?.GetLoggedUser().LoggedInUser;
             var lst = new List<InstaDirectInboxItemFullModel>();
 
             var users = SourceObject.Users.ToDictionary(x => x.Pk);

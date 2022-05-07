@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<toast launch="args" activationType="background">
+
+  <visual>
+    <binding template="ToastGeneric">
+      <text>SongName</text>
+      <text>Artist</text>
+      <image placement="AppLogoOverride" src="ThumbImage.png" />
+    </binding>
+  </visual>
+
+  <actions>
+    <!--<action content="Play" arguments="TrackID" activationType="foreground"/>-->
+    <!--<action content="Dismiss" arguments="dismiss" activationType="system" />-->
+    <!--<action content="Download" arguments="TrackID" activationType="background" />-->
+  </actions>
+
+  <audio src="ms-winsoundevent:Notification.Reminder"/>
+
+</toast>

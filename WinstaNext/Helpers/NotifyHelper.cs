@@ -13,7 +13,7 @@ namespace WinstaNext.Helpers
         public static async void CreateNotifyEmpty(string subject, string content, string image)
         {
             XmlDocument ToastNotifyXML = new XmlDocument();
-            var toastfile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///ToastNotification.xml", UriKind.RelativeOrAbsolute));
+            var toastfile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Templates/ToastNotification.xml", UriKind.RelativeOrAbsolute));
             var Text = await FileIO.ReadTextAsync(toastfile, Windows.Storage.Streams.UnicodeEncoding.Utf8);
             Text = Text.Replace("SongName", subject);
             Text = Text.Replace("Artist", content);
@@ -29,7 +29,7 @@ namespace WinstaNext.Helpers
         public static async Task<ToastNotification> CreateNotifyEmptyAsync(string subject, string content, string image)
         {
             XmlDocument ToastNotifyXML = new XmlDocument();
-            var toastfile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///ToastNotification.xml", UriKind.RelativeOrAbsolute));
+            var toastfile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Templates/ToastNotification.xml", UriKind.RelativeOrAbsolute));
             var Text = await FileIO.ReadTextAsync(toastfile, Windows.Storage.Streams.UnicodeEncoding.Utf8);
             Text = Text.Replace("SongName", subject);
             Text = Text.Replace("Artist", content);

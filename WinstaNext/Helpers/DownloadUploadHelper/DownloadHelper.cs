@@ -60,8 +60,8 @@ namespace WinstaNext.Helpers.DownloadUploadHelper
                 bgdl.TransferGroup = BackgroundTransferGroup.CreateGroup(Media.InstaIdentifier);
                 bgdl.SuccessToastNotification = await NotifyHelper.CreateNotifyEmptyAsync(LanguageManager.Instance.Instagram.SuccessToastNotification, desfile.Path, Media.User.ProfilePicture);
                 bgdl.FailureToastNotification = await NotifyHelper.CreateNotifyEmptyAsync(LanguageManager.Instance.Instagram.FailureToastNotification, desfile.Path, Media.User.ProfilePicture);
-
                 var dl = bgdl.CreateDownload(uri, desfile);
+
                 dl.StartAsync().AsTask();
             }
         }

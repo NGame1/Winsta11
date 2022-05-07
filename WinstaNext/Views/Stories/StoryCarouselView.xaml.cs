@@ -28,17 +28,5 @@ namespace WinstaNext.Views.Stories
         {
             this.InitializeComponent();
         }
-
-        private void StoryItemView_ItemsEnded(object sender, EventArgs e)
-        {
-            if (carousel.SelectedIndex != carousel.Items.Count - 1)
-                carousel.SelectedIndex++;
-            else
-            {
-                var Navigation = App.Container.GetService<NavigationService>();
-                if(Navigation.CanGoBack)
-                    Navigation.GoBack();
-            }
-        }
     }
 }

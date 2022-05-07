@@ -164,10 +164,9 @@ namespace WinstaNext
             var local = TimeZoneInfo.Local;
             api.TimezoneOffset = Convert.ToInt32(local.BaseUtcOffset.TotalSeconds);
             var tzd = TzdbDateTimeZoneSource.Default.WindowsToTzdbIds.FirstOrDefault(x => x.Key == local.StandardName);
-            api.SetTimezone(tzd.Value);
+            //api.SetTimezone(tzd.Value);
 
             var applang = ApplicationSettingsManager.Instance.GetLanguage();
-            //api.SetAcceptLanguage(applang);
             api.AppLocale = applang;
             api.DeviceLocale = applang;
             api.MappedLocale = applang;
@@ -183,7 +182,7 @@ namespace WinstaNext
             var local = TimeZoneInfo.Local;
             api.TimezoneOffset = Convert.ToInt32(local.BaseUtcOffset.TotalSeconds);
             var tzd = TzdbDateTimeZoneSource.Default.WindowsToTzdbIds.FirstOrDefault(x => x.Key == local.StandardName);
-            api.SetTimezone(tzd.Value);
+            //api.SetTimezone(tzd.Value);
             api.LoadStateDataFromString(session);
             return api;
         }
