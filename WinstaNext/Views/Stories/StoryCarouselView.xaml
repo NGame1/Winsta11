@@ -70,19 +70,6 @@
                 </Style>
             </controls:Carousel.ItemContainerStyle>
 
-            <i:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="SelectionChanged">
-                    <core:InvokeCommandAction CommandParameter="{x:Bind carousel, Mode=OneWay}"
-                                              Command="{x:Bind ViewModel.CarouselSelectionChangedCommand}"/>
-                </core:EventTriggerBehavior>
-
-                <core:EventTriggerBehavior EventName="Loaded">
-                    <core:InvokeCommandAction CommandParameter="{x:Bind carousel, Mode=OneWay}"
-                                              Command="{x:Bind ViewModel.CarouselSelectionChangedCommand}"/>
-                </core:EventTriggerBehavior>
-
-            </i:Interaction.Behaviors>
-
             <controls:Carousel.EasingFunction>
                 <CubicEase EasingMode="EaseOut"/>
             </controls:Carousel.EasingFunction>

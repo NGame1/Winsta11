@@ -7,6 +7,7 @@ using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.ApplicationModel.VoiceCommands;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Abstractions.Stories;
@@ -22,8 +23,6 @@ namespace WinstaNext.ViewModels.Stories
 
         public IncrementalLoadingCollection<IncrementalFeedStories, WinstaStoryItem> Stories { get; private set; }
 
-        public RelayCommand<Carousel> CarouselSelectionChangedCommand { get; set; }
-
         [OnChangedMethod(nameof(OnSelectedItemChanged))]
         public WinstaStoryItem SelectedItem { get; set; }
 
@@ -32,35 +31,7 @@ namespace WinstaNext.ViewModels.Stories
 
         public StoryCarouselViewModel()
         {
-            CarouselSelectionChangedCommand = new(CarouselSelectionChanged);
-        }
 
-        void StopPreviousItem(Carousel carousel)
-        {
-            if (previousindex == -1) return;
-
-            var previousContainer = (CarouselItem)carousel.ContainerFromIndex(previousindex);
-            if (previousContainer == null) return;
-            if (previousContainer.ContentTemplateRoot is StoryItemView previousStoryItemView)
-            {
-                previousStoryItemView.Play = false;
-            }
-        }
-
-        int previousindex = -1;
-        void CarouselSelectionChanged(Carousel carousel)
-        {
-            if (carousel == null || carousel.SelectedItem == null) return;
-            var container = (CarouselItem)carousel.ContainerFromItem(carousel.SelectedItem);
-            if (container == null) return;
-
-            StopPreviousItem(carousel);
-
-            previousindex = carousel.SelectedIndex;
-            if (container.ContentTemplateRoot is StoryItemView storyItemView)
-            {
-                storyItemView.Play = true;
-            }
         }
 
         public override void OnNavigatedTo(NavigationEventArgs e)
@@ -74,26 +45,13 @@ namespace WinstaNext.ViewModels.Stories
             (NavigationService.Content as FrameworkElement).SizeChanged += StoryCarouselViewModel_SizeChanged;
             Stories = para.Stories;
             SelectedItem = para.TargetItem;
-            for (int i = 0; i < Stories.Count; i++)
-            {
-                var StoryItem = Stories.ElementAt(i).ReelFeed;
-                if (StoryItem != null)
-                {
-                    for (int j = 0; j < StoryItem.Items.Count; j++)
-                    {
-                        var sti = StoryItem.Items.ElementAt(j);
-                        sti.User = StoryItem.User;
-                    }
-                }
-            }
-
             base.OnNavigatedTo(e);
         }
 
         public override void OnNavigatedFrom(NavigationEventArgs e)
         {
             (NavigationService.Content as FrameworkElement).SizeChanged -= StoryCarouselViewModel_SizeChanged;
-            
+
             base.OnNavigatedFrom(e);
         }
 
@@ -105,63 +63,54 @@ namespace WinstaNext.ViewModels.Stories
 
         void OnSelectedItemChanged()
         {
-            var storyindex = Stories.IndexOf(SelectedItem);
-            for (int i = storyindex; i < storyindex + 4; i++)
+            if (SelectedItem == null) return;
+            var Index = Stories.IndexOf(SelectedItem);
+            LoadStoryIndexes(Index - 2, Index + 2);
+        }
+
+        void LoadStoryIndexes(int first, int last)
+        {
+            for (int i = first; i <= last; i++)
             {
-                if (i < Stories.Count)
-                {
-                    var story = Stories.ElementAt(i);
-                    LoadStory(story);
-                }
-            }
-            for (int i = storyindex; i > storyindex - 4; i--)
-            {
-                if (i > 0)
-                {
-                    var story = Stories.ElementAt(i);
-                    LoadStory(story);
-                }
+                if (i < 0 || i >= Stories.Count) continue;
+                LoadStory(i);
             }
         }
 
-        Dictionary<string, bool> loadingStories = new Dictionary<string, bool>();
-        async void LoadStory(WinstaStoryItem story)
+        void LoadStory(int Index)
         {
-            if (story.ReelFeed == null) return;
-            var StoryItem = story.ReelFeed;
-            string pk = StoryItem.User != null ? StoryItem.User.Pk.ToString() : StoryItem.Owner.Pk;
+            var story = Stories.ElementAt(Index);
+            if (story.ReelFeed != null) LoadReelFeed(story.ReelFeed);
+        }
+
+        async void LoadReelFeed(WinstaReelFeed feed)
+        {
+            if (feed == null) throw new ArgumentNullException(nameof(feed));
+            if (feed.Items.Any()) return;
+            if (feed.IsLoading) return;
+            feed.IsLoading = true;
             try
             {
-                if (loadingStories.TryGetValue(pk, out var isloading))
+                string pk = feed.User != null ? feed.User.Pk.ToString() : feed.Owner.Pk;
+                using (var Api = App.Container?.GetService<IInstaApi>())
                 {
-                    if (isloading) return;
-                }
-                loadingStories[pk] = true;
-                if (!StoryItem.Items.Any())
-                {
-                    using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+                    if (feed.User == null)
                     {
-                        if(StoryItem.User == null)
-                        {
-                            var res = await Api.StoryProcessor.GetUsersStoriesAsHighlightsAsync(pk);
-                        }
+                        var res = await Api.StoryProcessor.GetUsersStoriesAsHighlightsAsync(pk);
+                    }
 
-                        var result = await Api.StoryProcessor.GetUserStoryFeedAsync(StoryItem.User.Pk);
-                        if (result.Succeeded)
-                        {
-                            foreach (var item in result.Value.Items)
-                            {
-                                StoryItem.Items.Add(item);
-                                //foreach (var storyitem in item.Items)
-                                //{
-                                //    StoryItem.Items.Add(storyitem);
-                                //}
-                            }
-                        }
+                    var result = await Api.StoryProcessor.GetUserStoryFeedAsync(feed.User.Pk);
+                    if (!result.Succeeded) return;
+                    for (int i = 0; i < result.Value.Items.Count; i++)
+                    {
+                        feed.Items.Add(result.Value.Items.ElementAt(i));
                     }
                 }
             }
-            finally { loadingStories.Remove(pk); }
+            finally
+            {
+                feed.IsLoading = false;
+            }
         }
 
     }

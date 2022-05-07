@@ -130,6 +130,7 @@
     <Compile Include="Abstractions\Direct\Converters\InstaDirectInboxItemListConverter.cs" />
     <Compile Include="Abstractions\Direct\Models\InstaDirectInboxItemFullModel.cs" />
     <Compile Include="Abstractions\Media\WinstaMediaLikerUser.cs" />
+    <Compile Include="Abstractions\Stories\WinstaReelFeed.cs" />
     <Compile Include="Abstractions\Stories\WinstaStoryItem.cs" />
     <Compile Include="Abstractions\WinstaObjectConverter.cs" />
     <Compile Include="App.xaml.cs">

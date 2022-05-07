@@ -21,8 +21,7 @@
         
         <FlipView.ItemTemplate>
             <DataTemplate x:DataType="models:InstaStoryItem">
-                <stories:InstaStoryItemPresenterUC TimerEnded="InstaStoryItemPresenterUC_TimerEnded"
-                                                   Story="{x:Bind Mode=OneWay}"/>
+                <stories:InstaStoryItemPresenterUC Story="{x:Bind Mode=OneWay}"/>
             </DataTemplate>
         </FlipView.ItemTemplate>
         

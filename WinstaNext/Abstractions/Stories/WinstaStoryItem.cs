@@ -1,4 +1,5 @@
 ﻿using InstagramApiSharp.Classes.Models;
+#nullable enable
 
 namespace WinstaNext.Abstractions.Stories
 {
@@ -16,13 +17,13 @@ namespace WinstaNext.Abstractions.Stories
             HashtagStory = hashtagStory;
         }
 
-        public WinstaStoryItem(InstaReelFeed reelFeed)
+        public WinstaStoryItem(WinstaReelFeed reelFeed)
         {
             ReelFeed = reelFeed;
         }
 
         public InstaBroadcast Broadcast { get; }
         public InstaHashtagStory HashtagStory { get; }
-        public InstaReelFeed ReelFeed { get; }
+        public WinstaReelFeed ReelFeed { get; }
     }
 }

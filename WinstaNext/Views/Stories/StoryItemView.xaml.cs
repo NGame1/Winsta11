@@ -26,120 +26,27 @@ namespace WinstaNext.Views.Stories
           typeof(StoryItemView),
           new PropertyMetadata(null));
 
-        //[OnChangedMethod(nameof(OnStoryItemChanged))]
         public InstaReelFeed StoryItem
         {
             get { return (InstaReelFeed)GetValue(StoryItemProperty); }
             set { SetValue(StoryItemProperty, value); }
         }
-        public static DispatcherTimer StoryTimer { get; set; }
+
         public double PageHeight { get; set; }
 
         public double PageWidth { get; set; }
 
-        [OnChangedMethod(nameof(OnPlayChanged))]
-        public bool Play { get; set; } = false;
-
         public double StoryDuration { get; set; } = 0;
         public double ElapsedTime { get; set; }
-
-        public event EventHandler ItemsEnded;
 
         public StoryItemView()
         {
             this.InitializeComponent();
         }
 
-        InstaStoryItemPresenterUC GetStoryPresenter(int index)
-        {
-            var fic = FlipView.ContainerFromIndex(index);
-            if (fic is FlipViewItem fi)
-            {
-                if (fi.ContentTemplateRoot is InstaStoryItemPresenterUC presenter)
-                    return presenter;
-            }
-            return null;
-        }
-
-        int previousIndex = -1;
-        void StopAll()
-        {
-            //if (previousIndex == -1) return;
-            for (int i = 0; i < FlipView.Items.Count; i++)
-            {
-                var presenter = GetStoryPresenter(i);
-                if (presenter == null) continue;
-                presenter.StopTimer();
-            }
-        }
-
-        void PlayCarouselItem()
-        {
-            var itemPresenter = GetStoryPresenter(previousIndex);
-            if (itemPresenter == null) return;
-
-            //itemPresenter.StopTimer();
-
-            itemPresenter.StartTimer();
-        }
-
-        void OnPlayChanged()
-        {
-            if (!Play) StopAll();
-            else
-            {
-                StopAll();
-
-                PlayCarouselItem();
-
-                if (FlipView.SelectedItem is InstaStoryItem currentStoryItem)
-                {
-                    if (currentStoryItem.TakenAtUnix > StoryItem.Seen)
-                    {
-                        StoryItem.Seen = currentStoryItem.TakenAtUnix;
-                        MarkStoryAsSeen(currentStoryItem.Id, currentStoryItem.TakenAtUnix);
-                    }
-                }
-            }
-        }
-
-        void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SetFlipViewSize();
-            StopAll();
-
-            previousIndex = FlipView.SelectedIndex;
-
-            if (!Play) return;
-
-            PlayCarouselItem();
-
-            if (FlipView.SelectedItem is InstaStoryItem currentStoryItem)
-            {
-                if (currentStoryItem.TakenAtUnix > StoryItem.Seen)
-                {
-                    StoryItem.Seen = currentStoryItem.TakenAtUnix;
-                    MarkStoryAsSeen(currentStoryItem.Id, currentStoryItem.TakenAtUnix);
-                }
-            }
-        }
-
-        private void FlipView_Loaded(object sender, RoutedEventArgs e)
-        {
-            SetFlipViewSize();
-            var lastseen = StoryItem.Seen;
-            var seenitem = StoryItem.Items.FirstOrDefault(x => x.TakenAtUnix == lastseen);
-            var index = StoryItem.Items.IndexOf(seenitem);
-            if (index > 0 && index != StoryItem.Items.Count - 1)
-            {
-                FlipView.SelectedIndex = index + 1;
-            }
-        }
-
-        private void FlipView_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            SetFlipViewSize();
-        }
+        void FlipView_Loaded(object sender, RoutedEventArgs e) => SetFlipViewSize();
+        void FlipView_SizeChanged(object sender, SizeChangedEventArgs e) => SetFlipViewSize();
+        void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e) => SetFlipViewSize();
 
         void SetFlipViewSize()
         {
@@ -159,25 +66,6 @@ namespace WinstaNext.Views.Stories
                     fvi.Width = PageWidth;
                 }
             }
-        }
-
-        async void MarkStoryAsSeen(string storyItemId, long takenAtUnix)
-        {
-            using (var Api = App.Container.GetService<IInstaApi>())
-            {
-                await Api.StoryProcessor.MarkStoryAsSeenAsync(storyItemId, takenAtUnix);
-            }
-        }
-
-        private void InstaStoryItemPresenterUC_TimerEnded(object sender, bool e)
-        {
-            if (sender is not InstaStoryItemPresenterUC presenter) return;
-            presenter.StopTimer();
-            if (FlipView.SelectedIndex < FlipView.Items.Count - 1)
-            {
-                FlipView.SelectedIndex++;
-            }
-            else ItemsEnded?.Invoke(this, EventArgs.Empty);
         }
     }
 }

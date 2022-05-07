@@ -51,17 +51,17 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Stories
                 List<WinstaStoryItem> Stories = new();
                 //for (int i = 0; i < result.Value.Broadcasts.Count; i++)
                 //{
-                //    Stories.Add(new WinstaStoryItem(result.Value.Broadcasts.ElementAt(i)));
+                //    Stories.Add(new(result.Value.Broadcasts.ElementAt(i)));
                 //}
 
                 for (int i = 0; i < result.Value.Items.Count; i++)
                 {
-                    Stories.Add(new WinstaStoryItem(result.Value.Items.ElementAt(i)));
+                    Stories.Add(new(new WinstaReelFeed(result.Value.Items.ElementAt(i))));
                 }
 
                 for (int i = 0; i < result.Value.HashtagStories.Count; i++)
                 {
-                    Stories.Add(new WinstaStoryItem(result.Value.HashtagStories.ElementAt(i)));
+                    Stories.Add(new(result.Value.HashtagStories.ElementAt(i)));
                 }
 
                 return Stories;

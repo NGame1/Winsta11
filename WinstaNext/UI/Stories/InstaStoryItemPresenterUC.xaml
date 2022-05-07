@@ -20,7 +20,8 @@
             <local:StoryMediaPlayerTemplatedControl Story="{x:Bind Mode=OneWay}"/>
         </DataTemplate>-->
 
-        <TemplateSelectors:CarouselMediaTemplateSelector x:Key="CarouselMediaTemplateSelector"/>
+        <!--<TemplateSelectors:CarouselMediaTemplateSelector x:Key="CarouselMediaTemplateSelector"/>-->
+
         <Converters:MediaDateTimeconverter x:Key="MediaDateTimeconverter"/>
     </UserControl.Resources>
 
@@ -33,46 +34,47 @@
 
         <Grid Grid.Row="0" Grid.RowSpan="3">
 
-            <Image x:Load="{x:Bind LoadImage, Mode=OneWay}"
-                   Source="{x:Bind Story.Images[0].Uri, Mode=OneWay}"
-                   PointerReleased="Story_PointerReleased"
-                   PointerPressed="Story_PointerPressed"
-                   x:FieldModifier="public"
+            <Image Source="{x:Bind Story.Images[0].Uri}"
                    x:Name="imageviewer"
                    Stretch="Fill"/>
 
-            <MediaElement x:Load="{x:Bind LoadMediaElement, Mode=OneWay}"
-                          PosterSource="{x:Bind Story.Images[0].Uri, Mode=OneWay}"
+            <!--<MediaElement PosterSource="{x:Bind Story.Images[0].Uri, Mode=OneWay}"
                           PointerReleased="Story_PointerReleased"
                           PointerPressed="Story_PointerPressed"
                           MediaEnded="videoplayer_MediaEnded"
-                          x:FieldModifier="public"
                           x:Name="videoplayer"
-                          AutoPlay="True"
-                          Stretch="Fill"/>
+                          Stretch="Fill"/>-->
 
         </Grid>
 
         <Grid Grid.Row="0">
             <Grid.Background>
-                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                    <GradientStop Color="#A0000000" Offset="0"/>
-                    <GradientStop Color="#00000000" Offset="0.8"/>
+                <LinearGradientBrush StartPoint="0.5,0"
+                                     EndPoint="0.5,1">
+                    <GradientStop Color="#A0000000" 
+                                  Offset="0"/>
+                    <GradientStop Color="#00000000"
+                                  Offset="0.8"/>
                 </LinearGradientBrush>
             </Grid.Background>
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="5" Padding="5">
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="0"
+                        Spacing="5" 
+                        Padding="5">
                 <muxc:PersonPicture ProfilePicture="{x:Bind Story.User.ProfilePicture}" 
                                     DisplayName="{x:Bind Story.User.UserName}"
                                     Height="35"
                                     Width="35"/>
 
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="5">
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="5">
 
                         <HyperlinkButton CommandParameter="{x:Bind Story.User}"
                                          Command="{x:Bind NavigateToUserProfileCommand}"
@@ -116,17 +118,15 @@
 
             <TextBox Text="{x:Bind ReplyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      PlaceholderText="{x:Bind Winsta:LanguageManager.Instance.Instagram.ReplyPlaceholder}"
-                     GotFocus="ReplyTextBox_GotFocus"
-                     LostFocus="ReplyTextBox_LostFocus"
                      AcceptsReturn="False"
                      Grid.Column="0">
 
                 <TextBox.KeyboardAccelerators>
 
                     <KeyboardAccelerator
-                            Key="Enter"
-                            Modifiers="None"
-                            Invoked="SendMessageKeyboardAccelerator_Invoked"/>
+                                Key="Enter"
+                                Modifiers="None"
+                                Invoked="SendMessageKeyboardAccelerator_Invoked"/>
 
                 </TextBox.KeyboardAccelerators>
             </TextBox>
@@ -147,12 +147,10 @@
                     Margin="3,0,0,0"
                     Grid.Column="3">
                 <Button.Flyout>
-                    <stories:InstaStoryItemFlyout Opening="InstaStoryItemFlyout_Opening"
-                                                  Closing="InstaStoryItemFlyout_Closing"
-                                                  StoryItem="{x:Bind Story}"/>
+                    <stories:InstaStoryItemFlyout StoryItem="{x:Bind Story}"/>
                 </Button.Flyout>
             </Button>
-            
+
         </Grid>
     </Grid>
 </UserControl>
