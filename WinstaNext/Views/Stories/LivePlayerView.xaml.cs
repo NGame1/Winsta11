@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.Abstractions.Stories;
 using WinstaNext.Helpers;
 using WinstaNext.Services;
 
@@ -38,17 +39,22 @@ namespace WinstaNext.Views.Stories
 
         public double PageWidth { get; set; }
 
-        public static readonly DependencyProperty LiveProperty = DependencyProperty.Register(
-          "Live",
-          typeof(InstaBroadcast),
+        public static readonly DependencyProperty StoryRootProperty = DependencyProperty.Register(
+          "StoryRoot",
+          typeof(WinstaStoryItem),
           typeof(LivePlayerView),
           new PropertyMetadata(null));
+
+        public WinstaStoryItem StoryRoot
+        {
+            get { return (WinstaStoryItem)GetValue(StoryRootProperty); }
+            set { SetValue(StoryRootProperty, value); }
+        }
 
         [OnChangedMethod(nameof(OnLiveChanged))]
         public InstaBroadcast Live
         {
-            get { return (InstaBroadcast)GetValue(LiveProperty); }
-            set { SetValue(LiveProperty, value); }
+            get => StoryRoot.Broadcast;
         }
 
         public LivePlayerView()

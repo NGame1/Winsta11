@@ -23,11 +23,12 @@ namespace WinstaNext.Abstractions.Direct.Converters
             for (int i = 0; i < SourceObject.Items.Count; i++)
             {
                 var item = SourceObject.Items.ElementAt(i);
-                var newItem = new InstaDirectInboxItemFullModel(item);
                 var find = users.Where(x => x.Key == item.UserId);
+                InstaUserShort? user = null;
                 if (find.Any())
-                    newItem.User = find.FirstOrDefault().Value;
-                else newItem.User = me;
+                    user = find.FirstOrDefault().Value;
+                else user = me;
+                var newItem = new InstaDirectInboxItemFullModel(item, user);
                 lst.Add(newItem);
             }
             return lst;

@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.Abstractions.Stories;
 using WinstaNext.Services;
 using WinstaNext.Views.Profiles;
 
@@ -26,13 +27,13 @@ namespace WinstaNext.UI.Stories
     {
         public static readonly DependencyProperty ReelFeedProperty = DependencyProperty.Register(
              "ReelFeed",
-             typeof(InstaReelFeed),
+             typeof(WinstaReelFeed),
              typeof(InstaReelFeedPresenterUC),
              new PropertyMetadata(null));
 
-        public InstaReelFeed ReelFeed
+        public WinstaReelFeed ReelFeed
         {
-            get { return (InstaReelFeed)GetValue(ReelFeedProperty); }
+            get { return (WinstaReelFeed)GetValue(ReelFeedProperty); }
             set { SetValue(ReelFeedProperty, value); }
         }
 

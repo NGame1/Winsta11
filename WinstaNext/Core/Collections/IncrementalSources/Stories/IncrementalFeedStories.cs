@@ -56,7 +56,7 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Stories
 
                 for (int i = 0; i < result.Value.Items.Count; i++)
                 {
-                    Stories.Add(new(new WinstaReelFeed(result.Value.Items.ElementAt(i))));
+                    Stories.Add(new(result.Value.Items.ElementAt(i)));
                 }
 
                 for (int i = 0; i < result.Value.HashtagStories.Count; i++)

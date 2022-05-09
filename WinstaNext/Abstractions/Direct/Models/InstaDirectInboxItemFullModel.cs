@@ -12,8 +12,8 @@ namespace WinstaNext.Abstractions.Direct.Models
     [AddINotifyPropertyChangedInterface]
     public class InstaDirectInboxItemFullModel : InstaDirectInboxItem
     {
-        public InstaUserShort User { get; set; }
-        public InstaDirectInboxItemFullModel(InstaDirectInboxItem baseObject)
+        public InstaUserShort? User { get; }
+        public InstaDirectInboxItemFullModel(InstaDirectInboxItem baseObject, InstaUserShort? user)
         {
             var properties = baseObject.GetType().GetProperties();
 
@@ -28,6 +28,8 @@ namespace WinstaNext.Abstractions.Direct.Models
                     this.GetType().GetProperty(property.Name).SetValue(this, value, null);
                 }
             });
+
+            User = user;
 
         }
     }

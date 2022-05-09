@@ -73,6 +73,7 @@ namespace WinstaNext
         private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
         {
             e.Handled = true;
+            var ex = e.Exception;
             var stack = Environment.StackTrace;
             MessageDialogHelper.Show(e.Message);
         }

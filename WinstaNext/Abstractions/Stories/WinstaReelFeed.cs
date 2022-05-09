@@ -13,7 +13,7 @@ namespace WinstaNext.Abstractions.Stories
         public WinstaReelFeed(InstaReelFeed baseObject)
         {
             var properties = baseObject.GetType().GetProperties();
-            
+
             properties.ToList().ForEach(property =>
             {
                 //Check whether that property is present in derived class

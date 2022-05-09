@@ -5,6 +5,7 @@ using InstagramApiSharp.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using PropertyChanged;
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
@@ -26,11 +27,15 @@ namespace WinstaNext.UI.Stories
              typeof(InstaStoryItemPresenterUC),
              new PropertyMetadata(null));
 
+        [OnChangedMethod(nameof(OnStoryChanged))]
         public InstaStoryItem Story
         {
             get { return (InstaStoryItem)GetValue(StoryProperty); }
             set { SetValue(StoryProperty, value); }
         }
+
+        public bool LoadImage { get; set; } = false;
+        public bool LoadVideo { get; set; } = false;
 
         RelayCommand<object> NavigateToUserProfileCommand { get; set; }
         AsyncRelayCommand LikeStoryCommand { get; set; }
@@ -92,5 +97,29 @@ namespace WinstaNext.UI.Stories
             NavigationService.Navigate(typeof(UserProfileView), obj);
         }
 
+        void OnStoryChanged()
+        {
+            if (Story is null) return;
+            if (Story.MediaType == InstaMediaType.Video)
+                LoadVideo = true;
+            else LoadImage = true;
+        }
+
+        public void Play()
+        {
+            if (LoadVideo)
+                videoplayer.Play();
+        }
+
+        public void Stop()
+        {
+            if (LoadVideo)
+                videoplayer.Stop();
+        }
+
+        private void videoplayer_Loaded(object sender, RoutedEventArgs e)
+        {
+            videoplayer.Source = new(Story.Videos[0].Uri, UriKind.RelativeOrAbsolute);
+        }
     }
 }

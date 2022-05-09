@@ -113,7 +113,7 @@ namespace WinstaNext.ViewModels.Users
                          (FollowBtnContent == LanguageManager.Instance.Instagram.FollowBack));
 
             IResult<InstaFriendshipFullStatus> result;
-            using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+            using (IInstaApi Api = App.Container?.GetService<IInstaApi>())
             {
                 if (follow)
                     result = await Api.UserProcessor.FollowUserAsync(User.Pk,

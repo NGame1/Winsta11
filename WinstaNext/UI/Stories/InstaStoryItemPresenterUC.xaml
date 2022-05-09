@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<UserControl x:DefaultBindMode="OneWay"
     xmlns:TemplateSelectors="using:WinstaNext.Models.TemplateSelectors.Media" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -35,15 +35,16 @@
         <Grid Grid.Row="0" Grid.RowSpan="3">
 
             <Image Source="{x:Bind Story.Images[0].Uri}"
+                   x:Load="{x:Bind LoadImage}"
                    x:Name="imageviewer"
                    Stretch="Fill"/>
 
-            <!--<MediaElement PosterSource="{x:Bind Story.Images[0].Uri, Mode=OneWay}"
-                          PointerReleased="Story_PointerReleased"
-                          PointerPressed="Story_PointerPressed"
-                          MediaEnded="videoplayer_MediaEnded"
+            <MediaElement PosterSource="{x:Bind Story.Images[0].Uri}"
+                          x:Load="{x:Bind LoadVideo}"
+                          Loaded="videoplayer_Loaded"
                           x:Name="videoplayer"
-                          Stretch="Fill"/>-->
+                          AutoPlay="False"
+                          Stretch="Fill"/>
 
         </Grid>
 

@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.Abstractions.Stories;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,17 +26,23 @@ namespace WinstaNext.Views.Stories
     [AddINotifyPropertyChangedInterface]
     public sealed partial class HashtagStoryItemView : Page
     {
-        public static readonly DependencyProperty HashtagStoryItemProperty = DependencyProperty.Register(
-          "HashtagStoryItem",
-          typeof(HashtagStoryItemView),
+
+        public static readonly DependencyProperty StoryRootProperty = DependencyProperty.Register(
+          "StoryRoot",
+          typeof(WinstaStoryItem),
           typeof(HashtagStoryItemView),
           new PropertyMetadata(null));
+
+        public WinstaStoryItem StoryRoot
+        {
+            get { return (WinstaStoryItem)GetValue(StoryRootProperty); }
+            set { SetValue(StoryRootProperty, value); }
+        }
 
         [OnChangedMethod(nameof(OnHashtagStoryItemChanged))]
         public InstaHashtagStory HashtagStoryItem
         {
-            get { return (InstaHashtagStory)GetValue(HashtagStoryItemProperty); }
-            set { SetValue(HashtagStoryItemProperty, value); }
+            get => StoryRoot.HashtagStory;
         }
 
         public HashtagStoryItemView()

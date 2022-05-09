@@ -7,6 +7,7 @@ using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.VoiceCommands;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
@@ -64,8 +65,27 @@ namespace WinstaNext.ViewModels.Stories
         void OnSelectedItemChanged()
         {
             if (SelectedItem == null) return;
+            var selectedItems = Stories.Where(x => x.IsSelected);
+
+            if (selectedItems.Any())
+            {
+                for (int i = 0; i < selectedItems.Count(); i++)
+                {
+                    var item = selectedItems.ElementAt(i);
+                    SetIsSelected(item, false);
+                }
+            }
+
+            SetIsSelected(SelectedItem, true);
+
             var Index = Stories.IndexOf(SelectedItem);
             LoadStoryIndexes(Index - 2, Index + 2);
+        }
+
+        void SetIsSelected(WinstaStoryItem storyItem, bool value)
+        {
+            if (storyItem is null) return;
+                storyItem.IsSelected = value;
         }
 
         void LoadStoryIndexes(int first, int last)

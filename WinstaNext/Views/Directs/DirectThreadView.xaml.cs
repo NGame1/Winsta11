@@ -101,7 +101,7 @@ namespace WinstaNext.Views.Directs
                 TimeStampUnix = payload.Timestamp,
                 UserId = me.Pk
             };
-            InsertItem(-2, new(msg) { User = me });
+            InsertItem(-2, new(msg, me));
         }
 
         public void InsertNewLikeMessage()
@@ -114,7 +114,7 @@ namespace WinstaNext.Views.Directs
                 TimeStampUnix = DateTimeHelper.ToUnixTime(DateTime.UtcNow).ToString(),
                 UserId = me.Pk
             };
-            InsertItem(-2, new(msg) { User = me });
+            InsertItem(-2, new(msg, me));
         }
     }
 }
