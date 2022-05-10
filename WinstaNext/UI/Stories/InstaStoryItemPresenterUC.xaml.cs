@@ -108,13 +108,19 @@ namespace WinstaNext.UI.Stories
         public void Play()
         {
             if (LoadVideo)
-                videoplayer.Play();
+            {
+                if (videoplayer == null) FindName(nameof(videoplayer));
+                videoplayer?.Play();
+            }
         }
 
         public void Stop()
         {
             if (LoadVideo)
-                videoplayer.Stop();
+            {
+                if (videoplayer == null) FindName(nameof(videoplayer));
+                videoplayer?.Stop();
+            }
         }
 
         private void videoplayer_Loaded(object sender, RoutedEventArgs e)

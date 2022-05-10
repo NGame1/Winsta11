@@ -5,6 +5,7 @@ using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using WinstaNext.Helpers.DownloadUploadHelper;
 using WinstaNext.Services;
 using WinstaNext.Views.Profiles;
 
@@ -25,11 +26,18 @@ namespace WinstaNext.UI.Flyouts.Stories
         }
 
         RelayCommand NavigateToUserProfileCommand { get; set; }
+        RelayCommand DownloadStoryCommand { get; set; }
 
         public InstaStoryItemFlyout()
         {
             Opening += InstaStoryItemFlyout_Opening;
             NavigateToUserProfileCommand = new(NavigateToUserProfile);
+            DownloadStoryCommand = new(Download);
+        }
+
+        void Download()
+        {
+            DownloadHelper.Download(StoryItem);
         }
 
         void NavigateToUserProfile()
@@ -64,12 +72,13 @@ namespace WinstaNext.UI.Flyouts.Stories
                 }
             }
 
-            //Items.Add(new MenuFlyoutItem()
-            //{
-            //    Icon = new FontIcon() { Glyph = "\uF150", FontFamily = FluentSystemIconsRegular },
-            //    Text = LanguageManager.Instance.General.Download,
-            //    Command = NavigateToUserProfileCommand
-            //});
+            Items.Add(new MenuFlyoutItem()
+            {
+                Icon = new FontIcon() { Glyph = "\uF151", FontFamily = FluentSystemIconsRegular },
+                Text = LanguageManager.Instance.General.Download,
+                Command = DownloadStoryCommand
+            });
+
             if (!Items.Any()) this.Hide();
         }
     }

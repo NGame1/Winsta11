@@ -33,7 +33,7 @@ namespace WinstaNext.Helpers
             var Text = await FileIO.ReadTextAsync(toastfile, Windows.Storage.Streams.UnicodeEncoding.Utf8);
             Text = Text.Replace("SongName", subject);
             Text = Text.Replace("Artist", content);
-            Text = Text.Replace("ThumbImage.png", "");
+            Text = Text.Replace("ThumbImage.png", image);
             //Text = Text.Replace("TrackID", item.id);
             Text = Text.Replace("&", "&amp;");
             ToastNotifyXML.LoadXml(Text);

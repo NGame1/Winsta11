@@ -85,22 +85,12 @@ namespace WinstaNext
             serviceCollection.AddTransient<IInstaApi>(CreateInstaAPIInstance);
             serviceCollection.AddTransient<InstaUserShort>(CreateMyUserInstance);
             serviceCollection.AddTransient<NavigationService>(CreateNavigationService);
+            serviceCollection.AddTransient<BackgroundDownloader>();
 
             serviceCollection.AddSingleton<DisplayRequest>(CreateDisplayRequestInstance);
-            serviceCollection.AddSingleton<BackgroundDownloader>(CreateBackgroundDownloaderInstance);
             serviceCollection.AddSingleton<MediaPlayer>(CreateMediaPlayerInstance);
 
             return serviceCollection.BuildServiceProvider();
-        }
-
-        BackgroundDownloader _bgdownloader = null;
-        BackgroundDownloader CreateBackgroundDownloaderInstance(IServiceProvider arg)
-        {
-            if (_bgdownloader == null)
-            {
-                _bgdownloader = new BackgroundDownloader();
-            }
-            return _bgdownloader;
         }
 
         DisplayRequest CreateDisplayRequestInstance(IServiceProvider arg)
