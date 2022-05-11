@@ -7,6 +7,7 @@ namespace WinstaNext
         public static LanguageManager Instance { get; }
         public GeneralStrings General { get; } = new();
         public InstagramStrings Instagram { get; } = new();
+        public MessagesStrings Messages { get; } = new();
         public SettingsStrings Settings { get; } = new();
         public UnitsStrings Units { get; } = new();
 
@@ -78,6 +79,7 @@ namespace WinstaNext
         public string CopyCaption { get => _resource.GetString(nameof(CopyCaption)); }
         public string CopyURL { get => _resource.GetString(nameof(CopyURL)); }
         public string DeletePost { get => _resource.GetString(nameof(DeletePost)); }
+        public string DeleteStory { get => _resource.GetString(nameof(DeleteStory)); }
         public string Directs { get => _resource.GetString(nameof(Directs)); }
         public string DisableCommenting { get => _resource.GetString(nameof(DisableCommenting)); }
         public string EditProfile { get => _resource.GetString(nameof(EditProfile)); }
@@ -132,6 +134,17 @@ namespace WinstaNext
 
         internal InstagramStrings() { }
     }
+
+    public class MessagesStrings
+    {
+        ResourceLoader _resource = new("Messages");
+
+        public string DeleteConfirmTitle { get => _resource.GetString(nameof(DeleteConfirmTitle)); }
+        public string DeleteStoryContent { get => _resource.GetString(nameof(DeleteStoryContent)); }
+
+        internal MessagesStrings() { }
+    }
+
 
     public class SettingsStrings
     {

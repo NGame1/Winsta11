@@ -137,6 +137,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ApplicationSettingsManager.cs" />
+    <Compile Include="Constants\FluentRegularFontCharacters.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\Directs\DirectItemTimeConverter.cs" />
     <Compile Include="Converters\Directs\HasUnreadToFontWeightConverter.cs" />
@@ -907,6 +908,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PRIResource Include="Strings\en-US\Messages.resw" />
+    <PRIResource Include="Strings\fa-Ir\Messages.resw" />
     <None Include="WinstaNext_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

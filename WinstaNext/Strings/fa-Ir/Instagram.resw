@@ -153,6 +153,9 @@
   <data name="DeletePost" xml:space="preserve">
     <value>حذف پست</value>
   </data>
+  <data name="DeleteStory" xml:space="preserve">
+    <value>حذف استوری</value>
+  </data>
   <data name="Directs" xml:space="preserve">
     <value>دایرکت</value>
   </data>

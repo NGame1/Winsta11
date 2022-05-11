@@ -1,4 +1,5 @@
 ﻿using InstagramApiSharp.API;
+using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
@@ -106,6 +107,17 @@ namespace WinstaNext.ViewModels.Stories
         async void LoadReelFeed(WinstaReelFeed feed)
         {
             if (feed == null) throw new ArgumentNullException(nameof(feed));
+            var me = App.Container?.GetService<InstaUserShort>();
+            if (feed.User.Pk == me.Pk)
+            {
+                for (int i = 0; i < feed.Items.Count; i++)
+                {
+                    var u = feed.Items.ElementAt(i);
+                    u.User = me;
+                }
+                feed.User.UserName = me.UserName;
+                feed.User.ProfilePicture = me.ProfilePicture;
+            }
             if (feed.Items.Any()) return;
             if (feed.IsLoading) return;
             feed.IsLoading = true;
