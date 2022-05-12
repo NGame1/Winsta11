@@ -34,6 +34,11 @@ namespace WinstaNext.ViewModels.Stories
         {
             //Event invoked from wrong story!
             if (SelectedItem.ReelFeed != feed) return;
+            NextStory();
+        }
+
+        void NextStory()
+        {
             if (Stories.IndexOf(SelectedItem) is int Index && Index >= 0
                 && Index != Stories.Count - 1)
             {
