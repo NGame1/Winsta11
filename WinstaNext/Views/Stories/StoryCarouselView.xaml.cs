@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.Abstractions.Stories;
 using WinstaNext.Services;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -28,5 +29,7 @@ namespace WinstaNext.Views.Stories
         {
             this.InitializeComponent();
         }
+
+        private void StoryItemView_ItemsEnded(object sender, WinstaReelFeed e) => ViewModel.NextStory(e);
     }
 }

@@ -50,6 +50,8 @@ namespace WinstaNext.Views.Stories
 
         internal Progress<double> StoryItemProgress { get; private set; } = new();
 
+        public event EventHandler<WinstaReelFeed>? ItemsEnded;
+
         public StoryItemView()
         {
             this.InitializeComponent();
@@ -118,6 +120,7 @@ namespace WinstaNext.Views.Stories
                 else
                 {
                     //Need to notify to carousel view move to the next carousel.
+                    ItemsEnded?.Invoke(this, StoryItem);
                 }
             }
         }

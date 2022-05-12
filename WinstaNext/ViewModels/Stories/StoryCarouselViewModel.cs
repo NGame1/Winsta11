@@ -1,21 +1,15 @@
 ﻿using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
-using Microsoft.Toolkit.Uwp.UI.Controls;
 using PropertyChanged;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.VoiceCommands;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Abstractions.Stories;
 using WinstaNext.Core.Collections.IncrementalSources.Stories;
 using WinstaNext.Core.Navigation;
-using WinstaNext.Views.Stories;
 
 namespace WinstaNext.ViewModels.Stories
 {
@@ -34,6 +28,21 @@ namespace WinstaNext.ViewModels.Stories
         public StoryCarouselViewModel()
         {
 
+        }
+
+        public void NextStory(WinstaReelFeed feed)
+        {
+            //Event invoked from wrong story!
+            if (SelectedItem.ReelFeed != feed) return;
+            if (Stories.IndexOf(SelectedItem) is int Index && Index >= 0
+                && Index != Stories.Count - 1)
+            {
+                SelectedItem = Stories.ElementAt(++Index);
+            }
+            else
+            {
+                //Last story item, Exit stories.
+            }
         }
 
         public override void OnNavigatedTo(NavigationEventArgs e)
@@ -86,7 +95,7 @@ namespace WinstaNext.ViewModels.Stories
         void SetIsSelected(WinstaStoryItem storyItem, bool value)
         {
             if (storyItem is null) return;
-                storyItem.IsSelected = value;
+            storyItem.IsSelected = value;
         }
 
         void LoadStoryIndexes(int first, int last)
