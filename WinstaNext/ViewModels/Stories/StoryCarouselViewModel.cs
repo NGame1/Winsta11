@@ -42,6 +42,9 @@ namespace WinstaNext.ViewModels.Stories
             else
             {
                 //Last story item, Exit stories.
+                if (NavigationService.CanGoBack)
+                    NavigationService.GoBack();
+                return;
             }
         }
 
