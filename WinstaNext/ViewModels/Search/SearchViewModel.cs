@@ -179,6 +179,7 @@ namespace WinstaNext.ViewModels.Search
                 await Task.Delay(500);
                 if (StopTimer.ElapsedMilliseconds < 500) return;
             }
+            if (SearchQuery == string.Empty) return;
             SearchResults.Clear();
             switch (SearchContext.ToLower())
             {

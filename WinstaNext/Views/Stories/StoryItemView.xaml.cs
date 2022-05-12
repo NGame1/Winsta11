@@ -48,9 +48,12 @@ namespace WinstaNext.Views.Stories
         public double StoryDuration { get; set; } = 0;
         public double ElapsedTime { get; set; }
 
+        internal Progress<double> StoryItemProgress { get; private set; } = new();
+
         public StoryItemView()
         {
             this.InitializeComponent();
+            StoryItemProgress.ProgressChanged += OnStoryItemProgressChanged;
         }
 
         void FlipView_Loaded(object sender, RoutedEventArgs e) => SetFlipViewSize();
@@ -74,16 +77,12 @@ namespace WinstaNext.Views.Stories
             if (e.AddedItems.Any())
             {
                 if (e.AddedItems.FirstOrDefault() is not InstaStoryItem addeditem) return;
-                var container = GetContainer(addeditem);
-                if (container == null) return;
-                container.Play();
+                PlaybackController(addeditem, true);
             }
             if (e.RemovedItems.Any())
             {
                 if (e.RemovedItems.FirstOrDefault() is not InstaStoryItem removeditem) return;
-                var container = GetContainer(removeditem);
-                if (container == null) return;
-                container.Stop();
+                PlaybackController(removeditem, false);
             }
         }
 
@@ -95,10 +94,32 @@ namespace WinstaNext.Views.Stories
             if (StoryRoot == null) return;
             //Play or stop the current slide
             if (FlipView.SelectedItem is not InstaStoryItem storyItem) return;
+            PlaybackController(storyItem, val);
+        }
+
+        void PlaybackController(InstaStoryItem storyItem, bool val)
+        {
             var container = GetContainer(storyItem);
             if (container == null) return;
-            if (val) container.Play();
+
+            if (val) container.Play(StoryItemProgress);
             else container.Stop();
+        }
+
+        void OnStoryItemProgressChanged(object? sender, double progress)
+        {
+            if (progress == 100)
+            {
+                if (FlipView.Items.Count - 1 > FlipView.SelectedIndex)
+                {
+                    //Can go to the next slide
+                    FlipView.SelectedIndex++;
+                }
+                else
+                {
+                    //Need to notify to carousel view move to the next carousel.
+                }
+            }
         }
 
         void SetFlipViewSize()

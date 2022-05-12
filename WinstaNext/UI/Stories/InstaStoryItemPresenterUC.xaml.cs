@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using WinstaNext.Services;
 using WinstaNext.Views.Profiles;
+#nullable enable
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -91,10 +92,10 @@ namespace WinstaNext.UI.Stories
             }
         }
 
-        void NavigateToUserProfile(object obj)
+        void NavigateToUserProfile(object? obj)
         {
             var NavigationService = App.Container.GetService<NavigationService>();
-            NavigationService.Navigate(typeof(UserProfileView), obj);
+            NavigationService?.Navigate(typeof(UserProfileView), obj);
         }
 
         void OnStoryChanged()
@@ -105,25 +106,82 @@ namespace WinstaNext.UI.Stories
             else LoadImage = true;
         }
 
-        public void Play()
+        DispatcherTimer? _timer = null;
+        bool imageOpened = false;
+        double imagetimer = 0;
+        IProgress<double>? _progress = null;
+        public void Play(IProgress<double> progress)
         {
+            _progress = progress;
+            _timer = new() { Interval = TimeSpan.FromMilliseconds(50) };
             if (LoadVideo)
             {
                 if (videoplayer == null) FindName(nameof(videoplayer));
                 videoplayer?.Play();
+                _timer.Tick += VideoTimer_Tick;
+                _timer.Start();
+            }
+            else
+            {
+                _timer.Tick += ImageTimer_Tick;
+                if (imageOpened)
+                    _timer.Start();
             }
         }
 
         public void Stop()
         {
+            _progress = null;
             if (LoadVideo)
             {
                 if (videoplayer == null) FindName(nameof(videoplayer));
                 videoplayer?.Stop();
+                if (_timer == null) return;
+                _timer.Tick -= VideoTimer_Tick;
+                _timer = null;
+            }
+            else
+            {
+                imagetimer = 0;
+                if (_timer == null) return;
+                _timer.Tick -= ImageTimer_Tick;
+                _timer = null;
             }
         }
 
-        private void videoplayer_Loaded(object sender, RoutedEventArgs e)
+        private void videoplayer_MediaEnded(object? sender, RoutedEventArgs e)
+        {
+            _progress?.Report(100);
+            Stop();
+        }
+
+        private void VideoTimer_Tick(object? sender, object? e)
+        {
+            if (_progress != null && _timer != null)
+            {
+                var rep = (videoplayer.Position.TotalMilliseconds / videoplayer.NaturalDuration.TimeSpan.TotalMilliseconds) * 100;
+                if (rep != 100)
+                    _progress.Report(rep);
+            }
+        }
+
+        private void ImageTimer_Tick(object sender, object e)
+        {
+            if (_progress != null && _timer != null)
+            {
+                _progress.Report((imagetimer / 10000) * 100);
+                imagetimer += 50;
+            }
+        }
+
+        private void imageviewer_ImageOpened(object sender, RoutedEventArgs e)
+        {
+            imageOpened = true;
+            if (_timer != null && !_timer.IsEnabled)
+                _timer.Start();
+        }
+
+        private void videoplayer_Loaded(object? sender, RoutedEventArgs e)
         {
             videoplayer.Source = new(Story.Videos[0].Uri, UriKind.RelativeOrAbsolute);
         }

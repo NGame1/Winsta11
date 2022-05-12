@@ -35,11 +35,13 @@
         <Grid Grid.Row="0" Grid.RowSpan="3">
 
             <Image Source="{x:Bind Story.Images[0].Uri}"
+                   ImageOpened="imageviewer_ImageOpened"
                    x:Load="{x:Bind LoadImage}"
                    x:Name="imageviewer"
                    Stretch="Fill"/>
 
             <MediaElement PosterSource="{x:Bind Story.Images[0].Uri}"
+                          MediaEnded="videoplayer_MediaEnded"
                           x:Load="{x:Bind LoadVideo}"
                           Loaded="videoplayer_Loaded"
                           x:Name="videoplayer"
