@@ -210,6 +210,9 @@
   <data name="IsFollowingYou" xml:space="preserve">
     <value>is following you.</value>
   </data>
+  <data name="LeaveGroup" xml:space="preserve">
+    <value>Leave group</value>
+  </data>
   <data name="Like" xml:space="preserve">
     <value>Like</value>
   </data>
@@ -227,6 +230,9 @@
   </data>
   <data name="MessagePlaceholder" xml:space="preserve">
     <value>Message ...</value>
+  </data>
+  <data name="MuteConversation" xml:space="preserve">
+    <value>Mute conversation</value>
   </data>
   <data name="MutePosts" xml:space="preserve">
     <value>Mute posts</value>
@@ -293,6 +299,9 @@
   </data>
   <data name="Unfollow" xml:space="preserve">
     <value>Unfollow</value>
+  </data>
+  <data name="UnmuteConversation" xml:space="preserve">
+    <value>Unmute conversation</value>
   </data>
   <data name="UnmutePosts" xml:space="preserve">
     <value>Unmute posts</value>

@@ -15,20 +15,25 @@
                 mc:Ignorable="d">
 
     <views:BasePage.Resources>
-        
+
         <DataTemplate x:DataType="Models:InstaDirectInboxThread" x:Key="PrivateDirectThread">
             <directs1:PrivateDirectThread DirectThread="{Binding Mode=OneWay}">
 
                 <directs1:PrivateDirectThread.ContextFlyout>
                     <directs3:PrivateMessageThreadMenuFlyout DirectThread="{x:Bind Mode=OneWay}"/>
                 </directs1:PrivateDirectThread.ContextFlyout>
-                
+
             </directs1:PrivateDirectThread>
+
         </DataTemplate>
 
         <DataTemplate x:DataType="Models:InstaDirectInboxThread" x:Key="GroupDirectThread">
             <directs1:GroupDirectThread DirectThread="{Binding Mode=OneWay}">
-                
+
+                <directs1:GroupDirectThread.ContextFlyout>
+                    <directs3:GroupMessageThreadMenuFlyout DirectThread="{x:Bind Mode=OneWay}"/>
+                </directs1:GroupDirectThread.ContextFlyout>
+
             </directs1:GroupDirectThread>
         </DataTemplate>
 

@@ -2,7 +2,6 @@
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
-using WinstaNext.Services;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
@@ -10,17 +9,15 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using WinstaNext.Constants;
-using WinstaNext.Views.Profiles;
-using System.Linq;
 
 namespace WinstaNext.UI.Flyouts.Directs
 {
-    internal class PrivateMessageThreadMenuFlyout : MenuFlyout
+    internal class GroupMessageThreadMenuFlyout : MenuFlyout
     {
         public static readonly DependencyProperty DirectThreadProperty = DependencyProperty.Register(
           "DirectThread",
           typeof(InstaDirectInboxThread),
-          typeof(PrivateMessageThreadMenuFlyout),
+          typeof(GroupMessageThreadMenuFlyout),
           new PropertyMetadata(null));
 
         public InstaDirectInboxThread DirectThread
@@ -32,12 +29,10 @@ namespace WinstaNext.UI.Flyouts.Directs
         public AsyncRelayCommand DeleteThreadCommand { get; set; }
         public AsyncRelayCommand MuteCommand { get; set; }
         public AsyncRelayCommand UnmuteCommand { get; set; }
-        public RelayCommand NavigateUserProfileCommand { get; set; }
 
-        public PrivateMessageThreadMenuFlyout()
+        public GroupMessageThreadMenuFlyout()
         {
             DeleteThreadCommand = new(DeleteAsync);
-            NavigateUserProfileCommand = new(NavigateToUserProfile);
             UnmuteCommand = new(UnmuteAsync);
             MuteCommand = new(MuteAsync);
             this.Opening += PrivateMessageThreadMenuFlyout_Opening;
@@ -48,14 +43,7 @@ namespace WinstaNext.UI.Flyouts.Directs
             var FluentSystemIconsRegular = (FontFamily)App.Current.Resources["FluentSystemIconsRegular"];
 
             Items.Clear();
-            if (DirectThread.IsGroup) return;
-
-            Items.Add(new MenuFlyoutItem()
-            {
-                Icon = new FontIcon() { Glyph = FluentRegularFontCharacters.Person, FontFamily = FluentSystemIconsRegular },
-                Text = LanguageManager.Instance.Instagram.ViewProfile,
-                Command = NavigateUserProfileCommand
-            });
+            if (!DirectThread.IsGroup) return;
 
             if (!DirectThread.Muted)
                 Items.Add(new MenuFlyoutItem()
@@ -82,7 +70,7 @@ namespace WinstaNext.UI.Flyouts.Directs
 
         async Task DeleteAsync()
         {
-            var msg = new MessageDialog(LanguageManager.Instance.Messages.DeleteDirectThreadContent, LanguageManager.Instance.Messages.DeleteConfirmTitle);
+            var msg = new MessageDialog(LanguageManager.Instance.Messages.LeaveGroupContent, LanguageManager.Instance.Messages.LeaveConfirmTitle);
             msg.Commands.Add(new UICommand(LanguageManager.Instance.General.Yes, null, "yes"));
             msg.Commands.Add(new UICommand(LanguageManager.Instance.General.No, null, null));
             var res = await msg.ShowAsync();
@@ -93,7 +81,7 @@ namespace WinstaNext.UI.Flyouts.Directs
                 if (DeleteThreadCommand.IsRunning) return;
                 using (var Api = App.Container?.GetService<IInstaApi>())
                 {
-                    var result = await Api.MessagingProcessor.DeleteDirectThreadAsync(DirectThread.ThreadId);
+                    var result = await Api.MessagingProcessor.LeaveGroupThreadAsync(DirectThread.ThreadId);
                     if (!result.Succeeded)
                         throw result.Info.Exception;
                 }
@@ -124,17 +112,6 @@ namespace WinstaNext.UI.Flyouts.Directs
                 if (!result.Succeeded)
                     throw result.Info.Exception;
             }
-        }
-
-        void NavigateToUserProfile()
-        {
-            var NavigationService = App.Container.GetService<NavigationService>();
-            var Me = App.Container.GetService<InstaUserShort>();
-            var users = DirectThread.Users.Where(x => x.Pk != Me.Pk);
-            if (users.Any())
-                NavigationService.Navigate(typeof(UserProfileView), users.FirstOrDefault());
-            else
-                NavigationService.Navigate(typeof(UserProfileView), Me);
         }
 
     }

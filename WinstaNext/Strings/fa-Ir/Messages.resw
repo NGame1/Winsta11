@@ -120,7 +120,16 @@
   <data name="DeleteConfirmTitle" xml:space="preserve">
     <value>حذف؟</value>
   </data>
+  <data name="DeleteDirectThreadContent" xml:space="preserve">
+    <value>آیا مطمئنید که میخواهید این چت را حذف نمائید؟</value>
+  </data>
   <data name="DeleteStoryContent" xml:space="preserve">
     <value>آیا مطمئنید که میخواهید استوری را حذف نمائید؟</value>
+  </data>
+  <data name="LeaveConfirmTitle" xml:space="preserve">
+    <value>خروج؟</value>
+  </data>
+  <data name="LeaveGroupContent" xml:space="preserve">
+    <value>آیا مطمئنید که میخواهید از گروه خارج شوید؟</value>
   </data>
 </root>

@@ -120,7 +120,16 @@
   <data name="DeleteConfirmTitle" xml:space="preserve">
     <value>Delete?</value>
   </data>
+  <data name="DeleteDirectThreadContent" xml:space="preserve">
+    <value>Are you sure you want to delete the direct thread?</value>
+  </data>
   <data name="DeleteStoryContent" xml:space="preserve">
     <value>Are you sure you want to delete the story?</value>
+  </data>
+  <data name="LeaveConfirmTitle" xml:space="preserve">
+    <value>Leave?</value>
+  </data>
+  <data name="LeaveGroupContent" xml:space="preserve">
+    <value>Are you sure you want to leave the group?</value>
   </data>
 </root>

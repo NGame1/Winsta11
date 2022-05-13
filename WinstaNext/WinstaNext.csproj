@@ -293,6 +293,7 @@
     <Compile Include="UI\Directs\PrivateDirectThread.xaml.cs">
       <DependentUpon>PrivateDirectThread.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Flyouts\Directs\GroupMessageThreadMenuFlyout.cs" />
     <Compile Include="UI\Flyouts\Directs\PrivateMessageThreadMenuFlyout.cs" />
     <Compile Include="UI\Flyouts\InstaMediaFlyout.cs" />
     <Compile Include="UI\Flyouts\Stories\InstaBroadcastFlyout.cs" />

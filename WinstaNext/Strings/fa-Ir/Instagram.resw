@@ -157,7 +157,7 @@
     <value>حذف استوری</value>
   </data>
   <data name="DeleteThread" xml:space="preserve">
-    <value>حذف Thread</value>
+    <value>حذف گفتگو</value>
   </data>
   <data name="Directs" xml:space="preserve">
     <value>دایرکت</value>
@@ -210,6 +210,9 @@
   <data name="IsFollowingYou" xml:space="preserve">
     <value>شما را دنبال میکند.</value>
   </data>
+  <data name="LeaveGroup" xml:space="preserve">
+    <value>خروج از گروه</value>
+  </data>
   <data name="Like" xml:space="preserve">
     <value>پسند</value>
   </data>
@@ -227,6 +230,9 @@
   </data>
   <data name="MessagePlaceholder" xml:space="preserve">
     <value>پیام ...</value>
+  </data>
+  <data name="MuteConversation" xml:space="preserve">
+    <value>بیصدا کردن گفتگو</value>
   </data>
   <data name="MutePosts" xml:space="preserve">
     <value>بی صدا کردن پست ها</value>
@@ -293,6 +299,9 @@
   </data>
   <data name="Unfollow" xml:space="preserve">
     <value>لغو دنبال کردن</value>
+  </data>
+  <data name="UnmuteConversation" xml:space="preserve">
+    <value>صدا دار کردن گفتگو</value>
   </data>
   <data name="UnmutePosts" xml:space="preserve">
     <value>صدا دار کردن پست ها</value>

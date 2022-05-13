@@ -98,6 +98,7 @@ namespace WinstaNext
         public string Highlights { get => _resource.GetString(nameof(Highlights)); }
         public string IGTV { get => _resource.GetString(nameof(IGTV)); }
         public string IsFollowingYou { get => _resource.GetString(nameof(IsFollowingYou)); }
+        public string LeaveGroup { get => _resource.GetString(nameof(LeaveGroup)); }
         public string Like { get => _resource.GetString(nameof(Like)); }
         public string Likes { get => _resource.GetString(nameof(Likes)); }
         public string LoadMoreComments { get => _resource.GetString(nameof(LoadMoreComments)); }
@@ -105,6 +106,7 @@ namespace WinstaNext
         public string MediaLikers { get => _resource.GetString(nameof(MediaLikers)); }
         public string MessagePlaceholder { get => _resource.GetString(nameof(MessagePlaceholder)); }
         public string MutingOptions { get => _resource.GetString(nameof(MutingOptions)); }
+        public string MuteConversation { get => _resource.GetString(nameof(MuteConversation)); }
         public string MutePosts { get => _resource.GetString(nameof(MutePosts)); }
         public string MuteStories { get => _resource.GetString(nameof(MuteStories)); }
         public string NoDirectsYet { get => _resource.GetString(nameof(NoDirectsYet)); }
@@ -126,6 +128,7 @@ namespace WinstaNext
         public string TrustThisDevice { get => _resource.GetString(nameof(TrustThisDevice)); }
         public string TwoFactorAuthentication { get => _resource.GetString(nameof(TwoFactorAuthentication)); }
         public string Unfollow { get => _resource.GetString(nameof(Unfollow)); }
+        public string UnmuteConversation { get => _resource.GetString(nameof(UnmuteConversation)); }
         public string UnmutePosts { get => _resource.GetString(nameof(UnmutePosts)); }
         public string UnmuteStories { get => _resource.GetString(nameof(UnmuteStories)); }
         public string UnsupportedMessageType { get => _resource.GetString(nameof(UnsupportedMessageType)); }
@@ -141,7 +144,10 @@ namespace WinstaNext
         ResourceLoader _resource = new("Messages");
 
         public string DeleteConfirmTitle { get => _resource.GetString(nameof(DeleteConfirmTitle)); }
+        public string DeleteDirectThreadContent { get => _resource.GetString(nameof(DeleteDirectThreadContent)); }
         public string DeleteStoryContent { get => _resource.GetString(nameof(DeleteStoryContent)); }
+        public string LeaveConfirmTitle { get => _resource.GetString(nameof(LeaveConfirmTitle)); }
+        public string LeaveGroupContent { get => _resource.GetString(nameof(LeaveGroupContent)); }
 
         internal MessagesStrings() { }
     }
