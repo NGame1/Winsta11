@@ -144,6 +144,7 @@
     <Compile Include="Converters\Directs\UserIdToHorizontalAlignmentConverter.cs" />
     <Compile Include="Converters\Directs\UserIdToProfilePictureVisibilityConverter.cs" />
     <Compile Include="Converters\EnumToBooleanConverter.cs" />
+    <Compile Include="Converters\FileConverters\ImageFileConverter.cs" />
     <Compile Include="Converters\IntToIsEnabledConverter.cs" />
     <Compile Include="Converters\InvertBoolConverter.cs" />
     <Compile Include="Converters\Media\CaptionToMarkdownConverter.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ConfigureDelays\ImageConfigureMediaDelay.cs" />
     <Compile Include="Models\Core\LanguageDefinition.cs" />
     <Compile Include="Models\Core\MenuItemModel.cs" />
     <Compile Include="Models\Core\WinstaSynchContext.cs" />

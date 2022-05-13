@@ -30,6 +30,7 @@
         public const string ArrowMove = "\uF169";
         public const string ArrowRight = "\uF182";
         public const string ArrowUp = "\uF1B8";
+        public const string ArrowUpload = "\uF1A5";
 
         public const string Battery0 = "\uF1BB";
         public const string Battery1 = "\uF1BD";

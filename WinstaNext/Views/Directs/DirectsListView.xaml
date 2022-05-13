@@ -6,13 +6,14 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Models="using:InstagramApiSharp.Classes.Models"
+    xmlns:directs3="using:WinstaNext.UI.Flyouts.Directs"
     x:Class="WinstaNext.Views.Directs.DirectsListView"
     xmlns:directs2="using:WinstaNext.Views.Directs"
     xmlns:VM="using:WinstaNext.ViewModels.Directs"
     xmlns:directs1="using:WinstaNext.UI.Directs" 
     xmlns:views="using:WinstaNext.Views"
-    xmlns:local="using:WinstaNext" xmlns:directs3="using:WinstaNext.UI.Flyouts.Directs"
-                mc:Ignorable="d">
+    xmlns:local="using:WinstaNext" 
+    mc:Ignorable="d">
 
     <views:BasePage.Resources>
 

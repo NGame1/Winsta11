@@ -1,16 +1,24 @@
 ﻿using InstagramApiSharp.API;
+using InstagramApiSharp.Classes;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Media.Capture;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.UI.ViewManagement.Core;
 using Windows.UI.Xaml;
 using WinstaNext.Abstractions.Direct.Models;
+using WinstaNext.Converters.FileConverters;
 using WinstaNext.Core.Collections.IncrementalSources.Directs;
+using WinstaNext.Models.ConfigureDelays;
 using WinstaNext.Views.Directs;
 
 namespace WinstaNext.ViewModels.Directs
@@ -21,6 +29,8 @@ namespace WinstaNext.ViewModels.Directs
         IncrementalDirectThread Instance { get; set; }
         public DirectMessagesInvertedCollection ThreadItems { get; private set; }
 
+        public AsyncRelayCommand UploadImageCommand { get; set; }
+        public AsyncRelayCommand UploadCameraCapturedImageCommand { get; set; }
         public AsyncRelayCommand SendMessageCommand { get; set; }
         public AsyncRelayCommand SendLikeCommand { get; set; }
         public AsyncRelayCommand<DependencyObject> OpenEmojisPanelCommand { get; set; }
@@ -37,6 +47,8 @@ namespace WinstaNext.ViewModels.Directs
             Instance = new(DirectThread);
             ThreadItems = new(Instance);
             SendLikeCommand = new(SendLikeAsync);
+            UploadImageCommand = new(UploadImageAsync);
+            UploadCameraCapturedImageCommand = new(UploadCameraCapturedImageAsync);
             SendMessageCommand = new(SendMessageAsync);
             OpenEmojisPanelCommand = new(OpenEmojisPanel);
         }
@@ -47,6 +59,69 @@ namespace WinstaNext.ViewModels.Directs
             Instance = null;
             ThreadItems = null;
             SendMessageCommand = null;
+        }
+
+        async Task UploadImageAsync()
+        {
+            var fop = new FileOpenPicker()
+            {
+                SuggestedStartLocation = PickerLocationId.PicturesLibrary,
+                ViewMode = PickerViewMode.Thumbnail
+            };
+            fop.FileTypeFilter.Add(".jpg");
+            fop.FileTypeFilter.Add(".png");
+            fop.FileTypeFilter.Add(".bmp");
+            var res = await fop.PickSingleFileAsync();
+            if (res == null) return;
+            var ip = await res.Properties.GetImagePropertiesAsync();
+
+            var bytes = await ImageFileConverter.ConvertImageToJpegAsync(res);
+
+            using (var Api = App.Container.GetService<IInstaApi>())
+            {
+                Api.SetConfigureMediaDelay(new ImageConfigureMediaDelay());
+                var result = await Api.MessagingProcessor.SendDirectPhotoAsync(new InstaImage()
+                {
+                    ImageBytes = bytes,
+                    Height = (int)ip.Height,
+                    Width = (int)ip.Width
+                }, ThreadId);
+                if (result.Succeeded)
+                {
+                    //ThreadItems.InsertNewTextMessage(result.Value, MessageText);
+                    MessageText = string.Empty;
+                }
+            }
+        }
+
+        async Task UploadCameraCapturedImageAsync()
+        {
+            var camUI = new CameraCaptureUI();
+
+            camUI.PhotoSettings.AllowCropping = true;
+            camUI.PhotoSettings.Format = CameraCaptureUIPhotoFormat.Jpeg;
+            var res = await camUI.CaptureFileAsync(CameraCaptureUIMode.Photo);
+
+            if (res == null) return;
+            var ip = await res.Properties.GetImagePropertiesAsync();
+
+            var bytes = await ImageFileConverter.ConvertImageToJpegAsync(res);
+
+            using (var Api = App.Container.GetService<IInstaApi>())
+            {
+                Api.SetConfigureMediaDelay(new ImageConfigureMediaDelay());
+                var result = await Api.MessagingProcessor.SendDirectPhotoAsync(new InstaImage()
+                {
+                    ImageBytes = bytes,
+                    Height = (int)ip.Height,
+                    Width = (int)ip.Width
+                }, ThreadId);
+                if (result.Succeeded)
+                {
+                    //ThreadItems.InsertNewTextMessage(result.Value, MessageText);
+                    MessageText = string.Empty;
+                }
+            }
         }
 
         async Task SendMessageAsync()
