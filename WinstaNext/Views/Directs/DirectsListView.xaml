@@ -11,16 +11,25 @@
     xmlns:VM="using:WinstaNext.ViewModels.Directs"
     xmlns:directs1="using:WinstaNext.UI.Directs" 
     xmlns:views="using:WinstaNext.Views"
-    xmlns:local="using:WinstaNext"
-    mc:Ignorable="d">
+    xmlns:local="using:WinstaNext" xmlns:directs3="using:WinstaNext.UI.Flyouts.Directs"
+                mc:Ignorable="d">
 
     <views:BasePage.Resources>
+        
         <DataTemplate x:DataType="Models:InstaDirectInboxThread" x:Key="PrivateDirectThread">
-            <directs1:PrivateDirectThread DirectThread="{Binding Mode=OneWay}"/>
+            <directs1:PrivateDirectThread DirectThread="{Binding Mode=OneWay}">
+
+                <directs1:PrivateDirectThread.ContextFlyout>
+                    <directs3:PrivateMessageThreadMenuFlyout DirectThread="{x:Bind Mode=OneWay}"/>
+                </directs1:PrivateDirectThread.ContextFlyout>
+                
+            </directs1:PrivateDirectThread>
         </DataTemplate>
 
         <DataTemplate x:DataType="Models:InstaDirectInboxThread" x:Key="GroupDirectThread">
-            <directs1:GroupDirectThread DirectThread="{Binding Mode=OneWay}"/>
+            <directs1:GroupDirectThread DirectThread="{Binding Mode=OneWay}">
+                
+            </directs1:GroupDirectThread>
         </DataTemplate>
 
         <directs:InstaDirectInboxThreadTemplateSelector 
@@ -41,7 +50,8 @@
             ListPaneEmptyContent="{x:Bind local:LanguageManager.Instance.Instagram.NoDirectsYet}"
             NoSelectionContent="{x:Bind local:LanguageManager.Instance.Instagram.SelectDirectToLoad}"
             ListPaneItemTemplateSelector="{StaticResource InstaDirectInboxThreadTemplateSelector}"
-            CompactModeThresholdWidth="720" ScrollViewer.VerticalScrollMode="Disabled">
+            CompactModeThresholdWidth="720" 
+            ScrollViewer.VerticalScrollMode="Disabled">
 
             <!--What to show when there's no direct messages to show-->
             <controls:ListDetailsView.ListPaneEmptyContentTemplate>

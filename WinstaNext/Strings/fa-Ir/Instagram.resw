@@ -156,6 +156,9 @@
   <data name="DeleteStory" xml:space="preserve">
     <value>حذف استوری</value>
   </data>
+  <data name="DeleteThread" xml:space="preserve">
+    <value>حذف Thread</value>
+  </data>
   <data name="Directs" xml:space="preserve">
     <value>دایرکت</value>
   </data>

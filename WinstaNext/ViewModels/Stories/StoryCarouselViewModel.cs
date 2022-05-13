@@ -70,7 +70,7 @@ namespace WinstaNext.ViewModels.Stories
         public override void OnNavigatedFrom(NavigationEventArgs e)
         {
             (NavigationService.Content as FrameworkElement).SizeChanged -= StoryCarouselViewModel_SizeChanged;
-
+            SelectedItem = null;
             base.OnNavigatedFrom(e);
         }
 

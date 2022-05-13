@@ -156,6 +156,9 @@
   <data name="DeleteStory" xml:space="preserve">
     <value>Delete story</value>
   </data>
+  <data name="DeleteThread" xml:space="preserve">
+    <value>Delete thread</value>
+  </data>
   <data name="Directs" xml:space="preserve">
     <value>Directs</value>
   </data>

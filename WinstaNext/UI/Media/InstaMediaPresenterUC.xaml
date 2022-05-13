@@ -31,7 +31,7 @@
         <GenericConverters:NullToBooleanConverter IsInverted="True" x:Key="NullToBooleanConverter"/>
 
         <GenericConverters:TextToFlowDirectionConverter x:Key="TextToFlowDirectionConverter"/>
-        
+
     </UserControl.Resources>
 
     <StackPanel Padding="8" Spacing="5" CornerRadius="{StaticResource ControlCornerRadius}">
@@ -57,6 +57,7 @@
                 <StackPanel>
 
                     <StackPanel Orientation="Horizontal">
+
                         <HyperlinkButton FontWeight="SemiBold"
                                          Padding="0">
                             <TextBlock Text="{x:Bind Media.User.UserName}"/>
@@ -228,7 +229,7 @@
                     <core:InvokeCommandAction Command="{x:Bind ViewModel.CaptionLinkClickedCommand}"/>
                 </core:EventTriggerBehavior>
             </i:Interaction.Behaviors>
-            
+
         </controls:MarkdownTextBlock>
 
         <HyperlinkButton x:Load="{x:Bind ViewModel.Media.CommentsCount, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"
@@ -275,7 +276,7 @@
                         <core:InvokeCommandAction Command="{x:Bind ViewModel.CommentboxKeyDownCommand}"/>
                     </core:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
-                
+
                 <TextBox.KeyboardAccelerators>
                     <KeyboardAccelerator
                             Key="Enter"
@@ -297,11 +298,11 @@
                     Content="&#xE10C;" 
                     Margin="5,0,0,0" 
                     Grid.Column="3">
-                
+
                 <Button.Flyout>
                     <flyouts:InstaMediaFlyout Media="{x:Bind Media}"/>
                 </Button.Flyout>
-                
+
             </Button>
         </Grid>
 

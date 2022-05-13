@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Input;
+using Windows.Devices.Sensors;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -75,6 +78,7 @@ namespace WinstaNext.UI.Generic
             this.InitializeComponent();
             OnSavedChanged();
         }
+
         void OnSavedChanged()
         {
             if (!IsSaved)
@@ -90,5 +94,6 @@ namespace WinstaNext.UI.Generic
                 Glyph = "\uF1F6";
             }
         }
+
     }
 }

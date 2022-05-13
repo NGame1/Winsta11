@@ -80,6 +80,7 @@ namespace WinstaNext
         public string CopyURL { get => _resource.GetString(nameof(CopyURL)); }
         public string DeletePost { get => _resource.GetString(nameof(DeletePost)); }
         public string DeleteStory { get => _resource.GetString(nameof(DeleteStory)); }
+        public string DeleteThread { get => _resource.GetString(nameof(DeleteThread)); }
         public string Directs { get => _resource.GetString(nameof(Directs)); }
         public string DisableCommenting { get => _resource.GetString(nameof(DisableCommenting)); }
         public string EditProfile { get => _resource.GetString(nameof(EditProfile)); }
