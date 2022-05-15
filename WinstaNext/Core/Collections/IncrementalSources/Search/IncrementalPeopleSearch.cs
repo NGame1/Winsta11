@@ -18,7 +18,7 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Search
     public class IncrementalPeopleSearch : IIncrementalSource<InstaUser>
     {
         [OnChangedMethod(nameof(OnSearchQuerryChanged))]
-        public string SearchQuerry { get; set; }
+        public string SearchQuerry { get; set; } = String.Empty;
 
         PaginationParameters pagination { get; set; }
 

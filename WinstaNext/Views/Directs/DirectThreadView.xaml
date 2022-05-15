@@ -208,10 +208,13 @@
                                         FontFamily="{StaticResource FluentSystemIconsRegular}"
                                         Command="{x:Bind ViewModel.UploadImageCommand}"
                                         FontSize="24"/>
+                                
                                 <Button Content="{x:Bind Constants:FluentRegularFontCharacters.Camera}"
                                         Command="{x:Bind ViewModel.UploadCameraCapturedImageCommand}"
                                         FontFamily="{StaticResource FluentSystemIconsRegular}"
-                                        FontSize="24"/>
+                                        FontSize="24"
+                                        Margin="5,0"/>
+                                
                                 <Button Content="{x:Bind Constants:FluentRegularFontCharacters.Video}"
                                         FontFamily="{StaticResource FluentSystemIconsRegular}"
                                         Command="{x:Bind ViewModel.UploadImageCommand}"
@@ -222,7 +225,13 @@
                 </Button>
 
                 <Button FontFamily="{StaticResource FluentIcons}" 
-                        Content="&#xF4A9;"/>
+                        Content="&#xF4A9;">
+                    <Button.Flyout>
+                        <Flyout>
+                            <directs1:GiphyPanelUC/>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
 
                 <Button CommandParameter="{x:Bind emoBtn, Mode=OneWay}" 
                         Command="{x:Bind ViewModel.OpenEmojisPanelCommand}"

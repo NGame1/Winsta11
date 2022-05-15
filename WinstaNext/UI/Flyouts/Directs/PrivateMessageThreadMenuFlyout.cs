@@ -112,6 +112,7 @@ namespace WinstaNext.UI.Flyouts.Directs
                 var result = await Api.MessagingProcessor.MuteDirectThreadMessagesAsync(DirectThread.ThreadId);
                 if (!result.Succeeded)
                     throw result.Info.Exception;
+                else DirectThread.Muted = !DirectThread.Muted;
             }
         }
 
@@ -123,6 +124,7 @@ namespace WinstaNext.UI.Flyouts.Directs
                 var result = await Api.MessagingProcessor.UnMuteDirectThreadMessagesAsync(DirectThread.ThreadId);
                 if (!result.Succeeded)
                     throw result.Info.Exception;
+                else DirectThread.Muted = !DirectThread.Muted;
             }
         }
 
