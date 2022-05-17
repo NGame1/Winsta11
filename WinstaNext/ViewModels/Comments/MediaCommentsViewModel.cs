@@ -83,6 +83,7 @@ namespace WinstaNext.ViewModels.Comments
                             MessageDialogHelper.Show(result.Info.Message);
                             return;
                         }
+                        Comments.Insert(0, result.Value);
                     }
                     else
                     {
@@ -99,9 +100,10 @@ namespace WinstaNext.ViewModels.Comments
                             MessageDialogHelper.Show(result.Info.Message);
                             return;
                         }
+                        ReplyedComment.ChildComments.Insert(0, result.Value);
                     }
 
-                    Comments.Insert(0, result.Value);
+                    
                     CommentText = string.Empty;
                     if (lst != null)
                     {
