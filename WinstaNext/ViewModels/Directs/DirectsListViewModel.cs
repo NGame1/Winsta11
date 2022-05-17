@@ -1,21 +1,11 @@
-﻿using InstagramApiSharp;
-using InstagramApiSharp.API;
-using InstagramApiSharp.Classes.Models;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Collections;
-using Microsoft.Toolkit.Mvvm.Messaging;
+﻿using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Uwp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Core.Collections.IncrementalSources.Directs;
 using WinstaNext.Core.Dialogs;
-using WinstaNext.Core.Messages;
 
 namespace WinstaNext.ViewModels.Directs
 {

@@ -96,7 +96,7 @@
                             </TextBlock>
                         </HyperlinkButton>
                         
-                        <HyperlinkButton>
+                        <HyperlinkButton Command="{x:Bind ReplyCommand}">
                             <TextBlock>
                                 <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Reply}"/>
                             </TextBlock>

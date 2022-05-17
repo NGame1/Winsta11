@@ -143,16 +143,9 @@ namespace WinstaNext.UI.Comments
                 if (NavigationService.Content is MediaCommentsView view)
                 {
                     mediaId = view.MediaId;
+                    view.ViewModel.ReplyedComment = this.Comment;
                 }
                 
-                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
-                {
-                    Func<string, Task<IResult<InstaComment>>> del =
-                        async (string replyText) => await Api.CommentProcessor.ReplyCommentMediaAsync(
-                        mediaId, 
-                        Comment.Pk.ToString(), 
-                        replyText);
-                }
             }
             finally
             {

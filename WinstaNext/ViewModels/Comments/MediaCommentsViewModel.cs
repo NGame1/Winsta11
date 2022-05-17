@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Navigation;
 using WinstaNext.Core.Collections.IncrementalSources.Comments;
 using WinstaNext.Core.Dialogs;
 using WinstaNext.Core.Navigation;
+#nullable enable
 
 namespace WinstaNext.ViewModels.Comments
 {
@@ -34,18 +35,25 @@ namespace WinstaNext.ViewModels.Comments
 
         IncrementalMediaComments Instance { get; set; }
         public IncrementalLoadingCollection<IncrementalMediaComments, InstaComment> Comments { get; private set; }
-        public InstaUserShort Me { get; }
+        public InstaUserShort? Me { get; }
         public InstaMedia Media { get; set; }
+
+        public InstaComment? ReplyedComment { get; set; } = null;
 
         public AsyncRelayCommand<ListView> AddCommentCommand { get; set; }
 
+        public RelayCommand IgnoreReplyCommand { get; set; }
+
         public MediaCommentsViewModel()
         {
-            Me = App.Container.GetService<InstaUserShort>();
+            Me = App.Container?.GetService<InstaUserShort>();
             AddCommentCommand = new(AddCommentAsync);
+            IgnoreReplyCommand = new(IgnoreReply);
         }
 
-        async Task AddCommentAsync(ListView lst)
+        void IgnoreReply() => ReplyedComment = null;
+
+        async Task AddCommentAsync(ListView? lst)
         {
             if (AddCommentCommand.IsRunning) return;
             if (!IsSendCommentButtonEnabled) return;
@@ -58,19 +66,41 @@ namespace WinstaNext.ViewModels.Comments
                 if (isCarouselBumpedPost)
                     carouselIndex = 0;
                 uint feedPosition = 0;
-                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+                using (IInstaApi? Api = App.Container?.GetService<IInstaApi>())
                 {
-                    var result = await Api.CommentProcessor.CommentMediaAsync(Media.InstaIdentifier, CommentText,
-                          containerModule: containerModule,
-                          feedPosition: feedPosition,
-                          isCarouselBumpedPost: isCarouselBumpedPost,
-                          carouselIndex: carouselIndex);
-
-                    if (!result.Succeeded)
+                    if (Api == null) return;
+                    IResult<InstaComment>? result = null;
+                    if (ReplyedComment == null)
                     {
-                        MessageDialogHelper.Show(result.Info.Message);
-                        return;
+                        result = await Api.CommentProcessor.CommentMediaAsync(Media.InstaIdentifier, CommentText,
+                                 containerModule: containerModule,
+                                 feedPosition: feedPosition,
+                                 isCarouselBumpedPost: isCarouselBumpedPost,
+                                 carouselIndex: carouselIndex);
+
+                        if (!result.Succeeded)
+                        {
+                            MessageDialogHelper.Show(result.Info.Message);
+                            return;
+                        }
                     }
+                    else
+                    {
+                        result = await Api.CommentProcessor.ReplyCommentMediaAsync(Media.InstaIdentifier, 
+                                 ReplyedComment.Pk.ToString(),
+                                 $"@{ReplyedComment.User.UserName} {CommentText}",
+                                 containerModule: containerModule,
+                                 feedPosition: feedPosition,
+                                 isCarouselBumpedPost: isCarouselBumpedPost,
+                                 carouselIndex: carouselIndex);
+
+                        if (!result.Succeeded)
+                        {
+                            MessageDialogHelper.Show(result.Info.Message);
+                            return;
+                        }
+                    }
+
                     Comments.Insert(0, result.Value);
                     CommentText = string.Empty;
                     if (lst != null)
@@ -78,6 +108,7 @@ namespace WinstaNext.ViewModels.Comments
                         await lst.SmoothScrollIntoViewWithItemAsync(result.Value,
                                   itemPlacement: ScrollItemPlacement.Top);
                     }
+                    ReplyedComment = null;
                 }
             }
             finally { _isSendenabled = true; }
