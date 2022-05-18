@@ -300,6 +300,9 @@
   <data name="Unfollow" xml:space="preserve">
     <value>Unfollow</value>
   </data>
+  <data name="Unlike" xml:space="preserve">
+    <value>Unlike</value>
+  </data>
   <data name="UnmuteConversation" xml:space="preserve">
     <value>Unmute conversation</value>
   </data>
@@ -308,6 +311,9 @@
   </data>
   <data name="UnmuteStories" xml:space="preserve">
     <value>Unmute stories</value>
+  </data>
+  <data name="Unsend" xml:space="preserve">
+    <value>Unsend message</value>
   </data>
   <data name="UnsupportedMessageType" xml:space="preserve">
     <value>This direct message type is not supported by Winsta yet.</value>

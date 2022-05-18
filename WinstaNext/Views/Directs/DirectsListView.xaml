@@ -50,7 +50,7 @@
     </views:BasePage.DataContext>
 
     <Grid Margin="{x:Bind PageMargin}">
-        <controls:ListDetailsView 
+        <controls:ListDetailsView x:Name="ListDetails" x:FieldModifier="internal"
             Background="Transparent" 
             ItemsSource="{x:Bind MyViewModel.Inbox, Mode=OneWay}"
             ListPaneEmptyContent="{x:Bind local:LanguageManager.Instance.Instagram.NoDirectsYet}"

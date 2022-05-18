@@ -10,7 +10,7 @@
       xmlns:Converters="using:WinstaNext.Converters"
       xmlns:directs1="using:WinstaNext.UI.Directs"
       xmlns:Constants="using:WinstaNext.Constants"
-      xmlns:Winsta="using:WinstaNext" 
+      xmlns:Winsta="using:WinstaNext" xmlns:directs2="using:WinstaNext.UI.Flyouts.Directs"
       d:DesignHeight="300"
       d:DesignWidth="400"
       mc:Ignorable="d">
@@ -24,91 +24,151 @@
         <DataTemplate x:Key="AnimatedGifMessageDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:AnimatedGifMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:AnimatedGifMessageContainerUC>
         </DataTemplate>
 
         <DataTemplate x:Key="LikeMessageContainerUC" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:LikeMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:LikeMessageContainerUC>
         </DataTemplate>
 
         <DataTemplate x:Key="LinkMessageDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:LinkMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:LinkMessageContainerUC>
         </DataTemplate>
         
         <DataTemplate x:Key="MediaMessageDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:MediaMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:MediaMessageContainerUC>
         </DataTemplate>
 
         <DataTemplate x:Key="XmaMediaShareMessageDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:XmaMediaShareMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:XmaMediaShareMessageContainerUC>
         </DataTemplate>
 
         <DataTemplate x:Key="MediaShareMessageContainerUC" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:MediaShareMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:MediaShareMessageContainerUC>
         </DataTemplate>
 
         <DataTemplate x:Key="IGTVShareMessageContainerDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:IGTVShareMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:IGTVShareMessageContainerUC>
         </DataTemplate>
         
         <DataTemplate x:Key="ClipMessageContainerDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:ClipMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:ClipMessageContainerUC>
         </DataTemplate>
 
         <DataTemplate x:Key="StoryReplyDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:StoryReplyMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:StoryReplyMessageContainerUC>
         </DataTemplate>
         
         <DataTemplate x:Key="StoryShareDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:StoryShareMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:StoryShareMessageContainerUC>
         </DataTemplate>
 
         <DataTemplate x:Key="TextMessageDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:TextMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:TextMessageContainerUC>
         </DataTemplate>
 
         <DataTemplate x:Key="PlaceholderMessageDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:PlaceholderMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:PlaceholderMessageContainerUC>
         </DataTemplate>
         
         <DataTemplate x:Key="ProfileMessageDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:ProfileMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:ProfileMessageContainerUC>
         </DataTemplate>
 
         <DataTemplate x:Key="VoiceMessageDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:VoiceMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:VoiceMessageContainerUC>
         </DataTemplate>
 
         <DataTemplate x:Key="NotSupportedDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:NotSupportedMessageContainerUC 
                     DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}"/>
+                    DirectItem="{x:Bind}">
+                <directs1:MessageContainerUC.ContextFlyout>
+                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
+                </directs1:MessageContainerUC.ContextFlyout>
+            </messagecontainer:NotSupportedMessageContainerUC>
         </DataTemplate>
 
         <directs:InstaDirectInboxItemTemplateSelector x:Key="InstaDirectInboxItemTemplateSelector"

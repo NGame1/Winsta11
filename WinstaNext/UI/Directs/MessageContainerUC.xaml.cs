@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Abstractions.Direct.Models;
 using WinstaNext.Services;
+using WinstaNext.UI.Flyouts.Directs;
 using WinstaNext.Views.Profiles;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
@@ -69,6 +70,16 @@ namespace WinstaNext.UI.Directs
         protected virtual void OnDirectItemChanged()
         {
 
+        }
+
+        private void UserControl_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            //DirectMessageItemMenuFlyout.ShowAttachedFlyout(this);
+        }
+
+        private void UserControl_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            //DirectMessageItemMenuFlyout.ShowAttachedFlyout(this);
         }
     }
 }

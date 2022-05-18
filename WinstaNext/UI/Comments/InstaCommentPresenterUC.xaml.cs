@@ -48,7 +48,7 @@ namespace WinstaNext.UI.Comments
 
         public AsyncRelayCommand LikeCommecntCommand { get; set; }
         public AsyncRelayCommand LoadMoreCommentsCommand { get; set; }
-        public AsyncRelayCommand ReplyCommand { get; set; }
+        public RelayCommand ReplyCommand { get; set; }
 
         public RelayCommand<object> NavigateToUserProfileCommand { get; set; }
         public RelayCommand NavigateToCommentLikersCommand { get; set; }
@@ -60,7 +60,7 @@ namespace WinstaNext.UI.Comments
             CaptionLinkClickedCommand = new(CaptionLinkClicked);
             LoadMoreCommentsCommand = new(LoadMoreCommentsAsync);
             LikeCommecntCommand = new(LikeCommentAsync);
-            ReplyCommand = new(ReplyAsync);
+            ReplyCommand = new(Reply);
             NavigateToUserProfileCommand = new(NavigateToUserProfile);
             NavigateToCommentLikersCommand = new(NavigateToCommentLikers);
             this.InitializeComponent();
@@ -133,11 +133,10 @@ namespace WinstaNext.UI.Comments
             }
         }
 
-        async Task ReplyAsync()
+        void Reply()
         {
             try
             {
-                if (ReplyCommand.IsRunning) return;
                 var NavigationService = App.Container.GetService<NavigationService>();
                 string mediaId = string.Empty;
                 if (NavigationService.Content is MediaCommentsView view)

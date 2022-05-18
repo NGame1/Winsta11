@@ -128,9 +128,11 @@ namespace WinstaNext
         public string TrustThisDevice { get => _resource.GetString(nameof(TrustThisDevice)); }
         public string TwoFactorAuthentication { get => _resource.GetString(nameof(TwoFactorAuthentication)); }
         public string Unfollow { get => _resource.GetString(nameof(Unfollow)); }
+        public string Unlike { get => _resource.GetString(nameof(Unlike)); }
         public string UnmuteConversation { get => _resource.GetString(nameof(UnmuteConversation)); }
         public string UnmutePosts { get => _resource.GetString(nameof(UnmutePosts)); }
         public string UnmuteStories { get => _resource.GetString(nameof(UnmuteStories)); }
+        public string Unsend { get => _resource.GetString(nameof(Unsend)); }
         public string UnsupportedMessageType { get => _resource.GetString(nameof(UnsupportedMessageType)); }
         public string VerificationCode { get => _resource.GetString(nameof(VerificationCode)); }
         public string VerificationMethod { get => _resource.GetString(nameof(VerificationMethod)); }

@@ -300,6 +300,9 @@
   <data name="Unfollow" xml:space="preserve">
     <value>لغو دنبال کردن</value>
   </data>
+  <data name="Unlike" xml:space="preserve">
+    <value>حذف لایک</value>
+  </data>
   <data name="UnmuteConversation" xml:space="preserve">
     <value>صدا دار کردن گفتگو</value>
   </data>
@@ -308,6 +311,9 @@
   </data>
   <data name="UnmuteStories" xml:space="preserve">
     <value>صدا دار کردن استوری ها</value>
+  </data>
+  <data name="Unsend" xml:space="preserve">
+    <value>حذف پیام</value>
   </data>
   <data name="UnsupportedMessageType" xml:space="preserve">
     <value>این نوع پیام دایرکت هنوز در وینستا پشتیبانی نمیشود.</value>

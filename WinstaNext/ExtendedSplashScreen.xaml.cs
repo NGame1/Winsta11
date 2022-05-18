@@ -61,7 +61,7 @@ namespace WinstaNext
             this.Loaded += ExtendedSplashScreen_Loaded;
             //ExtendedSplash_OnResize(null, null);
 
-            //GetBetaVersionAvailability();
+            GetBetaVersionAvailability();
         }
 
         async void GetBetaVersionAvailability()
@@ -72,7 +72,7 @@ namespace WinstaNext
                 var str = await http.GetStringAsync(new Uri("http://worldtimeapi.org/api/timezone/Etc/UTC", UriKind.RelativeOrAbsolute));
                 var json = Newtonsoft.Json.Linq.JObject.Parse(str);
                 var datetime = json.Value<DateTime>("datetime");
-                var end = new DateTime(2022, 04, 30);
+                var end = new DateTime(2022, 06, 30);
                 var rdays = end.Subtract(datetime).Days;
                 if (rdays < 0)
                     App.Current.Exit();
