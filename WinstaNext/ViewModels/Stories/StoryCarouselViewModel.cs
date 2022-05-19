@@ -33,7 +33,7 @@ namespace WinstaNext.ViewModels.Stories
         public void NextStory(WinstaReelFeed feed)
         {
             //Event invoked from wrong story!
-            if (SelectedItem.ReelFeed != feed) return;
+            if (SelectedItem == null && SelectedItem.ReelFeed != feed) return;
             NextStory();
         }
 

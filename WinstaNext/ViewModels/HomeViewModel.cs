@@ -26,7 +26,7 @@ namespace WinstaNext.ViewModels
         public IncrementalFeedStories FeedStories { get; } = new();
         public IncrementalHomeMedia FeedMedia { get; } = new();
 
-        public override string PageHeader { get; protected set; }
+        public override string PageHeader { get; protected set; } = string.Empty;
 
         public HomeViewModel() : base()
         {
