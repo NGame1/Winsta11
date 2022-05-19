@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using InstagramApiSharp.Classes.Models;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using System;
 using System.Collections.Generic;
@@ -35,5 +36,18 @@ namespace WinstaNext.Views.Activities
         void TextLinkClicked(object sender, LinkClickedEventArgs obj)
             => obj.HandleClickEvent();
 
+        private void AcceptFriendshipRequest_Click(object sender, RoutedEventArgs e)
+        {
+            var dt = (sender as FrameworkElement).DataContext;
+            if (dt is InstaRecentActivityFeed activityFeed)
+                ViewModel.ApproveFollowRequestCommand.Execute(activityFeed);
+        }
+
+        private void RejectFriendshipRequest_Click(object sender, RoutedEventArgs e)
+        {
+            var dt = (sender as FrameworkElement).DataContext;
+            if (dt is InstaRecentActivityFeed activityFeed)
+                ViewModel.RejectFollowRequestCommand.Execute(activityFeed);
+        }
     }
 }

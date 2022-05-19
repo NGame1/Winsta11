@@ -14,6 +14,7 @@ namespace WinstaNext.Models.TemplateSelectors.Activities
     {
         public DataTemplate CommentLikeTemplate { get; set; }
         public DataTemplate FollowTemplate { get; set; }
+        public DataTemplate RequestedToFollowYouTemplate { get; set; }
         public DataTemplate FriendRequestTemplate { get; set; }
         public DataTemplate LikedTaggedTemplate { get; set; }
         public DataTemplate LoginActivityTemplate { get; set; }
@@ -30,6 +31,7 @@ namespace WinstaNext.Models.TemplateSelectors.Activities
                 case InstaActivityFeedType.CommentLike: return CommentLikeTemplate;
                 case InstaActivityFeedType.Follow: return FollowTemplate;
                 case InstaActivityFeedType.StoryLike: return StoryLikeTemplate;
+                case InstaActivityFeedType.RequestedToFollowYou: return RequestedToFollowYouTemplate;
                 case InstaActivityFeedType.FriendRequest: return FriendRequestTemplate;
                 case InstaActivityFeedType.LikedTagged: return LikedTaggedTemplate;
                 case InstaActivityFeedType.LoginActivity: return LoginActivityTemplate;

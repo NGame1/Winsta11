@@ -17,7 +17,73 @@
 
         <Converters:RichTextToMarkdownTextConverter x:Key="RichTextToMarkdownTextConverter"/>
         <Converters:TextToFlowDirectionConverter x:Key="TextToFlowDirectionConverter"/>
-        
+
+        <DataTemplate x:Key="FriendRequestTemplate" x:DataType="Models:InstaRecentActivityFeed">
+            <!--Tap to see all friendship requests.-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <PersonPicture ProfilePicture="{x:Bind InlineFollow.User.ProfilePicture}"
+                               DisplayName="{x:Bind InlineFollow.User.UserName}"
+                               Grid.Column="0"
+                               Height="55"
+                               Width="55"/>
+
+                <controls:MarkdownTextBlock FlowDirection="{x:Bind Text, Converter={StaticResource TextToFlowDirectionConverter}, Mode=OneWay}"
+                                            Text="{x:Bind Text, Converter={StaticResource RichTextToMarkdownTextConverter}, Mode=OneWay}"
+                                            IsTextSelectionEnabled="False"
+                                            LinkClicked="TextLinkClicked"
+                                            VerticalAlignment="Center"
+                                            Background="Transparent"
+                                            TextWrapping="Wrap"
+                                            Grid.Column="1"
+                                            Margin="5,0"/>
+
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RequestedToFollowYouTemplate" x:DataType="Models:InstaRecentActivityFeed">
+            <!--Tap to see all friendship requests.-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <PersonPicture ProfilePicture="{x:Bind InlineFollow.User.ProfilePicture}"
+                               DisplayName="{x:Bind InlineFollow.User.UserName}"
+                               Grid.Column="0"
+                               Height="55"
+                               Width="55"/>
+
+                <controls:MarkdownTextBlock FlowDirection="{x:Bind Text, Converter={StaticResource TextToFlowDirectionConverter}, Mode=OneWay}"
+                                            Text="{x:Bind Text, Converter={StaticResource RichTextToMarkdownTextConverter}, Mode=OneWay}"
+                                            IsTextSelectionEnabled="False"
+                                            LinkClicked="TextLinkClicked"
+                                            VerticalAlignment="Center"
+                                            Background="Transparent"
+                                            TextWrapping="Wrap"
+                                            Grid.Column="1"
+                                            Margin="5,0"/>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Column="2">
+                    <Button Style="{StaticResource AccentButtonStyle}"
+                            Click="AcceptFriendshipRequest_Click"
+                            Content="Accept" 
+                            Margin="4,0"/>
+                    <Button Click="RejectFriendshipRequest_Click"
+                            Content="Reject"/>
+                </StackPanel>
+
+            </Grid>
+        </DataTemplate>
+
         <DataTemplate x:Key="FollowTemplate" x:DataType="Models:InstaRecentActivityFeed">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -165,8 +231,10 @@
         </DataTemplate>
 
         <TemplateSelectors:RecentActivityFeedItemTemplateSelector x:Key="RecentActivityFeedItemTemplateSelector"
-                                                                  CommentLikeTemplate="{StaticResource CommentLikeTemplate}"
                                                                   TaggedOrLikedOrCommentedYouTemplate="{StaticResource TaggedOrLikedOrCommentedYouTemplate}"
+                                                                  RequestedToFollowYouTemplate="{StaticResource RequestedToFollowYouTemplate}"
+                                                                  FriendRequestTemplate="{StaticResource FriendRequestTemplate}"
+                                                                  CommentLikeTemplate="{StaticResource CommentLikeTemplate}"
                                                                   SharedPostTemplate="{StaticResource SharedPostTemplate}"
                                                                   StoryLikeTemplate="{StaticResource StoryLikeTemplate}"
                                                                   FollowTemplate="{StaticResource FollowTemplate}"/>
