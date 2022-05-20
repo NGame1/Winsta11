@@ -36,6 +36,7 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Directs
                 if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
                     throw result.Info.Exception;
                 hassOlder = result.Value.HasOlder;
+                result.Value.Items.RemoveAll(x => x.ItemType == InstaDirectThreadItemType.ActionLog);
                 result.Value.Items.Reverse();
                 return Convert(result.Value);
             }
