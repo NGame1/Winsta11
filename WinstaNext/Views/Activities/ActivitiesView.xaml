@@ -47,7 +47,6 @@
         </DataTemplate>
 
         <DataTemplate x:Key="RequestedToFollowYouTemplate" x:DataType="Models:InstaRecentActivityFeed">
-            <!--Tap to see all friendship requests.-->
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -139,6 +138,32 @@
                        Grid.Column="2"
                        Height="55"
                        Width="55"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="LoginActivityTemplate" x:DataType="Models:InstaRecentActivityFeed">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <PersonPicture ProfilePicture="{x:Bind ProfileImage}"
+                               Grid.Column="0"
+                               Height="55"
+                               Width="55"/>
+
+                <controls:MarkdownTextBlock FlowDirection="{x:Bind Text, Converter={StaticResource TextToFlowDirectionConverter}, Mode=OneWay}"
+                                            Text="{x:Bind Text, Converter={StaticResource RichTextToMarkdownTextConverter}, Mode=OneWay}"
+                                            IsTextSelectionEnabled="False"
+                                            LinkClicked="TextLinkClicked"
+                                            VerticalAlignment="Center"
+                                            Background="Transparent"
+                                            TextWrapping="Wrap"
+                                            Grid.Column="1"
+                                            Margin="5,0"/>
+
             </Grid>
         </DataTemplate>
 
@@ -234,6 +259,7 @@
                                                                   TaggedOrLikedOrCommentedYouTemplate="{StaticResource TaggedOrLikedOrCommentedYouTemplate}"
                                                                   RequestedToFollowYouTemplate="{StaticResource RequestedToFollowYouTemplate}"
                                                                   FriendRequestTemplate="{StaticResource FriendRequestTemplate}"
+                                                                  LoginActivityTemplate="{StaticResource LoginActivityTemplate}"
                                                                   CommentLikeTemplate="{StaticResource CommentLikeTemplate}"
                                                                   SharedPostTemplate="{StaticResource SharedPostTemplate}"
                                                                   StoryLikeTemplate="{StaticResource StoryLikeTemplate}"
