@@ -6,11 +6,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:models="using:WinstaNext.Abstractions.Direct.Models" 
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:directs2="using:WinstaNext.UI.Flyouts.Directs"
       x:Class="WinstaNext.Views.Directs.DirectThreadView"
       xmlns:Converters="using:WinstaNext.Converters"
       xmlns:directs1="using:WinstaNext.UI.Directs"
       xmlns:Constants="using:WinstaNext.Constants"
-      xmlns:Winsta="using:WinstaNext" xmlns:directs2="using:WinstaNext.UI.Flyouts.Directs"
+      xmlns:Winsta="using:WinstaNext" 
       d:DesignHeight="300"
       d:DesignWidth="400"
       mc:Ignorable="d">
@@ -277,7 +278,7 @@
                                 
                                 <Button Content="{x:Bind Constants:FluentRegularFontCharacters.Video}"
                                         FontFamily="{StaticResource FluentSystemIconsRegular}"
-                                        Command="{x:Bind ViewModel.UploadImageCommand}"
+                                        Command="{x:Bind ViewModel.UploadVideoCommand}"
                                         FontSize="24"/>
                             </StackPanel>
                         </Flyout>

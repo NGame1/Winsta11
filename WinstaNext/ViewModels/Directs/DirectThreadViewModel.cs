@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Windows.Media.Capture;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI.ViewManagement.Core;
 using Windows.UI.Xaml;
 using WinstaNext.Abstractions.Direct.Models;
@@ -31,6 +32,7 @@ namespace WinstaNext.ViewModels.Directs
 
         public AsyncRelayCommand UploadImageCommand { get; set; }
         public AsyncRelayCommand UploadCameraCapturedImageCommand { get; set; }
+        public AsyncRelayCommand UploadVideoCommand { get; set; }
         public AsyncRelayCommand SendMessageCommand { get; set; }
         public AsyncRelayCommand SendLikeCommand { get; set; }
         public AsyncRelayCommand<DependencyObject> OpenEmojisPanelCommand { get; set; }
@@ -49,6 +51,7 @@ namespace WinstaNext.ViewModels.Directs
             SendLikeCommand = new(SendLikeAsync);
             UploadImageCommand = new(UploadImageAsync);
             UploadCameraCapturedImageCommand = new(UploadCameraCapturedImageAsync);
+            UploadVideoCommand = new(UploadVideoAsync);
             SendMessageCommand = new(SendMessageAsync);
             OpenEmojisPanelCommand = new(OpenEmojisPanel);
         }
@@ -115,6 +118,48 @@ namespace WinstaNext.ViewModels.Directs
                     ImageBytes = bytes,
                     Height = (int)ip.Height,
                     Width = (int)ip.Width
+                }, ThreadId);
+                if (result.Succeeded)
+                {
+                    //ThreadItems.InsertNewTextMessage(result.Value, MessageText);
+                    MessageText = string.Empty;
+                }
+            }
+        }
+
+        public async Task UploadVideoAsync()
+        {
+            var fop = new FileOpenPicker()
+            {
+                SuggestedStartLocation = PickerLocationId.VideosLibrary,
+                ViewMode = PickerViewMode.Thumbnail
+            };
+            fop.FileTypeFilter.Add(".mp4");
+            var res = await fop.PickSingleFileAsync();
+            if (res == null) return;
+            var vp = await res.Properties.GetVideoPropertiesAsync();
+            var thumb = await res.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.VideosView);
+            var openFile = await res.OpenReadAsync();
+            var imageBytes = await ImageFileConverter.ConvertToBytesArray(thumb);
+            var bytes = await ImageFileConverter.ConvertToBytesArray(openFile);
+            
+            using (var Api = App.Container.GetService<IInstaApi>())
+            {
+                Api.SetConfigureMediaDelay(new VideoConfigureMediaDelay());
+                var result = await Api.MessagingProcessor.SendDirectVideoAsync(new InstaVideoUpload()
+                {
+                    Video = new()
+                    {
+                        Height = (int)vp.Height,
+                        Width = (int)vp.Width,
+                        VideoBytes = bytes,
+                    },
+                    VideoThumbnail = new()
+                    {
+                        Height = (int)thumb.OriginalHeight,
+                        Width = (int)thumb.OriginalWidth,
+                        ImageBytes = imageBytes
+                    }
                 }, ThreadId);
                 if (result.Succeeded)
                 {

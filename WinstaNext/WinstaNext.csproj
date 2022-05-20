@@ -209,6 +209,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\ConfigureDelays\ImageConfigureMediaDelay.cs" />
+    <Compile Include="Models\ConfigureDelays\VideoConfigureMediaDelay.cs" />
     <Compile Include="Models\Core\LanguageDefinition.cs" />
     <Compile Include="Models\Core\MenuItemModel.cs" />
     <Compile Include="Models\Core\WinstaSynchContext.cs" />

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
@@ -99,6 +97,11 @@ namespace WinstaNext.Converters.FileConverters
             await dr.LoadAsync((uint)s.Size);
             dr.ReadBytes(bytes);
             return bytes;
+        }
+
+        public static async Task<byte[]> ConvertToBytesArray(IRandomAccessStream stream)
+        {
+            return await Convert(stream);
         }
 
     }
