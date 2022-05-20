@@ -48,7 +48,7 @@ namespace WinstaNext.Helpers.DownloadUploadHelper
 
         static async void DownloadImage(string imageUri, InstaMedia Media)
         {
-            var WinstaFolder = await KnownFolders.PicturesLibrary.CreateFolderAsync("Winsta", CreationCollisionOption.OpenIfExists);
+            var WinstaFolder = await ApplicationSettingsManager.Instance.GetDownloadsFolderAsync();
             var userDownloads = await WinstaFolder.CreateFolderAsync(Media.User.UserName, CreationCollisionOption.OpenIfExists);
             var desfile = await userDownloads.CreateFileAsync($"{Media.InstaIdentifier}.jpg", CreationCollisionOption.GenerateUniqueName);
             Download(desfile, imageUri, Media.InstaIdentifier, Media.User.ProfilePicture);
@@ -56,7 +56,7 @@ namespace WinstaNext.Helpers.DownloadUploadHelper
 
         static async void DownloadImage(string imageUri, InstaStoryItem Story)
         {
-            var WinstaFolder = await KnownFolders.PicturesLibrary.CreateFolderAsync("Winsta", CreationCollisionOption.OpenIfExists);
+            var WinstaFolder = await ApplicationSettingsManager.Instance.GetDownloadsFolderAsync();
             var userDownloads = await WinstaFolder.CreateFolderAsync(Story.User.UserName, CreationCollisionOption.OpenIfExists);
             var desfile = await userDownloads.CreateFileAsync($"Story_{Story.Id}.jpg", CreationCollisionOption.GenerateUniqueName);
             Download(desfile, imageUri, Story.Id, Story.User.ProfilePicture);
@@ -64,8 +64,7 @@ namespace WinstaNext.Helpers.DownloadUploadHelper
 
         static async void DownloadVideo(string videoUri, InstaMedia Media)
         {
-            var bgdl = App.Container.GetService<BackgroundDownloader>();
-            var WinstaFolder = await KnownFolders.PicturesLibrary.CreateFolderAsync("Winsta", CreationCollisionOption.OpenIfExists);
+            var WinstaFolder = await ApplicationSettingsManager.Instance.GetDownloadsFolderAsync();
             var userDownloads = await WinstaFolder.CreateFolderAsync(Media.User.UserName, CreationCollisionOption.OpenIfExists);
             var desfile = await userDownloads.CreateFileAsync($"{Media.InstaIdentifier}.mp4", CreationCollisionOption.GenerateUniqueName);
             Download(desfile, videoUri, Media.InstaIdentifier, Media.User.ProfilePicture);
@@ -73,8 +72,7 @@ namespace WinstaNext.Helpers.DownloadUploadHelper
 
         static async void DownloadVideo(string videoUri, InstaStoryItem Story)
         {
-            var bgdl = App.Container.GetService<BackgroundDownloader>();
-            var WinstaFolder = await KnownFolders.PicturesLibrary.CreateFolderAsync("Winsta", CreationCollisionOption.OpenIfExists);
+            var WinstaFolder = await ApplicationSettingsManager.Instance.GetDownloadsFolderAsync();
             var userDownloads = await WinstaFolder.CreateFolderAsync(Story.User.UserName, CreationCollisionOption.OpenIfExists);
             var desfile = await userDownloads.CreateFileAsync($"Story_{Story.Id}.mp4", CreationCollisionOption.GenerateUniqueName);
             Download(desfile, videoUri, Story.Id, Story.User.ProfilePicture);

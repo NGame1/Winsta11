@@ -20,6 +20,7 @@ using System.Collections;
 using WinstaCore;
 using System.Globalization;
 using Windows.ApplicationModel.Resources.Core;
+using Windows.Storage.AccessCache;
 #nullable enable
 
 namespace WinstaNext
@@ -53,6 +54,23 @@ namespace WinstaNext
             LocalFolder = ApplicationData.Current.LocalFolder;
             LocalSettings = ApplicationData.Current.LocalSettings;
             RoamingSettings = ApplicationData.Current.RoamingSettings;
+        }
+
+        public async Task<StorageFolder> GetDownloadsFolderAsync()
+        {
+            if (StorageApplicationPermissions.FutureAccessList.ContainsItem(nameof(DownloadsFolder)))
+            {
+                return await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(nameof(DownloadsFolder));
+            }
+            return await KnownFolders.PicturesLibrary.CreateFolderAsync("Winsta", CreationCollisionOption.OpenIfExists);
+        }
+
+        public void SetDownloadsFolderAsync(StorageFolder? folder = null)
+        {
+            if (folder != null)
+                StorageApplicationPermissions.FutureAccessList.AddOrReplace(nameof(DownloadsFolder), folder);
+            else
+                StorageApplicationPermissions.FutureAccessList.Remove(nameof(DownloadsFolder));
         }
 
         public string? GetLastLoggedUser()
