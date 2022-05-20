@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:WinstaNext.UI.Directs.MessageContainer"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="using:InstagramApiSharp.Classes.Models"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core" 
     xmlns:ViewsDirect="using:WinstaNext.Views.Directs" 
     xmlns:controls="using:WinstaNext.UI.Controls"
@@ -38,61 +39,74 @@
         </PersonPicture>
 
         <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
-                    CornerRadius="{StaticResource ControlCornerRadius}"
-                    Padding="{StaticResource MessageBubblePadding}"
-                    Background="#80B00000"
-                    Spacing="2">
+                    CornerRadius="{StaticResource ControlCornerRadius}">
+            <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+                        CornerRadius="{StaticResource ControlCornerRadius}"
+                        Padding="{StaticResource MessageBubblePadding}"
+                        Spacing="{StaticResource MessageBubbleSpacing}"
+                        Background="#80B00000">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-
-                <StackPanel Spacing="{StaticResource MessageBubbleSpacing}"
+                    <StackPanel Spacing="{StaticResource MessageBubbleSpacing}"
                             Orientation="Horizontal">
-                    <PersonPicture Visibility="{x:Bind DirectItem.Clip.User.Pk, Converter={StaticResource UserIdToProfilePictureVisibilityConverter}, Mode=OneWay}"
+                        <PersonPicture Visibility="{x:Bind DirectItem.Clip.User.Pk, Converter={StaticResource UserIdToProfilePictureVisibilityConverter}, Mode=OneWay}"
                                    ProfilePicture="{x:Bind DirectItem.Clip.User.ProfilePicture, Mode=OneWay}"
                                    VerticalAlignment="{StaticResource ProfileVerticalAlignment}"
                                    DisplayName="{x:Bind DirectItem.Clip.User.UserName, Mode=OneWay}"
                                    Height="{StaticResource ProfilePictureSize}"
                                    Width="{StaticResource ProfilePictureSize}">
 
-                        <i:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="Tapped">
-                                <core:InvokeCommandAction CommandParameter="{x:Bind DirectItem.Clip.User.UserName, Mode=OneWay}" Command="{x:Bind NavigateUserProfileCommand}"/>
-                            </core:EventTriggerBehavior>
-                        </i:Interaction.Behaviors>
-                    </PersonPicture>
+                            <i:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="Tapped">
+                                    <core:InvokeCommandAction CommandParameter="{x:Bind DirectItem.Clip.User.UserName, Mode=OneWay}" Command="{x:Bind NavigateUserProfileCommand}"/>
+                                </core:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </PersonPicture>
 
-                    <HyperlinkButton CommandParameter="{x:Bind DirectItem.Clip.User.UserName, Mode=OneWay}"
+                        <HyperlinkButton CommandParameter="{x:Bind DirectItem.Clip.User.UserName, Mode=OneWay}"
                                      Content="{x:Bind DirectItem.Clip.User.UserName, Mode=OneWay}"
                                      Command="{x:Bind NavigateUserProfileCommand}"
                                      VerticalAlignment="Center"
                                      FontWeight="SemiBold"
                                      Grid.Column="1"/>
-                </StackPanel>
+                    </StackPanel>
 
-                <Button Style="{StaticResource FontIconButtonStyle}"
+                    <Button Style="{StaticResource FontIconButtonStyle}"
                         Command="{x:Bind NavigateToMediaCommand}"
                         BorderBrush="Transparent"
                         Background="Transparent"
                         Content="&#xE09B;"
                         Grid.Column="1"/>
-            </Grid>
-            
-            <Image Source="{x:Bind DirectItem.Clip.Images[0].Uri, Mode=OneWay}" 
+                </Grid>
+
+                <Image Source="{x:Bind DirectItem.Clip.Images[0].Uri, Mode=OneWay}" 
                    x:Name="imgMedia"
                    MaxWidth="185"/>
 
-            <MediaElement PosterSource="{x:Bind DirectItem.Clip.Images[0].Uri, Mode=OneWay}" 
+                <MediaElement PosterSource="{x:Bind DirectItem.Clip.Images[0].Uri, Mode=OneWay}" 
                           AreTransportControlsEnabled="False" 
                           x:Name="vidMedia"
                           IsLooping="True"
                           AutoPlay="True"
                           IsMuted="True"
                           Width="185"/>
+            </StackPanel>
+            <ItemsControl x:Load="{x:Bind DirectItem.Reactions.Emojis.Count, Converter={StaticResource IntToIsEnabledConverter}, Mode=OneWay}"
+                          ItemsSource="{x:Bind DirectItem.Reactions.Emojis, Mode=OneWay}"
+                          x:Name="emojisItemsControl">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="models:InstaDirectEmojiReaction">
+                        <TextBlock Text="{x:Bind Emoji}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </StackPanel>
+
+
     </StackPanel>
 
 </directs:MessageContainerUC>

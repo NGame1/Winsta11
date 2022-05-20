@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:i="using:Microsoft.Xaml.Interactivity" xmlns:ViewsDirect="using:WinstaNext.Views.Directs"
+    xmlns:i="using:Microsoft.Xaml.Interactivity" xmlns:ViewsDirect="using:WinstaNext.Views.Directs" xmlns:models="using:InstagramApiSharp.Classes.Models"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -34,11 +34,23 @@
 
         </PersonPicture>
 
-        <StackPanel Padding="{StaticResource MessageBubblePadding}"
-                    Spacing="{StaticResource MessageBubbleSpacing}"
-                    MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+        <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
                     CornerRadius="{StaticResource ControlCornerRadius}">
-            <Image Source="{x:Bind DirectItem.AnimatedMedia.Media.Url, Mode=OneWay}" MaxHeight="100"/>
+            <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+                        CornerRadius="{StaticResource ControlCornerRadius}"
+                        Padding="{StaticResource MessageBubblePadding}"
+                        Spacing="{StaticResource MessageBubbleSpacing}">
+                <Image Source="{x:Bind DirectItem.AnimatedMedia.Media.Url, Mode=OneWay}" MaxHeight="100"/>
+            </StackPanel>
+            <ItemsControl x:Load="{x:Bind DirectItem.Reactions.Emojis.Count, Converter={StaticResource IntToIsEnabledConverter}, Mode=OneWay}"
+                          ItemsSource="{x:Bind DirectItem.Reactions.Emojis, Mode=OneWay}"
+                          x:Name="emojisItemsControl">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="models:InstaDirectEmojiReaction">
+                        <TextBlock Text="{x:Bind Emoji}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </StackPanel>
     </StackPanel>
 

@@ -5,11 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:WinstaNext.UI.Directs.MessageContainer"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="using:InstagramApiSharp.Classes.Models"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core" 
     xmlns:ViewsDirect="using:WinstaNext.Views.Directs"
     xmlns:controls="using:WinstaNext.UI.Controls"
     xmlns:i="using:Microsoft.Xaml.Interactivity" 
-    xmlns:directs="using:WinstaNext.UI.Directs" 
+    xmlns:directs="using:WinstaNext.UI.Directs"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -36,9 +37,7 @@
 
         </PersonPicture>
 
-        <StackPanel Padding="{StaticResource MessageBubblePadding}"
-                    Spacing="{StaticResource MessageBubbleSpacing}"
-                    MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+        <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
                     CornerRadius="{StaticResource ControlCornerRadius}">
 
             <TextBlock Text="{x:Bind DirectItem.StoryShare.Title, Mode=OneWay}"/>
@@ -46,7 +45,7 @@
             <Image HorizontalAlignment="{x:Bind DirectItem.UserId, Converter={StaticResource UserIdToHorizontalAlignmentConverter}, Mode=OneWay}" 
                    x:Name="imgMedia"
                    MaxWidth="185"/>
-
+            
             <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
                         CornerRadius="{StaticResource ControlCornerRadius}"
                         Padding="{StaticResource MessageBubblePadding}"
@@ -56,11 +55,20 @@
 
                 <TextBlock Text="{x:Bind DirectItem.StoryShare.Text, Mode=OneWay}"
                            x:Name="txtText"/>
-                
+
                 <TextBlock Text="{x:Bind DirectItem.TimeStamp, Converter={StaticResource DirectItemTimeConverter}, Mode=OneWay}" HorizontalAlignment="Right"/>
-                
             </StackPanel>
+            <ItemsControl x:Load="{x:Bind DirectItem.Reactions.Emojis.Count, Converter={StaticResource IntToIsEnabledConverter}, Mode=OneWay}"
+                          ItemsSource="{x:Bind DirectItem.Reactions.Emojis, Mode=OneWay}"
+                          x:Name="emojisItemsControl">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="models:InstaDirectEmojiReaction">
+                        <TextBlock Text="{x:Bind Emoji}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </StackPanel>
+        
     </StackPanel>
 
 </directs:MessageContainerUC>
