@@ -260,13 +260,12 @@
 
             <muxc:TeachingTip x:Load="{x:Bind ViewModel.RepliedMessage, Converter={StaticResource InvertedNullToBooleanConverter}, Mode=OneWay}"
                               Subtitle="{x:Bind ViewModel.RepliedMessage.Text, Mode=OneWay}"
+                              IsOpen="{x:Bind ViewModel.RepliedMessage, Converter={StaticResource InvertedNullToBooleanConverter}, Mode=OneWay}"
                               CloseButtonCommand="{x:Bind ViewModel.IgnoreReplyCommand}"
                               Target="{x:Bind txtMessage}"
                               PreferredPlacement="Top"
                               Title="Replying to..."
-                              x:Name="replyTip"
-                              IsOpen="{x:Bind ViewModel.RepliedMessage, Converter={StaticResource InvertedNullToBooleanConverter}, Mode=OneWay}"
-                              >
+                              x:Name="replyTip">
 
                 <muxc:TeachingTip.IconSource>
                     <muxc:FontIconSource Glyph="{x:Bind Constants:FluentRegularFontCharacters.Reply}"
