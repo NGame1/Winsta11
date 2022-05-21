@@ -11,6 +11,8 @@ using Windows.UI.Xaml.Media;
 using WinstaNext.Abstractions.Direct.Models;
 using WinstaNext.Constants;
 using WinstaNext.Services;
+using WinstaNext.UI.Directs;
+using WinstaNext.ViewModels.Directs;
 using WinstaNext.Views.Directs;
 
 namespace WinstaNext.UI.Flyouts.Directs
@@ -35,12 +37,21 @@ namespace WinstaNext.UI.Flyouts.Directs
         public AsyncRelayCommand LikeMessageCommand { get; set; }
         public AsyncRelayCommand UnlikeMessageCommand { get; set; }
 
+        public RelayCommand ReplyCommand { get; set; }
+
         public DirectMessageItemMenuFlyout()
         {
             UnsendMessageCommand = new(UnsendMessageAsync);
             UnlikeMessageCommand = new(UnlikeMessageAsync);
             LikeMessageCommand = new(LikeMessageAsync);
+            ReplyCommand = new(Reply);
             this.Opening += DirectMessageItemMenuFlyout_Opening;
+        }
+
+        public void Reply()
+        {
+            if (DirectThreadViewModel.CurrentVM == null) return;
+            DirectThreadViewModel.CurrentVM.RepliedMessage = DirectItem;
         }
 
         async Task LikeMessageAsync()
@@ -87,7 +98,13 @@ namespace WinstaNext.UI.Flyouts.Directs
                 else { Hide(); return; }
             }
             else { Hide(); return; }
-            if(DirectItem.UserId == Me.Pk)
+            Items.Add(new MenuFlyoutItem()
+            {
+                Icon = new FontIcon() { Glyph = FluentRegularFontCharacters.Reply, FontFamily = FluentSystemIconsRegular },
+                Text = LanguageManager.Instance.Instagram.Reply,
+                Command = ReplyCommand
+            });
+            if (DirectItem.UserId == Me.Pk)
             {
                 //My own message
                 Items.Add(new MenuFlyoutItem()
@@ -97,7 +114,7 @@ namespace WinstaNext.UI.Flyouts.Directs
                     Command = UnsendMessageCommand
                 });
             }
-            if(!DirectItem.Reactions.Liked)
+            if (!DirectItem.Reactions.Liked)
             {
                 Items.Add(new MenuFlyoutItem()
                 {

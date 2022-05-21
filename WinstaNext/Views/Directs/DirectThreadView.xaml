@@ -9,6 +9,7 @@
       xmlns:directs2="using:WinstaNext.UI.Flyouts.Directs"
       x:Class="WinstaNext.Views.Directs.DirectThreadView"
       xmlns:Converters="using:WinstaNext.Converters"
+      xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
       xmlns:directs1="using:WinstaNext.UI.Directs"
       xmlns:Constants="using:WinstaNext.Constants"
       xmlns:Winsta="using:WinstaNext" 
@@ -18,6 +19,8 @@
 
     <Page.Resources>
         <Converters:InvertBoolConverter x:Key="InvertBoolConverter"/>
+        <Converters:NullToBooleanConverter IsInverted="True"
+                                           x:Key="InvertedNullToBooleanConverter"/>
         
         <Thickness x:Key="MessageBubblePadding">8,6</Thickness>
         <Thickness x:Key="MessagesMargin">0,3</Thickness>
@@ -254,6 +257,22 @@
 
                 </TextBox.KeyboardAccelerators>
             </TextBox>
+
+            <muxc:TeachingTip x:Load="{x:Bind ViewModel.RepliedMessage, Converter={StaticResource InvertedNullToBooleanConverter}, Mode=OneWay}"
+                              Subtitle="{x:Bind ViewModel.RepliedMessage.Text, Mode=OneWay}"
+                              CloseButtonCommand="{x:Bind ViewModel.IgnoreReplyCommand}"
+                              Target="{x:Bind txtMessage}"
+                              PreferredPlacement="Top"
+                              Title="Replying to..."
+                              x:Name="replyTip"
+                              IsOpen="{x:Bind ViewModel.RepliedMessage, Converter={StaticResource InvertedNullToBooleanConverter}, Mode=OneWay}"
+                              >
+
+                <muxc:TeachingTip.IconSource>
+                    <muxc:FontIconSource Glyph="{x:Bind Constants:FluentRegularFontCharacters.Reply}"
+                                                     FontFamily="{StaticResource FluentSystemIconsRegular}"/>
+                </muxc:TeachingTip.IconSource>
+            </muxc:TeachingTip>
 
             <StackPanel Orientation="Horizontal"
                         Grid.Column="1"

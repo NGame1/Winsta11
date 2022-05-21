@@ -272,7 +272,9 @@
 
     <ListView ItemTemplateSelector="{StaticResource RecentActivityFeedItemTemplateSelector}"
               ItemsSource="{x:Bind ViewModel.Activities}"
+              ItemClick="ListView_ItemClick"
               Margin="{x:Bind PageMargin}"
+              IsItemClickEnabled="True"
               SelectionMode="None"
               Padding="0,0,13,0">
         <ListView.ItemContainerStyle>

@@ -3,6 +3,7 @@ using InstagramApiSharp.Classes;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,9 +22,11 @@ using WinstaNext.Converters.FileConverters;
 using WinstaNext.Core.Collections.IncrementalSources.Directs;
 using WinstaNext.Models.ConfigureDelays;
 using WinstaNext.Views.Directs;
+#nullable enable
 
 namespace WinstaNext.ViewModels.Directs
 {
+    [AddINotifyPropertyChangedInterface]
     public class DirectThreadViewModel : BaseViewModel
     {
         InstaDirectInboxThread DirectThread { get; set; }
@@ -37,6 +40,12 @@ namespace WinstaNext.ViewModels.Directs
         public AsyncRelayCommand SendLikeCommand { get; set; }
         public AsyncRelayCommand<DependencyObject> OpenEmojisPanelCommand { get; set; }
 
+        public RelayCommand IgnoreReplyCommand { get; set; }
+
+        public static DirectThreadViewModel? CurrentVM { get; set; } = null;
+
+        public InstaDirectInboxItem? RepliedMessage { get; set; }
+
         public string MessageText { get; set; }
 
         public string ThreadId { get; set; }
@@ -45,24 +54,21 @@ namespace WinstaNext.ViewModels.Directs
         public DirectThreadViewModel(InstaDirectInboxThread directThread)
         {
             if (DirectThread != null && DirectThread.ThreadId == directThread.ThreadId) return;
+            RepliedMessage = null;
             DirectThread = directThread;
             Instance = new(DirectThread);
             ThreadItems = new(Instance);
             SendLikeCommand = new(SendLikeAsync);
+            IgnoreReplyCommand = new(IgnoreReply);
             UploadImageCommand = new(UploadImageAsync);
             UploadCameraCapturedImageCommand = new(UploadCameraCapturedImageAsync);
             UploadVideoCommand = new(UploadVideoAsync);
             SendMessageCommand = new(SendMessageAsync);
             OpenEmojisPanelCommand = new(OpenEmojisPanel);
+            CurrentVM = this;
         }
 
-        ~DirectThreadViewModel()
-        {
-            DirectThread = null;
-            Instance = null;
-            ThreadItems = null;
-            SendMessageCommand = null;
-        }
+        void IgnoreReply() => RepliedMessage = null;
 
         async Task UploadImageAsync()
         {
@@ -142,7 +148,7 @@ namespace WinstaNext.ViewModels.Directs
             var openFile = await res.OpenReadAsync();
             var imageBytes = await ImageFileConverter.ConvertToBytesArray(thumb);
             var bytes = await ImageFileConverter.ConvertToBytesArray(openFile);
-            
+
             using (var Api = App.Container.GetService<IInstaApi>())
             {
                 Api.SetConfigureMediaDelay(new VideoConfigureMediaDelay());
@@ -174,7 +180,15 @@ namespace WinstaNext.ViewModels.Directs
             if (SendMessageCommand.IsRunning) return;
             using (var Api = App.Container.GetService<IInstaApi>())
             {
-                var result = await Api.MessagingProcessor.SendDirectTextAsync(null, ThreadId, MessageText);
+                IResult<InstaDirectRespondPayload> result;
+                if (RepliedMessage == null)
+                {
+                    result = await Api.MessagingProcessor.SendDirectTextAsync(null, ThreadId, MessageText);
+                }
+                else
+                {
+                    result = await Api.MessagingProcessor.ReplyDirectMessageAsync(ThreadId, MessageText, RepliedMessage.ItemId, RepliedMessage.UserId, RepliedMessage.ClientContext, RepliedMessage.ItemType.ToString()); ;
+                }
                 if (result.Succeeded)
                 {
                     ThreadItems.InsertNewTextMessage(result.Value, MessageText);
@@ -196,8 +210,10 @@ namespace WinstaNext.ViewModels.Directs
             }
         }
 
-        async Task OpenEmojisPanel(DependencyObject obj)
+        async Task OpenEmojisPanel(DependencyObject? obj)
         {
+            if (obj == null)
+                throw new ArgumentNullException(nameof(obj));
             await obj.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
                 CoreInputView.GetForCurrentView().TryShow(CoreInputViewKind.Emoji);

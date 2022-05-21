@@ -1,4 +1,5 @@
 ﻿using InstagramApiSharp.Classes.Models;
+using InstagramApiSharp.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using System;
@@ -48,6 +49,13 @@ namespace WinstaNext.Views.Activities
             var dt = (sender as FrameworkElement).DataContext;
             if (dt is InstaRecentActivityFeed activityFeed)
                 ViewModel.RejectFollowRequestCommand.Execute(activityFeed);
+        }
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (e.ClickedItem is InstaRecentActivityFeed activityFeed)
+                if (activityFeed.Type == InstaActivityFeedType.Follow)
+                    ViewModel.NavigationService.Navigate(typeof(FollowRequestsView));
         }
     }
 }

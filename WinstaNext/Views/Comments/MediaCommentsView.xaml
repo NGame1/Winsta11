@@ -55,15 +55,15 @@
                                 Width="35" Height="35"/>
 
             <muxc:TeachingTip x:Load="{x:Bind ViewModel.ReplyedComment, Converter={StaticResource InvertedNullToBooleanConverter}, Mode=OneWay}"
+                              IsOpen="{x:Bind ViewModel.ReplyedComment, Converter={StaticResource InvertedNullToBooleanConverter}, Mode=OneWay}"
+                              Subtitle="{x:Bind ViewModel.ReplyedComment.Text, Mode=OneWay}"
                               CloseButtonCommand="{x:Bind ViewModel.IgnoreReplyCommand}"
                               Target="{x:Bind txtCooment}"
                               PreferredPlacement="Top"
                               Title="Replying to..."
-                              x:Name="replyTip"
-                              IsOpen="True"
-                              Subtitle="{x:Bind ViewModel.ReplyedComment.User.UserName}">
+                              x:Name="replyTip">
 
-                            <muxc:TeachingTip.IconSource>
+                <muxc:TeachingTip.IconSource>
                                 <muxc:FontIconSource Glyph="{x:Bind Constants:FluentRegularFontCharacters.Reply}"
                                                      FontFamily="{StaticResource FluentSystemIconsRegular}"/>
                             </muxc:TeachingTip.IconSource>
