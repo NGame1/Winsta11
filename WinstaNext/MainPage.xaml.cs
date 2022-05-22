@@ -94,14 +94,6 @@ namespace WinstaNext
 
         private void NavigationView_Loaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.IsNavigationViewPaneOpened = NavigationView.IsPaneOpen;
-            var backButton = NavigationView.FindDescendantOrSelf<Button>(x => x.Name.Contains("Back"));
-            var keyboardAccelerator = new KeyboardAccelerator()
-            {
-                Key = Windows.System.VirtualKey.Escape,
-                Modifiers = Windows.System.VirtualKeyModifiers.None,
-            };
-            backButton.KeyboardAccelerators.Add(keyboardAccelerator);
             UpdateVisualState();
         }
 
