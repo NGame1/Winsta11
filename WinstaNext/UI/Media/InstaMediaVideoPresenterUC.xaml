@@ -23,6 +23,7 @@
                           Width="{x:Bind SV_ImageZoom.ViewportWidth}"
                           MediaEnded="mediaPlayer_MediaEnded"
                           AreTransportControlsEnabled="True"
+                          Tapped="mediaPlayer_Tapped"
                           x:FieldModifier="public"
                           x:Name="mediaPlayer"
                           AutoPlay="False">

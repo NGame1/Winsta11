@@ -1,21 +1,14 @@
 ﻿using InstagramApiSharp.Classes.Models;
+using Microsoft.Toolkit.Uwp.UI;
 using PropertyChanged;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Devices.Input;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -104,6 +97,24 @@ namespace WinstaNext.UI.Media
         private void mediaPlayer_MediaEnded(object sender, RoutedEventArgs e)
         {
             MediaEnded?.Invoke(sender, e);
+        }
+
+        private async void mediaPlayer_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var media = Media;
+            if(media == null)
+            {
+                var mediaPresenter = this.FindAscendant<InstaMediaPresenterUC>();
+                media = mediaPresenter.Media;
+            }
+            var liked = media.HasLiked;
+            await Task.Delay(500);
+            if (liked != media.HasLiked) return;
+            var pos = e.GetPosition((UIElement)sender).Y;
+            if (pos < mediaPlayer.ActualHeight - 60)
+            {
+                mediaPlayer.IsMuted = !mediaPlayer.IsMuted;
+            }
         }
     }
 }
