@@ -9,9 +9,7 @@ using Microsoft.Toolkit.Uwp;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using PropertyChanged;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Xaml.Controls;
@@ -19,12 +17,12 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Core.Attributes;
 using WinstaNext.Core.Collections;
+using WinstaNext.Core.Collections.IncrementalSources.Highlights;
 using WinstaNext.Core.Collections.IncrementalSources.Users;
 using WinstaNext.Core.Navigation;
 using WinstaNext.Helpers.ExtensionMethods;
 using WinstaNext.Models.Core;
 using WinstaNext.Services;
-using WinstaNext.Views;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;
 
@@ -38,11 +36,13 @@ namespace WinstaNext.ViewModels.Users
 
         public string FollowBtnContent { get; set; }
 
+        IncrementalUserHighlights HighlightsInstance { get; set; }
         IncrementalUserMedias MediasInstance { get; set; }
         IncrementalUserReels ReelsInstance { get; set; }
         IncrementalUserTaggedMedia TaggedInstance { get; set; }
         IncrementalUserTVMedias IGTVInstance { get; set; }
 
+        public IncrementalLoadingCollection<IncrementalUserHighlights, InstaHighlightFeed> HighlightFeeds { get; set; }
         RangePlayerAttribute UserReels { get; set; }
         RangePlayerAttribute UserMedias { get; set; }
         RangePlayerAttribute UserTaggedMedias { get; set; }
@@ -253,10 +253,13 @@ namespace WinstaNext.ViewModels.Users
                 }
             }
             SetFollowButtonContent();
+            HighlightsInstance = new(User.Pk);
             ReelsInstance = new(User.Pk);
             MediasInstance = new(User.Pk);
             TaggedInstance = new(User.Pk);
             IGTVInstance = new(User.Pk);
+
+            HighlightFeeds = new(HighlightsInstance);
             UserReels = new(ReelsInstance);
             UserMedias = new(MediasInstance);
             UserTaggedMedias = new(TaggedInstance);

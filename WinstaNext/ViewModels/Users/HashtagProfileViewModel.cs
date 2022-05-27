@@ -4,7 +4,6 @@ using InstagramApiSharp.Classes.Models;
 using Mapster;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.Toolkit.Uwp;
 using PropertyChanged;
 using System;
 using System.Linq;
