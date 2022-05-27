@@ -57,7 +57,7 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'uap10.0' ">
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.12" />
+    <!--<PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.12" />-->
     <!--<PackageReference Include="System.Memory" Version="4.5.3" />-->
   </ItemGroup>
   <ItemGroup>
