@@ -1,17 +1,19 @@
 ﻿<views:BasePage Loaded="BasePage_Loaded"
-    xmlns:views="using:WinstaNext.Views"
-    x:Class="WinstaNext.Views.Account.LoginView"
+    xmlns:muxc5NotPresent="using:Microsoft.UI.Xaml.Controls?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:muxc5Present="using:Microsoft.UI.Xaml.Controls?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WinstaNext"
-    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    muxc5NotPresent:BackdropMaterial.ApplyToRootOrPageBackground="False"
+    muxc5Present:BackdropMaterial.ApplyToRootOrPageBackground="True"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:VM="using:WinstaNext.ViewModels.Account" 
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core" 
-    xmlns:i="using:Microsoft.Xaml.Interactivity" 
-    xmlns:Converters="using:WinstaNext.Converters" xmlns:brushes="using:Microsoft.Toolkit.Uwp.UI.Media"
-                mc:Ignorable="d" muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:brushes="using:Microsoft.Toolkit.Uwp.UI.Media"
+    xmlns:VM="using:WinstaNext.ViewModels.Account"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    x:Class="WinstaNext.Views.Account.LoginView"
+    xmlns:views="using:WinstaNext.Views"
+    xmlns:local="using:WinstaNext"
+    mc:Ignorable="d">
 
     <!--<views:BasePage.Resources>
         <Converters:BoolToVisibilityConverter IsInverted="True" x:Key="InvertedBoolToVisibilityConverter"/>
