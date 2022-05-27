@@ -16,8 +16,8 @@
     xmlns:core1="using:WinstaNext.Models.Core"
     xmlns:media="using:WinstaNext.UI.Media" 
     xmlns:views="using:WinstaNext.Views"
-    xmlns:Winsta="using:WinstaNext"
-    mc:Ignorable="d">
+    xmlns:Winsta="using:WinstaNext" xmlns:stories="using:WinstaNext.UI.Stories"
+                mc:Ignorable="d">
 
     <views:BasePage.Resources>
         
@@ -53,6 +53,11 @@
             </Grid.RowDefinitions>
 
             <Grid Margin="{x:Bind PageMargin}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
                 <StackPanel Spacing="5" Grid.Row="0">
                     <StackPanel Spacing="5" Orientation="Horizontal">
                         <muxc:PersonPicture ProfilePicture="{x:Bind ViewModel.User.ProfilePicture}" 
@@ -135,6 +140,49 @@
                         </Hyperlink>
                     </TextBlock>
                 </StackPanel>
+
+
+                <ListView ItemsSource="{x:Bind ViewModel.HighlightFeeds, Mode=OneWay}"
+                          ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          ScrollViewer.HorizontalScrollMode="Enabled"
+                          ScrollViewer.VerticalScrollMode="Disabled"
+                          IsItemClickEnabled="True"
+                          SelectionMode="None"
+                          Padding="0,16,8,16"
+                          Grid.Row="1">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:InstaHighlightFeed">
+                            <stories:InstaHighlightFeedPresenterUC HighlightFeed="{x:Bind}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
+                            <Setter Property="MaxWidth" Value="85"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                    <ListView.Header>
+                        <TextBlock Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Highlights}"
+                                   RenderTransformOrigin="0.5,0.5" 
+                                   Margin="-30,0,16,0">
+                            <TextBlock.RenderTransform>
+                                <RotateTransform Angle="90"/>
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                    </ListView.Header>
+
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid MaximumRowsOrColumns="1"
+                                           Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                </ListView>
+
             </Grid>
 
             <NavigationView ScrollViewer.IsVerticalScrollChainingEnabled="True"
