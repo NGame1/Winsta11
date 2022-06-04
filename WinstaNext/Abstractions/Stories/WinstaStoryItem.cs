@@ -22,6 +22,11 @@ namespace WinstaNext.Abstractions.Stories
             HashtagStory = hashtagStory;
         }
 
+        public WinstaStoryItem(InstaHighlightFeed highlight)
+        {
+            HighlightStory = new(highlight);
+        }
+
         public WinstaStoryItem(InstaReelFeed reelFeed)
         {
             ReelFeed = new(reelFeed);
@@ -29,6 +34,7 @@ namespace WinstaNext.Abstractions.Stories
 
         public InstaBroadcast Broadcast { get; }
         public InstaHashtagStory HashtagStory { get; }
+        public WinstaHighlightFeed HighlightStory { get; }
         public WinstaReelFeed ReelFeed { get; }
 
         public bool IsSelected { get; set; }

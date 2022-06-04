@@ -3,6 +3,7 @@ using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using PropertyChanged;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using Windows.UI.Xaml;
@@ -36,9 +37,19 @@ namespace WinstaNext.Views.Stories
             set { SetValue(StoryRootProperty, value); }
         }
 
-        public WinstaReelFeed StoryItem
+        WinstaReelFeed ReelFeed
         {
             get => StoryRoot.ReelFeed;
+        }
+
+        InstaHighlightFeed Highlight
+        {
+            get => StoryRoot.HighlightStory;
+        }
+
+        public ObservableCollection<InstaStoryItem> StoryItems
+        {
+            get => ReelFeed != null ? ReelFeed.Items : Highlight.Items;
         }
 
         public double PageHeight { get; set; }
@@ -120,7 +131,7 @@ namespace WinstaNext.Views.Stories
                 else
                 {
                     //Need to notify to carousel view move to the next carousel.
-                    ItemsEnded?.Invoke(this, StoryItem);
+                    ItemsEnded?.Invoke(this, ReelFeed);
                 }
             }
         }

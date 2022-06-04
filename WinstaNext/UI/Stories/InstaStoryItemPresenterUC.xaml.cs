@@ -94,6 +94,7 @@ namespace WinstaNext.UI.Stories
 
         void NavigateToUserProfile(object? obj)
         {
+            if (Story.User.CloseButton.HasValue && Story.User.CloseButton.Value) return;
             var NavigationService = App.Container.GetService<NavigationService>();
             NavigationService?.Navigate(typeof(UserProfileView), obj);
         }

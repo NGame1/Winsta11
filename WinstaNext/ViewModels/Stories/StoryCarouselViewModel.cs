@@ -1,6 +1,7 @@
 ﻿using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Collections;
 using Microsoft.Toolkit.Uwp;
 using PropertyChanged;
 using System;
@@ -17,7 +18,7 @@ namespace WinstaNext.ViewModels.Stories
     {
         public override string PageHeader { get; protected set; }
 
-        public IncrementalLoadingCollection<IncrementalFeedStories, WinstaStoryItem> Stories { get; private set; }
+        public IncrementalLoadingCollection<IIncrementalSource<WinstaStoryItem>, WinstaStoryItem> Stories { get; private set; }
 
         [OnChangedMethod(nameof(OnSelectedItemChanged))]
         public WinstaStoryItem SelectedItem { get; set; }
@@ -33,7 +34,7 @@ namespace WinstaNext.ViewModels.Stories
         public void NextStory(WinstaReelFeed feed)
         {
             //Event invoked from wrong story!
-            if (SelectedItem == null && SelectedItem.ReelFeed != feed) return;
+            if (SelectedItem == null || SelectedItem.ReelFeed != feed) return;
             NextStory();
         }
 
@@ -119,6 +120,7 @@ namespace WinstaNext.ViewModels.Stories
         {
             var story = Stories.ElementAt(Index);
             if (story.ReelFeed != null) LoadReelFeed(story.ReelFeed);
+            if (story.HighlightStory != null) LoadHighlightStory(story.HighlightStory);
         }
 
         async void LoadReelFeed(WinstaReelFeed feed)
@@ -162,5 +164,31 @@ namespace WinstaNext.ViewModels.Stories
             }
         }
 
+        async void LoadHighlightStory(WinstaHighlightFeed feed)
+        {
+            if (feed == null) throw new ArgumentNullException(nameof(feed));
+            if (feed.Items.Any() || feed.IsLoading) return;
+            feed.IsLoading = true;
+            try
+            {
+                using (var Api = App.Container?.GetService<IInstaApi>())
+                {
+                    var result = await Api.StoryProcessor.GetHighlightMediasAsync(feed.HighlightId);
+                    if (!result.Succeeded) return;
+                    for (int i = 0; i < result.Value.Items.Count; i++)
+                    {
+                        var highlightItem = result.Value.Items.ElementAt(i);
+                        highlightItem.User.ProfilePicture = feed.CoverMedia.CroppedImage.Uri;
+                        highlightItem.User.UserName = feed.Title;
+                        highlightItem.User.CloseButton = true;
+                        feed.Items.Add(highlightItem);
+                    }
+                }
+            }
+            finally
+            {
+                feed.IsLoading = false;
+            }
+        }
     }
 }

@@ -14,6 +14,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.Abstractions.Stories;
+using WinstaNext.Core.Navigation;
+using WinstaNext.Views.Stories;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -57,5 +60,10 @@ namespace WinstaNext.Views.Profiles
             WrapGrid.ItemHeight = WrapGrid.ItemWidth = width;
         }
 
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var stories = ViewModel.HighlightFeeds;
+            ViewModel.NavigationService.Navigate(typeof(StoryCarouselView), new StoryCarouselViewParameter((WinstaStoryItem)e.ClickedItem, ref stories));
+        }
     }
 }

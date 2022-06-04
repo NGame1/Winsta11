@@ -4,6 +4,7 @@ using InstagramApiSharp.Classes.Models;
 using InstagramApiSharp.Enums;
 using Mapster;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Collections;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
 using Microsoft.Toolkit.Uwp.UI.Controls;
@@ -15,6 +16,7 @@ using Windows.System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.Abstractions.Stories;
 using WinstaNext.Core.Attributes;
 using WinstaNext.Core.Collections;
 using WinstaNext.Core.Collections.IncrementalSources.Highlights;
@@ -42,7 +44,7 @@ namespace WinstaNext.ViewModels.Users
         IncrementalUserTaggedMedia TaggedInstance { get; set; }
         IncrementalUserTVMedias IGTVInstance { get; set; }
 
-        public IncrementalLoadingCollection<IncrementalUserHighlights, InstaHighlightFeed> HighlightFeeds { get; set; }
+        public IncrementalLoadingCollection<IIncrementalSource<WinstaStoryItem>, WinstaStoryItem> HighlightFeeds { get; set; }
         RangePlayerAttribute UserReels { get; set; }
         RangePlayerAttribute UserMedias { get; set; }
         RangePlayerAttribute UserTaggedMedias { get; set; }

@@ -39,8 +39,16 @@
 
         </DataTemplate>
 
+        <DataTemplate x:DataType="models:WinstaStoryItem" 
+                      x:Key="HighlightTemplate">
+
+            <storiesView:StoryItemView StoryRoot="{x:Bind Mode=OneWay}"/>
+
+        </DataTemplate>
+
         <stories:WinstaStoryItemTemplateSelector x:Key="WinstaStoryItemTemplateSelector"
                                                  HashtagStoryTemplate="{StaticResource HashtagStoryTemplate}"
+                                                 HighlightTemplate="{StaticResource HighlightTemplate}"
                                                  StoryTemplate="{StaticResource StoryTemplate}"
                                                  LiveTemplate="{StaticResource LiveTemplate}"/>
 

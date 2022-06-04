@@ -20,7 +20,7 @@ namespace WinstaNext.ViewModels
     {
         public AsyncRelayCommand RefreshCommand { get; set; }
 
-        public IncrementalLoadingCollection<IncrementalFeedStories, WinstaStoryItem> Stories { get; }
+        public IncrementalLoadingCollection<IIncrementalSource<WinstaStoryItem>, WinstaStoryItem> Stories { get; }
         public RangePlayerAttribute Medias { get; }
 
         public IncrementalFeedStories FeedStories { get; } = new();

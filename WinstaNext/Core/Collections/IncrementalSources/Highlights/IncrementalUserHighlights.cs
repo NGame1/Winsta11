@@ -7,15 +7,17 @@ using Microsoft.Toolkit.Collections;
 using Microsoft.Toolkit.Uwp.UI.Helpers;
 using PropertyChanged;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Devices.Power;
 using Windows.System.Power;
 using Windows.UI.Xaml;
+using WinstaNext.Abstractions.Stories;
 
 namespace WinstaNext.Core.Collections.IncrementalSources.Highlights
 {
-    public class IncrementalUserHighlights : IIncrementalSource<InstaHighlightFeed>
+    public class IncrementalUserHighlights : IIncrementalSource<WinstaStoryItem>
     {
         PaginationParameters Pagination { get; set; }
 
@@ -31,7 +33,7 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Highlights
         }
 
         bool HasMoreAvailable = true;
-        public async Task<IEnumerable<InstaHighlightFeed>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<WinstaStoryItem>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken cancellationToken = default)
         {
             if (!HasMoreAvailable) return null;
             IResult<InstaHighlightFeeds> result;
@@ -52,10 +54,13 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Highlights
 
                 if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
                     throw result.Info.Exception;
-
+                List<WinstaStoryItem> highlights = new();
                 HasMoreAvailable = false;
-
-                return result.Value.Items;
+                for (int i = 0; i < result.Value.Items.Count; i++)
+                {
+                    highlights.Add(new(result.Value.Items.ElementAt(i)));
+                }
+                return highlights;
             }
             finally { }
         }
