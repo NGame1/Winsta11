@@ -63,6 +63,14 @@ namespace WinstaNext.Views.Media
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (e.Parameter is long mediaid)
+            {
+                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+                {
+                    LoadMediaById($"{mediaid}");
+                    return;
+                }
+            }
             if (e.Parameter is string url)
             {
                 using (IInstaApi Api = App.Container.GetService<IInstaApi>())

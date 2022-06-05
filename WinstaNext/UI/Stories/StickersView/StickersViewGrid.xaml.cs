@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using WinstaNext.Constants;
 using WinstaNext.Services;
+using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;
 #nullable enable
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
@@ -101,6 +102,35 @@ namespace WinstaNext.UI.Stories.StickersView
                     this.Children.Add(rect);
                 }
             }
+            if (StoryItem.StoryFeedMedia.Any())
+            {
+                for (int i = 0; i < StoryItem.StoryFeedMedia.Count; i++)
+                {
+                    var media = StoryItem.StoryFeedMedia.ElementAt(i);
+                    var rect = new Rectangle();
+                    SetStickerPosition(ref rect, media.Height, media.Width, media.X, media.Y, media.Rotation);
+                    rect.DataContext = media;
+                    rect.Tapped += Media_Tapped;
+                    this.Children.Add(rect);
+                }
+            }
+        }
+
+        void Media_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (PauseTimerCommand == null) return;
+            PauseTimerCommand.Execute(null);
+            var target = (FrameworkElement)e.OriginalSource;
+            if (target.DataContext is not InstaStoryFeedMedia media) return;
+
+            var font = (FontFamily)App.Current.Resources["FluentSystemIconsRegular"];
+            tip.Title = "";
+            tip.IconSource = new Microsoft.UI.Xaml.Controls.FontIconSource() { FontFamily = font, Glyph = FluentRegularFontCharacters.Image };
+            tip.Subtitle = "Tap to see the post";
+            tip.DataContext = media;
+            tip.ActionButtonContent = "See post";
+            tip.Target = target;
+            tip.IsOpen = true;
         }
 
         void Mention_Tapped(object sender, TappedRoutedEventArgs e)
@@ -213,6 +243,10 @@ namespace WinstaNext.UI.Stories.StickersView
             if (dt is InstaPlaceShort place)
             {
                 NavigationService?.Navigate(typeof(PlaceProfileView), place);
+            }
+            if(dt is InstaStoryFeedMedia media)
+            {
+                NavigationService?.Navigate(typeof(SingleInstaMediaView), media.MediaId);
             }
             if (dt is InstaStoryLink link)
             {
