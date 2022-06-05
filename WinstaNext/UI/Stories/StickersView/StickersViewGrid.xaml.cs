@@ -2,9 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using PropertyChanged;
+using System;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Graphics.Display;
+using Windows.System;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -63,9 +65,45 @@ namespace WinstaNext.UI.Stories.StickersView
                     this.Children.Add(rect);
                 }
             }
+            if (StoryItem.StoryHashtags.Any())
+            {
+                for (int i = 0; i < StoryItem.StoryHashtags.Count; i++)
+                {
+                    var mention = StoryItem.StoryHashtags.ElementAt(i);
+                    var rect = new Rectangle();
+                    SetStickerPosition(ref rect, mention.Height, mention.Width, mention.X, mention.Y, mention.Rotation);
+                    rect.DataContext = mention;
+                    rect.Tapped += Mention_Tapped;
+                    this.Children.Add(rect);
+                }
+            }
+            if (StoryItem.StoryLinkStickers.Any())
+            {
+                for (int i = 0; i < StoryItem.StoryLinkStickers.Count; i++)
+                {
+                    var link = StoryItem.StoryLinkStickers.ElementAt(i);
+                    var rect = new Rectangle();
+                    SetStickerPosition(ref rect, link.Height, link.Width, link.X, link.Y, link.Rotation);
+                    rect.DataContext = link;
+                    rect.Tapped += link_Tapped;
+                    this.Children.Add(rect);
+                }
+            }
+            if (StoryItem.StoryLocations.Any())
+            {
+                for (int i = 0; i < StoryItem.StoryLocations.Count; i++)
+                {
+                    var place = StoryItem.StoryLocations.ElementAt(i);
+                    var rect = new Rectangle();
+                    SetStickerPosition(ref rect, place.Height, place.Width, place.X, place.Y, place.Rotation);
+                    rect.DataContext = place;
+                    rect.Tapped += Place_Tapped;
+                    this.Children.Add(rect);
+                }
+            }
         }
 
-        private void Mention_Tapped(object sender, TappedRoutedEventArgs e)
+        void Mention_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (PauseTimerCommand == null) return;
             PauseTimerCommand.Execute(null);
@@ -79,6 +117,40 @@ namespace WinstaNext.UI.Stories.StickersView
             tip.Subtitle = "Tap to see the profile";
             tip.DataContext = mention.User != null ? mention.User : mention.Hashtag;
             tip.ActionButtonContent = "See profile";
+            tip.Target = target;
+            tip.IsOpen = true;
+        }
+
+        void link_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (PauseTimerCommand == null) return;
+            PauseTimerCommand.Execute(null);
+            var target = (FrameworkElement)e.OriginalSource;
+            if (target.DataContext is not InstaStoryLinkStickerItem link) return;
+
+            var font = (FontFamily)App.Current.Resources["FluentSystemIconsRegular"];
+            tip.Title = link.StoryLink.LinkTitle;
+            tip.IconSource = new Microsoft.UI.Xaml.Controls.FontIconSource() { FontFamily = font, Glyph = FluentRegularFontCharacters.Web };
+            tip.Subtitle = "Tap to see the link";
+            tip.DataContext = link.StoryLink;
+            tip.ActionButtonContent = "See link";
+            tip.Target = target;
+            tip.IsOpen = true;
+        }
+
+        void Place_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (PauseTimerCommand == null) return;
+            PauseTimerCommand.Execute(null);
+            var target = (FrameworkElement)e.OriginalSource;
+            if (target.DataContext is not InstaStoryLocation place) return;
+
+            var font = (FontFamily)App.Current.Resources["FluentSystemIconsRegular"];
+            tip.Title = place.Location.Name;
+            tip.IconSource = new Microsoft.UI.Xaml.Controls.FontIconSource() { FontFamily = font, Glyph = FluentRegularFontCharacters.Location };
+            tip.Subtitle = "Tap to see the place";
+            tip.DataContext = place.Location;
+            tip.ActionButtonContent = "See place";
             tip.Target = target;
             tip.IsOpen = true;
         }
@@ -125,7 +197,7 @@ namespace WinstaNext.UI.Stories.StickersView
             ResumeTimerCommand?.Execute(null);
         }
 
-        private void tip_ActionButtonClick(Microsoft.UI.Xaml.Controls.TeachingTip sender, object args)
+        async void tip_ActionButtonClick(Microsoft.UI.Xaml.Controls.TeachingTip sender, object args)
         {
             var NavigationService = App.Container.GetService<NavigationService>();
             var dt = sender.DataContext;
@@ -137,6 +209,14 @@ namespace WinstaNext.UI.Stories.StickersView
             if (dt is InstaHashtag hashtag)
             {
                 NavigationService?.Navigate(typeof(HashtagProfileView), hashtag);
+            }
+            if (dt is InstaPlaceShort place)
+            {
+                NavigationService?.Navigate(typeof(PlaceProfileView), place);
+            }
+            if (dt is InstaStoryLink link)
+            {
+                await Launcher.LaunchUriAsync(new(link.Url, System.UriKind.RelativeOrAbsolute));
             }
         }
     }

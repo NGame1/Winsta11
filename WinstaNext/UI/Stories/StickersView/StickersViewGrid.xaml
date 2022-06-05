@@ -1,4 +1,4 @@
-﻿<Grid Background="#30ff0000" Loaded="Grid_Loaded"
+﻿<Grid Loaded="Grid_Loaded"
     x:Class="WinstaNext.UI.Stories.StickersView.StickersViewGrid"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
