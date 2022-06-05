@@ -7,6 +7,7 @@ using Microsoft.Toolkit.Mvvm.Input;
 using PropertyChanged;
 using System;
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -43,10 +44,12 @@ namespace WinstaNext.UI.Stories
         AsyncRelayCommand ReplyStoryCommand { get; set; }
 
         public string ReplyText { get; set; } = string.Empty;
+        InstaStoryItemPresenterUC? presenterUC = null;
 
         public InstaStoryItemPresenterUC()
         {
             this.InitializeComponent();
+            presenterUC = this;
             NavigateToUserProfileCommand = new(NavigateToUserProfile);
             LikeStoryCommand = new(LikeStoryAsync);
             ReplyStoryCommand = new(ReplyStoryAsync);
@@ -130,6 +133,41 @@ namespace WinstaNext.UI.Stories
             }
         }
 
+        public void Pause()
+        {
+            if (LoadVideo)
+            {
+                if (videoplayer == null) FindName(nameof(videoplayer));
+                videoplayer?.Pause();
+                if (_timer == null) return;
+                _timer.Tick -= VideoTimer_Tick;
+            }
+            else
+            {
+                if (_timer == null) return;
+                _timer.Tick -= ImageTimer_Tick;
+                _timer.Stop();
+            }
+        }
+
+        public void Resume()
+        {
+            if (_timer == null) return;
+            if (LoadVideo)
+            {
+                if (videoplayer == null) FindName(nameof(videoplayer));
+                videoplayer?.Play();
+                _timer.Tick += VideoTimer_Tick;
+                _timer.Start();
+            }
+            else
+            {
+                _timer.Tick += ImageTimer_Tick;
+                if (imageOpened)
+                    _timer.Start();
+            }
+        }
+
         public void Stop()
         {
             _progress = null;
@@ -139,6 +177,7 @@ namespace WinstaNext.UI.Stories
                 videoplayer?.Stop();
                 if (_timer == null) return;
                 _timer.Tick -= VideoTimer_Tick;
+                _timer.Stop();
                 _timer = null;
             }
             else

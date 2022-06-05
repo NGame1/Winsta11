@@ -355,6 +355,9 @@
     <Compile Include="UI\Stories\InstaStoryItemPresenterUC.xaml.cs">
       <DependentUpon>InstaStoryItemPresenterUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Stories\StickersView\StickersViewGrid.xaml.cs">
+      <DependentUpon>StickersViewGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\TwoFactorAuthViewModel.cs" />
     <Compile Include="ViewModels\Activities\ActivitiesViewModel.cs" />
@@ -675,6 +678,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Stories\InstaStoryItemPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Stories\StickersView\StickersViewGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

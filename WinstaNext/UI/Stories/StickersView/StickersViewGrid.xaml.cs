@@ -1,0 +1,143 @@
+﻿using InstagramApiSharp.Classes.Models;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.Input;
+using PropertyChanged;
+using System.Linq;
+using Windows.Foundation;
+using Windows.Graphics.Display;
+using Windows.UI;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Shapes;
+using WinstaNext.Constants;
+using WinstaNext.Services;
+using WinstaNext.Views.Profiles;
+#nullable enable
+// The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
+
+namespace WinstaNext.UI.Stories.StickersView
+{
+    [AddINotifyPropertyChangedInterface]
+    public sealed partial class StickersViewGrid : Grid
+    {
+        public static readonly DependencyProperty PresenterProperty = DependencyProperty.Register(
+             "Presenter",
+             typeof(InstaStoryItemPresenterUC),
+             typeof(StickersViewGrid),
+             new PropertyMetadata(null));
+
+        //[OnChangedMethod(nameof(InitializeView))]
+        public InstaStoryItemPresenterUC Presenter
+        {
+            get { return (InstaStoryItemPresenterUC)GetValue(PresenterProperty); }
+            set { SetValue(PresenterProperty, value); }
+        }
+
+        public RelayCommand? PauseTimerCommand { get; set; }
+        public RelayCommand? ResumeTimerCommand { get; set; }
+
+        public InstaStoryItem? StoryItem { get; set; }
+
+        public StickersViewGrid()
+        {
+            this.InitializeComponent();
+        }
+
+        public void InitializeView()
+        {
+            PauseTimerCommand = new(Presenter.Pause);
+            ResumeTimerCommand = new(Presenter.Resume);
+            StoryItem = Presenter.Story;
+            if (StoryItem.ReelMentions.Any())
+            {
+                for (int i = 0; i < StoryItem.ReelMentions.Count; i++)
+                {
+                    var mention = StoryItem.ReelMentions.ElementAt(i);
+                    var rect = new Rectangle();
+                    SetStickerPosition(ref rect, mention.Height, mention.Width, mention.X, mention.Y, mention.Rotation);
+                    rect.DataContext = mention;
+                    rect.Tapped += Mention_Tapped;
+                    this.Children.Add(rect);
+                }
+            }
+        }
+
+        private void Mention_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (PauseTimerCommand == null) return;
+            PauseTimerCommand.Execute(null);
+            var target = (FrameworkElement)e.OriginalSource;
+            if (target.DataContext is not InstaReelMention mention) return;
+
+            var font = (FontFamily)App.Current.Resources["FluentSystemIconsRegular"];
+            tip.Title = mention.User != null ? mention.User.UserName : mention.Hashtag.Name;
+            tip.IconSource = mention.User != null ? new Microsoft.UI.Xaml.Controls.FontIconSource() { FontFamily = font, Glyph = FluentRegularFontCharacters.Person } :
+                                                    new Microsoft.UI.Xaml.Controls.FontIconSource() { FontFamily = font, Glyph = FluentRegularFontCharacters.Hashtag };
+            tip.Subtitle = "Tap to see the profile";
+            tip.DataContext = mention.User != null ? mention.User : mention.Hashtag;
+            tip.ActionButtonContent = "See profile";
+            tip.Target = target;
+            tip.IsOpen = true;
+        }
+
+        void SetStickerPosition(ref Rectangle rect, double height, double width, double x, double y, double rotation)
+        {
+            var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+            var scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
+            var actwidth = this.ActualWidth;
+            var actheight = this.ActualHeight;
+            var size = CalculateSizeInBox(StoryItem.OriginalWidth, StoryItem.OriginalHeight, actheight, actwidth);
+            var trans = new CompositeTransform() { CenterX = (size.Width * width / 2), CenterY = (size.Height * height / 2), Rotation = rotation * 360 };
+            var marg = new Thickness(((x * size.Width) - ((width / 2) * size.Width)),
+                ((y * size.Height) - ((height / 2) * size.Height)), 0, 0);
+#if DEBUG
+            rect.Stroke = new SolidColorBrush(Colors.Red);
+            rect.StrokeThickness = 2;
+#endif
+            rect.Margin = marg;
+            rect.VerticalAlignment = VerticalAlignment.Top;
+            rect.HorizontalAlignment = HorizontalAlignment.Left;
+            rect.Fill = new SolidColorBrush(new Color() { A = 1 });
+            rect.RenderTransform = trans;
+            rect.Width = width * ActualWidth;
+            rect.Height = height * ActualHeight;
+        }
+
+        Size CalculateSizeInBox(double imageWidth, double imageHeight, double windowHeight, double windowWidth)
+        {
+            double dbl = imageWidth / imageHeight;
+            if (windowHeight * dbl <= windowWidth)
+                return new Size((windowHeight * dbl), windowHeight);
+            else
+                return new Size(windowWidth, (windowWidth / dbl));
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            InitializeView();
+        }
+
+        private void tip_Closed(Microsoft.UI.Xaml.Controls.TeachingTip sender, Microsoft.UI.Xaml.Controls.TeachingTipClosedEventArgs args)
+        {
+            ResumeTimerCommand?.Execute(null);
+        }
+
+        private void tip_ActionButtonClick(Microsoft.UI.Xaml.Controls.TeachingTip sender, object args)
+        {
+            var NavigationService = App.Container.GetService<NavigationService>();
+            var dt = sender.DataContext;
+            sender.IsOpen = false;
+            if (dt is InstaUserShort user)
+            {
+                NavigationService?.Navigate(typeof(UserProfileView), user);
+            }
+            if (dt is InstaHashtag hashtag)
+            {
+                NavigationService?.Navigate(typeof(HashtagProfileView), hashtag);
+            }
+        }
+    }
+}

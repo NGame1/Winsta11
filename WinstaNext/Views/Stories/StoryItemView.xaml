@@ -6,8 +6,6 @@
     xmlns:models="using:InstagramApiSharp.Classes.Models"
     x:Class="WinstaNext.Views.Stories.StoryItemView"
     xmlns:Converters="using:WinstaNext.Converters"
-    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:local="using:WinstaNext.Views.Stories" 
     xmlns:stories="using:WinstaNext.UI.Stories" 
     mc:Ignorable="d">
 

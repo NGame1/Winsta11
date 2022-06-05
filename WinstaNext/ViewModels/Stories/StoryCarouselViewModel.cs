@@ -134,6 +134,7 @@ namespace WinstaNext.ViewModels.Stories
                     var u = feed.Items.ElementAt(i);
                     u.User = me;
                 }
+                feed.User.Pk = me.Pk;
                 feed.User.UserName = me.UserName;
                 feed.User.ProfilePicture = me.ProfilePicture;
             }
@@ -181,6 +182,7 @@ namespace WinstaNext.ViewModels.Stories
                         highlightItem.User.ProfilePicture = feed.CoverMedia.CroppedImage.Uri;
                         highlightItem.User.UserName = feed.Title;
                         highlightItem.User.CloseButton = true;
+                        highlightItem.User.Pk = feed.User.Pk;
                         feed.Items.Add(highlightItem);
                     }
                 }

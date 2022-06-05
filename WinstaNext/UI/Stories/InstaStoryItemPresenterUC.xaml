@@ -1,4 +1,4 @@
-﻿<UserControl x:DefaultBindMode="OneWay"
+﻿<UserControl x:DefaultBindMode="OneWay" 
     xmlns:TemplateSelectors="using:WinstaNext.Models.TemplateSelectors.Media" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -10,7 +10,8 @@
     xmlns:stories="using:WinstaNext.UI.Flyouts.Stories"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:generic="using:WinstaNext.UI.Generic"
-    xmlns:Winsta="using:WinstaNext"
+    xmlns:Winsta="using:WinstaNext" 
+    xmlns:stickersview="using:WinstaNext.UI.Stories.StickersView"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -47,7 +48,9 @@
                           x:Name="videoplayer"
                           AutoPlay="False"
                           Stretch="Fill"/>
-
+            <stickersview:StickersViewGrid Presenter="{x:Bind presenterUC}"
+                                           HorizontalAlignment="Stretch" 
+                                           VerticalAlignment="Stretch"/>
         </Grid>
 
         <Grid Grid.Row="0">
@@ -60,7 +63,7 @@
                                   Offset="0.8"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
