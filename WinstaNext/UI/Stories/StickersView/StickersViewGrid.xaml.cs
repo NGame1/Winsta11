@@ -11,6 +11,7 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
@@ -114,6 +115,24 @@ namespace WinstaNext.UI.Stories.StickersView
                     this.Children.Add(rect);
                 }
             }
+            //if (StoryItem.StoryPolls.Any())
+            //{
+            //    for (int i = 0; i < StoryItem.StoryPolls.Count; i++)
+            //    {
+            //        var poll = StoryItem.StoryPolls.ElementAt(i);
+            //        var rect = new Grid() { CornerRadius = new(14) };
+            //        var pollSticker = new PollStickerUC();
+            //        rect.Children.Add(pollSticker);
+            //        SetStickerPosition(ref rect, poll.Height, poll.Width, poll.X, poll.Y, poll.Rotation);
+            //        this.Children.Add(rect);
+            //        pollSticker.SetBinding(PollStickerUC.PollProperty, new Binding()
+            //        {
+            //            Source = poll,
+            //            Mode = BindingMode.OneWay,
+            //            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            //        });
+            //    }
+            //}
         }
 
         void Media_Tapped(object sender, TappedRoutedEventArgs e)
@@ -197,12 +216,35 @@ namespace WinstaNext.UI.Stories.StickersView
                 ((y * size.Height) - ((height / 2) * size.Height)), 0, 0);
 #if DEBUG
             rect.Stroke = new SolidColorBrush(Colors.Red);
-            rect.StrokeThickness = 2;
+            rect.StrokeThickness = 1;
 #endif
             rect.Margin = marg;
             rect.VerticalAlignment = VerticalAlignment.Top;
             rect.HorizontalAlignment = HorizontalAlignment.Left;
             rect.Fill = new SolidColorBrush(new Color() { A = 1 });
+            rect.RenderTransform = trans;
+            rect.Width = width * ActualWidth;
+            rect.Height = height * ActualHeight;
+        }
+
+        void SetStickerPosition(ref Grid rect, double height, double width, double x, double y, double rotation)
+        {
+            var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+            var scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
+            var actwidth = this.ActualWidth;
+            var actheight = this.ActualHeight;
+            var size = CalculateSizeInBox(StoryItem.OriginalWidth, StoryItem.OriginalHeight, actheight, actwidth);
+            var trans = new CompositeTransform() { CenterX = (size.Width * width / 2), CenterY = (size.Height * height / 2), Rotation = rotation * 360 };
+            var marg = new Thickness(((x * size.Width) - ((width / 2) * size.Width)),
+                ((y * size.Height) - ((height / 2) * size.Height)), 0, 0);
+#if DEBUG
+            rect.BorderBrush = new SolidColorBrush(Colors.Red);
+            rect.BorderThickness = new(1);
+#endif
+            rect.Margin = marg;
+            rect.VerticalAlignment = VerticalAlignment.Top;
+            rect.HorizontalAlignment = HorizontalAlignment.Left;
+            rect.Background = new SolidColorBrush(new Color() { A = 1 });
             rect.RenderTransform = trans;
             rect.Width = width * ActualWidth;
             rect.Height = height * ActualHeight;
@@ -244,7 +286,7 @@ namespace WinstaNext.UI.Stories.StickersView
             {
                 NavigationService?.Navigate(typeof(PlaceProfileView), place);
             }
-            if(dt is InstaStoryFeedMedia media)
+            if (dt is InstaStoryFeedMedia media)
             {
                 NavigationService?.Navigate(typeof(SingleInstaMediaView), media.MediaId);
             }
