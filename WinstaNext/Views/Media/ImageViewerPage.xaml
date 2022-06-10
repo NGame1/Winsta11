@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="WinstaNext.Views.Media.ImageViewerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinstaNext.Views.Media"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                      PointerPressed="SV_ImageZoom_PointerPressed"
+                      PointerMoved="SV_ImageZoom_PointerMoved"
+                      x:Name="SV_ImageZoom"
+                      ZoomMode="Enabled"
+                      MaxZoomFactor="5" 
+                      MinZoomFactor="1">
+
+            <Grid>
+                <Image Height="{x:Bind SV_ImageZoom.ViewportHeight, Mode=OneWay}" 
+                       Width="{x:Bind SV_ImageZoom.ViewportWidth, Mode=OneWay}"
+                       ImageOpened="img_ImageOpened"
+                       x:Name="img"/>
+            </Grid>
+
+        </ScrollViewer>
+        <ProgressRing x:Name="PR" Width="80" Height="80" IsActive="True" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </Grid>
+</Page>

@@ -50,6 +50,8 @@ namespace WinstaNext.ViewModels.Users
         RangePlayerAttribute UserTaggedMedias { get; set; }
         RangePlayerAttribute TVMedias { get; set; }
 
+        public InstaStoryAndLives StoriesAndLives { get; set; }
+
         public ISupportIncrementalLoading ItemsSource { get; set; }
 
         public InstaUserInfo User { get; private set; }
@@ -252,6 +254,11 @@ namespace WinstaNext.ViewModels.Users
                         throw result.Info.Exception;
                     }
                     User.FriendshipStatus = result.Value;
+                    var StoriesAndLivesResult = await Api.StoryProcessor.GetUserStoryAndLivesAsync(1);
+                    if (StoriesAndLivesResult.Succeeded)
+                    {
+                        StoriesAndLives = StoriesAndLivesResult.Value;
+                    }
                 }
             }
             SetFollowButtonContent();

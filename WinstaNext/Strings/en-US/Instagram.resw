@@ -327,4 +327,7 @@
   <data name="ViewProfile" xml:space="preserve">
     <value>View profile ...</value>
   </data>
+  <data name="ViewProfilePicture" xml:space="preserve">
+    <value>View profile picture</value>
+  </data>
 </root>

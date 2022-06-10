@@ -327,4 +327,7 @@
   <data name="ViewProfile" xml:space="preserve">
     <value>مشاهده پروفایل ...</value>
   </data>
+  <data name="ViewProfilePicture" xml:space="preserve">
+    <value>مشاهده عکس پروفایل</value>
+  </data>
 </root>

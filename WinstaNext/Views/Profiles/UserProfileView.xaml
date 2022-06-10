@@ -18,8 +18,8 @@
     xmlns:core1="using:WinstaNext.Models.Core"
     xmlns:media="using:WinstaNext.UI.Media" 
     xmlns:views="using:WinstaNext.Views"
-    xmlns:Winsta="using:WinstaNext" 
-    mc:Ignorable="d">
+    xmlns:Winsta="using:WinstaNext" xmlns:profiles="using:WinstaNext.UI.Flyouts.Profiles"
+                mc:Ignorable="d">
 
     <views:BasePage.Resources>
         
@@ -63,7 +63,12 @@
                 <StackPanel Spacing="5" Grid.Row="0">
                     <StackPanel Spacing="5" Orientation="Horizontal">
                         <muxc:PersonPicture ProfilePicture="{x:Bind ViewModel.User.ProfilePicture}" 
-                                            DisplayName="{x:Bind ViewModel.User.UserName}"/>
+                                            DisplayName="{x:Bind ViewModel.User.UserName}">
+                            <muxc:PersonPicture.ContextFlyout>
+                                <profiles:UserProfileMenuFlyout StoriesAndLives="{x:Bind ViewModel.StoriesAndLives, Mode=OneWay}"
+                                                                User="{x:Bind ViewModel.User, Mode=OneWay}"/> 
+                            </muxc:PersonPicture.ContextFlyout>
+                        </muxc:PersonPicture>
                         <StackPanel VerticalAlignment="Center">
                             <StackPanel Spacing="5" Orientation="Horizontal" HorizontalAlignment="Center">
                                 <TextBlock Text="{x:Bind ViewModel.User.UserName}" 

@@ -11,6 +11,12 @@
 
                 <!-- Other app resources here -->
                 <ResourceDictionary>
+                    <FontFamily x:Key="FBWordmarkFont">ms-appx:///Assets/Fonts/Instagram/FBWordmarkRegularSlim.ttf#FB Wordmark</FontFamily>
+                    <FontFamily x:Key="FBDisplayLightFont">ms-appx:///Assets/Fonts/Instagram/FBDisplayLightSlim.ttf#FB Display Light</FontFamily>
+                    <FontFamily x:Key="FBNarrowAppFont">ms-appx:///Assets/Fonts/Instagram/FacebookNarrow_A_Rg.ttf#Facebook Narrow App</FontFamily>
+                    <FontFamily x:Key="CosmopolitanFont">ms-appx:///Assets/Fonts/Instagram/CosmopolitanScriptRegular.otf#Cosmopolitan Script</FontFamily>
+                    <FontFamily x:Key="AvenyInstagramFont">ms-appx:///Assets/Fonts/Instagram/AvenyTRegular.otf#Aveny-T Instagram</FontFamily>
+                    <FontFamily x:Key="AvenyInstagramMediumFont">ms-appx:///Assets/Fonts/Instagram/AvenyTMedium.otf#Aveny-T Instagram Medium</FontFamily>
                     <FontFamily x:Key="FluentIcons">ms-appx:///Assets/Fonts/SegoeIcons.ttf#Segoe Fluent Icons</FontFamily>
                     <FontFamily x:Key="FluentSystemIconsFilled">ms-appx:///Assets/Fonts/FluentSystemIcons-Filled.ttf#FluentSystemIcons-Filled</FontFamily>
                     <FontFamily x:Key="FluentSystemIconsRegular">ms-appx:///Assets/Fonts/FluentSystemIcons-Regular.ttf#FluentSystemIcons-Regular</FontFamily>

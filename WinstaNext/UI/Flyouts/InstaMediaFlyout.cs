@@ -176,177 +176,179 @@ namespace WinstaNext.UI.Flyouts
 
         private void InstaMediaFlyout_Opening(object sender, object e)
         {
-            if (Media != null)
+            if (Media == null)
             {
-                Items.Clear();
+                this.Hide();
+                return;
+            }
+            Items.Clear();
 
-                var Me = App.Container.GetService<InstaUserShort>();
-                var font = (FontFamily)App.Current.Resources["FluentIcons"];
-                var FluentSystemIconsRegular = (FontFamily)App.Current.Resources["FluentSystemIconsRegular"];
+            var Me = App.Container.GetService<InstaUserShort>();
+            var font = (FontFamily)App.Current.Resources["FluentIcons"];
+            var FluentSystemIconsRegular = (FontFamily)App.Current.Resources["FluentSystemIconsRegular"];
 
-                if (!Media.User.IsPrivate)
-                {
-                    Items.Add(new MenuFlyoutItem
-                    {
-                        Icon = new FontIcon()
-                        {
-                            Glyph = "\uE167",
-                            FontFamily = font,
-                            FontSize = 24
-                        },
-                        Text = LanguageManager.Instance.Instagram.CopyURL,
-                        Command = CopyUrlCommand
-                    });
-                    Items.Add(new MenuFlyoutSeparator());
-                }
-
+            if (!Media.User.IsPrivate)
+            {
                 Items.Add(new MenuFlyoutItem
                 {
                     Icon = new FontIcon()
                     {
-                        Glyph = "\uE118",
+                        Glyph = "\uE167",
                         FontFamily = font,
                         FontSize = 24
                     },
-                    Text = LanguageManager.Instance.General.Download,
-                    Command = DownloadContentCommand
+                    Text = LanguageManager.Instance.Instagram.CopyURL,
+                    Command = CopyUrlCommand
                 });
                 Items.Add(new MenuFlyoutSeparator());
+            }
 
-                if (Media.Caption != null && !string.IsNullOrEmpty(Media.Caption.Text))
+            Items.Add(new MenuFlyoutItem
+            {
+                Icon = new FontIcon()
                 {
+                    Glyph = "\uE118",
+                    FontFamily = font,
+                    FontSize = 24
+                },
+                Text = LanguageManager.Instance.General.Download,
+                Command = DownloadContentCommand
+            });
+            Items.Add(new MenuFlyoutSeparator());
+
+            if (Media.Caption != null && !string.IsNullOrEmpty(Media.Caption.Text))
+            {
+                Items.Add(new MenuFlyoutItem
+                {
+                    Icon = new FontIcon()
+                    {
+                        Glyph = "\uE16F",
+                        FontFamily = font,
+                        FontSize = 24
+                    },
+                    Text = LanguageManager.Instance.Instagram.CopyCaption,
+                    Command = CopyCaptionCommand
+                });
+                Items.Add(new MenuFlyoutSeparator());
+            }
+            if (Media.User.Pk == Me.Pk)
+            {
+                Items.Add(new MenuFlyoutItem
+                {
+                    Icon = new FontIcon()
+                    {
+                        Glyph = "\uE1D3",
+                        FontFamily = font,
+                        FontSize = 24
+                    },
+                    Text = LanguageManager.Instance.Instagram.Archive,
+                    Command = ArchiveCommand
+                });
+                Items.Add(new MenuFlyoutItem()
+                {
+                    Icon = new FontIcon()
+                    {
+                        Glyph = "\uE104",
+                        FontFamily = font,
+                        FontSize = 24
+                    },
+                    Text = LanguageManager.Instance.Instagram.EditPost,
+                    Command = EditPostCommand
+                });
+                Items.Add(new MenuFlyoutItem()
+                {
+                    Icon = new FontIcon()
+                    {
+                        Glyph = "\uE107",
+                        FontFamily = font,
+                        FontSize = 24
+                    },
+                    Text = LanguageManager.Instance.Instagram.DeletePost,
+                    Command = DeletePostCommand
+                });
+                Items.Add(new MenuFlyoutSeparator());
+                if (!Media.IsCommentsDisabled)
                     Items.Add(new MenuFlyoutItem
                     {
-                        Icon = new FontIcon()
+                        Icon = new FontIcon
                         {
-                            Glyph = "\uE16F",
-                            FontFamily = font,
+                            Glyph = "\uF998",
+                            FontFamily = FluentSystemIconsRegular,
                             FontSize = 24
                         },
-                        Text = LanguageManager.Instance.Instagram.CopyCaption,
-                        Command = CopyCaptionCommand
+                        Text = LanguageManager.Instance.Instagram.DisableCommenting,
+                        Command = DisableCommentingCommand
                     });
-                    Items.Add(new MenuFlyoutSeparator());
-                }
-                if (Media.User.Pk == Me.Pk)
-                {
-                    Items.Add(new MenuFlyoutItem
-                    {
-                        Icon = new FontIcon()
-                        {
-                            Glyph = "\uE1D3",
-                            FontFamily = font,
-                            FontSize = 24
-                        },
-                        Text = LanguageManager.Instance.Instagram.Archive,
-                        Command = ArchiveCommand
-                    });
-                    Items.Add(new MenuFlyoutItem()
-                    {
-                        Icon = new FontIcon()
-                        {
-                            Glyph = "\uE104",
-                            FontFamily = font,
-                            FontSize = 24
-                        },
-                        Text = LanguageManager.Instance.Instagram.EditPost,
-                        Command = EditPostCommand
-                    });
-                    Items.Add(new MenuFlyoutItem()
-                    {
-                        Icon = new FontIcon()
-                        {
-                            Glyph = "\uE107",
-                            FontFamily = font,
-                            FontSize = 24
-                        },
-                        Text = LanguageManager.Instance.Instagram.DeletePost,
-                        Command = DeletePostCommand
-                    });
-                    Items.Add(new MenuFlyoutSeparator());
-                    if (!Media.IsCommentsDisabled)
-                        Items.Add(new MenuFlyoutItem
-                        {
-                            Icon = new FontIcon
-                            {
-                                Glyph = "\uF998",
-                                FontFamily = FluentSystemIconsRegular,
-                                FontSize = 24
-                            },
-                            Text = LanguageManager.Instance.Instagram.DisableCommenting,
-                            Command = DisableCommentingCommand
-                        });
-                    else
-                        Items.Add(new MenuFlyoutItem
-                        {
-                            Icon = new FontIcon
-                            {
-                                Glyph = "\uF97E",
-                                FontFamily = FluentSystemIconsRegular,
-                                FontSize = 24
-                            },
-                            Text = LanguageManager.Instance.Instagram.EnableCommenting,
-                            Command = EnableCommentingCommand
-                        });
-                }
                 else
+                    Items.Add(new MenuFlyoutItem
+                    {
+                        Icon = new FontIcon
+                        {
+                            Glyph = "\uF97E",
+                            FontFamily = FluentSystemIconsRegular,
+                            FontSize = 24
+                        },
+                        Text = LanguageManager.Instance.Instagram.EnableCommenting,
+                        Command = EnableCommentingCommand
+                    });
+            }
+            else
+            {
+                var mutingoptions = new MenuFlyoutSubItem()
                 {
-                    var mutingoptions = new MenuFlyoutSubItem()
+                    Icon = new FontIcon()
                     {
-                        Icon = new FontIcon()
-                        {
-                            Glyph = "\uFAA9",
-                            FontFamily = FluentSystemIconsRegular,
-                            FontSize = 24
-                        },
-                        Text = LanguageManager.Instance.Instagram.MutingOptions
-                    };
-                    mutingoptions.Items.Add(new MenuFlyoutItem
+                        Glyph = "\uFAA9",
+                        FontFamily = FluentSystemIconsRegular,
+                        FontSize = 24
+                    },
+                    Text = LanguageManager.Instance.Instagram.MutingOptions
+                };
+                mutingoptions.Items.Add(new MenuFlyoutItem
+                {
+                    Icon = new FontIcon()
                     {
-                        Icon = new FontIcon()
-                        {
-                            Glyph = "\uFAA9",
-                            FontFamily = FluentSystemIconsRegular,
-                            FontSize = 24
-                        },
-                        Text = LanguageManager.Instance.Instagram.MutePosts,
-                        Command = MutePostsCommand
-                    });
-                    mutingoptions.Items.Add(new MenuFlyoutItem
+                        Glyph = "\uFAA9",
+                        FontFamily = FluentSystemIconsRegular,
+                        FontSize = 24
+                    },
+                    Text = LanguageManager.Instance.Instagram.MutePosts,
+                    Command = MutePostsCommand
+                });
+                mutingoptions.Items.Add(new MenuFlyoutItem
+                {
+                    Icon = new FontIcon()
                     {
-                        Icon = new FontIcon()
-                        {
-                            Glyph = "\u0176",
-                            FontFamily = FluentSystemIconsRegular,
-                            FontSize = 24
-                        },
-                        Text = LanguageManager.Instance.Instagram.UnmutePosts,
-                        Command = UnmutePostsCommand
-                    });
-                    mutingoptions.Items.Add(new MenuFlyoutItem
+                        Glyph = "\u0176",
+                        FontFamily = FluentSystemIconsRegular,
+                        FontSize = 24
+                    },
+                    Text = LanguageManager.Instance.Instagram.UnmutePosts,
+                    Command = UnmutePostsCommand
+                });
+                mutingoptions.Items.Add(new MenuFlyoutItem
+                {
+                    Icon = new FontIcon()
                     {
-                        Icon = new FontIcon()
-                        {
-                            Glyph = "\uFAA9",
-                            FontFamily = FluentSystemIconsRegular,
-                            FontSize = 24
-                        },
-                        Text = LanguageManager.Instance.Instagram.MuteStories,
-                        Command = MuteStoriesCommand
-                    });
-                    mutingoptions.Items.Add(new MenuFlyoutItem
+                        Glyph = "\uFAA9",
+                        FontFamily = FluentSystemIconsRegular,
+                        FontSize = 24
+                    },
+                    Text = LanguageManager.Instance.Instagram.MuteStories,
+                    Command = MuteStoriesCommand
+                });
+                mutingoptions.Items.Add(new MenuFlyoutItem
+                {
+                    Icon = new FontIcon()
                     {
-                        Icon = new FontIcon()
-                        {
-                            Glyph = "\u0176",
-                            FontFamily = FluentSystemIconsRegular,
-                            FontSize = 24
-                        },
-                        Text = LanguageManager.Instance.Instagram.UnmuteStories,
-                        Command = UnmuteStoriesCommand
-                    });
-                    Items.Add(mutingoptions);
-                }
+                        Glyph = "\u0176",
+                        FontFamily = FluentSystemIconsRegular,
+                        FontSize = 24
+                    },
+                    Text = LanguageManager.Instance.Instagram.UnmuteStories,
+                    Command = UnmuteStoriesCommand
+                });
+                Items.Add(mutingoptions);
             }
         }
     }

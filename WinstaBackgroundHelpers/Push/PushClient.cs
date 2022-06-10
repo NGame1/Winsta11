@@ -556,7 +556,6 @@ namespace WinstaBackgroundHelpers.Push
                 {"is_main_push_channel", "true"},
                 {"phone_id", deviceInfo.PhoneGuid.ToString()},
                 {"device_token", token},
-                {"_csrftoken", user.CsrfToken},
                 {"guid", deviceInfo.PhoneGuid.ToString()},
                 {"_uuid", deviceInfo.DeviceGuid.ToString()},
                 {"users", string.Join(",", users)/*user.LoggedInUser.Pk.ToString()*/ }

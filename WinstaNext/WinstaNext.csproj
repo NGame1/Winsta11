@@ -306,6 +306,7 @@
     <Compile Include="UI\Flyouts\Directs\GroupMessageThreadMenuFlyout.cs" />
     <Compile Include="UI\Flyouts\Directs\PrivateMessageThreadMenuFlyout.cs" />
     <Compile Include="UI\Flyouts\InstaMediaFlyout.cs" />
+    <Compile Include="UI\Flyouts\Profiles\UserProfileMenuFlyout.cs" />
     <Compile Include="UI\Flyouts\Stories\InstaBroadcastFlyout.cs" />
     <Compile Include="UI\Flyouts\Stories\InstaReelFeedFlyout.cs" />
     <Compile Include="UI\Flyouts\Stories\InstaStoryItemFlyout.cs" />
@@ -354,6 +355,9 @@
     </Compile>
     <Compile Include="UI\Stories\InstaStoryItemPresenterUC.xaml.cs">
       <DependentUpon>InstaStoryItemPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Stories\StickersView\PollStickerUC.xaml.cs">
+      <DependentUpon>PollStickerUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Stories\StickersView\StickersViewGrid.xaml.cs">
       <DependentUpon>StickersViewGrid.xaml</DependentUpon>
@@ -417,6 +421,9 @@
     </Compile>
     <Compile Include="Views\Media\ExploreView.xaml.cs">
       <DependentUpon>ExploreView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Media\ImageViewerPage.xaml.cs">
+      <DependentUpon>ImageViewerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Media\IncrementalInstaMediaView.xaml.cs">
       <DependentUpon>IncrementalInstaMediaView.xaml</DependentUpon>
@@ -681,6 +688,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Stories\StickersView\PollStickerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Stories\StickersView\StickersViewGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -726,6 +737,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Media\ExploreView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Media\ImageViewerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -951,6 +966,24 @@
   <ItemGroup>
     <PRIResource Include="Strings\en-US\Messages.resw" />
     <PRIResource Include="Strings\fa-Ir\Messages.resw" />
+    <Content Include="Assets\Fonts\Instagram\AvenyTMedium.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Instagram\AvenyTRegular.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Instagram\CosmopolitanScriptRegular.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Instagram\FacebookNarrow_A_Rg.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Instagram\FBDisplayLightSlim.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Instagram\FBWordmarkRegularSlim.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="WinstaNext_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
