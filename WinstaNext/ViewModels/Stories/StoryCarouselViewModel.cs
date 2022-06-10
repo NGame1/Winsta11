@@ -63,7 +63,13 @@ namespace WinstaNext.ViewModels.Stories
                 return;
             }
             (NavigationService.Content as FrameworkElement).SizeChanged += StoryCarouselViewModel_SizeChanged;
-            Stories = para.Stories;
+            if (Stories == null)
+            {
+                var Instance = new IncrementalDummyStories();
+                Stories = new(Instance);
+                Stories.Add(para.TargetItem);
+            }
+            else Stories = para.Stories;
             SelectedItem = para.TargetItem;
             base.OnNavigatedTo(e);
         }

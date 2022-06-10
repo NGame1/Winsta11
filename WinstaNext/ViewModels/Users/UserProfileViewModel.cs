@@ -254,7 +254,7 @@ namespace WinstaNext.ViewModels.Users
                         throw result.Info.Exception;
                     }
                     User.FriendshipStatus = result.Value;
-                    var StoriesAndLivesResult = await Api.StoryProcessor.GetUserStoryAndLivesAsync(1);
+                    var StoriesAndLivesResult = await Api.StoryProcessor.GetUserStoryAndLivesAsync(User.Pk);
                     if (StoriesAndLivesResult.Succeeded)
                     {
                         StoriesAndLives = StoriesAndLivesResult.Value;

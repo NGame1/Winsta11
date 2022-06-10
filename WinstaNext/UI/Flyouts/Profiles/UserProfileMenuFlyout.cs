@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using WinstaNext.Core.Navigation;
 using WinstaNext.Services;
 using WinstaNext.Views.Media;
+using WinstaNext.Views.Stories;
 
 namespace WinstaNext.UI.Flyouts.Profiles
 {
@@ -41,10 +43,12 @@ namespace WinstaNext.UI.Flyouts.Profiles
         }
 
         RelayCommand ViewProfilePictureCommand { get; set; }
+        RelayCommand ViewStoriesCommand { get; set; }
 
         public UserProfileMenuFlyout()
         {
             ViewProfilePictureCommand = new(ViewProfilePicture);
+            ViewStoriesCommand = new(ViewStories);
             Opening += UserProfileMenuFlyout_Opening;
         }
 
@@ -52,6 +56,13 @@ namespace WinstaNext.UI.Flyouts.Profiles
         {
             var NavigationService = App.Container.GetService<NavigationService>();
             NavigationService?.Navigate(typeof(ImageViewerPage), User?.HdProfilePicUrlInfo.Uri);
+        }
+
+        void ViewStories()
+        {
+            var NavigationService = App.Container.GetService<NavigationService>();
+            NavigationService?.Navigate(typeof(StoryCarouselView),
+                new StoryCarouselViewParameter(new(StoriesAndLives.Reel)));
         }
 
         private void UserProfileMenuFlyout_Opening(object sender, object e)
@@ -77,6 +88,18 @@ namespace WinstaNext.UI.Flyouts.Profiles
 
             if (StoriesAndLives != null)
             {
+                if (StoriesAndLives.Reel != null)
+                    Items.Add(new MenuFlyoutItem
+                    {
+                        Icon = new FontIcon()
+                        {
+                            Glyph = Constants.FluentRegularFontCharacters.Movie,
+                            FontFamily = FluentSystemIconsRegular,
+                            FontSize = 24
+                        },
+                        Text = LanguageManager.Instance.Instagram.Stories,
+                        Command = ViewStoriesCommand
+                    });
 
             }
             if (!Items.Any()) { Hide(); return; }
