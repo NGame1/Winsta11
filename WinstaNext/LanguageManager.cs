@@ -162,6 +162,8 @@ namespace WinstaNext
 
         public string Autoplay { get => _resource.GetString(nameof(Autoplay)); }
         public string AutoplayDescription { get => _resource.GetString(nameof(AutoplayDescription)); }
+        public string Browse { get => _resource.GetString(nameof(Browse)); }
+        public string DownloadLocation { get => _resource.GetString(nameof(DownloadLocation)); }
         public string ForceThreeColumns { get => _resource.GetString(nameof(ForceThreeColumns)); }
         public string ForceThreeColumnsDescription { get => _resource.GetString(nameof(ForceThreeColumnsDescription)); }
         public string RemoveFeedAds { get => _resource.GetString(nameof(RemoveFeedAds)); }

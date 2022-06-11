@@ -123,6 +123,12 @@
   <data name="AutoplayDescription" xml:space="preserve">
     <value>Play videos automatically on scroll and slide carousels automatically.</value>
   </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="DownloadLocation" xml:space="preserve">
+    <value>Download location</value>
+  </data>
   <data name="ForceThreeColumns" xml:space="preserve">
     <value>Force three columns</value>
   </data>

@@ -123,6 +123,12 @@
   <data name="AutoplayDescription" xml:space="preserve">
     <value>پخش خودکار ویدئو ها در زمان اسکرول و ورق زدن ویدئو های آلبوم.</value>
   </data>
+  <data name="Browse" xml:space="preserve">
+    <value>مرور</value>
+  </data>
+  <data name="DownloadLocation" xml:space="preserve">
+    <value>محل دانلودها</value>
+  </data>
   <data name="ForceThreeColumns" xml:space="preserve">
     <value>اجبار نمایش سه ستونه</value>
   </data>

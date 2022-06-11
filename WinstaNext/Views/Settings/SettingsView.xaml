@@ -93,6 +93,19 @@
                 </controls:ExpandableSettingControl.ExpandableContent>
             </controls:ExpandableSettingControl>
 
+            <controls:ExpandableSettingControl
+            Title="{x:Bind local:LanguageManager.Instance.Settings.DownloadLocation}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xE896;" />
+                </controls:ExpandableSettingControl.Icon>
+                <controls:ExpandableSettingControl.ExpandableContent>
+                    <StackPanel Padding="12" Spacing="4" Margin="42,0,6,0">
+                        <TextBlock Text="{x:Bind ViewModel.DownloadsPath, Mode=OneWay}"/>
+                        <Button Content="{x:Bind local:LanguageManager.Instance.Settings.Browse}"
+                                Command="{x:Bind ViewModel.SetDownloadsFolderCommand}"/>
+                    </StackPanel>
+                </controls:ExpandableSettingControl.ExpandableContent>
+            </controls:ExpandableSettingControl>
         </StackPanel>
     </ScrollViewer>
 </views:BasePage>

@@ -15,6 +15,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using InstagramApiSharp.API;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.Input;
+using Windows.Storage.Pickers;
 
 namespace WinstaNext.ViewModels.Settings
 {
@@ -24,6 +26,11 @@ namespace WinstaNext.ViewModels.Settings
         {
             get => ApplicationSettingsManager.Instance.GetAutoPlay();
             set => ApplicationSettingsManager.Instance.SetAutoPlay(value);
+        }
+
+        public string DownloadsPath
+        {
+            get;set;
         }
 
         public bool ForceThreeColumns
@@ -48,13 +55,35 @@ namespace WinstaNext.ViewModels.Settings
         [OnChangedMethod(nameof(OnLanguageChanged))]
         public LanguageDefinition Language { get; set; }
 
+        public AsyncRelayCommand SetDownloadsFolderCommand { get; set; }
+
         public SettingsViewModel() : base()
         {
+            SetDownloadsFolderCommand = new(SetDownloadsFolderAsync);
             Theme = ApplicationSettingsManager.Instance.GetTheme();
             var langs = ApplicationSettingsManager.Instance.GetSupportedLanguages();
             var currentlang = ApplicationSettingsManager.Instance.GetLanguage();
             AvailableLanguages.AddRange(langs);
             Language = langs.FirstOrDefault(x => x.LangCode == currentlang);
+        }
+
+        public override async Task OnNavigatedToAsync(NavigationEventArgs e)
+        {
+            var downloadsFolder = await ApplicationSettingsManager.Instance.GetDownloadsFolderAsync();
+            DownloadsPath = downloadsFolder.Path;
+        }
+
+        async Task SetDownloadsFolderAsync()
+        {
+            FolderPicker fop = new()
+            {
+                SuggestedStartLocation = PickerLocationId.Downloads,
+                ViewMode = PickerViewMode.List
+            };
+            var fol = await fop.PickSingleFolderAsync();
+            if (fol == null) return;
+            ApplicationSettingsManager.Instance.SetDownloadsFolderAsync(fol);
+            DownloadsPath = fol.Path;
         }
 
         void OnLanguageChanged()
