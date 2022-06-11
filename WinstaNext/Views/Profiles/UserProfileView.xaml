@@ -7,6 +7,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:models="using:InstagramApiSharp.Classes.Models" 
+    xmlns:profiles="using:WinstaNext.UI.Flyouts.Profiles"
     xmlns:Converters1="using:WinstaNext.Converters.Media"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="WinstaNext.Views.Profiles.UserProfileView"
@@ -18,8 +19,8 @@
     xmlns:core1="using:WinstaNext.Models.Core"
     xmlns:media="using:WinstaNext.UI.Media" 
     xmlns:views="using:WinstaNext.Views"
-    xmlns:Winsta="using:WinstaNext" xmlns:profiles="using:WinstaNext.UI.Flyouts.Profiles"
-                mc:Ignorable="d">
+    xmlns:Winsta="using:WinstaNext" 
+    mc:Ignorable="d">
 
     <views:BasePage.Resources>
         
