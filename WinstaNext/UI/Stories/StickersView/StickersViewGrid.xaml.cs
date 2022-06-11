@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Shapes;
 using WinstaNext.Constants;
 using WinstaNext.Services;
@@ -161,7 +162,7 @@ namespace WinstaNext.UI.Stories.StickersView
 
             var font = (FontFamily)App.Current.Resources["FluentSystemIconsRegular"];
             tip.Title = mention.User != null ? mention.User.UserName : mention.Hashtag.Name;
-            tip.IconSource = mention.User != null ? new Microsoft.UI.Xaml.Controls.FontIconSource() { FontFamily = font, Glyph = FluentRegularFontCharacters.Person } :
+            tip.IconSource = mention.User != null ? new Microsoft.UI.Xaml.Controls.ImageIconSource(){ ImageSource = new BitmapImage(new(mention.User.ProfilePicture)) { DecodePixelHeight = 35, DecodePixelWidth = 35 } } :
                                                     new Microsoft.UI.Xaml.Controls.FontIconSource() { FontFamily = font, Glyph = FluentRegularFontCharacters.Hashtag };
             tip.Subtitle = "Tap to see the profile";
             tip.DataContext = mention.User != null ? mention.User : mention.Hashtag;
