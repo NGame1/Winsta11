@@ -52,7 +52,7 @@ namespace WinstaNext.ViewModels.Users
 
         public InstaStoryAndLives StoriesAndLives { get; set; }
 
-        public ISupportIncrementalLoading ItemsSource { get; set; }
+        public RangePlayerAttribute ItemsSource { get; set; }
 
         public InstaUserInfo User { get; private set; }
 

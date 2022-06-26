@@ -3,8 +3,10 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:classes="using:InstagramApiSharp.Classes"
+    xmlns:VM="using:WinstaNext.ViewModels.Directs" 
     x:Class="WinstaNext.UI.Directs.GiphyPanelUC"
-    xmlns:Winsta="using:WinstaNext" xmlns:VM="using:WinstaNext.ViewModels.Directs" xmlns:classes="using:InstagramApiSharp.Classes"
+    xmlns:Winsta="using:WinstaNext" 
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">

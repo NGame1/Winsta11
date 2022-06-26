@@ -13,6 +13,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
+using WinstaNext.Core.Attributes;
 using WinstaNext.Core.Collections.IncrementalSources.Media;
 using WinstaNext.Core.Navigation;
 
@@ -22,7 +23,7 @@ namespace WinstaNext.ViewModels.Media
     {
         public override string PageHeader { get; protected set; }
 
-        public ISupportIncrementalLoading MediaSource { get; set; }
+        public RangePlayerAttribute MediaSource { get; set; }
         InstaMedia TargetMedia { get; set; }
         //int TargetIndex { get; set; }
 
@@ -53,7 +54,6 @@ namespace WinstaNext.ViewModels.Media
             }
             MediaSource = parameter.MediaSource;
             TargetMedia = parameter.TargetMedia;
-            //TargetIndex = parameter.TargetIndex;
             base.OnNavigatedTo(e);
         }
 

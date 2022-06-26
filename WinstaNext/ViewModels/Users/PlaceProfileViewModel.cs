@@ -42,7 +42,7 @@ namespace WinstaNext.ViewModels.Users
         RangePlayerAttribute TopMedias { get; set; }
         RangePlayerAttribute RecentMedias { get; set; }
 
-        public ISupportIncrementalLoading ItemsSource { get; set; }
+        public RangePlayerAttribute ItemsSource { get; set; }
 
         public InstaPlaceShort Place { get; set; }
 

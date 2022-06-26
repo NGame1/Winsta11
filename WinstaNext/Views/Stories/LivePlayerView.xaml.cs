@@ -1,4 +1,4 @@
-﻿using FFmpegInterop;
+﻿using FFmpegInteropX;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using MinistaLivePlayback.Models;
@@ -64,11 +64,11 @@ namespace WinstaNext.Views.Stories
 
         async void OnLiveChanged()
         {
-            var config = new FFmpegInteropConfig()
+            var config = new MediaSourceConfig()
             {
                 VideoDecoderMode = VideoDecoderMode.ForceFFmpegSoftwareDecoder
             };
-            var ms = await FFmpegInteropMSS.CreateFromUriAsync(Live.DashAbrPlaybackUrl, config);
+            var ms = await FFmpegMediaSource.CreateFromUriAsync(Live.DashAbrPlaybackUrl, config);
             var source = ms.GetMediaStreamSource();
             mediaPlayerElement.SetMediaStreamSource(source);
             SetSize(ms.CurrentVideoStream);

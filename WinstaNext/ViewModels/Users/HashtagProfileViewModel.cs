@@ -38,7 +38,7 @@ namespace WinstaNext.ViewModels.Users
         RangePlayerAttribute RecentMedias { get; set; }
         RangePlayerAttribute ReelsMedias { get; set; }
 
-        public ISupportIncrementalLoading ItemsSource { get; set; }
+        public RangePlayerAttribute ItemsSource { get; set; }
 
         public InstaHashtag Hashtag { get; set; }
 

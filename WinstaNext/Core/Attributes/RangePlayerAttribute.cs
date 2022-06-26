@@ -15,7 +15,7 @@ namespace WinstaNext.Core.Attributes
 
         }
 
-        int FirstVisibleItemIndex { get; set; } = -1;
+        public int FirstVisibleItemIndex { get; private set; } = -1;
         //int LastVisibleItemIndex { get; set; } = -1;
         //public event EventHandler<int> FirstVisibleItemIndexChanged;
         //public event EventHandler<int> LastVisibleItemIndexChanged;

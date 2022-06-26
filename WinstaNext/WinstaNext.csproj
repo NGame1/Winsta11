@@ -12,7 +12,7 @@
     <AssemblyName>WinstaNext</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22000.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22621.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -20,12 +20,12 @@
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <PackageCertificateThumbprint>2C88A2F8A05CA513E525B8F0F4588F7E629C7EDC</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>EA7AD6DFC537CA71449AFCAE40404E25B2966125</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <PackageCertificateKeyFile />
     <Nullable>enable</Nullable>
@@ -804,13 +804,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FFmpegInteropX">
-      <Version>0.9.4</Version>
+      <Version>1.0.0</Version>
     </PackageReference>
     <PackageReference Include="FFmpegInteropX.FFmpegUWP">
       <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="Fody">
-      <Version>6.6.2</Version>
+      <Version>6.6.3</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -821,7 +821,7 @@
       <Version>6.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.13</Version>
+      <Version>6.2.14</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Mvvm">
       <Version>7.1.2</Version>
@@ -851,7 +851,7 @@
       <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="NodaTime">
-      <Version>3.0.10</Version>
+      <Version>3.1.0</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
       <Version>3.4.1</Version>
@@ -860,7 +860,7 @@
       <Version>1.0.0</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.SfTabControl.UWP">
-      <Version>20.1.0.52</Version>
+      <Version>20.1.0.61</Version>
     </PackageReference>
     <PackageReference Include="System.Composition">
       <Version>6.0.0</Version>
