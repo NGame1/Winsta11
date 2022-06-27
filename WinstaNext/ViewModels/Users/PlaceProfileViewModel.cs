@@ -73,7 +73,7 @@ namespace WinstaNext.ViewModels.Users
             await Task.Delay(10);
             if (e.Parameter is string facebookPlaceId && !string.IsNullOrEmpty(facebookPlaceId))
             {
-                if (Place != null && Place.FacebookPlacesId.ToString() == facebookPlaceId) return;
+                if (Place != null && Place.Pk.ToString() == facebookPlaceId) return;
                 using (IInstaApi Api = App.Container.GetService<IInstaApi>())
                 {
                     var result = await Api.LocationProcessor.GetLocationInfoAsync(facebookPlaceId);
@@ -88,17 +88,17 @@ namespace WinstaNext.ViewModels.Users
             }
             else if (e.Parameter is InstaPlaceShort placeShort)
             {
-                if (Place != null && Place.FacebookPlacesId == placeShort.FacebookPlacesId) return;
+                if (Place != null && Place.Pk == placeShort.Pk) return;
                 Place = placeShort;
             }
             else if (e.Parameter is InstaPlace place)
             {
-                if (Place != null && Place.FacebookPlacesId == place.Location.FacebookPlacesId) return;
+                if (Place != null && Place.Pk == place.Location.Pk) return;
                 Place = place.Location;
             }
             else if (e.Parameter is InstaLocation loc)
             {
-                if (Place != null && Place.FacebookPlacesId == loc.FacebookPlacesId) return;
+                if (Place != null && Place.Pk == loc.Pk) return;
                 Place = loc.Adapt<InstaPlaceShort>();
             }
             else
@@ -107,8 +107,8 @@ namespace WinstaNext.ViewModels.Users
                     NavigationService.GoBack();
                 throw new ArgumentOutOfRangeException(nameof(e.Parameter));
             }
-            RecentInstance = new(Place.FacebookPlacesId);
-            TopMediasInstance = new(Place.FacebookPlacesId);
+            RecentInstance = new(Place.Pk);
+            TopMediasInstance = new(Place.Pk);
             RecentMedias = new(RecentInstance);
             TopMedias = new(TopMediasInstance);
             CreateProfileTabs();

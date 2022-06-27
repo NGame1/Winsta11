@@ -74,7 +74,7 @@ namespace WinstaNext
         {
             e.Handled = true;
             var ex = e.Exception;
-            var stack = Environment.StackTrace;
+            var stack = ex.StackTrace;
             MessageDialogHelper.Show(ex.Message + Environment.NewLine + stack);
             if(ex.InnerException != null)
                 MessageDialogHelper.Show(ex.InnerException.Message + Environment.NewLine + ex.InnerException.StackTrace);

@@ -105,6 +105,7 @@ namespace WinstaNext.UI.Stories
         void OnStoryChanged()
         {
             if (Story is null) return;
+            LoadImage = LoadVideo = false;
             if (Story.MediaType == InstaMediaType.Video)
                 LoadVideo = true;
             else LoadImage = true;
