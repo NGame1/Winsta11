@@ -270,7 +270,11 @@ namespace WinstaNext.ViewModels.Media
 
         async Task ShareMediaAsync()
         {
-            await UserSelectionDialog.SelectUsers();
+            var threads = await UserSelectionDialog.SelectDirectThreads();
+            using var Api = App.Container.GetService<IInstaApi>();
+            var result = await Api.MessagingProcessor.ShareMediaToThreadAsync(Media.Pk, Media.MediaType, string.Empty, threadIds: threads.Select(x => x.ThreadId).ToArray());
+            if (!result.Succeeded)
+                await MessageDialogHelper.ShowAsync(result.Info.Message);
         }
 
         async void UnloadLikeAnimation()
