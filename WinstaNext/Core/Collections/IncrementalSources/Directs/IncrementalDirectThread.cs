@@ -43,6 +43,7 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Directs
                 hassOlder = result.Value.HasOlder;
                 if (pageIndex == 1)
                 {
+                    await MarkThreadAsSeen();
                     for (int i = 0; i < InboxThread.Items.Count; i++)
                     {
                         var found = result.Value.Items.FirstOrDefault(x => x.ItemId == InboxThread.Items.ElementAt(i).ItemId);
@@ -53,6 +54,14 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Directs
                 result.Value.Items.RemoveAll(x => x.ItemType == InstaDirectThreadItemType.ActionLog);
                 result.Value.Items.Reverse();
                 return Convert(result.Value);
+            }
+        }
+
+        async Task MarkThreadAsSeen()
+        {
+            using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+            {
+                await Api.MessagingProcessor.MarkDirectThreadAsSeenAsync(InboxThread.ThreadId, InboxThread.Items.ElementAt(0).ItemId);
             }
         }
 
