@@ -19,8 +19,8 @@
     xmlns:core1="using:WinstaNext.Models.Core"
     xmlns:media="using:WinstaNext.UI.Media" 
     xmlns:views="using:WinstaNext.Views"
-    xmlns:Winsta="using:WinstaNext" 
-    mc:Ignorable="d">
+    xmlns:Winsta="using:WinstaNext" xmlns:ProfilesConverters="using:WinstaNext.Converters.Profiles"
+                mc:Ignorable="d">
 
     <views:BasePage.Resources>
         
@@ -33,6 +33,8 @@
 
         <Converters1:CaptionToMarkdownConverter x:Key="CaptionToMarkdownConverter"/>
 
+        <ProfilesConverters:UserInfoToButtonConverter x:Key="UserInfoToButtonConverter"/>
+        
     </views:BasePage.Resources>
 
     <views:BasePage.DataContext>
@@ -114,7 +116,7 @@
                             
                         </StackPanel>
 
-                        <Button Content="{x:Bind ViewModel.FollowBtnContent, Mode=OneWay}"
+                        <Button Content="{x:Bind ViewModel.User.FriendshipStatus, Converter={StaticResource UserInfoToButtonConverter}, Mode=OneWay}"
                                 Command="{x:Bind ViewModel.FollowButtonCommand}"
                                 Style="{StaticResource AccentButtonStyle}"/>
 

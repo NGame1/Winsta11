@@ -8,24 +8,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Navigation;
 using WinstaNext.Core.Collections.IncrementalSources.Activities;
 
 namespace WinstaNext.ViewModels.Activities
 {
     internal class ActivitiesViewModel : BaseViewModel
     {
+        IncrementalUserActivities Instance { get; set; }
+
         public IncrementalLoadingCollection<IncrementalUserActivities, InstaRecentActivityFeed> Activities { get; }
 
         public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.Activities;
 
         public AsyncRelayCommand<InstaRecentActivityFeed> ApproveFollowRequestCommand { get; set; }
         public AsyncRelayCommand<InstaRecentActivityFeed> RejectFollowRequestCommand { get; set; }
-
+        static DateTime? lastCheck = null;
         public ActivitiesViewModel()
         {
-            Activities = new();
+            Instance = new();
+            Activities = new(Instance);
             ApproveFollowRequestCommand = new(ApproveFollowRequestAsync);
             RejectFollowRequestCommand = new(RejectFollowRequestAsync);
+        }
+
+        public override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if(lastCheck != null)
+            {
+                if (DateTime.Now.Subtract(lastCheck.Value).TotalMinutes < 2) return;
+                Instance.RequestRefresh();
+                await Activities.RefreshAsync();
+            }
+            lastCheck = DateTime.Now;
+            base.OnNavigatedTo(e);
         }
 
         async Task ApproveFollowRequestAsync(InstaRecentActivityFeed obj)

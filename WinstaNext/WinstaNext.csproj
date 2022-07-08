@@ -154,6 +154,7 @@
     <Compile Include="Converters\Media\MediaDateTimeconverter.cs" />
     <Compile Include="Converters\NullToBooleanConverter.cs" />
     <Compile Include="Converters\PossibleLargeNumbersConverter.cs" />
+    <Compile Include="Converters\Profiles\UserInfoToButtonConverter.cs" />
     <Compile Include="Converters\RichTextToMarkdownTextConverter.cs" />
     <Compile Include="Converters\Stories\StoryBorderColorConverter.cs" />
     <Compile Include="Converters\TextToFlowDirectionConverter.cs" />

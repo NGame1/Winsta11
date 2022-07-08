@@ -37,5 +37,10 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Activities
                 return result.Value.Items;
             }
         }
+
+        public void RequestRefresh()
+        {
+            Pagination = PaginationParameters.MaxPagesToLoad(1);
+        }
     }
 }

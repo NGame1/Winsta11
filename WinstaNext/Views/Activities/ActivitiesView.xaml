@@ -1,4 +1,4 @@
-﻿<views:BasePage
+﻿<views:BasePage NavigationCacheMode="Enabled"
     xmlns:TemplateSelectors="using:WinstaNext.Models.TemplateSelectors.Activities"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
