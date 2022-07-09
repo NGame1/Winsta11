@@ -8,14 +8,30 @@ namespace WinstaNext.Core.Dialogs
     {
         public static async void Show(string content, string title = "")
         {
-            var msg = new MessageDialog(content, title);
-            await msg.ShowAsync();
+            try
+            {
+                var msg = new MessageDialog(content, title);
+                await msg.ShowAsync();
+            }
+            catch
+            {
+                await Task.Yield();
+                Show(content, title);
+            }
         }
 
         public static async Task ShowAsync(string content, string title = "")
         {
-            var msg = new MessageDialog(content, title);
-            await msg.ShowAsync();
+            try
+            {
+                var msg = new MessageDialog(content, title);
+                await msg.ShowAsync();
+            }
+            catch (Exception)
+            {
+                await Task.Yield();
+                await ShowAsync(content, title);
+            }
         }
     }
 }

@@ -6,6 +6,7 @@
     x:Class="WinstaNext.UI.Generic.InstaUserPresenterUC"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:local="using:WinstaNext.UI.Generic"
+    xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
