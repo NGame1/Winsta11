@@ -119,6 +119,7 @@ namespace WinstaNext.UI.Stories
         {
             _progress = progress;
             _timer = new() { Interval = TimeSpan.FromMilliseconds(50) };
+            StickersViewGrid.InitializeView();
             if (LoadVideo)
             {
                 if (videoplayer == null) FindName(nameof(videoplayer));

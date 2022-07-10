@@ -53,6 +53,7 @@ namespace WinstaNext.UI.Stories.StickersView
 
         public void InitializeView()
         {
+            this.Children.Clear();
             PauseTimerCommand = new(Presenter.Pause);
             ResumeTimerCommand = new(Presenter.Resume);
             StoryItem = Presenter.Story;

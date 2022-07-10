@@ -53,7 +53,8 @@
                           Stretch="Fill"/>
             <stickersview:StickersViewGrid Presenter="{x:Bind presenterUC}"
                                            HorizontalAlignment="Stretch" 
-                                           VerticalAlignment="Stretch"/>
+                                           VerticalAlignment="Stretch"
+                                           x:Name="StickersViewGrid"/>
         </Grid>
 
         <Grid Grid.Row="0">
