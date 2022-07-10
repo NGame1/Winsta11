@@ -1,14 +1,7 @@
-﻿using InstagramApiSharp.API;
-using InstagramApiSharp.Classes.Models;
-using Microsoft.Toolkit.Collections;
+﻿using Microsoft.Toolkit.Collections;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Data;
 using WinstaNext.Abstractions.Stories;
 using WinstaNext.Core.Attributes;
 using WinstaNext.Core.Collections.IncrementalSources.Media;

@@ -7,12 +7,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     x:Class="WinstaNext.Views.Stories.StoryCarouselView"
     xmlns:models="using:WinstaNext.Abstractions.Stories"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:storiesView="using:WinstaNext.Views.Stories"
     xmlns:VM="using:WinstaNext.ViewModels.Stories"
-    xmlns:i="using:Microsoft.Xaml.Interactivity" 
     xmlns:views="using:WinstaNext.Views"
-    xmlns:Winsta="using:WinstaNext"
     mc:Ignorable="d">
 
     <views:BasePage.Resources>

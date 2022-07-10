@@ -26,20 +26,20 @@ namespace WinstaNext.Models.TemplateSelectors.Activities
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {
             if (item is not InstaRecentActivityFeed activity) return null;
-            switch (activity.Type)
+            return activity.Type switch
             {
-                case InstaActivityFeedType.CommentLike: return CommentLikeTemplate;
-                case InstaActivityFeedType.Follow: return FollowTemplate;
-                case InstaActivityFeedType.StoryLike: return StoryLikeTemplate;
-                case InstaActivityFeedType.RequestedToFollowYou: return RequestedToFollowYouTemplate;
-                case InstaActivityFeedType.FriendRequest: return FriendRequestTemplate;
-                case InstaActivityFeedType.LikedTagged: return LikedTaggedTemplate;
-                case InstaActivityFeedType.LoginActivity: return LoginActivityTemplate;
-                case InstaActivityFeedType.SharedPost: return SharedPostTemplate;
-                case InstaActivityFeedType.TaggedOrLikedOrCommentedYou: return TaggedOrLikedOrCommentedYouTemplate;
-                case InstaActivityFeedType.Unknown: return UnknownTemplate;
-                default: return UnknownTemplate;
-            }
+                InstaActivityFeedType.CommentLike => CommentLikeTemplate,
+                InstaActivityFeedType.Follow => FollowTemplate,
+                InstaActivityFeedType.StoryLike => StoryLikeTemplate,
+                InstaActivityFeedType.RequestedToFollowYou => RequestedToFollowYouTemplate,
+                InstaActivityFeedType.FriendRequest => FriendRequestTemplate,
+                InstaActivityFeedType.LikedTagged => LikedTaggedTemplate,
+                InstaActivityFeedType.LoginActivity => LoginActivityTemplate,
+                InstaActivityFeedType.SharedPost => SharedPostTemplate,
+                InstaActivityFeedType.TaggedOrLikedOrCommentedYou => TaggedOrLikedOrCommentedYouTemplate,
+                InstaActivityFeedType.Unknown => UnknownTemplate,
+                _ => UnknownTemplate,
+            };
         }
     }
 }

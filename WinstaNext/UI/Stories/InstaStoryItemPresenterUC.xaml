@@ -11,7 +11,8 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:generic="using:WinstaNext.UI.Generic"
     xmlns:Winsta="using:WinstaNext" 
-    xmlns:stickersview="using:WinstaNext.UI.Stories.StickersView"
+    xmlns:stickersview="using:WinstaNext.UI.Stories.StickersView" 
+    xmlns:StoriesConverters="using:WinstaNext.Converters.Stories"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -23,6 +24,8 @@
 
         <!--<TemplateSelectors:CarouselMediaTemplateSelector x:Key="CarouselMediaTemplateSelector"/>-->
 
+        <StoriesConverters:StoryItemImageConverter x:Key="StoryItemImageConverter"/>
+        <StoriesConverters:StoryItemVideoConverter x:Key="StoryItemVideoConverter"/>
         <Converters:MediaDateTimeconverter x:Key="MediaDateTimeconverter"/>
     </UserControl.Resources>
 
@@ -35,16 +38,16 @@
 
         <Grid Grid.Row="0" Grid.RowSpan="3">
 
-            <Image Source="{x:Bind Story.Images[0].Uri}"
+            <Image Source="{x:Bind Story, Converter={StaticResource StoryItemImageConverter}, Mode=OneWay}"
                    ImageOpened="imageviewer_ImageOpened"
                    x:Load="{x:Bind LoadImage}"
                    x:Name="imageviewer"
                    Stretch="Fill"/>
 
-            <MediaElement PosterSource="{x:Bind Story.Images[0].Uri}"
+            <MediaElement PosterSource="{x:Bind Story, Converter={StaticResource StoryItemImageConverter}, Mode=OneWay}"
+                          Source="{x:Bind Story, Converter={StaticResource StoryItemVideoConverter}, Mode=OneWay}"
                           MediaEnded="videoplayer_MediaEnded"
                           x:Load="{x:Bind LoadVideo}"
-                          Loaded="videoplayer_Loaded"
                           x:Name="videoplayer"
                           AutoPlay="False"
                           Stretch="Fill"/>

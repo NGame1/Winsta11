@@ -24,7 +24,7 @@ namespace WinstaNext.UI.Stories
     public sealed partial class InstaStoryItemPresenterUC : UserControl
     {
         public static readonly DependencyProperty StoryProperty = DependencyProperty.Register(
-             "Story",
+             nameof(Story),
              typeof(InstaStoryItem),
              typeof(InstaStoryItemPresenterUC),
              new PropertyMetadata(null));

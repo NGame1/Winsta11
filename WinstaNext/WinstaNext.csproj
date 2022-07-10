@@ -158,6 +158,8 @@
     <Compile Include="Converters\Profiles\UserInfoToButtonConverter.cs" />
     <Compile Include="Converters\RichTextToMarkdownTextConverter.cs" />
     <Compile Include="Converters\Stories\StoryBorderColorConverter.cs" />
+    <Compile Include="Converters\Stories\StoryItemImageConverter.cs" />
+    <Compile Include="Converters\Stories\StoryItemVideoConverter.cs" />
     <Compile Include="Converters\TextToFlowDirectionConverter.cs" />
     <Compile Include="Core\Attributes\RangePlayerAttribute.cs" />
     <Compile Include="Core\Behaviors\SynchronizeHorizontalOffsetBehavior.cs" />

@@ -22,7 +22,7 @@ namespace WinstaNext.Views.Stories
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     [AddINotifyPropertyChangedInterface]
-    public sealed partial class StoryItemView : UserControl
+    public sealed partial class StoryItemView : UserControl, INotifyPropertyChanged
     {
         public static readonly DependencyProperty StoryRootProperty = DependencyProperty.Register(
           "StoryRoot",
@@ -62,6 +62,7 @@ namespace WinstaNext.Views.Stories
         internal Progress<double> StoryItemProgress { get; private set; } = new();
 
         public event EventHandler<WinstaReelFeed>? ItemsEnded;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public StoryItemView()
         {
