@@ -4,6 +4,7 @@ using PropertyChanged;
 using System.ComponentModel;
 using System.Threading;
 using Windows.System;
+#nullable enable
 
 namespace WinstaNext.Abstractions.Stories
 {
@@ -32,13 +33,13 @@ namespace WinstaNext.Abstractions.Stories
             ReelFeed = new(reelFeed);
         }
 
-        public InstaBroadcast Broadcast { get; }
-        public InstaHashtagStory HashtagStory { get; }
-        public WinstaHighlightFeed HighlightStory { get; }
-        public WinstaReelFeed ReelFeed { get; }
+        public InstaBroadcast? Broadcast { get; }
+        public InstaHashtagStory? HashtagStory { get; }
+        public WinstaHighlightFeed? HighlightStory { get; }
+        public WinstaReelFeed? ReelFeed { get; }
 
         public bool IsSelected { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

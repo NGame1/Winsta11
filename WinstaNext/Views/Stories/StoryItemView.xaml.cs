@@ -37,19 +37,19 @@ namespace WinstaNext.Views.Stories
             set { SetValue(StoryRootProperty, value); }
         }
 
-        WinstaReelFeed ReelFeed
+        WinstaReelFeed? ReelFeed
         {
-            get => StoryRoot.ReelFeed;
+            get => StoryRoot?.ReelFeed;
         }
 
-        InstaHighlightFeed Highlight
+        InstaHighlightFeed? Highlight
         {
-            get => StoryRoot.HighlightStory;
+            get => StoryRoot?.HighlightStory;
         }
 
-        public ObservableCollection<InstaStoryItem> StoryItems
+        public ObservableCollection<InstaStoryItem>? StoryItems
         {
-            get => ReelFeed != null ? ReelFeed.Items : Highlight.Items;
+            get => ReelFeed != null ? ReelFeed.Items : Highlight?.Items;
         }
 
         public double PageHeight { get; set; }
@@ -61,8 +61,8 @@ namespace WinstaNext.Views.Stories
 
         internal Progress<double> StoryItemProgress { get; private set; } = new();
 
-        public event EventHandler<WinstaReelFeed>? ItemsEnded;
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler<WinstaReelFeed?>? ItemsEnded;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public StoryItemView()
         {
@@ -110,6 +110,7 @@ namespace WinstaNext.Views.Stories
             if (FlipView.SelectedItem is not InstaStoryItem storyItem) return;
             PlaybackController(storyItem, val);
         }
+        
 
         void PlaybackController(InstaStoryItem storyItem, bool val)
         {
