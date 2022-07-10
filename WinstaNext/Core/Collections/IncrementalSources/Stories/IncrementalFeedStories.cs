@@ -47,8 +47,16 @@ namespace WinstaNext.Core.Collections.IncrementalSources.Stories
                     throw result.Info.Exception;
 
                 HasMoreAvailable = Pagination.NextMaxId != null;
-
                 List<WinstaStoryItem> Stories = new();
+
+                var ownStories = result.Value.Items.Where(x => x.User.Pk == App.Container.GetService<InstaUserShort>().Pk);
+                if (ownStories.Count() > 1)
+                {
+                    var own = ownStories.FirstOrDefault();
+                    result.Value.Items.RemoveAll(x => x.User.Pk == App.Container.GetService<InstaUserShort>().Pk);
+                    result.Value.Items.Insert(0, own);
+                }
+
                 //for (int i = 0; i < result.Value.Broadcasts.Count; i++)
                 //{
                 //    Stories.Add(new(result.Value.Broadcasts.ElementAt(i)));

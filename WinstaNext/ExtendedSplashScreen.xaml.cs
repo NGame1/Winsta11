@@ -62,7 +62,7 @@ namespace WinstaNext
                 var str = await http.GetStringAsync(new Uri("http://worldtimeapi.org/api/timezone/Etc/UTC", UriKind.RelativeOrAbsolute));
                 var json = Newtonsoft.Json.Linq.JObject.Parse(str);
                 var datetime = json.Value<DateTime>("datetime");
-                var end = new DateTime(2022, 07, 30);
+                var end = new DateTime(2022, 08, 20);
                 var rdays = end.Subtract(datetime).Days;
                 if (rdays < 0)
                     App.Current.Exit();
