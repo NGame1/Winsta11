@@ -18,7 +18,7 @@ namespace WinstaNext.UI.Media
     public sealed partial class InstaMediaVideoPresenterUC : UserControl
     {
         public static readonly DependencyProperty CarouselItemProperty = DependencyProperty.Register(
-             "CarouselItem",
+             nameof(CarouselItem),
              typeof(InstaCarouselItem),
              typeof(InstaMediaVideoPresenterUC),
              new PropertyMetadata(null));

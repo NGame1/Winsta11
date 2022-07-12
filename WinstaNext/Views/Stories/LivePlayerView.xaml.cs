@@ -1,26 +1,10 @@
 ﻿using FFmpegInteropX;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
-using MinistaLivePlayback.Models;
 using PropertyChanged;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Media.Core;
-using Windows.Media.Playback;
-using Windows.Media.Streaming.Adaptive;
-using Windows.Storage.FileProperties;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using WinstaNext.Abstractions.Stories;
 using WinstaNext.Helpers;
 using WinstaNext.Services;
@@ -40,7 +24,7 @@ namespace WinstaNext.Views.Stories
         public double PageWidth { get; set; }
 
         public static readonly DependencyProperty StoryRootProperty = DependencyProperty.Register(
-          "StoryRoot",
+          nameof(StoryRoot),
           typeof(WinstaStoryItem),
           typeof(LivePlayerView),
           new PropertyMetadata(null));

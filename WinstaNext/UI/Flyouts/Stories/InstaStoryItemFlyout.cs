@@ -20,7 +20,7 @@ namespace WinstaNext.UI.Flyouts.Stories
     internal class InstaStoryItemFlyout : MenuFlyout
     {
         public static readonly DependencyProperty StoryItemProperty = DependencyProperty.Register(
-          "StoryItem",
+          nameof(StoryItem),
           typeof(InstaStoryItem),
           typeof(InstaStoryItemFlyout),
           new PropertyMetadata(null));

@@ -33,7 +33,7 @@ namespace WinstaNext.UI.Comments
     public sealed partial class InstaCommentPresenterUC : UserControl
     {
         public static readonly DependencyProperty CommentProperty = DependencyProperty.Register(
-          "Comment",
+          nameof(Comment),
           typeof(InstaComment),
           typeof(InstaCommentPresenterUC),
           new PropertyMetadata(null));

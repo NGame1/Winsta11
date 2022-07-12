@@ -1,11 +1,5 @@
-﻿using WinstaNext.Core.Navigation;
-using WinstaNext.ViewModels;
+﻿using WinstaNext.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -14,7 +8,7 @@ namespace WinstaNext.Views
 {
     public class BasePage : Page
     {
-        public Thickness PageMargin { get => new Thickness(56, 12, 56, 0); }
+        public Thickness PageMargin { get => new(56, 12, 56, 0); }
 
         public BaseViewModel PageViewModel { get; private set; }
 

@@ -23,7 +23,7 @@ namespace WinstaNext.UI.Generic
     public sealed partial class InstaUserPresenterUC : UserControl
     {
         public static readonly DependencyProperty UserShortProperty = DependencyProperty.Register(
-          "UserShort",
+          nameof(UserShort),
           typeof(InstaUserShort),
           typeof(InstaUserPresenterUC),
           new PropertyMetadata(null));
@@ -36,7 +36,7 @@ namespace WinstaNext.UI.Generic
         }
 
         public static readonly DependencyProperty UserProperty = DependencyProperty.Register(
-          "User",
+          nameof(User),
           typeof(InstaUser),
           typeof(InstaUserPresenterUC),
           new PropertyMetadata(null));

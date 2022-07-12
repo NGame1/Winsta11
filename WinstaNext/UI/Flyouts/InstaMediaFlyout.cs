@@ -16,7 +16,7 @@ namespace WinstaNext.UI.Flyouts
     public sealed partial class InstaMediaFlyout : MenuFlyout
     {
         public static readonly DependencyProperty MediaProperty = DependencyProperty.Register(
-          "Media",
+          nameof(Media),
           typeof(InstaMedia),
           typeof(InstaMediaFlyout),
           new PropertyMetadata(null));

@@ -13,7 +13,7 @@ namespace WinstaNext.Converters.Profiles
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value is not InstaFriendshipShortStatus FriendshipStatus || FriendshipStatus == null) return string.Empty;
-            if (App.Container.GetService<NavigationService>().Content is UserProfileView userProfile)
+            if (App.Container.GetRequiredService<NavigationService>().Content is UserProfileView userProfile)
             {
                 if (userProfile.DataContext is UserProfileViewModel viewModel)
                     if (viewModel.User.Pk == App.Container.GetService<InstaUserShort>().Pk)

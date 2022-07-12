@@ -11,7 +11,7 @@ namespace WinstaNext.UI.Controls
     public class CompositionControl : ContentControl
     {
         public static readonly DependencyProperty BindingContextProperty = DependencyProperty.Register(
-             "BindingContext",
+             nameof(BindingContext),
              typeof(object),
              typeof(CompositionControl),
              new PropertyMetadata(null));
@@ -25,8 +25,7 @@ namespace WinstaNext.UI.Controls
 
         void OnBindingContextChanged()
         {
-            DataTemplateSelector dataTemplateSelector = this.ContentTemplateSelector as DataTemplateSelector;
-            if (dataTemplateSelector != null)
+            if (this.ContentTemplateSelector is DataTemplateSelector dataTemplateSelector)
             {
                 this.ContentTemplate = dataTemplateSelector.SelectTemplate(BindingContext, null);
             }

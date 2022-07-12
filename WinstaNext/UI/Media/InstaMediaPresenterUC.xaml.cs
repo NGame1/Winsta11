@@ -1,31 +1,13 @@
-﻿using InstagramApiSharp.API;
-using InstagramApiSharp.Classes.Models;
+﻿using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.Toolkit.Uwp.UI.Lottie;
-using Microsoft.UI.Xaml.Controls;
 using PropertyChanged;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using WinstaNext.Helpers;
-using WinstaNext.ViewModels;
 using WinstaNext.ViewModels.Media;
-using WinstaNext.Views;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -35,7 +17,7 @@ namespace WinstaNext.UI.Media
     public sealed partial class InstaMediaPresenterUC : UserControl
     {
         public static readonly DependencyProperty MediaProperty = DependencyProperty.Register(
-          "Media",
+          nameof(Media),
           typeof(InstaMedia),
           typeof(InstaMediaPresenterUC),
           new PropertyMetadata(null));

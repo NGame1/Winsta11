@@ -21,7 +21,7 @@ namespace WinstaNext.UI.Search
     public sealed partial class PlaceSearchUC : UserControl
     {
         public static readonly DependencyProperty PlaceProperty = DependencyProperty.Register(
-             "Place",
+             nameof(Place),
              typeof(InstaPlace),
              typeof(PlaceSearchUC),
              new PropertyMetadata(null));

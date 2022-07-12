@@ -18,7 +18,7 @@ namespace WinstaNext.UI.Flyouts.Directs
     internal class PrivateMessageThreadMenuFlyout : MenuFlyout
     {
         public static readonly DependencyProperty DirectThreadProperty = DependencyProperty.Register(
-          "DirectThread",
+          nameof(DirectThread),
           typeof(InstaDirectInboxThread),
           typeof(PrivateMessageThreadMenuFlyout),
           new PropertyMetadata(null));

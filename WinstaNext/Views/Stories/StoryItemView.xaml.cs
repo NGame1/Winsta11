@@ -1,5 +1,4 @@
-﻿using InstagramApiSharp.API;
-using InstagramApiSharp.Classes.Models;
+﻿using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using PropertyChanged;
 using System;
@@ -25,7 +24,7 @@ namespace WinstaNext.Views.Stories
     public sealed partial class StoryItemView : UserControl, INotifyPropertyChanged
     {
         public static readonly DependencyProperty StoryRootProperty = DependencyProperty.Register(
-          "StoryRoot",
+          nameof(StoryRoot),
           typeof(WinstaStoryItem),
           typeof(StoryItemView),
           new PropertyMetadata(null));

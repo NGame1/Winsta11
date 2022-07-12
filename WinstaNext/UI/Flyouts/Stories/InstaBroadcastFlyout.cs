@@ -17,7 +17,7 @@ namespace WinstaNext.UI.Flyouts.Stories
     internal class InstaBroadcastFlyout : MenuFlyout
     {
         public static readonly DependencyProperty BroadcastProperty = DependencyProperty.Register(
-          "Broadcast",
+          nameof(Broadcast),
           typeof(InstaBroadcast),
           typeof(InstaBroadcastFlyout),
           new PropertyMetadata(null));

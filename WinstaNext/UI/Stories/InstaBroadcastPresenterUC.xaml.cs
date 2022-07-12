@@ -1,20 +1,8 @@
 ﻿using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using WinstaNext.Services;
 using WinstaNext.Views.Profiles;
 
@@ -25,7 +13,7 @@ namespace WinstaNext.UI.Stories
     public sealed partial class InstaBroadcastPresenterUC : UserControl
     {
         public static readonly DependencyProperty BroadcastProperty = DependencyProperty.Register(
-             "Broadcast",
+             nameof(Broadcast),
              typeof(InstaBroadcast),
              typeof(InstaBroadcastPresenterUC),
              new PropertyMetadata(null));

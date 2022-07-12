@@ -21,7 +21,7 @@ namespace WinstaNext.UI.Directs
     public sealed partial class GroupDirectThread : UserControl
     {
         public static readonly DependencyProperty DirectThreadProperty = DependencyProperty.Register(
-          "DirectThread",
+          nameof(DirectThread),
           typeof(InstaDirectInboxThread),
           typeof(GroupDirectThread),
           new PropertyMetadata(null));

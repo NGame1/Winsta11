@@ -28,9 +28,7 @@ namespace WinstaNext.UI.Directs
 
         protected override void OnApplyTemplate()
         {
-            var scrollViewer = this.GetTemplateChild("ScrollViewer") as ScrollViewer;
-
-            if (scrollViewer != null)
+            if (this.GetTemplateChild("ScrollViewer") is ScrollViewer scrollViewer)
             {
                 scrollViewer.ViewChanged += (s, a) =>
                 {
@@ -81,14 +79,12 @@ namespace WinstaNext.UI.Directs
 
         private async Task ProcessDataVirtualizationScrollOffsetsAsync(double actualHeight)
         {
-            var panel = this.ItemsPanelRoot as ItemsStackPanel;
-            if (panel != null)
+            if (this.ItemsPanelRoot is ItemsStackPanel panel)
             {
                 if ((panel.FirstVisibleIndex != -1 && panel.FirstVisibleIndex * this.averageContainerHeight < actualHeight * this.IncrementalLoadingThreshold) ||
                     (Items.Count == 0))
                 {
-                    var virtualizingDataSource = this.ItemsSource as ISupportIncrementalLoading;
-                    if (virtualizingDataSource != null)
+                    if (this.ItemsSource is ISupportIncrementalLoading virtualizingDataSource)
                     {
                         if (virtualizingDataSource.HasMoreItems)
                         {

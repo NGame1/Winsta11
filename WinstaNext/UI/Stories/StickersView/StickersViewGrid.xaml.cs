@@ -29,7 +29,7 @@ namespace WinstaNext.UI.Stories.StickersView
     public sealed partial class StickersViewGrid : Grid
     {
         public static readonly DependencyProperty PresenterProperty = DependencyProperty.Register(
-             "Presenter",
+             nameof(Presenter),
              typeof(InstaStoryItemPresenterUC),
              typeof(StickersViewGrid),
              new PropertyMetadata(null));
@@ -53,6 +53,7 @@ namespace WinstaNext.UI.Stories.StickersView
 
         public void InitializeView()
         {
+            if (Presenter == null) return;
             this.Children.Clear();
             PauseTimerCommand = new(Presenter.Pause);
             ResumeTimerCommand = new(Presenter.Resume);

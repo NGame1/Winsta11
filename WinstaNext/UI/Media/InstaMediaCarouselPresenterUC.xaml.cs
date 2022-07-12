@@ -2,20 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using PropertyChanged;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using WinstaNext.Helpers;
 using WinstaNext.Services;
 
@@ -27,19 +16,19 @@ namespace WinstaNext.UI.Media
     public sealed partial class InstaMediaCarouselPresenterUC : UserControl
     {
         public static readonly DependencyProperty MediaProperty = DependencyProperty.Register(
-          "Media",
+          nameof(Media),
           typeof(InstaMedia),
           typeof(InstaMediaCarouselPresenterUC),
           new PropertyMetadata(null));
 
         public static readonly DependencyProperty FlipHeightProperty = DependencyProperty.Register(
-          "FlipHeight",
+          nameof(FlipHeight),
           typeof(double),
           typeof(InstaMediaCarouselPresenterUC),
           new PropertyMetadata(null));
 
         public static readonly DependencyProperty FlipWidthProperty = DependencyProperty.Register(
-          "FlipWidth",
+          nameof(FlipWidth),
           typeof(double),
           typeof(InstaMediaCarouselPresenterUC),
           new PropertyMetadata(null));

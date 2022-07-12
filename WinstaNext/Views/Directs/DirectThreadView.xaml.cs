@@ -24,7 +24,7 @@ namespace WinstaNext.Views.Directs
     public sealed partial class DirectThreadView : Page
     {
         public static readonly DependencyProperty DirectThreadProperty = DependencyProperty.Register(
-          "DirectThread",
+          nameof(DirectThread),
           typeof(InstaDirectInboxThread),
           typeof(DirectThreadView),
           new PropertyMetadata(null));

@@ -4,7 +4,6 @@ using Microsoft.Toolkit.Mvvm.Input;
 using PropertyChanged;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using WinstaNext.Abstractions.Stories;
 using WinstaNext.Services;
 using WinstaNext.Views.Profiles;
 
@@ -16,7 +15,7 @@ namespace WinstaNext.UI.Stories
     public sealed partial class InstaHighlightFeedPresenterUC : UserControl
     {
         public static readonly DependencyProperty HighlightFeedProperty = DependencyProperty.Register(
-          "HighlightFeed",
+          nameof(HighlightFeed),
           typeof(InstaHighlightFeed),
           typeof(InstaHighlightFeedPresenterUC),
           new PropertyMetadata(null));

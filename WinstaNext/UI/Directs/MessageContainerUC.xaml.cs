@@ -29,13 +29,13 @@ namespace WinstaNext.UI.Directs
     public partial class MessageContainerUC : UserControl
     {
         public static readonly DependencyProperty DirectItemProperty = DependencyProperty.Register(
-             "DirectItem",
+             nameof(DirectItem),
              typeof(InstaDirectInboxItemFullModel),
              typeof(MessageContainerUC),
              new PropertyMetadata(null));
 
         public static readonly DependencyProperty DirectUserProperty = DependencyProperty.Register(
-             "DirectUser",
+             nameof(DirectUser),
              typeof(InstaUserShort),
              typeof(MessageContainerUC),
              new PropertyMetadata(null));

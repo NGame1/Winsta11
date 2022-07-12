@@ -16,7 +16,7 @@ namespace WinstaNext.Abstractions.Direct.Converters
         public List<InstaDirectInboxItemFullModel> Convert()
         {
             if (SourceObject == null) throw new ArgumentNullException(nameof(SourceObject));
-            var me = App.Container?.GetService<IInstaApi>()?.GetLoggedUser().LoggedInUser;
+            var me = App.Container?.GetRequiredService<IInstaApi>().GetLoggedUser().LoggedInUser;
             var lst = new List<InstaDirectInboxItemFullModel>();
 
             var users = SourceObject.Users.ToDictionary(x => x.Pk);

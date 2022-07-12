@@ -19,13 +19,13 @@ namespace WinstaNext.UI.Flyouts.Profiles
     internal class UserProfileMenuFlyout : MenuFlyout
     {
         public static readonly DependencyProperty StoriesAndLivesProperty = DependencyProperty.Register(
-          "StoriesAndLives",
+          nameof(StoriesAndLives),
           typeof(InstaStoryAndLives),
           typeof(UserProfileMenuFlyout),
           new PropertyMetadata(null));
 
         public static readonly DependencyProperty UserProperty = DependencyProperty.Register(
-          "User",
+          nameof(User),
           typeof(InstaUserInfo),
           typeof(UserProfileMenuFlyout),
           new PropertyMetadata(null));

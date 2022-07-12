@@ -2,16 +2,13 @@
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
-using System;
 using System.Threading.Tasks;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using WinstaNext.Abstractions.Direct.Models;
 using WinstaNext.Constants;
 using WinstaNext.Services;
-using WinstaNext.UI.Directs;
 using WinstaNext.ViewModels.Directs;
 using WinstaNext.Views.Directs;
 
@@ -20,7 +17,7 @@ namespace WinstaNext.UI.Flyouts.Directs
     internal class DirectMessageItemMenuFlyout : MenuFlyout
     {
         public static readonly DependencyProperty DirectItemProperty = DependencyProperty.Register(
-          "DirectItem",
+          nameof(DirectItem),
           typeof(InstaDirectInboxItemFullModel),
           typeof(DirectMessageItemMenuFlyout),
           new PropertyMetadata(null));
