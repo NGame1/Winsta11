@@ -2,10 +2,12 @@
 using System;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
+using Windows.Graphics.Display;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -26,6 +28,7 @@ namespace WinstaNext
         private SplashScreen splash; // Variable to hold the splash screen object.
         internal bool dismissed = false; // Variable to track splash screen dismissal status.
         internal Frame rootFrame;
+        private double ScaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
 
         public ExtendedSplashScreen(SplashScreen splashScreen, LaunchActivatedEventArgs e, bool loadState)
         {
@@ -85,9 +88,11 @@ namespace WinstaNext
             }
         }
 
-        private void ExtendedSplashScreen_Loaded(object sender, RoutedEventArgs e)
+        private async void ExtendedSplashScreen_Loaded(object sender, RoutedEventArgs e)
         {
             InitializeUI(rootFrame);
+
+            await Task.Delay(100);
 
             RegisterQuickReplyBgTask();
 

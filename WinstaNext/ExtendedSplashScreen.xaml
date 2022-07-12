@@ -6,13 +6,11 @@
     x:Class="WinstaNext.ExtendedSplashScreen"
     mc:Ignorable="d">
 
-    <Grid>
-        <Grid>
-            <Canvas>
-                <Image x:Name="extendedSplashImage" Source="Assets\SplashScreen.png" Visibility="Collapsed"/>
-                <ProgressRing Name="splashProgressRing" IsActive="True" Width="85" HorizontalAlignment="Center"></ProgressRing>
-            </Canvas>
-        </Grid>
+    <Grid Background="#FF000012" >
+        <Canvas>
+            <Image x:Name="extendedSplashImage" Source="Assets/SplashScreen.png"/>
+            <ProgressRing Name="splashProgressRing" IsActive="True" Width="60" Height="60"  HorizontalAlignment="Center"></ProgressRing>
+        </Canvas>
     </Grid>
 
 </Page>
