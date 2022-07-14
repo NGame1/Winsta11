@@ -139,6 +139,7 @@
     </Compile>
     <Compile Include="ApplicationSettingsManager.cs" />
     <Compile Include="Constants\FluentRegularFontCharacters.cs" />
+    <Compile Include="Constants\Instagram\Stories\PollColorConstants.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\Directs\DirectItemTimeConverter.cs" />
     <Compile Include="Converters\Directs\HasUnreadToFontWeightConverter.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Converters\Profiles\InstaFriendshipShortStatusButtonConverter.cs" />
     <Compile Include="Converters\Profiles\UserInfoToButtonConverter.cs" />
     <Compile Include="Converters\RichTextToMarkdownTextConverter.cs" />
+    <Compile Include="Converters\Stories\PollStickerColorConverter.cs" />
     <Compile Include="Converters\Stories\StoryBorderColorConverter.cs" />
     <Compile Include="Converters\Stories\StoryItemImageConverter.cs" />
     <Compile Include="Converters\Stories\StoryItemVideoConverter.cs" />
