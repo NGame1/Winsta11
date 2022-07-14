@@ -14,7 +14,7 @@
         <SolidColorBrush x:Key="ButtonBackgroundPressed">#EEEEEE</SolidColorBrush>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Background="#EEEEEE">
         <Grid.RowDefinitions>
             <!--Title-->
             <RowDefinition x:Name="titleRow" Height="Auto"/>

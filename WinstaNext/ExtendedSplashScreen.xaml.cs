@@ -7,7 +7,6 @@ using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
-using Windows.Graphics.Display;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -28,7 +27,6 @@ namespace WinstaNext
         private SplashScreen splash; // Variable to hold the splash screen object.
         internal bool dismissed = false; // Variable to track splash screen dismissal status.
         internal Frame rootFrame;
-        private double ScaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
 
         public ExtendedSplashScreen(SplashScreen splashScreen, LaunchActivatedEventArgs e, bool loadState)
         {
@@ -65,7 +63,7 @@ namespace WinstaNext
                 var str = await http.GetStringAsync(new Uri("http://worldtimeapi.org/api/timezone/Etc/UTC", UriKind.RelativeOrAbsolute));
                 var json = Newtonsoft.Json.Linq.JObject.Parse(str);
                 var datetime = json.Value<DateTime>("datetime");
-                var end = new DateTime(2022, 08, 20);
+                var end = new DateTime(2022, 08, 30);
                 var rdays = end.Subtract(datetime).Days;
                 if (rdays < 0)
                     App.Current.Exit();

@@ -118,24 +118,24 @@ namespace WinstaNext.UI.Stories.StickersView
                     this.Children.Add(rect);
                 }
             }
-            if (StoryItem.StoryPolls.Any())
-            {
-                for (int i = 0; i < StoryItem.StoryPolls.Count; i++)
-                {
-                    var poll = StoryItem.StoryPolls.ElementAt(i);
-                    var rect = new Grid() { CornerRadius = new(14) };
-                    var pollSticker = new PollStickerUC();
-                    rect.Children.Add(pollSticker);
-                    SetStickerPosition(ref rect, poll.Height, poll.Width, poll.X, poll.Y, poll.Rotation);
-                    this.Children.Add(rect);
-                    pollSticker.SetBinding(PollStickerUC.PollProperty, new Binding()
-                    {
-                        Source = poll,
-                        Mode = BindingMode.OneWay,
-                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-                    });
-                }
-            }
+            //if (StoryItem.StoryPolls.Any())
+            //{
+            //    for (int i = 0; i < StoryItem.StoryPolls.Count; i++)
+            //    {
+            //        var poll = StoryItem.StoryPolls.ElementAt(i);
+            //        var rect = new Grid() { CornerRadius = new(14) };
+            //        var pollSticker = new PollStickerUC();
+            //        rect.Children.Add(pollSticker);
+            //        SetStickerPosition(ref rect, poll.Height, poll.Width, poll.X, poll.Y, poll.Rotation);
+            //        this.Children.Add(rect);
+            //        pollSticker.SetBinding(PollStickerUC.PollProperty, new Binding()
+            //        {
+            //            Source = poll,
+            //            Mode = BindingMode.OneWay,
+            //            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            //        });
+            //    }
+            //}
         }
 
         void Media_Tapped(object sender, TappedRoutedEventArgs e)
