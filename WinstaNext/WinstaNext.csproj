@@ -158,7 +158,6 @@
     <Compile Include="Converters\TextToFlowDirectionConverter.cs" />
     <Compile Include="Core\Behaviors\SynchronizeHorizontalOffsetBehavior.cs" />
     <Compile Include="Core\Dialogs\MessageDialogHelper.cs" />
-    <Compile Include="Core\Exceptions\ArgumentNullExceptionExtensions.cs" />
     <Compile Include="Core\Messages\ChangePageHeaderMessage.cs" />
     <Compile Include="Core\Messages\ChangeSelectedMenuItemMessage.cs" />
     <Compile Include="Core\Navigation\IncrementalMediaViewParameter.cs" />

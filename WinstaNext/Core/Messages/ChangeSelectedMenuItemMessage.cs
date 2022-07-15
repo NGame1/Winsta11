@@ -1,5 +1,4 @@
-﻿using WinstaNext.ViewModels;
-using System;
+﻿using System;
 
 namespace WinstaNext.Core.Messages
 {
