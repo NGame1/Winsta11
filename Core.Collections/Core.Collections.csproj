@@ -162,6 +162,7 @@
 			<Version>6.2.14</Version>
 		</PackageReference>
 		<PackageReference Include="PropertyChanged.Fody">
+			<PrivateAssets>all</PrivateAssets>
 			<Version>3.4.1</Version>
 		</PackageReference>
 	</ItemGroup>

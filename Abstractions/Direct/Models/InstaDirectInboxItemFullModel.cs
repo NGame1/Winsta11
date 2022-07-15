@@ -1,6 +1,7 @@
 ﻿using InstagramApiSharp.Classes.Models;
 using PropertyChanged;
 using System.Linq;
+#nullable enable
 
 namespace Abstractions.Direct.Models
 {
