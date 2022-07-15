@@ -1,4 +1,5 @@
-﻿using InstagramApiSharp.Classes.Models;
+﻿using Abstractions.Stories;
+using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using PropertyChanged;
 using System;
@@ -7,9 +8,8 @@ using System.ComponentModel;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using WinstaNext.Abstractions.Stories;
+using WinstaCore.Services;
 using WinstaNext.Helpers;
-using WinstaNext.Services;
 using WinstaNext.UI.Stories;
 #nullable enable
 

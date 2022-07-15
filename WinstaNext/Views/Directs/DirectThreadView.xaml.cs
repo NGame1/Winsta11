@@ -1,4 +1,6 @@
-﻿using InstagramApiSharp.Classes.Models;
+﻿using Abstractions.Direct.Models;
+using Core.Collections.IncrementalSources.Directs;
+using InstagramApiSharp.Classes.Models;
 using InstagramApiSharp.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Uwp;
@@ -12,8 +14,6 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using WinstaNext.Abstractions.Direct.Models;
-using WinstaNext.Core.Collections.IncrementalSources.Directs;
 using WinstaNext.ViewModels.Directs;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236

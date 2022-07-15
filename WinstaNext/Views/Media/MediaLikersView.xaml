@@ -5,12 +5,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:media="using:WinstaNext.Abstractions.Media"
     x:Class="WinstaNext.Views.Media.MediaLikersView"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:VM="using:WinstaNext.ViewModels.Media"
     xmlns:generic="using:WinstaNext.UI.Generic" 
-    xmlns:local="using:WinstaNext.Views.Media" 
+    xmlns:media="using:Abstractions.Media"
     mc:Ignorable="d">
 
     <views:BasePage.DataContext>
@@ -30,8 +29,11 @@
         
         <ListView.ItemContainerStyle>
             <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
-                <Setter Property="Padding" Value="8,4"/>
                 <Setter Property="Margin" Value="0,0,0,2"/>
+                <Setter Property="Padding" Value="{StaticResource ExpanderContentPadding}" />
+                <Setter Property="Background" Value="{ThemeResource ExpanderHeaderBackground}"/>
+                <Setter Property="BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+                <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
             </Style>
         </ListView.ItemContainerStyle>
         

@@ -1,8 +1,8 @@
-﻿using InstagramApiSharp.Classes.Models;
+﻿using Abstractions.Stories;
+using InstagramApiSharp.Classes.Models;
 using PropertyChanged;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using WinstaNext.Abstractions.Stories;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 

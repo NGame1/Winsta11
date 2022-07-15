@@ -6,7 +6,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     x:Class="WinstaNext.Views.Stories.StoryCarouselView"
-    xmlns:models="using:WinstaNext.Abstractions.Stories"
+    xmlns:models="using:Abstractions.Stories"
     xmlns:storiesView="using:WinstaNext.Views.Stories"
     xmlns:VM="using:WinstaNext.ViewModels.Stories"
     xmlns:views="using:WinstaNext.Views"

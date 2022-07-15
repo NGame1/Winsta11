@@ -1,5 +1,7 @@
-﻿using Windows.UI.Xaml.Controls;
-using WinstaNext.Abstractions.Stories;
+﻿using Abstractions.Stories;
+using Windows.UI.Xaml.Controls;
+using WinstaCore.Attributes;
+using WinstaCore.Interfaces.Views;
 using WinstaNext.Core.Navigation;
 using WinstaNext.Views.Stories;
 
@@ -10,8 +12,10 @@ namespace WinstaNext.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class HomeView : BasePage
+    public sealed partial class HomeView : BasePage, IHomeView
     {
+        public RangePlayerAttribute Medias { get => ViewModel.Medias; }
+
         public HomeView()
         {
             this.InitializeComponent();

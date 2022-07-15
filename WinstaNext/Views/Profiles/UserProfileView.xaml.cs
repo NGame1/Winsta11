@@ -1,8 +1,9 @@
-﻿using Microsoft.Toolkit.Uwp.UI;
+﻿using Abstractions.Stories;
+using Microsoft.Toolkit.Uwp.UI;
 using PropertyChanged;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using WinstaNext.Abstractions.Stories;
+using WinstaCore;
 using WinstaNext.Core.Navigation;
 using WinstaNext.Views.Stories;
 #nullable enable

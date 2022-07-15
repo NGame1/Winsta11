@@ -1,13 +1,13 @@
-﻿using FFmpegInteropX;
+﻿using Abstractions.Stories;
+using FFmpegInteropX;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using PropertyChanged;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using WinstaNext.Abstractions.Stories;
+using WinstaCore.Services;
 using WinstaNext.Helpers;
-using WinstaNext.Services;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
