@@ -124,14 +124,30 @@
     <EmbeddedResource Include="Properties\ViewModels.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Fody">
+      <Version>6.6.3</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.14</Version>
     </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody">
+      <Version>3.4.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\InstagramApiSharpMine\src\InstagramApiSharp\InstagramApiSharp.UWP.csproj">
+      <Project>{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}</Project>
+      <Name>InstagramApiSharp.UWP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.Collections\Core.Collections.csproj">
       <Project>{147df058-0510-43d1-9bbd-91f72ebaf1b1}</Project>
       <Name>Core.Collections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinstaCore\WinstaCore.csproj">
+      <Project>{898C6B7E-C8FE-418F-9348-B32DA493FA10}</Project>
+      <Name>WinstaCore</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

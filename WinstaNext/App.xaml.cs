@@ -4,12 +4,14 @@ using InstagramApiSharp.Classes.Models;
 using InstagramApiSharp.Logger;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Uwp.Helpers;
+using Microsoft.Toolkit.Uwp.UI.Helpers;
 using NodaTime.TimeZones;
 using Syncfusion.Licensing;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -57,6 +59,14 @@ namespace WinstaNext
             //Removes mouse pointer on XBOX
             if (SystemInformation.Instance.DeviceFamily == "Windows.Xbox")
                 this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
+            var theme = new ThemeListener();
+            theme.ThemeChanged += App_ThemeChanged;
+            AppCore.IsDark = theme.CurrentTheme == ApplicationTheme.Dark;
+        }
+
+        private void App_ThemeChanged(ThemeListener sender)
+        {
+            AppCore.IsDark = sender.CurrentTheme == ApplicationTheme.Dark;
         }
 
         private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)

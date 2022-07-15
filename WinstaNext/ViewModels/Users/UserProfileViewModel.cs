@@ -21,6 +21,7 @@ using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using WinstaCore;
 using WinstaCore.Attributes;
 using WinstaNext.Core.Navigation;
 using WinstaNext.Helpers.ExtensionMethods;
@@ -256,7 +257,7 @@ namespace WinstaNext.ViewModels.Users
                     }
                 }
             }
-            HighlightsInstance = new(User.Pk, new ThemeListener().CurrentTheme == ApplicationTheme.Dark);
+            HighlightsInstance = new(User.Pk, AppCore.IsDark);
             ReelsInstance = new(User.Pk);
             MediasInstance = new(User.Pk);
             TaggedInstance = new(User.Pk);

@@ -8,6 +8,7 @@ using Core.Collections.IncrementalSources.Media;
 using Abstractions.Stories;
 using Microsoft.Toolkit.Uwp.UI.Helpers;
 using Windows.UI.Xaml;
+using WinstaCore;
 
 namespace WinstaNext.ViewModels
 {
@@ -19,7 +20,7 @@ namespace WinstaNext.ViewModels
         public RangePlayerAttribute Medias { get; }
 
         public IncrementalFeedStories FeedStories { get; } = new();
-        public IncrementalHomeMedia FeedMedia { get; } = new(new ThemeListener().CurrentTheme == ApplicationTheme.Dark);
+        public IncrementalHomeMedia FeedMedia { get; } = new(AppCore.IsDark);
 
         public override string PageHeader { get; protected set; } = string.Empty;
 
