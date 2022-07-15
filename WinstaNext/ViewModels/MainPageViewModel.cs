@@ -1,11 +1,7 @@
-﻿
-using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using WinstaNext.Core.Collections;
 using WinstaNext.Core.Messages;
-using WinstaNext.Core.Theme;
 using WinstaNext.Models.Core;
 using WinstaNext.Views;
 using WinstaNext.Views.Settings;
@@ -33,11 +29,11 @@ using InstagramApiSharp.API.Push;
 using WinstaBackgroundHelpers.Push;
 using NotificationHandler;
 using WinstaNext.Views.Activities;
-using Windows.UI.Xaml.Input;
 using Windows.System;
-using Windows.ApplicationModel.Resources;
-using System.Globalization;
 using WinstaNext.Views.Media;
+using WinstaCore.Theme;
+using Core.Collections;
+using WinstaCore;
 
 namespace WinstaNext.ViewModels
 {
@@ -148,7 +144,7 @@ namespace WinstaNext.ViewModels
                 if (!result.Succeeded) throw result.Info.Exception;
                 var value = result.Value;
                 var count = value.PendingRequestsCount + value.Inbox.UnseenCount;
-                
+
                 UIContext.Post((e) =>
                 {
                     var DirectsText = LanguageManager.Instance.Instagram.Directs;
@@ -160,7 +156,7 @@ namespace WinstaNext.ViewModels
 
         async void StartPushClient()
         {
-            var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync();
+            var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync(((App)App.Current).CreateInstaAPIInstance);
             PushClientApi = App.Container.GetService<IInstaApi>();
 
             PushClientApi.PushClient = new PushClient(apis, PushClientApi);
@@ -195,7 +191,7 @@ namespace WinstaNext.ViewModels
                 activitiesmenu.Badge = $"{e.NotificationContent.BadgeCount.Activities}";
             }, null);
 
-            var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync();
+            var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync(((App)App.Current).CreateInstaAPIInstance);
             PushHelper.HandleNotify(e.NotificationContent, apis);
         }
 
@@ -236,7 +232,7 @@ namespace WinstaNext.ViewModels
                 Api.UpdateUser(InstaUser);
                 var state = Api.GetStateDataAsString();
                 await ApplicationSettingsManager.Instance.
-                            AddOrUpdateUser(InstaUser.Pk, state, InstaUser.UserName);
+                            AddOrUpdateUser(InstaUser.Pk, state, InstaUser.UserName, ((App)App.Current).SetCurrentUserSession);
             }
         }
 

@@ -1,14 +1,9 @@
-﻿using InstagramApiSharp.Classes.Models;
+﻿using Core.Collections.IncrementalSources.Comments;
+using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Core.Collections.IncrementalSources.Comments;
 using WinstaNext.Views.Profiles;
 
 namespace WinstaNext.ViewModels.Comments

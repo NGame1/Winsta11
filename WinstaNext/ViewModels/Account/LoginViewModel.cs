@@ -6,6 +6,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
+using WinstaCore;
 using WinstaNext.Core.Dialogs;
 using WinstaNext.Views.Account;
 
@@ -45,7 +46,7 @@ namespace WinstaNext.ViewModels.Account
                     case InstaLoginResult.Success:
                         var state = Api.GetStateDataAsString();
                         var loggedUser = Api.GetLoggedUser().LoggedInUser;
-                        await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName);
+                        await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName, ((App)App.Current).SetCurrentUserSession);
                         NavigationService.Navigate(typeof(MainPage));
                         await Api.SendRequestsAfterLoginAsync();
                         Api.Dispose();

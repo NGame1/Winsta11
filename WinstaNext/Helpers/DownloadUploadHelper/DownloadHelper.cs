@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
+using WinstaCore;
 #nullable enable
 
 namespace WinstaNext.Helpers.DownloadUploadHelper

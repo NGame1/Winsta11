@@ -1,13 +1,9 @@
-﻿using InstagramApiSharp.Classes;
+﻿using Core.Collections.IncrementalSources.Directs;
+using InstagramApiSharp.Classes;
 using Microsoft.Toolkit.Uwp;
 using PropertyChanged;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
-using WinstaNext.Core.Collections.IncrementalSources.Directs;
 
 namespace WinstaNext.ViewModels.Directs
 {

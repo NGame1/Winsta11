@@ -1,15 +1,11 @@
 ﻿using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using WinstaNext.Services;
+using WinstaCore.Services;
 using WinstaNext.Views.Profiles;
 
 namespace WinstaNext.UI.Flyouts.Stories

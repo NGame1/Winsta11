@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WinstaCore.Services;
 using WinstaNext.Helpers.ExtensionMethods;
 using WinstaNext.Services;
 using WinstaNext.Views.Comments;

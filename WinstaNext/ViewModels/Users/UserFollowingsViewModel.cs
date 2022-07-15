@@ -1,10 +1,10 @@
-﻿using InstagramApiSharp.Classes.Models;
+﻿using Core.Collections.IncrementalSources.Users;
+using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
 using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Core.Collections.IncrementalSources.Users;
 using WinstaNext.Views.Profiles;
 
 namespace WinstaNext.ViewModels.Users

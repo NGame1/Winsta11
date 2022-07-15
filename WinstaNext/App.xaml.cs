@@ -21,8 +21,9 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using WinstaCore;
+using WinstaCore.Services;
 using WinstaNext.Core.Dialogs;
-using WinstaNext.Services;
 
 namespace WinstaNext
 {
@@ -31,7 +32,7 @@ namespace WinstaNext
     /// </summary>
     sealed partial class App : Application
     {
-        public static IServiceProvider Container { get; private set; }
+        public static IServiceProvider Container { get => AppCore.Container; private set { AppCore.SetContainer(value); } }
 
         public App()
         {
@@ -76,7 +77,7 @@ namespace WinstaNext
             var ex = e.Exception;
             var stack = ex.StackTrace;
             MessageDialogHelper.Show(ex.Message + Environment.NewLine + stack);
-            if(ex.InnerException != null)
+            if (ex.InnerException != null)
                 MessageDialogHelper.Show(ex.InnerException.Message + Environment.NewLine + ex.InnerException.StackTrace);
         }
 

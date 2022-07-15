@@ -11,13 +11,12 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Shapes;
 using WinstaNext.Constants;
-using WinstaNext.Services;
+using WinstaCore.Services;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;
 #nullable enable

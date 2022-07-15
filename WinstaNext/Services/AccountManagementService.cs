@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using WinstaCore;
+using WinstaCore.Services;
 using WinstaNext.ViewModels;
 using WinstaNext.Views.Account;
 

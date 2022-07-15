@@ -1,4 +1,6 @@
-﻿using InstagramApiSharp.API;
+﻿using Core.Collections;
+using Core.Collections.IncrementalSources.Hashtags;
+using InstagramApiSharp.API;
 using InstagramApiSharp.Classes;
 using InstagramApiSharp.Classes.Models;
 using Mapster;
@@ -9,14 +11,10 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Core.Attributes;
-using WinstaNext.Core.Collections;
-using WinstaNext.Core.Collections.IncrementalSources.Hashtags;
+using WinstaCore.Attributes;
 using WinstaNext.Core.Navigation;
 using WinstaNext.Models.Core;
-using WinstaNext.Services;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;
 

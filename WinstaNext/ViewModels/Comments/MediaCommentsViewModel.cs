@@ -1,4 +1,5 @@
-﻿using InstagramApiSharp.API;
+﻿using Core.Collections.IncrementalSources.Comments;
+using InstagramApiSharp.API;
 using InstagramApiSharp.Classes;
 using InstagramApiSharp.Classes.Models;
 using InstagramApiSharp.Enums;
@@ -7,16 +8,9 @@ using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
 using Microsoft.Toolkit.Uwp.UI;
 using PropertyChanged;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.System;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Core.Collections.IncrementalSources.Comments;
 using WinstaNext.Core.Dialogs;
 using WinstaNext.Core.Navigation;
 #nullable enable

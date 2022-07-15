@@ -2,17 +2,12 @@
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using PropertyChanged;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
-using System.Runtime.CompilerServices;
-using WinstaNext.Services;
 using Microsoft.Extensions.DependencyInjection;
 using WinstaNext.Models.Core;
+using WinstaCore.Services;
 
 namespace WinstaNext.ViewModels
 {

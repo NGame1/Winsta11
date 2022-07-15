@@ -1,4 +1,6 @@
-﻿using InstagramApiSharp.API;
+﻿using Abstractions.Stories;
+using Core.Collections.IncrementalSources.Stories;
+using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Collections;
@@ -8,8 +10,6 @@ using System;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Abstractions.Stories;
-using WinstaNext.Core.Collections.IncrementalSources.Stories;
 using WinstaNext.Core.Navigation;
 
 namespace WinstaNext.ViewModels.Stories

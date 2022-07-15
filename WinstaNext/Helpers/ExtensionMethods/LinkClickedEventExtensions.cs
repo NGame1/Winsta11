@@ -1,12 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.System;
-using WinstaNext.Services;
+using WinstaCore.Services;
 using WinstaNext.Views.Profiles;
 
 namespace WinstaNext.Helpers.ExtensionMethods

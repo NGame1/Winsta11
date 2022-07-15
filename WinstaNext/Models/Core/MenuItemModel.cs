@@ -1,18 +1,10 @@
-﻿using WinstaNext.Core;
-using WinstaNext.Core.Collections;
-using WinstaNext.ViewModels;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
+﻿using Microsoft.UI.Xaml.Controls;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Services.Maps;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using PropertyChanged;
+using Core.Collections;
 
 namespace WinstaNext.Models.Core
 {

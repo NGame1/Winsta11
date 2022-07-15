@@ -1,4 +1,8 @@
-﻿using InstagramApiSharp.API;
+﻿using Abstractions.Stories;
+using Core.Collections;
+using Core.Collections.IncrementalSources.Highlights;
+using Core.Collections.IncrementalSources.Users;
+using InstagramApiSharp.API;
 using InstagramApiSharp.Classes;
 using InstagramApiSharp.Classes.Models;
 using InstagramApiSharp.Enums;
@@ -8,22 +12,19 @@ using Microsoft.Toolkit.Collections;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
 using Microsoft.Toolkit.Uwp.UI.Controls;
+using Microsoft.Toolkit.Uwp.UI.Helpers;
 using PropertyChanged;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Abstractions.Stories;
-using WinstaNext.Core.Attributes;
-using WinstaNext.Core.Collections;
-using WinstaNext.Core.Collections.IncrementalSources.Highlights;
-using WinstaNext.Core.Collections.IncrementalSources.Users;
+using WinstaCore.Attributes;
 using WinstaNext.Core.Navigation;
 using WinstaNext.Helpers.ExtensionMethods;
 using WinstaNext.Models.Core;
-using WinstaNext.Services;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;
 
@@ -255,7 +256,7 @@ namespace WinstaNext.ViewModels.Users
                     }
                 }
             }
-            HighlightsInstance = new(User.Pk);
+            HighlightsInstance = new(User.Pk, new ThemeListener().CurrentTheme == ApplicationTheme.Dark);
             ReelsInstance = new(User.Pk);
             MediasInstance = new(User.Pk);
             TaggedInstance = new(User.Pk);

@@ -5,7 +5,7 @@ using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using WinstaNext.Services;
+using WinstaCore.Services;
 using WinstaNext.Views.Profiles;
 
 namespace WinstaNext.UI.Flyouts.Stories

@@ -11,6 +11,8 @@ using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using WinstaCore;
+using WinstaCore.Theme;
 using WinstaNext.Views.Account;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -182,9 +184,9 @@ namespace WinstaNext
         void ManageTheme(FrameworkElement element)
         {
             var theme = ApplicationSettingsManager.Instance.GetTheme();
-            if (theme == Core.Theme.AppTheme.Dark)
+            if (theme == AppTheme.Dark)
                 element.RequestedTheme = ElementTheme.Dark;
-            else if (theme == Core.Theme.AppTheme.Light)
+            else if (theme == AppTheme.Light)
                 element.RequestedTheme = ElementTheme.Light;
         }
 

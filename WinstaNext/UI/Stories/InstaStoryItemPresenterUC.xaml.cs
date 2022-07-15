@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using WinstaNext.Services;
+using WinstaCore.Services;
 using WinstaNext.Views.Profiles;
 #nullable enable
 

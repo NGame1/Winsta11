@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+	<PropertyGroup>
+		<LangVersion>10.0</LangVersion>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<ProjectGuid>{147DF058-0510-43D1-9BBD-91F72EBAF1B1}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<RootNamespace>Core.Collections</RootNamespace>
+		<AssemblyName>Core.Collections</AssemblyName>
+		<DefaultLanguage>en-US</DefaultLanguage>
+		<TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+		<TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22621.0</TargetPlatformVersion>
+		<TargetPlatformMinVersion Condition=" '$(TargetPlatformMinVersion)' == '' ">10.0.16299.0</TargetPlatformMinVersion>
+		<MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+		<FileAlignment>512</FileAlignment>
+		<ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>bin\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Release\</OutputPath>
+		<DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+		<PlatformTarget>x86</PlatformTarget>
+		<DebugSymbols>true</DebugSymbols>
+		<OutputPath>bin\x86\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>full</DebugType>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+		<PlatformTarget>x86</PlatformTarget>
+		<OutputPath>bin\x86\Release\</OutputPath>
+		<DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<Optimize>true</Optimize>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>pdbonly</DebugType>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+		<PlatformTarget>ARM</PlatformTarget>
+		<DebugSymbols>true</DebugSymbols>
+		<OutputPath>bin\ARM\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>full</DebugType>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+		<PlatformTarget>ARM</PlatformTarget>
+		<OutputPath>bin\ARM\Release\</OutputPath>
+		<DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<Optimize>true</Optimize>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>pdbonly</DebugType>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
+		<PlatformTarget>ARM64</PlatformTarget>
+		<DebugSymbols>true</DebugSymbols>
+		<OutputPath>bin\ARM64\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>full</DebugType>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+		<PlatformTarget>ARM64</PlatformTarget>
+		<OutputPath>bin\ARM64\Release\</OutputPath>
+		<DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<Optimize>true</Optimize>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>pdbonly</DebugType>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+		<PlatformTarget>x64</PlatformTarget>
+		<DebugSymbols>true</DebugSymbols>
+		<OutputPath>bin\x64\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>full</DebugType>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+		<PlatformTarget>x64</PlatformTarget>
+		<OutputPath>bin\x64\Release\</OutputPath>
+		<DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<Optimize>true</Optimize>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>pdbonly</DebugType>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup>
+		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="ExtendedObservableCollection.cs" />
+		<Compile Include="IncrementalSources\Activities\IncrementalUserActivities.cs" />
+		<Compile Include="IncrementalSources\Comments\IncrementalCommentLikers.cs" />
+		<Compile Include="IncrementalSources\Comments\IncrementalMediaComments.cs" />
+		<Compile Include="IncrementalSources\Directs\IncrementalDirectInbox.cs" />
+		<Compile Include="IncrementalSources\Directs\IncrementalDirectThread.cs" />
+		<Compile Include="IncrementalSources\Directs\IncrementalGiphyCollection.cs" />
+		<Compile Include="IncrementalSources\Hashtags\IncrementalHashtagRecentMedias.cs" />
+		<Compile Include="IncrementalSources\Hashtags\IncrementalHashtagReelsMedia.cs" />
+		<Compile Include="IncrementalSources\Hashtags\IncrementalHashtagTopMedias.cs" />
+		<Compile Include="IncrementalSources\Highlights\IncrementalUserHighlights.cs" />
+		<Compile Include="IncrementalSources\Media\IncrementalExploreMedia.cs" />
+		<Compile Include="IncrementalSources\Media\IncrementalHomeMedia.cs" />
+		<Compile Include="IncrementalSources\Media\IncrementalMediaLikers.cs" />
+		<Compile Include="IncrementalSources\Places\IncrementalPlaceRecentMedias.cs" />
+		<Compile Include="IncrementalSources\Places\IncrementalPlaceTopMedias.cs" />
+		<Compile Include="IncrementalSources\Search\IncrementalHashtagsSearch.cs" />
+		<Compile Include="IncrementalSources\Search\IncrementalPeopleSearch.cs" />
+		<Compile Include="IncrementalSources\Search\IncrementalPlacesSearch.cs" />
+		<Compile Include="IncrementalSources\Stories\IncrementalDummyStories.cs" />
+		<Compile Include="IncrementalSources\Stories\IncrementalFeedStories.cs" />
+		<Compile Include="IncrementalSources\Users\IncrementalUserFollowers.cs" />
+		<Compile Include="IncrementalSources\Users\IncrementalUserFollowings.cs" />
+		<Compile Include="IncrementalSources\Users\IncrementalUserMedias.cs" />
+		<Compile Include="IncrementalSources\Users\IncrementalUserReels.cs" />
+		<Compile Include="IncrementalSources\Users\IncrementalUserTaggedMedia.cs" />
+		<Compile Include="IncrementalSources\Users\IncrementalUserTVMedias.cs" />
+		<Compile Include="Properties\AssemblyInfo.cs" />
+		<Compile Include="ServiceProviderExtensions.cs" />
+		<EmbeddedResource Include="Properties\Core.Collections.rd.xml" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Fody">
+			<Version>6.6.3</Version>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+			<Version>6.2.14</Version>
+		</PackageReference>
+		<PackageReference Include="PropertyChanged.Fody">
+			<Version>3.4.1</Version>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="NormalSources\" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\InstagramApiSharpMine\src\InstagramApiSharp\InstagramApiSharp.UWP.csproj">
+			<Project>{ecc0defb-3034-44c2-a4b6-aa443f07d942}</Project>
+			<Name>InstagramApiSharp.UWP</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\Abstractions\Abstractions.csproj">
+			<Project>{5aa79e4d-3cdb-4021-ae30-ff367e628f3a}</Project>
+			<Name>Abstractions</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\WinstaCore\WinstaCore.csproj">
+			<Project>{898c6b7e-c8fe-418f-9348-b32da493fa10}</Project>
+			<Name>WinstaCore</Name>
+		</ProjectReference>
+	</ItemGroup>
+	<PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+		<VisualStudioVersion>14.0</VisualStudioVersion>
+	</PropertyGroup>
+	<Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

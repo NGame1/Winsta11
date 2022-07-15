@@ -1,15 +1,11 @@
-﻿using InstagramApiSharp.Classes.Models;
+﻿using Core.Collections.IncrementalSources.Media;
+using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Core.Attributes;
-using WinstaNext.Core.Collections.IncrementalSources.Media;
+using WinstaCore.Attributes;
 using WinstaNext.Core.Navigation;
 using WinstaNext.Views.Media;
 

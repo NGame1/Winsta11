@@ -1,4 +1,5 @@
-﻿using InstagramApiSharp.API;
+﻿using Abstractions.Direct.Models;
+using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -6,9 +7,8 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using WinstaNext.Abstractions.Direct.Models;
+using WinstaCore.Services;
 using WinstaNext.Constants;
-using WinstaNext.Services;
 using WinstaNext.ViewModels.Directs;
 using WinstaNext.Views.Directs;
 

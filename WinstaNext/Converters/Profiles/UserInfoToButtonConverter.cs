@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Windows.UI.Xaml.Data;
+using WinstaCore.Services;
 using WinstaNext.Services;
 using WinstaNext.ViewModels.Users;
 using WinstaNext.Views.Profiles;

@@ -1,14 +1,9 @@
-﻿using Microsoft.Toolkit.Mvvm.Input;
+﻿using Abstractions.Media;
+using Core.Collections.IncrementalSources.Media;
+using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Abstractions.Media;
-using WinstaNext.Core.Collections.IncrementalSources.Media;
 using WinstaNext.Views.Profiles;
 
 namespace WinstaNext.ViewModels.Media

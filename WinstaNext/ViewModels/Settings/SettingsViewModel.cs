@@ -1,22 +1,16 @@
-﻿using WinstaNext.Core.Messages;
-using WinstaNext.Core.Theme;
-using WinstaNext.Models.Core;
-using WinstaNext.Views.Settings;
-using Microsoft.Toolkit.Mvvm.Messaging;
-using PropertyChanged;
+﻿using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Windows.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
-using InstagramApiSharp.API;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using Windows.Storage.Pickers;
+using WinstaCore.Theme;
+using WinstaCore.Models;
+using WinstaCore;
 
 namespace WinstaNext.ViewModels.Settings
 {

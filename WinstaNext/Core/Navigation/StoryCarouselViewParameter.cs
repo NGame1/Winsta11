@@ -1,12 +1,6 @@
-﻿using Microsoft.Toolkit.Collections;
+﻿using Abstractions.Stories;
+using Microsoft.Toolkit.Collections;
 using Microsoft.Toolkit.Uwp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WinstaNext.Abstractions.Stories;
-using WinstaNext.Core.Collections.IncrementalSources.Stories;
 
 namespace WinstaNext.Core.Navigation
 {

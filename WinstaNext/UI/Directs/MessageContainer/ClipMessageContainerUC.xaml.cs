@@ -4,7 +4,7 @@ using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using Windows.Media.Core;
 using Windows.UI.Xaml;
-using WinstaNext.Services;
+using WinstaCore.Services;
 using WinstaNext.Views.Media;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236

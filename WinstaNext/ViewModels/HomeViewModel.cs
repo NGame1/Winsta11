@@ -2,10 +2,12 @@
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
 using System.Threading.Tasks;
-using WinstaNext.Abstractions.Stories;
-using WinstaNext.Core.Attributes;
-using WinstaNext.Core.Collections.IncrementalSources.Media;
-using WinstaNext.Core.Collections.IncrementalSources.Stories;
+using WinstaCore.Attributes;
+using Core.Collections.IncrementalSources.Stories;
+using Core.Collections.IncrementalSources.Media;
+using Abstractions.Stories;
+using Microsoft.Toolkit.Uwp.UI.Helpers;
+using Windows.UI.Xaml;
 
 namespace WinstaNext.ViewModels
 {
@@ -17,7 +19,7 @@ namespace WinstaNext.ViewModels
         public RangePlayerAttribute Medias { get; }
 
         public IncrementalFeedStories FeedStories { get; } = new();
-        public IncrementalHomeMedia FeedMedia { get; } = new();
+        public IncrementalHomeMedia FeedMedia { get; } = new(new ThemeListener().CurrentTheme == ApplicationTheme.Dark);
 
         public override string PageHeader { get; protected set; } = string.Empty;
 

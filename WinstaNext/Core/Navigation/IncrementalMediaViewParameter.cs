@@ -1,7 +1,7 @@
 ﻿using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Collections;
 using Windows.UI.Xaml.Data;
-using WinstaNext.Core.Attributes;
+using WinstaCore.Attributes;
 
 namespace WinstaNext.Core.Navigation
 {

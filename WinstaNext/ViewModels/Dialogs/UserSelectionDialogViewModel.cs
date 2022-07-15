@@ -1,8 +1,8 @@
-﻿using InstagramApiSharp.API;
+﻿using Core.Collections;
+using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using PropertyChanged;
-using WinstaNext.Core.Collections;
 
 namespace WinstaNext.ViewModels.Dialogs
 {

@@ -1,25 +1,19 @@
-﻿using InstagramApiSharp;
-using InstagramApiSharp.API;
+﻿using Core.Collections;
+using Core.Collections.IncrementalSources.Search;
 using InstagramApiSharp.Classes.Models;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
-using Microsoft.Toolkit.Uwp.UI;
-using Microsoft.UI.Xaml.Controls;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Core.Collections;
-using WinstaNext.Core.Collections.IncrementalSources.Search;
 using WinstaNext.Models.Core;
 using WinstaNext.Views.Profiles;
 

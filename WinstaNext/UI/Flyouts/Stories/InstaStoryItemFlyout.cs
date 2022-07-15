@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using WinstaNext.Constants;
 using WinstaNext.Helpers.DownloadUploadHelper;
-using WinstaNext.Services;
+using WinstaCore.Services;
 using WinstaNext.Views.Profiles;
 
 namespace WinstaNext.UI.Flyouts.Stories
