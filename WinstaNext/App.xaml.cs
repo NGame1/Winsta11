@@ -59,9 +59,7 @@ namespace WinstaNext
             //Removes mouse pointer on XBOX
             if (SystemInformation.Instance.DeviceFamily == "Windows.Xbox")
                 this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
-            var theme = new ThemeListener();
-            theme.ThemeChanged += App_ThemeChanged;
-            AppCore.IsDark = theme.CurrentTheme == ApplicationTheme.Dark;
+            
         }
 
         private void App_ThemeChanged(ThemeListener sender)
@@ -198,6 +196,10 @@ namespace WinstaNext
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            var theme = new ThemeListener();
+            theme.ThemeChanged += App_ThemeChanged;
+            AppCore.IsDark = theme.CurrentTheme == ApplicationTheme.Dark;
+
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 bool loadState = (e.PreviousExecutionState == ApplicationExecutionState.Terminated);
