@@ -1,16 +1,12 @@
 ﻿using InstagramApiSharp.API;
 using InstagramApiSharp.Classes;
 using InstagramApiSharp.Classes.Models;
-using InstagramApiSharp.Classes.ResponseWrappers;
 using InstagramApiSharp.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using PropertyChanged;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.System;
@@ -271,6 +267,7 @@ namespace WinstaNext.ViewModels.Media
         async Task ShareMediaAsync()
         {
             var threads = await UserSelectionDialog.SelectDirectThreads();
+            if (!threads.Any()) return;
             using var Api = App.Container.GetService<IInstaApi>();
             var result = await Api.MessagingProcessor.ShareMediaToThreadAsync(Media.Pk, Media.MediaType, string.Empty, threadIds: threads.Select(x => x.ThreadId).ToArray());
             if (!result.Succeeded)
