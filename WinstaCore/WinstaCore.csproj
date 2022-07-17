@@ -132,6 +132,7 @@
     <Compile Include="Interfaces\Views\Accounts\ILoginView.cs" />
     <Compile Include="Interfaces\Views\Accounts\ITwoFactorAuthView.cs" />
     <Compile Include="Interfaces\Views\IHomeView.cs" />
+    <Compile Include="Interfaces\Views\IMainView.cs" />
     <Compile Include="Interfaces\Views\IView.cs" />
     <Compile Include="Models\Core\WinstaSynchContext.cs" />
     <Compile Include="Models\LanguageDefinition.cs" />

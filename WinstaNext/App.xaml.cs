@@ -11,7 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -25,8 +24,12 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore;
 using WinstaCore.Interfaces;
+using WinstaCore.Interfaces.Views;
+using WinstaCore.Interfaces.Views.Accounts;
 using WinstaCore.Services;
 using WinstaNext.Core.Dialogs;
+using WinstaNext.Views;
+using WinstaNext.Views.Account;
 
 namespace WinstaNext
 {
@@ -60,7 +63,6 @@ namespace WinstaNext
             //Removes mouse pointer on XBOX
             if (SystemInformation.Instance.DeviceFamily == "Windows.Xbox")
                 this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
-
         }
 
         private void App_ThemeChanged(ThemeListener sender)
@@ -95,15 +97,30 @@ namespace WinstaNext
             var serviceCollection = new ServiceCollection();
 
             serviceCollection.AddTransient<IWinstaApp>(x => this);
+            serviceCollection.AddTransient<BackgroundDownloader>();
             serviceCollection.AddTransient<IInstaApi>(CreateInstaAPIInstance);
             serviceCollection.AddTransient<InstaUserShort>(CreateMyUserInstance);
             serviceCollection.AddTransient<NavigationService>(CreateNavigationService);
-            serviceCollection.AddTransient<BackgroundDownloader>();
 
             serviceCollection.AddSingleton<DisplayRequest>(CreateDisplayRequestInstance);
             serviceCollection.AddSingleton<MediaPlayer>(CreateMediaPlayerInstance);
 
+            RegisterAppPages(ref serviceCollection);
+
             return serviceCollection.BuildServiceProvider();
+        }
+
+        void RegisterAppPages(ref ServiceCollection serviceCollection)
+        {
+            //Account Views
+            serviceCollection.AddTransient<ILoginView>(x => new LoginView());
+            serviceCollection.AddTransient<ITwoFactorAuthView>(x => new TwoFactorAuthView());
+            serviceCollection.AddTransient<IChallengeRequiredView>(x => new ChallengeRequiredView());
+
+            //Main Views
+            serviceCollection.AddTransient<IMainView>(x => new MainPage());
+            serviceCollection.AddTransient<IHomeView>(x => new HomeView());
+
         }
 
         DisplayRequest CreateDisplayRequestInstance(IServiceProvider arg)
