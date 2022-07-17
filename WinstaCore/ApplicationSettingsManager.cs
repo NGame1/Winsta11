@@ -11,6 +11,7 @@ using System.Globalization;
 using Windows.ApplicationModel.Resources.Core;
 using Windows.Storage.AccessCache;
 using WinstaCore.Models;
+using WinstaCore.Interfaces;
 #nullable enable
 
 namespace WinstaCore
@@ -84,15 +85,16 @@ namespace WinstaCore
             return userPk;
         }
 
-        public async Task<List<IInstaApi>> GetUsersApiListAsync(Func<string, IInstaApi> CreateInstaAPIInstance)
+        public async Task<List<IInstaApi>> GetUsersApiListAsync()
         {
+            var App = AppCore.Container.GetService<IWinstaApp>();
             var users = GetUsersList();
             List<IInstaApi> apis = new List<IInstaApi>();
             for (int i = 0; i < users.Count; i++)
             {
                 var user = users.ElementAt(i);
                 var session = await GetUserSession(user.Key);
-                var api = CreateInstaAPIInstance(session);
+                var api = App.CreateInstaAPIInstance(session);
                 apis.Add(api);
             }
             return apis;
@@ -230,14 +232,14 @@ namespace WinstaCore
             }
         }
 
-        public async Task AddOrUpdateUser(long pk, string session, string username, Func<string, string> SetCurrentUserSession)
+        public async Task AddOrUpdateUser(long pk, string session, string username)
         {
-            await AddOrUpdateUser(pk.ToString(), session, username, SetCurrentUserSession);
+            await AddOrUpdateUser(pk.ToString(), session, username);
         }
 
-        async Task AddOrUpdateUser(string pk, string session, string username, Func<string, string> SetCurrentUserSession)
+        async Task AddOrUpdateUser(string pk, string session, string username)
         {
-            await SetUserSession(pk, session, SetCurrentUserSession);
+            await SetUserSession(pk, session);
             var users = GetUsersList();
             if (!users.ContainsKey(pk))
                 users.Add(pk, username);
@@ -279,17 +281,18 @@ namespace WinstaCore
             }
         }
 
-        public async Task SetUserSession(long userPk, string session, Func<string, string> SetCurrentUserSession)
+        public async Task SetUserSession(long userPk, string session)
         {
-            await SetUserSession(userPk.ToString(), session, SetCurrentUserSession);
+            await SetUserSession(userPk.ToString(), session);
         }
 
-        async Task SetUserSession(string userPk, string session, Func<string, string> SetCurrentUserSession)
+        async Task SetUserSession(string userPk, string session)
         {
             var folder = await LocalFolder.CreateFolderAsync(UserSessionsFolderName, CreationCollisionOption.OpenIfExists);
             try
             {
-                SetCurrentUserSession(session);
+                var App = AppCore.Container.GetService<IWinstaApp>();
+                App.SetCurrentUserSession(session);
                 var file = await folder.CreateFileAsync(userPk, CreationCollisionOption.OpenIfExists);
                 session = CryptoHelper.EncryptString(session);
                 await FileIO.WriteTextAsync(file, session, Windows.Storage.Streams.UnicodeEncoding.Utf8);

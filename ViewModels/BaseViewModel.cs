@@ -1,15 +1,14 @@
-﻿using WinstaNext.Core.Messages;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using PropertyChanged;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
-using Microsoft.Extensions.DependencyInjection;
+using WinstaCore;
 using WinstaCore.Models.Core;
 using WinstaCore.Services;
 
-namespace WinstaNext.ViewModels
+namespace ViewModels
 {
     [AddINotifyPropertyChangedInterface]
     public abstract class BaseViewModel : ObservableRecipient
@@ -23,7 +22,7 @@ namespace WinstaNext.ViewModels
         public BaseViewModel()
         {
             UIContext = new(SynchronizationContext.Current);
-            NavigationService = App.Container.GetService<NavigationService>();
+            NavigationService = AppCore.Container.GetService<NavigationService>();
         }
 
         protected void SetHeader()

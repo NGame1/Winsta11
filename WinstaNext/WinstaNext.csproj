@@ -182,7 +182,6 @@
     <Compile Include="Models\ConfigureDelays\ImageConfigureMediaDelay.cs" />
     <Compile Include="Models\ConfigureDelays\VideoConfigureMediaDelay.cs" />
     <Compile Include="Models\Core\MenuItemModel.cs" />
-    <Compile Include="Models\Core\WinstaSynchContext.cs" />
     <Compile Include="Models\Enums\DownloadDestinationEnum.cs" />
     <Compile Include="Models\TemplateSelectors\Activities\RecentActivityFeedItemTemplateSelector.cs" />
     <Compile Include="Models\TemplateSelectors\Directs\InstaDirectInboxItemTemplateSelector.cs" />

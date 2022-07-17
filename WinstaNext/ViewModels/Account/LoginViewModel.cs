@@ -46,7 +46,7 @@ namespace WinstaNext.ViewModels.Account
                     case InstaLoginResult.Success:
                         var state = Api.GetStateDataAsString();
                         var loggedUser = Api.GetLoggedUser().LoggedInUser;
-                        await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName, ((App)App.Current).SetCurrentUserSession);
+                        await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName);
                         NavigationService.Navigate(typeof(MainPage));
                         await Api.SendRequestsAfterLoginAsync();
                         Api.Dispose();

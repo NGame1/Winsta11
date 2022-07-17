@@ -156,7 +156,7 @@ namespace WinstaNext.ViewModels
 
         async void StartPushClient()
         {
-            var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync(((App)App.Current).CreateInstaAPIInstance);
+            var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync();
             PushClientApi = App.Container.GetService<IInstaApi>();
 
             PushClientApi.PushClient = new PushClient(apis, PushClientApi);
@@ -191,7 +191,7 @@ namespace WinstaNext.ViewModels
                 activitiesmenu.Badge = $"{e.NotificationContent.BadgeCount.Activities}";
             }, null);
 
-            var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync(((App)App.Current).CreateInstaAPIInstance);
+            var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync();
             PushHelper.HandleNotify(e.NotificationContent, apis);
         }
 
@@ -232,7 +232,7 @@ namespace WinstaNext.ViewModels
                 Api.UpdateUser(InstaUser);
                 var state = Api.GetStateDataAsString();
                 await ApplicationSettingsManager.Instance.
-                            AddOrUpdateUser(InstaUser.Pk, state, InstaUser.UserName, ((App)App.Current).SetCurrentUserSession);
+                            AddOrUpdateUser(InstaUser.Pk, state, InstaUser.UserName);
             }
         }
 

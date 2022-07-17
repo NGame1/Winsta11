@@ -24,6 +24,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore;
+using WinstaCore.Interfaces;
 using WinstaCore.Services;
 using WinstaNext.Core.Dialogs;
 
@@ -32,7 +33,7 @@ namespace WinstaNext
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    sealed partial class App : Application, IWinstaApp
     {
         public static IServiceProvider Container { get => AppCore.Container; private set { AppCore.SetContainer(value); } }
 
@@ -59,7 +60,7 @@ namespace WinstaNext
             //Removes mouse pointer on XBOX
             if (SystemInformation.Instance.DeviceFamily == "Windows.Xbox")
                 this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
-            
+
         }
 
         private void App_ThemeChanged(ThemeListener sender)
@@ -93,6 +94,7 @@ namespace WinstaNext
         {
             var serviceCollection = new ServiceCollection();
 
+            serviceCollection.AddTransient<IWinstaApp>(x => this);
             serviceCollection.AddTransient<IInstaApi>(CreateInstaAPIInstance);
             serviceCollection.AddTransient<InstaUserShort>(CreateMyUserInstance);
             serviceCollection.AddTransient<NavigationService>(CreateNavigationService);
@@ -176,7 +178,7 @@ namespace WinstaNext
             return api;
         }
 
-        internal IInstaApi CreateInstaAPIInstance(string session)
+        public IInstaApi CreateInstaAPIInstance(string session)
         {
             var api = InstaApiBuilder
                 .CreateBuilder()

@@ -99,7 +99,7 @@ namespace WinstaNext.ViewModels.Account
                                 {
                                     var state = Api.GetStateDataAsString();
                                     var loggedUser = Api.GetLoggedUser().LoggedInUser;
-                                    await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName, ((App)App.Current).SetCurrentUserSession);
+                                    await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName);
                                     NavigationService.Navigate(typeof(MainPage));
                                     await Api.SendRequestsAfterLoginAsync();
                                     Api.Dispose();
@@ -184,7 +184,7 @@ namespace WinstaNext.ViewModels.Account
                                     {
                                         var state = Api.GetStateDataAsString();
                                         var loggedUser = Api.GetLoggedUser().LoggedInUser;
-                                        await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName, ((App)App.Current).SetCurrentUserSession);
+                                        await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName);
                                         NavigationService.Navigate(typeof(MainPage));
                                         await Api.SendRequestsAfterLoginAsync();
                                         Api.Dispose();
@@ -221,7 +221,7 @@ namespace WinstaNext.ViewModels.Account
                     case InstaLoginTwoFactorResult.Success:
                         var state = Api.GetStateDataAsString();
                         var loggedUser = Api.GetLoggedUser().LoggedInUser;
-                        await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName, ((App)App.Current).SetCurrentUserSession);
+                        await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName);
                         NavigationService.Navigate(typeof(MainPage));
                         await Api.SendRequestsAfterLoginAsync();
                         Api.Dispose();
