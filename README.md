@@ -22,6 +22,6 @@ Unofficial Instagram client for Windows devices family
 <img width="1280" alt="5_Result" src="https://user-images.githubusercontent.com/19765248/179425353-547e2551-6028-46af-aadb-e93487521c3e.png">
 
 ## Thanks to
-@Ramtinak for Private Instagram API Sharp library
+[@Ramtinak](https://github.com/ramtinak/) for Private Instagram API Sharp library
 
 ### Made with ❤️ by me, AliNGame
