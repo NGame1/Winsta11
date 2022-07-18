@@ -12,6 +12,7 @@
       xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
       xmlns:directs1="using:WinstaNext.UI.Directs"
       xmlns:Constants="using:WinstaNext.Constants"
+      xmlns:Resources="using:Resources" 
       xmlns:Winsta="using:WinstaNext" 
       d:DesignHeight="300"
       d:DesignWidth="400"
@@ -243,7 +244,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBox Text="{x:Bind ViewModel.MessageText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     PlaceholderText="{x:Bind Winsta:LanguageManager.Instance.Instagram.MessagePlaceholder}"
+                     PlaceholderText="{x:Bind Resources:LanguageManager.Instance.Instagram.MessagePlaceholder}"
                      AcceptsReturn="True"
                      x:Name="txtMessage"
                      Grid.Column="0">

@@ -4,6 +4,7 @@ using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
 using PropertyChanged;
+using Resources;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;

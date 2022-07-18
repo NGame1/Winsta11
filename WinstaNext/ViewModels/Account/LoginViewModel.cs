@@ -2,6 +2,7 @@
 using InstagramApiSharp.Classes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
+using Resources;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

@@ -14,6 +14,7 @@ using WinstaNext.Constants;
 using WinstaNext.Helpers.DownloadUploadHelper;
 using WinstaCore.Services;
 using WinstaNext.Views.Profiles;
+using Resources;
 
 namespace WinstaNext.UI.Flyouts.Stories
 {

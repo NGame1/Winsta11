@@ -12,6 +12,7 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     x:Class="WinstaNext.Views.Account.LoginView"
     xmlns:views="using:WinstaNext.Views"
+    xmlns:Resources="using:Resources" 
     xmlns:local="using:WinstaNext"
     mc:Ignorable="d">
 
@@ -27,13 +28,13 @@
         <StackPanel Spacing="12" Padding="24,32">
             <StackPanel Orientation="Horizontal" Spacing="12" Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,12">
                 <Image Source="/Assets/Square44x44Logo.scale-200.png" Width="32" Height="32" Grid.Column="0"/>
-                <TextBlock VerticalAlignment="Center" Text="{x:Bind local:LanguageManager.Instance.General.ApplicationName}" FontSize="18" TextAlignment="Center" Grid.Column="1"/>
+                <TextBlock VerticalAlignment="Center" Text="{x:Bind Resources:LanguageManager.Instance.General.ApplicationName}" FontSize="18" TextAlignment="Center" Grid.Column="1"/>
             </StackPanel>
-            <TextBox Text="{x:Bind ViewModel.UserIdentifier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="{x:Bind local:LanguageManager.Instance.General.UserIdentifier}" x:Name="txtUserIdentifier" Grid.Row="1" KeyDown="txtUserIdentifier_KeyDown"/>
+            <TextBox Text="{x:Bind ViewModel.UserIdentifier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="{x:Bind Resources:LanguageManager.Instance.General.UserIdentifier}" x:Name="txtUserIdentifier" Grid.Row="1" KeyDown="txtUserIdentifier_KeyDown"/>
 
-            <PasswordBox Password="{x:Bind ViewModel.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txtPassword" Header="{x:Bind local:LanguageManager.Instance.General.Password}" Grid.Row="2" KeyDown="txtPassword_KeyDown"/>
+            <PasswordBox Password="{x:Bind ViewModel.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txtPassword" Header="{x:Bind Resources:LanguageManager.Instance.General.Password}" Grid.Row="2" KeyDown="txtPassword_KeyDown"/>
 
-            <Button Command="{x:Bind ViewModel.LoginCommand}" HorizontalAlignment="Stretch" Content="{x:Bind local:LanguageManager.Instance.General.Login}" Grid.Row="3" />
+            <Button Command="{x:Bind ViewModel.LoginCommand}" HorizontalAlignment="Stretch" Content="{x:Bind Resources:LanguageManager.Instance.General.Login}" Grid.Row="3" />
         </StackPanel>
 
         <!-- Background="#A0000000" -->
@@ -46,7 +47,7 @@
             </Grid.Background>
             <StackPanel VerticalAlignment="Center">
                 <muxc:ProgressRing IsIndeterminate="True" />
-                <TextBlock Margin="0,12" Text="{x:Bind local:LanguageManager.Instance.General.Loading}" TextAlignment="Center"/>
+                <TextBlock Margin="0,12" Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}" TextAlignment="Center"/>
             </StackPanel>
         </Grid>
     </Grid>

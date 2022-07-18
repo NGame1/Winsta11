@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Resources;
+using System;
 using Windows.UI.Xaml.Data;
 
 namespace WinstaNext.Converters.Media

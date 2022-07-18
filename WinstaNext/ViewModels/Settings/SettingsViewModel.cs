@@ -11,6 +11,7 @@ using Windows.Storage.Pickers;
 using WinstaCore.Theme;
 using WinstaCore.Models;
 using WinstaCore;
+using Resources;
 
 namespace WinstaNext.ViewModels.Settings
 {

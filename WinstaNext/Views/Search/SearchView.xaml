@@ -14,6 +14,7 @@
     x:Class="WinstaNext.Views.Search.SearchView"
     xmlns:Models="using:WinstaNext.Models.Core" 
     xmlns:search="using:WinstaNext.UI.Search" 
+    xmlns:Resources="using:Resources" 
     xmlns:local="using:WinstaNext"
     mc:Ignorable="d">
 
@@ -64,7 +65,7 @@
 
         <TextBox Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  Margin="0,0,0,8" 
-                 PlaceholderText="{x:Bind local:LanguageManager.Instance.General.SearchPlaceHolder}"/>
+                 PlaceholderText="{x:Bind Resources:LanguageManager.Instance.General.SearchPlaceHolder}"/>
 
         <NavigationView ScrollViewer.IsVerticalScrollChainingEnabled="True"
                         MenuItemsSource="{x:Bind ViewModel.MenuItems}"

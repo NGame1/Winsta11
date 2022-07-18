@@ -16,6 +16,7 @@
     xmlns:flyouts="using:WinstaNext.UI.Flyouts"
     xmlns:VM="using:WinstaNext.ViewModels" 
     xmlns:views="using:WinstaNext.Views" 
+    xmlns:Resources="using:Resources" 
     xmlns:local="using:WinstaNext" 
     x:Class="WinstaNext.MainPage"
     NavigationCacheMode="Enabled"
@@ -163,7 +164,7 @@
                     TabIndex="0"
                     KeyboardAcceleratorPlacementMode="Hidden"
                     QueryIcon="Find"
-                    PlaceholderText="{x:Bind local:LanguageManager.Instance.General.Search}"
+                    PlaceholderText="{x:Bind Resources:LanguageManager.Instance.General.Search}"
                     Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
                     TextMemberPath="UserName">

@@ -1,6 +1,7 @@
 ﻿<views:BasePage x:Name="thisUc" x:DefaultBindMode="OneWay" NavigationCacheMode="Enabled"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:ProfilesConverters="using:WinstaNext.Converters.Profiles"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity" 
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
@@ -19,8 +20,9 @@
     xmlns:core1="using:WinstaNext.Models.Core"
     xmlns:media="using:WinstaNext.UI.Media" 
     xmlns:views="using:WinstaNext.Views"
-    xmlns:Winsta="using:WinstaNext" xmlns:ProfilesConverters="using:WinstaNext.Converters.Profiles"
-                mc:Ignorable="d">
+    xmlns:Resources="using:Resources" 
+    xmlns:Winsta="using:WinstaNext" 
+    mc:Ignorable="d">
 
     <views:BasePage.Resources>
         
@@ -89,21 +91,21 @@
                                 <HyperlinkButton>
                                     <TextBlock>
                                         <Run Text="{x:Bind ViewModel.User.MediaCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
-                                        <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Posts}"/>
+                                        <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Posts}"/>
                                     </TextBlock>
                                 </HyperlinkButton>
 
                                 <HyperlinkButton Command="{x:Bind ViewModel.NavigateToFollowersCommand}">
                                     <TextBlock>
                                         <Run Text="{x:Bind ViewModel.User.FollowerCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
-                                        <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Followers}"/>
+                                        <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Followers}"/>
                                     </TextBlock>
                                 </HyperlinkButton>
 
                                 <HyperlinkButton Command="{x:Bind ViewModel.NavigateToFollowingsCommand}">
                                     <TextBlock>
                                         <Run Text="{x:Bind ViewModel.User.FollowingCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
-                                        <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Followings}"/>
+                                        <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Followings}"/>
                                     </TextBlock>
                                 </HyperlinkButton>
                             </StackPanel>
@@ -111,7 +113,7 @@
                             <TextBlock Visibility="{x:Bind ViewModel.User.FriendshipStatus.FollowedBy, Mode=OneWay}"
                                        TextAlignment="Center">
                                 <Run Text="{x:Bind ViewModel.User.UserName}"/>
-                                <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.IsFollowingYou}"/>
+                                <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.IsFollowingYou}"/>
                             </TextBlock>
                             
                         </StackPanel>
@@ -178,7 +180,7 @@
                     </ListView.ItemContainerStyle>
 
                     <ListView.Header>
-                        <TextBlock Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Highlights}"
+                        <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Highlights}"
                                    RenderTransformOrigin="0.5,0.5" 
                                    Margin="-30,0,16,0">
                             <TextBlock.RenderTransform>

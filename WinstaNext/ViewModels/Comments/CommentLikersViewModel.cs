@@ -2,6 +2,7 @@
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
+using Resources;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Views.Profiles;

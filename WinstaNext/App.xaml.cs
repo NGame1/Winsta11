@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Resources.Core;
 using Windows.Globalization;
 using Windows.Media.Playback;
 using Windows.Networking.BackgroundTransfer;

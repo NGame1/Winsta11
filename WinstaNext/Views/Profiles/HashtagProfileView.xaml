@@ -16,6 +16,7 @@
     xmlns:core1="using:WinstaNext.Models.Core"
     xmlns:media="using:WinstaNext.UI.Media" 
     xmlns:views="using:WinstaNext.Views"
+    xmlns:Resources="using:Resources" 
     xmlns:Winsta="using:WinstaNext"
     mc:Ignorable="d">
 
@@ -67,7 +68,7 @@
                                 <HyperlinkButton>
                                     <TextBlock>
                                         <Run Text="{x:Bind ViewModel.Hashtag.MediaCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
-                                        <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Posts}"/>
+                                        <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Posts}"/>
                                     </TextBlock>
                                 </HyperlinkButton>
                             </StackPanel>

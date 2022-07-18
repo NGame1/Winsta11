@@ -12,6 +12,7 @@
     xmlns:VM="using:WinstaNext.ViewModels" 
     xmlns:local="using:WinstaNext.Views"
     x:Class="WinstaNext.Views.HomeView"
+    xmlns:Resources="using:Resources" 
     xmlns:Winsta="using:WinstaNext" 
     mc:Ignorable="d">
 
@@ -61,7 +62,7 @@
                         </ListView.ItemContainerStyle>
                         
                         <ListView.Header>
-                            <TextBlock Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Stories}"
+                            <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Stories}"
                                    RenderTransformOrigin="0.5,0.5" 
                                    Margin="-30,0,16,0">
                                 <TextBlock.RenderTransform>

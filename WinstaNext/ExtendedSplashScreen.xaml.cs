@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
+using Resources;
 using System;
 using System.Linq;
 using System.Net.Http;

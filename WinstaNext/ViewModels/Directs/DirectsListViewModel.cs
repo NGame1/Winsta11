@@ -1,6 +1,7 @@
 ﻿using Core.Collections.IncrementalSources.Directs;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Uwp;
+using Resources;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

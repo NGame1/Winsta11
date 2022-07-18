@@ -1,6 +1,7 @@
 ﻿using Core.Collections.IncrementalSources.Media;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Mvvm.Input;
+using Resources;
 using System;
 using System.Linq;
 using Windows.UI.Xaml.Controls;

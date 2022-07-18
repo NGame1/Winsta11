@@ -9,6 +9,7 @@ using WinstaNext.Core.Navigation;
 using WinstaCore.Services;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Stories;
+using Resources;
 
 namespace WinstaNext.UI.Flyouts.Profiles
 {

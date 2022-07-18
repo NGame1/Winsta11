@@ -16,6 +16,7 @@
     xmlns:Media="using:Microsoft.UI.Xaml.Media"
     xmlns:flyouts="using:WinstaNext.UI.Flyouts"
     xmlns:local="using:WinstaNext.UI.Media"
+    xmlns:Resources="using:Resources" 
     xmlns:Winsta="using:WinstaNext" 
     mc:Ignorable="d"
     MaxWidth="800"
@@ -213,7 +214,7 @@
                          Padding="0">
             <TextBlock FontWeight="SemiBold" FontSize="13">
                     <Run Text="{x:Bind Media.LikesCount}"/>
-                    <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Likes}"/>
+                    <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Likes}"/>
             </TextBlock>
         </HyperlinkButton>
 
@@ -238,7 +239,7 @@
                          Padding="0">
             <TextBlock>
                 <Run Text="{x:Bind Media.CommentsCount}"/>
-                <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Comments}"/>
+                <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Comments}"/>
             </TextBlock>
         </HyperlinkButton>
 
@@ -266,7 +267,7 @@
                                 Height="30"
                                 Width="30"/>
 
-            <TextBox PlaceholderText="{x:Bind Winsta:LanguageManager.Instance.Instagram.CommentPlaceholder}"
+            <TextBox PlaceholderText="{x:Bind Resources:LanguageManager.Instance.Instagram.CommentPlaceholder}"
                      Text="{x:Bind ViewModel.CommentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      x:Name="txtCooment"
                      Margin="5,0,0,0" 

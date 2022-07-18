@@ -3,13 +3,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:Models="using:WinstaNext.Abstractions.Direct.Models"
-    xmlns:converters="using:WinstaNext.Converters.Directs"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:ViewsDirect="using:WinstaNext.Views.Directs" 
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:directs="using:WinstaNext.UI.Directs" 
+    xmlns:Resources="using:Resources" 
     xmlns:local="using:WinstaNext"
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -41,7 +40,7 @@
                     MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
                     Background="#80B00000"
                     CornerRadius="{StaticResource ControlCornerRadius}">
-            <TextBlock Text="{x:Bind local:LanguageManager.Instance.Instagram.UnsupportedMessageType}"/>
+            <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.Instagram.UnsupportedMessageType}"/>
             <TextBlock Text="{x:Bind DirectItem.TimeStamp, Converter={StaticResource DirectItemTimeConverter}, Mode=OneWay}" HorizontalAlignment="Right"/>
         </StackPanel>
     </StackPanel>

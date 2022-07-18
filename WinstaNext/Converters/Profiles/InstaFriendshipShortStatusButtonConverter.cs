@@ -1,5 +1,6 @@
 ﻿using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
+using Resources;
 using System;
 using Windows.UI.Xaml.Data;
 using WinstaCore.Services;

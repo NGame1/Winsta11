@@ -6,6 +6,7 @@
     xmlns:classes="using:InstagramApiSharp.Classes"
     xmlns:VM="using:WinstaNext.ViewModels.Directs" 
     x:Class="WinstaNext.UI.Directs.GiphyPanelUC"
+    xmlns:Resources="using:Resources" 
     xmlns:Winsta="using:WinstaNext" 
     d:DesignHeight="300"
     d:DesignWidth="400"
@@ -22,7 +23,7 @@
         </Grid.RowDefinitions>
         
         <TextBox Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 PlaceholderText="{x:Bind Winsta:LanguageManager.Instance.General.SearchPlaceHolder}"
+                 PlaceholderText="{x:Bind Resources:LanguageManager.Instance.General.SearchPlaceHolder}"
                  Margin="2,0"/>
         
         <GridView ItemsSource="{x:Bind ViewModel.ItemsSource, Mode=OneWay}"

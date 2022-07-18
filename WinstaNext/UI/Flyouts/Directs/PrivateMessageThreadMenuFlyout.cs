@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Media;
 using WinstaNext.Constants;
 using WinstaNext.Views.Profiles;
 using System.Linq;
+using Resources;
 
 namespace WinstaNext.UI.Flyouts.Directs
 {

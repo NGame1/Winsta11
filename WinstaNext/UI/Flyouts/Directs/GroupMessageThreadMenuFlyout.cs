@@ -2,6 +2,7 @@
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
+using Resources;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Popups;

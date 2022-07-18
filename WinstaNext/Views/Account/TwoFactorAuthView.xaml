@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:VM="using:WinstaNext.ViewModels.Account" 
+    xmlns:Resources="using:Resources" 
     xmlns:local="using:WinstaNext" 
     xmlns:i="using:Microsoft.Xaml.Interactivity" 
     xmlns:core="using:Microsoft.Xaml.Interactions.Core" 
@@ -20,23 +21,23 @@
         <StackPanel MinWidth="300" Spacing="12" Background="#80000000" Padding="24,32" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="12">
             <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Center" Margin="0,0,0,12">
                 <Image Source="/Assets/Square44x44Logo.scale-200.png" Width="32" Height="32" />
-                <TextBlock VerticalAlignment="Center" Text="{x:Bind local:LanguageManager.Instance.General.ApplicationName}" FontSize="18" TextAlignment="Center" />
+                <TextBlock VerticalAlignment="Center" Text="{x:Bind Resources:LanguageManager.Instance.General.ApplicationName}" FontSize="18" TextAlignment="Center" />
             </StackPanel>
 
             <TextBox x:Name="txtVerificationCode"
                 Text="{x:Bind ViewModel.VerificationCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                Header="{x:Bind local:LanguageManager.Instance.Instagram.VerificationCode}" 
+                Header="{x:Bind Resources:LanguageManager.Instance.Instagram.VerificationCode}" 
                 Margin="0,0,0,12" KeyDown="txtVerificationCode_KeyDown"/>
 
             <ComboBox HorizontalAlignment="Stretch"
                 ItemsSource="{x:Bind ViewModel.VerificationMethods}"
-                Header="{x:Bind local:LanguageManager.Instance.Instagram.VerificationMethod}"
+                Header="{x:Bind Resources:LanguageManager.Instance.Instagram.VerificationMethod}"
                 SelectedItem="{x:Bind ViewModel.SelectedMethod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
             </ComboBox>
 
             <TextBlock Visibility="{x:Bind ViewModel.SendVerificationTextMessageVisibility, Mode=OneWay}">
-                <Run Text="{x:Bind local:LanguageManager.Instance.Instagram.SendVerificationCode}"/>
+                <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.SendVerificationCode}"/>
                 <Hyperlink TextDecorations="Underline">
                     <Hyperlink.Inlines>
                         <Run Text="Via text message"/>
@@ -45,7 +46,7 @@
             </TextBlock>
 
             <TextBlock Visibility="{x:Bind ViewModel.SendVerificationNotificationVisibility, Mode=OneWay}">
-                <Run Text="{x:Bind local:LanguageManager.Instance.Instagram.SendVerificationCode}"/>
+                <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.SendVerificationCode}"/>
                 <Hyperlink TextDecorations="Underline">
                     <Hyperlink.Inlines>
                         <Run Text="By Notification"/>
@@ -60,12 +61,12 @@
             </TextBlock>
 
             <CheckBox HorizontalAlignment="Center"
-                      Content="{x:Bind local:LanguageManager.Instance.Instagram.TrustThisDevice}"
+                      Content="{x:Bind Resources:LanguageManager.Instance.Instagram.TrustThisDevice}"
                       IsChecked="{x:Bind ViewModel.TrustThisDevice, Mode=TwoWay}"/>
 
             <Button HorizontalAlignment="Stretch"
                 Command="{x:Bind ViewModel.VerifyCommand}"  
-                Content="{x:Bind local:LanguageManager.Instance.General.Verify}" />
+                Content="{x:Bind Resources:LanguageManager.Instance.General.Verify}" />
         </StackPanel>
 
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
@@ -74,7 +75,7 @@
             <StackPanel VerticalAlignment="Center">
                 <muxc:ProgressRing IsIndeterminate="True" />
                 <TextBlock Margin="0,12" 
-                           Text="{x:Bind local:LanguageManager.Instance.General.Loading}" 
+                           Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}" 
                            TextAlignment="Center"/>
             </StackPanel>
         </Grid>

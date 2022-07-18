@@ -13,6 +13,7 @@
     xmlns:Constants="using:WinstaNext.Constants"
     xmlns:i="using:Microsoft.Xaml.Interactivity" 
     xmlns:views="using:WinstaNext.Views" 
+    xmlns:Resources="using:Resources" 
     xmlns:Winsta="using:WinstaNext" 
     mc:Ignorable="d">
 
@@ -69,7 +70,7 @@
                             </muxc:TeachingTip.IconSource>
             </muxc:TeachingTip>
             
-            <TextBox PlaceholderText="{x:Bind Winsta:LanguageManager.Instance.Instagram.CommentPlaceholder}"
+            <TextBox PlaceholderText="{x:Bind Resources:LanguageManager.Instance.Instagram.CommentPlaceholder}"
                      Text="{x:Bind ViewModel.CommentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      AcceptsReturn="True"
                      x:Name="txtCooment"

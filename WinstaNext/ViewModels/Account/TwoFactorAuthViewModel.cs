@@ -3,6 +3,7 @@ using InstagramApiSharp.Classes;
 using InstagramApiSharp.Enums;
 using Microsoft.Toolkit.Mvvm.Input;
 using PropertyChanged;
+using Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;

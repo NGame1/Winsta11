@@ -13,6 +13,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity" 
     xmlns:generic="using:WinstaNext.UI.Generic"
     xmlns:local="using:WinstaNext.UI.Comments"
+    xmlns:Resources="using:Resources" 
     xmlns:Winsta="using:WinstaNext" 
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -92,13 +93,13 @@
                         <HyperlinkButton Command="{x:Bind NavigateToCommentLikersCommand}">
                             <TextBlock>
                                 <Run Text="{x:Bind Comment.LikesCount}"/>
-                                <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Likes}"/>
+                                <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Likes}"/>
                             </TextBlock>
                         </HyperlinkButton>
                         
                         <HyperlinkButton Command="{x:Bind ReplyCommand}">
                             <TextBlock>
-                                <Run Text="{x:Bind Winsta:LanguageManager.Instance.Instagram.Reply}"/>
+                                <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Reply}"/>
                             </TextBlock>
                         </HyperlinkButton>
                         
@@ -121,7 +122,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <HyperlinkButton Content="{x:Bind Winsta:LanguageManager.Instance.Instagram.LoadMoreComments}"
+            <HyperlinkButton Content="{x:Bind Resources:LanguageManager.Instance.Instagram.LoadMoreComments}"
                              x:Load="{x:Bind Comment.HasMoreTailChildComments}"
                              Command="{x:Bind LoadMoreCommentsCommand}"
                              x:Name="LoadMoreReplies"/>

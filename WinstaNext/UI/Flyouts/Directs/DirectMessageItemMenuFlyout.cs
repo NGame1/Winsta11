@@ -3,6 +3,7 @@ using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
+using Resources;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

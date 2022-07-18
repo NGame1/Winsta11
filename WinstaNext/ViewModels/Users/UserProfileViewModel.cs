@@ -14,6 +14,7 @@ using Microsoft.Toolkit.Uwp;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using Microsoft.Toolkit.Uwp.UI.Helpers;
 using PropertyChanged;
+using Resources;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

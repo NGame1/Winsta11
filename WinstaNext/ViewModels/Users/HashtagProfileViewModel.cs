@@ -7,6 +7,7 @@ using Mapster;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using PropertyChanged;
+using Resources;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
