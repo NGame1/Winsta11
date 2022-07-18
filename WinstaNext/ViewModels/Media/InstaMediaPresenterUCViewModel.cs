@@ -22,6 +22,7 @@ using WinstaNext.Views;
 using WinstaNext.Views.Comments;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;
+using ViewModels;
 
 namespace WinstaNext.ViewModels.Media
 {

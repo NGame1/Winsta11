@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="Account\LoginViewModel.cs" />
     <Compile Include="BaseViewModel.cs" />
+    <Compile Include="HomeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceProviderExtensions.cs" />
     <EmbeddedResource Include="Properties\ViewModels.rd.xml" />
@@ -147,6 +148,10 @@
     <ProjectReference Include="..\..\InstagramApiSharpMine\src\InstagramApiSharp\InstagramApiSharp.UWP.csproj">
       <Project>{ECC0DEFB-3034-44C2-A4B6-AA443F07D942}</Project>
       <Name>InstagramApiSharp.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Abstractions\Abstractions.csproj">
+      <Project>{5AA79E4D-3CDB-4021-AE30-FF367E628F3A}</Project>
+      <Name>Abstractions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core.Collections\Core.Collections.csproj">
       <Project>{147df058-0510-43d1-9bbd-91f72ebaf1b1}</Project>

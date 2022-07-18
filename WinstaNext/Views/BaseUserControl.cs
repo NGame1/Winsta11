@@ -1,6 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using ViewModels;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using WinstaNext.ViewModels;
 
 namespace WinstaNext.Views
 {

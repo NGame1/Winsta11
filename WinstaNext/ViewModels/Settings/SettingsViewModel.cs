@@ -12,6 +12,7 @@ using WinstaCore.Theme;
 using WinstaCore.Models;
 using WinstaCore;
 using Resources;
+using ViewModels;
 
 namespace WinstaNext.ViewModels.Settings
 {

@@ -17,7 +17,7 @@ namespace ViewModels
         public abstract string PageHeader { get; protected set; }
 
         protected WinstaSynchronizationContext UIContext { get; }
-        internal NavigationService NavigationService { get; private set; }
+        public NavigationService NavigationService { get; private set; }
 
         public BaseViewModel()
         {
@@ -27,9 +27,9 @@ namespace ViewModels
 
         protected void SetHeader()
         {
-            if (string.IsNullOrWhiteSpace(PageHeader))
-                Messenger.Send(new ChangePageHeaderMessage(false, PageHeader));
-            else Messenger.Send(new ChangePageHeaderMessage(true, PageHeader));
+            //if (string.IsNullOrWhiteSpace(PageHeader))
+            //    Messenger.Send(new ChangePageHeaderMessage(false, PageHeader));
+            //else Messenger.Send(new ChangePageHeaderMessage(true, PageHeader));
         }
 
         public virtual void OnNavigatedTo(NavigationEventArgs e)

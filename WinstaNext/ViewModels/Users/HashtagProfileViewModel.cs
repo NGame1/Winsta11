@@ -18,6 +18,7 @@ using WinstaNext.Core.Navigation;
 using WinstaNext.Models.Core;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;
+using ViewModels;
 
 namespace WinstaNext.ViewModels.Users
 {

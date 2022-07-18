@@ -9,11 +9,11 @@
     xmlns:stories1="using:WinstaNext.UI.Stories" 
     xmlns:stories="using:Abstractions.Stories" 
     xmlns:media="using:WinstaNext.UI.Media" 
-    xmlns:VM="using:WinstaNext.ViewModels" 
     xmlns:local="using:WinstaNext.Views"
     x:Class="WinstaNext.Views.HomeView"
     xmlns:Resources="using:Resources" 
     xmlns:Winsta="using:WinstaNext" 
+    xmlns:VM="using:ViewModels"
     mc:Ignorable="d">
 
     <local:BasePage.Resources>

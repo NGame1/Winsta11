@@ -6,6 +6,7 @@ using Resources;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Views.Profiles;
+using ViewModels;
 
 namespace WinstaNext.ViewModels.Media
 {

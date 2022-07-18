@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Navigation;
 using WinstaCore.Attributes;
 using WinstaNext.Core.Navigation;
 using WinstaNext.Views.Media;
+using ViewModels;
 
 namespace WinstaNext.ViewModels.Media
 {

@@ -4,6 +4,7 @@ using Microsoft.Toolkit.Uwp;
 using PropertyChanged;
 using System;
 using Windows.UI.Xaml.Data;
+using ViewModels;
 
 namespace WinstaNext.ViewModels.Directs
 {

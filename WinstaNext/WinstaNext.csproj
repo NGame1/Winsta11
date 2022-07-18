@@ -329,7 +329,6 @@
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\TwoFactorAuthViewModel.cs" />
     <Compile Include="ViewModels\Activities\ActivitiesViewModel.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Comments\CommentLikersViewModel.cs" />
     <Compile Include="ViewModels\Comments\MediaCommentsViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\BaseDialogViewModel.cs" />
@@ -918,6 +917,10 @@
     <ProjectReference Include="..\Resources\Resources.csproj">
       <Project>{6ff6e373-2336-47c5-9e08-3ee537de2e76}</Project>
       <Name>Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
+      <Project>{a33497a2-42a9-4355-a047-9b7b6afd7b65}</Project>
+      <Name>ViewModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\WinstaBackgroundHelpers\WinstaBackgroundHelpers.csproj">
       <Project>{8acdb63f-98aa-4de6-95c5-c2d96f098cfa}</Project>

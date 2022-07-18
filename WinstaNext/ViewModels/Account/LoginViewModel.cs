@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Navigation;
 using WinstaCore;
 using WinstaNext.Core.Dialogs;
 using WinstaNext.Views.Account;
+using ViewModels;
 
 namespace WinstaNext.ViewModels.Account
 {

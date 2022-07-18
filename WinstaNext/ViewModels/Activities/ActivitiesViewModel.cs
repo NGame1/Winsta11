@@ -8,6 +8,7 @@ using Resources;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
+using ViewModels;
 
 namespace WinstaNext.ViewModels.Activities
 {

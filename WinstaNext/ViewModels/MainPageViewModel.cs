@@ -35,6 +35,7 @@ using WinstaCore.Theme;
 using Core.Collections;
 using WinstaCore;
 using Resources;
+using ViewModels;
 
 namespace WinstaNext.ViewModels
 {

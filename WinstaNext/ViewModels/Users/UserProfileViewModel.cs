@@ -12,14 +12,12 @@ using Microsoft.Toolkit.Collections;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
 using Microsoft.Toolkit.Uwp.UI.Controls;
-using Microsoft.Toolkit.Uwp.UI.Helpers;
 using PropertyChanged;
 using Resources;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore;
@@ -29,6 +27,7 @@ using WinstaNext.Helpers.ExtensionMethods;
 using WinstaNext.Models.Core;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;
+using ViewModels;
 
 namespace WinstaNext.ViewModels.Users
 {

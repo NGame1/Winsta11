@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 using WinstaCore.Attributes;
 using Core.Collections.IncrementalSources.Stories;
 using Core.Collections.IncrementalSources.Media;
-using Abstractions.Stories;
 using WinstaCore;
-using ViewModels;
+using Abstractions.Stories;
 
-namespace WinstaNext.ViewModels
+namespace ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {

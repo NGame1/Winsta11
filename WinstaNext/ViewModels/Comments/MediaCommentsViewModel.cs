@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaNext.Core.Dialogs;
 using WinstaNext.Core.Navigation;
+using ViewModels;
 #nullable enable
 
 namespace WinstaNext.ViewModels.Comments
