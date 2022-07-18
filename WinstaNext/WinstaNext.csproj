@@ -175,7 +175,6 @@
     <Compile Include="Helpers\ExtensionMethods\LinkClickedEventExtensions.cs" />
     <Compile Include="Helpers\NotifyHelper.cs" />
     <Compile Include="Helpers\StringCipher.cs" />
-    <Compile Include="LanguageManager.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -859,25 +858,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PRIResource Include="Strings\en-US\General.resw">
-      <SubType>Designer</SubType>
-    </PRIResource>
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\en-US\Instagram.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\fa-Ir\General.resw">
-      <SubType>Designer</SubType>
-    </PRIResource>
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\fa-Ir\Instagram.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\en-US\Units.resw" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Assets\Lottie\Insta-anim.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -915,15 +895,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <PRIResource Include="Strings\en-US\Settings.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\fa-Ir\Settings.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\fa-Ir\Units.resw" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\InstagramApiSharpMine\src\InstagramApiSharp\InstagramApiSharp.UWP.csproj">
       <Project>{ecc0defb-3034-44c2-a4b6-aa443f07d942}</Project>
       <Name>InstagramApiSharp.UWP</Name>
@@ -944,6 +915,10 @@
       <Project>{f2f2ee57-376b-4456-9d11-f641b86d771b}</Project>
       <Name>NotificationHandler</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{6ff6e373-2336-47c5-9e08-3ee537de2e76}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinstaBackgroundHelpers\WinstaBackgroundHelpers.csproj">
       <Project>{8acdb63f-98aa-4de6-95c5-c2d96f098cfa}</Project>
       <Name>WinstaBackgroundHelpers</Name>
@@ -958,8 +933,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PRIResource Include="Strings\en-US\Messages.resw" />
-    <PRIResource Include="Strings\fa-Ir\Messages.resw" />
     <Content Include="Assets\Fonts\Instagram\AvenyTMedium.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -978,6 +951,18 @@
     <Content Include="Assets\Fonts\Instagram\FBWordmarkRegularSlim.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <PRIResource Include="Strings\en-US\General.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+    <PRIResource Include="Strings\en-US\Instagram.resw" />
+    <PRIResource Include="Strings\en-US\Messages.resw" />
+    <PRIResource Include="Strings\en-US\Settings.resw" />
+    <PRIResource Include="Strings\en-US\Units.resw" />
+    <PRIResource Include="Strings\fa-Ir\General.resw" />
+    <PRIResource Include="Strings\fa-Ir\Instagram.resw" />
+    <PRIResource Include="Strings\fa-Ir\Messages.resw" />
+    <PRIResource Include="Strings\fa-Ir\Settings.resw" />
+    <PRIResource Include="Strings\fa-Ir\Units.resw" />
     <None Include="WinstaNext_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

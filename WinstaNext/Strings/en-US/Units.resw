@@ -118,31 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Ago" xml:space="preserve">
-    <value>Ago</value>
+    <value>ago</value>
   </data>
   <data name="Billion" xml:space="preserve">
     <value>B</value>
   </data>
   <data name="Day" xml:space="preserve">
-    <value>Day</value>
+    <value>day</value>
   </data>
   <data name="DayAbbreviation" xml:space="preserve">
     <value>d</value>
   </data>
   <data name="Days" xml:space="preserve">
-    <value>Days</value>
+    <value>days</value>
   </data>
   <data name="DaysAbbreviation" xml:space="preserve">
     <value>d</value>
   </data>
   <data name="Hour" xml:space="preserve">
-    <value>Hour</value>
+    <value>hour</value>
   </data>
   <data name="HourAbbreviation" xml:space="preserve">
     <value>Hr</value>
   </data>
   <data name="Hours" xml:space="preserve">
-    <value>Hours</value>
+    <value>hours</value>
   </data>
   <data name="HoursAbbreviation" xml:space="preserve">
     <value>hrs</value>
@@ -154,25 +154,25 @@
     <value>M</value>
   </data>
   <data name="Minute" xml:space="preserve">
-    <value>Minute</value>
+    <value>minute</value>
   </data>
   <data name="MinuteAbbreviation" xml:space="preserve">
-    <value>Min</value>
+    <value>min</value>
   </data>
   <data name="Minutes" xml:space="preserve">
-    <value>Minutes</value>
+    <value>minutes</value>
   </data>
   <data name="MinutesAbbreviation" xml:space="preserve">
     <value>mins</value>
   </data>
   <data name="Month" xml:space="preserve">
-    <value>Month</value>
+    <value>month</value>
   </data>
   <data name="MonthAbbreviation" xml:space="preserve">
     <value>mo</value>
   </data>
   <data name="Months" xml:space="preserve">
-    <value>Months</value>
+    <value>months</value>
   </data>
   <data name="MonthsAbbreviation" xml:space="preserve">
     <value>mos</value>
@@ -181,37 +181,37 @@
     <value>Recently</value>
   </data>
   <data name="Second" xml:space="preserve">
-    <value>Second</value>
+    <value>second</value>
   </data>
   <data name="SecondAbbreviation" xml:space="preserve">
     <value>sec</value>
   </data>
   <data name="Seconds" xml:space="preserve">
-    <value>Seconds</value>
+    <value>seconds</value>
   </data>
   <data name="SecondsAbbreviation" xml:space="preserve">
     <value>sec</value>
   </data>
   <data name="Week" xml:space="preserve">
-    <value>Week</value>
+    <value>week</value>
   </data>
   <data name="WeekAbbreviation" xml:space="preserve">
     <value>wk</value>
   </data>
   <data name="Weeks" xml:space="preserve">
-    <value>Weeks</value>
+    <value>weeks</value>
   </data>
   <data name="WeeksAbbreviation" xml:space="preserve">
     <value>wks</value>
   </data>
   <data name="Year" xml:space="preserve">
-    <value>Year</value>
+    <value>year</value>
   </data>
   <data name="YearAbbreviation" xml:space="preserve">
     <value>yr</value>
   </data>
   <data name="Years" xml:space="preserve">
-    <value>Years</value>
+    <value>years</value>
   </data>
   <data name="YearsAbbreviation" xml:space="preserve">
     <value>yrs</value>
