@@ -136,6 +136,7 @@
     <Compile Include="Interfaces\Views\IView.cs" />
     <Compile Include="Models\Core\WinstaSynchContext.cs" />
     <Compile Include="Models\LanguageDefinition.cs" />
+    <Compile Include="Models\Navigation\ExNavigationEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceProviderExtensions.cs" />
     <Compile Include="Services\NavigationService.cs" />

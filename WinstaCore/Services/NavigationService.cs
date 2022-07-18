@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reflection;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
@@ -9,6 +10,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using WinstaCore.Interfaces.Views;
+using static WinstaCore.Services.NavigationService;
 
 namespace WinstaCore.Services
 {
@@ -83,6 +86,43 @@ namespace WinstaCore.Services
             //    return true;
             //}
             return Frame.Navigate(sourcePageType, parameter, infoOverride);
+        }
+
+        public bool Navigate<TView>(TView view) where TView : IView
+        {
+            return Frame.Navigate(view.GetType());
+        }
+
+        public bool Navigate<TView>(TView view, object parameter) where TView : IView
+        {
+            return Frame.Navigate(view.GetType(), parameter);
+        }
+
+
+        /// <summary>
+        /// Navigates to a page and returns the instance of the page if it succeeded,
+        /// otherwise returns null.
+        /// </summary>
+        /// <typeparam name="TPage"></typeparam>
+        /// <param name="frame"></param>
+        /// <param name="transitionInfo">The navigation transition.
+        /// Example: <see cref="DrillInNavigationTransitionInfo"/> or
+        /// <see cref="SlideNavigationTransitionInfo"/></param>
+        /// <returns></returns>
+        public TPage Navigate<TPage>(
+            NavigationTransitionInfo transitionInfo = default)
+            where TPage : Page
+        {
+            TPage view = null;
+            void OnNavigated(object s, NavigationEventArgs args)
+            {
+                Frame.Navigated -= OnNavigated;
+                view = args.Content as TPage;
+            }
+
+            Frame.Navigated += OnNavigated;
+            Frame.Navigate(typeof(TPage), null, transitionInfo);
+            return view;
         }
 
         async void OpenNewWindow(Type sourcePageType, object parameter = null)
