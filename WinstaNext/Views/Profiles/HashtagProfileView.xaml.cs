@@ -3,6 +3,7 @@ using PropertyChanged;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WinstaCore;
+using WinstaCore.Interfaces.Views.Profiles;
 #nullable enable
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -13,7 +14,7 @@ namespace WinstaNext.Views.Profiles
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     [AddINotifyPropertyChangedInterface]
-    public sealed partial class HashtagProfileView : BasePage
+    public sealed partial class HashtagProfileView : BasePage, IHashtagProfileView
     {
         ItemsWrapGrid? WrapGrid { get; set; }
         public HashtagProfileView()

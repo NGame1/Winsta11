@@ -140,6 +140,8 @@ namespace WinstaNext
             serviceCollection.AddTransient<IIncrementalInstaMediaView>(x => new IncrementalInstaMediaView());
 
             //Profile Views
+            serviceCollection.AddTransient<IHashtagProfileView>(x => new HashtagProfileView());
+            serviceCollection.AddTransient<IPlaceProfileView>(x => new PlaceProfileView());
             serviceCollection.AddTransient<IUserProfileView>(x => new UserProfileView());
 
         }
