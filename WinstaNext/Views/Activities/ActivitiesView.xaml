@@ -7,9 +7,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Models="using:InstagramApiSharp.Classes.Models"
     x:Class="WinstaNext.Views.Activities.ActivitiesView"
-    xmlns:VM="using:WinstaNext.ViewModels.Activities"
-    xmlns:local="using:WinstaNext.Views.Activities"
     xmlns:Converters="using:WinstaNext.Converters"
+    xmlns:VM="using:ViewModels.Activities"
     xmlns:views="using:WinstaNext.Views" 
     mc:Ignorable="d">
 

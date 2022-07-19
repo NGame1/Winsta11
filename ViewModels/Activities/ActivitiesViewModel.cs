@@ -1,18 +1,17 @@
 ﻿using Core.Collections.IncrementalSources.Activities;
 using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
-using Resources;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
-using ViewModels;
+using Resources;
+using WinstaCore;
 
-namespace WinstaNext.ViewModels.Activities
+namespace ViewModels.Activities
 {
-    internal class ActivitiesViewModel : BaseViewModel
+    public class ActivitiesViewModel : BaseViewModel
     {
         IncrementalUserActivities Instance { get; set; }
 
@@ -45,7 +44,7 @@ namespace WinstaNext.ViewModels.Activities
 
         async Task ApproveFollowRequestAsync(InstaRecentActivityFeed obj)
         {
-            using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+            using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
             {
                 var result = await Api.UserProcessor.AcceptFriendshipRequestAsync(obj.ProfileId);
                 if (result.Succeeded)
@@ -58,7 +57,7 @@ namespace WinstaNext.ViewModels.Activities
 
         async Task RejectFollowRequestAsync(InstaRecentActivityFeed obj)
         {
-            using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+            using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
             {
                 var result = await Api.UserProcessor.IgnoreFriendshipRequestAsync(obj.ProfileId);
                 if (result.Succeeded)

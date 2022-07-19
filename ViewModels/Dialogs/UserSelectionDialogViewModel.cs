@@ -1,13 +1,13 @@
 ﻿using Core.Collections;
 using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
-using Microsoft.Extensions.DependencyInjection;
 using PropertyChanged;
+using WinstaCore;
 
-namespace WinstaNext.ViewModels.Dialogs
+namespace ViewModels.Dialogs
 {
     [AddINotifyPropertyChangedInterface]
-    internal class UserSelectionDialogViewModel : BaseDialogViewModel
+    public class UserSelectionDialogViewModel : BaseDialogViewModel
     {
         static ExtendedObservableCollection<InstaDirectInboxThread> StaticThreads { get; set; } = new();
         public ExtendedObservableCollection<InstaDirectInboxThread> Threads { get; set; } = new();
@@ -21,7 +21,7 @@ namespace WinstaNext.ViewModels.Dialogs
 
         async void LoadUsers()
         {
-            using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+            using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
             {
                 var result = await Api.MessagingProcessor.GetRankedRecipientsAsync();
                 if (!result.Succeeded)

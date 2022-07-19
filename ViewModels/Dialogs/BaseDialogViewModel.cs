@@ -2,12 +2,12 @@
 using PropertyChanged;
 using System;
 
-namespace WinstaNext.ViewModels.Dialogs
+namespace ViewModels.Dialogs
 {
     [AddINotifyPropertyChangedInterface]
-    internal class BaseDialogViewModel : ObservableRecipient
+    public class BaseDialogViewModel : ObservableRecipient
     {
-        internal Action HideDialogAction { get; set; }
+        public Action HideDialogAction { get; set; }
 
         public BaseDialogViewModel()
         {
