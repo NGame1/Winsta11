@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using WinstaCore.Attributes;
 using WinstaCore.Interfaces.Views;
-using WinstaNext.Core.Navigation;
+using Abstractions.Navigation;
 using WinstaNext.Views.Stories;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238

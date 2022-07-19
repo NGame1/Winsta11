@@ -1,10 +1,8 @@
-﻿using WinstaNext.ViewModels;
-using PropertyChanged;
-using System.ComponentModel;
+﻿using PropertyChanged;
 
 #nullable enable
 
-namespace WinstaNext.Core.Navigation
+namespace Abstractions.Navigation
 {
     [AddINotifyPropertyChangedInterface]
     public class NavigationParameter

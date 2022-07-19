@@ -10,8 +10,8 @@ using System;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Core.Navigation;
 using ViewModels;
+using Abstractions.Navigation;
 
 namespace WinstaNext.ViewModels.Stories
 {

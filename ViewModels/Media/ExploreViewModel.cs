@@ -1,4 +1,5 @@
-﻿using Core.Collections.IncrementalSources.Media;
+﻿using Abstractions.Navigation;
+using Core.Collections.IncrementalSources.Media;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Mvvm.Input;
 using Resources;
@@ -6,12 +7,12 @@ using System;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using WinstaCore;
 using WinstaCore.Attributes;
-using Abstractions.Navigation;
-using WinstaNext.Views.Media;
-using ViewModels;
+using WinstaCore.Interfaces.Views;
+using WinstaCore.Interfaces.Views.Medias;
 
-namespace WinstaNext.ViewModels.Media
+namespace ViewModels.Media
 {
     public class ExploreViewModel : BaseViewModel
     {
@@ -40,7 +41,8 @@ namespace WinstaNext.ViewModels.Media
         {
             if (args.ClickedItem is not InstaMedia media) throw new ArgumentOutOfRangeException(nameof(args.ClickedItem));
             var para = new IncrementalMediaViewParameter(ExploreMedias, media);
-            NavigationService.Navigate(typeof(IncrementalInstaMediaView), para);
+            var IncrementalInstaMediaView = AppCore.Container.GetService<IIncrementalInstaMediaView>();
+            NavigationService.Navigate(IncrementalInstaMediaView, para);
         }
     }
 }

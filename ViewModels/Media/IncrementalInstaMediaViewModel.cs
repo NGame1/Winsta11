@@ -1,18 +1,20 @@
 ﻿using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.Toolkit.Uwp.UI;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore.Attributes;
-using ViewModels;
 using Abstractions.Navigation;
+using Microsoft.Toolkit.Uwp.UI.Extensions;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml;
+using WinstaCore.Helpers.ExtensionMethods;
 
-namespace WinstaNext.ViewModels.Media
+namespace ViewModels.Media
 {
-    internal class IncrementalInstaMediaViewModel : BaseViewModel
+    public class IncrementalInstaMediaViewModel : BaseViewModel
     {
         public override string PageHeader { get; protected set; }
 
@@ -33,7 +35,6 @@ namespace WinstaNext.ViewModels.Media
             lst.ScrollIntoView(TargetMedia);
             await Task.Delay(100);
             await lst.SmoothScrollIntoViewWithItemAsync(TargetMedia,
-                      itemPlacement: ScrollItemPlacement.Top,
                       disableAnimation: true);
         }
 

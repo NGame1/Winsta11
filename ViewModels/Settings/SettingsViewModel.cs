@@ -45,7 +45,7 @@ namespace ViewModels.Settings
         [OnChangedMethod(nameof(OnThemeChanged))]
         public AppTheme Theme { get; set; }
 
-        internal List<LanguageDefinition> AvailableLanguages { get; } = new();
+        public List<LanguageDefinition> AvailableLanguages { get; } = new();
 
         [OnChangedMethod(nameof(OnLanguageChanged))]
         public LanguageDefinition Language { get; set; }

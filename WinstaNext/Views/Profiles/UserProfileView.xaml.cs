@@ -4,8 +4,9 @@ using PropertyChanged;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WinstaCore;
-using WinstaNext.Core.Navigation;
+using Abstractions.Navigation;
 using WinstaNext.Views.Stories;
+using WinstaCore.Interfaces.Views.Profiles;
 #nullable enable
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -16,7 +17,7 @@ namespace WinstaNext.Views.Profiles
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     [AddINotifyPropertyChangedInterface]
-    public sealed partial class UserProfileView : BasePage
+    public sealed partial class UserProfileView : BasePage, IUserProfileView
     {
         ItemsWrapGrid? WrapGrid { get; set; }
         public UserProfileView()

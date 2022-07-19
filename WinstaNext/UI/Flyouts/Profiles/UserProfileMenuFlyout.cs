@@ -5,7 +5,7 @@ using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using WinstaNext.Core.Navigation;
+using Abstractions.Navigation;
 using WinstaCore.Services;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Stories;

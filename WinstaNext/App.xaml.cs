@@ -25,10 +25,14 @@ using WinstaCore;
 using WinstaCore.Interfaces;
 using WinstaCore.Interfaces.Views;
 using WinstaCore.Interfaces.Views.Accounts;
+using WinstaCore.Interfaces.Views.Medias;
+using WinstaCore.Interfaces.Views.Profiles;
 using WinstaCore.Services;
 using WinstaNext.Core.Dialogs;
 using WinstaNext.Views;
 using WinstaNext.Views.Account;
+using WinstaNext.Views.Media;
+using WinstaNext.Views.Profiles;
 
 namespace WinstaNext
 {
@@ -131,6 +135,12 @@ namespace WinstaNext
             //Main Views
             serviceCollection.AddTransient<IMainView>(x => new MainPage());
             serviceCollection.AddTransient<IHomeView>(x => new HomeView());
+
+            //Media Views
+            serviceCollection.AddTransient<IIncrementalInstaMediaView>(x => new IncrementalInstaMediaView());
+
+            //Profile Views
+            serviceCollection.AddTransient<IUserProfileView>(x => new UserProfileView());
 
         }
 

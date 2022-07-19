@@ -126,6 +126,7 @@
     <Compile Include="Attributes\RangePlayerAttribute.cs" />
     <Compile Include="CryptoHelper.cs" />
     <Compile Include="Helpers\Cache\CacheManager.cs" />
+    <Compile Include="Helpers\ExtensionMethods\ListViewExtensions.cs" />
     <Compile Include="Helpers\MultiViewing\ViewLifetimeControl.cs" />
     <Compile Include="Interfaces\IWinstaApp.cs" />
     <Compile Include="Interfaces\Views\Accounts\IChallengeRequiredView.cs" />
@@ -134,6 +135,8 @@
     <Compile Include="Interfaces\Views\IHomeView.cs" />
     <Compile Include="Interfaces\Views\IMainView.cs" />
     <Compile Include="Interfaces\Views\IView.cs" />
+    <Compile Include="Interfaces\Views\Medias\IIncrementalInstaMediaView.cs" />
+    <Compile Include="Interfaces\Views\Profiles\IUserProfileView.cs" />
     <Compile Include="Models\Core\WinstaSynchContext.cs" />
     <Compile Include="Models\LanguageDefinition.cs" />
     <Compile Include="Models\Navigation\ExNavigationEventArgs.cs" />

@@ -160,10 +160,6 @@
     <Compile Include="Core\Dialogs\MessageDialogHelper.cs" />
     <Compile Include="Core\Messages\ChangePageHeaderMessage.cs" />
     <Compile Include="Core\Messages\ChangeSelectedMenuItemMessage.cs" />
-    <Compile Include="Core\Navigation\IncrementalMediaViewParameter.cs" />
-    <Compile Include="Core\Navigation\MediaCommentsViewParameter.cs" />
-    <Compile Include="Core\Navigation\NavigationParameter.cs" />
-    <Compile Include="Core\Navigation\StoryCarouselViewParameter.cs" />
     <Compile Include="Core\TaskCompletionNotifier.cs" />
     <Compile Include="ExtendedSplashScreen.xaml.cs">
       <DependentUpon>ExtendedSplashScreen.xaml</DependentUpon>

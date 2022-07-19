@@ -14,7 +14,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using WinstaNext.Core.Dialogs;
-using WinstaNext.Core.Navigation;
+using Abstractions.Navigation;
 using WinstaNext.Helpers.ExtensionMethods;
 using WinstaNext.UI.Dialogs;
 using WinstaNext.UI.Media;

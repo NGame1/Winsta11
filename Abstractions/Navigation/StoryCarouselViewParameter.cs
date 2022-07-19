@@ -2,7 +2,7 @@
 using Microsoft.Toolkit.Collections;
 using Microsoft.Toolkit.Uwp;
 
-namespace WinstaNext.Core.Navigation
+namespace Abstractions.Navigation
 {
     public class StoryCarouselViewParameter
     {

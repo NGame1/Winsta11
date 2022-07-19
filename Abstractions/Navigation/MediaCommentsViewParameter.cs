@@ -1,6 +1,6 @@
 ﻿using InstagramApiSharp.Classes.Models;
 
-namespace WinstaNext.Core.Navigation
+namespace Abstractions.Navigation
 {
     public class MediaCommentsViewParameter
     {
