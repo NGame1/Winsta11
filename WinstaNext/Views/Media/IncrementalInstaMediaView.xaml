@@ -5,10 +5,11 @@
     x:Class="WinstaNext.Views.Media.IncrementalInstaMediaView"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:models="using:InstagramApiSharp.Classes.Models" 
-    xmlns:VM="using:WinstaNext.ViewModels.Media"
-    xmlns:local="using:WinstaNext.Views.Media"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:media="using:WinstaNext.UI.Media"
-    xmlns:views="using:WinstaNext.Views" xmlns:i="using:Microsoft.Xaml.Interactivity" xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:views="using:WinstaNext.Views" 
+    xmlns:VM="using:ViewModels.Media"
     mc:Ignorable="d">
 
     <views:BasePage.DataContext>

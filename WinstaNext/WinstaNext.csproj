@@ -332,9 +332,7 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Media\ExploreViewModel.cs" />
-    <Compile Include="ViewModels\Media\IncrementalInstaMediaViewModel.cs" />
     <Compile Include="ViewModels\Media\InstaMediaPresenterUCViewModel.cs" />
-    <Compile Include="ViewModels\Media\MediaLikersViewModel.cs" />
     <Compile Include="ViewModels\Search\SearchViewModel.cs" />
     <Compile Include="ViewModels\Stories\StoryCarouselViewModel.cs" />
     <Compile Include="ViewModels\Users\PlaceProfileViewModel.cs" />

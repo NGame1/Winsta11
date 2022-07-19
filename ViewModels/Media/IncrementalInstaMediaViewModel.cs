@@ -7,9 +7,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore.Attributes;
 using Abstractions.Navigation;
-using Microsoft.Toolkit.Uwp.UI.Extensions;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml;
 using WinstaCore.Helpers.ExtensionMethods;
 
 namespace ViewModels.Media

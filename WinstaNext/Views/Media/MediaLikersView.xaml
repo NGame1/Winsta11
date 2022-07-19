@@ -7,9 +7,9 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="WinstaNext.Views.Media.MediaLikersView"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:VM="using:WinstaNext.ViewModels.Media"
     xmlns:generic="using:WinstaNext.UI.Generic" 
     xmlns:media="using:Abstractions.Media"
+    xmlns:VM="using:ViewModels.Media"
     mc:Ignorable="d">
 
     <views:BasePage.DataContext>

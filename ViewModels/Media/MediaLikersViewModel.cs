@@ -10,7 +10,7 @@ using WinstaCore.Interfaces.Views.Profiles;
 
 namespace ViewModels.Media
 {
-    internal class MediaLikersViewModel : BaseViewModel
+    public class MediaLikersViewModel : BaseViewModel
     {
         public IncrementalMediaLikers Instance { get; private set; }
         public IncrementalLoadingCollection<IncrementalMediaLikers, WinstaMediaLikerUser> MediaLikers { get; private set; }
