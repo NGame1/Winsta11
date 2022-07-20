@@ -129,6 +129,9 @@
     <Compile Include="Comments\MediaCommentsViewModel.cs" />
     <Compile Include="Dialogs\BaseDialogViewModel.cs" />
     <Compile Include="Dialogs\UserSelectionDialogViewModel.cs" />
+    <Compile Include="Directs\DirectsListViewModel.cs" />
+    <Compile Include="Directs\DirectThreadViewModel.cs" />
+    <Compile Include="Directs\GiphyViewModel.cs" />
     <Compile Include="HomeViewModel.cs" />
     <Compile Include="Media\ExploreViewModel.cs" />
     <Compile Include="Media\IncrementalInstaMediaViewModel.cs" />
@@ -136,6 +139,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceProviderExtensions.cs" />
     <Compile Include="Settings\SettingsViewModel.cs" />
+    <Compile Include="Stories\StoryCarouselViewModel.cs" />
     <EmbeddedResource Include="Properties\ViewModels.rd.xml" />
   </ItemGroup>
   <ItemGroup>

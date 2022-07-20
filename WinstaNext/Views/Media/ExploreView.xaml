@@ -7,9 +7,8 @@
       xmlns:models="using:InstagramApiSharp.Classes.Models"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       x:Class="WinstaNext.Views.Media.ExploreView"
-      xmlns:VM="using:WinstaNext.ViewModels.Media"
-      xmlns:local="using:WinstaNext.Views.Media"
       xmlns:media="using:WinstaNext.UI.Media" 
+      xmlns:VM="using:ViewModels.Media"
       mc:Ignorable="d">
 
     <Page.DataContext>

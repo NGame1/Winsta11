@@ -2,7 +2,6 @@
 using Core.Collections.IncrementalSources.Stories;
 using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Collections;
 using Microsoft.Toolkit.Uwp;
 using PropertyChanged;
@@ -10,12 +9,12 @@ using System;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
-using ViewModels;
 using Abstractions.Navigation;
+using WinstaCore;
 
-namespace WinstaNext.ViewModels.Stories
+namespace ViewModels.Stories
 {
-    internal class StoryCarouselViewModel : BaseViewModel
+    public class StoryCarouselViewModel : BaseViewModel
     {
         public override string PageHeader { get; protected set; }
 
@@ -133,7 +132,7 @@ namespace WinstaNext.ViewModels.Stories
         async void LoadReelFeed(WinstaReelFeed feed)
         {
             if (feed == null) throw new ArgumentNullException(nameof(feed));
-            var me = App.Container?.GetService<InstaUserShort>();
+            var me = AppCore.Container?.GetService<InstaUserShort>();
             if (feed.User.Pk == me.Pk)
             {
                 for (int i = 0; i < feed.Items.Count; i++)
@@ -151,7 +150,7 @@ namespace WinstaNext.ViewModels.Stories
             try
             {
                 string pk = feed.User != null ? feed.User.Pk.ToString() : feed.Owner.Pk;
-                using (var Api = App.Container?.GetService<IInstaApi>())
+                using (var Api = AppCore.Container?.GetService<IInstaApi>())
                 {
                     if (feed.User == null)
                     {
@@ -179,7 +178,7 @@ namespace WinstaNext.ViewModels.Stories
             feed.IsLoading = true;
             try
             {
-                using (var Api = App.Container?.GetService<IInstaApi>())
+                using (var Api = AppCore.Container?.GetService<IInstaApi>())
                 {
                     var result = await Api.StoryProcessor.GetHighlightMediasAsync(feed.HighlightId);
                     if (!result.Succeeded) return;

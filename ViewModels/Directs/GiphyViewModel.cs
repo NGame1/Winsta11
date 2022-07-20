@@ -6,9 +6,9 @@ using System;
 using Windows.UI.Xaml.Data;
 using ViewModels;
 
-namespace WinstaNext.ViewModels.Directs
+namespace ViewModels.Directs
 {
-    internal class GiphyViewModel : BaseViewModel
+    public class GiphyViewModel : BaseViewModel
     {
         public override string PageHeader { get; protected set; }
 

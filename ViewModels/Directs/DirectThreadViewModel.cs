@@ -2,7 +2,6 @@
 using InstagramApiSharp.API;
 using InstagramApiSharp.Classes;
 using InstagramApiSharp.Classes.Models;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using PropertyChanged;
 using System;
@@ -11,10 +10,10 @@ using Windows.Media.Capture;
 using Windows.Storage.Pickers;
 using Windows.UI.ViewManagement.Core;
 using Windows.UI.Xaml;
-using WinstaNext.Converters.FileConverters;
-using WinstaNext.Models.ConfigureDelays;
-using WinstaNext.Views.Directs;
 using ViewModels;
+using WinstaCore;
+using WinstaCore.Converters.FileConverters;
+using WinstaCore.Models.ConfigureDelays;
 #nullable enable
 
 namespace WinstaNext.ViewModels.Directs
@@ -79,7 +78,7 @@ namespace WinstaNext.ViewModels.Directs
 
             var bytes = await ImageFileConverter.ConvertImageToJpegAsync(res);
 
-            using (var Api = App.Container.GetService<IInstaApi>())
+            using (var Api = AppCore.Container.GetService<IInstaApi>())
             {
                 Api.SetConfigureMediaDelay(new ImageConfigureMediaDelay());
                 var result = await Api.MessagingProcessor.SendDirectPhotoAsync(new InstaImage()
@@ -109,7 +108,7 @@ namespace WinstaNext.ViewModels.Directs
 
             var bytes = await ImageFileConverter.ConvertImageToJpegAsync(res);
 
-            using (var Api = App.Container.GetService<IInstaApi>())
+            using (var Api = AppCore.Container.GetService<IInstaApi>())
             {
                 Api.SetConfigureMediaDelay(new ImageConfigureMediaDelay());
                 var result = await Api.MessagingProcessor.SendDirectPhotoAsync(new InstaImage()
@@ -142,7 +141,7 @@ namespace WinstaNext.ViewModels.Directs
             var imageBytes = await ImageFileConverter.ConvertToBytesArray(thumb);
             var bytes = await ImageFileConverter.ConvertToBytesArray(openFile);
 
-            using (var Api = App.Container.GetService<IInstaApi>())
+            using (var Api = AppCore.Container.GetService<IInstaApi>())
             {
                 Api.SetConfigureMediaDelay(new VideoConfigureMediaDelay());
                 var result = await Api.MessagingProcessor.SendDirectVideoAsync(new InstaVideoUpload()
@@ -171,7 +170,7 @@ namespace WinstaNext.ViewModels.Directs
         async Task SendMessageAsync()
         {
             if (SendMessageCommand.IsRunning) return;
-            using (var Api = App.Container.GetService<IInstaApi>())
+            using (var Api = AppCore.Container.GetService<IInstaApi>())
             {
                 IResult<InstaDirectRespondPayload> result;
                 if (RepliedMessage == null)
@@ -193,7 +192,7 @@ namespace WinstaNext.ViewModels.Directs
         async Task SendLikeAsync()
         {
             if (SendLikeCommand.IsRunning) return;
-            using (var Api = App.Container.GetService<IInstaApi>())
+            using (var Api = AppCore.Container.GetService<IInstaApi>())
             {
                 var result = await Api.MessagingProcessor.SendDirectLikeAsync(ThreadId);
                 if (result.Succeeded)

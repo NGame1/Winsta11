@@ -8,8 +8,8 @@
     x:Class="WinstaNext.Views.Stories.StoryCarouselView"
     xmlns:models="using:Abstractions.Stories"
     xmlns:storiesView="using:WinstaNext.Views.Stories"
-    xmlns:VM="using:WinstaNext.ViewModels.Stories"
     xmlns:views="using:WinstaNext.Views"
+    xmlns:VM="using:ViewModels.Stories"
     mc:Ignorable="d">
 
     <views:BasePage.Resources>

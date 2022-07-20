@@ -13,7 +13,6 @@
       xmlns:directs1="using:WinstaNext.UI.Directs"
       xmlns:Constants="using:WinstaNext.Constants"
       xmlns:Resources="using:Resources" 
-      xmlns:Winsta="using:WinstaNext" 
       d:DesignHeight="300"
       d:DesignWidth="400"
       mc:Ignorable="d">

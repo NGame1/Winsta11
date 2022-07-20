@@ -3,15 +3,12 @@ using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Uwp;
 using Resources;
 using System;
-using System.Threading;
 using System.Threading.Tasks;
-using ViewModels;
 using Windows.UI.Xaml.Navigation;
-using WinstaCore.Helpers;
 
-namespace WinstaNext.ViewModels.Directs
+namespace ViewModels.Directs
 {
-    internal class DirectsListViewModel : BaseViewModel
+    public class DirectsListViewModel : BaseViewModel
     {
         public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.Directs;
 
@@ -27,10 +24,7 @@ namespace WinstaNext.ViewModels.Directs
 
         private void OnError(Exception obj)
         {
-            UIContext.Post(new SendOrPostCallback(async (e) =>
-            {
-                await MessageDialogHelper.ShowAsync(obj.Message);
-            }), null);
+            throw obj;
         }
 
         private void LoadEnded()

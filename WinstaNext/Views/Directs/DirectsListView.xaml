@@ -9,11 +9,10 @@
     xmlns:directs3="using:WinstaNext.UI.Flyouts.Directs"
     x:Class="WinstaNext.Views.Directs.DirectsListView"
     xmlns:directs2="using:WinstaNext.Views.Directs"
-    xmlns:VM="using:WinstaNext.ViewModels.Directs"
     xmlns:directs1="using:WinstaNext.UI.Directs" 
     xmlns:views="using:WinstaNext.Views"
+    xmlns:VM="using:ViewModels.Directs"
     xmlns:Resources="using:Resources" 
-    xmlns:local="using:WinstaNext" 
     mc:Ignorable="d">
 
     <views:BasePage.Resources>
