@@ -15,10 +15,10 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Views.Profiles;
-using ViewModels;
+using WinstaCore;
+using WinstaCore.Interfaces.Views.Profiles;
 
-namespace WinstaNext.ViewModels.Search
+namespace ViewModels.Search
 {
     public class SearchViewModel : BaseViewModel
     {
@@ -75,15 +75,18 @@ namespace WinstaNext.ViewModels.Search
             switch (e.ClickedItem)
             {
                 case InstaUser user:
-                    NavigationService.Navigate(typeof(UserProfileView), user);
+                    var UserProfileView = AppCore.Container.GetService<IUserProfileView>();
+                    NavigationService.Navigate(UserProfileView, user);
                     break;
 
                 case InstaHashtag hashtag:
-                    NavigationService.Navigate(typeof(HashtagProfileView), hashtag);
+                    var HashtagProfileView = AppCore.Container.GetService<IHashtagProfileView>();
+                    NavigationService.Navigate(HashtagProfileView, hashtag);
                     break;
 
                 case InstaPlace place:
-                    NavigationService.Navigate(typeof(PlaceProfileView), place);
+                    var PlaceProfileView = AppCore.Container.GetService<IPlaceProfileView>();
+                    NavigationService.Navigate(PlaceProfileView, place);
                     break;
 
                 default:

@@ -317,9 +317,7 @@
     </Compile>
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Media\InstaMediaPresenterUCViewModel.cs" />
-    <Compile Include="ViewModels\Search\SearchViewModel.cs" />
     <Compile Include="ViewModels\Users\PlaceProfileViewModel.cs" />
-    <Compile Include="ViewModels\Users\HashtagProfileViewModel.cs" />
     <Compile Include="ViewModels\Users\UserFollowingsViewModel.cs" />
     <Compile Include="ViewModels\Users\UserFollowersViewModel.cs" />
     <Compile Include="ViewModels\Users\UserProfileViewModel.cs" />
