@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using WinstaNext.Models.Core;
 using WinstaNext.Views;
 using WinstaNext.Views.Settings;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -36,6 +35,8 @@ using WinstaCore;
 using Resources;
 using ViewModels;
 using WinstaCore.Models.Core;
+using Microsoft.UI.Xaml.Controls;
+using Windows.UI.Composition;
 
 namespace WinstaNext.ViewModels
 {
@@ -101,7 +102,7 @@ namespace WinstaNext.ViewModels
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Activities, "\uE006", typeof(ActivitiesView)));
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Explore, "\uF6FA", typeof(ExploreView)));
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Directs, "\uE15F", typeof(DirectsListView)));
-            FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, new AnimatedSettingsVisualSource(), typeof(SettingsView)));
+            FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, typeof(SettingsView)) { Icon = new AnimatedIcon { Source = new AnimatedSettingsVisualSource() } });
             ToggleNavigationViewPane = new(ToggleNavigationPane);
             _themeListener.ThemeChanged += MainPageViewModel_ThemeChanged;
 

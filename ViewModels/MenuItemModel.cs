@@ -1,12 +1,10 @@
-﻿using Microsoft.UI.Xaml.Controls;
-using System;
+﻿using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 using PropertyChanged;
 using Core.Collections;
 
-namespace WinstaNext.Models.Core
+namespace ViewModels
 {
     [AddINotifyPropertyChangedInterface]
     public class MenuItemModel
@@ -15,10 +13,8 @@ namespace WinstaNext.Models.Core
         {
             Text = text;
         }
-
-        public MenuItemModel(string text, IAnimatedVisualSource2 visual, Type view = null)
+        public MenuItemModel(string text, Type view)
         {
-            Icon = new AnimatedIcon() { Source = visual };
             Text = text;
             View = view;
         }
@@ -27,19 +23,9 @@ namespace WinstaNext.Models.Core
         {
             Icon = new FontIcon
             {
-                //FontSize = 32,
                 Glyph = glyph,
-                FontFamily = (FontFamily)App.Current.Resources["FluentIcons"]
-            };
-            Text = text;
-            View = view;
-        }
-
-        public MenuItemModel(string text, Uri svguri, Type view = null)
-        {
-            Icon = new ImageIcon()
-            {
-                Source = new SvgImageSource(svguri) { RasterizePixelHeight = 200, RasterizePixelWidth = 200 }
+                FontFamily = new("Segoe Fluent Icons")
+                //FontFamily = (FontFamily)App.Current.Resources["FluentIcons"]
             };
             Text = text;
             View = view;

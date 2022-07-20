@@ -13,11 +13,11 @@
     xmlns:Converters="using:WinstaNext.Converters"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:VM="using:WinstaNext.ViewModels.Users"
-    xmlns:core1="using:WinstaNext.Models.Core"
     xmlns:media="using:WinstaNext.UI.Media" 
     xmlns:views="using:WinstaNext.Views"
     xmlns:Resources="using:Resources" 
-    xmlns:Winsta="using:WinstaNext"
+    xmlns:Winsta="using:WinstaNext" 
+    xmlns:viewmodels="using:ViewModels"
     mc:Ignorable="d">
 
     <views:BasePage.Resources>
@@ -101,7 +101,7 @@
                 </NavigationView.MenuItems>-->
 
                 <NavigationView.MenuItemTemplate>
-                    <DataTemplate x:DataType="core1:MenuItemModel">
+                    <DataTemplate x:DataType="viewmodels:MenuItemModel">
                         <NavigationViewItem Icon="{x:Bind Icon}" Content="{x:Bind Text}"/>
                     </DataTemplate>
                 </NavigationView.MenuItemTemplate>

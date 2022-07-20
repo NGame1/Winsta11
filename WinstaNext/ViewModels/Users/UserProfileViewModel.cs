@@ -24,7 +24,6 @@ using WinstaCore;
 using WinstaCore.Attributes;
 using Abstractions.Navigation;
 using WinstaNext.Helpers.ExtensionMethods;
-using WinstaNext.Models.Core;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;
 using ViewModels;

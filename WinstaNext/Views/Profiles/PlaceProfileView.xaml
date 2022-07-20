@@ -16,8 +16,8 @@
     xmlns:core1="using:WinstaNext.Models.Core"
     xmlns:media="using:WinstaNext.UI.Media" 
     xmlns:views="using:WinstaNext.Views"
-    xmlns:Winsta="using:WinstaNext"
-    mc:Ignorable="d">
+    xmlns:Winsta="using:WinstaNext" xmlns:viewmodels="using:ViewModels"
+                mc:Ignorable="d">
 
     <views:BasePage.Resources>
         
@@ -92,7 +92,7 @@
                             Grid.Row="1">
 
                 <NavigationView.MenuItemTemplate>
-                    <DataTemplate x:DataType="core1:MenuItemModel">
+                    <DataTemplate x:DataType="viewmodels:MenuItemModel">
                         <NavigationViewItem Icon="{x:Bind Icon}" Content="{x:Bind Text}"/>
                     </DataTemplate>
                 </NavigationView.MenuItemTemplate>

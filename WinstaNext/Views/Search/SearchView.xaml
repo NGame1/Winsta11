@@ -15,8 +15,8 @@
     xmlns:Models="using:WinstaNext.Models.Core" 
     xmlns:search="using:WinstaNext.UI.Search" 
     xmlns:Resources="using:Resources" 
-    xmlns:local="using:WinstaNext"
-    mc:Ignorable="d">
+    xmlns:local="using:WinstaNext" xmlns:viewmodels="using:ViewModels"
+                mc:Ignorable="d">
 
 
     <i:Interaction.Behaviors>
@@ -84,7 +84,7 @@
                 </NavigationView.MenuItems>-->
 
             <NavigationView.MenuItemTemplate>
-                <DataTemplate x:DataType="Models:MenuItemModel">
+                <DataTemplate x:DataType="viewmodels:MenuItemModel">
                     <NavigationViewItem Icon="{x:Bind Icon}" Content="{x:Bind Text}"/>
                 </DataTemplate>
             </NavigationView.MenuItemTemplate>

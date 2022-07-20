@@ -15,7 +15,6 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Models.Core;
 using WinstaNext.Views.Profiles;
 using ViewModels;
 
