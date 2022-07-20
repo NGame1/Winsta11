@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore;
-using WinstaNext.Core.Dialogs;
-using WinstaNext.Views.Account;
-using ViewModels;
+using WinstaCore.Helpers;
+using WinstaCore.Interfaces.Views;
+using WinstaCore.Interfaces.Views.Accounts;
 
-namespace WinstaNext.ViewModels.Account
+namespace ViewModels.Account
 {
-    internal class TwoFactorAuthViewModel : BaseViewModel
+    public class TwoFactorAuthViewModel : BaseViewModel
     {
         IInstaApi Api { get; set; }
         public AsyncRelayCommand VerifyCommand { get; set; }
@@ -102,7 +102,8 @@ namespace WinstaNext.ViewModels.Account
                                     var state = Api.GetStateDataAsString();
                                     var loggedUser = Api.GetLoggedUser().LoggedInUser;
                                     await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName);
-                                    NavigationService.Navigate(typeof(MainPage));
+                                    var MainPage = AppCore.Container.GetService<IMainView>();
+                                    NavigationService.Navigate(MainPage);
                                     await Api.SendRequestsAfterLoginAsync();
                                     Api.Dispose();
                                 }
@@ -187,7 +188,8 @@ namespace WinstaNext.ViewModels.Account
                                         var state = Api.GetStateDataAsString();
                                         var loggedUser = Api.GetLoggedUser().LoggedInUser;
                                         await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName);
-                                        NavigationService.Navigate(typeof(MainPage));
+                                        var MainPage = AppCore.Container.GetService<IMainView>();
+                                        NavigationService.Navigate(MainPage);
                                         await Api.SendRequestsAfterLoginAsync();
                                         Api.Dispose();
                                     }
@@ -224,13 +226,15 @@ namespace WinstaNext.ViewModels.Account
                         var state = Api.GetStateDataAsString();
                         var loggedUser = Api.GetLoggedUser().LoggedInUser;
                         await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName);
-                        NavigationService.Navigate(typeof(MainPage));
+                        var MainPage = AppCore.Container.GetService<IMainView>();
+                        NavigationService.Navigate(MainPage);
                         await Api.SendRequestsAfterLoginAsync();
                         Api.Dispose();
                         break;
 
                     case InstaLoginTwoFactorResult.ChallengeRequired:
-                        NavigationService.Navigate(typeof(ChallengeRequiredView), Api);
+                        var ChallengeRequiredView = AppCore.Container.GetService<IChallengeRequiredView>();
+                        NavigationService.Navigate(ChallengeRequiredView, Api);
                         break;
 
                     default:

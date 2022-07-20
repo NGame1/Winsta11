@@ -1,11 +1,8 @@
 ﻿using InstagramApiSharp.Classes.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
+#nullable enable
 
 namespace WinstaNext.Converters.Stories
 {
@@ -14,7 +11,7 @@ namespace WinstaNext.Converters.Stories
         public GradientBrush CloseFriends { get; set; }
         public GradientBrush NormalStory { get; set; }
 
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public object? Convert(object value, Type targetType, object parameter, string language)
         {
             if(value is InstaReelFeed story)
             {

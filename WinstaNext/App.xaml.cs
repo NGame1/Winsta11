@@ -22,17 +22,18 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore;
+using WinstaCore.Helpers;
 using WinstaCore.Interfaces;
 using WinstaCore.Interfaces.Views;
 using WinstaCore.Interfaces.Views.Accounts;
 using WinstaCore.Interfaces.Views.Medias;
 using WinstaCore.Interfaces.Views.Profiles;
 using WinstaCore.Services;
-using WinstaNext.Core.Dialogs;
 using WinstaNext.Views;
 using WinstaNext.Views.Account;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;
+#nullable enable
 
 namespace WinstaNext
 {
@@ -175,7 +176,7 @@ namespace WinstaNext
             return Navigations[Window.Current];
         }
 
-        InstaUserShort _myUser = null;
+        InstaUserShort? _myUser = null;
         public void SetMyUserInstance(InstaUserShort _user)
         {
             _myUser = _user;

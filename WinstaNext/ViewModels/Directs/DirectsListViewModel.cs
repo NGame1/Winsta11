@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ViewModels;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Core.Dialogs;
+using WinstaCore.Helpers;
 
 namespace WinstaNext.ViewModels.Directs
 {

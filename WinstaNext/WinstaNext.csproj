@@ -157,7 +157,6 @@
     <Compile Include="Converters\Stories\StoryItemVideoConverter.cs" />
     <Compile Include="Converters\TextToFlowDirectionConverter.cs" />
     <Compile Include="Core\Behaviors\SynchronizeHorizontalOffsetBehavior.cs" />
-    <Compile Include="Core\Dialogs\MessageDialogHelper.cs" />
     <Compile Include="Core\TaskCompletionNotifier.cs" />
     <Compile Include="ExtendedSplashScreen.xaml.cs">
       <DependentUpon>ExtendedSplashScreen.xaml</DependentUpon>
@@ -320,13 +319,9 @@
     <Compile Include="UI\Stories\StickersView\StickersViewGrid.xaml.cs">
       <DependentUpon>StickersViewGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Account\LoginViewModel.cs" />
-    <Compile Include="ViewModels\Account\TwoFactorAuthViewModel.cs" />
-    <Compile Include="ViewModels\Comments\MediaCommentsViewModel.cs" />
     <Compile Include="ViewModels\Directs\DirectsListViewModel.cs" />
     <Compile Include="ViewModels\Directs\DirectThreadViewModel.cs" />
     <Compile Include="ViewModels\Directs\GiphyViewModel.cs" />
-    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Media\ExploreViewModel.cs" />
     <Compile Include="ViewModels\Media\InstaMediaPresenterUCViewModel.cs" />

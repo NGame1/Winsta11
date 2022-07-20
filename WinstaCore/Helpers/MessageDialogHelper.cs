@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 
-namespace WinstaNext.Core.Dialogs
+namespace WinstaCore.Helpers
 {
     public static class MessageDialogHelper
     {

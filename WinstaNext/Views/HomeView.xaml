@@ -12,7 +12,6 @@
     xmlns:local="using:WinstaNext.Views"
     x:Class="WinstaNext.Views.HomeView"
     xmlns:Resources="using:Resources" 
-    xmlns:Winsta="using:WinstaNext" 
     xmlns:VM="using:ViewModels"
     mc:Ignorable="d">
 

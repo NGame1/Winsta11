@@ -5,16 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     x:Class="WinstaNext.Views.Comments.MediaCommentsView"
     xmlns:models="using:InstagramApiSharp.Classes.Models" 
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:VM="using:WinstaNext.ViewModels.Comments"
     xmlns:converters="using:WinstaNext.Converters"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:comments="using:WinstaNext.UI.Comments" 
     xmlns:Constants="using:WinstaNext.Constants"
-    xmlns:i="using:Microsoft.Xaml.Interactivity" 
     xmlns:views="using:WinstaNext.Views" 
+    xmlns:VM="using:ViewModels.Comments"
     xmlns:Resources="using:Resources" 
-    xmlns:Winsta="using:WinstaNext" 
     mc:Ignorable="d">
 
     <views:BasePage.Resources>

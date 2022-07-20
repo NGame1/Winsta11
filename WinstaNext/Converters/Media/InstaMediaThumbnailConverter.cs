@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
+#nullable enable
 
 namespace WinstaNext.Converters.Media
 {
     internal class InstaMediaThumbnailConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public object? Convert(object value, Type targetType, object parameter, string language)
         {
             if (value is not InstaMedia media) return null;
             switch (media.MediaType)

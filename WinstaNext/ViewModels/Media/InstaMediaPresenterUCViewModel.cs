@@ -13,7 +13,6 @@ using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using WinstaNext.Core.Dialogs;
 using Abstractions.Navigation;
 using WinstaNext.Helpers.ExtensionMethods;
 using WinstaNext.UI.Dialogs;
@@ -23,6 +22,7 @@ using WinstaNext.Views.Comments;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;
 using ViewModels;
+using WinstaCore.Helpers;
 
 namespace WinstaNext.ViewModels.Media
 {

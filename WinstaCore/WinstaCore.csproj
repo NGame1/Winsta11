@@ -127,6 +127,7 @@
     <Compile Include="CryptoHelper.cs" />
     <Compile Include="Helpers\Cache\CacheManager.cs" />
     <Compile Include="Helpers\ExtensionMethods\ListViewExtensions.cs" />
+    <Compile Include="Helpers\MessageDialogHelper.cs" />
     <Compile Include="Helpers\MultiViewing\ViewLifetimeControl.cs" />
     <Compile Include="Interfaces\IWinstaApp.cs" />
     <Compile Include="Interfaces\Views\Accounts\IChallengeRequiredView.cs" />

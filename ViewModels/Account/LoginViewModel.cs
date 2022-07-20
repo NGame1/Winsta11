@@ -1,11 +1,13 @@
 ﻿using InstagramApiSharp.API;
 using InstagramApiSharp.Classes;
 using Microsoft.Toolkit.Mvvm.Input;
+using Resources;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore;
+using WinstaCore.Helpers;
 using WinstaCore.Interfaces.Views;
 using WinstaCore.Interfaces.Views.Accounts;
 
@@ -74,7 +76,7 @@ namespace ViewModels.Account
         {
             UIContext.Post(new SendOrPostCallback(async (e) =>
             {
-                //await MessageDialogHelper.ShowAsync(loginResult.Info.Message, LanguageManager.Instance.General.Error);
+                await MessageDialogHelper.ShowAsync(loginResult.Info.Message, LanguageManager.Instance.General.Error);
             }), null);
         }
     }

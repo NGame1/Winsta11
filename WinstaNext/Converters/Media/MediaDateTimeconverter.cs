@@ -1,13 +1,14 @@
 ﻿using Resources;
 using System;
 using Windows.UI.Xaml.Data;
+#nullable enable
 
 namespace WinstaNext.Converters.Media
 {
     internal class MediaDateTimeconverter : IValueConverter
     {
         public bool ConvertToLocalTime { get; set; } = false;
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public object? Convert(object value, Type targetType, object parameter, string language)
         {
             if (value is not DateTime dt) return null;
             if (ConvertToLocalTime)
