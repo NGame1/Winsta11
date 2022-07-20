@@ -6,11 +6,9 @@
     x:Class="WinstaNext.Views.Profiles.UserFollowersView"
     xmlns:Models="using:InstagramApiSharp.Classes.Models"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:local="using:WinstaNext.Views.Profiles"
     xmlns:i="using:Microsoft.Xaml.Interactivity" 
-    xmlns:VM="using:WinstaNext.ViewModels.Users" 
     xmlns:generic="using:WinstaNext.UI.Generic"
-    xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
+    xmlns:VM="using:ViewModels.Profiles"
     xmlns:views="using:WinstaNext.Views"
     mc:Ignorable="d">
 

@@ -6,29 +6,29 @@ using Resources;
 using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Views.Profiles;
-using ViewModels;
+using WinstaCore;
+using WinstaCore.Interfaces.Views.Profiles;
 
-namespace WinstaNext.ViewModels.Users
+namespace ViewModels.Profiles
 {
-    internal class UserFollowersViewModel : BaseViewModel
+    public class UserFollowingsViewModel : BaseViewModel
     {
-        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.Followers;
+        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.Followings;
 
-        IncrementalUserFollowers UserFollowersInstance { get; set; }
+        IncrementalUserFollowings UserFollowingsInstance { get; set; }
 
-        public IncrementalLoadingCollection<IncrementalUserFollowers, InstaUserShort> UserFollowers { get; set; }
-
+        public IncrementalLoadingCollection<IncrementalUserFollowings, InstaUserShort> UserFollowings { get; set; }
         public RelayCommand<ItemClickEventArgs> NavigateToUserCommand { get; set; }
 
-        public UserFollowersViewModel()
+        public UserFollowingsViewModel()
         {
             NavigateToUserCommand = new(NavigateToUser);
         }
 
         void NavigateToUser(ItemClickEventArgs obj)
         {
-            NavigationService.Navigate(typeof(UserProfileView), obj.ClickedItem);
+            var UserProfileView = AppCore.Container.GetService<IUserProfileView>();
+            NavigationService.Navigate(UserProfileView, obj.ClickedItem);
         }
 
         public override void OnNavigatedTo(NavigationEventArgs e)
@@ -39,10 +39,10 @@ namespace WinstaNext.ViewModels.Users
                     NavigationService.GoBack();
                 throw new ArgumentOutOfRangeException(nameof(e.Parameter));
             }
-            if (UserFollowersInstance != null && UserFollowersInstance.UserId == UserPk) return;
+            if (UserFollowingsInstance != null && UserFollowingsInstance.UserId == UserPk) return;
 
-            UserFollowersInstance = new(UserPk);
-            UserFollowers = new(UserFollowersInstance);
+            UserFollowingsInstance = new(UserPk);
+            UserFollowings = new(UserFollowingsInstance);
 
             base.OnNavigatedTo(e);
         }

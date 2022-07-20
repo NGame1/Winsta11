@@ -138,6 +138,8 @@
     <Compile Include="Media\MediaLikersViewModel.cs" />
     <Compile Include="MenuItemModel.cs" />
     <Compile Include="Profiles\HashtagProfileViewModel.cs" />
+    <Compile Include="Profiles\UserFollowersViewModel.cs" />
+    <Compile Include="Profiles\UserFollowingsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search\SearchViewModel.cs" />
     <Compile Include="ServiceProviderExtensions.cs" />
