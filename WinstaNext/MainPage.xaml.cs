@@ -1,5 +1,4 @@
-﻿using WinstaNext.Core.Messages;
-using Microsoft.Toolkit.Mvvm.Messaging;
+﻿using Microsoft.Toolkit.Mvvm.Messaging;
 using System.Linq;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -9,6 +8,7 @@ using Windows.UI.Xaml.Media.Animation;
 using WinstaNext.Views;
 using WinstaCore.Interfaces.Views;
 using Abstractions.Navigation;
+using WinstaCore.Models.Core;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 

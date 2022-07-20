@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using WinstaNext.Core.Messages;
 using WinstaNext.Models.Core;
 using WinstaNext.Views;
 using WinstaNext.Views.Settings;
@@ -36,6 +35,7 @@ using Core.Collections;
 using WinstaCore;
 using Resources;
 using ViewModels;
+using WinstaCore.Models.Core;
 
 namespace WinstaNext.ViewModels
 {

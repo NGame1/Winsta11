@@ -247,9 +247,9 @@ namespace WinstaCore
             SetUsersList(users);
         }
 
-        private Dictionary<string, string> SetUsersList(Dictionary<string, string> users = null)
+        private Dictionary<string, string> SetUsersList(Dictionary<string, string>? users = null)
         {
-            if (users == null) users = new Dictionary<string, string>();
+            users ??= new Dictionary<string, string>();
             LocalSettings.Values[UserNamesSetting] = JsonConvert.SerializeObject(users);
             return users;
         }
