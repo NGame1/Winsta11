@@ -139,7 +139,6 @@
     <Compile Include="Converters\Directs\UserIdToHorizontalAlignmentConverter.cs" />
     <Compile Include="Converters\Directs\UserIdToProfilePictureVisibilityConverter.cs" />
     <Compile Include="Converters\EnumToBooleanConverter.cs" />
-    <Compile Include="Converters\FileConverters\ImageFileConverter.cs" />
     <Compile Include="Converters\IntToIsEnabledConverter.cs" />
     <Compile Include="Converters\InvertBoolConverter.cs" />
     <Compile Include="Converters\Media\CaptionToMarkdownConverter.cs" />
@@ -171,8 +170,6 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\ConfigureDelays\ImageConfigureMediaDelay.cs" />
-    <Compile Include="Models\ConfigureDelays\VideoConfigureMediaDelay.cs" />
     <Compile Include="Models\Core\MenuItemModel.cs" />
     <Compile Include="Models\Enums\DownloadDestinationEnum.cs" />
     <Compile Include="Models\TemplateSelectors\Activities\RecentActivityFeedItemTemplateSelector.cs" />
@@ -319,14 +316,9 @@
     <Compile Include="UI\Stories\StickersView\StickersViewGrid.xaml.cs">
       <DependentUpon>StickersViewGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Directs\DirectsListViewModel.cs" />
-    <Compile Include="ViewModels\Directs\DirectThreadViewModel.cs" />
-    <Compile Include="ViewModels\Directs\GiphyViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="ViewModels\Media\ExploreViewModel.cs" />
     <Compile Include="ViewModels\Media\InstaMediaPresenterUCViewModel.cs" />
     <Compile Include="ViewModels\Search\SearchViewModel.cs" />
-    <Compile Include="ViewModels\Stories\StoryCarouselViewModel.cs" />
     <Compile Include="ViewModels\Users\PlaceProfileViewModel.cs" />
     <Compile Include="ViewModels\Users\HashtagProfileViewModel.cs" />
     <Compile Include="ViewModels\Users\UserFollowingsViewModel.cs" />

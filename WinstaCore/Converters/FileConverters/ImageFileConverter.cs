@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
-using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.Storage;
 
-namespace WinstaNext.Converters.FileConverters
+namespace WinstaCore.Converters.FileConverters
 {
     public static class ImageFileConverter
     {

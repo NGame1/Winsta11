@@ -124,6 +124,7 @@
     <Compile Include="AppCore.cs" />
     <Compile Include="ApplicationSettingsManager.cs" />
     <Compile Include="Attributes\RangePlayerAttribute.cs" />
+    <Compile Include="Converters\FileConverters\ImageFileConverter.cs" />
     <Compile Include="CryptoHelper.cs" />
     <Compile Include="Helpers\Cache\CacheManager.cs" />
     <Compile Include="Helpers\ExtensionMethods\ListViewExtensions.cs" />
@@ -140,6 +141,8 @@
     <Compile Include="Interfaces\Views\Profiles\IHashtagProfileView.cs" />
     <Compile Include="Interfaces\Views\Profiles\IPlaceProfileView.cs" />
     <Compile Include="Interfaces\Views\Profiles\IUserProfileView.cs" />
+    <Compile Include="Models\ConfigureDelays\ImageConfigureMediaDelay.cs" />
+    <Compile Include="Models\ConfigureDelays\VideoConfigureMediaDelay.cs" />
     <Compile Include="Models\Core\ChangePageHeaderMessage.cs" />
     <Compile Include="Models\Core\ChangeSelectedMenuItemMessage.cs" />
     <Compile Include="Models\Core\WinstaSynchContext.cs" />
