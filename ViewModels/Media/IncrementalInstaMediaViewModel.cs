@@ -31,8 +31,16 @@ namespace ViewModels.Media
             if (ListViewLoadedCommand.IsRunning) return;
             lst.ScrollIntoView(TargetMedia);
             await Task.Delay(100);
-            await lst.SmoothScrollIntoViewWithItemAsync(TargetMedia,
+            try
+            {
+                await lst.SmoothScrollIntoViewWithItemAsync(TargetMedia,
                       disableAnimation: true);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public override void OnNavigatedTo(NavigationEventArgs e)

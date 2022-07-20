@@ -124,6 +124,7 @@
     <Compile Include="Account\LoginViewModel.cs" />
     <Compile Include="Activities\ActivitiesViewModel.cs" />
     <Compile Include="BaseViewModel.cs" />
+    <Compile Include="Comments\CommentLikersViewModel.cs" />
     <Compile Include="Dialogs\BaseDialogViewModel.cs" />
     <Compile Include="Dialogs\UserSelectionDialogViewModel.cs" />
     <Compile Include="HomeViewModel.cs" />
