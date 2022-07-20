@@ -12,12 +12,11 @@
     xmlns:behaviors="using:WinstaNext.Core.Behaviors"
     xmlns:Converters="using:WinstaNext.Converters"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:VM="using:WinstaNext.ViewModels.Users"
     xmlns:media="using:WinstaNext.UI.Media" 
     xmlns:views="using:WinstaNext.Views"
-    xmlns:Resources="using:Resources" 
-    xmlns:Winsta="using:WinstaNext" 
+    xmlns:VM="using:ViewModels.Profiles"
     xmlns:viewmodels="using:ViewModels"
+    xmlns:Resources="using:Resources" 
     mc:Ignorable="d">
 
     <views:BasePage.Resources>

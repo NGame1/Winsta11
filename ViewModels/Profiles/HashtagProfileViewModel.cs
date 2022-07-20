@@ -16,10 +16,9 @@ using Abstractions.Navigation;
 using WinstaCore;
 using WinstaCore.Interfaces.Views.Medias;
 using WinstaCore.Interfaces.Views.Profiles;
-using ViewModels;
 using Mapster;
 
-namespace ViewModels.Users
+namespace ViewModels.Profiles
 {
     public class HashtagProfileViewModel : BaseViewModel
     {
