@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
-using Microsoft.Toolkit.Uwp.UI.Extensions;
 using Windows.Foundation;
+using Windows.UI.Xaml.Media;
 
 namespace WinstaCore.Helpers.ExtensionMethods
 {
@@ -40,7 +40,7 @@ namespace WinstaCore.Helpers.ExtensionMethods
             bool isVirtualizing = default;
             double previousXOffset = default, previousYOffset = default;
 
-            var scrollViewer = listViewBase.FindDescendant<ScrollViewer>();
+            var scrollViewer = FindDescendant<ScrollViewer>(listViewBase);
             var selectorItem = listViewBase.ContainerFromIndex(index) as SelectorItem;
 
             // If selectorItem is null then the panel is virtualized.
@@ -181,6 +181,30 @@ namespace WinstaCore.Helpers.ExtensionMethods
             {
                 scrollViewer.ViewChanged -= ViewChanged;
             }
+        }
+
+        static T FindDescendant<T>(this DependencyObject element) where T : DependencyObject
+        {
+            T val = null;
+            int childrenCount = VisualTreeHelper.GetChildrenCount(element);
+            for (int i = 0; i < childrenCount; i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(element, i);
+                T val2 = child as T;
+                if (val2 != null)
+                {
+                    val = val2;
+                    break;
+                }
+
+                val = child.FindDescendant<T>();
+                if (val != null)
+                {
+                    break;
+                }
+            }
+
+            return val;
         }
     }
 }
