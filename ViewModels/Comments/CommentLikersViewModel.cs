@@ -5,10 +5,10 @@ using Microsoft.Toolkit.Uwp;
 using Resources;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using WinstaNext.Views.Profiles;
-using ViewModels;
+using WinstaCore;
+using WinstaCore.Interfaces.Views.Profiles;
 
-namespace WinstaNext.ViewModels.Comments
+namespace ViewModels.Comments
 {
     public class CommentLikersViewModel : BaseViewModel
     {
@@ -26,7 +26,8 @@ namespace WinstaNext.ViewModels.Comments
 
         void NavigateToUser(ItemClickEventArgs obj)
         {
-            NavigationService.Navigate(typeof(UserProfileView), obj.ClickedItem);
+            var UserProfileView = AppCore.Container.GetService<IUserProfileView>();
+            NavigationService.Navigate(UserProfileView, obj.ClickedItem);
         }
 
         public override void OnNavigatedTo(NavigationEventArgs e)
