@@ -1,12 +1,9 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using WinstaNext.Views;
-using WinstaNext.Views.Settings;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.Toolkit.Uwp.UI.Helpers;
-using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
 using PropertyChanged;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
@@ -16,28 +13,31 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using InstagramApiSharp.API;
-using Microsoft.Extensions.DependencyInjection;
 using InstagramApiSharp.Classes.Models;
-using WinstaNext.Views.Directs;
 using System.Diagnostics;
 using InstagramApiSharp;
-using WinstaNext.Views.Profiles;
-using WinstaNext.Views.Search;
 using InstagramApiSharp.API.Push;
 using WinstaBackgroundHelpers.Push;
-using NotificationHandler;
-using WinstaNext.Views.Activities;
 using Windows.System;
-using WinstaNext.Views.Media;
 using WinstaCore.Theme;
 using Core.Collections;
 using WinstaCore;
 using Resources;
 using ViewModels;
 using WinstaCore.Models.Core;
+using WinstaCore.Interfaces.Views;
+using WinstaCore.Interfaces.Views.Activities;
+using WinstaCore.Interfaces.Views.Medias;
+using WinstaCore.Interfaces.Views.Directs;
+using WinstaCore.Interfaces.Views.Settings;
+using WinstaCore.Interfaces;
+using WinstaCore.Interfaces.Views.Profiles;
+using WinstaCore.Interfaces.Views.Search;
+using NotificationHandler;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
 
-namespace WinstaNext.ViewModels
+namespace ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
@@ -97,11 +97,11 @@ namespace WinstaNext.ViewModels
             NavigateToUserProfileCommand = new(NavigateToUserProfile);
             _themeListener = new();
             SetupTitlebar(CoreApplication.GetCurrentView().TitleBar);
-            MenuItems.Add(new(LanguageManager.Instance.General.Home, "\uE10F", typeof(HomeView)));
-            MenuItems.Add(new(LanguageManager.Instance.Instagram.Activities, "\uE006", typeof(ActivitiesView)));
-            MenuItems.Add(new(LanguageManager.Instance.Instagram.Explore, "\uF6FA", typeof(ExploreView)));
-            MenuItems.Add(new(LanguageManager.Instance.Instagram.Directs, "\uE15F", typeof(DirectsListView)));
-            FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, typeof(SettingsView)) { Icon = new AnimatedIcon { Source = new AnimatedSettingsVisualSource() } });
+            MenuItems.Add(new(LanguageManager.Instance.General.Home, "\uE10F", typeof(IHomeView)));
+            MenuItems.Add(new(LanguageManager.Instance.Instagram.Activities, "\uE006", typeof(IActivitiesView)));
+            MenuItems.Add(new(LanguageManager.Instance.Instagram.Explore, "\uF6FA", typeof(IExploreView)));
+            MenuItems.Add(new(LanguageManager.Instance.Instagram.Directs, "\uE15F", typeof(IDirectsListView)));
+            FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, typeof(ISettingsView)) { Icon = new AnimatedIcon { Source = new AnimatedSettingsVisualSource() } });
             ToggleNavigationViewPane = new(ToggleNavigationPane);
             _themeListener.ThemeChanged += MainPageViewModel_ThemeChanged;
 
@@ -139,7 +139,7 @@ namespace WinstaNext.ViewModels
 
         async void GetDirectsCountAsync()
         {
-            using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+            using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
             {
                 var result = await Api.MessagingProcessor
                                       .GetDirectInboxAsync(PaginationParameters.MaxPagesToLoad(1));
@@ -159,7 +159,7 @@ namespace WinstaNext.ViewModels
         async void StartPushClient()
         {
             var apis = await ApplicationSettingsManager.Instance.GetUsersApiListAsync();
-            PushClientApi = App.Container.GetService<IInstaApi>();
+            PushClientApi = AppCore.Container.GetService<IInstaApi>();
 
             PushClientApi.PushClient = new PushClient(apis, PushClientApi);
             PushClientApi.PushClient.MessageReceived += PushClient_MessageReceived;
@@ -199,7 +199,7 @@ namespace WinstaNext.ViewModels
 
         async void SyncLauncher()
         {
-            using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+            using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
             {
                 await Api.LauncherSyncAsync();
                 await Api.PushProcessor.RegisterPushAsync();
@@ -209,19 +209,20 @@ namespace WinstaNext.ViewModels
 
         async void GetMyUser()
         {
-            using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+            using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
             {
                 var result = await Api.UserProcessor.GetCurrentUserAsync();
                 UIContext.Post((a) =>
                 {
                     if (!result.Succeeded)
                     {
-                        InstaUser = App.Container.GetService<InstaUserShort>();
+                        InstaUser = AppCore.Container.GetService<InstaUserShort>();
                         ApplicationSettingsManager.Instance.SetLastLoggedUser(InstaUser.Pk.ToString());
                         return;
                     }
                     InstaUser = result.Value;
-                    ((App)App.Current).SetMyUserInstance(result.Value);
+                    var App = AppCore.Container.GetService<IWinstaApp>();
+                    App.SetMyUserInstance(result.Value);
                     ApplicationSettingsManager.Instance.SetLastLoggedUser(result.Value.Pk.ToString());
                 }, null);
             }
@@ -229,7 +230,7 @@ namespace WinstaNext.ViewModels
         async void OnInstaUserChanged()
         {
             if (InstaUser == null) return;
-            using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+            using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
             {
                 Api.UpdateUser(InstaUser);
                 var state = Api.GetStateDataAsString();
@@ -240,7 +241,8 @@ namespace WinstaNext.ViewModels
 
         void NavigateToUserProfile(object obj)
         {
-            NavigationService.Navigate(typeof(UserProfileView), obj);
+            var IUserProfileView = AppCore.Container.GetService<IUserProfileView>();
+            NavigationService.Navigate(IUserProfileView, obj);
         }
 
         bool SuggestionChosen = false;
@@ -248,7 +250,8 @@ namespace WinstaNext.ViewModels
         {
             SuggestionChosen = true;
             var user = (InstaUser)arg.SelectedItem;
-            NavigationService.Navigate(typeof(UserProfileView), user);
+            var IUserProfileView = AppCore.Container.GetService<IUserProfileView>();
+            NavigationService.Navigate(IUserProfileView, user);
             SearchQuery = string.Empty;
         }
 
@@ -256,7 +259,8 @@ namespace WinstaNext.ViewModels
         {
             if (SuggestionChosen) { SuggestionChosen = false; return; }
             if (string.IsNullOrEmpty(SearchQuery)) return;
-            NavigationService.Navigate(typeof(SearchView), SearchQuery);
+            var ISearchView = AppCore.Container.GetService<ISearchView>();
+            NavigationService.Navigate(ISearchView, SearchQuery);
             SearchQuery = string.Empty;
         }
 
@@ -271,7 +275,7 @@ namespace WinstaNext.ViewModels
             if (stopwatch.ElapsedMilliseconds < 400) return;
             try
             {
-                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+                using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
                 {
                     var result = await Api.DiscoverProcessor.SearchPeopleAsync(SearchQuery,
                        PaginationParameters.MaxPagesToLoad(1));
@@ -293,27 +297,44 @@ namespace WinstaNext.ViewModels
         bool ignoreSetMenuItem = false;
         private void FrameNavigated(NavigationEventArgs obj)
         {
-            switch (obj.Content.GetType().Name)
+            switch (obj.Content)
             {
-                case "HomeView":
-                    SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(HomeView));
+                case IHomeView:
+                    SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(IHomeView));
                     break;
-
-                case "ActivitiesView":
-                    SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(ActivitiesView));
+                case IActivitiesView:
+                    SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(IActivitiesView));
                     break;
-
-                case "DirectsListView":
-                    SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(DirectsListView));
+                case IDirectsListView:
+                    SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(IDirectsListView));
                     break;
-
-                case "SettingsView":
-                    SelectedMenuItem = FooterMenuItems.FirstOrDefault(x => x.View == typeof(SettingsView));
+                case ISettingsView:
+                    SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(ISettingsView));
                     break;
-
                 default:
                     break;
             }
+            //switch (obj.Content.GetType().Name)
+            //{
+            //    case "HomeView":
+            //        SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(HomeView));
+            //        break;
+
+            //    case "ActivitiesView":
+            //        SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(ActivitiesView));
+            //        break;
+
+            //    case "DirectsListView":
+            //        SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(DirectsListView));
+            //        break;
+
+            //    case "SettingsView":
+            //        SelectedMenuItem = FooterMenuItems.FirstOrDefault(x => x.View == typeof(SettingsView));
+            //        break;
+
+            //    default:
+            //        break;
+            //}
         }
 
         private void MainPageViewModel_ThemeChanged(ThemeListener sender)

@@ -1,19 +1,9 @@
-﻿using Abstractions.Direct.Models;
-using Core.Collections.IncrementalSources.Directs;
-using InstagramApiSharp.Classes.Models;
-using InstagramApiSharp.Helpers;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Uwp;
-using Microsoft.Toolkit.Uwp.UI;
+﻿using InstagramApiSharp.Classes.Models;
 using PropertyChanged;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.System;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using WinstaCore.Interfaces.Views.Directs;
 using WinstaNext.ViewModels.Directs;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
@@ -21,7 +11,7 @@ using WinstaNext.ViewModels.Directs;
 namespace WinstaNext.Views.Directs
 {
     [AddINotifyPropertyChangedInterface]
-    public sealed partial class DirectThreadView : Page
+    public sealed partial class DirectThreadView : Page, IDirectThreadView
     {
         public static readonly DependencyProperty DirectThreadProperty = DependencyProperty.Register(
           nameof(DirectThread),

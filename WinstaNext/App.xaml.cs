@@ -26,13 +26,22 @@ using WinstaCore.Helpers;
 using WinstaCore.Interfaces;
 using WinstaCore.Interfaces.Views;
 using WinstaCore.Interfaces.Views.Accounts;
+using WinstaCore.Interfaces.Views.Activities;
+using WinstaCore.Interfaces.Views.Directs;
 using WinstaCore.Interfaces.Views.Medias;
 using WinstaCore.Interfaces.Views.Profiles;
+using WinstaCore.Interfaces.Views.Search;
+using WinstaCore.Interfaces.Views.Settings;
 using WinstaCore.Services;
 using WinstaNext.Views;
 using WinstaNext.Views.Account;
+using WinstaNext.Views.Activities;
+using WinstaNext.Views.Comments;
+using WinstaNext.Views.Directs;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;
+using WinstaNext.Views.Search;
+using WinstaNext.Views.Settings;
 #nullable enable
 
 namespace WinstaNext
@@ -133,11 +142,18 @@ namespace WinstaNext
             serviceCollection.AddTransient<ITwoFactorAuthView>(x => new TwoFactorAuthView());
             serviceCollection.AddTransient<IChallengeRequiredView>(x => new ChallengeRequiredView());
 
+            //Activities View
+            serviceCollection.AddTransient<IActivitiesView>(x => new ActivitiesView());
+
+            //Directs View
+            serviceCollection.AddTransient<IDirectsListView>(x => new DirectsListView());
+
             //Main Views
             serviceCollection.AddTransient<IMainView>(x => new MainPage());
             serviceCollection.AddTransient<IHomeView>(x => new HomeView());
 
             //Media Views
+            serviceCollection.AddTransient<IExploreView>(x => new ExploreView());
             serviceCollection.AddTransient<IIncrementalInstaMediaView>(x => new IncrementalInstaMediaView());
 
             //Profile Views
@@ -145,6 +161,11 @@ namespace WinstaNext
             serviceCollection.AddTransient<IPlaceProfileView>(x => new PlaceProfileView());
             serviceCollection.AddTransient<IUserProfileView>(x => new UserProfileView());
 
+            //Search Views
+            serviceCollection.AddTransient<ISearchView>(x => new SearchView());
+
+            //Settings View
+            serviceCollection.AddTransient<ISettingsView>(x => new SettingsView());
         }
 
         DisplayRequest CreateDisplayRequestInstance(IServiceProvider arg)

@@ -3,7 +3,6 @@ using Core.Collections.IncrementalSources.Places;
 using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
 using Mapster;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using PropertyChanged;
 using Resources;
@@ -14,11 +13,11 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore.Attributes;
 using Abstractions.Navigation;
-using WinstaNext.Views.Media;
-using WinstaNext.Views.Profiles;
-using ViewModels;
+using WinstaCore;
+using WinstaCore.Interfaces.Views.Profiles;
+using WinstaCore.Interfaces.Views.Medias;
 
-namespace WinstaNext.ViewModels.Users
+namespace ViewModels.Profiles
 {
     public class PlaceProfileViewModel : BaseViewModel
     {
@@ -53,9 +52,9 @@ namespace WinstaNext.ViewModels.Users
         void NavigateToMedia(ItemClickEventArgs args)
         {
             if (args.ClickedItem is not InstaMedia media) throw new ArgumentOutOfRangeException(nameof(args.ClickedItem));
-            //var index = UserMedias.IndexOf(media);
             var para = new IncrementalMediaViewParameter(ItemsSource, media);
-            NavigationService.Navigate(typeof(IncrementalInstaMediaView), para);
+            var IncrementalInstaMediaView = AppCore.Container.GetService<IIncrementalInstaMediaView>();
+            NavigationService.Navigate(IncrementalInstaMediaView, para);
         }
 
         public override async Task OnNavigatedToAsync(NavigationEventArgs e)
@@ -64,7 +63,7 @@ namespace WinstaNext.ViewModels.Users
             if (e.Parameter is string facebookPlaceId && !string.IsNullOrEmpty(facebookPlaceId))
             {
                 if (Place != null && Place.Pk.ToString() == facebookPlaceId) return;
-                using (IInstaApi Api = App.Container.GetService<IInstaApi>())
+                using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
                 {
                     var result = await Api.LocationProcessor.GetLocationInfoAsync(facebookPlaceId);
                     if (!result.Succeeded)
@@ -149,13 +148,19 @@ namespace WinstaNext.ViewModels.Users
         public override void OnNavigatedTo(NavigationEventArgs e)
         {
             SetHeader();
-            (NavigationService.Content as PlaceProfileView).SizeChanged += UserProfileViewModel_SizeChanged;
+            if (NavigationService.Content is Page page && page is IPlaceProfileView)
+            {
+                page.SizeChanged += UserProfileViewModel_SizeChanged;
+            }
             base.OnNavigatedTo(e);
         }
 
         public override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            (NavigationService.Content as PlaceProfileView).SizeChanged -= UserProfileViewModel_SizeChanged;
+            if (NavigationService.Content is Page page && page is IPlaceProfileView)
+            {
+                page.SizeChanged -= UserProfileViewModel_SizeChanged;
+            }
             base.OnNavigatingFrom(e);
         }
     }
