@@ -15,14 +15,13 @@
     xmlns:Abstractions="using:Abstractions.Stories"
     xmlns:Converters="using:WinstaNext.Converters"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:VM="using:WinstaNext.ViewModels.Users"
     xmlns:stories="using:WinstaNext.UI.Stories"
-    xmlns:core1="using:WinstaNext.Models.Core"
     xmlns:media="using:WinstaNext.UI.Media" 
+    xmlns:VM="using:ViewModels.Profiles"
     xmlns:views="using:WinstaNext.Views"
-    xmlns:Resources="using:Resources" 
-    xmlns:Winsta="using:WinstaNext" xmlns:viewmodels="using:ViewModels"
-                mc:Ignorable="d">
+    xmlns:viewmodels="using:ViewModels"
+    xmlns:Resources="using:Resources"
+    mc:Ignorable="d">
 
     <views:BasePage.Resources>
         

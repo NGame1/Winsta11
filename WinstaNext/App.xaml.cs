@@ -158,6 +158,8 @@ namespace WinstaNext
 
             //Profile Views
             serviceCollection.AddTransient<IHashtagProfileView>(x => new HashtagProfileView());
+            serviceCollection.AddTransient<IUserFollowingsView>(x => new UserFollowingsView());
+            serviceCollection.AddTransient<IUserFollowersView>(x => new UserFollowersView());
             serviceCollection.AddTransient<IPlaceProfileView>(x => new PlaceProfileView());
             serviceCollection.AddTransient<IUserProfileView>(x => new UserProfileView());
 

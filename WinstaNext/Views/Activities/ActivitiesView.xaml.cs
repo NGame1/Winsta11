@@ -3,8 +3,8 @@ using InstagramApiSharp.Enums;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using WinstaCore.Helpers.ExtensionMethods;
 using WinstaCore.Interfaces.Views.Activities;
-using WinstaNext.Helpers.ExtensionMethods;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 

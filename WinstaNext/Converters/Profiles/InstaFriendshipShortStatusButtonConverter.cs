@@ -2,9 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Resources;
 using System;
+using ViewModels.Profiles;
 using Windows.UI.Xaml.Data;
 using WinstaCore.Services;
-using WinstaNext.ViewModels.Users;
 using WinstaNext.Views.Profiles;
 
 namespace WinstaNext.Converters.Profiles

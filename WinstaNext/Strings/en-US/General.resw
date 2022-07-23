@@ -210,6 +210,9 @@
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="SubmitPhoneNumber" xml:space="preserve">
+    <value>Submit phone number</value>
+  </data>
   <data name="System" xml:space="preserve">
     <value>Use System Settings</value>
   </data>

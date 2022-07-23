@@ -1,10 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Resources;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WinstaCore;
@@ -18,7 +14,12 @@ namespace WinstaNext.Services
     {
         static void StopPush()
         {
-            MainPageViewModel.mainPageViewModel.StopPushClient();
+            try
+            {
+                if (MainPageViewModel.mainPageViewModel != null)
+                    MainPageViewModel.mainPageViewModel.StopPushClient();
+            }
+            catch { }
         }
 
         public static void LoginToAnotherUser()

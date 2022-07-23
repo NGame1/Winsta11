@@ -139,7 +139,7 @@ namespace WinstaNext.Views.Stories
 
         void SetFlipViewSize()
         {
-            var nav = App.Container.GetService<NavigationService>();
+            var nav = App.Container.GetRequiredService<NavigationService>();
             {
                 var parentFrame = (FrameworkElement)nav.Content;
                 if (FlipView.SelectedItem is not InstaStoryItem story) return;

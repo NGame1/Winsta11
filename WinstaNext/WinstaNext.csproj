@@ -164,7 +164,6 @@
     <Compile Include="Helpers\ControlSizeHelper.cs" />
     <Compile Include="Helpers\DownloadUploadHelper\DownloadHelper.cs" />
     <Compile Include="Helpers\DownloadUploadHelper\UploadHelper.cs" />
-    <Compile Include="Helpers\ExtensionMethods\LinkClickedEventExtensions.cs" />
     <Compile Include="Helpers\NotifyHelper.cs" />
     <Compile Include="Helpers\StringCipher.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -317,7 +316,6 @@
     </Compile>
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Media\InstaMediaPresenterUCViewModel.cs" />
-    <Compile Include="ViewModels\Users\UserProfileViewModel.cs" />
     <Compile Include="Views\Account\ChallengeRequiredView.xaml.cs">
       <DependentUpon>ChallengeRequiredView.xaml</DependentUpon>
     </Compile>
@@ -798,7 +796,7 @@
       <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
-      <Version>2.8.0</Version>
+      <Version>2.7.2</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
