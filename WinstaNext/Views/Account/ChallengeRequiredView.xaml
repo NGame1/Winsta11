@@ -54,10 +54,16 @@
                 </StackPanel>
             </Grid>
         </Grid>
-
+        
         <WebView x:Load="{x:Bind ViewModel.UnknownChaalenge, Mode=OneWay}"
+                 Source="{x:Bind ViewModel.ChallengeUrl, Mode=OneWay}"
+                 Loaded="ChallengeWebView_Loaded"
+                 x:Name="ChallengeWebView"/>
+        
+        <!--<muxc:WebView2 CoreWebView2Initialized="WebView2_CoreWebView2Initialized" 
+                       x:Load="{x:Bind ViewModel.UnknownChaalenge, Mode=OneWay}"
                        Source="{x:Bind ViewModel.ChallengeUrl, Mode=OneWay}"
-                       x:Name="ChallengeWebView"/>
+                       x:Name="ChallengeWebView"/>-->
 
         <Grid x:Load="{x:Bind ViewModel.NormalChallenge, Mode=OneWay}"
               x:Name="NormalChallengeGrid">

@@ -1,5 +1,7 @@
-﻿using Microsoft.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Xaml.Controls;
+using WinstaCore;
+using WinstaCore.Helpers;
 using WinstaCore.Interfaces.Views.Accounts;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -29,5 +31,15 @@ namespace WinstaNext.Views.Account
         //    sender.CoreWebView2.Settings.IsScriptEnabled = true;
         //    sender.CoreWebView2.Settings.UserAgent = userAgent;
         //}
+
+        private void ChallengeWebView_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            var currentDevice = ViewModel.Api.GetCurrentDevice();
+            var currentUserAgent = ViewModel.Api.GetUserAgent();
+            var browswerUserAgent = $"Mozilla/5.0 (Linux; Android {currentDevice.AndroidVer.APILevel}; {currentDevice.AndroidBoardName} {currentDevice.DeviceModel} Build/{currentDevice.HardwareModel}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/91.0.4472.120 Mobile Safari/537.36";
+
+            var userAgent = $"{browswerUserAgent} {currentUserAgent}";
+            WebViewUserAgentHelper.SetUserAgent(userAgent);
+        }
     }
 }
