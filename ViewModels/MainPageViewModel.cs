@@ -56,23 +56,23 @@ namespace ViewModels
         /// <summary>
         /// Items at the top of the NavigationView.
         /// </summary>
-        internal ExtendedObservableCollection<MenuItemModel> MenuItems { get; } = new();
+        public ExtendedObservableCollection<MenuItemModel> MenuItems { get; } = new();
 
         /// <summary>
         /// Gets or sets the list of items to displayed in the Search Box after a search.
         /// </summary>
-        internal ExtendedObservableCollection<InstaUser> SearchResults { get; } = new();
+        public ExtendedObservableCollection<InstaUser> SearchResults { get; } = new();
 
         /// <summary>
         /// Items at the bottom of the NavigationView.
         /// </summary>
-        internal ExtendedObservableCollection<MenuItemModel> FooterMenuItems { get; } = new();
+        public ExtendedObservableCollection<MenuItemModel> FooterMenuItems { get; } = new();
 
         /// <summary>
         /// Gets or sets the selected menu item in the NavitationView.
         /// </summary>
         [OnChangedMethod(nameof(SelectedMenuItemChanged))]
-        internal MenuItemModel SelectedMenuItem { get; set; }
+        public MenuItemModel SelectedMenuItem { get; set; }
 
         public Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode NavigationViewDisplayMode { get; set; }
 

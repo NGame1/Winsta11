@@ -32,7 +32,7 @@ namespace ViewModels.Activities
 
         public override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            if(lastCheck != null)
+            if (lastCheck != null)
             {
                 if (DateTime.Now.Subtract(lastCheck.Value).TotalMinutes < 2) return;
                 Instance.RequestRefresh();

@@ -53,6 +53,7 @@ namespace Resources
         public string Search { get => _resource.GetString(nameof(Search)); }
         public string SearchPlaceHolder { get => _resource.GetString(nameof(SearchPlaceHolder)); }
         public string Settings { get => _resource.GetString(nameof(Settings)); }
+        public string SubmitPhoneNumber { get => _resource.GetString(nameof(SubmitPhoneNumber)); }
         public string System { get => _resource.GetString(nameof(System)); }
         public string UserIdentifier { get => _resource.GetString(nameof(UserIdentifier)); }
         public string Username { get => _resource.GetString(nameof(Username)); }
