@@ -314,7 +314,6 @@
     <Compile Include="UI\Stories\StickersView\StickersViewGrid.xaml.cs">
       <DependentUpon>StickersViewGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Media\InstaMediaPresenterUCViewModel.cs" />
     <Compile Include="Views\Account\ChallengeRequiredView.xaml.cs">
       <DependentUpon>ChallengeRequiredView.xaml</DependentUpon>

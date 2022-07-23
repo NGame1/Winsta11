@@ -5,7 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WinstaCore;
 using WinstaCore.Services;
-using WinstaNext.ViewModels;
+using ViewModels;
 using WinstaNext.Views.Account;
 
 namespace WinstaNext.Services
