@@ -10,11 +10,11 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using WinstaNext.Constants;
 using WinstaNext.Helpers.DownloadUploadHelper;
 using WinstaCore.Services;
 using WinstaNext.Views.Profiles;
 using Resources;
+using WinstaCore.Constants;
 
 namespace WinstaNext.UI.Flyouts.Stories
 {

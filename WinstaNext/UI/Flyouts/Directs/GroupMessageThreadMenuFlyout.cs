@@ -9,7 +9,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using WinstaNext.Constants;
+using WinstaCore.Constants;
 
 namespace WinstaNext.UI.Flyouts.Directs
 {

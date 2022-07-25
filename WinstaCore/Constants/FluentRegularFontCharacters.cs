@@ -1,6 +1,6 @@
-﻿namespace WinstaNext.Constants
+﻿namespace WinstaCore.Constants
 {
-    internal partial class FluentRegularFontCharacters
+    public partial class FluentRegularFontCharacters
     {
         public const string Accessibility = "\u0207";
 
@@ -405,7 +405,7 @@
         public const string ZoomOut = "\uF8C7";
     }
 
-    internal partial class FluentRegularFontCharacters
+    public partial class FluentRegularFontCharacters
     {
         public const string Cat = AnimalCat;
 

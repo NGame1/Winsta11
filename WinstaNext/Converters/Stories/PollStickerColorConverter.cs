@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
-using WinstaNext.Constants.Instagram.Stories;
+using WinstaCore.Constants.Instagram.Stories;
 
 namespace WinstaNext.Converters.Stories
 {

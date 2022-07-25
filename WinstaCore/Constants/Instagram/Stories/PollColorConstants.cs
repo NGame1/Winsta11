@@ -1,6 +1,6 @@
 ﻿using Windows.UI;
 
-namespace WinstaNext.Constants.Instagram.Stories
+namespace WinstaCore.Constants.Instagram.Stories
 {
     public static class PollColorConstants
     {

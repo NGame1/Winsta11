@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Shapes;
-using WinstaNext.Constants;
+using WinstaCore.Constants;
 using WinstaCore.Services;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Profiles;

@@ -9,10 +9,10 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using WinstaNext.Constants;
 using WinstaNext.Views.Profiles;
 using System.Linq;
 using Resources;
+using WinstaCore.Constants;
 
 namespace WinstaNext.UI.Flyouts.Directs
 {
