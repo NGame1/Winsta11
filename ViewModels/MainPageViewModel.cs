@@ -36,6 +36,8 @@ using WinstaCore.Interfaces.Views.Search;
 using NotificationHandler;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
+using InstagramApiSharp.Classes;
+using WinstaCore.Interfaces.Views.Accounts;
 
 namespace ViewModels
 {
@@ -105,8 +107,8 @@ namespace ViewModels
             ToggleNavigationViewPane = new(ToggleNavigationPane);
             _themeListener.ThemeChanged += MainPageViewModel_ThemeChanged;
 
-            new Thread(GetDirectsCountAsync).Start();
             new Thread(SyncLauncher).Start();
+            new Thread(GetDirectsCountAsync).Start();
             new Thread(GetMyUser).Start();
             SystemNavigationManager = SystemNavigationManager.GetForCurrentView();
             SystemNavigationManager.BackRequested += MainPageViewModel_BackRequested;
@@ -143,7 +145,7 @@ namespace ViewModels
             {
                 var result = await Api.MessagingProcessor
                                       .GetDirectInboxAsync(PaginationParameters.MaxPagesToLoad(1));
-                if (!result.Succeeded) throw result.Info.Exception;
+                if (!result.Succeeded) return;
                 var value = result.Value;
                 var count = value.PendingRequestsCount + value.Inbox.UnseenCount;
 
@@ -201,8 +203,41 @@ namespace ViewModels
         {
             using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
             {
-                await Api.LauncherSyncAsync();
+                var syncres = await Api.LauncherSyncAsync();
+
                 await Api.PushProcessor.RegisterPushAsync();
+                if (!syncres.Succeeded)
+                {
+                    if (syncres.Info.ResponseType == ResponseType.ChallengeRequired)
+                    {// handle birthday challenge
+                        if (syncres.Info.Challenge != null)
+                        {
+                            var challenge = await Api.GetChallengeRequireVerifyMethodAsync();
+                            if (challenge.Succeeded)
+                            {
+                                if (challenge.Value.IsBirthdayChallenge)
+                                {
+                                    // this function will automatically set an birthday to your account,
+                                    // so you don't need to do anything
+                                    await Api.GetDeltaChallengeAsync();
+                                }
+
+                                return;
+                            }
+                        }
+
+                        var challengeData = await Api.GetLoggedInChallengeDataInfoAsync();
+                        // Do something to challenge data, if you want!
+
+                        var acceptChallenge = await Api.AcceptChallengeAsync();
+                        // If Succeeded was TRUE, you can continue to your work!
+                        if (!acceptChallenge.Succeeded)
+                        {
+                            var ChallengeRequiredView = AppCore.Container.GetService<IChallengeRequiredView>();
+                            NavigationService.Navigate(ChallengeRequiredView, Api);
+                        }
+                    }
+                }
             }
             StartPushClient();
         }
