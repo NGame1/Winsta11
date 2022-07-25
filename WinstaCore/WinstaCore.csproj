@@ -165,6 +165,7 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\WindowManagerService.cs" />
     <Compile Include="Theme\AppTheme.cs" />
+    <Compile Include="Utils\EncryptedPasswordEncryptor.cs" />
     <EmbeddedResource Include="Properties\WinstaCore.rd.xml" />
   </ItemGroup>
   <!--For 14399 Min Target and Above-->
