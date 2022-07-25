@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace WinstaNext.Models.TemplateSelectors.Stories
+namespace TemplateSelectors
 {
     public class WinstaStoryItemTemplateSelector : DataTemplateSelector
     {

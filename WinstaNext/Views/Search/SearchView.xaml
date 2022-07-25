@@ -1,12 +1,12 @@
 ﻿<views:BasePage NavigationCacheMode="Enabled"
     xmlns:views="using:WinstaNext.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:searches="using:WinstaNext.Models.TemplateSelectors.Searches" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:models="using:InstagramApiSharp.Classes.Models"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:TemplateSelectors="using:TemplateSelectors"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     x:Class="WinstaNext.Views.Search.SearchView"
     xmlns:search="using:WinstaNext.UI.Search"
@@ -43,10 +43,10 @@
             </search:PlaceSearchUC>
         </DataTemplate>
 
-        <searches:SearchItemTemplateSelector x:Key="SearchItemTemplateSelector"
-                                             HashtagTemplate="{StaticResource HashtagTemplate}"
-                                             PlaceTemplate="{StaticResource PlaceTemplate}"
-                                             UserTemplate="{StaticResource UserTemplate}"/>
+        <TemplateSelectors:SearchItemTemplateSelector x:Key="SearchItemTemplateSelector"
+                           HashtagTemplate="{StaticResource HashtagTemplate}"
+                           PlaceTemplate="{StaticResource PlaceTemplate}"
+                           UserTemplate="{StaticResource UserTemplate}"/>
     </views:BasePage.Resources>
 
     <views:BasePage.DataContext>

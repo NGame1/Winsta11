@@ -2,9 +2,9 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace WinstaNext.Models.TemplateSelectors.Searches
+namespace TemplateSelectors
 {
-    internal class WinstaStoryFeedItemTemplateSelector : DataTemplateSelector
+    public class WinstaStoryFeedItemTemplateSelector : DataTemplateSelector
     {
         public DataTemplate BroadcastTemplate { get; set; }
         public DataTemplate HashtagStoryTemplate { get; set; }

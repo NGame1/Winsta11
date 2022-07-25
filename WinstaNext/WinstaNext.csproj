@@ -170,13 +170,6 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Enums\DownloadDestinationEnum.cs" />
-    <Compile Include="Models\TemplateSelectors\Activities\RecentActivityFeedItemTemplateSelector.cs" />
-    <Compile Include="Models\TemplateSelectors\Directs\InstaDirectInboxItemTemplateSelector.cs" />
-    <Compile Include="Models\TemplateSelectors\Directs\InstaDirectInboxThreadTemplateSelector.cs" />
-    <Compile Include="Models\TemplateSelectors\Media\CarouselMediaTemplateSelector.cs" />
-    <Compile Include="Models\TemplateSelectors\Searches\SearchItemTemplateSelector.cs" />
-    <Compile Include="Models\TemplateSelectors\Searches\WinstaStoryFeedItemTemplateSelector.cs" />
-    <Compile Include="Models\TemplateSelectors\Stories\WinstaStoryItemTemplateSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountManagementService.cs" />
     <Compile Include="UI\Comments\InstaCommentPresenterUC.xaml.cs">
@@ -879,6 +872,10 @@
     <ProjectReference Include="..\Resources\Resources.csproj">
       <Project>{6ff6e373-2336-47c5-9e08-3ee537de2e76}</Project>
       <Name>Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateSelectors\TemplateSelectors.csproj">
+      <Project>{4e1802fa-191e-4025-846b-68eab62639c4}</Project>
+      <Name>TemplateSelectors</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewModels\ViewModels.csproj">
       <Project>{a33497a2-42a9-4355-a047-9b7b6afd7b65}</Project>

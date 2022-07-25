@@ -1,16 +1,11 @@
 ﻿using InstagramApiSharp.Classes.Models;
 using InstagramApiSharp.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace WinstaNext.Models.TemplateSelectors.Activities
+namespace TemplateSelectors
 {
-    internal class RecentActivityFeedItemTemplateSelector : DataTemplateSelector
+    public class RecentActivityFeedItemTemplateSelector : DataTemplateSelector
     {
         public DataTemplate CommentLikeTemplate { get; set; }
         public DataTemplate FollowTemplate { get; set; }

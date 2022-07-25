@@ -1,15 +1,10 @@
 ﻿using InstagramApiSharp.Classes.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace WinstaNext.Models.TemplateSelectors.Searches
+namespace TemplateSelectors
 {
-    internal class SearchItemTemplateSelector : DataTemplateSelector
+    public class SearchItemTemplateSelector : DataTemplateSelector
     {
         public DataTemplate UserTemplate { get; set; }
         public DataTemplate PlaceTemplate { get; set; }

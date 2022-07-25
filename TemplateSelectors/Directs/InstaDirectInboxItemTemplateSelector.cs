@@ -3,7 +3,7 @@ using InstagramApiSharp.Classes.Models;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace WinstaNext.Models.TemplateSelectors.Directs
+namespace TemplateSelectors
 {
     public class InstaDirectInboxItemTemplateSelector : DataTemplateSelector
     {

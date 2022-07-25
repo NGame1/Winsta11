@@ -2,12 +2,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:messagecontainer="using:WinstaNext.UI.Directs.MessageContainer"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:directs="using:WinstaNext.Models.TemplateSelectors.Directs"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:directs2="using:WinstaNext.UI.Flyouts.Directs"
       x:Class="WinstaNext.Views.Directs.DirectThreadView"
       xmlns:models="using:Abstractions.Direct.Models" 
+    xmlns:TemplateSelectors="using:TemplateSelectors"
       xmlns:Converters="using:WinstaNext.Converters"
       xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
       xmlns:directs1="using:WinstaNext.UI.Directs"
@@ -175,22 +175,22 @@
             </messagecontainer:NotSupportedMessageContainerUC>
         </DataTemplate>
 
-        <directs:InstaDirectInboxItemTemplateSelector x:Key="InstaDirectInboxItemTemplateSelector"
-                                                      AnimatedGifMessageDataTemplate="{StaticResource AnimatedGifMessageDataTemplate}"
-                                                      PlaceholderMessageDataTemplate="{StaticResource PlaceholderMessageDataTemplate}"
-                                                      IGTVShareTemplate="{StaticResource IGTVShareMessageContainerDataTemplate}"
-                                                      XmaMediaShareTemplate="{StaticResource XmaMediaShareMessageDataTemplate}"
-                                                      ProfileMessageDataTemplate="{StaticResource ProfileMessageDataTemplate}"
-                                                      VoiceMessageDataTemplate="{StaticResource VoiceMessageDataTemplate}"
-                                                      NotSupportedMessageType="{StaticResource NotSupportedDataTemplate}"
-                                                      LinkMessageDataTemplate="{StaticResource LinkMessageDataTemplate}"
-                                                      MediaShareTemplate="{StaticResource MediaShareMessageContainerUC}"
-                                                      TextMessageDataTemplate="{StaticResource TextMessageDataTemplate}"
-                                                      ClipTemplate="{StaticResource ClipMessageContainerDataTemplate}"
-                                                      StoryReplyDataTemplate="{StaticResource StoryReplyDataTemplate}"
-                                                      StoryShareDataTemplate="{StaticResource StoryShareDataTemplate}"
-                                                      MediaMessageType="{StaticResource MediaMessageDataTemplate}"
-                                                      LikeTemplate="{StaticResource LikeMessageContainerUC}"/>
+        <TemplateSelectors:InstaDirectInboxItemTemplateSelector x:Key="InstaDirectInboxItemTemplateSelector"
+                           AnimatedGifMessageDataTemplate="{StaticResource AnimatedGifMessageDataTemplate}"
+                           PlaceholderMessageDataTemplate="{StaticResource PlaceholderMessageDataTemplate}"
+                           IGTVShareTemplate="{StaticResource IGTVShareMessageContainerDataTemplate}"
+                           XmaMediaShareTemplate="{StaticResource XmaMediaShareMessageDataTemplate}"
+                           ProfileMessageDataTemplate="{StaticResource ProfileMessageDataTemplate}"
+                           VoiceMessageDataTemplate="{StaticResource VoiceMessageDataTemplate}"
+                           NotSupportedMessageType="{StaticResource NotSupportedDataTemplate}"
+                           LinkMessageDataTemplate="{StaticResource LinkMessageDataTemplate}"
+                           MediaShareTemplate="{StaticResource MediaShareMessageContainerUC}"
+                           TextMessageDataTemplate="{StaticResource TextMessageDataTemplate}"
+                           ClipTemplate="{StaticResource ClipMessageContainerDataTemplate}"
+                           StoryReplyDataTemplate="{StaticResource StoryReplyDataTemplate}"
+                           StoryShareDataTemplate="{StaticResource StoryShareDataTemplate}"
+                           MediaMessageType="{StaticResource MediaMessageDataTemplate}"
+                           LikeTemplate="{StaticResource LikeMessageContainerUC}"/>
     </Page.Resources>
 
     <Grid>
