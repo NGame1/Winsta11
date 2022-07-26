@@ -6,6 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Abstractions.Navigation;
+using WinstaCore.Constants;
 using WinstaCore.Services;
 using WinstaNext.Views.Media;
 using WinstaNext.Views.Stories;
@@ -74,7 +75,7 @@ namespace WinstaNext.UI.Flyouts.Profiles
                 {
                     Icon = new FontIcon()
                     {
-                        Glyph = Constants.FluentRegularFontCharacters.Image,
+                        Glyph = FluentRegularFontCharacters.Image,
                         FontFamily = FluentSystemIconsRegular,
                         FontSize = 24
                     },
@@ -90,7 +91,7 @@ namespace WinstaNext.UI.Flyouts.Profiles
                     {
                         Icon = new FontIcon()
                         {
-                            Glyph = Constants.FluentRegularFontCharacters.Movie,
+                            Glyph = FluentRegularFontCharacters.Movie,
                             FontFamily = FluentSystemIconsRegular,
                             FontSize = 24
                         },

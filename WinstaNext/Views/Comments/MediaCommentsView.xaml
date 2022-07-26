@@ -8,7 +8,7 @@
     xmlns:converters="using:WinstaNext.Converters"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:comments="using:WinstaNext.UI.Comments" 
-    xmlns:Constants="using:WinstaNext.Constants"
+    xmlns:Constants="using:WinstaCore.Constants"
     xmlns:views="using:WinstaNext.Views" 
     xmlns:VM="using:ViewModels.Comments"
     xmlns:Resources="using:Resources" 

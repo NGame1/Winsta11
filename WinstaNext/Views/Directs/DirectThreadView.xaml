@@ -11,7 +11,7 @@
       xmlns:Converters="using:WinstaNext.Converters"
       xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
       xmlns:directs1="using:WinstaNext.UI.Directs"
-      xmlns:Constants="using:WinstaNext.Constants"
+      xmlns:Constants="using:WinstaCore.Constants"
       xmlns:Resources="using:Resources" 
       d:DesignHeight="300"
       d:DesignWidth="400"
@@ -269,7 +269,7 @@
 
                 <muxc:TeachingTip.IconSource>
                     <muxc:FontIconSource Glyph="{x:Bind Constants:FluentRegularFontCharacters.Reply}"
-                                                     FontFamily="{StaticResource FluentSystemIconsRegular}"/>
+                                         FontFamily="{StaticResource FluentSystemIconsRegular}"/>
                 </muxc:TeachingTip.IconSource>
             </muxc:TeachingTip>
 
