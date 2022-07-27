@@ -18,28 +18,28 @@ namespace WinstaNext.Views.Account
             this.InitializeComponent();
         }
 
-        //private void WebView2_CoreWebView2Initialized(WebView2 sender, CoreWebView2InitializedEventArgs args)
-        //{
-        //    var currentDevice = ViewModel.Api.GetCurrentDevice();
-        //    var currentUserAgent = ViewModel.Api.GetUserAgent();
-        //    var browswerUserAgent = $"Mozilla/5.0 (Linux; Android {currentDevice.AndroidVer.APILevel}; {currentDevice.AndroidBoardName} {currentDevice.DeviceModel} Build/{currentDevice.HardwareModel}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/91.0.4472.120 Mobile Safari/537.36";
-
-        //    var userAgent = $"{browswerUserAgent} {currentUserAgent}";
-
-        //    sender.CoreWebView2.Settings.IsSwipeNavigationEnabled = false;
-        //    sender.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
-        //    sender.CoreWebView2.Settings.IsScriptEnabled = true;
-        //    sender.CoreWebView2.Settings.UserAgent = userAgent;
-        //}
-
-        private void ChallengeWebView_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void WebView2_CoreWebView2Initialized(WebView2 sender, CoreWebView2InitializedEventArgs args)
         {
             var currentDevice = ViewModel.Api.GetCurrentDevice();
             var currentUserAgent = ViewModel.Api.GetUserAgent();
             var browswerUserAgent = $"Mozilla/5.0 (Linux; Android {currentDevice.AndroidVer.APILevel}; {currentDevice.AndroidBoardName} {currentDevice.DeviceModel} Build/{currentDevice.HardwareModel}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/91.0.4472.120 Mobile Safari/537.36";
 
             var userAgent = $"{browswerUserAgent} {currentUserAgent}";
-            WebViewUserAgentHelper.SetUserAgent(userAgent);
+
+            sender.CoreWebView2.Settings.IsSwipeNavigationEnabled = false;
+            sender.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+            sender.CoreWebView2.Settings.IsScriptEnabled = true;
+            sender.CoreWebView2.Settings.UserAgent = userAgent;
         }
+
+        //private void ChallengeWebView_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        //{
+        //    var currentDevice = ViewModel.Api.GetCurrentDevice();
+        //    var currentUserAgent = ViewModel.Api.GetUserAgent();
+        //    var browswerUserAgent = $"Mozilla/5.0 (Linux; Android {currentDevice.AndroidVer.APILevel}; {currentDevice.AndroidBoardName} {currentDevice.DeviceModel} Build/{currentDevice.HardwareModel}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/91.0.4472.120 Mobile Safari/537.36";
+
+        //    var userAgent = $"{browswerUserAgent} {currentUserAgent}";
+        //    WebViewUserAgentHelper.SetUserAgent(userAgent);
+        //}
     }
 }

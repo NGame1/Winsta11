@@ -14,11 +14,11 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:generic="using:WinstaNext.UI.Generic"
     xmlns:flyouts="using:WinstaNext.UI.Flyouts"
-    xmlns:VM="using:ViewModels" 
     xmlns:views="using:WinstaNext.Views" 
     xmlns:Resources="using:Resources"
     x:Class="WinstaNext.MainPage"
     NavigationCacheMode="Enabled"
+    xmlns:VM="using:ViewModels"
     mc:Ignorable="d">
 
     <Page.Resources>
