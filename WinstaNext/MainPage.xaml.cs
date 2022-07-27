@@ -4,12 +4,8 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media.Animation;
 using WinstaNext.Views;
 using WinstaCore.Interfaces.Views;
-using Abstractions.Navigation;
-using WinstaCore.Models.Core;
-using WinstaCore;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -18,8 +14,7 @@ namespace WinstaNext
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : BasePage, IMainView,
-        IRecipient<NavigateToPageMessage>
+    public sealed partial class MainPage : BasePage, IMainView
     {
         private const string CompactOverlayStateName = "CompactOverlay";
         private const string NavigationViewExpandedStateName = "NavigationViewExpanded";
@@ -30,7 +25,6 @@ namespace WinstaNext
         public MainPage()
         {
             this.InitializeComponent();
-            WeakReferenceMessenger.Default.RegisterAll(this);
             NavigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.LeftCompact;
             Window.Current.SetTitleBar(AppTitleBar);
             Loaded += MainPage_Loaded;
@@ -112,26 +106,6 @@ namespace WinstaNext
         private void SearchBoxKeyboardAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
         {
             SearchBox.Focus(FocusState.Keyboard);
-        }
-
-        public void Receive(NavigateToPageMessage message)
-        {
-            if (!Dispatcher.HasThreadAccess) return;
-            if (!message.View.IsInterface)
-            {
-                ContentFrame.Navigate(
-                    message.View,
-                    new NavigationParameter(message.Parameter),
-                    new EntranceNavigationTransitionInfo());
-            }
-            else
-            {
-                var messageView = AppCore.Container.GetService(message.View);
-                ContentFrame.Navigate(
-                    messageView.GetType(),
-                    new NavigationParameter(message.Parameter),
-                    new EntranceNavigationTransitionInfo());
-            }
         }
 
         private void NavigationView_BackRequested(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewBackRequestedEventArgs args)

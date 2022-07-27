@@ -346,27 +346,6 @@ namespace ViewModels
                 default:
                     break;
             }
-            //switch (obj.Content.GetType().Name)
-            //{
-            //    case "HomeView":
-            //        SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(HomeView));
-            //        break;
-
-            //    case "ActivitiesView":
-            //        SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(ActivitiesView));
-            //        break;
-
-            //    case "DirectsListView":
-            //        SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(DirectsListView));
-            //        break;
-
-            //    case "SettingsView":
-            //        SelectedMenuItem = FooterMenuItems.FirstOrDefault(x => x.View == typeof(SettingsView));
-            //        break;
-
-            //    default:
-            //        break;
-            //}
         }
 
         private void MainPageViewModel_ThemeChanged(ThemeListener sender)
@@ -381,7 +360,8 @@ namespace ViewModels
             if (NavigationService.Content != null && NavigationService.Content.GetType() == SelectedMenuItem.View) return;
             if (SelectedMenuItem.View != null)
             {
-                WeakReferenceMessenger.Default.Send(new NavigateToPageMessage(SelectedMenuItem.View));
+                var page = (IView)AppCore.Container.GetService(SelectedMenuItem.View);
+                NavigationService.Navigate(page);
             }
         }
 
