@@ -155,7 +155,6 @@
     <Compile Include="Interfaces\Views\Settings\ISettingsView.cs" />
     <Compile Include="Models\ConfigureDelays\ImageConfigureMediaDelay.cs" />
     <Compile Include="Models\ConfigureDelays\VideoConfigureMediaDelay.cs" />
-    <Compile Include="Models\Core\ChangePageHeaderMessage.cs" />
     <Compile Include="Models\Core\ChangeSelectedMenuItemMessage.cs" />
     <Compile Include="Models\Core\WinstaSynchContext.cs" />
     <Compile Include="Models\LanguageDefinition.cs" />

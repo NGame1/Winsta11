@@ -2,7 +2,6 @@
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
-using Resources;
 using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -13,8 +12,6 @@ namespace ViewModels.Profiles
 {
     public class UserFollowersViewModel : BaseViewModel
     {
-        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.Followers;
-
         IncrementalUserFollowers UserFollowersInstance { get; set; }
 
         public IncrementalLoadingCollection<IncrementalUserFollowers, InstaUserShort> UserFollowers { get; set; }

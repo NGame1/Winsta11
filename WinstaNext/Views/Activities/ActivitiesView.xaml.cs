@@ -1,6 +1,7 @@
 ﻿using InstagramApiSharp.Classes.Models;
 using InstagramApiSharp.Enums;
 using Microsoft.Toolkit.Uwp.UI.Controls;
+using Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WinstaCore.Helpers.ExtensionMethods;
@@ -15,6 +16,8 @@ namespace WinstaNext.Views.Activities
     /// </summary>
     public sealed partial class ActivitiesView : BasePage, IActivitiesView
     {
+        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.Activities;
+
         public ActivitiesView()
         {
             this.InitializeComponent();

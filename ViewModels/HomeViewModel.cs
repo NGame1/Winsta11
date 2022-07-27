@@ -20,8 +20,6 @@ namespace ViewModels
         public IncrementalFeedStories FeedStories { get; } = new();
         public IncrementalHomeMedia FeedMedia { get; } = new(AppCore.IsDark);
 
-        public override string PageHeader { get; protected set; } = string.Empty;
-
         public HomeViewModel() : base()
         {
             Medias = new(FeedMedia);

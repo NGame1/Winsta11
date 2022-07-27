@@ -1,5 +1,7 @@
 ﻿// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
+using Resources;
+
 namespace WinstaNext.Views.Media
 {
     /// <summary>
@@ -7,6 +9,8 @@ namespace WinstaNext.Views.Media
     /// </summary>
     public sealed partial class MediaLikersView : BasePage
     {
+        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.MediaLikers;
+
         public MediaLikersView()
         {
             this.InitializeComponent();

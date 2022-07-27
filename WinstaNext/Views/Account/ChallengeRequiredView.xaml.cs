@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.UI.Xaml.Controls;
-using WinstaCore;
-using WinstaCore.Helpers;
+﻿using Microsoft.UI.Xaml.Controls;
 using WinstaCore.Interfaces.Views.Accounts;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -13,6 +10,8 @@ namespace WinstaNext.Views.Account
     /// </summary>
     public sealed partial class ChallengeRequiredView : BasePage, IChallengeRequiredView
     {
+        public override string PageHeader { get; protected set; }
+
         public ChallengeRequiredView()
         {
             this.InitializeComponent();

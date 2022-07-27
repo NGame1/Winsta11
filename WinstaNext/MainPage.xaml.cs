@@ -19,12 +19,13 @@ namespace WinstaNext
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : BasePage, IMainView,
-        IRecipient<ChangePageHeaderMessage>,
         IRecipient<NavigateToPageMessage>
     {
         private const string CompactOverlayStateName = "CompactOverlay";
         private const string NavigationViewExpandedStateName = "NavigationViewExpanded";
         private const string NavigationViewCompactStateName = "NavigationViewCompact";
+
+        public override string PageHeader { get; protected set; }
 
         public MainPage()
         {
@@ -113,14 +114,6 @@ namespace WinstaNext
             SearchBox.Focus(FocusState.Keyboard);
         }
 
-        public void Receive(ChangePageHeaderMessage message)
-        {
-            if (!Dispatcher.HasThreadAccess) return;
-            NavigationView.Header = message.Title;
-            NavigationView.AlwaysShowHeader = message.ShowHeader;
-
-        }
-
         public void Receive(NavigateToPageMessage message)
         {
             if (!Dispatcher.HasThreadAccess) return;
@@ -152,6 +145,15 @@ namespace WinstaNext
             if (ViewModel.NavigationService.CanGoBack)
                 ViewModel.NavigationService.GoBack();
             args.Handled = true;
+        }
+
+        private void ContentFrame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        {
+            if (e.Content is BasePage page)
+            {
+                NavigationView.Header = page.PageHeader;
+                NavigationView.AlwaysShowHeader = !string.IsNullOrEmpty(page.PageHeader);
+            }
         }
     }
 }

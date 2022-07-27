@@ -4,7 +4,6 @@ using Microsoft.Toolkit.Mvvm.Input;
 using Resources;
 using System.Threading;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore;
 using WinstaCore.Helpers;
@@ -15,7 +14,6 @@ namespace ViewModels.Account
 {
     public class LoginViewModel : BaseViewModel
     {
-        public override string PageHeader { get; protected set; }
         IInstaApi Api { get; }
         public string UserIdentifier { get; set; }
         public string Password { get; set; }

@@ -13,6 +13,8 @@ namespace WinstaNext.Views.Account
     /// </summary>
     public sealed partial class TwoFactorAuthView : BasePage, ITwoFactorAuthView
     {
+        public override string PageHeader { get; protected set; }
+
         public TwoFactorAuthView()
         {
             this.InitializeComponent();

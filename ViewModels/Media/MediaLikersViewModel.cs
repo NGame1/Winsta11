@@ -2,7 +2,6 @@
 using Core.Collections.IncrementalSources.Media;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
-using Resources;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore;
@@ -14,7 +13,6 @@ namespace ViewModels.Media
     {
         public IncrementalMediaLikers Instance { get; private set; }
         public IncrementalLoadingCollection<IncrementalMediaLikers, WinstaMediaLikerUser> MediaLikers { get; private set; }
-        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.MediaLikers;
 
         public RelayCommand<ItemClickEventArgs> NavigateToUserCommand { get; set; }
 

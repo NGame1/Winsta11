@@ -22,7 +22,6 @@ namespace ViewModels.Profiles
 {
     public class HashtagProfileViewModel : BaseViewModel
     {
-        public override string PageHeader { get; protected set; }
         public double ViewHeight { get; set; }
         public double ViewWidth { get; set; }
 

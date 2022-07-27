@@ -16,6 +16,8 @@ namespace WinstaNext.Views.Profiles
     [AddINotifyPropertyChangedInterface]
     public sealed partial class PlaceProfileView : BasePage, IPlaceProfileView
     {
+        public override string PageHeader { get; protected set; }
+
         ItemsWrapGrid? WrapGrid { get; set; }
         public PlaceProfileView()
         {

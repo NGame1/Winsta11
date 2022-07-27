@@ -13,6 +13,8 @@ namespace WinstaNext.Views.Account
     /// </summary>
     public sealed partial class LoginView : BasePage, ILoginView
     {
+        public override string PageHeader { get; protected set; }
+
         InputPane InputPane { get; }
         public LoginView()
         {

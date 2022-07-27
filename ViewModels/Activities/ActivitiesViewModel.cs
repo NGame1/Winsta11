@@ -17,8 +17,6 @@ namespace ViewModels.Activities
 
         public IncrementalLoadingCollection<IncrementalUserActivities, InstaRecentActivityFeed> Activities { get; }
 
-        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.Activities;
-
         public AsyncRelayCommand<InstaRecentActivityFeed> ApproveFollowRequestCommand { get; set; }
         public AsyncRelayCommand<InstaRecentActivityFeed> RejectFollowRequestCommand { get; set; }
         static DateTime? lastCheck = null;

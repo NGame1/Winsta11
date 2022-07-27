@@ -10,6 +10,8 @@ namespace WinstaNext.Views.Stories
     /// </summary>
     public sealed partial class StoryCarouselView : BasePage
     {
+        public override string PageHeader { get; protected set; }
+
         public StoryCarouselView()
         {
             this.InitializeComponent();

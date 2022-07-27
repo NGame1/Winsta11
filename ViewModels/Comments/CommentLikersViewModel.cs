@@ -12,8 +12,6 @@ namespace ViewModels.Comments
 {
     public class CommentLikersViewModel : BaseViewModel
     {
-        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.CommentLikers;
-
         IncrementalCommentLikers Instance { get; set; }
         public IncrementalLoadingCollection<IncrementalCommentLikers, InstaUserShort> CommentLikers { get; private set; }
 

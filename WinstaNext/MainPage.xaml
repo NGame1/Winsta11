@@ -223,7 +223,8 @@
                 HorizontalScrollMode="Disabled">-->
             <Grid x:Name="ScrollViewerContent">
                 <Frame XYFocusLeft="{x:Bind NavigationView}"
-                        Name="ContentFrame">
+                       Navigated="ContentFrame_Navigated"
+                       Name="ContentFrame">
                     <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Navigated">
                             <core:InvokeCommandAction Command="{x:Bind ViewModel.FrameNavigatedCommand}"/>

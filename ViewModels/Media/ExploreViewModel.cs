@@ -2,22 +2,18 @@
 using Core.Collections.IncrementalSources.Media;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Mvvm.Input;
-using Resources;
 using System;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore;
 using WinstaCore.Attributes;
-using WinstaCore.Interfaces.Views;
 using WinstaCore.Interfaces.Views.Medias;
 
 namespace ViewModels.Media
 {
     public class ExploreViewModel : BaseViewModel
     {
-        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.Explore;
-
         IncrementalExploreMedia ExploreInstance { get; set; }
 
         public RangePlayerAttribute ExploreMedias { get; set; }

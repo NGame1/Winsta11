@@ -19,6 +19,8 @@ namespace WinstaNext.Views.Profiles
     [AddINotifyPropertyChangedInterface]
     public sealed partial class UserProfileView : BasePage, IUserProfileView
     {
+        public override string PageHeader { get; protected set; }
+
         ItemsWrapGrid? WrapGrid { get; set; }
         public UserProfileView()
         {

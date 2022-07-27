@@ -6,8 +6,11 @@ using ViewModels;
 
 namespace WinstaNext.Views
 {
-    public class BasePage : Page
+    public abstract class BasePage : Page
     {
+
+        public abstract string PageHeader { get; protected set; }
+
         public Thickness PageMargin { get => new(56, 12, 56, 0); }
 
         public BaseViewModel PageViewModel { get; private set; }

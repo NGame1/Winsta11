@@ -32,8 +32,6 @@ namespace WinstaNext.ViewModels.Media
         public bool VideoPresenterLoaded { get; set; } = false;
         public bool CarouselPresenterLoaded { get; set; } = false;
 
-        public override string PageHeader { get; protected set; }
-
         [AlsoNotifyFor(nameof(IsSendCommentButtonEnabled))]
         public string CommentText { get; set; } = "";
 

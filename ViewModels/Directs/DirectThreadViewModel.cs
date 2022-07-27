@@ -41,7 +41,6 @@ namespace WinstaNext.ViewModels.Directs
         public string MessageText { get; set; } = string.Empty;
 
         public string ThreadId { get; set; } = string.Empty;
-        public override string PageHeader { get; protected set; } = string.Empty;
 
         public DirectThreadViewModel(InstaDirectInboxThread directThread)
         {

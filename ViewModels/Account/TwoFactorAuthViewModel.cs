@@ -36,8 +36,6 @@ namespace ViewModels.Account
         public Visibility SendVerificationTextMessageVisibility { get; set; }
         public Visibility SendVerificationNotificationVisibility { get; set; }
 
-        public override string PageHeader { get; protected set; }
-
         public TwoFactorAuthViewModel()
         {
             VerifyCommand = new(VerifyAsync);

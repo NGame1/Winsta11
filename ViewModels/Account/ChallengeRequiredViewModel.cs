@@ -17,7 +17,6 @@ namespace ViewModels.Account
         public IInstaApi Api { get; set; }
 
         public AsyncRelayCommand SubmitPhoneCommand { get; set; }
-        public override string PageHeader { get; protected set; }
         public bool SubmitPhoneRequired { get; set; } = false;
         public string PhoneNumber { get; set; }
 

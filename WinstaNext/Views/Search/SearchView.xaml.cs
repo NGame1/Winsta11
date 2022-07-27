@@ -1,5 +1,6 @@
 ﻿// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
+using Resources;
 using WinstaCore.Interfaces.Views.Search;
 
 namespace WinstaNext.Views.Search
@@ -9,6 +10,8 @@ namespace WinstaNext.Views.Search
     /// </summary>
     public sealed partial class SearchView : BasePage, ISearchView
     {
+        public override string PageHeader { get; protected set; } = LanguageManager.Instance.General.Search;
+
         public SearchView()
         {
             this.InitializeComponent();

@@ -1,4 +1,5 @@
-﻿using WinstaCore.Interfaces.Views.Directs;
+﻿using Resources;
+using WinstaCore.Interfaces.Views.Directs;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -9,6 +10,8 @@ namespace WinstaNext.Views.Directs
     /// </summary>
     public sealed partial class DirectsListView : BasePage, IDirectsListView
     {
+        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.Directs;
+
         public DirectsListView()
         {
             this.InitializeComponent();

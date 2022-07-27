@@ -23,7 +23,6 @@ using WinstaCore.Theme;
 using Core.Collections;
 using WinstaCore;
 using Resources;
-using ViewModels;
 using WinstaCore.Models.Core;
 using WinstaCore.Interfaces.Views;
 using WinstaCore.Interfaces.Views.Activities;
@@ -80,9 +79,7 @@ namespace ViewModels
 
         [OnChangedMethod(nameof(OnInstaUserChanged))]
         public InstaUserShort InstaUser { get; private set; }
-
-        public override string PageHeader { get; protected set; }
-
+        
         IInstaApi PushClientApi { get; set; }
 
         public static MainPageViewModel mainPageViewModel = null;

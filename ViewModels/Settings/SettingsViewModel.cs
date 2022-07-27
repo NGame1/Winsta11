@@ -40,8 +40,6 @@ namespace ViewModels.Settings
             set => ApplicationSettingsManager.Instance.SetRemoveFeedAds(value);
         }
 
-        public override string PageHeader { get; protected set; } = LanguageManager.Instance.General.Settings;
-
         [OnChangedMethod(nameof(OnThemeChanged))]
         public AppTheme Theme { get; set; }
 

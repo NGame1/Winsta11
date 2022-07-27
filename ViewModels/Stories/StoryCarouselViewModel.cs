@@ -16,8 +16,6 @@ namespace ViewModels.Stories
 {
     public class StoryCarouselViewModel : BaseViewModel
     {
-        public override string PageHeader { get; protected set; }
-
         public IncrementalLoadingCollection<IIncrementalSource<WinstaStoryItem>, WinstaStoryItem> Stories { get; private set; }
 
         [OnChangedMethod(nameof(OnSelectedItemChanged))]

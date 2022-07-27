@@ -6,12 +6,10 @@ using InstagramApiSharp.Enums;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
 using PropertyChanged;
-using Resources;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Abstractions.Navigation;
-using ViewModels;
 using WinstaCore.Helpers;
 using WinstaCore;
 using WinstaCore.Helpers.ExtensionMethods;
@@ -21,8 +19,6 @@ namespace ViewModels.Comments
 {
     public class MediaCommentsViewModel : BaseViewModel
     {
-        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.MediaComments;
-
         [AlsoNotifyFor(nameof(IsSendCommentButtonEnabled))]
         public string CommentText { get; set; } = "";
 

@@ -22,7 +22,6 @@ using Windows.UI.Xaml.Navigation;
 using WinstaCore;
 using WinstaCore.Attributes;
 using Abstractions.Navigation;
-using ViewModels;
 using WinstaCore.Helpers.ExtensionMethods;
 using WinstaCore.Interfaces.Views.Profiles;
 using WinstaCore.Interfaces.Views.Medias;
@@ -31,7 +30,6 @@ namespace ViewModels.Profiles
 {
     public class UserProfileViewModel : BaseViewModel
     {
-        public override string PageHeader { get; protected set; }
         public double ViewHeight { get; set; }
         public double ViewWidth { get; set; }
 

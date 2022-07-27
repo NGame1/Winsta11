@@ -4,14 +4,11 @@ using Microsoft.Toolkit.Uwp;
 using PropertyChanged;
 using System;
 using Windows.UI.Xaml.Data;
-using ViewModels;
 
 namespace ViewModels.Directs
 {
     public class GiphyViewModel : BaseViewModel
     {
-        public override string PageHeader { get; protected set; }
-
         IncrementalDirectGiphyCollection DirectInstance { get; }
 
         public IncrementalLoadingCollection<IncrementalDirectGiphyCollection, GiphyItem> DirectGiphyCollection { get; }

@@ -9,6 +9,8 @@ namespace WinstaNext.Views.Media
     /// </summary>
     public sealed partial class IncrementalInstaMediaView : BasePage, IIncrementalInstaMediaView
     {
+        public override string PageHeader { get; protected set; }
+
         public IncrementalInstaMediaView()
         {
             this.InitializeComponent();

@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using Resources;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WinstaCore;
 using WinstaCore.Interfaces.Views.Medias;
@@ -11,8 +12,10 @@ namespace WinstaNext.Views.Media
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ExploreView : Page, IExploreView
+    public sealed partial class ExploreView : BasePage, IExploreView
     {
+        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.Explore;
+
         ItemsWrapGrid? WrapGrid { get; set; }
 
         public ExploreView()

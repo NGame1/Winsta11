@@ -14,7 +14,7 @@ namespace ViewModels
     public abstract class BaseViewModel : ObservableRecipient
     {
         public bool IsLoading { get; set; }
-        public abstract string PageHeader { get; protected set; }
+        //public abstract string PageHeader { get; protected set; }
 
         protected WinstaSynchronizationContext UIContext { get; }
         public NavigationService NavigationService { get; private set; }
@@ -27,9 +27,9 @@ namespace ViewModels
 
         protected void SetHeader()
         {
-            if (string.IsNullOrWhiteSpace(PageHeader))
-                Messenger.Send(new ChangePageHeaderMessage(false, PageHeader));
-            else Messenger.Send(new ChangePageHeaderMessage(true, PageHeader));
+            //if (string.IsNullOrWhiteSpace(PageHeader))
+            //    Messenger.Send(new ChangePageHeaderMessage(false, PageHeader));
+            //else Messenger.Send(new ChangePageHeaderMessage(true, PageHeader));
         }
 
         public virtual void OnNavigatedTo(NavigationEventArgs e)

@@ -1,7 +1,6 @@
 ﻿using Core.Collections.IncrementalSources.Directs;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Uwp;
-using Resources;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
@@ -10,8 +9,6 @@ namespace ViewModels.Directs
 {
     public class DirectsListViewModel : BaseViewModel
     {
-        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Instagram.Directs;
-
         IncrementalDirectInbox Instance { get; }
         public IncrementalLoadingCollection<IncrementalDirectInbox, InstaDirectInboxThread> Inbox { get; }
 

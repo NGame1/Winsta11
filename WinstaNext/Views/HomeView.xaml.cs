@@ -14,6 +14,8 @@ namespace WinstaNext.Views
     /// </summary>
     public sealed partial class HomeView : BasePage, IHomeView
     {
+        public override string PageHeader { get; protected set; }
+
         public RangePlayerAttribute Medias { get => ViewModel.Medias; }
 
         public HomeView()

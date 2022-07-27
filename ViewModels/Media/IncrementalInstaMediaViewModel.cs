@@ -13,8 +13,6 @@ namespace ViewModels.Media
 {
     public class IncrementalInstaMediaViewModel : BaseViewModel
     {
-        public override string PageHeader { get; protected set; }
-
         public RangePlayerAttribute MediaSource { get; set; }
         InstaMedia TargetMedia { get; set; }
         //int TargetIndex { get; set; }

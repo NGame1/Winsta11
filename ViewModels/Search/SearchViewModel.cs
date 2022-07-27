@@ -38,8 +38,6 @@ namespace ViewModels.Search
         [AlsoNotifyFor(nameof(SearchContext))]
         public MenuItemModel SelectedItem { get; set; }
 
-        public override string PageHeader { get; protected set; } = LanguageManager.Instance.General.Search;
-
         [OnChangedMethod(nameof(OnSearchQueryChanged))]
         public string SearchQuery { get; set; }
 
