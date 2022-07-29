@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.Toolkit.Uwp.UI.Helpers;
 using PropertyChanged;
 using Windows.ApplicationModel.Core;
@@ -23,7 +22,6 @@ using WinstaCore.Theme;
 using Core.Collections;
 using WinstaCore;
 using Resources;
-using WinstaCore.Models.Core;
 using WinstaCore.Interfaces.Views;
 using WinstaCore.Interfaces.Views.Activities;
 using WinstaCore.Interfaces.Views.Medias;

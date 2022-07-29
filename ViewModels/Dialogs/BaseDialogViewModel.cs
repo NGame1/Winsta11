@@ -5,7 +5,7 @@ using System;
 namespace ViewModels.Dialogs
 {
     [AddINotifyPropertyChangedInterface]
-    public class BaseDialogViewModel : ObservableRecipient
+    public class BaseDialogViewModel : ObservableObject
     {
         public Action HideDialogAction { get; set; }
 

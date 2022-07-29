@@ -1,5 +1,4 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Messaging;
 using PropertyChanged;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,7 +10,7 @@ using WinstaCore.Services;
 namespace ViewModels
 {
     [AddINotifyPropertyChangedInterface]
-    public abstract class BaseViewModel : ObservableRecipient
+    public abstract class BaseViewModel : ObservableObject
     {
         public bool IsLoading { get; set; }
         //public abstract string PageHeader { get; protected set; }

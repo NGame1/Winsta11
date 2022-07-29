@@ -152,10 +152,11 @@
     <EmbeddedResource Include="Properties\ViewModels.rd.xml" />
   </ItemGroup>
   <!--For 14393 Min Target and Above-->
-  <!--<ItemGroup>
-		<PackageReference Include="Microsoft.Toolkit.Mvvm">
-			<Version>4.0.0</Version>
-		</PackageReference>
+  <ItemGroup>
+	  <ProjectReference Include="..\Microsoft.Toolkit.Mvvm\Microsoft.Toolkit.Mvvm.csproj">
+		  <Project>{898C6B7E-C8FE-418F-9348-B32DA493FA10}</Project>
+		  <Name>WinstaCore</Name>
+	  </ProjectReference>
 		<PackageReference Include="Microsoft.Toolkit.Uwp">
 			<Version>4.0.0</Version>
 		</PackageReference>
@@ -165,7 +166,7 @@
 		<PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
 			<Version>4.0.0</Version>
 		</PackageReference>
-	</ItemGroup>-->
+	</ItemGroup>
   <!--For 16299 Min Target and Above-->
   <!--<ItemGroup>
 		<PackageReference Include="Microsoft.Toolkit.Mvvm">
@@ -182,7 +183,7 @@
 		</PackageReference>
 	</ItemGroup>-->
   <!--For 177763 Min Target and Above-->
-  <ItemGroup>
+  <!--<ItemGroup>
     <PackageReference Include="Microsoft.Toolkit.Mvvm">
       <Version>7.1.2</Version>
     </PackageReference>
@@ -195,7 +196,7 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
       <Version>7.1.2</Version>
     </PackageReference>
-  </ItemGroup>
+  </ItemGroup>-->
   <ItemGroup>
     <PackageReference Include="Fody">
       <Version>6.6.3</Version>
