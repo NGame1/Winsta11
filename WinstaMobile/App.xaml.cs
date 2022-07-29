@@ -38,6 +38,8 @@ using WinstaCore.Utils;
 using WinstaMobile;
 using WinstaMobile.Views;
 using WinstaMobile.Views.Account;
+using WinstaMobile.Views.Directs;
+using WinstaMobile.Views.Media;
 #nullable enable
 
 namespace WinstaMobile
@@ -130,7 +132,7 @@ namespace WinstaMobile
             //serviceCollection.AddTransient<IActivitiesView>(x => new ActivitiesView());
 
             //Directs View
-            //serviceCollection.AddTransient<IDirectsListView>(x => new DirectsListView());
+            serviceCollection.AddTransient<IDirectsListView>(x => new DirectsListView());
 
             //Main Views
             serviceCollection.AddTransient<IMainView>(x => new MainPage());
@@ -138,7 +140,7 @@ namespace WinstaMobile
 
             //Media Views
             //serviceCollection.AddTransient<IExploreView>(x => new ExploreView());
-            //serviceCollection.AddTransient<IImageViewerPage>(x => new ImageViewerPage());
+            serviceCollection.AddTransient<IImageViewerPage>(x => new ImageViewerPage());
             //serviceCollection.AddTransient<IIncrementalInstaMediaView>(x => new IncrementalInstaMediaView());
             //serviceCollection.AddTransient<IMediaLikersView>(x => new MediaLikersView());
             //serviceCollection.AddTransient<ISingleInstaMediaView>(x => new SingleInstaMediaView());

@@ -68,7 +68,6 @@ namespace ViewModels.Account
                         return;
                 }
             }
-            catch (Exception ex) { }
             finally { IsLoading = false; }
         }
 

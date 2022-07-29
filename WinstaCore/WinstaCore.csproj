@@ -176,9 +176,6 @@
   </ItemGroup>
   <!--For 14399 Min Target and Above-->
   <ItemGroup>
-    <PackageReference Include="System.Threading.Tasks.Extensions">
-      <Version>4.5.4</Version>
-    </PackageReference>
     <PackageReference Include="System.Threading.Thread">
       <Version>4.3.0</Version>
     </PackageReference>

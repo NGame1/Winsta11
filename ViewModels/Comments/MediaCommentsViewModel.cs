@@ -13,6 +13,7 @@ using Abstractions.Navigation;
 using WinstaCore.Helpers;
 using WinstaCore;
 using WinstaCore.Helpers.ExtensionMethods;
+using System;
 #nullable enable
 
 namespace ViewModels.Comments
@@ -25,8 +26,8 @@ namespace ViewModels.Comments
         bool _isSendenabled = false;
         public bool IsSendCommentButtonEnabled { get => CommentText.Length != 0 || _isSendenabled; }
 
-        IncrementalMediaComments Instance { get; set; }
-        public IncrementalLoadingCollection<IncrementalMediaComments, InstaComment> Comments { get; private set; }
+        IncrementalMediaComments? Instance { get; set; }
+        public IncrementalLoadingCollection<IncrementalMediaComments, InstaComment>? Comments { get; private set; }
         public InstaUserShort? Me { get; }
         public InstaMedia? Media { get; set; }
 
@@ -49,6 +50,7 @@ namespace ViewModels.Comments
         {
             if (AddCommentCommand.IsRunning) return;
             if (!IsSendCommentButtonEnabled) return;
+            if (Media == null) throw new ArgumentNullException(nameof(Media));  
             try
             {
                 InstaCommentContainerModuleType containerModule = InstaCommentContainerModuleType.ModalCommentComposerFeedTimeline;
@@ -75,7 +77,7 @@ namespace ViewModels.Comments
                             MessageDialogHelper.Show(result.Info.Message);
                             return;
                         }
-                        Comments.Insert(0, result.Value);
+                        Comments?.Insert(0, result.Value);
                     }
                     else
                     {

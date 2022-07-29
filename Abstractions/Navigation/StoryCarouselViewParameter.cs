@@ -1,6 +1,7 @@
 ﻿using Abstractions.Stories;
 using Microsoft.Toolkit.Collections;
 using Microsoft.Toolkit.Uwp;
+#nullable enable
 
 namespace Abstractions.Navigation
 {
