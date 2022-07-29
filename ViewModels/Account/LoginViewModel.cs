@@ -2,6 +2,7 @@
 using InstagramApiSharp.Classes;
 using Microsoft.Toolkit.Mvvm.Input;
 using Resources;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
@@ -67,6 +68,7 @@ namespace ViewModels.Account
                         return;
                 }
             }
+            catch (Exception ex) { }
             finally { IsLoading = false; }
         }
 

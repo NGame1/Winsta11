@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using ViewModels;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Globalization;
@@ -35,6 +36,7 @@ using WinstaCore.Interfaces.Views.Settings;
 using WinstaCore.Services;
 using WinstaCore.Utils;
 using WinstaMobile;
+using WinstaMobile.Views;
 using WinstaMobile.Views.Account;
 #nullable enable
 
@@ -112,7 +114,7 @@ namespace WinstaMobile
             serviceCollection.AddSingleton<DisplayRequest>(CreateDisplayRequestInstance);
             serviceCollection.AddSingleton<MediaPlayer>(CreateMediaPlayerInstance);
 
-            //RegisterAppPages(ref serviceCollection);
+            RegisterAppPages(ref serviceCollection);
 
             return serviceCollection.BuildServiceProvider();
         }
@@ -131,8 +133,8 @@ namespace WinstaMobile
             //serviceCollection.AddTransient<IDirectsListView>(x => new DirectsListView());
 
             //Main Views
-            //serviceCollection.AddTransient<IMainView>(x => new MainPage());
-            //serviceCollection.AddTransient<IHomeView>(x => new HomeView());
+            serviceCollection.AddTransient<IMainView>(x => new MainPage());
+            serviceCollection.AddTransient<IHomeView>(x => new HomeView());
 
             //Media Views
             //serviceCollection.AddTransient<IExploreView>(x => new ExploreView());

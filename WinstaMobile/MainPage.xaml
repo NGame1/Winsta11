@@ -189,7 +189,7 @@
 
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate>
-                    <muxc:NavigationViewItem Icon="{Binding Icon}"
+                    <muxc:NavigationViewItem Icon="{Binding Icon}" 
                                              Content="{Binding Text}">
 
                     </muxc:NavigationViewItem>

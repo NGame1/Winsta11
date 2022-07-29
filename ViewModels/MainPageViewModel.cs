@@ -1,6 +1,4 @@
 ﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp.UI.Helpers;
 using PropertyChanged;
@@ -33,10 +31,14 @@ using WinstaCore.Interfaces.Views.Search;
 using NotificationHandler;
 using Microsoft.UI.Xaml.Controls;
 #if !WINDOWS_UWP15063
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
 #endif
 using InstagramApiSharp.Classes;
 using WinstaCore.Interfaces.Views.Accounts;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ViewModels
 {
@@ -104,14 +106,21 @@ namespace ViewModels
 #if !WINDOWS_UWP15063
             FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, typeof(ISettingsView)) { Icon = new AnimatedIcon { Source = new AnimatedSettingsVisualSource() } });
 #else   
-            FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, "\uE713", typeof(ISettingsView)));
+            MenuItems.Add(new(LanguageManager.Instance.General.Settings, "\uE713", typeof(ISettingsView)));
+            //FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, "\uE713", typeof(ISettingsView)));
 #endif
             ToggleNavigationViewPane = new(ToggleNavigationPane);
             _themeListener.ThemeChanged += MainPageViewModel_ThemeChanged;
 
+#if !WINDOWS_UWP15063
             new Thread(SyncLauncher).Start();
             new Thread(GetDirectsCountAsync).Start();
             new Thread(GetMyUser).Start();
+#else
+            Task.Factory.StartNew(SyncLauncher);
+            Task.Factory.StartNew(GetDirectsCountAsync);
+            Task.Factory.StartNew(GetMyUser);
+#endif
             SystemNavigationManager = SystemNavigationManager.GetForCurrentView();
             SystemNavigationManager.BackRequested += MainPageViewModel_BackRequested;
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
