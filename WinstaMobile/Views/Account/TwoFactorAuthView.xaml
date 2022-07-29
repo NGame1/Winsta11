@@ -4,6 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     x:Class="WinstaMobile.Views.Account.TwoFactorAuthView"
+    xmlns:brushes="using:Microsoft.Toolkit.Uwp.UI.Media"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core" 
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:i="using:Microsoft.Xaml.Interactivity" 
@@ -24,18 +25,19 @@
             </StackPanel>
 
             <TextBox x:Name="txtVerificationCode"
-                Text="{x:Bind ViewModel.VerificationCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                Header="{x:Bind Resources:LanguageManager.Instance.Instagram.VerificationCode}" 
-                Margin="0,0,0,12" KeyDown="txtVerificationCode_KeyDown"/>
+                     Text="{x:Bind ViewModel.VerificationCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Header="{x:Bind Resources:LanguageManager.Instance.Instagram.VerificationCode}" 
+                     KeyDown="txtVerificationCode_KeyDown"
+                     Margin="12"/>
 
-            <ComboBox HorizontalAlignment="Stretch"
-                ItemsSource="{x:Bind ViewModel.VerificationMethods}"
-                Header="{x:Bind Resources:LanguageManager.Instance.Instagram.VerificationMethod}"
-                SelectedItem="{x:Bind ViewModel.SelectedMethod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBox SelectedItem="{x:Bind ViewModel.SelectedMethod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      Header="{x:Bind Resources:LanguageManager.Instance.Instagram.VerificationMethod}"
+                      ItemsSource="{x:Bind ViewModel.VerificationMethods}"
+                      HorizontalAlignment="Stretch"
+                      Margin="12,12,12,0"/>
 
-            </ComboBox>
-
-            <TextBlock Visibility="{x:Bind ViewModel.SendVerificationTextMessageVisibility, Mode=OneWay}">
+            <TextBlock Visibility="{x:Bind ViewModel.SendVerificationTextMessageVisibility, Mode=OneWay}"
+                       Margin="12,12,12,0">
                 <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.SendVerificationCode}"/>
                 <Hyperlink TextDecorations="Underline">
                     <Hyperlink.Inlines>
@@ -44,7 +46,8 @@
                 </Hyperlink>
             </TextBlock>
 
-            <TextBlock Visibility="{x:Bind ViewModel.SendVerificationNotificationVisibility, Mode=OneWay}">
+            <TextBlock Visibility="{x:Bind ViewModel.SendVerificationNotificationVisibility, Mode=OneWay}"
+                       Margin="12,12,12,0">
                 <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.SendVerificationCode}"/>
                 <Hyperlink TextDecorations="Underline">
                     <Hyperlink.Inlines>
@@ -59,23 +62,33 @@
                 </Hyperlink>
             </TextBlock>
 
-            <CheckBox HorizontalAlignment="Center"
-                      Content="{x:Bind Resources:LanguageManager.Instance.Instagram.TrustThisDevice}"
-                      IsChecked="{x:Bind ViewModel.TrustThisDevice, Mode=TwoWay}"/>
+            <CheckBox Content="{x:Bind Resources:LanguageManager.Instance.Instagram.TrustThisDevice}"
+                      IsChecked="{x:Bind ViewModel.TrustThisDevice, Mode=TwoWay}"
+                      HorizontalAlignment="Center"
+                      Margin="12,12,12,0"/>
 
-            <Button HorizontalAlignment="Stretch"
-                Command="{x:Bind ViewModel.VerifyCommand}"  
-                Content="{x:Bind Resources:LanguageManager.Instance.General.Verify}" />
+            <Button Content="{x:Bind Resources:LanguageManager.Instance.General.Verify}"
+                    Command="{x:Bind ViewModel.VerifyCommand}"
+                    HorizontalAlignment="Stretch"
+                    Margin="12,12,12,0"/>
+            
         </StackPanel>
 
-        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-              Background="#A0000000" 
-              Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}">
+        <Grid Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}"
+              HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch">
+
+            <Grid.Background>
+                <brushes:BackdropBlurBrush FallbackColor="Black"
+                                           Opacity="0.99"
+                                           Amount="8"/>
+            </Grid.Background>
+
             <StackPanel VerticalAlignment="Center">
                 <ProgressRing />
-                <TextBlock Margin="0,12" 
-                           Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}" 
-                           TextAlignment="Center"/>
+                <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}"
+                           TextAlignment="Center"
+                           Margin="0,12"/>
             </StackPanel>
         </Grid>
     </Grid>

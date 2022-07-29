@@ -20,27 +20,47 @@
 
     <Grid Background="#80000000" MinWidth="300" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="12">
         <StackPanel Padding="24,32">
-            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,12">
+            <StackPanel HorizontalAlignment="Center"
+                        Orientation="Horizontal"
+                        Margin="0,0,0,12"
+                        Grid.Row="0">
                 <Image Source="/Assets/Square44x44Logo.scale-200.png" Width="32" Height="32" Grid.Column="0"/>
                 <TextBlock VerticalAlignment="Center" Text="{x:Bind Resources:LanguageManager.Instance.General.ApplicationName}" FontSize="18" TextAlignment="Center" Grid.Column="1"/>
             </StackPanel>
-            <TextBox Text="{x:Bind ViewModel.UserIdentifier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="{x:Bind Resources:LanguageManager.Instance.General.UserIdentifier}" x:Name="txtUserIdentifier" Grid.Row="1" KeyDown="txtUserIdentifier_KeyDown"/>
+            
+            <TextBox Margin="12,12,12,0" Text="{x:Bind ViewModel.UserIdentifier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="{x:Bind Resources:LanguageManager.Instance.General.UserIdentifier}" x:Name="txtUserIdentifier" Grid.Row="1" KeyDown="txtUserIdentifier_KeyDown"/>
 
-            <PasswordBox Password="{x:Bind ViewModel.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txtPassword" Header="{x:Bind Resources:LanguageManager.Instance.General.Password}" Grid.Row="2" KeyDown="txtPassword_KeyDown"/>
+            <PasswordBox Password="{x:Bind ViewModel.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Header="{x:Bind Resources:LanguageManager.Instance.General.Password}" 
+                         KeyDown="txtPassword_KeyDown"
+                         x:Name="txtPassword" 
+                         Margin="12,12,12,0"
+                         Grid.Row="2"/>
 
-            <Button Command="{x:Bind ViewModel.LoginCommand}" HorizontalAlignment="Stretch" Content="{x:Bind Resources:LanguageManager.Instance.General.Login}" Grid.Row="3" />
+            <Button Content="{x:Bind Resources:LanguageManager.Instance.General.Login}"
+                    Command="{x:Bind ViewModel.LoginCommand}"
+                    HorizontalAlignment="Stretch" 
+                    Margin="12,12,12,0"
+                    Grid.Row="3" />
+            
         </StackPanel>
 
         <!-- Background="#A0000000" -->
-        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}">
+        <Grid Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}"
+              HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch">
+
             <Grid.Background>
                 <brushes:BackdropBlurBrush FallbackColor="Black"
-                                           Opacity="0.4"
+                                           Opacity="0.99"
                                            Amount="8"/>
             </Grid.Background>
+            
             <StackPanel VerticalAlignment="Center">
                 <ProgressRing />
-                <TextBlock Margin="0,12" Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}" TextAlignment="Center"/>
+                <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}"
+                           TextAlignment="Center"
+                           Margin="0,12"/>
             </StackPanel>
         </Grid>
     </Grid>

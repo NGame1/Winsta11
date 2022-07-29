@@ -4,9 +4,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     x:Class="WinstaMobile.Views.Account.ChallengeRequiredView"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:brushes="using:Microsoft.Toolkit.Uwp.UI.Media"
     xmlns:views="using:WinstaMobile.Views"
     xmlns:VM="using:ViewModels.Account"
-    xmlns:Resources="using:Resources"
+    xmlns:Resources="using:Resources" 
     mc:Ignorable="d">
 
     <Page.DataContext>
@@ -20,33 +21,41 @@
 
             <!--SubmitPhoneChallengeGroup-->
             <StackPanel HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Background="#80000000"
-                    CornerRadius="12"
-                    Padding="24,32" 
-                    MinWidth="300">
+                        VerticalAlignment="Center"
+                        Background="#80000000"
+                        CornerRadius="12"
+                        Padding="24,32" 
+                        MinWidth="300">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,12">
                     <Image Source="/Assets/Square44x44Logo.scale-200.png" Width="32" Height="32" />
                     <TextBlock VerticalAlignment="Center" Text="{x:Bind Resources:LanguageManager.Instance.General.ApplicationName}" FontSize="18" TextAlignment="Center" />
                 </StackPanel>
 
                 <TextBox Text="{x:Bind ViewModel.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                     Header="{x:Bind Resources:LanguageManager.Instance.General.Phone}" 
-                     Margin="0,0,0,12"/>
+                         Header="{x:Bind Resources:LanguageManager.Instance.General.Phone}" 
+                         Margin="12"/>
 
                 <Button HorizontalAlignment="Stretch"
-                    Command="{x:Bind ViewModel.SubmitPhoneCommand}"  
-                    Content="{x:Bind Resources:LanguageManager.Instance.General.SubmitPhoneNumber}" />
+                        Command="{x:Bind ViewModel.SubmitPhoneCommand}"  
+                        Content="{x:Bind Resources:LanguageManager.Instance.General.SubmitPhoneNumber}" 
+                        Margin="12,12,12,0"/>
             </StackPanel>
 
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-              Background="#A0000000" 
-              Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}">
+            <Grid Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}"
+              HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch">
+
+                <Grid.Background>
+                    <brushes:BackdropBlurBrush FallbackColor="Black"
+                                           Opacity="0.99"
+                                           Amount="8"/>
+                </Grid.Background>
+
                 <StackPanel VerticalAlignment="Center">
                     <ProgressRing />
-                    <TextBlock Margin="0,12" 
-                           Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}" 
-                           TextAlignment="Center"/>
+                    <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}"
+                           TextAlignment="Center"
+                           Margin="0,12"/>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -61,11 +70,11 @@
 
             <!--SubmitPhoneChallengeGroup-->
             <StackPanel HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Background="#80000000"
-                    CornerRadius="12"
-                    Padding="24,32" 
-                    MinWidth="300">
+                        VerticalAlignment="Center"
+                        Background="#80000000"
+                        CornerRadius="12"
+                        Padding="24,32" 
+                        MinWidth="300">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,12">
                     <Image Source="/Assets/Square44x44Logo.scale-200.png" Width="32" Height="32" />
                     <TextBlock VerticalAlignment="Center" Text="{x:Bind Resources:LanguageManager.Instance.General.ApplicationName}" FontSize="18" TextAlignment="Center" />
@@ -75,6 +84,7 @@
                              IsChecked="{x:Bind ViewModel.PhoneAuthChecked, Mode=TwoWay}"
                              Content="{x:Bind ViewModel.PhoneAuthNumber, Mode=OneWay}"
                              x:Name="PhoneAuthRadioBtn"
+                             Margin="12,12,12,0"
                              GroupName="auth"/>
 
                 <RadioButton x:Load="{x:Bind ViewModel.EmailAuthenticationVisible, Mode=OneWay}"
@@ -82,21 +92,29 @@
                              Content="{x:Bind ViewModel.EmailAuthAddress, Mode=OneWay}"
                              x:Name="EmailAuthRadioBtn"
                              GroupName="auth"
-                             Margin="0,0,0,12"/>
+                             Margin="12"/>
 
-                <Button HorizontalAlignment="Stretch"
-                        Command="{x:Bind ViewModel.SendVerificationCodeCommand}"  
-                        Content="{x:Bind Resources:LanguageManager.Instance.Instagram.SendVerificationCode}" />
+                <Button Content="{x:Bind Resources:LanguageManager.Instance.Instagram.SendVerificationCode}"
+                        Command="{x:Bind ViewModel.SendVerificationCodeCommand}" 
+                        HorizontalAlignment="Stretch"
+                        Margin="12,12,12,0"/>
             </StackPanel>
 
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-              Background="#A0000000" 
-              Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}">
+            <Grid Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}"
+              HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch">
+
+                <Grid.Background>
+                    <brushes:BackdropBlurBrush FallbackColor="Black"
+                                           Opacity="0.99"
+                                           Amount="8"/>
+                </Grid.Background>
+
                 <StackPanel VerticalAlignment="Center">
                     <ProgressRing />
-                    <TextBlock Margin="0,12" 
-                           Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}" 
-                           TextAlignment="Center"/>
+                    <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}"
+                           TextAlignment="Center"
+                           Margin="0,12"/>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -116,23 +134,32 @@
                     <TextBlock VerticalAlignment="Center" Text="{x:Bind Resources:LanguageManager.Instance.General.ApplicationName}" FontSize="18" TextAlignment="Center" />
                 </StackPanel>
 
-                <TextBlock Text="Verification Code:"/>
+                <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.Instagram.VerificationCode}"
+                           Margin="12,12,12,0"/>
                 <TextBox Text="{x:Bind ViewModel.VerificationCode, Mode=TwoWay}"
-                         Margin="0,0,0,12"/>
+                         Margin="12"/>
 
-                <Button HorizontalAlignment="Stretch"
+                <Button Content="{x:Bind Resources:LanguageManager.Instance.General.Verify}"
                         Command="{x:Bind ViewModel.VerifyCommand}"  
-                        Content="{x:Bind Resources:LanguageManager.Instance.General.Verify}" />
+                        HorizontalAlignment="Stretch" 
+                        Margin="12,12,12,0"/>
             </StackPanel>
 
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-              Background="#A0000000" 
-              Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}">
+            <Grid Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}"
+              HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch">
+
+                <Grid.Background>
+                    <brushes:BackdropBlurBrush FallbackColor="Black"
+                                           Opacity="0.99"
+                                           Amount="8"/>
+                </Grid.Background>
+
                 <StackPanel VerticalAlignment="Center">
                     <ProgressRing />
-                    <TextBlock Margin="0,12" 
-                           Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}" 
-                           TextAlignment="Center"/>
+                    <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}"
+                           TextAlignment="Center"
+                           Margin="0,12"/>
                 </StackPanel>
             </Grid>
         </Grid>

@@ -33,6 +33,7 @@ using WinstaCore.Interfaces.Views.Profiles;
 using WinstaCore.Interfaces.Views.Search;
 using WinstaCore.Interfaces.Views.Settings;
 using WinstaCore.Services;
+using WinstaCore.Utils;
 using WinstaMobile;
 using WinstaMobile.Views.Account;
 #nullable enable
@@ -224,6 +225,7 @@ namespace WinstaMobile
             api.DeviceLocale = applang;
             api.MappedLocale = applang;
             api.AcceptLanguage = applang;
+            api.SetEncryptedPasswordEncryptor(new EncryptedPasswordEncryptor());
             return api;
         }
 
@@ -239,6 +241,7 @@ namespace WinstaMobile
 
             //api.SetTimezone(tzd.Value);
             api.LoadStateDataFromString(session);
+            api.SetEncryptedPasswordEncryptor(new EncryptedPasswordEncryptor());
             return api;
         }
 

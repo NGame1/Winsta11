@@ -127,7 +127,7 @@
                     <TextBlock VerticalAlignment="Center" Text="{x:Bind Resources:LanguageManager.Instance.General.ApplicationName}" FontSize="18" TextAlignment="Center" />
                 </StackPanel>
 
-                <TextBlock Text="Verification Code:"/>
+                <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.Instagram.VerificationCode}"/>
                 <TextBox Text="{x:Bind ViewModel.VerificationCode, Mode=TwoWay}"
                          Margin="0,0,0,12"/>
 
