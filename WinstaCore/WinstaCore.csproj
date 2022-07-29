@@ -13,7 +13,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22621.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion Condition=" '$(TargetPlatformMinVersion)' == '' ">10.0.17763.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion Condition=" '$(TargetPlatformMinVersion)' == '' ">10.0.15063.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -117,6 +117,9 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetPlatformMinVersion)' == '10.0.15063.0'">
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;WINDOWS_UWP15063</DefineConstants>
+  </PropertyGroup>
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
@@ -130,6 +133,7 @@
     <Compile Include="Converters\FileConverters\ImageFileConverter.cs" />
     <Compile Include="CryptoHelper.cs" />
     <Compile Include="Helpers\Cache\CacheManager.cs" />
+    <Compile Include="Helpers\CaptionParser.cs" />
     <Compile Include="Helpers\ExtensionMethods\LinkClickedEventExtensions.cs" />
     <Compile Include="Helpers\ExtensionMethods\ListViewExtensions.cs" />
     <Compile Include="Helpers\MessageDialogHelper.cs" />
@@ -146,7 +150,10 @@
     <Compile Include="Interfaces\Views\IMainView.cs" />
     <Compile Include="Interfaces\Views\IView.cs" />
     <Compile Include="Interfaces\Views\Medias\IExploreView.cs" />
+    <Compile Include="Interfaces\Views\Medias\IImageViewerPage.cs" />
     <Compile Include="Interfaces\Views\Medias\IIncrementalInstaMediaView.cs" />
+    <Compile Include="Interfaces\Views\Medias\IMediaLikersView.cs" />
+    <Compile Include="Interfaces\Views\Medias\ISingleInstaMediaView.cs" />
     <Compile Include="Interfaces\Views\Profiles\IHashtagProfileView.cs" />
     <Compile Include="Interfaces\Views\Profiles\IPlaceProfileView.cs" />
     <Compile Include="Interfaces\Views\Profiles\IUserFollowingsView.cs" />
@@ -169,6 +176,12 @@
   </ItemGroup>
   <!--For 14399 Min Target and Above-->
   <ItemGroup>
+    <PackageReference Include="System.Threading.Tasks.Extensions">
+      <Version>4.5.4</Version>
+    </PackageReference>
+    <PackageReference Include="System.Threading.Thread">
+      <Version>4.3.0</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp">
       <Version>4.0.0</Version>
     </PackageReference>
@@ -216,7 +229,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
-      <Version>2.8.0</Version>
+      <Version>2.3.200213001</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
       <Version>3.4.1</Version>

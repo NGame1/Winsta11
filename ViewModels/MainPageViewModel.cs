@@ -32,7 +32,9 @@ using WinstaCore.Interfaces.Views.Profiles;
 using WinstaCore.Interfaces.Views.Search;
 using NotificationHandler;
 using Microsoft.UI.Xaml.Controls;
+#if !WINDOWS_UWP15063
 using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
+#endif
 using InstagramApiSharp.Classes;
 using WinstaCore.Interfaces.Views.Accounts;
 
@@ -77,7 +79,7 @@ namespace ViewModels
 
         [OnChangedMethod(nameof(OnInstaUserChanged))]
         public InstaUserShort InstaUser { get; private set; }
-        
+
         IInstaApi PushClientApi { get; set; }
 
         public static MainPageViewModel mainPageViewModel = null;
@@ -98,7 +100,12 @@ namespace ViewModels
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Activities, "\uE006", typeof(IActivitiesView)));
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Explore, "\uF6FA", typeof(IExploreView)));
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Directs, "\uE15F", typeof(IDirectsListView)));
+
+#if !WINDOWS_UWP15063
             FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, typeof(ISettingsView)) { Icon = new AnimatedIcon { Source = new AnimatedSettingsVisualSource() } });
+#else   
+            FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, "\uE713", typeof(ISettingsView)));
+#endif
             ToggleNavigationViewPane = new(ToggleNavigationPane);
             _themeListener.ThemeChanged += MainPageViewModel_ThemeChanged;
 

@@ -23,7 +23,7 @@ namespace WinstaCore
                     using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
                     {
                         cs.Write(clearBytes, 0, clearBytes.Length);
-                        cs.Close();
+                        //cs.Close();
                     }
                     plainInput = Convert.ToBase64String(ms.ToArray());
                 }
@@ -44,7 +44,7 @@ namespace WinstaCore
                     using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
                     {
                         cs.Write(cipherBytes, 0, cipherBytes.Length);
-                        cs.Close();
+                        //cs.Close();
                     }
                     cipherText = Encoding.Unicode.GetString(ms.ToArray());
                 }

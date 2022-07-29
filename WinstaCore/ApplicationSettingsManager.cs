@@ -199,7 +199,7 @@ namespace WinstaCore
         {
             if (LocalSettings.Values.TryGetValue(AppThemeSetting, out var theme))
             {
-                return Enum.Parse<AppTheme>(theme.ToString());
+                return (AppTheme)Enum.Parse(typeof(AppTheme), theme.ToString());
             }
             else
             {
