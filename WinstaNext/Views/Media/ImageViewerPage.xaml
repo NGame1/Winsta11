@@ -1,10 +1,10 @@
 ﻿<Page
-    x:Class="WinstaNext.Views.Media.ImageViewerPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WinstaNext.Views.Media"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="WinstaNext.Views.Media.ImageViewerPage"
+    xmlns:local="using:WinstaNext.Views.Media"
     mc:Ignorable="d">
 
     <Grid>
