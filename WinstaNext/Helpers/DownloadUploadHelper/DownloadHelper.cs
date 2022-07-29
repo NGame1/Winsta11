@@ -83,7 +83,7 @@ namespace WinstaNext.Helpers.DownloadUploadHelper
         static async void Download(StorageFile destinationFile, string downloadUri, string GroupIdentifier, string? profilePicture)
         {
             if(profilePicture == null) profilePicture = string.Empty;
-            var bgdl = App.Container.GetService<BackgroundDownloader>();
+            var bgdl = AppCore.Container.GetService<BackgroundDownloader>();
             if (Uri.TryCreate(downloadUri, UriKind.RelativeOrAbsolute, out var uri))
             {
                 bgdl.TransferGroup = BackgroundTransferGroup.CreateGroup(GroupIdentifier);
