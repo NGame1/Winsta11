@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
+using WinstaCore.Helpers;
 
-namespace WinstaNext.Converters.Directs
+namespace WinstaNext.Converters.Media
 {
-    internal class DirectItemTimeConverter : IValueConverter
+    internal class CaptionToMarkdownConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is not DateTime time) return "";
-            return time.ToLocalTime().ToString("t");
+            if (value is not string caption) return string.Empty;
+            return caption.ToMarkdownText();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
