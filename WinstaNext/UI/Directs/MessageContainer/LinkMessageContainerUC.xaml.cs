@@ -19,7 +19,12 @@ namespace WinstaNext.UI.Directs.MessageContainer
         {
             if (args.NewValue == null) return;
             this.DataContextChanged -= LinkMessageContainerUC_DataContextChanged;
+#if WINSTA11
             var sp = DirectItem.Text.Split(DirectItem.LinkMedia.LinkContext.LinkUrl);
+#else
+            string[] strings = new[] { DirectItem.LinkMedia.LinkContext.LinkUrl };
+            var sp = DirectItem.Text.Split(strings, StringSplitOptions.None);
+#endif
             txtHere.Inlines.Add(new Run() {Text = sp.FirstOrDefault() });
             var hyper = new Hyperlink();
             hyper.NavigateUri = new Uri(DirectItem.LinkMedia.LinkContext.LinkUrl, UriKind.RelativeOrAbsolute);

@@ -3,6 +3,7 @@ using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using Windows.Media.Core;
 using Windows.Media.Playback;
+using WinstaCore;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -14,7 +15,7 @@ namespace WinstaNext.UI.Directs.MessageContainer
         MediaPlayer MediaPlayer { get; }
         public VoiceMessageContainerUC()
         {
-            MediaPlayer = App.Container.GetService<MediaPlayer>();
+            MediaPlayer = AppCore.Container.GetService<MediaPlayer>();
             PlayPauseCommand = new RelayCommand(PlayPause);
             this.InitializeComponent();
         }

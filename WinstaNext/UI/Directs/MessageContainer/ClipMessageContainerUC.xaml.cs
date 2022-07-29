@@ -4,8 +4,9 @@ using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using Windows.Media.Core;
 using Windows.UI.Xaml;
+using WinstaCore;
+using WinstaCore.Interfaces.Views.Medias;
 using WinstaCore.Services;
-using WinstaNext.Views.Media;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -23,8 +24,9 @@ namespace WinstaNext.UI.Directs.MessageContainer
 
         void NavigateToMedia()
         {
-            var NavigationService =  App.Container.GetService<NavigationService>();
-            NavigationService.Navigate(typeof(SingleInstaMediaView), DirectItem.Clip);
+            var NavigationService =  AppCore.Container.GetService<NavigationService>();
+            var SingleInstaMediaView =  AppCore.Container.GetService<ISingleInstaMediaView>();
+            NavigationService.Navigate(SingleInstaMediaView, DirectItem.Clip);
         }
 
         protected override void OnDirectItemChanged()
