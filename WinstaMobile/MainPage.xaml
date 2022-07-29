@@ -1,0 +1,237 @@
+﻿<views:BasePage
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Models="using:InstagramApiSharp.Classes.Models" 
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:Converters="using:WinstaNext.Converters"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:flyouts="using:WinstaMobile.UI.Flyouts"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:generic="using:WinstaNext.UI.Generic"
+    xmlns:views="using:WinstaMobile.Views" 
+    xmlns:Resources="using:Resources"
+    x:Class="WinstaMobile.MainPage"
+    NavigationCacheMode="Enabled"
+    xmlns:VM="using:ViewModels"
+    mc:Ignorable="d">
+
+    <views:BasePage.Resources>
+
+        <Converters:NullToBooleanConverter IsInverted="True" x:Key="NullToBooleanConverter"/>
+
+        <!--This top margin is the height of the custom TitleBar-->
+        <Thickness x:Key="NavigationViewContentMargin">0,46,0,0</Thickness>
+        <Thickness x:Key="NavigationViewContentGridBorderThickness">1,1,0,0</Thickness>
+        <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
+    </views:BasePage.Resources>
+
+    <Page.DataContext>
+        <VM:MainPageViewModel x:Name="ViewModel"/>
+    </Page.DataContext>
+
+    <Grid Background="Transparent">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="CompactOverlay">
+                    <VisualState.Setters>
+                        <!--<Setter Target="NavigationView.AlwaysShowHeader" Value="False" />-->
+                        <Setter Target="NavigationView.IsPaneVisible" Value="False" />
+                        <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
+                        <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
+                        <Setter Target="HeaderTextBlock.Visibility" Value="Collapsed" />
+                        <Setter Target="AppTitleLeftBorder.Width" Value="16" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NavigationViewExpanded">
+                    <VisualState.Setters>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NavigationViewCompact">
+                    <VisualState.Setters>
+                        <!--<Setter Target="ScrollViewerContent.Margin" Value="24,48,24,0"/>-->
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <!-- Title and icon in the title bar -->
+        <Grid
+            VerticalAlignment="Top"
+            Height="48"
+            Canvas.ZIndex="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Border
+                Name="AppTitleLeftBorder"
+                Grid.Column="0"
+                Width="48"/>
+
+            <StackPanel
+                Grid.Column="1"
+                Orientation="Horizontal">
+                <Image
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Source="/Assets/Square44x44Logo.png"
+                    Width="16"
+                    Height="16"/>
+                <TextBlock
+                    Text="{x:Bind ViewModel.WindowTitle, Mode=OneWay}"
+                    VerticalAlignment="Center"
+                    Margin="12,0,0,0"
+                    Style="{StaticResource CaptionTextBlockStyle}" />
+            </StackPanel>
+
+            <!-- Draggable part of the title bar -->
+            <Border
+                x:Name="AppTitleBar"
+                Grid.Column="1"
+                Background="Transparent"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch"
+                Height="32"/>
+
+        </Grid>
+
+        <!-- Navigation view -->
+        <muxc:NavigationView XYFocusRight="{x:Bind ContentFrame}"
+            Name="NavigationView"
+            BackRequested="NavigationView_BackRequested"
+            IsTitleBarAutoPaddingEnabled="False"
+            IsSettingsVisible="False"
+            IsBackButtonVisible="Auto"
+            IsBackEnabled="{x:Bind ViewModel.NavigationService.CanGoBack, Mode=TwoWay}"
+            CompactModeThresholdWidth="640"
+            ExpandedModeThresholdWidth="1008"
+            IsTabStop="False" 
+            AlwaysShowHeader="False"
+            IsPaneOpen="{x:Bind ViewModel.IsNavigationViewPaneOpened, Mode=TwoWay}"
+            IsPaneToggleButtonVisible="True"
+            MenuItemsSource="{x:Bind ViewModel.MenuItems}"
+            SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            DisplayModeChanged="NavigationView_DisplayModeChanged"
+            PaneClosing="NavigationView_PaneClosing"
+            PaneOpening="NavigationView_PaneOpening"
+            Loaded="NavigationView_Loaded">
+
+            <!--<muxc:NavigationView.Header>
+                <Grid>
+                    <TextBlock Text="Header" FontSize="24"/>
+                </Grid>
+            </muxc:NavigationView.Header>-->
+
+            <muxc:NavigationView.PaneHeader>
+                <muxc:NavigationViewItem>
+                    <i:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Tapped">
+                            <core:InvokeCommandAction CommandParameter="{x:Bind ViewModel.InstaUser, Mode=OneWay}"
+                                                      Command="{x:Bind ViewModel.NavigateToUserProfileCommand}"/>
+                        </core:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                    <StackPanel Orientation="Horizontal" Spacing="10" Padding="0,5" BorderThickness="1" HorizontalAlignment="Left">
+                        <muxc:PersonPicture Height="60" Width="60"
+                            DisplayName="{x:Bind ViewModel.InstaUser.UserName, Mode=OneWay}" 
+                            ProfilePicture="{x:Bind ViewModel.InstaUser.ProfilePicture, Mode=OneWay}"/>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="{x:Bind ViewModel.InstaUser.UserName, Mode=OneWay}"/>
+                            <TextBlock Text="Tap to switch accounts" />
+                        </StackPanel>
+                    </StackPanel>
+                    <muxc:NavigationViewItem.ContextFlyout>
+                        <flyouts:SwitchUserFlyout/>
+                    </muxc:NavigationViewItem.ContextFlyout>
+                </muxc:NavigationViewItem>
+            </muxc:NavigationView.PaneHeader>
+
+            <muxc:NavigationView.AutoSuggestBox>
+                <AutoSuggestBox
+                    x:Name="SearchBox"
+                    TabIndex="0"
+                    QueryIcon="Find"
+                    PlaceholderText="{x:Bind Resources:LanguageManager.Instance.General.Search}"
+                    Text="{x:Bind ViewModel.SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
+                    TextMemberPath="UserName">
+
+                    <i:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="TextChanged">
+                            <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxTextChangedCommand}"/>
+                        </core:EventTriggerBehavior>
+                        <core:EventTriggerBehavior EventName="QuerySubmitted">
+                            <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxQuerySubmittedCommand}"/>
+                        </core:EventTriggerBehavior>
+                        <core:EventTriggerBehavior EventName="SuggestionChosen">
+                            <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchBoxSuggestionChosenCommand}"/>
+                        </core:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+
+                    <AutoSuggestBox.ItemTemplate>
+                        <DataTemplate x:DataType="Models:InstaUser">
+                            <generic:InstaUserPresenterUC 
+                                    User="{x:Bind Mode=OneWay}"/>
+                        </DataTemplate>
+                    </AutoSuggestBox.ItemTemplate>
+
+                    <AutoSuggestBox.ItemContainerStyle>
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
+                            <Setter Property="Padding" Value="8,4"/>
+                            <Setter Property="Margin" Value="0,0,0,2"/>
+                        </Style>
+                    </AutoSuggestBox.ItemContainerStyle>
+
+                </AutoSuggestBox>
+            </muxc:NavigationView.AutoSuggestBox>
+
+            <muxc:NavigationView.MenuItemTemplate>
+                <DataTemplate>
+                    <muxc:NavigationViewItem Icon="{Binding Icon}"
+                                             Content="{Binding Text}">
+
+                    </muxc:NavigationViewItem>
+                </DataTemplate>
+            </muxc:NavigationView.MenuItemTemplate>
+
+            <!--<ScrollViewer x:Name="MainScrollViewer"
+                HorizontalScrollMode="Disabled">-->
+            <Grid x:Name="ScrollViewerContent">
+                <Frame XYFocusLeft="{x:Bind NavigationView}"
+                       Navigated="ContentFrame_Navigated"
+                       Name="ContentFrame">
+                    <i:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Navigated">
+                            <core:InvokeCommandAction Command="{x:Bind ViewModel.FrameNavigatedCommand}"/>
+                        </core:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </Frame>
+            </Grid>
+            <!--</ScrollViewer>-->
+
+            <!--<ScrollViewer
+                HorizontalScrollMode="Disabled">
+                <Grid
+                    Name="ScrollViewerContent"
+                    Margin="56,48,56,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Name="HeaderTextBlock"
+                        Grid.Row="0"
+                        Text="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
+                        FontSize="24"/>
+                    
+                    <Frame
+                        Grid.Row="1"
+                        Name="ContentFrame"
+                        Padding="0,12,0,24"/>
+                </Grid>
+            </ScrollViewer>-->
+        </muxc:NavigationView>
+    </Grid>
+</views:BasePage>

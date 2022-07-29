@@ -1,0 +1,47 @@
+﻿<views:BasePage Loaded="BasePage_Loaded"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:brushes="using:Microsoft.Toolkit.Uwp.UI.Media"
+    x:Class="WinstaMobile.Views.Account.LoginView"
+    xmlns:views="using:WinstaMobile.Views"
+    xmlns:VM="using:ViewModels.Account"
+    xmlns:Resources="using:Resources"
+    mc:Ignorable="d">
+
+    <!--<views:BasePage.Resources>
+        <Converters:BoolToVisibilityConverter IsInverted="True" x:Key="InvertedBoolToVisibilityConverter"/>
+    </views:BasePage.Resources>-->
+
+    <views:BasePage.DataContext>
+        <VM:LoginViewModel x:Name="ViewModel"/>
+    </views:BasePage.DataContext>
+
+    <Grid Background="#80000000" MinWidth="300" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="12">
+        <StackPanel Padding="24,32">
+            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,12">
+                <Image Source="/Assets/Square44x44Logo.scale-200.png" Width="32" Height="32" Grid.Column="0"/>
+                <TextBlock VerticalAlignment="Center" Text="{x:Bind Resources:LanguageManager.Instance.General.ApplicationName}" FontSize="18" TextAlignment="Center" Grid.Column="1"/>
+            </StackPanel>
+            <TextBox Text="{x:Bind ViewModel.UserIdentifier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="{x:Bind Resources:LanguageManager.Instance.General.UserIdentifier}" x:Name="txtUserIdentifier" Grid.Row="1" KeyDown="txtUserIdentifier_KeyDown"/>
+
+            <PasswordBox Password="{x:Bind ViewModel.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txtPassword" Header="{x:Bind Resources:LanguageManager.Instance.General.Password}" Grid.Row="2" KeyDown="txtPassword_KeyDown"/>
+
+            <Button Command="{x:Bind ViewModel.LoginCommand}" HorizontalAlignment="Stretch" Content="{x:Bind Resources:LanguageManager.Instance.General.Login}" Grid.Row="3" />
+        </StackPanel>
+
+        <!-- Background="#A0000000" -->
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}">
+            <Grid.Background>
+                <brushes:BackdropBlurBrush FallbackColor="Black"
+                                           Opacity="0.4"
+                                           Amount="8"/>
+            </Grid.Background>
+            <StackPanel VerticalAlignment="Center">
+                <ProgressRing />
+                <TextBlock Margin="0,12" Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}" TextAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</views:BasePage>

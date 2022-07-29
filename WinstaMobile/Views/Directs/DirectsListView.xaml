@@ -1,0 +1,91 @@
+﻿<views:BasePage NavigationCacheMode="Enabled"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Models="using:InstagramApiSharp.Classes.Models"
+    xmlns:directs3="using:WinstaMobile.UI.Flyouts.Directs"
+    x:Class="WinstaMobile.Views.Directs.DirectsListView"
+    xmlns:TemplateSelectors="using:TemplateSelectors"
+    xmlns:directs2="using:WinstaMobile.Views.Directs"
+    xmlns:directs1="using:WinstaNext.UI.Directs" 
+    xmlns:views="using:WinstaMobile.Views"
+    xmlns:VM="using:ViewModels.Directs"
+    xmlns:Resources="using:Resources" 
+    mc:Ignorable="d">
+
+    <views:BasePage.Resources>
+
+        <DataTemplate x:DataType="Models:InstaDirectInboxThread" x:Key="PrivateDirectThread">
+            <directs1:PrivateDirectThread DirectThread="{Binding Mode=OneWay}">
+
+                <directs1:PrivateDirectThread.ContextFlyout>
+                    <directs3:PrivateMessageThreadMenuFlyout DirectThread="{x:Bind Mode=OneWay}"/>
+                </directs1:PrivateDirectThread.ContextFlyout>
+
+            </directs1:PrivateDirectThread>
+
+        </DataTemplate>
+
+        <DataTemplate x:DataType="Models:InstaDirectInboxThread" x:Key="GroupDirectThread">
+            <directs1:GroupDirectThread DirectThread="{Binding Mode=OneWay}">
+
+                <directs1:GroupDirectThread.ContextFlyout>
+                    <directs3:GroupMessageThreadMenuFlyout DirectThread="{x:Bind Mode=OneWay}"/>
+                </directs1:GroupDirectThread.ContextFlyout>
+
+            </directs1:GroupDirectThread>
+        </DataTemplate>
+
+        <TemplateSelectors:InstaDirectInboxThreadTemplateSelector 
+                           x:Key="InstaDirectInboxThreadTemplateSelector"
+                           GroupTemplate="{StaticResource GroupDirectThread}"
+                           PrivateTemplate="{StaticResource PrivateDirectThread}"/>
+
+    </views:BasePage.Resources>
+
+    <views:BasePage.DataContext>
+        <VM:DirectsListViewModel x:Name="MyViewModel"/>
+    </views:BasePage.DataContext>
+
+    <Grid Margin="{x:Bind PageMargin}">
+        <controls:MasterDetailsView x:Name="ListDetails" x:FieldModifier="internal"
+            Background="Transparent" 
+            ItemsSource="{x:Bind MyViewModel.Inbox, Mode=OneWay}"
+            NoSelectionContent="{x:Bind Resources:LanguageManager.Instance.Instagram.SelectDirectToLoad}"
+            ItemTemplateSelector="{StaticResource InstaDirectInboxThreadTemplateSelector}"
+            CompactModeThresholdWidth="720" 
+            ScrollViewer.VerticalScrollMode="Disabled">
+
+            <!--Detail pane content template-->
+            <controls:MasterDetailsView.DetailsTemplate>
+                <DataTemplate x:DataType="Models:InstaDirectInboxThread">
+                    <directs2:DirectThreadView 
+                        DirectThread="{x:Bind Mode=OneWay}"/>
+                </DataTemplate>
+            </controls:MasterDetailsView.DetailsTemplate>
+
+            <!--What to show on content pane while no directs selected to show the messages-->
+            <controls:MasterDetailsView.NoSelectionContentTemplate>
+                <DataTemplate>
+                    <StackPanel HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <SymbolIcon Symbol="Message"
+                                    RenderTransformOrigin=".5,.5">
+                            <SymbolIcon.RenderTransform>
+                                <CompositeTransform
+                                  ScaleX="2"
+                                  ScaleY="2"/>
+                            </SymbolIcon.RenderTransform>
+                        </SymbolIcon>
+                        <TextBlock Text="{Binding}"
+                                   FontSize="24"
+                                   Margin="0,12"/>
+                    </StackPanel>
+                </DataTemplate>
+            </controls:MasterDetailsView.NoSelectionContentTemplate>
+
+        </controls:MasterDetailsView>
+    </Grid>
+</views:BasePage>
