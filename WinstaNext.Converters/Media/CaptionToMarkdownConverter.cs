@@ -4,7 +4,7 @@ using WinstaCore.Helpers;
 
 namespace WinstaNext.Converters.Media
 {
-    internal class CaptionToMarkdownConverter : IValueConverter
+    public class CaptionToMarkdownConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

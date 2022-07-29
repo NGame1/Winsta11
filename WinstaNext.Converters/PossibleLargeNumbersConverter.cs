@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Data;
 
 namespace WinstaNext.Converters
 {
-    internal class PossibleLargeNumbersConverter : IValueConverter
+    public class PossibleLargeNumbersConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

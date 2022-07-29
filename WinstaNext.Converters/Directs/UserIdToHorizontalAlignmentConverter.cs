@@ -6,7 +6,7 @@ using WinstaCore;
 
 namespace WinstaNext.Converters.Directs
 {
-    internal class UserIdToHorizontalAlignmentConverter : IValueConverter
+    public class UserIdToHorizontalAlignmentConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

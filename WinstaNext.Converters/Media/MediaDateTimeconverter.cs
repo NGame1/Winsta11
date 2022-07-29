@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Data;
 
 namespace WinstaNext.Converters.Media
 {
-    internal class MediaDateTimeconverter : IValueConverter
+    public class MediaDateTimeconverter : IValueConverter
     {
         public bool ConvertToLocalTime { get; set; } = false;
         public object? Convert(object value, Type targetType, object parameter, string language)

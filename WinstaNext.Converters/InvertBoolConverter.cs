@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Data;
 
 namespace WinstaNext.Converters
 {
-    internal class InvertBoolConverter : IValueConverter
+    public class InvertBoolConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

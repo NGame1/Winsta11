@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Data;
 
 namespace WinstaNext.Converters.Stories
 {
-    internal class StoryItemVideoConverter : IValueConverter
+    public class StoryItemVideoConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Data;
 
 namespace WinstaNext.Converters.Media
 {
-    internal class InstaMediaTypeIconConverter : IValueConverter
+    public class InstaMediaTypeIconConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

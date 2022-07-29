@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace WinstaNext.Converters.Stories
 {
-    internal class StoryItemImageConverter : IValueConverter
+    public class StoryItemImageConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

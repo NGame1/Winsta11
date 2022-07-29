@@ -5,7 +5,7 @@ using WinstaCore.Helpers;
 
 namespace WinstaNext.Converters
 {
-    internal class TextToFlowDirectionConverter : IValueConverter
+    public class TextToFlowDirectionConverter : IValueConverter
     {
         public bool IsInverted { get; set; } = false;
         public object Convert(object value, Type targetType, object parameter, string language)

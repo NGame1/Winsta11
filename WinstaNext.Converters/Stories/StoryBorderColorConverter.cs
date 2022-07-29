@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Media;
 
 namespace WinstaNext.Converters.Stories
 {
-    internal class StoryBorderColorConverter : IValueConverter
+    public class StoryBorderColorConverter : IValueConverter
     {
         public GradientBrush CloseFriends { get; set; }
         public GradientBrush NormalStory { get; set; }

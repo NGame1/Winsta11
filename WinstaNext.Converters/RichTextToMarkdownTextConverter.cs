@@ -4,7 +4,7 @@ using WinstaCore.Helpers;
 
 namespace WinstaNext.Converters
 {
-    internal class RichTextToMarkdownTextConverter : IValueConverter
+    public class RichTextToMarkdownTextConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

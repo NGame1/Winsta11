@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Data;
 
 namespace WinstaNext.Converters
 {
-    internal class BoolToVisibilityConverter : IValueConverter
+    public class BoolToVisibilityConverter : IValueConverter
     {
         public bool IsInverted { get; set; }
 

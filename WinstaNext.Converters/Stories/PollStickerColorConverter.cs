@@ -5,7 +5,7 @@ using WinstaCore.Constants.Instagram.Stories;
 
 namespace WinstaNext.Converters.Stories
 {
-    internal class PollStickerColorConverter : IValueConverter
+    public class PollStickerColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
