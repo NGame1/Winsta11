@@ -1,5 +1,4 @@
-﻿using Microsoft.Toolkit.Mvvm.Messaging;
-using System.Linq;
+﻿using System.Linq;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

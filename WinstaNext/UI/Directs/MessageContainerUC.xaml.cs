@@ -6,8 +6,9 @@ using PropertyChanged;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using WinstaCore;
+using WinstaCore.Interfaces.Views.Profiles;
 using WinstaCore.Services;
-using WinstaNext.Views.Profiles;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -51,8 +52,9 @@ namespace WinstaNext.UI.Directs
 
         private void NavigateToProfile(object parameter)
         {
-            var nav = App.Container.GetService<NavigationService>();
-            nav.Navigate(typeof(UserProfileView), parameter);
+            var nav = AppCore.Container.GetService<NavigationService>();
+            var UserProfileView = AppCore.Container.GetService<IUserProfileView>();
+            nav.Navigate(UserProfileView, parameter);
         }
 
         protected virtual void OnDirectItemChanged()
