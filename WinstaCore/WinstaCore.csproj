@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="AppCore.cs" />
     <Compile Include="ApplicationSettingsManager.cs" />
+    <Compile Include="AppSecrets.cs" />
     <Compile Include="Attributes\RangePlayerAttribute.cs" />
     <Compile Include="Constants\FluentRegularFontCharacters.cs" />
     <Compile Include="Constants\Instagram\Stories\PollColorConstants.cs" />

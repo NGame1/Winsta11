@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /WinstaCore/Utils/EncryptedPasswordEncryptor.cs
+/WinstaCore/AppSecrets.cs

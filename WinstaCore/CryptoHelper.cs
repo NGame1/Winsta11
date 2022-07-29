@@ -8,7 +8,7 @@ namespace WinstaCore
 {
     public static class CryptoHelper
     {
-        static string SessionEncryptionKey { get => "%NGame_Winstagram.App@GRANOW11/=$%! "; }
+        static string SessionEncryptionKey { get => AppSecrets.SessionEncryptionKey; }
 
         public static string EncryptString(string plainInput)
         {
