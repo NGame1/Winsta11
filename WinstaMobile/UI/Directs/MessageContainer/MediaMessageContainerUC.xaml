@@ -1,0 +1,85 @@
+﻿<directs:MessageContainerUC
+    x:Class="WinstaMobile.UI.Directs.MessageContainer.MediaMessageContainerUC"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="using:InstagramApiSharp.Classes.Models"
+    xmlns:ViewsDirect="using:WinstaMobile.Views.Directs"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:controls="using:WinstaMobile.UI.Controls"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:directs="using:WinstaMobile.UI.Directs"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <directs:MessageContainerUC.Resources>
+        <ResourceDictionary Source="ms-appx:///UI/Directs/MessageContainer/MessageContainerResources.xaml"/>
+    </directs:MessageContainerUC.Resources>
+
+    <StackPanel Orientation="Horizontal" 
+                HorizontalAlignment="{x:Bind DirectItem.UserId, Converter={StaticResource UserIdToHorizontalAlignmentConverter}, Mode=OneWay}">
+
+        <muxc:PersonPicture Width="{StaticResource ProfilePictureSize}" 
+                            Height="{StaticResource ProfilePictureSize}"
+                            Margin="{StaticResource MessageBubbleHorizontal}"
+                            DisplayName="{x:Bind DirectUser.UserName, Mode=OneWay}"
+                            VerticalAlignment="{StaticResource ProfileVerticalAlignment}"
+                            ProfilePicture="{x:Bind DirectUser.ProfilePicture, Mode=OneWay}"
+                            Visibility="{x:Bind DirectUser.Pk, Converter={StaticResource UserIdToProfilePictureVisibilityConverter}, Mode=OneWay}">
+
+            <i:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="Tapped">
+                    <core:InvokeCommandAction CommandParameter="{x:Bind DirectItem.User.UserName, Mode=OneWay}" Command="{x:Bind NavigateUserProfileCommand}"/>
+                </core:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+
+        </muxc:PersonPicture>
+
+
+        <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+                    CornerRadius="{StaticResource ControlCornerRadius}">
+            <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+                        CornerRadius="{StaticResource ControlCornerRadius}"
+                        Padding="{StaticResource MessageBubblePadding}"
+                        Background="#80B00000">
+
+                <Image Source="{x:Bind DirectItem.Media.Images[0].Uri, Mode=OneWay}" 
+                       Margin="{StaticResource MessageBubbleVertical}"
+                       MaxWidth="185" x:Name="imgMedia"/>
+
+                <MediaElement PosterSource="{x:Bind DirectItem.Media.Images[0].Uri, Mode=OneWay}" 
+                              Margin="{StaticResource MessageBubbleVertical}"
+                              AreTransportControlsEnabled="True" 
+                              x:Name="vidMedia"
+                              IsLooping="True"
+                              AutoPlay="True"
+                              IsMuted="True"
+                              Width="185">
+
+                    <MediaElement.TransportControls>
+                        <controls:NoCastButtonMediaTransportControls IsCompact="True" 
+                                                                 IsSeekEnabled="False"
+                                                                 IsSeekBarVisible="False" 
+                                                                 IsZoomButtonVisible="False"/>
+                    </MediaElement.TransportControls>
+
+                </MediaElement>
+
+            </StackPanel>
+            <ItemsControl x:Load="{x:Bind DirectItem.Reactions.Emojis.Count, Converter={StaticResource IntToIsEnabledConverter}, Mode=OneWay}"
+                          ItemsSource="{x:Bind DirectItem.Reactions.Emojis, Mode=OneWay}"
+                          x:Name="emojisItemsControl">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="models:InstaDirectEmojiReaction">
+                        <TextBlock Text="{x:Bind Emoji}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
+    </StackPanel>
+
+</directs:MessageContainerUC>

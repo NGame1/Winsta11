@@ -143,6 +143,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountManagementService.cs" />
+    <Compile Include="UI\Controls\NoCastButtonMediaTransportControls.cs" />
     <Compile Include="UI\Directs\ChatListView.cs" />
     <Compile Include="UI\Directs\GiphyPanelUC.xaml.cs">
       <DependentUpon>GiphyPanelUC.xaml</DependentUpon>
@@ -158,6 +159,24 @@
     </Compile>
     <Compile Include="UI\Directs\MessageContainer\IGTVShareMessageContainerUC.xaml.cs">
       <DependentUpon>IGTVShareMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\LikeMessageContainerUC.xaml.cs">
+      <DependentUpon>LikeMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\LinkMessageContainerUC.xaml.cs">
+      <DependentUpon>LinkMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\MediaMessageContainerUC.xaml.cs">
+      <DependentUpon>MediaMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\MediaShareMessageContainerUC.xaml.cs">
+      <DependentUpon>MediaShareMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\NotSupportedMessageContainerUC.xaml.cs">
+      <DependentUpon>NotSupportedMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\PlaceholderMessageContainerUC.xaml.cs">
+      <DependentUpon>PlaceholderMessageContainerUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Directs\PrivateDirectThread.xaml.cs">
       <DependentUpon>PrivateDirectThread.xaml</DependentUpon>
@@ -414,9 +433,33 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Directs\MessageContainer\LikeMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\LinkMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\MediaMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\MediaShareMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Directs\MessageContainer\MessageContainerResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\NotSupportedMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\PlaceholderMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Directs\PrivateDirectThread.xaml">
       <SubType>Designer</SubType>
