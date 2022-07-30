@@ -133,10 +133,11 @@
                                                       Command="{x:Bind ViewModel.NavigateToUserProfileCommand}"/>
                         </core:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
-                    <StackPanel Orientation="Horizontal" Spacing="10" Padding="0,5" BorderThickness="1" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" Padding="0,5" BorderThickness="1" HorizontalAlignment="Left">
                         <muxc:PersonPicture Height="60" Width="60"
-                            DisplayName="{x:Bind ViewModel.InstaUser.UserName, Mode=OneWay}" 
-                            ProfilePicture="{x:Bind ViewModel.InstaUser.ProfilePicture, Mode=OneWay}"/>
+                                            Margin="0,0,10,0"
+                                            DisplayName="{x:Bind ViewModel.InstaUser.UserName, Mode=OneWay}" 
+                                            ProfilePicture="{x:Bind ViewModel.InstaUser.ProfilePicture, Mode=OneWay}"/>
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock Text="{x:Bind ViewModel.InstaUser.UserName, Mode=OneWay}"/>
                             <TextBlock Text="Tap to switch accounts" />
