@@ -6,6 +6,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 using WinstaCore.Interfaces.Views.Medias;
 using WinstaCore;
+using WinstaCore.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 

@@ -178,6 +178,24 @@
     <Compile Include="UI\Directs\MessageContainer\PlaceholderMessageContainerUC.xaml.cs">
       <DependentUpon>PlaceholderMessageContainerUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Directs\MessageContainer\ProfileMessageContainerUC.xaml.cs">
+      <DependentUpon>ProfileMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\StoryReplyMessageContainerUC.xaml.cs">
+      <DependentUpon>StoryReplyMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\StoryShareMessageContainerUC.xaml.cs">
+      <DependentUpon>StoryShareMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\TextMessageContainerUC.xaml.cs">
+      <DependentUpon>TextMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\VoiceMessageContainerUC.xaml.cs">
+      <DependentUpon>VoiceMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\XmaMediaShareMessageContainerUC.xaml.cs">
+      <DependentUpon>XmaMediaShareMessageContainerUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Directs\PrivateDirectThread.xaml.cs">
       <DependentUpon>PrivateDirectThread.xaml</DependentUpon>
     </Compile>
@@ -458,6 +476,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Directs\MessageContainer\PlaceholderMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\ProfileMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\StoryReplyMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\StoryShareMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\TextMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\VoiceMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\XmaMediaShareMessageContainerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

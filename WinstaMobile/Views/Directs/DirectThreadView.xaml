@@ -35,17 +35,7 @@
             </messagecontainer:AnimatedGifMessageContainerUC>
         </DataTemplate>
 
-        <DataTemplate x:Key="ClipMessageContainerDataTemplate" x:DataType="models:InstaDirectInboxItemFullModel">
-            <messagecontainer:ClipMessageContainerUC 
-                    DirectUser="{x:Bind User}"
-                    DirectItem="{x:Bind}">
-                <directs1:MessageContainerUC.ContextFlyout>
-                    <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
-                </directs1:MessageContainerUC.ContextFlyout>
-            </messagecontainer:ClipMessageContainerUC>
-        </DataTemplate>
-        
-        <!--<DataTemplate x:Key="LikeMessageContainerUC" x:DataType="models:InstaDirectInboxItemFullModel">
+        <DataTemplate x:Key="LikeMessageContainerUC" x:DataType="models:InstaDirectInboxItemFullModel">
             <messagecontainer:LikeMessageContainerUC 
                     DirectUser="{x:Bind User}"
                     DirectItem="{x:Bind}">
@@ -183,13 +173,9 @@
                     <directs2:DirectMessageItemMenuFlyout DirectItem="{x:Bind}"/>
                 </directs1:MessageContainerUC.ContextFlyout>
             </messagecontainer:NotSupportedMessageContainerUC>
-        </DataTemplate>-->
+        </DataTemplate>
 
         <TemplateSelectors:InstaDirectInboxItemTemplateSelector x:Key="InstaDirectInboxItemTemplateSelector"
-                                                                AnimatedGifMessageDataTemplate="{StaticResource AnimatedGifMessageDataTemplate}"
-                                                                ClipTemplate="{StaticResource ClipMessageContainerDataTemplate}"/>
-
-        <!--<TemplateSelectors:InstaDirectInboxItemTemplateSelector x:Key="InstaDirectInboxItemTemplateSelector"
                            AnimatedGifMessageDataTemplate="{StaticResource AnimatedGifMessageDataTemplate}"
                            PlaceholderMessageDataTemplate="{StaticResource PlaceholderMessageDataTemplate}"
                            IGTVShareTemplate="{StaticResource IGTVShareMessageContainerDataTemplate}"
@@ -204,7 +190,7 @@
                            StoryReplyDataTemplate="{StaticResource StoryReplyDataTemplate}"
                            StoryShareDataTemplate="{StaticResource StoryShareDataTemplate}"
                            MediaMessageType="{StaticResource MediaMessageDataTemplate}"
-                           LikeTemplate="{StaticResource LikeMessageContainerUC}"/>-->
+                           LikeTemplate="{StaticResource LikeMessageContainerUC}"/>
     </Page.Resources>
 
     <Grid>
