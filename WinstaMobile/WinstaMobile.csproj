@@ -129,21 +129,6 @@
     <Compile Include="..\WinstaNext\Helpers\NotifyHelper.cs">
       <Link>Helpers\NotifyHelper.cs</Link>
     </Compile>
-    <Compile Include="..\WinstaNext\UI\Directs\ChatListView.cs">
-      <Link>UI\Directs\ChatListView.cs</Link>
-    </Compile>
-    <Compile Include="..\WinstaNext\UI\Directs\GiphyPanelUC.xaml.cs">
-      <Link>UI\Directs\GiphyPanelUC.xaml.cs</Link>
-    </Compile>
-    <Compile Include="..\WinstaNext\UI\Directs\GroupDirectThread.xaml.cs">
-      <Link>UI\Directs\GroupDirectThread.xaml.cs</Link>
-    </Compile>
-    <Compile Include="..\WinstaNext\UI\Directs\MessageContainerUC.xaml.cs">
-      <Link>UI\Directs\MessageContainerUC.xaml.cs</Link>
-    </Compile>
-    <Compile Include="..\WinstaNext\UI\Directs\PrivateDirectThread.xaml.cs">
-      <Link>UI\Directs\PrivateDirectThread.xaml.cs</Link>
-    </Compile>
     <Compile Include="..\WinstaNext\UI\Generic\InstaUserPresenterUC.xaml.cs">
       <Link>UI\Generic\InstaUserPresenterUC.xaml.cs</Link>
     </Compile>
@@ -158,6 +143,25 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountManagementService.cs" />
+    <Compile Include="UI\Directs\ChatListView.cs" />
+    <Compile Include="UI\Directs\GiphyPanelUC.xaml.cs">
+      <DependentUpon>GiphyPanelUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\GroupDirectThread.xaml.cs">
+      <DependentUpon>GroupDirectThread.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainerUC.xaml.cs">
+      <DependentUpon>MessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\ClipMessageContainerUC.xaml.cs">
+      <DependentUpon>ClipMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\MessageContainer\IGTVShareMessageContainerUC.xaml.cs">
+      <DependentUpon>IGTVShareMessageContainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Directs\PrivateDirectThread.xaml.cs">
+      <DependentUpon>PrivateDirectThread.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Flyouts\Directs\DirectMessageItemMenuFlyout.cs" />
     <Compile Include="UI\Flyouts\Directs\GroupMessageThreadMenuFlyout.cs" />
     <Compile Include="UI\Flyouts\Directs\PrivateMessageThreadMenuFlyout.cs" />
@@ -368,26 +372,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="..\WinstaNext\UI\Directs\GiphyPanelUC.xaml">
-      <Link>UI\Directs\GiphyPanelUC.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\WinstaNext\UI\Directs\GroupDirectThread.xaml">
-      <Link>UI\Directs\GroupDirectThread.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\WinstaNext\UI\Directs\MessageContainerUC.xaml">
-      <Link>UI\Directs\MessageContainerUC.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\WinstaNext\UI\Directs\PrivateDirectThread.xaml">
-      <Link>UI\Directs\PrivateDirectThread.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="..\WinstaNext\UI\Generic\InstaUserPresenterUC.xaml">
       <Link>UI\Generic\InstaUserPresenterUC.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
@@ -405,6 +389,38 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Directs\GiphyPanelUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\GroupDirectThread.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\AnimatedGifMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\ClipMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\IGTVShareMessageContainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Directs\MessageContainer\MessageContainerResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Directs\PrivateDirectThread.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Account\ChallengeRequiredView.xaml">
       <SubType>Designer</SubType>
@@ -642,9 +658,7 @@
       <Link>Strings\en-US\General.resw</Link>
     </PRIResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\Directs\MessageContainer\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

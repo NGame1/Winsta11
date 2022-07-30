@@ -9,7 +9,7 @@
     x:Class="WinstaMobile.Views.Directs.DirectsListView"
     xmlns:TemplateSelectors="using:TemplateSelectors"
     xmlns:directs2="using:WinstaMobile.Views.Directs"
-    xmlns:directs1="using:WinstaNext.UI.Directs" 
+    xmlns:directs1="using:WinstaMobile.UI.Directs" 
     xmlns:views="using:WinstaMobile.Views"
     xmlns:VM="using:ViewModels.Directs"
     xmlns:Resources="using:Resources" 
