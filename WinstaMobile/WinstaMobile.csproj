@@ -208,6 +208,25 @@
     <Compile Include="UI\Flyouts\Stories\InstaReelFeedFlyout.cs" />
     <Compile Include="UI\Flyouts\Stories\InstaStoryItemFlyout.cs" />
     <Compile Include="UI\Flyouts\SwitchUserFlyout.cs" />
+    <Compile Include="UI\Media\InstaMediaCarouselPresenterUC.xaml.cs">
+      <DependentUpon>InstaMediaCarouselPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Media\InstaMediaImagePresenterUC.xaml.cs">
+      <DependentUpon>InstaMediaImagePresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Media\InstaMediaPresenterUC.xaml.cs">
+      <DependentUpon>InstaMediaPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Media\InstaMediaVideoPresenterUC.xaml.cs">
+      <DependentUpon>InstaMediaVideoPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Stories\InstaBroadcastPresenterUC.xaml.cs">
+      <DependentUpon>InstaBroadcastPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Stories\InstaReelFeedPresenterUC.xaml.cs">
+      <DependentUpon>InstaReelFeedPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Media\InstaMediaPresenterUCViewModel.cs" />
     <Compile Include="Views\Account\ChallengeRequiredView.xaml.cs">
       <DependentUpon>ChallengeRequiredView.xaml</DependentUpon>
     </Compile>
@@ -218,6 +237,9 @@
       <DependentUpon>TwoFactorAuthView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BasePage.cs" />
+    <Compile Include="Views\Comments\MediaCommentsView.xaml.cs">
+      <DependentUpon>MediaCommentsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Directs\DirectsListView.xaml.cs">
       <DependentUpon>DirectsListView.xaml</DependentUpon>
     </Compile>
@@ -507,6 +529,30 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Media\InstaMediaCarouselPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Media\InstaMediaImagePresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Media\InstaMediaPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Media\InstaMediaVideoPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Stories\InstaBroadcastPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Stories\InstaReelFeedPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Account\ChallengeRequiredView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -516,6 +562,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Account\TwoFactorAuthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Comments\MediaCommentsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -545,6 +595,9 @@
       <Version>6.6.3</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="LottieUWP">
+      <Version>2.8.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection">
       <Version>1.1.1</Version>
