@@ -39,7 +39,6 @@
                         <!--<Setter Target="NavigationView.AlwaysShowHeader" Value="False" />-->
                         <Setter Target="NavigationView.IsPaneVisible" Value="False" />
                         <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
-                        <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
                         <Setter Target="HeaderTextBlock.Visibility" Value="Collapsed" />
                         <Setter Target="AppTitleLeftBorder.Width" Value="16" />
                     </VisualState.Setters>
@@ -202,6 +201,7 @@
             <Grid x:Name="ScrollViewerContent">
                 <Frame XYFocusLeft="{x:Bind NavigationView}"
                        Navigated="ContentFrame_Navigated"
+                       Padding="0,42,0,0"
                        Name="ContentFrame">
                     <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Navigated">
