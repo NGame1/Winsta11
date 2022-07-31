@@ -34,6 +34,9 @@ using Microsoft.UI.Xaml.Controls;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
+#else
+using System.Threading;
+using System.Threading.Tasks;
 #endif
 using InstagramApiSharp.Classes;
 using WinstaCore.Interfaces.Views.Accounts;
