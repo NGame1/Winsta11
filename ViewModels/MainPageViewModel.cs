@@ -37,8 +37,6 @@ using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
 #endif
 using InstagramApiSharp.Classes;
 using WinstaCore.Interfaces.Views.Accounts;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace ViewModels
 {

@@ -1,807 +1,807 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <LangVersion>10.0</LangVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{0184C489-44C7-44C8-821E-4AD0CA11F22A}</ProjectGuid>
-    <OutputType>AppContainerExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WinstaMobile</RootNamespace>
-    <AssemblyName>WinstaMobile</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22621.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
-    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <Optimize>true</Optimize>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\ARM\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>ARM</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
-    <OutputPath>bin\ARM\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <Optimize>true</Optimize>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>ARM</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\ARM64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>ARM64</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
-    <OutputPath>bin\ARM64\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <Optimize>true</Optimize>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>ARM64</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <Optimize>true</Optimize>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-  </PropertyGroup>
-  <PropertyGroup>
-    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="..\WinstaNext\Helpers\ControlSizeHelper.cs">
-      <Link>Helpers\ControlSizeHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\WinstaNext\Helpers\DownloadUploadHelper\DownloadHelper.cs">
-      <Link>Helpers\DownloadUploadHelper\DownloadHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\WinstaNext\Helpers\DownloadUploadHelper\UploadHelper.cs">
-      <Link>Helpers\DownloadUploadHelper\UploadHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\WinstaNext\Helpers\NotifyHelper.cs">
-      <Link>Helpers\NotifyHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\WinstaNext\UI\Generic\InstaUserPresenterUC.xaml.cs">
-      <Link>UI\Generic\InstaUserPresenterUC.xaml.cs</Link>
-    </Compile>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ExtendedSplashScreen.xaml.cs">
-      <DependentUpon>ExtendedSplashScreen.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AccountManagementService.cs" />
-    <Compile Include="UI\Controls\NoCastButtonMediaTransportControls.cs" />
-    <Compile Include="UI\Directs\ChatListView.cs" />
-    <Compile Include="UI\Directs\GiphyPanelUC.xaml.cs">
-      <DependentUpon>GiphyPanelUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\GroupDirectThread.xaml.cs">
-      <DependentUpon>GroupDirectThread.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainerUC.xaml.cs">
-      <DependentUpon>MessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainer\ClipMessageContainerUC.xaml.cs">
-      <DependentUpon>ClipMessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainer\IGTVShareMessageContainerUC.xaml.cs">
-      <DependentUpon>IGTVShareMessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainer\LikeMessageContainerUC.xaml.cs">
-      <DependentUpon>LikeMessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainer\LinkMessageContainerUC.xaml.cs">
-      <DependentUpon>LinkMessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainer\MediaMessageContainerUC.xaml.cs">
-      <DependentUpon>MediaMessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainer\MediaShareMessageContainerUC.xaml.cs">
-      <DependentUpon>MediaShareMessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainer\NotSupportedMessageContainerUC.xaml.cs">
-      <DependentUpon>NotSupportedMessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainer\PlaceholderMessageContainerUC.xaml.cs">
-      <DependentUpon>PlaceholderMessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainer\ProfileMessageContainerUC.xaml.cs">
-      <DependentUpon>ProfileMessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainer\StoryReplyMessageContainerUC.xaml.cs">
-      <DependentUpon>StoryReplyMessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainer\StoryShareMessageContainerUC.xaml.cs">
-      <DependentUpon>StoryShareMessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainer\TextMessageContainerUC.xaml.cs">
-      <DependentUpon>TextMessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainer\VoiceMessageContainerUC.xaml.cs">
-      <DependentUpon>VoiceMessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\MessageContainer\XmaMediaShareMessageContainerUC.xaml.cs">
-      <DependentUpon>XmaMediaShareMessageContainerUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Directs\PrivateDirectThread.xaml.cs">
-      <DependentUpon>PrivateDirectThread.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Flyouts\Directs\DirectMessageItemMenuFlyout.cs" />
-    <Compile Include="UI\Flyouts\Directs\GroupMessageThreadMenuFlyout.cs" />
-    <Compile Include="UI\Flyouts\Directs\PrivateMessageThreadMenuFlyout.cs" />
-    <Compile Include="UI\Flyouts\InstaMediaFlyout.cs" />
-    <Compile Include="UI\Flyouts\Profiles\UserProfileMenuFlyout.cs" />
-    <Compile Include="UI\Flyouts\Stories\InstaBroadcastFlyout.cs" />
-    <Compile Include="UI\Flyouts\Stories\InstaReelFeedFlyout.cs" />
-    <Compile Include="UI\Flyouts\Stories\InstaStoryItemFlyout.cs" />
-    <Compile Include="UI\Flyouts\SwitchUserFlyout.cs" />
-    <Compile Include="UI\Media\InstaMediaCarouselPresenterUC.xaml.cs">
-      <DependentUpon>InstaMediaCarouselPresenterUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Media\InstaMediaImagePresenterUC.xaml.cs">
-      <DependentUpon>InstaMediaImagePresenterUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Media\InstaMediaPresenterUC.xaml.cs">
-      <DependentUpon>InstaMediaPresenterUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Media\InstaMediaVideoPresenterUC.xaml.cs">
-      <DependentUpon>InstaMediaVideoPresenterUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Stories\InstaBroadcastPresenterUC.xaml.cs">
-      <DependentUpon>InstaBroadcastPresenterUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Stories\InstaReelFeedPresenterUC.xaml.cs">
-      <DependentUpon>InstaReelFeedPresenterUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\Media\InstaMediaPresenterUCViewModel.cs" />
-    <Compile Include="Views\Account\ChallengeRequiredView.xaml.cs">
-      <DependentUpon>ChallengeRequiredView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Account\LoginView.xaml.cs">
-      <DependentUpon>LoginView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Account\TwoFactorAuthView.xaml.cs">
-      <DependentUpon>TwoFactorAuthView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\BasePage.cs" />
-    <Compile Include="Views\Comments\MediaCommentsView.xaml.cs">
-      <DependentUpon>MediaCommentsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Directs\DirectsListView.xaml.cs">
-      <DependentUpon>DirectsListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Directs\DirectThreadView.xaml.cs">
-      <DependentUpon>DirectThreadView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\HomeView.xaml.cs">
-      <DependentUpon>HomeView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Media\ImageViewerPage.xaml.cs">
-      <DependentUpon>ImageViewerPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Stories\StoryCarouselView.xaml.cs">
-      <DependentUpon>StoryCarouselView.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
-      <SubType>Designer</SubType>
-    </AppxManifest>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\WinstaNext\Assets\Icons\WinstaIcon.png">
-      <Link>Assets\Icons\WinstaIcon.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Icons\WinstaLogo.png">
-      <Link>Assets\Icons\WinstaLogo.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\LargeTile.scale-100.png">
-      <Link>Assets\LargeTile.scale-100.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\LargeTile.scale-125.png">
-      <Link>Assets\LargeTile.scale-125.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\LargeTile.scale-150.png">
-      <Link>Assets\LargeTile.scale-150.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\LargeTile.scale-200.png">
-      <Link>Assets\LargeTile.scale-200.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\LargeTile.scale-400.png">
-      <Link>Assets\LargeTile.scale-400.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\LockScreenLogo.scale-200.png">
-      <Link>Assets\LockScreenLogo.scale-200.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\SmallTile.scale-100.png">
-      <Link>Assets\SmallTile.scale-100.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\SmallTile.scale-125.png">
-      <Link>Assets\SmallTile.scale-125.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\SmallTile.scale-150.png">
-      <Link>Assets\SmallTile.scale-150.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\SmallTile.scale-200.png">
-      <Link>Assets\SmallTile.scale-200.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\SmallTile.scale-400.png">
-      <Link>Assets\SmallTile.scale-400.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\SplashScreen.scale-100.png">
-      <Link>Assets\SplashScreen.scale-100.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\SplashScreen.scale-125.png">
-      <Link>Assets\SplashScreen.scale-125.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\SplashScreen.scale-150.png">
-      <Link>Assets\SplashScreen.scale-150.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\SplashScreen.scale-200.png">
-      <Link>Assets\SplashScreen.scale-200.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\SplashScreen.scale-400.png">
-      <Link>Assets\SplashScreen.scale-400.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square150x150Logo.scale-100.png">
-      <Link>Assets\Square150x150Logo.scale-100.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square150x150Logo.scale-125.png">
-      <Link>Assets\Square150x150Logo.scale-125.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square150x150Logo.scale-150.png">
-      <Link>Assets\Square150x150Logo.scale-150.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square150x150Logo.scale-200.png">
-      <Link>Assets\Square150x150Logo.scale-200.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square150x150Logo.scale-400.png">
-      <Link>Assets\Square150x150Logo.scale-400.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png">
-      <Link>Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png">
-      <Link>Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png">
-      <Link>Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png">
-      <Link>Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png">
-      <Link>Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-unplated_targetsize-16.png">
-      <Link>Assets\Square44x44Logo.altform-unplated_targetsize-16.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-unplated_targetsize-256.png">
-      <Link>Assets\Square44x44Logo.altform-unplated_targetsize-256.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-unplated_targetsize-32.png">
-      <Link>Assets\Square44x44Logo.altform-unplated_targetsize-32.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-unplated_targetsize-48.png">
-      <Link>Assets\Square44x44Logo.altform-unplated_targetsize-48.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.scale-100.png">
-      <Link>Assets\Square44x44Logo.scale-100.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.scale-125.png">
-      <Link>Assets\Square44x44Logo.scale-125.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.scale-150.png">
-      <Link>Assets\Square44x44Logo.scale-150.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.scale-200.png">
-      <Link>Assets\Square44x44Logo.scale-200.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.scale-400.png">
-      <Link>Assets\Square44x44Logo.scale-400.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.targetsize-16.png">
-      <Link>Assets\Square44x44Logo.targetsize-16.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.targetsize-24.png">
-      <Link>Assets\Square44x44Logo.targetsize-24.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
-      <Link>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.targetsize-256.png">
-      <Link>Assets\Square44x44Logo.targetsize-256.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.targetsize-32.png">
-      <Link>Assets\Square44x44Logo.targetsize-32.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Square44x44Logo.targetsize-48.png">
-      <Link>Assets\Square44x44Logo.targetsize-48.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\StoreLogo.backup.png">
-      <Link>Assets\StoreLogo.backup.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\StoreLogo.scale-100.png">
-      <Link>Assets\StoreLogo.scale-100.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\StoreLogo.scale-125.png">
-      <Link>Assets\StoreLogo.scale-125.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\StoreLogo.scale-150.png">
-      <Link>Assets\StoreLogo.scale-150.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\StoreLogo.scale-200.png">
-      <Link>Assets\StoreLogo.scale-200.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\StoreLogo.scale-400.png">
-      <Link>Assets\StoreLogo.scale-400.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Wide310x150Logo.scale-100.png">
-      <Link>Assets\Wide310x150Logo.scale-100.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Wide310x150Logo.scale-125.png">
-      <Link>Assets\Wide310x150Logo.scale-125.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Wide310x150Logo.scale-150.png">
-      <Link>Assets\Wide310x150Logo.scale-150.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Wide310x150Logo.scale-200.png">
-      <Link>Assets\Wide310x150Logo.scale-200.png</Link>
-    </Content>
-    <Content Include="..\WinstaNext\Assets\Wide310x150Logo.scale-400.png">
-      <Link>Assets\Wide310x150Logo.scale-400.png</Link>
-    </Content>
-    <Content Include="Properties\Default.rd.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="..\WinstaNext\UI\Generic\InstaUserPresenterUC.xaml">
-      <Link>UI\Generic\InstaUserPresenterUC.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\WinstaNext\UI\Generic\PersonPictureResources.xaml">
-      <Link>UI\Generic\PersonPictureResources.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ExtendedSplashScreen.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UI\Directs\GiphyPanelUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\GroupDirectThread.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\AnimatedGifMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\ClipMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\IGTVShareMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\LikeMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\LinkMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\MediaMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\MediaShareMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\MessageContainerResources.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\NotSupportedMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\PlaceholderMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\ProfileMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\StoryReplyMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\StoryShareMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\TextMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\VoiceMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\MessageContainer\XmaMediaShareMessageContainerUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Directs\PrivateDirectThread.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Media\InstaMediaCarouselPresenterUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Media\InstaMediaImagePresenterUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Media\InstaMediaPresenterUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Media\InstaMediaVideoPresenterUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Stories\InstaBroadcastPresenterUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Stories\InstaReelFeedPresenterUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Account\ChallengeRequiredView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Account\LoginView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Account\TwoFactorAuthView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Comments\MediaCommentsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Directs\DirectsListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Directs\DirectThreadView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\HomeView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Media\ImageViewerPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Stories\StoryCarouselView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Fody">
-      <Version>6.6.3</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="LottieUWP">
-      <Version>2.8.2</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection">
-      <Version>1.1.1</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.14</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp">
-      <Version>4.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
-      <Version>4.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>4.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.UI.Xaml">
-      <Version>2.3.200213001</Version>
-    </PackageReference>
-    <PackageReference Include="NodaTime">
-      <Version>2.4.18</Version>
-    </PackageReference>
-    <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.4.1</Version>
-    </PackageReference>
-    <PackageReference Include="QueryString.NET">
-      <Version>1.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.ComponentModel.EventBasedAsync">
-      <Version>4.3.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Linq.Queryable">
-      <Version>4.3.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Threading.Thread">
-      <Version>4.3.0</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\InstagramApiSharpMine\src\InstagramApiSharp\InstagramApiSharp.UWP.csproj">
-      <Project>{ecc0defb-3034-44c2-a4b6-aa443f07d942}</Project>
-      <Name>InstagramApiSharp.UWP</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Abstractions\Abstractions.csproj">
-      <Project>{5aa79e4d-3cdb-4021-ae30-ff367e628f3a}</Project>
-      <Name>Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core.Collections\Core.Collections.csproj">
-      <Project>{147df058-0510-43d1-9bbd-91f72ebaf1b1}</Project>
-      <Name>Core.Collections</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Microsoft.Toolkit.Mvvm\Microsoft.Toolkit.Mvvm.csproj">
-      <Project>{486d38a1-db0a-4482-9a38-7e865abbd2bc}</Project>
-      <Name>Microsoft.Toolkit.Mvvm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MinistaLivePlayback\MinistaLivePlayback.csproj">
-      <Project>{86a0b47f-5cd2-42a0-8543-50cd63a10f4e}</Project>
-      <Name>MinistaLivePlayback</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NotificationHandler\NotificationHandler.csproj">
-      <Project>{f2f2ee57-376b-4456-9d11-f641b86d771b}</Project>
-      <Name>NotificationHandler</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Resources\Resources.csproj">
-      <Project>{6ff6e373-2336-47c5-9e08-3ee537de2e76}</Project>
-      <Name>Resources</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TemplateSelectors\TemplateSelectors.csproj">
-      <Project>{4e1802fa-191e-4025-846b-68eab62639c4}</Project>
-      <Name>TemplateSelectors</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
-      <Project>{a33497a2-42a9-4355-a047-9b7b6afd7b65}</Project>
-      <Name>ViewModels</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WinstaBackgroundHelpers\WinstaBackgroundHelpers.csproj">
-      <Project>{8acdb63f-98aa-4de6-95c5-c2d96f098cfa}</Project>
-      <Name>WinstaBackgroundHelpers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WinstaBackgroundTask\WinstaBackgroundTask.csproj">
-      <Project>{0d44f4ad-a357-44a8-8202-ebecd46c575d}</Project>
-      <Name>WinstaBackgroundTask</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WinstaCore\WinstaCore.csproj">
-      <Project>{898C6B7E-C8FE-418F-9348-B32DA493FA10}</Project>
-      <Name>WinstaCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WinstaNext.Converters\WinstaNext.Converters.csproj">
-      <Project>{02f5d2f9-2181-4e0a-aa01-63b8a3157f5d}</Project>
-      <Name>WinstaNext.Converters</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\WinstaNext\Assets\Fonts\FluentSystemIcons-Filled.ttf">
-      <Link>Assets\Fonts\FluentSystemIcons-Filled.ttf</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\WinstaNext\Assets\Fonts\FluentSystemIcons-Regular.ttf">
-      <Link>Assets\Fonts\FluentSystemIcons-Regular.ttf</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\WinstaNext\Assets\Fonts\FluentSystemIcons-Resizable.ttf">
-      <Link>Assets\Fonts\FluentSystemIcons-Resizable.ttf</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\WinstaNext\Assets\Fonts\SegoeIcons.ttf">
-      <Link>Assets\Fonts\SegoeIcons.ttf</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\WinstaNext\Assets\Fonts\Instagram\AvenyTMedium.otf">
-      <Link>Assets\Fonts\Instagram\AvenyTMedium.otf</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\WinstaNext\Assets\Fonts\Instagram\AvenyTRegular.otf">
-      <Link>Assets\Fonts\Instagram\AvenyTRegular.otf</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\WinstaNext\Assets\Fonts\Instagram\CosmopolitanScriptRegular.otf">
-      <Link>Assets\Fonts\Instagram\CosmopolitanScriptRegular.otf</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\WinstaNext\Assets\Fonts\Instagram\FacebookNarrow_A_Rg.ttf">
-      <Link>Assets\Fonts\Instagram\FacebookNarrow_A_Rg.ttf</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\WinstaNext\Assets\Fonts\Instagram\FBDisplayLightSlim.ttf">
-      <Link>Assets\Fonts\Instagram\FBDisplayLightSlim.ttf</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\WinstaNext\Assets\Fonts\Instagram\FBWordmarkRegularSlim.ttf">
-      <Link>Assets\Fonts\Instagram\FBWordmarkRegularSlim.ttf</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\WinstaNext\Assets\Lottie\circles-menu-1.json">
-      <Link>Assets\Lottie\circles-menu-1.json</Link>
-    </None>
-    <None Include="..\WinstaNext\Assets\Lottie\Dislike.json">
-      <Link>Assets\Lottie\Dislike.json</Link>
-    </None>
-    <None Include="..\WinstaNext\Assets\Lottie\Gears.json">
-      <Link>Assets\Lottie\Gears.json</Link>
-    </None>
-    <None Include="..\WinstaNext\Assets\Lottie\Insta-anim.json">
-      <Link>Assets\Lottie\Insta-anim.json</Link>
-    </None>
-    <None Include="..\WinstaNext\Assets\Lottie\Like.json">
-      <Link>Assets\Lottie\Like.json</Link>
-    </None>
-    <None Include="..\WinstaNext\Assets\Lottie\Loading.json">
-      <Link>Assets\Lottie\Loading.json</Link>
-    </None>
-    <None Include="..\WinstaNext\Assets\Lottie\Upload.json">
-      <Link>Assets\Lottie\Upload.json</Link>
-    </None>
-    <None Include="..\WinstaNext\Assets\Lottie\UploadingAnim.json">
-      <Link>Assets\Lottie\UploadingAnim.json</Link>
-    </None>
-    <PRIResource Include="..\WinstaNext\Strings\fa-Ir\Units.resw">
-      <Link>Strings\fa-Ir\Units.resw</Link>
-    </PRIResource>
-    <PRIResource Include="..\WinstaNext\Strings\fa-Ir\Settings.resw">
-      <Link>Strings\fa-Ir\Settings.resw</Link>
-    </PRIResource>
-    <PRIResource Include="..\WinstaNext\Strings\fa-Ir\Messages.resw">
-      <Link>Strings\fa-Ir\Messages.resw</Link>
-    </PRIResource>
-    <PRIResource Include="..\WinstaNext\Strings\fa-Ir\Instagram.resw">
-      <Link>Strings\fa-Ir\Instagram.resw</Link>
-    </PRIResource>
-    <PRIResource Include="..\WinstaNext\Strings\fa-Ir\General.resw">
-      <Link>Strings\fa-Ir\General.resw</Link>
-    </PRIResource>
-    <PRIResource Include="..\WinstaNext\Strings\en-US\Units.resw">
-      <Link>Strings\en-US\Units.resw</Link>
-    </PRIResource>
-    <PRIResource Include="..\WinstaNext\Strings\en-US\Settings.resw">
-      <Link>Strings\en-US\Settings.resw</Link>
-    </PRIResource>
-    <PRIResource Include="..\WinstaNext\Strings\en-US\Messages.resw">
-      <Link>Strings\en-US\Messages.resw</Link>
-    </PRIResource>
-    <PRIResource Include="..\WinstaNext\Strings\en-US\Instagram.resw">
-      <Link>Strings\en-US\Instagram.resw</Link>
-    </PRIResource>
-    <PRIResource Include="..\WinstaNext\Strings\en-US\General.resw">
-      <Link>Strings\en-US\General.resw</Link>
-    </PRIResource>
-  </ItemGroup>
-  <ItemGroup />
-  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
-    <VisualStudioVersion>14.0</VisualStudioVersion>
-  </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+	<PropertyGroup>
+		<LangVersion>10.0</LangVersion>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+		<ProjectGuid>{0184C489-44C7-44C8-821E-4AD0CA11F22A}</ProjectGuid>
+		<OutputType>AppContainerExe</OutputType>
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<RootNamespace>WinstaMobile</RootNamespace>
+		<AssemblyName>WinstaMobile</AssemblyName>
+		<DefaultLanguage>en-US</DefaultLanguage>
+		<TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+		<TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22621.0</TargetPlatformVersion>
+		<TargetPlatformMinVersion Condition=" '$(TargetPlatformMinVersion)' == '' ">10.0.15063.0</TargetPlatformMinVersion>
+		<MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+		<FileAlignment>512</FileAlignment>
+		<ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+		<WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+		<AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+		<DebugSymbols>true</DebugSymbols>
+		<OutputPath>bin\x86\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>full</DebugType>
+		<PlatformTarget>x86</PlatformTarget>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+		<Prefer32Bit>true</Prefer32Bit>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+		<OutputPath>bin\x86\Release\</OutputPath>
+		<DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<Optimize>true</Optimize>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>pdbonly</DebugType>
+		<PlatformTarget>x86</PlatformTarget>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+		<Prefer32Bit>true</Prefer32Bit>
+		<UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+		<DebugSymbols>true</DebugSymbols>
+		<OutputPath>bin\ARM\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>full</DebugType>
+		<PlatformTarget>ARM</PlatformTarget>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+		<Prefer32Bit>true</Prefer32Bit>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+		<OutputPath>bin\ARM\Release\</OutputPath>
+		<DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<Optimize>true</Optimize>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>pdbonly</DebugType>
+		<PlatformTarget>ARM</PlatformTarget>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+		<Prefer32Bit>true</Prefer32Bit>
+		<UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
+		<DebugSymbols>true</DebugSymbols>
+		<OutputPath>bin\ARM64\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>full</DebugType>
+		<PlatformTarget>ARM64</PlatformTarget>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+		<Prefer32Bit>true</Prefer32Bit>
+		<UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+		<OutputPath>bin\ARM64\Release\</OutputPath>
+		<DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<Optimize>true</Optimize>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>pdbonly</DebugType>
+		<PlatformTarget>ARM64</PlatformTarget>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+		<Prefer32Bit>true</Prefer32Bit>
+		<UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+		<DebugSymbols>true</DebugSymbols>
+		<OutputPath>bin\x64\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>full</DebugType>
+		<PlatformTarget>x64</PlatformTarget>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+		<Prefer32Bit>true</Prefer32Bit>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+		<OutputPath>bin\x64\Release\</OutputPath>
+		<DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+		<Optimize>true</Optimize>
+		<NoWarn>;2008</NoWarn>
+		<DebugType>pdbonly</DebugType>
+		<PlatformTarget>x64</PlatformTarget>
+		<UseVSHostingProcess>false</UseVSHostingProcess>
+		<ErrorReport>prompt</ErrorReport>
+		<Prefer32Bit>true</Prefer32Bit>
+		<UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+	</PropertyGroup>
+	<PropertyGroup>
+		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="..\WinstaNext\Helpers\ControlSizeHelper.cs">
+			<Link>Helpers\ControlSizeHelper.cs</Link>
+		</Compile>
+		<Compile Include="..\WinstaNext\Helpers\DownloadUploadHelper\DownloadHelper.cs">
+			<Link>Helpers\DownloadUploadHelper\DownloadHelper.cs</Link>
+		</Compile>
+		<Compile Include="..\WinstaNext\Helpers\DownloadUploadHelper\UploadHelper.cs">
+			<Link>Helpers\DownloadUploadHelper\UploadHelper.cs</Link>
+		</Compile>
+		<Compile Include="..\WinstaNext\Helpers\NotifyHelper.cs">
+			<Link>Helpers\NotifyHelper.cs</Link>
+		</Compile>
+		<Compile Include="..\WinstaNext\UI\Generic\InstaUserPresenterUC.xaml.cs">
+			<Link>UI\Generic\InstaUserPresenterUC.xaml.cs</Link>
+		</Compile>
+		<Compile Include="App.xaml.cs">
+			<DependentUpon>App.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="ExtendedSplashScreen.xaml.cs">
+			<DependentUpon>ExtendedSplashScreen.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="MainPage.xaml.cs">
+			<DependentUpon>MainPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Properties\AssemblyInfo.cs" />
+		<Compile Include="Services\AccountManagementService.cs" />
+		<Compile Include="UI\Controls\NoCastButtonMediaTransportControls.cs" />
+		<Compile Include="UI\Directs\ChatListView.cs" />
+		<Compile Include="UI\Directs\GiphyPanelUC.xaml.cs">
+			<DependentUpon>GiphyPanelUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\GroupDirectThread.xaml.cs">
+			<DependentUpon>GroupDirectThread.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainerUC.xaml.cs">
+			<DependentUpon>MessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainer\ClipMessageContainerUC.xaml.cs">
+			<DependentUpon>ClipMessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainer\IGTVShareMessageContainerUC.xaml.cs">
+			<DependentUpon>IGTVShareMessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainer\LikeMessageContainerUC.xaml.cs">
+			<DependentUpon>LikeMessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainer\LinkMessageContainerUC.xaml.cs">
+			<DependentUpon>LinkMessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainer\MediaMessageContainerUC.xaml.cs">
+			<DependentUpon>MediaMessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainer\MediaShareMessageContainerUC.xaml.cs">
+			<DependentUpon>MediaShareMessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainer\NotSupportedMessageContainerUC.xaml.cs">
+			<DependentUpon>NotSupportedMessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainer\PlaceholderMessageContainerUC.xaml.cs">
+			<DependentUpon>PlaceholderMessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainer\ProfileMessageContainerUC.xaml.cs">
+			<DependentUpon>ProfileMessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainer\StoryReplyMessageContainerUC.xaml.cs">
+			<DependentUpon>StoryReplyMessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainer\StoryShareMessageContainerUC.xaml.cs">
+			<DependentUpon>StoryShareMessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainer\TextMessageContainerUC.xaml.cs">
+			<DependentUpon>TextMessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainer\VoiceMessageContainerUC.xaml.cs">
+			<DependentUpon>VoiceMessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\MessageContainer\XmaMediaShareMessageContainerUC.xaml.cs">
+			<DependentUpon>XmaMediaShareMessageContainerUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Directs\PrivateDirectThread.xaml.cs">
+			<DependentUpon>PrivateDirectThread.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Flyouts\Directs\DirectMessageItemMenuFlyout.cs" />
+		<Compile Include="UI\Flyouts\Directs\GroupMessageThreadMenuFlyout.cs" />
+		<Compile Include="UI\Flyouts\Directs\PrivateMessageThreadMenuFlyout.cs" />
+		<Compile Include="UI\Flyouts\InstaMediaFlyout.cs" />
+		<Compile Include="UI\Flyouts\Profiles\UserProfileMenuFlyout.cs" />
+		<Compile Include="UI\Flyouts\Stories\InstaBroadcastFlyout.cs" />
+		<Compile Include="UI\Flyouts\Stories\InstaReelFeedFlyout.cs" />
+		<Compile Include="UI\Flyouts\Stories\InstaStoryItemFlyout.cs" />
+		<Compile Include="UI\Flyouts\SwitchUserFlyout.cs" />
+		<Compile Include="UI\Media\InstaMediaCarouselPresenterUC.xaml.cs">
+			<DependentUpon>InstaMediaCarouselPresenterUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Media\InstaMediaImagePresenterUC.xaml.cs">
+			<DependentUpon>InstaMediaImagePresenterUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Media\InstaMediaPresenterUC.xaml.cs">
+			<DependentUpon>InstaMediaPresenterUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Media\InstaMediaVideoPresenterUC.xaml.cs">
+			<DependentUpon>InstaMediaVideoPresenterUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Stories\InstaBroadcastPresenterUC.xaml.cs">
+			<DependentUpon>InstaBroadcastPresenterUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="UI\Stories\InstaReelFeedPresenterUC.xaml.cs">
+			<DependentUpon>InstaReelFeedPresenterUC.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="ViewModels\Media\InstaMediaPresenterUCViewModel.cs" />
+		<Compile Include="Views\Account\ChallengeRequiredView.xaml.cs">
+			<DependentUpon>ChallengeRequiredView.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Views\Account\LoginView.xaml.cs">
+			<DependentUpon>LoginView.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Views\Account\TwoFactorAuthView.xaml.cs">
+			<DependentUpon>TwoFactorAuthView.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Views\BasePage.cs" />
+		<Compile Include="Views\Comments\MediaCommentsView.xaml.cs">
+			<DependentUpon>MediaCommentsView.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Views\Directs\DirectsListView.xaml.cs">
+			<DependentUpon>DirectsListView.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Views\Directs\DirectThreadView.xaml.cs">
+			<DependentUpon>DirectThreadView.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Views\HomeView.xaml.cs">
+			<DependentUpon>HomeView.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Views\Media\ImageViewerPage.xaml.cs">
+			<DependentUpon>ImageViewerPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Views\Stories\StoryCarouselView.xaml.cs">
+			<DependentUpon>StoryCarouselView.xaml</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<AppxManifest Include="Package.appxmanifest">
+			<SubType>Designer</SubType>
+		</AppxManifest>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="..\WinstaNext\Assets\Icons\WinstaIcon.png">
+			<Link>Assets\Icons\WinstaIcon.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Icons\WinstaLogo.png">
+			<Link>Assets\Icons\WinstaLogo.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\LargeTile.scale-100.png">
+			<Link>Assets\LargeTile.scale-100.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\LargeTile.scale-125.png">
+			<Link>Assets\LargeTile.scale-125.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\LargeTile.scale-150.png">
+			<Link>Assets\LargeTile.scale-150.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\LargeTile.scale-200.png">
+			<Link>Assets\LargeTile.scale-200.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\LargeTile.scale-400.png">
+			<Link>Assets\LargeTile.scale-400.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\LockScreenLogo.scale-200.png">
+			<Link>Assets\LockScreenLogo.scale-200.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\SmallTile.scale-100.png">
+			<Link>Assets\SmallTile.scale-100.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\SmallTile.scale-125.png">
+			<Link>Assets\SmallTile.scale-125.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\SmallTile.scale-150.png">
+			<Link>Assets\SmallTile.scale-150.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\SmallTile.scale-200.png">
+			<Link>Assets\SmallTile.scale-200.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\SmallTile.scale-400.png">
+			<Link>Assets\SmallTile.scale-400.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\SplashScreen.scale-100.png">
+			<Link>Assets\SplashScreen.scale-100.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\SplashScreen.scale-125.png">
+			<Link>Assets\SplashScreen.scale-125.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\SplashScreen.scale-150.png">
+			<Link>Assets\SplashScreen.scale-150.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\SplashScreen.scale-200.png">
+			<Link>Assets\SplashScreen.scale-200.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\SplashScreen.scale-400.png">
+			<Link>Assets\SplashScreen.scale-400.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square150x150Logo.scale-100.png">
+			<Link>Assets\Square150x150Logo.scale-100.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square150x150Logo.scale-125.png">
+			<Link>Assets\Square150x150Logo.scale-125.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square150x150Logo.scale-150.png">
+			<Link>Assets\Square150x150Logo.scale-150.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square150x150Logo.scale-200.png">
+			<Link>Assets\Square150x150Logo.scale-200.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square150x150Logo.scale-400.png">
+			<Link>Assets\Square150x150Logo.scale-400.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png">
+			<Link>Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png">
+			<Link>Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png">
+			<Link>Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png">
+			<Link>Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png">
+			<Link>Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-unplated_targetsize-16.png">
+			<Link>Assets\Square44x44Logo.altform-unplated_targetsize-16.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-unplated_targetsize-256.png">
+			<Link>Assets\Square44x44Logo.altform-unplated_targetsize-256.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-unplated_targetsize-32.png">
+			<Link>Assets\Square44x44Logo.altform-unplated_targetsize-32.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.altform-unplated_targetsize-48.png">
+			<Link>Assets\Square44x44Logo.altform-unplated_targetsize-48.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.scale-100.png">
+			<Link>Assets\Square44x44Logo.scale-100.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.scale-125.png">
+			<Link>Assets\Square44x44Logo.scale-125.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.scale-150.png">
+			<Link>Assets\Square44x44Logo.scale-150.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.scale-200.png">
+			<Link>Assets\Square44x44Logo.scale-200.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.scale-400.png">
+			<Link>Assets\Square44x44Logo.scale-400.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.targetsize-16.png">
+			<Link>Assets\Square44x44Logo.targetsize-16.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.targetsize-24.png">
+			<Link>Assets\Square44x44Logo.targetsize-24.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+			<Link>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.targetsize-256.png">
+			<Link>Assets\Square44x44Logo.targetsize-256.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.targetsize-32.png">
+			<Link>Assets\Square44x44Logo.targetsize-32.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Square44x44Logo.targetsize-48.png">
+			<Link>Assets\Square44x44Logo.targetsize-48.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\StoreLogo.backup.png">
+			<Link>Assets\StoreLogo.backup.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\StoreLogo.scale-100.png">
+			<Link>Assets\StoreLogo.scale-100.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\StoreLogo.scale-125.png">
+			<Link>Assets\StoreLogo.scale-125.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\StoreLogo.scale-150.png">
+			<Link>Assets\StoreLogo.scale-150.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\StoreLogo.scale-200.png">
+			<Link>Assets\StoreLogo.scale-200.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\StoreLogo.scale-400.png">
+			<Link>Assets\StoreLogo.scale-400.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Wide310x150Logo.scale-100.png">
+			<Link>Assets\Wide310x150Logo.scale-100.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Wide310x150Logo.scale-125.png">
+			<Link>Assets\Wide310x150Logo.scale-125.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Wide310x150Logo.scale-150.png">
+			<Link>Assets\Wide310x150Logo.scale-150.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Wide310x150Logo.scale-200.png">
+			<Link>Assets\Wide310x150Logo.scale-200.png</Link>
+		</Content>
+		<Content Include="..\WinstaNext\Assets\Wide310x150Logo.scale-400.png">
+			<Link>Assets\Wide310x150Logo.scale-400.png</Link>
+		</Content>
+		<Content Include="Properties\Default.rd.xml" />
+	</ItemGroup>
+	<ItemGroup>
+		<ApplicationDefinition Include="App.xaml">
+			<Generator>MSBuild:Compile</Generator>
+			<SubType>Designer</SubType>
+		</ApplicationDefinition>
+		<Page Include="..\WinstaNext\UI\Generic\InstaUserPresenterUC.xaml">
+			<Link>UI\Generic\InstaUserPresenterUC.xaml</Link>
+			<Generator>MSBuild:Compile</Generator>
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Include="..\WinstaNext\UI\Generic\PersonPictureResources.xaml">
+			<Link>UI\Generic\PersonPictureResources.xaml</Link>
+			<Generator>MSBuild:Compile</Generator>
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Include="ExtendedSplashScreen.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="MainPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Include="UI\Directs\GiphyPanelUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\GroupDirectThread.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\AnimatedGifMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\ClipMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\IGTVShareMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\LikeMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\LinkMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\MediaMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\MediaShareMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\MessageContainerResources.xaml">
+			<Generator>MSBuild:Compile</Generator>
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\NotSupportedMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\PlaceholderMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\ProfileMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\StoryReplyMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\StoryShareMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\TextMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\VoiceMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\MessageContainer\XmaMediaShareMessageContainerUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Directs\PrivateDirectThread.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Media\InstaMediaCarouselPresenterUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Media\InstaMediaImagePresenterUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Media\InstaMediaPresenterUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Media\InstaMediaVideoPresenterUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Stories\InstaBroadcastPresenterUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="UI\Stories\InstaReelFeedPresenterUC.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="Views\Account\ChallengeRequiredView.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="Views\Account\LoginView.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="Views\Account\TwoFactorAuthView.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="Views\Comments\MediaCommentsView.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="Views\Directs\DirectsListView.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="Views\Directs\DirectThreadView.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="Views\HomeView.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="Views\Media\ImageViewerPage.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Include="Views\Stories\StoryCarouselView.xaml">
+			<SubType>Designer</SubType>
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Fody">
+			<Version>6.6.3</Version>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="LottieUWP">
+			<Version>2.8.2</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection">
+			<Version>1.1.1</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+			<Version>6.2.14</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Toolkit.Uwp">
+			<Version>4.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Toolkit.Uwp.UI">
+			<Version>4.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+			<Version>4.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.UI.Xaml">
+			<Version>2.3.200213001</Version>
+		</PackageReference>
+		<PackageReference Include="NodaTime">
+			<Version>2.4.18</Version>
+		</PackageReference>
+		<PackageReference Include="PropertyChanged.Fody">
+			<Version>3.4.1</Version>
+		</PackageReference>
+		<PackageReference Include="QueryString.NET">
+			<Version>1.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="System.ComponentModel.EventBasedAsync">
+			<Version>4.3.0</Version>
+		</PackageReference>
+		<PackageReference Include="System.Linq.Queryable">
+			<Version>4.3.0</Version>
+		</PackageReference>
+		<PackageReference Include="System.Threading.Thread">
+			<Version>4.3.0</Version>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\InstagramApiSharpMine\src\InstagramApiSharp\InstagramApiSharp.UWP.csproj">
+			<Project>{ecc0defb-3034-44c2-a4b6-aa443f07d942}</Project>
+			<Name>InstagramApiSharp.UWP</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\Abstractions\Abstractions.csproj">
+			<Project>{5aa79e4d-3cdb-4021-ae30-ff367e628f3a}</Project>
+			<Name>Abstractions</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\Core.Collections\Core.Collections.csproj">
+			<Project>{147df058-0510-43d1-9bbd-91f72ebaf1b1}</Project>
+			<Name>Core.Collections</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\Microsoft.Toolkit.Mvvm\Microsoft.Toolkit.Mvvm.csproj">
+			<Project>{486d38a1-db0a-4482-9a38-7e865abbd2bc}</Project>
+			<Name>Microsoft.Toolkit.Mvvm</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\MinistaLivePlayback\MinistaLivePlayback.csproj">
+			<Project>{86a0b47f-5cd2-42a0-8543-50cd63a10f4e}</Project>
+			<Name>MinistaLivePlayback</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\NotificationHandler\NotificationHandler.csproj">
+			<Project>{f2f2ee57-376b-4456-9d11-f641b86d771b}</Project>
+			<Name>NotificationHandler</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\Resources\Resources.csproj">
+			<Project>{6ff6e373-2336-47c5-9e08-3ee537de2e76}</Project>
+			<Name>Resources</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\TemplateSelectors\TemplateSelectors.csproj">
+			<Project>{4e1802fa-191e-4025-846b-68eab62639c4}</Project>
+			<Name>TemplateSelectors</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\ViewModels\ViewModels.csproj">
+			<Project>{a33497a2-42a9-4355-a047-9b7b6afd7b65}</Project>
+			<Name>ViewModels</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\WinstaBackgroundHelpers\WinstaBackgroundHelpers.csproj">
+			<Project>{8acdb63f-98aa-4de6-95c5-c2d96f098cfa}</Project>
+			<Name>WinstaBackgroundHelpers</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\WinstaBackgroundTask\WinstaBackgroundTask.csproj">
+			<Project>{0d44f4ad-a357-44a8-8202-ebecd46c575d}</Project>
+			<Name>WinstaBackgroundTask</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\WinstaCore\WinstaCore.csproj">
+			<Project>{898C6B7E-C8FE-418F-9348-B32DA493FA10}</Project>
+			<Name>WinstaCore</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\WinstaNext.Converters\WinstaNext.Converters.csproj">
+			<Project>{02f5d2f9-2181-4e0a-aa01-63b8a3157f5d}</Project>
+			<Name>WinstaNext.Converters</Name>
+		</ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="..\WinstaNext\Assets\Fonts\FluentSystemIcons-Filled.ttf">
+			<Link>Assets\Fonts\FluentSystemIcons-Filled.ttf</Link>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="..\WinstaNext\Assets\Fonts\FluentSystemIcons-Regular.ttf">
+			<Link>Assets\Fonts\FluentSystemIcons-Regular.ttf</Link>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="..\WinstaNext\Assets\Fonts\FluentSystemIcons-Resizable.ttf">
+			<Link>Assets\Fonts\FluentSystemIcons-Resizable.ttf</Link>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="..\WinstaNext\Assets\Fonts\SegoeIcons.ttf">
+			<Link>Assets\Fonts\SegoeIcons.ttf</Link>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="..\WinstaNext\Assets\Fonts\Instagram\AvenyTMedium.otf">
+			<Link>Assets\Fonts\Instagram\AvenyTMedium.otf</Link>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="..\WinstaNext\Assets\Fonts\Instagram\AvenyTRegular.otf">
+			<Link>Assets\Fonts\Instagram\AvenyTRegular.otf</Link>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="..\WinstaNext\Assets\Fonts\Instagram\CosmopolitanScriptRegular.otf">
+			<Link>Assets\Fonts\Instagram\CosmopolitanScriptRegular.otf</Link>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="..\WinstaNext\Assets\Fonts\Instagram\FacebookNarrow_A_Rg.ttf">
+			<Link>Assets\Fonts\Instagram\FacebookNarrow_A_Rg.ttf</Link>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="..\WinstaNext\Assets\Fonts\Instagram\FBDisplayLightSlim.ttf">
+			<Link>Assets\Fonts\Instagram\FBDisplayLightSlim.ttf</Link>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="..\WinstaNext\Assets\Fonts\Instagram\FBWordmarkRegularSlim.ttf">
+			<Link>Assets\Fonts\Instagram\FBWordmarkRegularSlim.ttf</Link>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\WinstaNext\Assets\Lottie\circles-menu-1.json">
+			<Link>Assets\Lottie\circles-menu-1.json</Link>
+		</None>
+		<None Include="..\WinstaNext\Assets\Lottie\Dislike.json">
+			<Link>Assets\Lottie\Dislike.json</Link>
+		</None>
+		<None Include="..\WinstaNext\Assets\Lottie\Gears.json">
+			<Link>Assets\Lottie\Gears.json</Link>
+		</None>
+		<None Include="..\WinstaNext\Assets\Lottie\Insta-anim.json">
+			<Link>Assets\Lottie\Insta-anim.json</Link>
+		</None>
+		<None Include="..\WinstaNext\Assets\Lottie\Like.json">
+			<Link>Assets\Lottie\Like.json</Link>
+		</None>
+		<None Include="..\WinstaNext\Assets\Lottie\Loading.json">
+			<Link>Assets\Lottie\Loading.json</Link>
+		</None>
+		<None Include="..\WinstaNext\Assets\Lottie\Upload.json">
+			<Link>Assets\Lottie\Upload.json</Link>
+		</None>
+		<None Include="..\WinstaNext\Assets\Lottie\UploadingAnim.json">
+			<Link>Assets\Lottie\UploadingAnim.json</Link>
+		</None>
+		<PRIResource Include="..\WinstaNext\Strings\fa-Ir\Units.resw">
+			<Link>Strings\fa-Ir\Units.resw</Link>
+		</PRIResource>
+		<PRIResource Include="..\WinstaNext\Strings\fa-Ir\Settings.resw">
+			<Link>Strings\fa-Ir\Settings.resw</Link>
+		</PRIResource>
+		<PRIResource Include="..\WinstaNext\Strings\fa-Ir\Messages.resw">
+			<Link>Strings\fa-Ir\Messages.resw</Link>
+		</PRIResource>
+		<PRIResource Include="..\WinstaNext\Strings\fa-Ir\Instagram.resw">
+			<Link>Strings\fa-Ir\Instagram.resw</Link>
+		</PRIResource>
+		<PRIResource Include="..\WinstaNext\Strings\fa-Ir\General.resw">
+			<Link>Strings\fa-Ir\General.resw</Link>
+		</PRIResource>
+		<PRIResource Include="..\WinstaNext\Strings\en-US\Units.resw">
+			<Link>Strings\en-US\Units.resw</Link>
+		</PRIResource>
+		<PRIResource Include="..\WinstaNext\Strings\en-US\Settings.resw">
+			<Link>Strings\en-US\Settings.resw</Link>
+		</PRIResource>
+		<PRIResource Include="..\WinstaNext\Strings\en-US\Messages.resw">
+			<Link>Strings\en-US\Messages.resw</Link>
+		</PRIResource>
+		<PRIResource Include="..\WinstaNext\Strings\en-US\Instagram.resw">
+			<Link>Strings\en-US\Instagram.resw</Link>
+		</PRIResource>
+		<PRIResource Include="..\WinstaNext\Strings\en-US\General.resw">
+			<Link>Strings\en-US\General.resw</Link>
+		</PRIResource>
+	</ItemGroup>
+	<ItemGroup />
+	<PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+		<VisualStudioVersion>14.0</VisualStudioVersion>
+	</PropertyGroup>
+	<Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
