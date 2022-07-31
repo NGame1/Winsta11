@@ -128,13 +128,13 @@ namespace WinstaMobile.ViewModels.Media
                 {
                     LoadLikeAnimation = true;
                     Media.LikesCount++;
-                    new Thread(UnloadLikeAnimation).Start();
+                    Task.Factory.StartNew(UnloadLikeAnimation);
                 }
                 else
                 {
                     LoadUnLikeAnimation = true;
                     Media.LikesCount--;
-                    new Thread(UnloadLikeAnimation).Start();
+                    Task.Factory.StartNew(UnloadLikeAnimation);
                 }
                 Media.HasLiked = !Media.HasLiked;
                 var Frame = NavigationService.Content;
