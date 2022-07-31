@@ -16,8 +16,9 @@
     xmlns:flyouts="using:WinstaMobile.UI.Flyouts"
     xmlns:local="using:WinstaMobile.UI.Media"
     xmlns:Resources="using:Resources" 
-    xmlns:Winsta="using:WinstaMobile" xmlns:lottieUwp="using:LottieUWP"
-             mc:Ignorable="d"
+    xmlns:Winsta="using:WinstaMobile" 
+    xmlns:lottieUwp="using:LottieUWP"
+    mc:Ignorable="d"
     MaxWidth="800"
     d:DesignHeight="300"
     d:DesignWidth="400">

@@ -226,6 +226,15 @@
     <Compile Include="UI\Media\InstaMediaVideoPresenterUC.xaml.cs">
       <DependentUpon>InstaMediaVideoPresenterUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Search\HashtagSearchUC.xaml.cs">
+      <DependentUpon>HashtagSearchUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Search\PeopleSearchUC.xaml.cs">
+      <DependentUpon>PeopleSearchUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Search\PlaceSearchUC.xaml.cs">
+      <DependentUpon>PlaceSearchUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Stories\InstaBroadcastPresenterUC.xaml.cs">
       <DependentUpon>InstaBroadcastPresenterUC.xaml</DependentUpon>
     </Compile>
@@ -257,6 +266,9 @@
     </Compile>
     <Compile Include="Views\Media\ImageViewerPage.xaml.cs">
       <DependentUpon>ImageViewerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Search\SearchView.xaml.cs">
+      <DependentUpon>SearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Stories\StoryCarouselView.xaml.cs">
       <DependentUpon>StoryCarouselView.xaml</DependentUpon>
@@ -559,6 +571,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Search\HashtagSearchUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Search\PeopleSearchUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Search\PlaceSearchUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Stories\InstaBroadcastPresenterUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -596,6 +620,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Media\ImageViewerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Search\SearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

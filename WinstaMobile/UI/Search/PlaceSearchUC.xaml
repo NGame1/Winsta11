@@ -1,0 +1,47 @@
+﻿<UserControl x:DefaultBindMode="OneWay"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    x:Class="WinstaMobile.UI.Search.PlaceSearchUC"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="/UI/Generic/PersonPictureResources.xaml"/>
+    </UserControl.Resources>
+
+    <StackPanel Padding="1,5" Width="100">
+
+        <muxc:PersonPicture HorizontalAlignment="Center" Width="80" Height="80"
+                            BorderThickness="{StaticResource StoryRingBorderThickness}"
+                            BorderBrush="{StaticResource InstagramLogoBackgroundBrush}"
+                            DisplayName="{x:Bind Place.Title}"
+                            Margin="0,2">
+            <!--ProfilePicture="{x:Bind Place.ProfilePicture}"-->
+
+        </muxc:PersonPicture>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock TextTrimming="CharacterEllipsis" 
+                       Text="{x:Bind Place.Title}" 
+                       TextAlignment="Center" 
+                       FontWeight="SemiBold" 
+                       TextWrapping="Wrap" 
+                       MaxWidth="80"
+                       Margin="0,2"
+                       MaxLines="1"/>
+            <!--<FontIcon Glyph="&#x02AC;" FontFamily="{StaticResource FluentSystemIconsFilled}" Foreground="SkyBlue" Visibility="{x:Bind Hashtag.IsVerified}" FontSize="12"/>-->
+        </StackPanel>
+
+        <TextBlock Text="{x:Bind Place.Subtitle}" 
+                   TextTrimming="CharacterEllipsis"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap" 
+                   Margin="0,2"
+                   MaxLines="1"/>
+
+    </StackPanel>
+</UserControl>
