@@ -122,8 +122,13 @@ namespace WinstaCore
             }
         }
 
+#if !WINDOWS_UWP15063
         public bool SetForceThreeColumns(bool forceThreeColumns = false)
+#else
+        public bool SetForceThreeColumns(bool forceThreeColumns = true)
+#endif
         {
+
             LocalSettings.Values[ForceThreeColumnsSettings] = forceThreeColumns;
             return forceThreeColumns;
         }
