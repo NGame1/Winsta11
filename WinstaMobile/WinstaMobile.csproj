@@ -18,7 +18,15 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <PackageCertificateThumbprint>0CB198E63AFF7948C77E02433E0115EABC1CB086</PackageCertificateThumbprint>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -129,9 +137,6 @@
     <Compile Include="..\WinstaNext\Helpers\NotifyHelper.cs">
       <Link>Helpers\NotifyHelper.cs</Link>
     </Compile>
-    <Compile Include="..\WinstaNext\UI\Generic\InstaUserPresenterUC.xaml.cs">
-      <Link>UI\Generic\InstaUserPresenterUC.xaml.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -211,6 +216,9 @@
     <Compile Include="UI\Flyouts\Stories\InstaReelFeedFlyout.cs" />
     <Compile Include="UI\Flyouts\Stories\InstaStoryItemFlyout.cs" />
     <Compile Include="UI\Flyouts\SwitchUserFlyout.cs" />
+    <Compile Include="UI\Generic\InstaUserPresenterUC.xaml.cs">
+      <DependentUpon>InstaUserPresenterUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Generic\LikeButtonControl.xaml.cs">
       <DependentUpon>LikeButtonControl.xaml</DependentUpon>
     </Compile>
@@ -461,11 +469,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="..\WinstaNext\UI\Generic\InstaUserPresenterUC.xaml">
-      <Link>UI\Generic\InstaUserPresenterUC.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="..\WinstaNext\UI\Generic\PersonPictureResources.xaml">
       <Link>UI\Generic\PersonPictureResources.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
@@ -556,6 +559,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Directs\PrivateDirectThread.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Generic\InstaUserPresenterUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
