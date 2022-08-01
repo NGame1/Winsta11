@@ -66,13 +66,13 @@ namespace ViewModels.Account
                         if (challenge.Value.StepData != null)
                         {
                             NormalChallenge = true;
-                            
+
                             if (!string.IsNullOrEmpty(challenge.Value.StepData.PhoneNumber))
                             {
                                 PhoneAuthenticationVisible = true;
                                 PhoneAuthChecked = true;
                                 PhoneAuthNumber = challenge.Value.StepData.PhoneNumber;
-                                
+
                             }
                             if (!string.IsNullOrEmpty(challenge.Value.StepData.Email))
                             {
@@ -88,7 +88,6 @@ namespace ViewModels.Account
                     }
                 }
             }
-
         }
 
         public async Task SubmitPhoneAsync()
@@ -102,54 +101,69 @@ namespace ViewModels.Account
             var phoneNumber = PhoneNumber;
             if (!phoneNumber.StartsWith("+"))
                 phoneNumber = $"+{phoneNumber}";
-
-            var submitPhone = await Api.SubmitPhoneNumberForChallengeRequireAsync(phoneNumber);
-            if (submitPhone.Succeeded)
+            IsLoading = true;
+            try
             {
-                SubmitPhoneRequired = false;
-                NormalChallenge = true;
+                var submitPhone = await Api.SubmitPhoneNumberForChallengeRequireAsync(phoneNumber);
+                if (submitPhone.Succeeded)
+                {
+                    SubmitPhoneRequired = false;
+                    NormalChallenge = true;
+                }
+                else
+                    throw submitPhone.Info.Exception;
             }
-            else
-                throw submitPhone.Info.Exception;
+            finally
+            {
+                IsLoading = false;
+            }
         }
 
         public async Task SendVerificationCodeAsync()
         {
-            if (EmailAuthChecked)
+            IsLoading = true;
+            try
             {
-                if (IsDeltaChallenge())
+                if (EmailAuthChecked)
                 {
-                    var email = await Api.SetDeltaChallengeChoiceAsync(InstaDeltaChallengeChoice.Email);
-                    if (!email.Succeeded)
-                        throw new Exception(email.Info.Message);
+                    if (IsDeltaChallenge())
+                    {
+                        var email = await Api.SetDeltaChallengeChoiceAsync(InstaDeltaChallengeChoice.Email);
+                        if (!email.Succeeded)
+                            throw new Exception(email.Info.Message);
 
+                    }
+                    else
+                    {
+                        // send verification code to email
+                        var email = await Api.RequestVerifyCodeToEmailForChallengeRequireAsync();
+                        if (!email.Succeeded)
+                            throw new Exception(email.Info.Message);
+                    }
                 }
-                else
+                else if (PhoneAuthChecked)
                 {
-                    // send verification code to email
-                    var email = await Api.RequestVerifyCodeToEmailForChallengeRequireAsync();
-                    if (!email.Succeeded)
-                        throw new Exception(email.Info.Message);
+                    if (IsDeltaChallenge())
+                    {
+                        var phoneNumber = await Api.SetDeltaChallengeChoiceAsync(InstaDeltaChallengeChoice.Phone);
+                        if (!phoneNumber.Succeeded)
+                            throw new Exception(phoneNumber.Info.Message);
+                    }
+                    else
+                    {
+                        // send verification code to phone number
+                        var phoneNumber = await Api.RequestVerifyCodeToSMSForChallengeRequireAsync();
+                        if (!phoneNumber.Succeeded)
+                            throw new Exception(phoneNumber.Info.Message);
+                    }
                 }
             }
-            else if (PhoneAuthChecked)
+            finally
             {
-                if (IsDeltaChallenge())
-                {
-                    var phoneNumber = await Api.SetDeltaChallengeChoiceAsync(InstaDeltaChallengeChoice.Phone);
-                    if (!phoneNumber.Succeeded)
-                        throw new Exception(phoneNumber.Info.Message);
-                }
-                else
-                {
-                    // send verification code to phone number
-                    var phoneNumber = await Api.RequestVerifyCodeToSMSForChallengeRequireAsync();
-                    if (!phoneNumber.Succeeded)
-                        throw new Exception(phoneNumber.Info.Message);
-                }
+                IsLoading = false;
+                NormalChallenge = false;
+                VerifyStep = true;
             }
-            NormalChallenge = false;
-            VerifyStep = true;
         }
 
         public async Task VerifyAsync()
@@ -161,6 +175,7 @@ namespace ViewModels.Account
             {
                 throw new Exception("Verification code is a 6 digits number");
             }
+            IsLoading = true;
             try
             {
                 // Note: calling VerifyCodeForChallengeRequireAsync function, 
@@ -190,6 +205,7 @@ namespace ViewModels.Account
 
             }
             catch (Exception) { throw; }
+            finally { IsLoading = false; }
         }
 
         private bool IsDeltaChallenge() => Api.ChallengeVerifyMethod?.IsUnvettedDelta ?? false ||
