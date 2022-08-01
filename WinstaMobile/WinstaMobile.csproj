@@ -135,9 +135,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\Profiles\UserInfoToButtonConverter.cs" />
+    <Compile Include="Core\Behaviors\SynchronizeHorizontalOffsetBehavior.cs" />
     <Compile Include="ExtendedSplashScreen.xaml.cs">
       <DependentUpon>ExtendedSplashScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ExtensionMethods\DependencyObjectExtensions.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -223,6 +226,9 @@
     <Compile Include="UI\Media\InstaMediaPresenterUC.xaml.cs">
       <DependentUpon>InstaMediaPresenterUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Media\InstaMediaTileUC.xaml.cs">
+      <DependentUpon>InstaMediaTileUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Media\InstaMediaVideoPresenterUC.xaml.cs">
       <DependentUpon>InstaMediaVideoPresenterUC.xaml</DependentUpon>
     </Compile>
@@ -237,6 +243,9 @@
     </Compile>
     <Compile Include="UI\Stories\InstaBroadcastPresenterUC.xaml.cs">
       <DependentUpon>InstaBroadcastPresenterUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Stories\InstaHighlightFeedPresenterUC.xaml.cs">
+      <DependentUpon>InstaHighlightFeedPresenterUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Stories\InstaReelFeedPresenterUC.xaml.cs">
       <DependentUpon>InstaReelFeedPresenterUC.xaml</DependentUpon>
@@ -266,6 +275,9 @@
     </Compile>
     <Compile Include="Views\Media\ImageViewerPage.xaml.cs">
       <DependentUpon>ImageViewerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Profiles\UserProfileView.xaml.cs">
+      <DependentUpon>UserProfileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Search\SearchView.xaml.cs">
       <DependentUpon>SearchView.xaml</DependentUpon>
@@ -567,6 +579,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Media\InstaMediaTileUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Media\InstaMediaVideoPresenterUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -584,6 +600,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Stories\InstaBroadcastPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Stories\InstaHighlightFeedPresenterUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -620,6 +640,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Media\ImageViewerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Profiles\UserProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
