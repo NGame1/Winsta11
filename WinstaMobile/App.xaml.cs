@@ -62,7 +62,7 @@ namespace WinstaMobile
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
             ApplicationLanguages.PrimaryLanguageOverride = lang;
-
+            ApplicationSettingsManager.Instance.SetForceThreeColumns(true);
             this.InitializeComponent();
             ApplicationViewScaling.TrySetDisableLayoutScaling(true);
 
