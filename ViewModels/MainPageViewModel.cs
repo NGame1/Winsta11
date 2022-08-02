@@ -368,7 +368,7 @@ namespace ViewModels
             UIContext.Post(new SendOrPostCallback(ApplyThemeForTitleBarButtons), null);
         }
 
-        void SelectedMenuItemChanged()
+        public void SelectedMenuItemChanged()
         {
             if (SelectedMenuItem == null) return;
             if (ignoreSetMenuItem) { ignoreSetMenuItem = false; return; }

@@ -123,6 +123,7 @@
             MenuItemsSource="{x:Bind ViewModel.MenuItems}"
             FooterMenuItemsSource="{x:Bind ViewModel.FooterMenuItems}"
             SelectedItem="{x:Bind ViewModel.SelectedMenuItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ItemInvoked="NavigationView_ItemInvoked"
             DisplayModeChanged="NavigationView_DisplayModeChanged"
             PaneClosing="NavigationView_PaneClosing"
             PaneOpening="NavigationView_PaneOpening"

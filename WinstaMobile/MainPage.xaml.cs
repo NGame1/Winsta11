@@ -128,5 +128,10 @@ namespace WinstaMobile
                 NavigationView.AlwaysShowHeader = !string.IsNullOrEmpty(page.PageHeader);
             }
         }
+
+        private void NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
+        {
+            ViewModel.SelectedMenuItemChanged();
+        }
     }
 }
