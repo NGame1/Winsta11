@@ -34,7 +34,11 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid BorderThickness="{ThemeResource ExpanderHeaderBorderThickness}"
+          BorderBrush="{ThemeResource ExpanderHeaderBorderBrush}"
+          Background="{ThemeResource ExpanderHeaderBackground}"
+          Padding="{StaticResource ExpanderContentPadding}"
+          CornerRadius="12">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -46,7 +50,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0"
-              Padding="5">
+                  Padding="5">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
