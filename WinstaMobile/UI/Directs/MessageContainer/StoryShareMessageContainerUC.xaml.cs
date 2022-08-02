@@ -1,6 +1,12 @@
-﻿using System;
+﻿using Abstractions.Navigation;
+using Abstractions.Stories;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
+using WinstaCore;
+using WinstaCore.Services;
+using WinstaMobile.Views.Stories;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -25,6 +31,14 @@ namespace WinstaMobile.UI.Directs.MessageContainer
             else txtStack.Visibility = Visibility.Collapsed;
 
             base.OnDirectItemChanged();
+        }
+
+        private void imgMedia_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            var NavigationService = AppCore.Container.GetService<NavigationService>();
+            var story = new WinstaStoryItem(DirectItem.StoryShare);
+            NavigationService.Navigate(typeof(StoryCarouselView),
+                new StoryCarouselViewParameter(story));
         }
     }
 }

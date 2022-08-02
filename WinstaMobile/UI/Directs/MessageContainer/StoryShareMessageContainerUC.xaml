@@ -44,6 +44,7 @@
             <TextBlock Text="{x:Bind DirectItem.StoryShare.Title, Mode=OneWay}"/>
 
             <Image HorizontalAlignment="{x:Bind DirectItem.UserId, Converter={StaticResource UserIdToHorizontalAlignmentConverter}, Mode=OneWay}" 
+                   Tapped="imgMedia_Tapped"
                    x:Name="imgMedia"
                    MaxWidth="185"/>
 
