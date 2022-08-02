@@ -45,5 +45,10 @@ namespace WinstaMobile.UI.Directs.MessageContainer
                         new Uri(DirectItem.XmaMediaShare[0].PlayableUrl, UriKind.RelativeOrAbsolute)));
             }
         }
+
+        private void imgMedia_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            NavigateToMediaCommand.Execute(null);
+        }
     }
 }

@@ -44,5 +44,10 @@ namespace WinstaNext.UI.Directs.MessageContainer
                         new Uri(DirectItem.FelixShareMedia.Videos[0].Uri, UriKind.RelativeOrAbsolute)));
             }
         }
+
+        private void imgMedia_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            NavigateToMediaCommand.Execute(null);
+        }
     }
 }

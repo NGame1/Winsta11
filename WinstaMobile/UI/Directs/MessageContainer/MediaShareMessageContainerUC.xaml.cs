@@ -64,5 +64,10 @@ namespace WinstaMobile.UI.Directs.MessageContainer
                 }
             }
         }
+
+        private void imgMedia_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            NavigateToMediaCommand.Execute(null);
+        }
     }
 }

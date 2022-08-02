@@ -44,5 +44,15 @@ namespace WinstaNext.UI.Directs.MessageContainer
                         new Uri(DirectItem.Clip.Videos[0].Uri, UriKind.RelativeOrAbsolute)));
             }
         }
+
+        private void StackPanel_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            NavigateToMediaCommand.Execute(null);
+        }
+
+        private void imgMedia_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            NavigateToMediaCommand.Execute(null);
+        }
     }
 }

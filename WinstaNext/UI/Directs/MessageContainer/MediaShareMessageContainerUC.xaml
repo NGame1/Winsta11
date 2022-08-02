@@ -85,14 +85,16 @@
                 </Grid>
 
                 <Image x:Name="imgMedia"
-                   MaxWidth="185"/>
+                       Tapped="imgMedia_Tapped"
+                       MaxWidth="185"/>
 
                 <MediaElement AreTransportControlsEnabled="False" 
-                          x:Name="vidMedia"
-                          IsLooping="True"
-                          AutoPlay="True"
-                          IsMuted="True"
-                          Width="185"/>
+                              Tapped="imgMedia_Tapped"
+                              x:Name="vidMedia"
+                              IsLooping="True"
+                              AutoPlay="True"
+                              IsMuted="True"
+                              Width="185"/>
             </StackPanel>
             <ItemsControl x:Load="{x:Bind DirectItem.Reactions.Emojis.Count, Converter={StaticResource IntToIsEnabledConverter}, Mode=OneWay}"
                           ItemsSource="{x:Bind DirectItem.Reactions.Emojis, Mode=OneWay}"

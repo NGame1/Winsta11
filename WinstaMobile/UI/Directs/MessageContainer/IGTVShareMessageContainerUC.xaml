@@ -84,16 +84,18 @@
                 </Grid>
 
                 <Image Source="{x:Bind DirectItem.FelixShareMedia.Images[0].Uri, Mode=OneWay}" 
-                   x:Name="imgMedia"
-                   MaxWidth="185"/>
+                       Tapped="imgMedia_Tapped"
+                       x:Name="imgMedia"
+                       MaxWidth="185"/>
 
                 <MediaElement PosterSource="{x:Bind DirectItem.FelixShareMedia.Images[0].Uri, Mode=OneWay}" 
-                          AreTransportControlsEnabled="False" 
-                          x:Name="vidMedia"
-                          IsLooping="True"
-                          AutoPlay="True"
-                          IsMuted="True"
-                          Width="185"/>
+                              AreTransportControlsEnabled="False" 
+                              Tapped="imgMedia_Tapped"
+                              x:Name="vidMedia"
+                              IsLooping="True"
+                              AutoPlay="True"
+                              IsMuted="True"
+                              Width="185"/>
             </StackPanel>
             <ItemsControl x:Load="{x:Bind DirectItem.Reactions.Emojis.Count, Converter={StaticResource IntToIsEnabledConverter}, Mode=OneWay}"
                           ItemsSource="{x:Bind DirectItem.Reactions.Emojis, Mode=OneWay}"

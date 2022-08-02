@@ -53,12 +53,12 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Spacing="{StaticResource MessageBubbleSpacing}"
-                            Orientation="Horizontal">
+                                Orientation="Horizontal">
                         <PersonPicture ProfilePicture="{x:Bind DirectItem.XmaMediaShare[0].HeaderIconUrl, Mode=OneWay}"
-                                   VerticalAlignment="{StaticResource ProfileVerticalAlignment}"
-                                   DisplayName="{x:Bind DirectItem.XmaMediaShare[0].HeaderTitleText, Mode=OneWay}"
-                                   Height="{StaticResource ProfilePictureSize}"
-                                   Width="{StaticResource ProfilePictureSize}">
+                                       VerticalAlignment="{StaticResource ProfileVerticalAlignment}"
+                                       DisplayName="{x:Bind DirectItem.XmaMediaShare[0].HeaderTitleText, Mode=OneWay}"
+                                       Height="{StaticResource ProfilePictureSize}"
+                                       Width="{StaticResource ProfilePictureSize}">
 
                             <i:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="Tapped">
@@ -68,30 +68,32 @@
                         </PersonPicture>
 
                         <HyperlinkButton CommandParameter="{x:Bind DirectItem.XmaMediaShare[0].HeaderTitleText, Mode=OneWay}"
-                                     Content="{x:Bind DirectItem.XmaMediaShare[0].HeaderTitleText, Mode=OneWay}"
-                                     Command="{x:Bind NavigateUserProfileCommand}"
-                                     VerticalAlignment="Center"
-                                     FontWeight="SemiBold"
-                                     Grid.Column="1"/>
+                                         Content="{x:Bind DirectItem.XmaMediaShare[0].HeaderTitleText, Mode=OneWay}"
+                                         Command="{x:Bind NavigateUserProfileCommand}"
+                                         VerticalAlignment="Center"
+                                         FontWeight="SemiBold"
+                                         Grid.Column="1"/>
                     </StackPanel>
 
                     <Button Style="{StaticResource FontIconButtonStyle}"
-                        Command="{x:Bind NavigateToMediaCommand}"
-                        BorderBrush="Transparent"
-                        Background="Transparent"
-                        Content="&#xE09B;"
-                        Grid.Column="1"/>
+                            Command="{x:Bind NavigateToMediaCommand}"
+                            BorderBrush="Transparent"
+                            Background="Transparent"
+                            Content="&#xE09B;"
+                            Grid.Column="1"/>
                 </Grid>
 
                 <Image x:Name="imgMedia"
-                   MaxWidth="185"/>
+                       Tapped="StackPanel_Tapped"
+                       MaxWidth="185"/>
 
                 <MediaElement AreTransportControlsEnabled="False" 
-                          x:Name="vidMedia"
-                          IsLooping="True"
-                          AutoPlay="True"
-                          IsMuted="True"
-                          Width="185"/>
+                              Tapped="StackPanel_Tapped"
+                              x:Name="vidMedia"
+                              IsLooping="True"
+                              AutoPlay="True"
+                              IsMuted="True"
+                              Width="185"/>
             </StackPanel>
             <ItemsControl x:Load="{x:Bind DirectItem.Reactions.Emojis.Count, Converter={StaticResource IntToIsEnabledConverter}, Mode=OneWay}"
                           ItemsSource="{x:Bind DirectItem.Reactions.Emojis, Mode=OneWay}"

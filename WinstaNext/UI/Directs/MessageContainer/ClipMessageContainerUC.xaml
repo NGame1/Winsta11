@@ -52,7 +52,7 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Spacing="{StaticResource MessageBubbleSpacing}"
-                            Orientation="Horizontal">
+                                Orientation="Horizontal">
                         <PersonPicture Visibility="{x:Bind DirectItem.Clip.User.Pk, Converter={StaticResource UserIdToProfilePictureVisibilityConverter}, Mode=OneWay}"
                                    ProfilePicture="{x:Bind DirectItem.Clip.User.ProfilePicture, Mode=OneWay}"
                                    VerticalAlignment="{StaticResource ProfileVerticalAlignment}"
@@ -84,16 +84,18 @@
                 </Grid>
 
                 <Image Source="{x:Bind DirectItem.Clip.Images[0].Uri, Mode=OneWay}" 
-                   x:Name="imgMedia"
-                   MaxWidth="185"/>
+                       Tapped="imgMedia_Tapped"
+                       x:Name="imgMedia"
+                       MaxWidth="185"/>
 
                 <MediaElement PosterSource="{x:Bind DirectItem.Clip.Images[0].Uri, Mode=OneWay}" 
-                          AreTransportControlsEnabled="False" 
-                          x:Name="vidMedia"
-                          IsLooping="True"
-                          AutoPlay="True"
-                          IsMuted="True"
-                          Width="185"/>
+                              AreTransportControlsEnabled="False" 
+                              Tapped="imgMedia_Tapped"
+                              x:Name="vidMedia"
+                              IsLooping="True"
+                              AutoPlay="True"
+                              IsMuted="True"
+                              Width="185"/>
             </StackPanel>
             <ItemsControl x:Load="{x:Bind DirectItem.Reactions.Emojis.Count, Converter={StaticResource IntToIsEnabledConverter}, Mode=OneWay}"
                           ItemsSource="{x:Bind DirectItem.Reactions.Emojis, Mode=OneWay}"
