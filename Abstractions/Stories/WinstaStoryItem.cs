@@ -1,4 +1,5 @@
-﻿using InstagramApiSharp.Classes.Models;
+﻿using InstagramApiSharp.Classes;
+using InstagramApiSharp.Classes.Models;
 using PropertyChanged;
 using System.ComponentModel;
 #nullable enable
@@ -28,6 +29,20 @@ namespace Abstractions.Stories
         public WinstaStoryItem(InstaReelFeed reelFeed)
         {
             ReelFeed = new(reelFeed);
+        }
+        public WinstaStoryItem(InstaStoryShare storyShare)
+        {
+            ReelFeed = new(new()
+            {
+                User = new()
+                {
+                    Pk = storyShare.Media.User.Pk,
+                    ProfilePicture = storyShare.Media.User.ProfilePicture,
+                    ProfilePicUrl = storyShare.Media.User.ProfilePicUrl,
+                    UserName = storyShare.Media.User.UserName
+                }
+            });
+            //ReelFeed = new(reelFeed);
         }
 
         public InstaBroadcast? Broadcast { get; }
