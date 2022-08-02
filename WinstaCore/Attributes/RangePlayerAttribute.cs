@@ -23,7 +23,15 @@ namespace WinstaCore.Attributes
         {
             var trac = trackedItems.ToArray();
             //if (visibleRange.FirstIndex == FirstVisibleItemIndex) return;
-            if (LastVisibleItemIndex == visibleRange.FirstIndex)
+            if (visibleRange.LastIndex == visibleRange.FirstIndex)
+            {
+                Medias_LastVisibleItemIndexChanged(this, visibleRange.LastIndex);
+            }
+            else if (LastVisibleItemIndex == visibleRange.FirstIndex)
+            {
+                Medias_LastVisibleItemIndexChanged(this, visibleRange.LastIndex);
+            }
+            else if(visibleRange.LastIndex == LastVisibleItemIndex)
             {
                 Medias_LastVisibleItemIndexChanged(this, visibleRange.LastIndex);
             }
@@ -32,7 +40,7 @@ namespace WinstaCore.Attributes
             //var _templast = LastVisibleItemIndex;
             //FirstVisibleItemIndexChanged?.Invoke(this, visibleRange.FirstIndex);
             //Medias_FirstVisibleItemIndexChanged(this, visibleRange.FirstIndex);
-            
+
             FirstVisibleItemIndex = visibleRange.FirstIndex;
             //LastVisibleItemIndexChanged?.Invoke(this, visibleRange.LastIndex);
             LastVisibleItemIndex = visibleRange.LastIndex;
