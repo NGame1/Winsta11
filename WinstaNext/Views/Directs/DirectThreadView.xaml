@@ -312,7 +312,7 @@
                     </Button.Flyout>
                 </Button>
 
-                <Button CommandParameter="{x:Bind emoBtn, Mode=OneWay}" 
+                <Button CommandParameter="{x:Bind txtMessage, Mode=OneWay}" 
                         Command="{x:Bind ViewModel.OpenEmojisPanelCommand}"
                         FontFamily="{StaticResource FluentIcons}" 
                         Content="&#xE170;"

@@ -14,6 +14,7 @@ using ViewModels;
 using WinstaCore;
 using WinstaCore.Converters.FileConverters;
 using WinstaCore.Models.ConfigureDelays;
+using Windows.UI.Xaml.Controls;
 #nullable enable
 
 namespace WinstaNext.ViewModels.Directs
@@ -207,6 +208,8 @@ namespace WinstaNext.ViewModels.Directs
                 throw new ArgumentNullException(nameof(obj));
             await obj.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
+                if (obj is TextBox txtbox) 
+                    txtbox.Focus(FocusState.Keyboard);
                 CoreInputView.GetForCurrentView().TryShow(CoreInputViewKind.Emoji);
             });
         }
