@@ -38,23 +38,35 @@
     <Grid Background="Transparent">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
-                <VisualState x:Name="CompactOverlay">
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!--<Setter Target="NavigationView.AlwaysShowHeader" Value="False" />-->
-                        <Setter Target="NavigationView.IsPaneVisible" Value="False" />
+                        <Setter Target="PaneHeadStk.Margin" Value="0,20,0,0"/>
+                        <Setter Target="ScrollViewerContent.Margin" Value="12,48,12,0"/>
+                        <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
+                        <Setter Target="AppTitleLeftBorder.Width" Value="86" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{x:Bind NavigationView.CompactModeThresholdWidth, Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
                         <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
                         <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
-                        <Setter Target="HeaderTextBlock.Visibility" Value="Collapsed" />
-                        <Setter Target="AppTitleLeftBorder.Width" Value="16" />
+                        <Setter Target="AppTitleLeftBorder.Width" Value="48" />
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="NavigationViewExpanded">
+                <VisualState x:Name="UltraWideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{x:Bind NavigationView.ExpandedModeThresholdWidth, Mode=OneWay}" />
+                    </VisualState.StateTriggers>
                     <VisualState.Setters>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="NavigationViewCompact">
-                    <VisualState.Setters>
-                        <!--<Setter Target="ScrollViewerContent.Margin" Value="24,48,24,0"/>-->
+                        <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
+                        <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
+                        <Setter Target="AppTitleLeftBorder.Width" Value="48" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -143,7 +155,7 @@
                                                       Command="{x:Bind ViewModel.NavigateToUserProfileCommand}"/>
                         </core:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
-                    <StackPanel Orientation="Horizontal" Spacing="10" Padding="0,5" BorderThickness="1" HorizontalAlignment="Left">
+                    <StackPanel x:Name="PaneHeadStk" Orientation="Horizontal" Spacing="10" Padding="0,5" BorderThickness="1" HorizontalAlignment="Left">
                         <muxc:PersonPicture Height="60" Width="60"
                             DisplayName="{x:Bind ViewModel.InstaUser.UserName, Mode=OneWay}" 
                             ProfilePicture="{x:Bind ViewModel.InstaUser.ProfilePicture, Mode=OneWay}"/>

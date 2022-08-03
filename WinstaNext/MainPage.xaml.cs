@@ -5,6 +5,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using WinstaNext.Views;
 using WinstaCore.Interfaces.Views;
+using Microsoft.Toolkit.Uwp;
+using System.Reflection.Metadata;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -27,7 +29,7 @@ namespace WinstaNext
             NavigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.LeftCompact;
             Window.Current.SetTitleBar(AppTitleBar);
             Loaded += MainPage_Loaded;
-            SizeChanged += MainPage_SizeChanged;
+            //SizeChanged += MainPage_SizeChanged;
         }
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
@@ -45,18 +47,24 @@ namespace WinstaNext
             // Workaround for a bug where opening the window in compact display mode will misalign the content layout.
             NavigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto;
 
+            if(Window.Current.Bounds.Width < NavigationView.CompactModeThresholdWidth)
+                VisualStateManager.GoToState(this, "NarrowState", useTransitions: true);
+            else if (Window.Current.Bounds.Width  < NavigationView.ExpandedModeThresholdWidth)
+                VisualStateManager.GoToState(this, "WideState", useTransitions: true);
+            else VisualStateManager.GoToState(this, "UltraWideState", useTransitions: true);
+
             ViewModel.SelectedMenuItem = ViewModel.MenuItems.FirstOrDefault();
         }
 
         private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            UpdateVisualState();
+            //UpdateVisualState();
         }
 
         private void NavigationView_DisplayModeChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewDisplayModeChangedEventArgs args)
         {
-            ViewModel.NavigationViewDisplayMode = NavigationView.DisplayMode;
-            UpdateVisualState();
+            //ViewModel.NavigationViewDisplayMode = NavigationView.DisplayMode;
+            //UpdateVisualState();
         }
 
         private void NavigationView_PaneClosing(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewPaneClosingEventArgs args)
@@ -80,6 +88,7 @@ namespace WinstaNext
 
         private void UpdateVisualState()
         {
+            return;
             var view = ApplicationView.GetForCurrentView();
             bool isCompactOverlayMode = view.ViewMode == ApplicationViewMode.CompactOverlay;
 
