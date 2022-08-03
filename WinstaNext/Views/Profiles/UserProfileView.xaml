@@ -32,6 +32,9 @@
         <Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"
                                            IsInverted="True"/>
 
+        <Converters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" 
+                                            IsInverted="False"/>
+
         <Converters1:CaptionToMarkdownConverter x:Key="CaptionToMarkdownConverter"/>
 
         <ProfilesConverters:UserInfoToButtonConverter x:Key="UserInfoToButtonConverter"/>
@@ -88,22 +91,25 @@
                                        HorizontalAlignment="Center"/>
                             <StackPanel Orientation="Horizontal">
                                 <HyperlinkButton>
-                                    <TextBlock>
+                                    <TextBlock TextAlignment="Center">
                                         <Run Text="{x:Bind ViewModel.User.MediaCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
+                                        <LineBreak/>
                                         <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Posts}"/>
                                     </TextBlock>
                                 </HyperlinkButton>
 
                                 <HyperlinkButton Command="{x:Bind ViewModel.NavigateToFollowersCommand}">
-                                    <TextBlock>
+                                    <TextBlock TextAlignment="Center">
                                         <Run Text="{x:Bind ViewModel.User.FollowerCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
+                                        <LineBreak/>
                                         <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Followers}"/>
                                     </TextBlock>
                                 </HyperlinkButton>
 
                                 <HyperlinkButton Command="{x:Bind ViewModel.NavigateToFollowingsCommand}">
-                                    <TextBlock>
+                                    <TextBlock TextAlignment="Center">
                                         <Run Text="{x:Bind ViewModel.User.FollowingCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
+                                        <LineBreak/>
                                         <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Followings}"/>
                                     </TextBlock>
                                 </HyperlinkButton>
@@ -153,8 +159,7 @@
                 </StackPanel>
 
 
-                <ListView x:Load="{x:Bind ViewModel.HighlightFeeds, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"
-                          ItemsSource="{x:Bind ViewModel.HighlightFeeds, Mode=OneWay}"
+                <ListView ItemsSource="{x:Bind ViewModel.HighlightFeeds, Mode=OneWay}"
                           ScrollViewer.HorizontalScrollBarVisibility="Visible"
                           ScrollViewer.VerticalScrollBarVisibility="Hidden"
                           ScrollViewer.HorizontalScrollMode="Enabled"
