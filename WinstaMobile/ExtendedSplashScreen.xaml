@@ -6,7 +6,7 @@
     x:Class="WinstaMobile.ExtendedSplashScreen"
     mc:Ignorable="d">
 
-    <Grid Background="#FF000012">
+    <Grid Background="#102947">
         <Canvas>
             <Image x:Name="extendedSplashImage" Source="Assets/SplashScreen.png"/>
             <ProgressRing Name="splashProgressRing" IsActive="True" Width="60" Height="60"  HorizontalAlignment="Center"></ProgressRing>

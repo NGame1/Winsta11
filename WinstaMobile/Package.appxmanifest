@@ -38,7 +38,7 @@
         Description="WinstaMobile"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#102947"/>
       </uap:VisualElements>
     </Application>
   </Applications>
