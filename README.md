@@ -1,4 +1,5 @@
-# Winsta11
+# Wingo Tag (Winsta11)
+![SplashScreen (both)](https://user-images.githubusercontent.com/19765248/182959194-ad06dda3-007a-4cb0-94e1-6fda66c17dcb.png)
 Unofficial Instagram client for Windows devices family
 
 ## Supported features
