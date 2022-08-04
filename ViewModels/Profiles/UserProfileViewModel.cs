@@ -38,12 +38,14 @@ namespace ViewModels.Profiles
         IncrementalUserReels ReelsInstance { get; set; }
         IncrementalUserTaggedMedia TaggedInstance { get; set; }
         IncrementalUserTVMedias IGTVInstance { get; set; }
+        IncrementalUserSavedFeed SavedFeedInstance { get; set; }
 
         public IncrementalLoadingCollection<IIncrementalSource<WinstaStoryItem>, WinstaStoryItem> HighlightFeeds { get; set; }
         RangePlayerAttribute UserReels { get; set; }
         RangePlayerAttribute UserMedias { get; set; }
         RangePlayerAttribute UserTaggedMedias { get; set; }
         RangePlayerAttribute TVMedias { get; set; }
+        RangePlayerAttribute SavedFeeds { get; set; }
 
         public InstaStoryAndLives StoriesAndLives { get; set; }
 
@@ -261,12 +263,14 @@ namespace ViewModels.Profiles
             MediasInstance = new(User.Pk);
             TaggedInstance = new(User.Pk);
             IGTVInstance = new(User.Pk);
+            SavedFeedInstance = new(User.Pk);
 
             HighlightFeeds = new(HighlightsInstance);
             UserReels = new(ReelsInstance);
             UserMedias = new(MediasInstance);
             UserTaggedMedias = new(TaggedInstance);
             TVMedias = new(IGTVInstance);
+            SavedFeeds = new(SavedFeedInstance);
             CreateProfileTabs();
             ListViewScroll.ChangeView(null, 0, null);
             await base.OnNavigatedToAsync(e);
@@ -292,6 +296,10 @@ namespace ViewModels.Profiles
             {
                 ItemsSource = UserTaggedMedias;
             }
+            else if (SelectedTab.Text == LanguageManager.Instance.Instagram.Saved)
+            {
+                ItemsSource = SavedFeeds;
+            }
         }
 
         void CreateProfileTabs()
@@ -311,6 +319,12 @@ namespace ViewModels.Profiles
 
             if (SelectedTab != null)
                 SelectedTab = null;
+            var meUser = AppCore.Container.GetService<InstaUserShort>();
+
+            if(meUser.Pk == User.Pk)
+            {
+                ProfileTabs.Add(new(LanguageManager.Instance.Instagram.Saved, "\uE12F"));
+            }
 
             SelectedTab = ProfileTabs.FirstOrDefault();
         }

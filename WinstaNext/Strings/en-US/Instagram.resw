@@ -267,6 +267,9 @@
   <data name="Requested" xml:space="preserve">
     <value>Requested</value>
   </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Saved</value>
+  </data>
   <data name="SelectDirectToLoad" xml:space="preserve">
     <value>Select a direct thread to view</value>
   </data>

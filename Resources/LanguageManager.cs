@@ -118,6 +118,7 @@ namespace Resources
         public string Reply{ get => _resource.GetString(nameof(Reply)); }
         public string ReplyPlaceholder { get => _resource.GetString(nameof(ReplyPlaceholder)); }
         public string Requested { get => _resource.GetString(nameof(Requested)); }
+        public string Saved { get => _resource.GetString(nameof(Saved)); }
         public string SelectDirectToLoad { get => _resource.GetString(nameof(SelectDirectToLoad)); }
         public string SendVerificationCode { get => _resource.GetString(nameof(SendVerificationCode)); }
         public string Stories { get => _resource.GetString(nameof(Stories)); }

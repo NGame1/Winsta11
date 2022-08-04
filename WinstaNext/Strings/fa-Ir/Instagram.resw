@@ -267,6 +267,9 @@
   <data name="Requested" xml:space="preserve">
     <value>درخواست داده شده</value>
   </data>
+  <data name="Saved" xml:space="preserve">
+    <value>ذخیره ها</value>
+  </data>
   <data name="SelectDirectToLoad" xml:space="preserve">
     <value>جهت مشاهده دایرکت ها یکی از چت ها را انتخاب کنید</value>
   </data>
