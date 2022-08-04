@@ -4,12 +4,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     x:Class="WinstaNext.ExtendedSplashScreen"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
 
     <Grid Background="#FF000012" >
         <Canvas>
             <Image x:Name="extendedSplashImage" Source="Assets/SplashScreen.png"/>
-            <ProgressRing Name="splashProgressRing" IsActive="True" Width="60" Height="60"  HorizontalAlignment="Center"></ProgressRing>
+            <muxc:ProgressRing HorizontalAlignment="Center"
+                               x:Name="splashProgressRing"
+                               IsIndeterminate="True"
+                               IsActive="True"
+                               Height="60"
+                               Width="60"/>
         </Canvas>
     </Grid>
 
