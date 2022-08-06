@@ -12,6 +12,7 @@ using Windows.ApplicationModel.Resources.Core;
 using Windows.Storage.AccessCache;
 using WinstaCore.Models;
 using WinstaCore.Interfaces;
+using WinstaCore.Enums;
 #nullable enable
 
 namespace WinstaCore
@@ -28,6 +29,7 @@ namespace WinstaCore
         string RemoveFeedAdsSetting { get => "RemoveFeedAds"; }
         string ShowLoginSetting { get => "ShowLogin"; }
         string UserNamesSetting { get => "UserNames"; }
+        string PlaybackQualitySetting { get => "PlaybackQuality"; }
 
         StorageFolder LocalFolder { get; }
         ApplicationDataContainer LocalSettings { get; }
@@ -108,6 +110,25 @@ namespace WinstaCore
                 new LanguageDefinition("English","en-Us"),
                 new LanguageDefinition("Persian (پارسی)","fa-Ir"),
             };
+        }
+
+        public PlaybackQualityEnum GetPlaybackQuality()
+        {
+            if (LocalSettings.Values.TryGetValue(PlaybackQualitySetting, out var PlaybackQuality))
+            {
+                return (PlaybackQualityEnum)Enum.ToObject(typeof(PlaybackQualityEnum), PlaybackQuality);
+            }
+            else
+            {
+                return SetPlaybackQuality();
+            }
+        }
+
+        public PlaybackQualityEnum SetPlaybackQuality(PlaybackQualityEnum playbackQuality = PlaybackQualityEnum.Medium)
+        {
+
+            LocalSettings.Values[ForceThreeColumnsSettings] = (int)playbackQuality;
+            return playbackQuality;
         }
 
         public bool GetForceThreeColumns()
