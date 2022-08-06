@@ -135,6 +135,12 @@
   <data name="ForceThreeColumnsDescription" xml:space="preserve">
     <value>Forcibly show users, hashtags and etc. views with three columns</value>
   </data>
+  <data name="PlaybackQuality" xml:space="preserve">
+    <value>Playback quality</value>
+  </data>
+  <data name="PlaybackQualityDescription" xml:space="preserve">
+    <value>Change the playback quality to medium or low, will help you with data moderation on metered or slow connections.</value>
+  </data>
   <data name="RemoveFeedAds" xml:space="preserve">
     <value>Remove feed ads</value>
   </data>

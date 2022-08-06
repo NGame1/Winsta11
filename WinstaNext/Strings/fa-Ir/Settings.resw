@@ -135,6 +135,12 @@
   <data name="ForceThreeColumnsDescription" xml:space="preserve">
     <value>پروفایل های کاربران، هشتگ ها و... را به صورت سه ستونه نمایش داده شود.</value>
   </data>
+  <data name="PlaybackQuality" xml:space="preserve">
+    <value>کیفیت پخش</value>
+  </data>
+  <data name="PlaybackQualityDescription" xml:space="preserve">
+    <value>تغییر کیفیت پخش با میانه و پایین کمک میکند تا مصرف دیتا را در شبکه های با ترافیک محدود و یا کند بهتر مدیریت کنید.</value>
+  </data>
   <data name="RemoveFeedAds" xml:space="preserve">
     <value>حذف تبلیغات خانه</value>
   </data>

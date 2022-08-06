@@ -126,8 +126,7 @@ namespace WinstaCore
 
         public PlaybackQualityEnum SetPlaybackQuality(PlaybackQualityEnum playbackQuality = PlaybackQualityEnum.Medium)
         {
-
-            LocalSettings.Values[ForceThreeColumnsSettings] = (int)playbackQuality;
+            LocalSettings.Values[PlaybackQualitySetting] = (int)playbackQuality;
             return playbackQuality;
         }
 

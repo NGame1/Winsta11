@@ -4,6 +4,6 @@
     {
         Low = 2,
         Medium = 1,
-        Ultra = 0
+        High = 0
     }
 }

@@ -93,7 +93,17 @@
                     </StackPanel>
                 </controls:ExpandableSettingControl.ExpandableContent>
             </controls:ExpandableSettingControl>
-
+            
+            <controls:ExpandableSettingControl 
+                      Title="{x:Bind Resources:LanguageManager.Instance.Settings.PlaybackQuality}"
+                      Description="{x:Bind Resources:LanguageManager.Instance.Settings.PlaybackQualityDescription}">
+                          <controls:ExpandableSettingControl.Icon>
+                              <FontIcon Glyph="&#xF2B7;" />
+                          </controls:ExpandableSettingControl.Icon>
+                          <ComboBox ItemsSource="{x:Bind ViewModel.AvailableQualities}"
+                                    SelectedValue="{x:Bind ViewModel.PlaybackQuality, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </controls:ExpandableSettingControl>
+            
             <controls:ExpandableSettingControl
             Title="{x:Bind Resources:LanguageManager.Instance.Settings.DownloadLocation}">
                 <controls:ExpandableSettingControl.Icon>

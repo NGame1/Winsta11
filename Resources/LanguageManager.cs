@@ -169,6 +169,8 @@ namespace Resources
         public string DownloadLocation { get => _resource.GetString(nameof(DownloadLocation)); }
         public string ForceThreeColumns { get => _resource.GetString(nameof(ForceThreeColumns)); }
         public string ForceThreeColumnsDescription { get => _resource.GetString(nameof(ForceThreeColumnsDescription)); }
+        public string PlaybackQuality { get => _resource.GetString(nameof(PlaybackQuality)); }
+        public string PlaybackQualityDescription { get => _resource.GetString(nameof(PlaybackQualityDescription)); }
         public string RemoveFeedAds { get => _resource.GetString(nameof(RemoveFeedAds)); }
         public string RemoveFeedAdsDescription { get => _resource.GetString(nameof(RemoveFeedAdsDescription)); }
     }

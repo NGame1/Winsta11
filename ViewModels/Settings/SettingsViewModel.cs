@@ -12,6 +12,7 @@ using WinstaCore.Theme;
 using WinstaCore.Models;
 using WinstaCore;
 using Resources;
+using WinstaCore.Enums;
 
 namespace ViewModels.Settings
 {
@@ -25,7 +26,7 @@ namespace ViewModels.Settings
 
         public string DownloadsPath
         {
-            get;set;
+            get; set;
         }
 
         public bool ForceThreeColumns
@@ -43,7 +44,11 @@ namespace ViewModels.Settings
         [OnChangedMethod(nameof(OnThemeChanged))]
         public AppTheme Theme { get; set; }
 
+        [OnChangedMethod(nameof(OnQualityChanged))]
+        public string PlaybackQuality { get; set; }
+
         public List<LanguageDefinition> AvailableLanguages { get; } = new();
+        public List<string> AvailableQualities { get; } = new();
 
         [OnChangedMethod(nameof(OnLanguageChanged))]
         public LanguageDefinition Language { get; set; }
@@ -54,10 +59,13 @@ namespace ViewModels.Settings
         {
             SetDownloadsFolderCommand = new(SetDownloadsFolderAsync);
             Theme = ApplicationSettingsManager.Instance.GetTheme();
+            var q = ApplicationSettingsManager.Instance.GetPlaybackQuality();
             var langs = ApplicationSettingsManager.Instance.GetSupportedLanguages();
             var currentlang = ApplicationSettingsManager.Instance.GetLanguage();
             AvailableLanguages.AddRange(langs);
             Language = langs.FirstOrDefault(x => x.LangCode == currentlang);
+            AvailableQualities.AddRange(Enum.GetNames(typeof(PlaybackQualityEnum)));
+            PlaybackQuality = AvailableQualities.FirstOrDefault(x => x.ToLower() == q.ToString().ToLower());
         }
 
         public override async Task OnNavigatedToAsync(NavigationEventArgs e)
@@ -82,6 +90,12 @@ namespace ViewModels.Settings
         void OnLanguageChanged()
         {
             ApplicationSettingsManager.Instance.SetLanguage(Language.LangCode);
+        }
+
+        void OnQualityChanged()
+        {
+            var q = (PlaybackQualityEnum)Enum.Parse(typeof(PlaybackQualityEnum), PlaybackQuality);
+            ApplicationSettingsManager.Instance.SetPlaybackQuality(q);
         }
 
         void OnThemeChanged()
