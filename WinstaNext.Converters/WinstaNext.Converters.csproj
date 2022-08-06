@@ -135,6 +135,7 @@
     <Compile Include="Media\CaptionToMarkdownConverter.cs" />
     <Compile Include="Media\InstaMediaThumbnailConverter.cs" />
     <Compile Include="Media\InstaMediaTypeIconConverter.cs" />
+    <Compile Include="Media\InstaUserProfilePictureConverter.cs" />
     <Compile Include="Media\MediaDateTimeconverter.cs" />
     <Compile Include="NullToBooleanConverter.cs" />
     <Compile Include="PossibleLargeNumbersConverter.cs" />
