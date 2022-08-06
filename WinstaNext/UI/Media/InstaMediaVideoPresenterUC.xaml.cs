@@ -81,15 +81,25 @@ namespace WinstaNext.UI.Media
         {
             if (CarouselItem != null)
             {
-                mediaPlayer.PosterSource = new BitmapImage(new Uri(CarouselItem.Images[0].Uri));
-                mediaPlayer.Source = new Uri(CarouselItem.Videos[0].Uri);
+                var uri = (Uri)MediaQualityConverter.Convert(CarouselItem.Images, typeof(Uri), null, null);
+                var VideoUri = (Uri)MediaQualityConverter.Convert(CarouselItem.Videos, typeof(Uri), null, null);
+                //img.Source = new BitmapImage(new Uri(CarouselItem.Images[0].Uri));
+                mediaPlayer.PosterSource = new BitmapImage(uri);
+
+                //mediaPlayer.PosterSource = new BitmapImage(new Uri(CarouselItem.Images[0].Uri));
+                mediaPlayer.Source = VideoUri;
             }
             else
             {
                 if(Media != null && Media.MediaType == InstaMediaType.Video)
                 {
-                    mediaPlayer.PosterSource = new BitmapImage(new Uri(Media.Images[0].Uri));
-                    mediaPlayer.Source = new Uri(Media.Videos[0].Uri);
+                    var uri = (Uri)MediaQualityConverter.Convert(Media.Images, typeof(Uri), null, null);
+                    var VideoUri = (Uri)MediaQualityConverter.Convert(Media.Videos, typeof(Uri), null, null);
+                    //img.Source = new BitmapImage(new Uri(Media.Images[0].Uri));
+                    mediaPlayer.PosterSource = new BitmapImage(uri);
+
+                    //mediaPlayer.PosterSource = new BitmapImage(new Uri(Media.Images[0].Uri));
+                    mediaPlayer.Source = VideoUri;
                 }
             }
         }

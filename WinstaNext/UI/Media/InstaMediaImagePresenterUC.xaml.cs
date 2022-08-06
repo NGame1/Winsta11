@@ -77,12 +77,20 @@ namespace WinstaNext.UI.Media
         {
             if (CarouselItem != null)
             {
-                img.Source = new BitmapImage(new Uri(CarouselItem.Images[0].Uri));
+                var uri = (Uri)MediaQualityConverter.Convert(CarouselItem.Images, typeof(Uri), null, null);
+                //img.Source = new BitmapImage(new Uri(CarouselItem.Images[0].Uri));
+                img.Source = new BitmapImage(uri);
             }
             else
             {
+                //if (Media != null && Media.MediaType == InstaMediaType.Image)
+                //    img.Source = new BitmapImage(new Uri(Media.Images[0].Uri));
                 if (Media != null && Media.MediaType == InstaMediaType.Image)
-                    img.Source = new BitmapImage(new Uri(Media.Images[0].Uri));
+                {
+
+                    var uri = (Uri)MediaQualityConverter.Convert(Media.Images, typeof(Uri), null, null);
+                    img.Source = new BitmapImage(uri);
+                }
             }
         }
     }

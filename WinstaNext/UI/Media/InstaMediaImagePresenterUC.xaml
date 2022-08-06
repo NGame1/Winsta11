@@ -4,10 +4,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     x:Class="WinstaNext.UI.Media.InstaMediaImagePresenterUC"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WinstaNext.UI.Media"
+    xmlns:media="using:WinstaNext.Converters.Media"
+    xmlns:local="using:WinstaNext.UI.Media" 
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <media:MediaQualityConverter x:Key="MediaQualityConverter"
+                                     x:Name="MediaQualityConverter"/>
+    </UserControl.Resources>
 
     <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                   ScrollViewer.VerticalScrollBarVisibility="Hidden"

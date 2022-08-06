@@ -133,6 +133,7 @@
     <Compile Include="IntToVisibilityConverter.cs" />
     <Compile Include="InvertBoolConverter.cs" />
     <Compile Include="Media\CaptionToMarkdownConverter.cs" />
+    <Compile Include="Media\MediaQualityConverter.cs" />
     <Compile Include="Media\InstaMediaThumbnailConverter.cs" />
     <Compile Include="Media\InstaMediaTypeIconConverter.cs" />
     <Compile Include="Media\InstaUserProfilePictureConverter.cs" />
