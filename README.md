@@ -15,6 +15,22 @@ Unofficial Instagram client for Windows devices family
   - Places
   - Hashtags
   
+## Contact Us
+ [ Wingo Tag (Winsta) Insiders group on Telegram ](https://t.me/WinstaInsiders)
+
+## Support (Donation)
+As long as Microsoft doesn't allow us to create paid apps (Too long story but) because we are located in Iran, So you can donate us using Crypto currency or PayPal. 
+
+Ethereum (ERC20): 0x01ca2233272A4A773d22c51ABc4a65dc9AD0157c
+
+USDT (TRC20): TP92sn4r6sWWwpxTGEAh6W7Ba1J6wigzMo
+
+Bitcon (BTC): bc1qs5d682hsdh8a8ae69y7rfk6atjl7e0pek656ad
+
+DOGE: DGosGCYBmcdWM26q5LC77wmUHGv47VByut
+
+Or contact me, I will send you PayPal account from some iranian exchange.
+
 ## Screenshots 
 <img width="1280" alt="1_Result" src="https://user-images.githubusercontent.com/19765248/179425338-eea20876-305b-4e0c-a7b7-d9b7e728e3a2.png">
 <img width="1280" alt="2_Result" src="https://user-images.githubusercontent.com/19765248/179425341-5e6a5e58-25f5-4ef8-975b-c88636dd75e4.png">
