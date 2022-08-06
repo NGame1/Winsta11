@@ -11,11 +11,14 @@ namespace WinstaNext.Converters.Media
         {
             return new BitmapImage(new Uri(value switch
             {
-                InstaUser instaUser => instaUser.ProfilePictureId != "unknown" ?
+                InstaUser instaUser => !instaUser.HasAnonymousProfilePicture || (instaUser.ProfilePictureId != null && instaUser.ProfilePictureId != "unknown") ?
                           instaUser.ProfilePicUrl : "ms-appx:///Assets/Icons/NoOne.png",
 
-                InstaUserShort instaUserShort => instaUserShort.ProfilePictureId != "unknown" ?
+                InstaUserShort instaUserShort => !instaUserShort.HasAnonymousProfilePicture || (instaUserShort.ProfilePictureId != null && instaUserShort.ProfilePictureId != "unknown") ?
                                instaUserShort.ProfilePicUrl : "ms-appx:///Assets/Icons/NoOne.png",
+
+                InstaUserInfo instaUserInfo => !instaUserInfo.HasAnonymousProfilePicture || (instaUserInfo.ProfilePictureId != null && instaUserInfo.ProfilePictureId != "unknown") ?
+                               instaUserInfo.ProfilePicUrl : "ms-appx:///Assets/Icons/NoOne.png",
 
                 _ => "ms-appx:///Assets/Icons/NoOne.png"
 

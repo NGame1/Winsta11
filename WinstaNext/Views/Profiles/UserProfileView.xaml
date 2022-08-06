@@ -37,6 +37,8 @@
 
         <Converters1:CaptionToMarkdownConverter x:Key="CaptionToMarkdownConverter"/>
 
+        <Converters1:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
+
         <ProfilesConverters:UserInfoToButtonConverter x:Key="UserInfoToButtonConverter"/>
         
     </views:BasePage.Resources>
@@ -69,7 +71,7 @@
                 
                 <StackPanel Spacing="5" Grid.Row="0">
                     <StackPanel Spacing="5" Orientation="Horizontal">
-                        <muxc:PersonPicture ProfilePicture="{x:Bind ViewModel.User.ProfilePicture}" 
+                        <muxc:PersonPicture ProfilePicture="{x:Bind ViewModel.User, Converter={StaticResource InstaUserProfilePictureConverter}}" 
                                             DisplayName="{x:Bind ViewModel.User.UserName}">
                             <muxc:PersonPicture.ContextFlyout>
                                 <profiles:UserProfileMenuFlyout StoriesAndLives="{x:Bind ViewModel.StoriesAndLives, Mode=OneWay}"

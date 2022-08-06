@@ -5,7 +5,8 @@
     xmlns:local="using:WinstaNext.UI.Search"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:profiles="using:WinstaNext.Converters.Profiles"
+             xmlns:media="using:WinstaNext.Converters.Media"
+    xmlns:profiles="using:WinstaNext.Converters.Profiles" 
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -15,6 +16,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
                     <profiles:InstaFriendshipShortStatusButtonConverter x:Key="InstaFriendshipShortStatusButtonConverter"/>
+                    <media:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -26,7 +28,7 @@
                        BorderThickness="{StaticResource StoryRingBorderThickness}"
                        BorderBrush="{StaticResource InstagramLogoBackgroundBrush}"
                        DisplayName="{x:Bind User.UserName}"
-                       ProfilePicture="{x:Bind User.ProfilePicture}">
+                       ProfilePicture="{x:Bind User, Converter={StaticResource InstaUserProfilePictureConverter}}">
 
         </PersonPicture>
 

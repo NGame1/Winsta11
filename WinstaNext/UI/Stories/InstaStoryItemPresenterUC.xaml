@@ -28,6 +28,7 @@
         <StoriesConverters:StoryItemImageConverter x:Key="StoryItemImageConverter"/>
         <StoriesConverters:StoryItemVideoConverter x:Key="StoryItemVideoConverter"/>
         <Converters:MediaDateTimeconverter x:Key="MediaDateTimeconverter"/>
+        <Converters:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
     </UserControl.Resources>
 
     <Grid>
@@ -78,7 +79,7 @@
                         Grid.Row="0"
                         Spacing="5" 
                         Padding="5">
-                <muxc:PersonPicture ProfilePicture="{x:Bind Story.User.ProfilePicture}" 
+                <muxc:PersonPicture ProfilePicture="{x:Bind Story.User, Converter={StaticResource InstaUserProfilePictureConverter}}" 
                                     DisplayName="{x:Bind Story.User.UserName}"
                                     Height="35"
                                     Width="35"/>

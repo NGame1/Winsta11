@@ -5,8 +5,9 @@
     x:Class="WinstaNext.UI.Stories.InstaBroadcastPresenterUC"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:stories="using:WinstaNext.UI.Flyouts.Stories"
+    xmlns:media="using:WinstaNext.Converters.Media"
     xmlns:Muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:local="using:WinstaNext.UI.Stories"
+    xmlns:local="using:WinstaNext.UI.Stories" 
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -16,7 +17,13 @@
     </UserControl.ContextFlyout>
     
     <UserControl.Resources>
-        <ResourceDictionary Source="/UI/Generic/PersonPictureResources.xaml"/>
+        <ResourceDictionary Source="/UI/Generic/PersonPictureResources.xaml">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <media:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <StackPanel Spacing="3" Background="#01000000">
@@ -25,7 +32,7 @@
                 CornerRadius="30"
                 Height="60"
                 Width="60">
-            <Muxc:PersonPicture ProfilePicture="{x:Bind Broadcast.BroadcastOwner.ProfilePicture}"
+            <Muxc:PersonPicture ProfilePicture="{x:Bind Broadcast.BroadcastOwner, Converter={StaticResource InstaUserProfilePictureConverter}}"
                                 DisplayName="{x:Bind Broadcast.BroadcastOwner.UserName}"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"

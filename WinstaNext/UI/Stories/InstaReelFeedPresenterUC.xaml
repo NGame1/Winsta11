@@ -6,6 +6,7 @@
     xmlns:converters="using:WinstaNext.Converters.Stories"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:stories="using:WinstaNext.UI.Flyouts.Stories"
+    xmlns:media="using:WinstaNext.Converters.Media"
     xmlns:Muxc="using:Microsoft.UI.Xaml.Controls" 
     xmlns:local="using:WinstaNext.UI.Stories"
     mc:Ignorable="d"
@@ -26,7 +27,7 @@
             <converters:StoryBorderColorConverter CloseFriends="{StaticResource CloseFriendsStoryBorderBrush}"
                                               NormalStory="{StaticResource InstagramLogoBackgroundBrush}"
                                               x:Key="StoryBorderColorConverter"/>
-            
+            <media:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
         </ResourceDictionary>
         
     </UserControl.Resources>
@@ -37,7 +38,7 @@
                 CornerRadius="30"
                 Height="60"
                 Width="60">
-            <Muxc:PersonPicture ProfilePicture="{x:Bind ReelFeed.User.ProfilePicture}"
+            <Muxc:PersonPicture ProfilePicture="{x:Bind ReelFeed.User, Converter={StaticResource InstaUserProfilePictureConverter}}"
                                 DisplayName="{x:Bind ReelFeed.User.UserName}"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"

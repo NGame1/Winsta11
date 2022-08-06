@@ -6,13 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:DirectsConverter="using:WinstaNext.Converters.Directs" 
-    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    mc:Ignorable="d"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls" xmlns:media="using:WinstaNext.Converters.Media"
+             mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
 
     <UserControl.Resources>
         <DirectsConverter:HasUnreadToFontWeightConverter x:Key="HasUnreadToFontWeightConverter"/>
+        <media:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
     </UserControl.Resources>
 
     <Grid Padding="5">
@@ -20,13 +21,13 @@
             <Canvas Width="65" Height="65">
                 <muxc:PersonPicture Width="55" Height="55"
                                 DisplayName="{x:Bind DirectThread.Users[0].UserName}"
-                                ProfilePicture="{x:Bind DirectThread.Users[0].ProfilePicture}">
+                                ProfilePicture="{x:Bind DirectThread.Users[0], Converter={StaticResource InstaUserProfilePictureConverter}}">
 
                 </muxc:PersonPicture>
                 
                 <muxc:PersonPicture Width="55" Height="55" Canvas.Left="5" Canvas.Top="5"
                                 DisplayName="{x:Bind DirectThread.Users[1].UserName}"
-                                ProfilePicture="{x:Bind DirectThread.Users[1].ProfilePicture}">
+                                ProfilePicture="{x:Bind DirectThread.Users[1], Converter={StaticResource InstaUserProfilePictureConverter}}">
 
                 </muxc:PersonPicture>
             </Canvas>

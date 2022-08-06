@@ -28,6 +28,7 @@
                                            ConvertToLocalTime="True"/>
 
         <Converters:CaptionToMarkdownConverter x:Key="CaptionToMarkdownConverter"/>
+        <Converters:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
 
         <GenericConverters:NullToBooleanConverter IsInverted="True" x:Key="NullToBooleanConverter"/>
 
@@ -52,7 +53,7 @@
                         Spacing="5">
                 <Muxc:PersonPicture Width="35" Height="35"
                                     DisplayName="{x:Bind Media.User.UserName}"
-                                    ProfilePicture="{x:Bind Media.User.ProfilePicture}"/>
+                                    ProfilePicture="{x:Bind Media.User, Converter={StaticResource InstaUserProfilePictureConverter}}"/>
 
                 <!--#region Authors, Hashtag info and Location-->
                 <StackPanel>
@@ -259,7 +260,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Muxc:PersonPicture ProfilePicture="{x:Bind Me.ProfilePicture}"
+            <Muxc:PersonPicture ProfilePicture="{x:Bind Me, Converter={StaticResource InstaUserProfilePictureConverter}}"
                                 DisplayName="{x:Bind Me.UserName}"
                                 Height="30"
                                 Width="30"/>

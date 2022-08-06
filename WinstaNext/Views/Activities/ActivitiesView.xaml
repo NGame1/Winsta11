@@ -7,6 +7,7 @@
     xmlns:Models="using:InstagramApiSharp.Classes.Models"
     x:Class="WinstaNext.Views.Activities.ActivitiesView"
     xmlns:TemplateSelectors="using:TemplateSelectors"
+    xmlns:media="using:WinstaNext.Converters.Media"
     xmlns:Converters="using:WinstaNext.Converters"
     xmlns:VM="using:ViewModels.Activities"
     xmlns:views="using:WinstaNext.Views" 
@@ -16,6 +17,7 @@
 
         <Converters:RichTextToMarkdownTextConverter x:Key="RichTextToMarkdownTextConverter"/>
         <Converters:TextToFlowDirectionConverter x:Key="TextToFlowDirectionConverter"/>
+        <media:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
 
         <DataTemplate x:Key="FriendRequestTemplate" x:DataType="Models:InstaRecentActivityFeed">
             <!--Tap to see all friendship requests.-->
@@ -26,7 +28,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <PersonPicture ProfilePicture="{x:Bind InlineFollow.User.ProfilePicture}"
+                <PersonPicture ProfilePicture="{x:Bind InlineFollow.User, Converter={StaticResource InstaUserProfilePictureConverter}}"
                                DisplayName="{x:Bind InlineFollow.User.UserName}"
                                Grid.Column="0"
                                Height="55"
@@ -53,7 +55,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <PersonPicture ProfilePicture="{x:Bind InlineFollow.User.ProfilePicture}"
+                <PersonPicture ProfilePicture="{x:Bind InlineFollow.User, Converter={StaticResource InstaUserProfilePictureConverter}}"
                                DisplayName="{x:Bind InlineFollow.User.UserName}"
                                Grid.Column="0"
                                Height="55"
@@ -89,8 +91,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                
-                <PersonPicture ProfilePicture="{x:Bind InlineFollow.User.ProfilePicture}"
+
+                <PersonPicture ProfilePicture="{x:Bind InlineFollow.User, Converter={StaticResource InstaUserProfilePictureConverter}}"
                                DisplayName="{x:Bind InlineFollow.User.UserName}"
                                Grid.Column="0"
                                Height="55"
@@ -116,8 +118,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                
-                <PersonPicture ProfilePicture="{x:Bind ProfileImage}"
+
+                <PersonPicture ProfilePicture="{x:Bind Converter={StaticResource InstaUserProfilePictureConverter}}"
                                DisplayName="{x:Bind ProfileName}"
                                Grid.Column="0"
                                Height="55"
@@ -148,7 +150,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <PersonPicture ProfilePicture="{x:Bind ProfileImage}"
+                <PersonPicture ProfilePicture="{x:Bind Converter={StaticResource InstaUserProfilePictureConverter}}"
                                Grid.Column="0"
                                Height="55"
                                Width="55"/>
@@ -174,7 +176,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <PersonPicture ProfilePicture="{x:Bind ProfileImage}"
+                <PersonPicture ProfilePicture="{x:Bind Converter={StaticResource InstaUserProfilePictureConverter}}"
                                DisplayName="{x:Bind ProfileName}"
                                Grid.Column="0"
                                Height="55"
@@ -199,8 +201,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                
-                <PersonPicture ProfilePicture="{x:Bind ProfileImage}"
+
+                <PersonPicture ProfilePicture="{x:Bind Converter={StaticResource InstaUserProfilePictureConverter}}"
                                DisplayName="{x:Bind ProfileName}"
                                Grid.Column="0"
                                Height="55"
@@ -230,7 +232,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <PersonPicture ProfilePicture="{x:Bind ProfileImage}"
+                <PersonPicture ProfilePicture="{x:Bind Converter={StaticResource InstaUserProfilePictureConverter}}"
                                DisplayName="{x:Bind ProfileName}"
                                Grid.Column="0"
                                Height="55"
