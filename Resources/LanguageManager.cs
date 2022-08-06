@@ -136,6 +136,7 @@ namespace Resources
         public string UnmuteStories { get => _resource.GetString(nameof(UnmuteStories)); }
         public string Unsend { get => _resource.GetString(nameof(Unsend)); }
         public string UnsupportedMessageType { get => _resource.GetString(nameof(UnsupportedMessageType)); }
+        public string UserNotFound { get => _resource.GetString(nameof(UserNotFound)); }
         public string VerificationCode { get => _resource.GetString(nameof(VerificationCode)); }
         public string VerificationMethod { get => _resource.GetString(nameof(VerificationMethod)); }
         public string ViewProfile { get => _resource.GetString(nameof(ViewProfile)); }

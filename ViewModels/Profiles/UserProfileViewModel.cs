@@ -155,6 +155,12 @@ namespace ViewModels.Profiles
             else if (e.Parameter is string username && !string.IsNullOrEmpty(username))
             {
                 if (User != null && User.UserName.ToLower() == username.ToLower()) return;
+                if(username == "Instagram User")
+                {
+                    if (NavigationService.CanGoBack)
+                        NavigationService.GoBack();
+                    throw new Exception(LanguageManager.Instance.Instagram.UserNotFound);
+                }
                 using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
                 {
                     var result = await Api.UserProcessor.GetUserInfoByUsernameAsync(username,

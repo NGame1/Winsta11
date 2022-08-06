@@ -321,6 +321,9 @@
   <data name="UnsupportedMessageType" xml:space="preserve">
     <value>This direct message type is not supported by Winsta yet.</value>
   </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>User not found</value>
+  </data>
   <data name="VerificationCode" xml:space="preserve">
     <value>Verification code</value>
   </data>

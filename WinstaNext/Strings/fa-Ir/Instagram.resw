@@ -321,6 +321,9 @@
   <data name="UnsupportedMessageType" xml:space="preserve">
     <value>این نوع پیام دایرکت هنوز در وینستا پشتیبانی نمیشود.</value>
   </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>کاربر یافت نشد.</value>
+  </data>
   <data name="VerificationCode" xml:space="preserve">
     <value>کد تائید</value>
   </data>
