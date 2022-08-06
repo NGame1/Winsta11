@@ -106,10 +106,9 @@
 
         <!--#region Media presentation region-->
 
-        <Grid>
+        <Grid SizeChanged="Presenter_SizeChanged">
 
             <local:InstaMediaImagePresenterUC x:Load="{x:Bind ViewModel.ImagePresenterLoaded}"
-                                              SizeChanged="Presenter_SizeChanged"
                                               Media="{x:Bind Media, Mode=OneWay}" 
                                               x:FieldModifier="public"
                                               x:Name="imagePresenter">
@@ -123,7 +122,6 @@
             </local:InstaMediaImagePresenterUC>
 
             <local:InstaMediaVideoPresenterUC x:Load="{x:Bind ViewModel.VideoPresenterLoaded}"
-                                              SizeChanged="Presenter_SizeChanged"
                                               Media="{x:Bind Media, Mode=OneWay}" 
                                               x:FieldModifier="public"
                                               x:Name="videoPresenter"
@@ -138,7 +136,6 @@
             </local:InstaMediaVideoPresenterUC>
 
             <local:InstaMediaCarouselPresenterUC x:Load="{x:Bind ViewModel.CarouselPresenterLoaded}"
-                                                 SizeChanged="Presenter_SizeChanged"
                                                  Media="{x:Bind Media, Mode=OneWay}" 
                                                  x:Name="carouselPresenter" 
                                                  x:FieldModifier="public">
