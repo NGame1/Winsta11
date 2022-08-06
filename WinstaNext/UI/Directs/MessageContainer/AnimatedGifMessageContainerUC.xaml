@@ -23,7 +23,7 @@
                        Height="{StaticResource ProfilePictureSize}"
                        VerticalAlignment="{StaticResource ProfileVerticalAlignment}"
                        DisplayName="{x:Bind DirectUser.UserName, Mode=OneWay}"
-                       ProfilePicture="{x:Bind DirectUser.ProfilePicture, Mode=OneWay}"
+                       ProfilePicture="{x:Bind DirectUser, Converter={StaticResource InstaUserProfilePictureConverter}, Mode=OneWay}"
                        Visibility="{x:Bind DirectUser.Pk, Converter={StaticResource UserIdToProfilePictureVisibilityConverter}, Mode=OneWay}">
 
             <i:Interaction.Behaviors>
