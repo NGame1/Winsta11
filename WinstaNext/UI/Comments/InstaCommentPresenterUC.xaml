@@ -28,7 +28,7 @@
                                                ConvertToLocalTime="True"/>
 
             <Converters:CaptionToMarkdownConverter x:Key="CaptionToMarkdownConverter"/>
-
+            <Converters:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
             <GenericConverters:TextToFlowDirectionConverter x:Key="TextToFlowDirectionConverter"/>
 
         </ResourceDictionary>
@@ -57,7 +57,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Muxc:PersonPicture ProfilePicture="{x:Bind Comment.User.ProfilePicture}"
+                <Muxc:PersonPicture ProfilePicture="{x:Bind Comment.User, Converter={StaticResource InstaUserProfilePictureConverter}, Mode=OneWay}"
                                     DisplayName="{x:Bind Comment.User.UserName}"
                                     VerticalAlignment="Bottom"
                                     Width="55" Height="55"
