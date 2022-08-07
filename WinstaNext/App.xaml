@@ -30,7 +30,7 @@
                            x:Key="FontIconButtonStyle" 
                            TargetType="Button">
                         <Setter Property="FontFamily" Value="{StaticResource FluentIcons}"/>
-                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontSize" Value="18"/>
                     </Style>
                     
                     <!-- From https://github.com/morning4coffe-dev/storylines -->

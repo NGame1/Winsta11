@@ -1,0 +1,46 @@
+﻿<views:BasePage
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="WinstaNext.Views.Settings.AccountSettings"
+    xmlns:converters="using:WinstaNext.Converters"
+    xmlns:local="using:WinstaNext.Views.Settings"
+    xmlns:views="using:WinstaNext.Views"
+    xmlns:VM="using:ViewModels.Settings"
+    xmlns:Resources="using:Resources" xmlns:controls="using:WinstaNext.UI.Controls"
+    Margin="{x:Bind PageMargin}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
+        <converters:InvertBoolConverter x:Key="InvertBoolConverter"/>
+    </Page.Resources>
+
+    <views:BasePage.DataContext>
+        <VM:SettingsViewModel x:Name="ViewModel"/>
+    </views:BasePage.DataContext>
+
+    <ScrollViewer HorizontalScrollMode="Disabled">
+        <StackPanel Margin="0,12,0,16" Spacing="4">
+            <StackPanel.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition IsStaggeringEnabled="True" 
+                                             FromVerticalOffset="50"/>
+                </TransitionCollection>
+            </StackPanel.ChildrenTransitions>
+
+            <controls:ExpandableSettingControl 
+                      Title="{x:Bind Resources:LanguageManager.Instance.Settings.Autoplay}"
+                      Description="{x:Bind Resources:LanguageManager.Instance.Settings.AutoplayDescription}">
+                      <controls:ExpandableSettingControl.Icon>
+                          <FontIcon Glyph="&#xE102;" />
+                      </controls:ExpandableSettingControl.Icon>
+                      <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" 
+                                    IsEnabled="{x:Bind ViewModel.IsLoading, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}"
+                                    IsOn="{x:Bind ViewModel.AutoPlayEnabled, Mode=TwoWay}"/>
+            </controls:ExpandableSettingControl>
+            
+        </StackPanel>
+    </ScrollViewer>
+</views:BasePage>

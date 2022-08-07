@@ -162,6 +162,7 @@
     <Compile Include="Interfaces\Views\Profiles\IUserProfileView.cs" />
     <Compile Include="Interfaces\Views\Profiles\IUserFollowersView.cs" />
     <Compile Include="Interfaces\Views\Search\ISearchView.cs" />
+    <Compile Include="Interfaces\Views\Settings\IAccountSettings.cs" />
     <Compile Include="Interfaces\Views\Settings\ISettingsView.cs" />
     <Compile Include="Models\ConfigureDelays\ImageConfigureMediaDelay.cs" />
     <Compile Include="Models\ConfigureDelays\VideoConfigureMediaDelay.cs" />

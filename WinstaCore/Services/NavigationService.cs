@@ -86,14 +86,14 @@ namespace WinstaCore.Services
             return Frame.Navigate(sourcePageType, parameter, infoOverride);
         }
 
-        public bool Navigate<TView>(TView view) where TView : IView
+        public bool Navigate<TView>(TView view, NavigationTransitionInfo transitionInfo = default) where TView : IView
         {
-            return Frame.Navigate(view.GetType());
+            return Frame.Navigate(view.GetType(), null, transitionInfo);
         }
 
-        public bool Navigate<TView>(TView view, object parameter) where TView : IView
+        public bool Navigate<TView>(TView view, object parameter, NavigationTransitionInfo transitionInfo = default) where TView : IView
         {
-            return Frame.Navigate(view.GetType(), parameter);
+            return Frame.Navigate(view.GetType(), parameter, transitionInfo);
         }
 
 

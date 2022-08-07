@@ -29,6 +29,17 @@
                 </TransitionCollection>
             </StackPanel.ChildrenTransitions>
 
+            <controls:NavigationSettingContent Title="Account Settings"
+                                               Command="{x:Bind ViewModel.AccountSettingsNavigateCommand}"
+                                               Description="Manipulate your Instagram's account settings.">
+                <controls:NavigationSettingContent.Icon>
+                    <FontIcon FontFamily="{StaticResource FluentSystemIconsRegular}" Glyph="&#xF5BE;" />
+                </controls:NavigationSettingContent.Icon>
+                <TextBlock FontFamily="{StaticResource FluentSystemIconsRegular}"
+                           Text="&#xF2B1;"
+                           FontSize="18"/>
+            </controls:NavigationSettingContent>
+            
             <controls:ExpandableSettingControl 
                 Title="{x:Bind Resources:LanguageManager.Instance.Settings.Autoplay}"
                 Description="{x:Bind Resources:LanguageManager.Instance.Settings.AutoplayDescription}">

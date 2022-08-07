@@ -13,6 +13,8 @@ using WinstaCore.Models;
 using WinstaCore;
 using Resources;
 using WinstaCore.Enums;
+using WinstaCore.Interfaces.Views.Settings;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace ViewModels.Settings
 {
@@ -55,8 +57,11 @@ namespace ViewModels.Settings
 
         public AsyncRelayCommand SetDownloadsFolderCommand { get; set; }
 
+        public RelayCommand AccountSettingsNavigateCommand { get; set; }
+
         public SettingsViewModel() : base()
         {
+            AccountSettingsNavigateCommand = new(AccountSettingsNavigate);
             SetDownloadsFolderCommand = new(SetDownloadsFolderAsync);
             Theme = ApplicationSettingsManager.Instance.GetTheme();
             var q = ApplicationSettingsManager.Instance.GetPlaybackQuality();
@@ -72,6 +77,13 @@ namespace ViewModels.Settings
         {
             var downloadsFolder = await ApplicationSettingsManager.Instance.GetDownloadsFolderAsync();
             DownloadsPath = downloadsFolder.Path;
+        }
+
+        void AccountSettingsNavigate()
+        {
+            var AccountSettings = AppCore.Container.GetService<IAccountSettings>();
+            var transitionInfo = new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight };
+            NavigationService.Navigate(AccountSettings, transitionInfo);
         }
 
         async Task SetDownloadsFolderAsync()

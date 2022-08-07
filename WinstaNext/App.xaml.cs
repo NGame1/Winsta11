@@ -158,6 +158,7 @@ namespace WinstaNext
 
             //Settings View
             serviceCollection.AddTransient<ISettingsView>(x => new SettingsView());
+            serviceCollection.AddTransient<IAccountSettings>(x => new AccountSettings());
         }
 
         DisplayRequest CreateDisplayRequestInstance(IServiceProvider arg)

@@ -25,7 +25,7 @@
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <PackageCertificateKeyFile />
     <Nullable>enable</Nullable>
@@ -157,6 +157,9 @@
     </Compile>
     <Compile Include="UI\Controls\ExpandableSettingHeaderControl.xaml.cs">
       <DependentUpon>ExpandableSettingHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\NavigationSettingContent.xaml.cs">
+      <DependentUpon>NavigationSettingContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\NoCastButtonMediaTransportControls.cs" />
     <Compile Include="UI\Dialogs\BaseContentDialog.xaml.cs">
@@ -349,6 +352,9 @@
     <Compile Include="Views\Search\SearchView.xaml.cs">
       <DependentUpon>SearchView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Settings\AccountSettings.xaml.cs">
+      <DependentUpon>AccountSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
@@ -456,6 +462,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Controls\ExpandableSettingHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\NavigationSettingContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -700,6 +710,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Search\SearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\AccountSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
