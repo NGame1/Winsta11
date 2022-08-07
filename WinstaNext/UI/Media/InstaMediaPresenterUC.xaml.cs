@@ -81,6 +81,7 @@ namespace WinstaNext.UI.Media
                 default:
                     break;
             }
+            Presenter_SizeChanged(null, null);
         }
 
         private void Gallery_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -176,8 +177,10 @@ namespace WinstaNext.UI.Media
             }
             if (targetElement == null) return;
             if (string.IsNullOrEmpty(Media.Height)) return;
-            var minwidth = parentelement.ActualWidth < e.NewSize.Width ?
-                parentelement.ActualWidth : e.NewSize.Width;
+            var minwidth = parentelement.ActualWidth;
+            if (e != null)
+                minwidth = parentelement.ActualWidth < e.NewSize.Width ?
+                           parentelement.ActualWidth : e.NewSize.Width;
             var s = ControlSizeHelper.CalculateSizeInBox(Media.Width, int.Parse(Media.Height),
                 parentelement.ActualHeight - 150, minwidth);
             targetElement.Width = s.Width;
