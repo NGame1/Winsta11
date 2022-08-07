@@ -59,7 +59,7 @@
 
                 <Muxc:PersonPicture ProfilePicture="{x:Bind Comment.User, Converter={StaticResource InstaUserProfilePictureConverter}, Mode=OneWay}"
                                     DisplayName="{x:Bind Comment.User.UserName}"
-                                    VerticalAlignment="Bottom"
+                                    VerticalAlignment="Top"
                                     Width="55" Height="55"
                                     Grid.Column="0"/>
 
@@ -130,6 +130,11 @@
                              x:Load="{x:Bind Comment.HasMoreTailChildComments}"
                              Command="{x:Bind LoadMoreCommentsCommand}"
                              x:Name="LoadMoreReplies"/>
+            
+            <HyperlinkButton Content="{x:Bind Resources:LanguageManager.Instance.Instagram.LoadMoreComments}"
+                             x:Load="{x:Bind Comment.HasMoreHeadChildComments}"
+                             Command="{x:Bind LoadMoreCommentsCommand}"
+                             x:Name="LoadMoreHeadReplies"/>
 
             <ItemsControl ItemsSource="{x:Bind Comment.ChildComments}"
                           Margin="60,0,0,0"
@@ -137,7 +142,8 @@
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="Models:InstaComment">
-                        <local:InstaCommentPresenterUC Comment="{x:Bind}"/>
+                        <local:InstaCommentPresenterUC Comment="{x:Bind}"
+                                                       Margin="0,2"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
 

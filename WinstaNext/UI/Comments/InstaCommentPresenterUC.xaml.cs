@@ -59,6 +59,7 @@ namespace WinstaNext.UI.Comments
 
         async Task LikeCommentAsync()
         {
+            return;
             IResult<bool> result = null;
             bool liked = Comment.HasLikedComment;
             var likesCount = Comment.LikesCount;
@@ -104,16 +105,27 @@ namespace WinstaNext.UI.Comments
                 {
                     var result = await Api.CommentProcessor.GetMediaRepliesCommentsAsync(mediaId,
                                                             Comment.Pk.ToString(), Pagination);
-
+                    
                     if (!result.Succeeded) throw result.Info.Exception;
 
                     var childs = result.Value.ChildComments;
                     childs.Reverse();
-                    for (int i = 0; i < childs.Count; i++)
+                    if (Comment.HasMoreTailChildComments)
                     {
-                        Comment.ChildComments.Insert(0, childs.ElementAt(i));
+                        for (int i = 0; i < childs.Count; i++)
+                        {
+                            Comment.ChildComments.Insert(0, childs.ElementAt(i));
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < childs.Count; i++)
+                        {
+                            Comment.ChildComments.Insert(0, childs.ElementAt(i));
+                        }
                     }
                     Comment.HasMoreTailChildComments = result.Value.HasMoreTailChildComments;
+                    Comment.HasMoreHeadChildComments = result.Value.HasMoreHeadChildComments;
                 }
             }
             finally
