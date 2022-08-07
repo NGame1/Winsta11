@@ -9,7 +9,8 @@ namespace WinstaNext.Converters.Media
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return new BitmapImage(new Uri(value switch
+            if (value == null) return new BitmapImage(new Uri("ms-appx:///Assets/Icons/NoOne.png"));
+            var uri = value switch
             {
                 InstaUser instaUser => !instaUser.HasAnonymousProfilePicture || (instaUser.ProfilePictureId != null && instaUser.ProfilePictureId != "unknown") ?
                           instaUser.ProfilePicUrl : "ms-appx:///Assets/Icons/NoOne.png",
@@ -22,7 +23,9 @@ namespace WinstaNext.Converters.Media
 
                 _ => "ms-appx:///Assets/Icons/NoOne.png"
 
-            }, UriKind.RelativeOrAbsolute));
+            };
+            if(string.IsNullOrEmpty(uri)) return new BitmapImage(new Uri("ms-appx:///Assets/Icons/NoOne.png"));
+            return new BitmapImage(new Uri(uri, UriKind.RelativeOrAbsolute));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
