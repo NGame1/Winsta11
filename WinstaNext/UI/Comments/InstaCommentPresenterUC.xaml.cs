@@ -59,7 +59,6 @@ namespace WinstaNext.UI.Comments
 
         async Task LikeCommentAsync()
         {
-            return;
             IResult<bool> result = null;
             bool liked = Comment.HasLikedComment;
             var likesCount = Comment.LikesCount;
