@@ -50,7 +50,7 @@ namespace ViewModels.Search
 
         public SearchViewModel()
         {
-            MenuItems.Add(new MenuItemModel(LanguageManager.Instance.Instagram.Top) { Tag = "Top" });
+            //MenuItems.Add(new MenuItemModel(LanguageManager.Instance.Instagram.Top) { Tag = "Top" });
             MenuItems.Add(new MenuItemModel(LanguageManager.Instance.Instagram.Accounts) { Tag = "Accounts" });
             MenuItems.Add(new MenuItemModel(LanguageManager.Instance.Instagram.Places) { Tag = "Places" });
             MenuItems.Add(new MenuItemModel(LanguageManager.Instance.Instagram.Hashtags) { Tag = "Hashtags" });
@@ -145,7 +145,7 @@ namespace ViewModels.Search
             {
                 SearchQuery = e.Parameter.ToString();
                 await Task.Delay(10);
-                SelectedItem = MenuItems[1];
+                SelectedItem = MenuItems[0];
             }
             else SelectedItem = MenuItems.FirstOrDefault();
             await base.OnNavigatedToAsync(e);
