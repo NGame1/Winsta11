@@ -237,6 +237,18 @@
             </directs1:ChatListView.ItemContainerStyle>
         </directs1:ChatListView>
 
+        <Button CommandParameter="{x:Bind lst, Mode=OneWay}" 
+                Command="{x:Bind ViewModel.GoBottomCommand}"
+                FontFamily="{StaticResource FluentIcons}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Content="&#xE1FD;"
+                CornerRadius="45"
+                FontSize="16"
+                Margin="0,12"
+                Height="45"
+                Width="45"/>
+        
         <Grid Grid.Row="1" Margin="8,0,8,8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

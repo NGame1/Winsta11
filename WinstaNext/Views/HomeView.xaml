@@ -106,8 +106,6 @@
                 FontSize="16"
                 Margin="0,12"
                 Height="45"
-                Width="45">
-            
-        </Button>
+                Width="45"/>
     </Grid>
 </local:BasePage>

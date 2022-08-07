@@ -15,6 +15,7 @@ using WinstaCore;
 using WinstaCore.Converters.FileConverters;
 using WinstaCore.Models.ConfigureDelays;
 using Windows.UI.Xaml.Controls;
+using WinstaCore.Helpers.ExtensionMethods;
 #nullable enable
 
 namespace WinstaNext.ViewModels.Directs
@@ -26,6 +27,7 @@ namespace WinstaNext.ViewModels.Directs
         IncrementalDirectThread Instance { get; set; }
         public DirectMessagesInvertedCollection ThreadItems { get; private set; }
 
+        public AsyncRelayCommand<ListView> GoBottomCommand { get; set; }
         public AsyncRelayCommand UploadImageCommand { get; set; }
         public AsyncRelayCommand UploadCameraCapturedImageCommand { get; set; }
         public AsyncRelayCommand UploadVideoCommand { get; set; }
@@ -50,6 +52,7 @@ namespace WinstaNext.ViewModels.Directs
             DirectThread = directThread;
             Instance = new(DirectThread);
             ThreadItems = new(Instance);
+            GoBottomCommand = new(GoToBottomAsync);
             SendLikeCommand = new(SendLikeAsync);
             IgnoreReplyCommand = new(IgnoreReply);
             UploadImageCommand = new(UploadImageAsync);
@@ -58,6 +61,12 @@ namespace WinstaNext.ViewModels.Directs
             SendMessageCommand = new(SendMessageAsync);
             OpenEmojisPanelCommand = new(OpenEmojisPanel);
             CurrentVM = this;
+        }
+
+        async Task GoToBottomAsync(ListView list)
+        {
+            if (list == null) return;
+            await list.SmoothScrollIntoViewWithIndexAsync(list.Items.Count - 1);
         }
 
         void IgnoreReply() => RepliedMessage = null;
@@ -208,7 +217,7 @@ namespace WinstaNext.ViewModels.Directs
                 throw new ArgumentNullException(nameof(obj));
             await obj.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                if (obj is TextBox txtbox) 
+                if (obj is TextBox txtbox)
                     txtbox.Focus(FocusState.Keyboard);
                 CoreInputView.GetForCurrentView().TryShow(CoreInputViewKind.Emoji);
             });
