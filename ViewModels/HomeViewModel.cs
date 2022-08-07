@@ -7,12 +7,15 @@ using Core.Collections.IncrementalSources.Stories;
 using Core.Collections.IncrementalSources.Media;
 using WinstaCore;
 using Abstractions.Stories;
+using Windows.UI.Xaml.Controls;
+using WinstaCore.Helpers.ExtensionMethods;
 
 namespace ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
         public AsyncRelayCommand RefreshCommand { get; set; }
+        public AsyncRelayCommand<ListView> GoTopCommand { get; set; }
 
         public IncrementalLoadingCollection<IIncrementalSource<WinstaStoryItem>, WinstaStoryItem> Stories { get; }
         public RangePlayerAttribute Medias { get; }
@@ -25,6 +28,13 @@ namespace ViewModels
             Medias = new(FeedMedia);
             Stories = new(FeedStories);
             RefreshCommand = new(RefreshAsync);
+            GoTopCommand = new(GoToTopAsync);
+        }
+
+        async Task GoToTopAsync(ListView list)
+        {
+            if (list == null) return;
+            await list.SmoothScrollIntoViewWithIndexAsync(0);
         }
 
         private async Task RefreshAsync()

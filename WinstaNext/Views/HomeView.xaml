@@ -95,5 +95,19 @@
 
             </ListView>
         </Muxc:RefreshContainer>
+
+        <Button CommandParameter="{x:Bind FeedPostsList, Mode=OneWay}" 
+                Command="{x:Bind ViewModel.GoTopCommand}"
+                FontFamily="{StaticResource FluentIcons}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Content="&#xE110;"
+                CornerRadius="45"
+                FontSize="16"
+                Margin="0,12"
+                Height="45"
+                Width="45">
+            
+        </Button>
     </Grid>
 </local:BasePage>
