@@ -158,6 +158,7 @@ namespace WinstaNext.UI.Media
 
         private void Presenter_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            if (Media == null) return;
             var parentelement = (ViewModel.NavigationService.Content as FrameworkElement);
             FrameworkElement targetElement = null;
             switch (Media.MediaType)
