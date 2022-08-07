@@ -277,12 +277,19 @@ namespace ViewModels
         async void OnInstaUserChanged()
         {
             if (InstaUser == null) return;
-            using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
+            try
             {
-                Api.UpdateUser(InstaUser);
-                var state = Api.GetStateDataAsString();
-                await ApplicationSettingsManager.Instance.
-                            AddOrUpdateUser(InstaUser.Pk, state, InstaUser.UserName);
+                using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
+                {
+                    Api.UpdateUser(InstaUser);
+                    var state = Api.GetStateDataAsString();
+                    await ApplicationSettingsManager.Instance.
+                                AddOrUpdateUser(InstaUser.Pk, state, InstaUser.UserName);
+                }
+            }
+            finally
+            {
+
             }
         }
 

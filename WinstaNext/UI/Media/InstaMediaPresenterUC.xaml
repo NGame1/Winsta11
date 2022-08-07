@@ -19,7 +19,7 @@
     xmlns:Resources="using:Resources" 
     xmlns:Winsta="using:WinstaNext" 
     mc:Ignorable="d"
-    MaxWidth="800"
+    MaxWidth="1200"
     d:DesignHeight="300"
     d:DesignWidth="400">
 
