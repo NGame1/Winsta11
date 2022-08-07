@@ -141,6 +141,12 @@
   <data name="PlaybackQualityDescription" xml:space="preserve">
     <value>تغییر کیفیت پخش با میانه و پایین کمک میکند تا مصرف دیتا را در شبکه های با ترافیک محدود و یا کند بهتر مدیریت کنید.</value>
   </data>
+  <data name="PrivateAccount" xml:space="preserve">
+    <value>حساب کاربری شخصی</value>
+  </data>
+  <data name="PrivateAccountDescription" xml:space="preserve">
+    <value>در حالت شخصی سایر کاربران پیش از دیدن محتوای صفحه شما ابتدا باید درخواست دنبال کردن شما را داده و شما این درخواست را تائید نمائید.</value>
+  </data>
   <data name="RemoveFeedAds" xml:space="preserve">
     <value>حذف تبلیغات خانه</value>
   </data>

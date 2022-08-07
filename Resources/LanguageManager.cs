@@ -171,9 +171,12 @@ namespace Resources
         public string ForceThreeColumnsDescription { get => _resource.GetString(nameof(ForceThreeColumnsDescription)); }
         public string PlaybackQuality { get => _resource.GetString(nameof(PlaybackQuality)); }
         public string PlaybackQualityDescription { get => _resource.GetString(nameof(PlaybackQualityDescription)); }
+        public string PrivateAccount { get => _resource.GetString(nameof(PrivateAccount)); }
+        public string PrivateAccountDescription { get => _resource.GetString(nameof(PrivateAccountDescription)); }
         public string RemoveFeedAds { get => _resource.GetString(nameof(RemoveFeedAds)); }
         public string RemoveFeedAdsDescription { get => _resource.GetString(nameof(RemoveFeedAdsDescription)); }
     }
+    
 
     public class UnitsStrings
     {

@@ -141,6 +141,12 @@
   <data name="PlaybackQualityDescription" xml:space="preserve">
     <value>Change the playback quality to medium or low, will help you with data moderation on metered or slow connections.</value>
   </data>
+  <data name="PrivateAccount" xml:space="preserve">
+    <value>Private account</value>
+  </data>
+  <data name="PrivateAccountDescription" xml:space="preserve">
+    <value>In private account mode, Users must send you a follow request, and, after you accept it, they can see your profile content.</value>
+  </data>
   <data name="RemoveFeedAds" xml:space="preserve">
     <value>Remove feed ads</value>
   </data>

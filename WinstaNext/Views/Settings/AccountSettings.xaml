@@ -18,7 +18,7 @@
     </Page.Resources>
 
     <views:BasePage.DataContext>
-        <VM:SettingsViewModel x:Name="ViewModel"/>
+        <VM:AccountSettingsViewModel x:Name="ViewModel"/>
     </views:BasePage.DataContext>
 
     <ScrollViewer HorizontalScrollMode="Disabled">
@@ -31,14 +31,14 @@
             </StackPanel.ChildrenTransitions>
 
             <controls:ExpandableSettingControl 
-                      Title="{x:Bind Resources:LanguageManager.Instance.Settings.Autoplay}"
-                      Description="{x:Bind Resources:LanguageManager.Instance.Settings.AutoplayDescription}">
+                      Title="{x:Bind Resources:LanguageManager.Instance.Settings.PrivateAccount}"
+                      Description="{x:Bind Resources:LanguageManager.Instance.Settings.PrivateAccountDescription}">
                       <controls:ExpandableSettingControl.Icon>
-                          <FontIcon Glyph="&#xE102;" />
+                    <FontIcon Glyph="&#xE72E;" />
                       </controls:ExpandableSettingControl.Icon>
                       <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" 
                                     IsEnabled="{x:Bind ViewModel.IsLoading, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}"
-                                    IsOn="{x:Bind ViewModel.AutoPlayEnabled, Mode=TwoWay}"/>
+                                    IsOn="{x:Bind ViewModel.IsPrivate, Mode=TwoWay}"/>
             </controls:ExpandableSettingControl>
             
         </StackPanel>
