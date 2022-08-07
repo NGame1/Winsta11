@@ -35,7 +35,8 @@
             
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:InstaComment">
-                    <comments:InstaCommentPresenterUC Comment="{x:Bind Mode=OneWay}"/>
+                    <comments:InstaCommentPresenterUC Comment="{x:Bind Mode=OneWay}"
+                                                      Margin="0,2"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
             
