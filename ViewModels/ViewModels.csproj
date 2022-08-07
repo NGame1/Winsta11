@@ -129,6 +129,7 @@
     <Compile Include="Account\LoginViewModel.cs" />
     <Compile Include="Account\TwoFactorAuthViewModel.cs" />
     <Compile Include="Activities\ActivitiesViewModel.cs" />
+    <Compile Include="Activities\FollowRequestsViewModel.cs" />
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="Comments\CommentLikersViewModel.cs" />
     <Compile Include="Comments\MediaCommentsViewModel.cs" />

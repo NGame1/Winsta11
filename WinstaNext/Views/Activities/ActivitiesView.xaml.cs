@@ -43,7 +43,8 @@ namespace WinstaNext.Views.Activities
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (e.ClickedItem is InstaRecentActivityFeed activityFeed)
-                if (activityFeed.Type == InstaActivityFeedType.Follow)
+                if (activityFeed.StoryType == InstaActivityFeedStoryType.FriendRequest && 
+                    activityFeed.Type == InstaActivityFeedType.FriendRequest)
                     ViewModel.NavigationService.Navigate(typeof(FollowRequestsView));
         }
     }

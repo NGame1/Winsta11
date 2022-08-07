@@ -124,6 +124,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ExtendedObservableCollection.cs" />
+    <Compile Include="IncrementalSources\Activities\IncrementalPendingFriendRequests.cs" />
     <Compile Include="IncrementalSources\Activities\IncrementalUserActivities.cs" />
     <Compile Include="IncrementalSources\Comments\IncrementalCommentLikers.cs" />
     <Compile Include="IncrementalSources\Comments\IncrementalMediaComments.cs" />

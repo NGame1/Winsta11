@@ -146,6 +146,7 @@
     <Compile Include="Interfaces\Views\Accounts\ILoginView.cs" />
     <Compile Include="Interfaces\Views\Accounts\ITwoFactorAuthView.cs" />
     <Compile Include="Interfaces\Views\Activities\IActivitiesView.cs" />
+    <Compile Include="Interfaces\Views\Activities\IFollowRequestsView.cs" />
     <Compile Include="Interfaces\Views\Directs\IDirectsListView.cs" />
     <Compile Include="Interfaces\Views\Directs\IDirectThreadView.cs" />
     <Compile Include="Interfaces\Views\IHomeView.cs" />

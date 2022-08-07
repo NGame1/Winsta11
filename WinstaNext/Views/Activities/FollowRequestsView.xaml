@@ -1,13 +1,74 @@
-﻿<Page
+﻿<views:BasePage
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     x:Class="WinstaNext.Views.Activities.FollowRequestsView"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WinstaNext.Views.Activities"
+    xmlns:Models="using:InstagramApiSharp.Classes.Models"
+    xmlns:local="using:WinstaNext.Views.Activities" 
+    xmlns:media="using:WinstaNext.Converters.Media"
+    xmlns:Converters="using:WinstaNext.Converters"
+    xmlns:VM="using:ViewModels.Activities" 
+    xmlns:views="using:WinstaNext.Views" 
     mc:Ignorable="d">
 
-    <Grid>
+    <views:BasePage.DataContext>
+        <VM:FollowRequestsViewModel x:Name="ViewModel"/>
+    </views:BasePage.DataContext>
 
-    </Grid>
-</Page>
+    <Page.Resources>
+
+        <Converters:RichTextToMarkdownTextConverter x:Key="RichTextToMarkdownTextConverter"/>
+        <Converters:TextToFlowDirectionConverter x:Key="TextToFlowDirectionConverter"/>
+        <media:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
+
+        <DataTemplate x:Key="FriendRequestTemplate" x:DataType="Models:InstaUserShortFriendship">
+            <!--Tap to see all friendship requests.-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <PersonPicture ProfilePicture="{x:Bind Converter={StaticResource InstaUserProfilePictureConverter}}"
+                               DisplayName="{x:Bind UserName}"
+                               Grid.Column="0"
+                               Height="55"
+                               Width="55"/>
+
+                <TextBlock VerticalAlignment="Center"
+                           Text="{x:Bind UserName}"
+                           Grid.Column="1"
+                           Margin="5,0"/>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Column="2">
+                    <Button Style="{StaticResource AccentButtonStyle}"
+                            Click="AcceptFriendshipRequest_Click"
+                            Content="Accept" 
+                            Margin="4,0"/>
+                    <Button Click="RejectFriendshipRequest_Click"
+                            Content="Reject"/>
+                </StackPanel>
+                
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <ListView ItemTemplate="{StaticResource FriendRequestTemplate}"
+              ItemsSource="{x:Bind ViewModel.FriendshipRequests}"
+              ItemClick="ListView_ItemClick"
+              Margin="{x:Bind PageMargin}"
+              IsItemClickEnabled="True"
+              SelectionMode="None"
+              Padding="0,0,13,0">
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
+                <Setter Property="Padding" Value="10"/>
+            </Style>
+        </ListView.ItemContainerStyle>
+    </ListView>
+
+</views:BasePage>
