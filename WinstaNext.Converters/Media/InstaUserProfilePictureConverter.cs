@@ -13,13 +13,13 @@ namespace WinstaNext.Converters.Media
             var uri = value switch
             {
                 InstaUser instaUser => !instaUser.HasAnonymousProfilePicture || (instaUser.ProfilePictureId != null && instaUser.ProfilePictureId != "unknown") ?
-                          instaUser.ProfilePicUrl : "ms-appx:///Assets/Icons/NoOne.png",
+                          instaUser.ProfilePicture : "ms-appx:///Assets/Icons/NoOne.png",
 
                 InstaUserShort instaUserShort => !instaUserShort.HasAnonymousProfilePicture || (instaUserShort.ProfilePictureId != null && instaUserShort.ProfilePictureId != "unknown") ?
-                               instaUserShort.ProfilePicUrl : "ms-appx:///Assets/Icons/NoOne.png",
+                               instaUserShort.ProfilePicture : "ms-appx:///Assets/Icons/NoOne.png",
 
                 InstaUserInfo instaUserInfo => !instaUserInfo.HasAnonymousProfilePicture || (instaUserInfo.ProfilePictureId != null && instaUserInfo.ProfilePictureId != "unknown") ?
-                               instaUserInfo.ProfilePicUrl : "ms-appx:///Assets/Icons/NoOne.png",
+                               instaUserInfo.ProfilePicture : "ms-appx:///Assets/Icons/NoOne.png",
 
                 _ => "ms-appx:///Assets/Icons/NoOne.png"
 
