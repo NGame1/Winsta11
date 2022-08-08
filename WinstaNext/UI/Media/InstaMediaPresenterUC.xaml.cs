@@ -192,5 +192,11 @@ namespace WinstaNext.UI.Media
             ViewModel.AddCommentCommand.Execute(null);
             args.Handled = true;
         }
+
+        private void videoPresenter_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            if (Media.Play && ApplicationSettingsManager.Instance.GetAutoPlay())
+                videoPresenter.mediaPlayer.Play();
+        }
     }
 }

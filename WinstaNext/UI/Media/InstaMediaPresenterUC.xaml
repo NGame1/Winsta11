@@ -123,6 +123,7 @@
             </local:InstaMediaImagePresenterUC>
 
             <local:InstaMediaVideoPresenterUC x:Load="{x:Bind ViewModel.VideoPresenterLoaded}"
+                                              MediaEnded="videoPresenter_MediaEnded"
                                               Media="{x:Bind Media, Mode=OneWay}" 
                                               x:FieldModifier="public"
                                               x:Name="videoPresenter"
