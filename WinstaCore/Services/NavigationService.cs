@@ -1,4 +1,6 @@
-﻿using SecondaryViewsHelpers;
+﻿using ColorCode.Compilation.Languages;
+using Microsoft.UI.Xaml.Controls;
+using SecondaryViewsHelpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -124,6 +126,11 @@ namespace WinstaCore.Services
         }
 
         async void OpenNewWindow(Type sourcePageType, object parameter = null)
+        {
+            await OpenPageAsWindowAsync(sourcePageType, parameter);
+        }
+
+        public async Task OpenNewWindowAsync(Type sourcePageType, object parameter = null)
         {
             await OpenPageAsWindowAsync(sourcePageType, parameter);
         }
