@@ -1,4 +1,5 @@
-﻿using SecondaryViewsHelpers;
+﻿using Microsoft.UI.Xaml.Controls;
+using SecondaryViewsHelpers;
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
@@ -22,6 +23,9 @@ namespace WinstaCore.Services
                 viewControl.Title = windowTitle;
                 viewControl.StartViewInUse();
                 var frame = new Frame();
+
+                BackdropMaterial.SetApplyToRootOrPageBackground(frame, true);
+
                 var Nav = AppCore.Container.GetService<NavigationService>();
                 Nav.SetNavigationFrame(frame);
                 var theme = ApplicationSettingsManager.Instance.GetTheme();
