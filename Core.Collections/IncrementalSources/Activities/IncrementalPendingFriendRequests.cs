@@ -9,12 +9,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WinstaCore;
+using System.Collections.ObjectModel;
 
 namespace Core.Collections.IncrementalSources.Activities
 {
     public class IncrementalPendingFriendRequests : IIncrementalSource<InstaUserShortFriendship>
     {
         PaginationParameters Pagination { get; set; }
+
+        public ExtendedObservableCollection<InstaSuggestionItem> SuggestionUsers { get; set; } = new();
 
         public IncrementalPendingFriendRequests()
         {
@@ -31,6 +34,13 @@ namespace Core.Collections.IncrementalSources.Activities
 
                 if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
                     throw result.Info.Exception;
+
+                var sug = result.Value.SuggestedUsers;
+
+                if (!SuggestionUsers.Any())
+                {
+                    SuggestionUsers.AddRange(sug);
+                }
 
                 HasMoreAvailable = !string.IsNullOrEmpty(result.Value.NextMaxId);
 

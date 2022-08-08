@@ -28,33 +28,34 @@ namespace WinstaNext.Views.Activities
     /// </summary>
     public sealed partial class FollowRequestsView : BasePage, IFollowRequestsView
     {
+        public override string PageHeader { get; protected set; }
         public FollowRequestsView()
         {
             this.InitializeComponent();
         }
-
-        public override string PageHeader { get; protected set; }
 
         private void TextLinkClicked(object sender, Microsoft.Toolkit.Uwp.UI.Controls.LinkClickedEventArgs e)
             => e.HandleClickEvent();
 
         private void AcceptFriendshipRequest_Click(object sender, RoutedEventArgs e)
         {
-            var dt = (sender as FrameworkElement).DataContext;
-            if (dt is InstaUserShortFriendship friendship)
+            if (sender is FrameworkElement element &&
+                element.DataContext is InstaUserShortFriendship friendship)
                 ViewModel.ApproveFollowRequestCommand.Execute(friendship);
         }
 
         private void RejectFriendshipRequest_Click(object sender, RoutedEventArgs e)
         {
-            var dt = (sender as FrameworkElement).DataContext;
-            if (dt is InstaUserShortFriendship friendship)
+            if (sender is FrameworkElement element && 
+                element.DataContext is InstaUserShortFriendship friendship)
+            {
                 ViewModel.RejectFollowRequestCommand.Execute(friendship);
+            }
         }
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if(e.ClickedItem is InstaUserShortFriendship friendship)
+            if (e.ClickedItem is InstaUserShortFriendship friendship)
             {
                 var UserProfileView = AppCore.Container.GetService<IUserProfileView>();
                 ViewModel.NavigationService.Navigate(UserProfileView, friendship);
