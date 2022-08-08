@@ -43,15 +43,23 @@ namespace WinstaNext.UI.Stories.StickersView
             if (string.IsNullOrEmpty(Poll.PollSticker.Question))
                 titleRow.Height = new(0);
 
+            var parent = this.FindParent<StickersViewGrid>();
+            var pollHeightPixels = parent.ActualHeight * Poll.Height;
+            var scale = pollHeightPixels / parent.ActualHeight;
             TalliesSection.RenderTransform = new ScaleTransform()
             {
                 //ScaleX = Poll.Height / 0.163081378f,
-                ScaleY = Poll.Height / 0.163081378f
+                ScaleY = 1 + scale
             };
-            txtQuestion.FontSize = Math.Round(17 * Poll.Height / 0.163081378f);
-            Thickness marg = new(0, Math.Round(10 * Poll.Height / 0.163081378f), 0, Math.Round(10 * Poll.Height / 0.163081378f));
+            QuestionSection.RenderTransform = new ScaleTransform()
+            {
+                //ScaleX = Poll.Height / 0.163081378f,
+                ScaleY = Poll.Height / scale
+            };
+            txtQuestion.FontSize = Math.Round(24 / (Poll.Height / scale));
+            Thickness marg = new(0, Math.Round(14 * (Poll.Height / scale)), 0, Math.Round(14 * (Poll.Height / scale)));
             txtQuestion.Margin = marg;
-            
+
         }
 
         private void Button_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)

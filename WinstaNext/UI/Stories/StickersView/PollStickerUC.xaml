@@ -23,6 +23,7 @@
 
         <!--<Grid Background="#70000000"-->
         <Grid Background="{x:Bind Poll.PollSticker.Color, Converter={StaticResource PollStickerColorConverter}}"
+              x:Name="QuestionSection"
               Padding="10,0">
             <TextBlock FontFamily="{StaticResource AvenyInstagramMediumFont}"
                        Text="{x:Bind Poll.PollSticker.Question}"
@@ -32,7 +33,7 @@
                        x:Name="txtQuestion"
                        TextWrapping="Wrap"
                        LineHeight="25"
-                       FontSize="16"
+                       FontSize="24"
                        Margin="0,2"/>
         </Grid>
         <ItemsControl ItemsSource="{x:Bind Poll.PollSticker.Tallies}"
