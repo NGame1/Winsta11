@@ -9,7 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 using WinstaCore;
+using WinstaCore.Interfaces.Views.Profiles;
 
 namespace ViewModels.Activities
 {
@@ -20,13 +22,21 @@ namespace ViewModels.Activities
 
         public AsyncRelayCommand<InstaUserShortFriendship> ApproveFollowRequestCommand { get; set; }
         public AsyncRelayCommand<InstaUserShortFriendship> RejectFollowRequestCommand { get; set; }
+        public RelayCommand<ItemClickEventArgs> NavigateToUserCommand { get; set; }
 
         public FollowRequestsViewModel()
         {
             ApproveFollowRequestCommand = new(ApproveFollowRequestAsync);
             RejectFollowRequestCommand = new(RejectFollowRequestAsync);
+            NavigateToUserCommand = new(NavigateToUser);
             Instance = new();
             FriendshipRequests = new(Instance);
+        }
+
+        void NavigateToUser(ItemClickEventArgs obj)
+        {
+            var UserProfileView = AppCore.Container.GetService<IUserProfileView>();
+            NavigationService.Navigate(UserProfileView, obj.ClickedItem);
         }
 
         async Task ApproveFollowRequestAsync(InstaUserShortFriendship obj)

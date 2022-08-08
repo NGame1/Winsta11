@@ -223,6 +223,22 @@ namespace ViewModels.Profiles
                     User = result.Value;
                 }
             }
+            else if (e.Parameter is InstaSuggestionItem suggestionItem)
+            {
+                if (User != null && User.Pk == suggestionItem.User.Pk) return;
+                using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
+                {
+                    var result = await Api.UserProcessor.GetUserInfoByIdAsync(suggestionItem.User.Pk,
+                                       surfaceType: InstaMediaSurfaceType.Profile);
+                    if (!result.Succeeded)
+                    {
+                        if (NavigationService.CanGoBack)
+                            NavigationService.GoBack();
+                        throw result.Info.Exception;
+                    }
+                    User = result.Value;
+                }
+            }
             else if(e.Parameter is InstaUserShort instaUsershort)
             {
                 if (User != null && User.Pk == instaUsershort.Pk) return;
