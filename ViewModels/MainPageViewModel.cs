@@ -215,9 +215,9 @@ namespace ViewModels
         {
             using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
             {
-                var syncres = await Api.LauncherSyncAsync();
+                await Api.LauncherMobileConfig();
 
-                await Api.PushProcessor.RegisterPushAsync();
+                var syncres = await Api.PushProcessor.RegisterPushAsync();
                 if (!syncres.Succeeded)
                 {
                     if (syncres.Info.ResponseType == ResponseType.ChallengeRequired)
