@@ -42,19 +42,39 @@
                         Padding="{StaticResource MessageBubblePadding}"
                         Spacing="{StaticResource MessageBubbleSpacing}"
                         Background="#80B00000">
-                <Button CornerRadius="{StaticResource ProfilePictureCornerRadius}"
-                        Padding="0" Background="OrangeRed"
-                        Width="50" Height="50">
-                    <Grid>
-                        <Muxc:ProgressRing HorizontalAlignment="Center" VerticalAlignment="Center"
-                                       Value="85" Width="44" Height="44" Maximum="100" 
-                                       IsIndeterminate="False">
-
-                        </Muxc:ProgressRing>
-
-                        <SymbolIcon Symbol="Pause" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="52"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button FontFamily="{StaticResource FluentIcons}"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Click="BtnPlayPause_Click"
+                                x:Name="BtnPlayPause"
+                                CornerRadius="48"
+                                Grid.Column="0"
+                                FontSize="16"
+                                Content=""
+                                Height="48"
+                                Width="48"/>
+                        <Grid Grid.Column="1" DataContextChanged="WaveGrid_DataContextChanged"/>
                     </Grid>
-                </Button>
+                    <Grid Grid.Row="1" Margin="35,0">
+                        <TextBlock IsTextSelectionEnabled="True" TextWrapping="Wrap" VerticalAlignment="Center" Margin="12,12,12,12" FontFamily="Segoe UI">
+                            <Run Text="{x:Bind DirectItem.VoiceMedia.Media.Audio.DurationTs.Minutes, Mode=OneWay}"/>
+                            <Run Text=":"/>
+                            <Run Text="{x:Bind DirectItem.VoiceMedia.Media.Audio.DurationTs.Seconds, Mode=OneWay}"/>
+                            <Run Text="."/>
+                            <Run Text="{x:Bind DirectItem.VoiceMedia.Media.Audio.DurationTs.Milliseconds, Mode=OneWay}"/>
+                        </TextBlock>
+                    </Grid>
+                </Grid>
             </StackPanel>
             <ItemsControl x:Load="{x:Bind DirectItem.Reactions.Emojis.Count, Converter={StaticResource IntToIsEnabledConverter}, Mode=OneWay}"
                           ItemsSource="{x:Bind DirectItem.Reactions.Emojis, Mode=OneWay}"
