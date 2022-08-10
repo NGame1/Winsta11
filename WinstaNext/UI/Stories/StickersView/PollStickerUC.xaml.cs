@@ -1,4 +1,6 @@
-﻿using InstagramApiSharp.Classes.Models;
+﻿using InstagramApiSharp.API;
+using InstagramApiSharp.Classes.Models;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Uwp.UI;
 using PropertyChanged;
 using System;
@@ -6,6 +8,7 @@ using System.Numerics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using WinstaCore;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -70,6 +73,14 @@ namespace WinstaNext.UI.Stories.StickersView
         private void Button_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
             VisualStateManager.GoToState(sender as Button, "VisualStateNormal", false);
+        }
+
+        private void VoteChoosen_Click(object sender, RoutedEventArgs e)
+        {
+            using (var Api = AppCore.Container.GetService<IInstaApi>())
+            {
+                //Api.StoryProcessor.VoteStoryPollAsync(string.Empty, Poll.PollSticker.Id, )
+            }
         }
     }
 }

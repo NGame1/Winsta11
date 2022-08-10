@@ -283,6 +283,9 @@
     <Compile Include="UI\Stories\StickersView\PollStickerUC.xaml.cs">
       <DependentUpon>PollStickerUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Stories\StickersView\QuestionStickerUC.xaml.cs">
+      <DependentUpon>QuestionStickerUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Stories\StickersView\StickersViewGrid.xaml.cs">
       <DependentUpon>StickersViewGrid.xaml</DependentUpon>
     </Compile>
@@ -622,6 +625,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Stories\StickersView\PollStickerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Stories\StickersView\QuestionStickerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

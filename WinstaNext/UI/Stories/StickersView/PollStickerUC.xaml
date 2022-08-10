@@ -49,6 +49,7 @@
                             PointerEntered="Button_PointerEntered"
                             VerticalContentAlignment="Stretch"
                             HorizontalAlignment="Stretch"
+                            Click="VoteChoosen_Click"
                             RequestedTheme="Light"
                             Background="#EEEEEE"
                             CornerRadius="14"
