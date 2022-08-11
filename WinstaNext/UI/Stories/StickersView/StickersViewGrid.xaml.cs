@@ -154,6 +154,24 @@ namespace WinstaNext.UI.Stories.StickersView
                     });
                 }
             }
+            if (StoryItem.StorySliders.Any())
+            {
+                for (int i = 0; i < StoryItem.StorySliders.Count; i++)
+                {
+                    var slider = StoryItem.StorySliders.ElementAt(i);
+                    var rect = new Grid() { CornerRadius = new(5) };
+                    var slidernSticker = new SliderStickerUC();
+                    rect.Children.Add(slidernSticker);
+                    SetStickerPosition(ref rect, slider.Height, slider.Width, slider.X, slider.Y, slider.Rotation);
+                    this.Children.Add(rect);
+                    slidernSticker.SetBinding(SliderStickerUC.SliderProperty, new Binding()
+                    {
+                        Source = slider,
+                        Mode = BindingMode.OneWay,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    });
+                }
+            }
         }
 
         void Media_Tapped(object sender, TappedRoutedEventArgs e)

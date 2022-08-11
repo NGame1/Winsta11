@@ -1,0 +1,35 @@
+﻿<UserControl x:DefaultBindMode="OneWay" Loaded="UserControl_Loaded"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    x:Class="WinstaNext.UI.Stories.StickersView.SliderStickerUC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinstaNext.UI.Stories.StickersView"
+    xmlns:stories="using:WinstaNext.Converters.Stories"
+    mc:Ignorable="d">
+
+    <Grid Background="{x:Bind Slider.SliderSticker.BackgroundColor}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" x:Name="titleRow"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Foreground="{x:Bind Slider.SliderSticker.TextColor}"
+                   FontFamily="{StaticResource AvenyInstagramMediumFont}"
+                   Text="{x:Bind Slider.SliderSticker.Question}"
+                   TextAlignment="Center"
+                   x:Name="txtQuestion"
+                   Margin="28,28,28,0"
+                   TextWrapping="Wrap"
+                   FontSize="25"
+                   Grid.Row="0"/>
+        
+        <Slider VerticalAlignment="Center"
+                Background="Gray"
+                x:Name="slider"
+                Grid.Row="1">
+
+        </Slider>
+    </Grid>
+</UserControl>
