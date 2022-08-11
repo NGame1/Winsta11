@@ -12,8 +12,9 @@
         <stories:PollStickerColorConverter x:Key="PollStickerColorConverter"/>
     </UserControl.Resources>
 
-    <Grid Background="{x:Bind Question.QuestionSticker.BackgroundColor}">
-        <Grid Margin="0,18,0,0"
+    <Grid>
+        <Grid Background="{x:Bind Question.QuestionSticker.BackgroundColor}"
+              Margin="0,18,0,0"
               BorderThickness="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -34,16 +35,18 @@
                 
             </Ellipse>
 
-            <TextBlock Text="{x:Bind Question.QuestionSticker.Question}"
+            <TextBlock Foreground="{x:Bind Question.QuestionSticker.TextColor}"
                        FontFamily="{StaticResource AvenyInstagramMediumFont}"
+                       Text="{x:Bind Question.QuestionSticker.Question}"
                        TextAlignment="Center"
                        TextWrapping="Wrap"
                        FontSize="16"
                        Grid.Row="1"
                        Margin="14,14,14,0"/>
 
-            <TextBox Grid.Row="2"
-                     Margin="12,16,12,12"/>
+            <TextBox Margin="12,16,12,12"
+                     Background="LightGray"
+                     Grid.Row="2"/>
         </Grid>
     </Grid>
 </UserControl>
