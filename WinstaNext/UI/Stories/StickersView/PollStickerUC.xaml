@@ -36,7 +36,8 @@
                        FontSize="24"
                        Margin="0,2"/>
         </Grid>
-        <ItemsControl ItemsSource="{x:Bind Poll.PollSticker.Tallies}"
+        <ItemsControl IsHitTestVisible="{x:Bind Poll.PollSticker.ViewerCanVote}"
+                      ItemsSource="{x:Bind Poll.PollSticker.Tallies}"
                       x:Name="TalliesSection"
                       Background="#EEEEEE"
                       CharacterSpacing="10"
@@ -55,8 +56,10 @@
                             CornerRadius="14"
                             Padding="12,10"
                             FontSize="12">
-                        <TextBlock TextAlignment="DetectFromContent"
+                        <Grid>
+                            <TextBlock TextAlignment="DetectFromContent"
                                    Text="{x:Bind Text}"/>
+                        </Grid>
                     </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

@@ -1,5 +1,6 @@
 ﻿using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
+using InstagramApiSharp.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Uwp.UI;
 using PropertyChanged;
@@ -74,11 +75,15 @@ namespace WinstaNext.UI.Stories.StickersView
             VisualStateManager.GoToState(sender as Button, "VisualStateNormal", false);
         }
 
-        private void VoteChoosen_Click(object sender, RoutedEventArgs e)
+        private async void VoteChoosen_Click(object sender, RoutedEventArgs e)
         {
+            var btn = sender as Button;
+            if (btn.DataContext is not InstaStoryTalliesItem talliesItem) return;
+            var parent = this.FindParent<InstaStoryItemPresenterUC>();
             using (var Api = AppCore.Container.GetService<IInstaApi>())
             {
-                //Api.StoryProcessor.VoteStoryPollAsync(string.Empty, Poll.PollSticker.Id, )
+                var vote = (InstaStoryPollVoteType)Enum.Parse(typeof(InstaStoryPollVoteType), btn.Content.ToString());
+                await Api.StoryProcessor.VoteStoryPollAsync(parent.Story.Id, Poll.PollSticker.Id, vote);
             }
         }
     }
