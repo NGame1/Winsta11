@@ -222,10 +222,10 @@
                    FontSize="25"
                    Grid.Row="0"/>
 
-        <Slider IsEnabled="{x:Bind Slider.SliderSticker.ViewerCanVote}"
+        <Slider IsHitTestVisible="{x:Bind Slider.SliderSticker.ViewerCanVote}"
                 Style="{StaticResource EmojiThumbSlider}"
+                IsThumbToolTipEnabled="False"
                 VerticalAlignment="Center"
-                IsHitTestVisible="False"
                 Loaded="slider_Loaded"
                 StepFrequency="0.01"
                 Background="Gray"
