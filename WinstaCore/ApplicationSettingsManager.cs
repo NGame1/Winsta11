@@ -262,6 +262,11 @@ namespace WinstaCore
             await AddOrUpdateUser(pk.ToString(), session, username);
         }
 
+        public void RemoveUser(long pk)
+        {
+            RemoveUser(pk.ToString());
+        }
+
         async Task AddOrUpdateUser(string pk, string session, string username)
         {
             await SetUserSession(pk, session);
@@ -269,6 +274,14 @@ namespace WinstaCore
             if (!users.ContainsKey(pk))
                 users.Add(pk, username);
             else users[pk] = username;
+            SetUsersList(users);
+        }
+
+        void RemoveUser(string pk)
+        {
+            var users = GetUsersList();
+            if (!users.ContainsKey(pk))
+                users.Remove(pk);
             SetUsersList(users);
         }
 
