@@ -221,13 +221,18 @@
                    TextWrapping="Wrap"
                    FontSize="25"
                    Grid.Row="0"/>
-        
-        <Slider Style="{StaticResource EmojiThumbSlider}"
+
+        <Slider IsEnabled="{x:Bind Slider.SliderSticker.ViewerCanVote}"
+                Style="{StaticResource EmojiThumbSlider}"
                 VerticalAlignment="Center"
+                IsHitTestVisible="False"
                 Loaded="slider_Loaded"
+                StepFrequency="0.01"
                 Background="Gray"
                 x:Name="slider"
-                Grid.Row="1">
+                Grid.Row="1"
+                Maximum="1"
+                Minimum="0">
 
         </Slider>
     </Grid>

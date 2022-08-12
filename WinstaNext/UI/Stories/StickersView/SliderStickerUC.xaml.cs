@@ -1,11 +1,16 @@
-﻿using InstagramApiSharp.Classes.Models;
+﻿using InstagramApiSharp.API;
+using InstagramApiSharp.Classes.Models;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Uwp.UI;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using WinstaCore;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -51,6 +56,11 @@ namespace WinstaNext.UI.Stories.StickersView
                 //ScaleX = Poll.Height / 0.163081378f,
                 ScaleY = Slider.Height / scale
             };
+            slider.RenderTransform = new ScaleTransform()
+            {
+                //ScaleX = Poll.Height / 0.163081378f,
+                ScaleY = Slider.Height / scale
+            };
             this.FontSize = Math.Round(24 / (Slider.Height / scale));
 
             Thickness marg = new(
@@ -72,31 +82,47 @@ namespace WinstaNext.UI.Stories.StickersView
         private async void slider_Loaded(object sender, RoutedEventArgs e)
         {
             await Task.Delay(10);
+            slider.Value = Slider.SliderSticker.SliderVoteAverage;
             var T4 = slider.FindDescendantOrSelf<TextBlock>();
+            var thumb = slider.FindDescendantOrSelf<Thumb>();
             if (T4 != null)
+            {
                 T4.Text = Slider.SliderSticker.Emoji;
+                thumb.PointerReleased += Thumb_PointerReleased;
+            }
         }
 
-        static T FindChildOfType<T>(DependencyObject root) where T : class
+        private async void Thumb_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            var queue = new Queue<DependencyObject>();
-            queue.Enqueue(root);
-            while (queue.Count > 0)
+            var parent = this.FindParent<InstaStoryItemPresenterUC>();
+            try
             {
-                var current = queue.Dequeue();
-                if (current == null) return null;
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(current); i++)
+                using (var Api = AppCore.Container.GetService<IInstaApi>())
                 {
-                    var child = VisualTreeHelper.GetChild(current, i);
-                    var typedChild = child as T;
-                    if (typedChild != null)
-                        return typedChild;
-
-                    queue.Enqueue(child);
+                    var result = await Api.StoryProcessor.VoteStorySliderAsync(parent.Story.Id, Slider.SliderSticker.SliderId.ToString(), slider.Value);
+                    Slider.SliderSticker.ViewerCanVote = false;
+                    if (result.Succeeded)
+                    {
+                        //Change values of parent Story
+                        result.Value.StorySliders.ForEach(x =>
+                        {
+                            if (x.SliderSticker.SliderId == Slider.SliderSticker.SliderId)
+                            {
+                                var NewValues = x.SliderSticker;
+                                Slider.SliderSticker.ViewerVote = NewValues.ViewerVote;
+                                Slider.SliderSticker.SliderVoteCount = NewValues.SliderVoteCount;
+                                Slider.SliderSticker.ViewerCanVote = NewValues.ViewerCanVote;
+                                Slider.SliderSticker.SliderVoteAverage = NewValues.SliderVoteAverage;
+                            }
+                        });
+                    }
                 }
             }
+            catch
+            {
 
-            return null;
+            }
         }
+
     }
 }
