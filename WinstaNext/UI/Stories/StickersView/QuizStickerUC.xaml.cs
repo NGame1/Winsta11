@@ -83,7 +83,7 @@ namespace WinstaNext.UI.Stories.StickersView
             using (var Api = AppCore.Container.GetService<IInstaApi>())
             {
                 var Index = Quiz.QuizSticker.Tallies.FindIndex(x => x.Text == btnText);
-                await Api.StoryProcessor.AnswerToStoryQuizAsync(parent.Story.Pk, long.Parse(Quiz.QuizSticker.QuizId), Index);
+                await Api.StoryProcessor.AnswerToStoryQuizAsync(parent.Story.Pk, Quiz.QuizSticker.QuizId, Index);
             }
         }
     }

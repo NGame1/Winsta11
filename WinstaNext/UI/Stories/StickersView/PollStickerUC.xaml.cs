@@ -84,7 +84,7 @@ namespace WinstaNext.UI.Stories.StickersView
             using (var Api = AppCore.Container.GetService<IInstaApi>())
             {
                 var vote = (InstaStoryPollVoteType)Enum.Parse(typeof(InstaStoryPollVoteType), btnText);
-                await Api.StoryProcessor.VoteStoryPollAsync(parent.Story.Id, Poll.PollSticker.PollId, vote);
+                await Api.StoryProcessor.VoteStoryPollAsync(parent.Story.Id, $"{Poll.PollSticker.PollId}", vote);
             }
         }
     }
