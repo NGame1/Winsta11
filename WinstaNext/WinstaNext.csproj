@@ -25,7 +25,7 @@
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <PackageCertificateKeyFile />
     <Nullable>enable</Nullable>
@@ -285,6 +285,9 @@
     </Compile>
     <Compile Include="UI\Stories\StickersView\QuestionStickerUC.xaml.cs">
       <DependentUpon>QuestionStickerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Stories\StickersView\QuizStickerUC.xaml.cs">
+      <DependentUpon>QuizStickerUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Stories\StickersView\SliderStickerUC.xaml.cs">
       <DependentUpon>SliderStickerUC.xaml</DependentUpon>
@@ -632,6 +635,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Stories\StickersView\QuestionStickerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Stories\StickersView\QuizStickerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

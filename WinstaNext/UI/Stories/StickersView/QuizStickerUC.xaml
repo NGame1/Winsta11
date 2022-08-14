@@ -2,7 +2,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      x:Class="WinstaNext.UI.Stories.StickersView.PollStickerUC"
+      x:Class="WinstaNext.UI.Stories.StickersView.QuizStickerUC"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:models="using:InstagramApiSharp.Classes.Models"
       xmlns:stories="using:WinstaNext.Converters.Stories"
@@ -22,11 +22,10 @@
         </Grid.RowDefinitions>
 
         <!--<Grid Background="#70000000"-->
-        <Grid Background="{x:Bind Poll.PollSticker.Color, Converter={StaticResource PollStickerColorConverter}}"
-              x:Name="QuestionSection"
+        <Grid x:Name="QuestionSection"
               Padding="10,0">
             <TextBlock FontFamily="{StaticResource AvenyInstagramMediumFont}"
-                       Text="{x:Bind Poll.PollSticker.Question}"
+                       Text="{x:Bind Quiz.QuizSticker.Question}"
                        LineStackingStrategy="BlockLineHeight"
                        TextTrimming="WordEllipsis"
                        TextAlignment="Center"
@@ -36,8 +35,8 @@
                        FontSize="24"
                        Margin="0,2"/>
         </Grid>
-        <ItemsControl IsHitTestVisible="{x:Bind Poll.PollSticker.ViewerCanVote}"
-                      ItemsSource="{x:Bind Poll.PollSticker.Tallies}"
+        <ItemsControl IsHitTestVisible="{x:Bind Quiz.QuizSticker.ViewerCanAnswer}"
+                      ItemsSource="{x:Bind Quiz.QuizSticker.Tallies}"
                       x:Name="TalliesSection"
                       Background="#EEEEEE"
                       CharacterSpacing="10"
@@ -56,10 +55,8 @@
                             CornerRadius="14"
                             Padding="12,10"
                             FontSize="12">
-                        <!--<Grid>-->
-                            <TextBlock TextAlignment="DetectFromContent"
+                        <TextBlock TextAlignment="DetectFromContent"
                                    Text="{x:Bind Text}"/>
-                        <!--</Grid>-->
                     </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

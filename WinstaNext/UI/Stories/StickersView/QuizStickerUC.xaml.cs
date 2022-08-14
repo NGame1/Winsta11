@@ -10,44 +10,41 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using WinstaCore;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+// The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace WinstaNext.UI.Stories.StickersView
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     [AddINotifyPropertyChangedInterface]
-    public sealed partial class PollStickerUC : UserControl
+    public sealed partial class QuizStickerUC : UserControl
     {
-        public static readonly DependencyProperty PollProperty = DependencyProperty.Register(
-                nameof(Poll),
-                typeof(InstaStoryPollItem),
-                typeof(PollStickerUC),
+        public static readonly DependencyProperty QuizProperty = DependencyProperty.Register(
+                nameof(Quiz),
+                typeof(InstaStoryQuizItem),
+                typeof(QuizStickerUC),
                 new PropertyMetadata(null));
 
-        public InstaStoryPollItem Poll
+        public InstaStoryQuizItem Quiz
         {
-            get { return (InstaStoryPollItem)GetValue(PollProperty); }
-            set { SetValue(PollProperty, value); }
+            get { return (InstaStoryQuizItem)GetValue(QuizProperty); }
+            set { SetValue(QuizProperty, value); }
         }
 
-        public float ScaleValue { get => Poll.Height / 0.163081378f; }
+        public float ScaleValue { get => Quiz.Height / 0.163081378f; }
         public float QuestionFontSize { get => 16; }
 
-        public PollStickerUC()
+        public QuizStickerUC()
         {
             this.InitializeComponent();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Poll == null) return;
-            if (string.IsNullOrEmpty(Poll.PollSticker.Question))
+            if (Quiz == null) return;
+            if (string.IsNullOrEmpty(Quiz.QuizSticker.Question))
                 titleRow.Height = new(0);
 
             var parent = this.FindParent<StickersViewGrid>();
-            var pollHeightPixels = parent.ActualHeight * Poll.Height;
+            var pollHeightPixels = parent.ActualHeight * Quiz.Height;
             var scale = pollHeightPixels / parent.ActualHeight;
             TalliesSection.RenderTransform = new ScaleTransform()
             {
@@ -57,12 +54,14 @@ namespace WinstaNext.UI.Stories.StickersView
             QuestionSection.RenderTransform = new ScaleTransform()
             {
                 //ScaleX = Poll.Height / 0.163081378f,
-                ScaleY = Poll.Height / scale
+                ScaleY = Quiz.Height / scale
             };
-            txtQuestion.FontSize = Math.Round(24 / (Poll.Height / scale));
-            Thickness marg = new(0, Math.Round(14 * (Poll.Height / scale)), 0, Math.Round(14 * (Poll.Height / scale)));
+            txtQuestion.FontSize = Math.Round(24 / (Quiz.Height / scale));
+            Thickness marg = new(0, 
+                Math.Round(14 * (Quiz.Height / scale)),
+                0, 
+                Math.Round(14 * (Quiz.Height / scale)));
             txtQuestion.Margin = marg;
-
         }
 
         private void Button_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
@@ -83,8 +82,8 @@ namespace WinstaNext.UI.Stories.StickersView
             var parent = this.FindParent<InstaStoryItemPresenterUC>();
             using (var Api = AppCore.Container.GetService<IInstaApi>())
             {
-                var vote = (InstaStoryPollVoteType)Enum.Parse(typeof(InstaStoryPollVoteType), btnText);
-                await Api.StoryProcessor.VoteStoryPollAsync(parent.Story.Id, Poll.PollSticker.PollId, vote);
+                var Index = Quiz.QuizSticker.Tallies.FindIndex(x => x.Text == btnText);
+                await Api.StoryProcessor.AnswerToStoryQuizAsync(parent.Story.Pk, long.Parse(Quiz.QuizSticker.QuizId), Index);
             }
         }
     }
