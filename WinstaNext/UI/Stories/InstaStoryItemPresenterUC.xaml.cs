@@ -227,5 +227,16 @@ namespace WinstaNext.UI.Stories
         {
             videoplayer.Source = new(Story.Videos[0].Uri, UriKind.RelativeOrAbsolute);
         }
+
+        private void Element_GotFocus(object sender, RoutedEventArgs e) => Pause();
+        private void Element_LostFocus(object sender, RoutedEventArgs e) => Resume();
+        private void Element_PointerPressed(object sender, PointerRoutedEventArgs e) => Pause();
+        private void Element_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            this.Focus(FocusState.Programmatic);
+            Resume();
+        }
+        private void InstaStoryItemFlyout_Opened(object sender, object e) => Pause();
+        private void InstaStoryItemFlyout_Closed(object sender, object e) => Resume();
     }
 }

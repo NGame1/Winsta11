@@ -38,9 +38,13 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.RowSpan="3">
+        <Grid Background="#01000000"
+              Grid.RowSpan="3"
+              Grid.Row="0">
 
             <Image Source="{x:Bind Story, Converter={StaticResource StoryItemImageConverter}, Mode=OneWay}"
+                   PointerReleased="Element_PointerReleased"
+                   PointerPressed="Element_PointerPressed"
                    ImageOpened="imageviewer_ImageOpened"
                    x:Load="{x:Bind LoadImage}"
                    x:Name="imageviewer"
@@ -48,6 +52,8 @@
 
             <MediaElement PosterSource="{x:Bind Story, Converter={StaticResource StoryItemImageConverter}, Mode=OneWay}"
                           Source="{x:Bind Story, Converter={StaticResource StoryItemVideoConverter}, Mode=OneWay}"
+                          PointerReleased="Element_PointerReleased"
+                          PointerPressed="Element_PointerPressed"
                           MediaEnded="videoplayer_MediaEnded"
                           x:Load="{x:Bind LoadVideo}"
                           x:Name="videoplayer"
@@ -130,6 +136,8 @@
 
             <TextBox Text="{x:Bind ReplyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      PlaceholderText="{x:Bind Resources:LanguageManager.Instance.Instagram.ReplyPlaceholder}"
+                     LostFocus="Element_LostFocus"
+                     GotFocus="Element_GotFocus"
                      AcceptsReturn="False"
                      Grid.Column="0">
 
@@ -159,7 +167,9 @@
                     Margin="3,0,0,0"
                     Grid.Column="3">
                 <Button.Flyout>
-                    <stories:InstaStoryItemFlyout StoryItem="{x:Bind Story}"/>
+                    <stories:InstaStoryItemFlyout Opened="InstaStoryItemFlyout_Opened"
+                                                  Closed="InstaStoryItemFlyout_Closed"
+                                                  StoryItem="{x:Bind Story}"/>
                 </Button.Flyout>
             </Button>
 
