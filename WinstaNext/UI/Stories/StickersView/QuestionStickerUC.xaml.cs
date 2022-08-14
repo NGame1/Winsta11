@@ -1,4 +1,5 @@
 ﻿using InstagramApiSharp.Classes.Models;
+using Microsoft.Toolkit.Uwp.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -26,6 +27,18 @@ namespace WinstaNext.UI.Stories.StickersView
         public QuestionStickerUC()
         {
             this.InitializeComponent();
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var parent = this.FindParent<StickersViewGrid>();
+            parent?.PauseTimerCommand.Execute(null);
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var parent = this.FindParent<StickersViewGrid>();
+            parent?.ResumeTimerCommand.Execute(null);
         }
     }
 }

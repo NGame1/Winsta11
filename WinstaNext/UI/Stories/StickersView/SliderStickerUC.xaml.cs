@@ -88,13 +88,21 @@ namespace WinstaNext.UI.Stories.StickersView
             if (T4 != null)
             {
                 T4.Text = Slider.SliderSticker.Emoji;
+                thumb.PointerPressed += Thumb_PointerPressed;
                 thumb.PointerReleased += Thumb_PointerReleased;
             }
+        }
+
+        private void Thumb_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            var parent = this.FindParent<StickersViewGrid>();
+            parent?.PauseTimerCommand.Execute(null);
         }
 
         private async void Thumb_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
             var parent = this.FindParent<InstaStoryItemPresenterUC>();
+            this.FindParent<StickersViewGrid>()?.ResumeTimerCommand.Execute(null);
             try
             {
                 using (var Api = AppCore.Container.GetService<IInstaApi>())
