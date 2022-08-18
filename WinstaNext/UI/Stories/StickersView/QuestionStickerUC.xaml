@@ -46,6 +46,7 @@
 
             <TextBox LostFocus="TextBox_LostFocus"
                      GotFocus="TextBox_GotFocus"
+                     KeyDown="TextBox_KeyDown"
                      Background="LightGray"
                      Margin="12,16,12,12"
                      Grid.Row="2"/>
