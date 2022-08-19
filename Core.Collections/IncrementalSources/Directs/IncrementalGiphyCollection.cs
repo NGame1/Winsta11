@@ -13,7 +13,7 @@ namespace Core.Collections.IncrementalSources.Directs
 {
     public class IncrementalDirectGiphyCollection : IIncrementalSource<GiphyItem>
     {
-        PaginationParameters Pagination { get; }
+        PaginationParameters Pagination { get; set; }
 
         [OnChangedMethod(nameof(OnSearchQueryChanged))]
         public string SearchQuery { get; set; } = string.Empty;
@@ -50,6 +50,7 @@ namespace Core.Collections.IncrementalSources.Directs
 
         void OnSearchQueryChanged()
         {
+            this.Pagination = PaginationParameters.MaxPagesToLoad(1);
             nomoreitems = false;
         }
     }

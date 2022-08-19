@@ -5,6 +5,7 @@ using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Uwp;
 using PropertyChanged;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
 using WinstaCore;
@@ -37,12 +38,19 @@ namespace ViewModels.Directs
             }
         }
 
-        void OnSearchQueryChanged()
+        Stopwatch stopwatch = null;
+        async void OnSearchQueryChanged()
         {
             if (ItemsSource == null) return;
+            if (stopwatch == null)
+                stopwatch = Stopwatch.StartNew();
+            else stopwatch.Restart();
+            await Task.Delay(400);
+            if (stopwatch.ElapsedMilliseconds < 400) return;
             if (ItemsSource == DirectGiphyCollection)
             {
                 DirectInstance.SearchQuery = SearchQuery;
+                DirectGiphyCollection.Clear();
             }
             else
             {
