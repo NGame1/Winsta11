@@ -810,13 +810,13 @@
       <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
-      <Version>2.8.0</Version>
+      <Version>2.8.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="NodaTime">
-      <Version>3.1.0</Version>
+      <Version>3.1.2</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
       <Version>3.4.1</Version>
