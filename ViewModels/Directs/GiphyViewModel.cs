@@ -1,9 +1,13 @@
 ﻿using Core.Collections.IncrementalSources.Directs;
+using InstagramApiSharp.API;
 using InstagramApiSharp.Classes;
+using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Uwp;
 using PropertyChanged;
 using System;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
+using WinstaCore;
 
 namespace ViewModels.Directs
 {
@@ -25,10 +29,18 @@ namespace ViewModels.Directs
             ItemsSource = DirectGiphyCollection;
         }
 
+        public async Task SendGifAsync(GiphyItem gif, InstaDirectInboxThread thread)
+        {
+            using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
+            {
+                var result = await Api.MessagingProcessor.SendDirectAnimatedMediaAsync(gif.Id, thread.ThreadId);
+            }
+        }
+
         void OnSearchQueryChanged()
         {
             if (ItemsSource == null) return;
-            if(ItemsSource == DirectGiphyCollection)
+            if (ItemsSource == DirectGiphyCollection)
             {
                 DirectInstance.SearchQuery = SearchQuery;
             }

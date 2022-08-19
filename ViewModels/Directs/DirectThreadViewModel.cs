@@ -36,6 +36,7 @@ namespace WinstaNext.ViewModels.Directs
         public AsyncRelayCommand<DependencyObject> OpenEmojisPanelCommand { get; set; }
 
         public RelayCommand IgnoreReplyCommand { get; set; }
+        public RelayCommand GifPanelCommand { get; set; }
 
         public static DirectThreadViewModel? CurrentVM { get; set; } = null;
 
@@ -45,6 +46,8 @@ namespace WinstaNext.ViewModels.Directs
 
         public string ThreadId { get; set; } = string.Empty;
 
+        public Visibility GifPanelVisibility { get; set; } = Visibility.Collapsed;
+
         public DirectThreadViewModel(InstaDirectInboxThread directThread)
         {
             if (DirectThread != null && DirectThread.ThreadId == directThread.ThreadId) return;
@@ -52,6 +55,7 @@ namespace WinstaNext.ViewModels.Directs
             DirectThread = directThread;
             Instance = new(DirectThread);
             ThreadItems = new(Instance);
+            GifPanelCommand = new(GifPanelShowHide);
             GoBottomCommand = new(GoToBottomAsync);
             SendLikeCommand = new(SendLikeAsync);
             IgnoreReplyCommand = new(IgnoreReply);
@@ -63,7 +67,13 @@ namespace WinstaNext.ViewModels.Directs
             CurrentVM = this;
         }
 
-        async Task GoToBottomAsync(ListView list)
+        void GifPanelShowHide()
+        {
+            GifPanelVisibility = GifPanelVisibility == Visibility.Collapsed ?
+                Visibility.Visible : Visibility.Collapsed;
+        }
+
+        async Task GoToBottomAsync(ListView? list)
         {
             if (list == null) return;
             await list.SmoothScrollIntoViewWithIndexAsync(list.Items.Count - 1);

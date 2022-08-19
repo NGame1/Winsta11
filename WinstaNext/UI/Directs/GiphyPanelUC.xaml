@@ -25,16 +25,27 @@
                  PlaceholderText="{x:Bind Resources:LanguageManager.Instance.General.SearchPlaceHolder}"
                  Margin="2,0"/>
         
-        <GridView ItemsSource="{x:Bind ViewModel.ItemsSource, Mode=OneWay}"
-                  
+        <ListView ItemsSource="{x:Bind ViewModel.ItemsSource, Mode=OneWay}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                  ScrollViewer.HorizontalScrollMode="Enabled" 
+                  ScrollViewer.VerticalScrollMode="Disabled"
+                  ItemClick="GridView_ItemClick"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  Height="150"
                   Grid.Row="1">
-            <GridView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid ItemHeight="150" Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
                 <DataTemplate x:DataType="classes:GiphyItem">
                     <Image Source="{x:Bind Images.FixedHeight.Url, Mode=OneWay}" 
                            MaxHeight="120"
                            MaxWidth="120"/>
                 </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>

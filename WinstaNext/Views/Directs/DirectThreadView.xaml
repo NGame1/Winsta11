@@ -197,6 +197,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <directs1:ChatListView ItemTemplateSelector="{StaticResource InstaDirectInboxItemTemplateSelector}"
@@ -248,8 +249,13 @@
                 Margin="0,12"
                 Height="45"
                 Width="45"/>
+
+        <Grid Visibility="{x:Bind ViewModel.GifPanelVisibility, Mode=OneWay}"
+              Grid.Row="1">
+            <directs1:GiphyPanelUC DirectThread="{x:Bind DirectThread}"/>
+        </Grid>
         
-        <Grid Grid.Row="1" Margin="8,0,8,8">
+        <Grid Grid.Row="2" Margin="8,0,8,8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -315,14 +321,9 @@
                     </Button.Flyout>
                 </Button>
 
-                <Button FontFamily="{StaticResource FluentIcons}" 
-                        Content="&#xF4A9;">
-                    <Button.Flyout>
-                        <Flyout>
-                            <directs1:GiphyPanelUC/>
-                        </Flyout>
-                    </Button.Flyout>
-                </Button>
+                <Button Command="{x:Bind ViewModel.GifPanelCommand}"
+                        FontFamily="{StaticResource FluentIcons}" 
+                        Content="&#xF4A9;"/>
 
                 <Button CommandParameter="{x:Bind txtMessage, Mode=OneWay}" 
                         Command="{x:Bind ViewModel.OpenEmojisPanelCommand}"
