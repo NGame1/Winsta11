@@ -39,7 +39,8 @@
         <DataTemplate x:DataType="models:WinstaStoryItem" 
                       x:Key="HighlightTemplate">
 
-            <storiesView:StoryItemView StoryRoot="{x:Bind Mode=OneWay}"/>
+            <storiesView:StoryItemView StoryRoot="{x:Bind Mode=OneWay}"
+                                       ItemsEnded="StoryItemView_ItemsEnded"/>
 
         </DataTemplate>
 
