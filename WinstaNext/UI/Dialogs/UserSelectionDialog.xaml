@@ -2,16 +2,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    SecondaryButtonStyle="{StaticResource DefaultButtonStyle}"
+    PrimaryButtonStyle="{StaticResource AccentButtonStyle}"
+    CloseButtonStyle="{StaticResource DefaultButtonStyle}"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Models="using:InstagramApiSharp.Classes.Models" 
     x:Class="WinstaNext.UI.Dialogs.UserSelectionDialog"
     xmlns:TemplateSelectors="using:TemplateSelectors"
     xmlns:directs1="using:WinstaNext.UI.Directs"
     xmlns:VM="using:ViewModels.Dialogs"
-    mc:Ignorable="d"
-    CloseButtonText="Close"
+    PrimaryButtonClick="Select_Click"
     PrimaryButtonText="Select"
-    PrimaryButtonClick="Select_Click">
+    CloseButtonText="Close"
+    CornerRadius="12"
+    mc:Ignorable="d">
 
     <ContentDialog.Resources>
         <DataTemplate x:DataType="Models:InstaDirectInboxThread" x:Key="PrivateDirectThread">
@@ -38,7 +42,7 @@
               SelectionMode="Multiple"
               x:FieldModifier="public"
               x:Name="lst">
-        
+
         <ListView.ItemContainerStyle>
             <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
                 <Setter Property="Margin" Value="0,0,0,2"/>
@@ -48,6 +52,5 @@
                 <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
             </Style>
         </ListView.ItemContainerStyle>
-        
     </ListView>
 </ContentDialog>
