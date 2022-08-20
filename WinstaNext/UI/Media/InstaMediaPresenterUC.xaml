@@ -28,6 +28,11 @@
                                            ConvertToLocalTime="True"/>
 
         <Converters:CaptionToMarkdownConverter x:Key="CaptionToMarkdownConverter"/>
+
+        <Converters:CoAuthorLoadConverter x:Key="CoAuthorLoadConverter"/>
+        <Converters:CoAuthorLoadConverter x:Key="InvertedCoAuthorLoadConverter"
+                                          IsInverted="True"/>
+
         <Converters:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
 
         <GenericConverters:NullToBooleanConverter IsInverted="True" x:Key="NullToBooleanConverter"/>
@@ -55,12 +60,14 @@
                                     DisplayName="{x:Bind Media.User.UserName}"
                                     ProfilePicture="{x:Bind Media.User, Converter={StaticResource InstaUserProfilePictureConverter}}"/>
 
-                <!--#region Authors, Hashtag info and Location-->
+                <!--#region Authors, CoAuthorsProducers, Hashtag info and Location-->
                 <StackPanel>
 
                     <StackPanel Orientation="Horizontal">
 
-                        <HyperlinkButton FontWeight="SemiBold"
+                        <HyperlinkButton x:Load="{x:Bind ViewModel.Media, Converter={StaticResource InvertedCoAuthorLoadConverter}}"
+                                         x:Name="OneUserNameHyperlinkButton"
+                                         FontWeight="SemiBold"
                                          Padding="0">
                             <TextBlock Text="{x:Bind Media.User.UserName}"/>
                             <i:Interaction.Behaviors>
@@ -71,6 +78,13 @@
                             </i:Interaction.Behaviors>
 
                         </HyperlinkButton>
+
+                        <local:CoAuthorUserProviderUC x:Load="{x:Bind ViewModel.Media, Converter={StaticResource CoAuthorLoadConverter}}"
+                                                      NavigateToUserCommand="{x:Bind ViewModel.NavigateToUserCommand}"
+                                                      x:Name="CoAuthorAvailableText"
+                                                      Media="{x:Bind Media}">
+
+                        </local:CoAuthorUserProviderUC>
 
                         <!--<TextBlock>
                             <Run Text="&amp;"/>

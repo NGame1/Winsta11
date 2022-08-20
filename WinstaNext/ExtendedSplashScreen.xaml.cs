@@ -55,7 +55,7 @@ namespace WinstaNext
             this.Loaded += ExtendedSplashScreen_Loaded;
             //ExtendedSplash_OnResize(null, null);
 
-            GetBetaVersionAvailability();
+            //GetBetaVersionAvailability();
         }
 
         async void GetBetaVersionAvailability()
