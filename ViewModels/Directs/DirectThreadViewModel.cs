@@ -16,6 +16,7 @@ using WinstaCore.Converters.FileConverters;
 using WinstaCore.Models.ConfigureDelays;
 using Windows.UI.Xaml.Controls;
 using WinstaCore.Helpers.ExtensionMethods;
+using Windows.Storage;
 #nullable enable
 
 namespace WinstaNext.ViewModels.Directs
@@ -83,19 +84,28 @@ namespace WinstaNext.ViewModels.Directs
 
         async Task UploadImageAsync()
         {
-            var fop = new FileOpenPicker()
-            {
-                SuggestedStartLocation = PickerLocationId.PicturesLibrary,
-                ViewMode = PickerViewMode.Thumbnail
-            };
-            fop.FileTypeFilter.Add(".jpg");
-            fop.FileTypeFilter.Add(".png");
-            fop.FileTypeFilter.Add(".bmp");
-            var res = await fop.PickSingleFileAsync();
-            if (res == null) return;
-            var ip = await res.Properties.GetImagePropertiesAsync();
+            await UploadImageAsync(null);
+        }
 
-            var bytes = await ImageFileConverter.ConvertImageToJpegAsync(res);
+        public async Task UploadImageAsync(StorageFile? file = null)
+        {
+            if (file == null)
+            {
+                var fop = new FileOpenPicker()
+                {
+                    SuggestedStartLocation = PickerLocationId.PicturesLibrary,
+                    ViewMode = PickerViewMode.Thumbnail
+                };
+                fop.FileTypeFilter.Add(".jpg");
+                fop.FileTypeFilter.Add(".png");
+                fop.FileTypeFilter.Add(".bmp");
+                file = await fop.PickSingleFileAsync();
+                if (file == null) return;
+            }
+            
+            var ip = await file.Properties.GetImagePropertiesAsync();
+
+            var bytes = await ImageFileConverter.ConvertImageToJpegAsync(file);
 
             using (var Api = AppCore.Container.GetService<IInstaApi>())
             {

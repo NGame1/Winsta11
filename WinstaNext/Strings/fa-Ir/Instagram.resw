@@ -319,7 +319,7 @@
     <value>حذف پیام</value>
   </data>
   <data name="UnsupportedMessageType" xml:space="preserve">
-    <value>این نوع پیام دایرکت هنوز در وینستا پشتیبانی نمیشود.</value>
+    <value>این نوع پیام دایرکت هنوز در وینگو تگ پشتیبانی نمیشود.</value>
   </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>کاربر یافت نشد.</value>

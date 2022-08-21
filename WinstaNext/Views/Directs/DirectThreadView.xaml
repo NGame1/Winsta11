@@ -262,6 +262,7 @@
             </Grid.ColumnDefinitions>
             <TextBox Text="{x:Bind ViewModel.MessageText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      PlaceholderText="{x:Bind Resources:LanguageManager.Instance.Instagram.MessagePlaceholder}"
+                     Paste="txtMessage_Paste"
                      AcceptsReturn="True"
                      x:Name="txtMessage"
                      Grid.Column="0">

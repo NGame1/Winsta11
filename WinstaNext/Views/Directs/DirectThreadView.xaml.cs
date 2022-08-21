@@ -1,8 +1,13 @@
 ﻿using InstagramApiSharp.Classes.Models;
 using PropertyChanged;
+using System;
+using System.Linq;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using WinstaCore.Converters.FileConverters;
 using WinstaCore.Interfaces.Views.Directs;
 using WinstaNext.ViewModels.Directs;
 
@@ -60,6 +65,28 @@ namespace WinstaNext.Views.Directs
         {
             ViewModel.SendMessageCommand.Execute(null);
             args.Handled = true;
+        }
+
+        private async void txtMessage_Paste(object sender, TextControlPasteEventArgs e)
+        {
+            var clipboardContent = Clipboard.GetContent();
+            if (clipboardContent.Contains(StandardDataFormats.Text))
+            {
+                txtMessage.Text = await clipboardContent.GetTextAsync();
+                e.Handled = true;
+            }
+            else if (clipboardContent.Contains(StandardDataFormats.Bitmap))
+            {
+                var stream = await clipboardContent.GetBitmapAsync();
+                var imageBytes = await ImageFileConverter.ConvertToBytesArray(await stream.OpenReadAsync());
+                var sf = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("tempfile.bmp", CreationCollisionOption.GenerateUniqueName);
+                await FileIO.WriteBytesAsync(sf, imageBytes);
+                imageBytes = await ImageFileConverter.ConvertImageToJpegAsync(sf);
+                await FileIO.WriteBytesAsync(sf, imageBytes);
+                await ViewModel.UploadImageAsync(sf);
+                await sf.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                e.Handled = true;
+            }
         }
     }
 

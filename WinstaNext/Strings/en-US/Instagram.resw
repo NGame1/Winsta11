@@ -319,7 +319,7 @@
     <value>Unsend message</value>
   </data>
   <data name="UnsupportedMessageType" xml:space="preserve">
-    <value>This direct message type is not supported by Winsta yet.</value>
+    <value>This direct message type is not supported by Wingo Tag yet.</value>
   </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>User not found</value>
