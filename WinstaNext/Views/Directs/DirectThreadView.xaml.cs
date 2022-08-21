@@ -75,6 +75,24 @@ namespace WinstaNext.Views.Directs
                 txtMessage.Text = await clipboardContent.GetTextAsync();
                 e.Handled = true;
             }
+            else if (clipboardContent.Contains(StandardDataFormats.WebLink))
+            {
+                var uri = await clipboardContent.GetWebLinkAsync();
+                txtMessage.Text = uri.ToString();
+                e.Handled = true;
+            }
+            else if (clipboardContent.Contains(StandardDataFormats.ApplicationLink))
+            {
+                var uri = await clipboardContent.GetApplicationLinkAsync();
+                txtMessage.Text = uri.ToString();
+                e.Handled = true;
+            }
+            else if (clipboardContent.Contains(StandardDataFormats.Uri))
+            {
+                var uri = await clipboardContent.GetUriAsync();
+                txtMessage.Text = uri.ToString();
+                e.Handled = true;
+            }
             else if (clipboardContent.Contains(StandardDataFormats.Bitmap))
             {
                 var stream = await clipboardContent.GetBitmapAsync();
@@ -87,6 +105,7 @@ namespace WinstaNext.Views.Directs
                 await sf.DeleteAsync(StorageDeleteOption.PermanentDelete);
                 e.Handled = true;
             }
+
         }
     }
 

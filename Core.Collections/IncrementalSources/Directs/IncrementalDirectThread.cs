@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Abstractions.Direct.Models;
 using WinstaCore;
 using Abstractions.Direct.Converters;
+using InstagramApiSharp.Classes;
 
 namespace Core.Collections.IncrementalSources.Directs
 {
@@ -30,6 +31,7 @@ namespace Core.Collections.IncrementalSources.Directs
         {
             if (pageIndex == 0)
             {
+                InboxThread.Items.RemoveAll(x => x.ItemType == InstaDirectThreadItemType.ActionLog);
                 return Convert(InboxThread);
             }
             if (!hassOlder) return null;
