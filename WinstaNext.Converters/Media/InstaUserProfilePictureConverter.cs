@@ -21,6 +21,8 @@ namespace WinstaNext.Converters.Media
                 InstaUserInfo instaUserInfo => !instaUserInfo.HasAnonymousProfilePicture || (instaUserInfo.ProfilePictureId != null && instaUserInfo.ProfilePictureId != "unknown") ?
                                instaUserInfo.ProfilePicture : "ms-appx:///Assets/Icons/NoOne.png",
 
+                InstaRecentActivityFeed recentActivityFeed => recentActivityFeed.ProfileImage,
+
                 _ => "ms-appx:///Assets/Icons/NoOne.png"
 
             };
