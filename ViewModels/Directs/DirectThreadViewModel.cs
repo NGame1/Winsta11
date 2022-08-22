@@ -222,6 +222,7 @@ namespace WinstaNext.ViewModels.Directs
                 {
                     ThreadItems.InsertNewTextMessage(result.Value, MessageText);
                     MessageText = string.Empty;
+                    RepliedMessage = null;
                 }
             }
         }
