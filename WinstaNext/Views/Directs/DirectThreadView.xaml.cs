@@ -99,13 +99,24 @@ namespace WinstaNext.Views.Directs
                 var imageBytes = await ImageFileConverter.ConvertToBytesArray(await stream.OpenReadAsync());
                 var sf = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("tempfile.bmp", CreationCollisionOption.GenerateUniqueName);
                 await FileIO.WriteBytesAsync(sf, imageBytes);
-                imageBytes = await ImageFileConverter.ConvertImageToJpegAsync(sf);
-                await FileIO.WriteBytesAsync(sf, imageBytes);
+                //imageBytes = await ImageFileConverter.ConvertImageToJpegAsync(sf);
+                //await FileIO.WriteBytesAsync(sf, imageBytes);
                 await ViewModel.UploadImageAsync(sf);
                 await sf.DeleteAsync(StorageDeleteOption.PermanentDelete);
                 e.Handled = true;
             }
-
+            else if (clipboardContent.Contains(StandardDataFormats.StorageItems))
+            {
+                var items = await clipboardContent.GetStorageItemsAsync();
+                var file = items.FirstOrDefault();
+                if (file == null) return;
+                if (file is not StorageFile storageFile) return;
+                if (storageFile.FileType == ".jpg" || storageFile.FileType == ".png" || storageFile.FileType == ".bmp")
+                    await ViewModel.UploadImageAsync(storageFile);
+                else if (storageFile.FileType == ".mp4")
+                    await ViewModel.UploadVideoAsync(storageFile);
+                e.Handled = true;
+            }
         }
     }
 

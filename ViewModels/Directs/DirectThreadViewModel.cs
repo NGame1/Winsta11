@@ -102,7 +102,7 @@ namespace WinstaNext.ViewModels.Directs
                 file = await fop.PickSingleFileAsync();
                 if (file == null) return;
             }
-            
+
             var ip = await file.Properties.GetImagePropertiesAsync();
 
             var bytes = await ImageFileConverter.ConvertImageToJpegAsync(file);
@@ -156,17 +156,25 @@ namespace WinstaNext.ViewModels.Directs
 
         public async Task UploadVideoAsync()
         {
-            var fop = new FileOpenPicker()
+            await UploadVideoAsync(null);
+        }
+
+        public async Task UploadVideoAsync(StorageFile? file = null)
+        {
+            if (file == null)
             {
-                SuggestedStartLocation = PickerLocationId.VideosLibrary,
-                ViewMode = PickerViewMode.Thumbnail
-            };
-            fop.FileTypeFilter.Add(".mp4");
-            var res = await fop.PickSingleFileAsync();
-            if (res == null) return;
-            var vp = await res.Properties.GetVideoPropertiesAsync();
-            var thumb = await res.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.VideosView);
-            var openFile = await res.OpenReadAsync();
+                var fop = new FileOpenPicker()
+                {
+                    SuggestedStartLocation = PickerLocationId.VideosLibrary,
+                    ViewMode = PickerViewMode.Thumbnail
+                };
+                fop.FileTypeFilter.Add(".mp4");
+                file = await fop.PickSingleFileAsync();
+                if (file == null) return;
+            }
+            var vp = await file.Properties.GetVideoPropertiesAsync();
+            var thumb = await file.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.VideosView);
+            var openFile = await file.OpenReadAsync();
             var imageBytes = await ImageFileConverter.ConvertToBytesArray(thumb);
             var bytes = await ImageFileConverter.ConvertToBytesArray(openFile);
 
