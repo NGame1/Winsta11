@@ -131,6 +131,7 @@
     <Compile Include="Attributes\RangePlayerAttribute.cs" />
     <Compile Include="Constants\FluentRegularFontCharacters.cs" />
     <Compile Include="Constants\Instagram\Stories\PollColorConstants.cs" />
+    <Compile Include="Constants\RegexConstants.cs" />
     <Compile Include="Converters\FileConverters\ImageFileConverter.cs" />
     <Compile Include="CryptoHelper.cs" />
     <Compile Include="Enums\PlaybackQualityEnum.cs" />

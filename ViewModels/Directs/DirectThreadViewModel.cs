@@ -17,6 +17,8 @@ using WinstaCore.Models.ConfigureDelays;
 using Windows.UI.Xaml.Controls;
 using WinstaCore.Helpers.ExtensionMethods;
 using Windows.Storage;
+using System.Text.RegularExpressions;
+using WinstaCore.Constants;
 #nullable enable
 
 namespace WinstaNext.ViewModels.Directs
@@ -212,7 +214,11 @@ namespace WinstaNext.ViewModels.Directs
                 IResult<InstaDirectRespondPayload> result;
                 if (RepliedMessage == null)
                 {
-                    result = await Api.MessagingProcessor.SendDirectTextAsync(null, ThreadId, MessageText);
+                    if (Regex.Match(MessageText, RegexConstants.WebUrlRegex) is Match match)
+                    {
+                        result = await Api.MessagingProcessor.SendDirectLinkAsync(MessageText, match.Value, ThreadId);
+                    }
+                    else result = await Api.MessagingProcessor.SendDirectTextAsync(null, ThreadId, MessageText);
                 }
                 else
                 {
