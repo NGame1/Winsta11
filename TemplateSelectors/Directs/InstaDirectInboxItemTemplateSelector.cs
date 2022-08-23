@@ -30,6 +30,8 @@ namespace TemplateSelectors
             {
 
                 case InstaDirectThreadItemType.Link:
+                    if (di.LinkMedia.LinkContext.LinkUrl == null)
+                        return TextMessageDataTemplate;
                     return LinkMessageDataTemplate;
 
                 case InstaDirectThreadItemType.Text:
