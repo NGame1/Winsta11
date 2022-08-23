@@ -214,9 +214,13 @@ namespace WinstaNext.ViewModels.Directs
                 IResult<InstaDirectRespondPayload> result;
                 if (RepliedMessage == null)
                 {
-                    if (Regex.Match(MessageText, RegexConstants.WebUrlRegex) is Match match)
+                    if (Regex.Match(MessageText, RegexConstants.WebUrlRegex) is Match match && match.Groups.Count > 1)
                     {
                         result = await Api.MessagingProcessor.SendDirectLinkAsync(MessageText, match.Value, ThreadId);
+                    }
+                    else if (Regex.Match(MessageText, RegexConstants.WebUrlWithoutPrefixRegex) is Match match2 && match2.Groups.Count > 1)
+                    {
+                        result = await Api.MessagingProcessor.SendDirectLinkAsync(MessageText, match2.Value, ThreadId);
                     }
                     else result = await Api.MessagingProcessor.SendDirectTextAsync(null, ThreadId, MessageText);
                 }
