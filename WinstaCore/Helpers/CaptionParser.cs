@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using WinstaCore.Constants;
 
 namespace WinstaCore.Helpers
 {
@@ -34,13 +35,11 @@ namespace WinstaCore.Helpers
 
             //Replace Hashtags
             caption = Regex.Replace(Uri.UnescapeDataString(caption),
-                @"(?:#)([A-Za-z\u0600-\u06FF0-9_](?:(?:[A-Za-z\u0600-\u06FF0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z\u0600-\u06FF0-9_]))?)",
-                new MatchEvaluator(Replacer));
+                RegexConstants.HashtagsRegex, new MatchEvaluator(Replacer));
 
             //Replace Usernames
             caption = Regex.Replace(Uri.UnescapeDataString(caption),
-                @"(?:@)([A-Za-z\u0600-\u06FF0-9_](?:(?:[A-Za-z\u0600-\u06FF0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z\u0600-\u06FF0-9_]))?)",
-                new MatchEvaluator(Replacer));
+                RegexConstants.UsernamesRegex, new MatchEvaluator(Replacer));
 
             //caption = Regex.Replace(Uri.UnescapeDataString(caption),
             //    @"._",
@@ -82,10 +81,10 @@ namespace WinstaCore.Helpers
 
 
         public static MatchCollection GetHashtags(this string CaptionText)
-           => Regex.Matches(Uri.UnescapeDataString(CaptionText), @"(?:#)([A-Za-z\u0600-\u06FF0-9_](?:(?:[A-Za-z\u0600-\u06FF0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z\u0600-\u06FF0-9_]))?)");
+           => Regex.Matches(Uri.UnescapeDataString(CaptionText), RegexConstants.HashtagsRegex);
 
         public static MatchCollection GetUsernames(this string CaptionText)
-            => Regex.Matches(Uri.UnescapeDataString(CaptionText), @"(?:@)([A-Za-z\u0600-\u06FF0-9_](?:(?:[A-Za-z\u0600-\u06FF0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z\u0600-\u06FF0-9_]))?)");
+            => Regex.Matches(Uri.UnescapeDataString(CaptionText), RegexConstants.UsernamesRegex);
 
         public static bool IsRightToLeft(this string strCompare)
         {
