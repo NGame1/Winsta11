@@ -47,7 +47,8 @@
                         Background="#80B00000">
 
                 <Image Source="{x:Bind DirectItem.Media.Images[0].Uri, Mode=OneWay}" 
-                   MaxWidth="185" x:Name="imgMedia"/>
+                       Tapped="imgMedia_Tapped"
+                       MaxWidth="185" x:Name="imgMedia"/>
 
                 <MediaElement PosterSource="{x:Bind DirectItem.Media.Images[0].Uri, Mode=OneWay}" 
                           AreTransportControlsEnabled="True" 
