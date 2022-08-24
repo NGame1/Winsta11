@@ -49,6 +49,7 @@ namespace WinstaNext.ViewModels.Media
         public RelayCommand NavigateToCommentsCommand { get; set; }
         public RelayCommand NavigateToMediaLikersCommand { get; set; }
         public RelayCommand<InstaUser> NavigateToUserCommand { get; set; }
+        public RelayCommand<string> NavigateToHashtagCommand { get; set; }
         public RelayCommand NavigateToLocationCommand { get; set; }
         public AsyncRelayCommand SaveMediaCommand { get; set; }
         public AsyncRelayCommand ShareMediaCommand { get; set; }
@@ -64,6 +65,7 @@ namespace WinstaNext.ViewModels.Media
             NavigateToCommentsCommand = new(NavigateToComments);
             NavigateToMediaLikersCommand = new(NavigateToMediaLikers);
             NavigateToUserCommand = new(NavigateToUser);
+            NavigateToHashtagCommand = new(NavigateToHashtag);
             NavigateToLocationCommand = new(NavigateToLocation);
             SaveMediaCommand = new(SaveMediaAsync);
             ShareMediaCommand = new(ShareMediaAsync);
@@ -223,6 +225,11 @@ namespace WinstaNext.ViewModels.Media
         void NavigateToMediaLikers()
         {
             NavigationService.Navigate(typeof(MediaLikersView), Media.InstaIdentifier);
+        }
+
+        void NavigateToHashtag(string hashtagName)
+        {
+            NavigationService.Navigate(typeof(HashtagProfileView), hashtagName);
         }
 
         void NavigateToUser(InstaUser user)

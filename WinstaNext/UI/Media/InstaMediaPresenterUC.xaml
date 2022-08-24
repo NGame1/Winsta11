@@ -35,7 +35,9 @@
 
         <Converters:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
 
-        <GenericConverters:NullToBooleanConverter IsInverted="True" x:Key="NullToBooleanConverter"/>
+        <GenericConverters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+        <GenericConverters:NullToBooleanConverter x:Key="InvertedNullToBooleanConverter"
+                                                  IsInverted="True"/>
 
         <GenericConverters:TextToFlowDirectionConverter x:Key="TextToFlowDirectionConverter"/>
 
@@ -56,14 +58,25 @@
             <StackPanel Orientation="Horizontal"
                         Grid.Column="0"
                         Spacing="5">
+                
                 <Muxc:PersonPicture Width="35" Height="35"
                                     DisplayName="{x:Bind Media.User.UserName}"
-                                    ProfilePicture="{x:Bind Media.User, Converter={StaticResource InstaUserProfilePictureConverter}}"/>
+                                    x:Load="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource NullToBooleanConverter}}"
+                                    ProfilePicture="{x:Bind Media.User, Converter={StaticResource InstaUserProfilePictureConverter}}"
+                                    x:Name="UserProfilePicture"/>
+
+                <Muxc:PersonPicture Width="35" Height="35"
+                                    DisplayName="{x:Bind Media.FollowHashtagInfo.Name}"
+                                    ProfilePicture="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource InstaUserProfilePictureConverter}}"
+                                    x:Load="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource InvertedNullToBooleanConverter}}"
+                                    x:Name="HashtagProfilePicture"/>
 
                 <!--#region Authors, CoAuthorsProducers, Hashtag info and Location-->
                 <StackPanel>
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel x:Load="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource NullToBooleanConverter}}"
+                                Orientation="Horizontal"
+                                x:Name="Userstack">
 
                         <HyperlinkButton x:Load="{x:Bind ViewModel.Media, Converter={StaticResource InvertedCoAuthorLoadConverter}}"
                                          x:Name="OneUserNameHyperlinkButton"
@@ -94,6 +107,27 @@
                         </TextBlock>-->
                     </StackPanel>
 
+                    <StackPanel x:Load="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource InvertedNullToBooleanConverter}}"
+                                Orientation="Horizontal"
+                                x:Name="Hashtagstack">
+
+                        <HyperlinkButton x:Load="{x:Bind ViewModel.Media, Converter={StaticResource InvertedCoAuthorLoadConverter}}"
+                                         x:Name="HashtagNameHyperlinkButton"
+                                         FontWeight="SemiBold"
+                                         Padding="0">
+                            <TextBlock>
+                                <Run Text="#"/>
+                                <Run Text="{x:Bind Media.FollowHashtagInfo.Name}"/>
+                            </TextBlock>
+                            <i:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="Click">
+                                    <core:InvokeCommandAction Command="{x:Bind ViewModel.NavigateToHashtagCommand}"
+                                                              CommandParameter="{x:Bind Media.FollowHashtagInfo.Name}"/>
+                                </core:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </HyperlinkButton>
+                    </StackPanel>
+                    
                     <HyperlinkButton Padding="0">
                         <TextBlock>
                             <Run Text="{x:Bind Media.Location.Name}"/>
@@ -199,7 +233,7 @@
                 <generic:LikeButtonControl IsLiked="{x:Bind Media.HasLiked, Mode=TwoWay}"
                                            Command="{x:Bind ViewModel.LikeMediaCommand}"/>
 
-                <Button x:Load="{x:Bind ViewModel.Media.CommentsCount, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"
+                <Button x:Load="{x:Bind ViewModel.Media.CommentsCount, Converter={StaticResource InvertedNullToBooleanConverter}, Mode=OneWay}"
                         FontFamily="{StaticResource FluentSystemIconsRegular}"
                         Command="{x:Bind ViewModel.NavigateToCommentsCommand}"
                         Style="{StaticResource FontIconButtonStyle}"
@@ -246,7 +280,7 @@
 
         </controls:MarkdownTextBlock>
 
-        <HyperlinkButton x:Load="{x:Bind ViewModel.Media.CommentsCount, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"
+        <HyperlinkButton x:Load="{x:Bind ViewModel.Media.CommentsCount, Converter={StaticResource InvertedNullToBooleanConverter}, Mode=OneWay}"
                          Command="{x:Bind ViewModel.NavigateToCommentsCommand}"
                          x:Name="CommentsHyperlinkButton"
                          Padding="0">
