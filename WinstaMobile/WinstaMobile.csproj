@@ -151,6 +151,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountManagementService.cs" />
+    <Compile Include="UI\Comments\InstaCommentPresenterUC.xaml.cs">
+      <DependentUpon>InstaCommentPresenterUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\NoCastButtonMediaTransportControls.cs" />
     <Compile Include="UI\Directs\ChatListView.cs" />
     <Compile Include="UI\Directs\GiphyPanelUC.xaml.cs">
@@ -269,6 +272,9 @@
       <DependentUpon>TwoFactorAuthView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BasePage.cs" />
+    <Compile Include="Views\Comments\CommentLikersView.xaml.cs">
+      <DependentUpon>CommentLikersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Comments\MediaCommentsView.xaml.cs">
       <DependentUpon>MediaCommentsView.xaml</DependentUpon>
     </Compile>
@@ -482,6 +488,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UI\Comments\InstaCommentPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Directs\GiphyPanelUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -627,6 +637,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Account\TwoFactorAuthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Comments\CommentLikersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
