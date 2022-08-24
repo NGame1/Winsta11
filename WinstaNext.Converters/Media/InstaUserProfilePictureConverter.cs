@@ -23,6 +23,8 @@ namespace WinstaNext.Converters.Media
 
                 InstaRecentActivityFeed recentActivityFeed => recentActivityFeed.ProfileImage,
 
+                InstaFollowHashtagInfo hashtagInfo => hashtagInfo.ProfilePicture,
+
                 _ => "ms-appx:///Assets/Icons/NoOne.png"
 
             };
