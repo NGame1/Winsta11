@@ -24,7 +24,9 @@ namespace WinstaCore.Services
                 viewControl.StartViewInUse();
                 var frame = new Frame();
 
+#if !WINDOWS_UWP15063
                 BackdropMaterial.SetApplyToRootOrPageBackground(frame, true);
+#endif
 
                 var Nav = AppCore.Container.GetService<NavigationService>();
                 Nav.SetNavigationFrame(frame);
