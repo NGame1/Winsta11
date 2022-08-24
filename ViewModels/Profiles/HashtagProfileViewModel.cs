@@ -109,7 +109,18 @@ namespace ViewModels.Profiles
             else if (e.Parameter is InstaHashtag hashtag)
             {
                 if (Hashtag != null && Hashtag.Name.ToLower() == hashtag.Name.ToLower()) return;
-                Hashtag = hashtag;
+                using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
+                {
+                    var result = await Api.HashtagProcessor.GetHashtagInfoAsync(hashtag.Name);
+                    if (!result.Succeeded)
+                    {
+                        if (NavigationService.CanGoBack)
+                            NavigationService.GoBack();
+                        throw result.Info.Exception;
+                    }
+                    var hasht = result.Value.Adapt<InstaHashtag>();
+                    Hashtag = hasht;
+                }
             }
             else
             {
