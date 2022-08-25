@@ -208,27 +208,21 @@
 
             </Grid>
 
-            <muxc:NavigationView ScrollViewer.IsVerticalScrollChainingEnabled="True"
-                                 MenuItemsSource="{x:Bind ViewModel.ProfileTabs}"
-                                 SelectedItem="{x:Bind ViewModel.SelectedTab, Mode=TwoWay}"
-                                 IsBackButtonVisible="Collapsed"
-                                 Margin="{x:Bind PageMargin}"
-                                 IsSettingsVisible="False"
-                                 PaneDisplayMode="Top"
-                                 x:Name="navView"
-                                 Grid.Row="1">
+            <NavigationView ScrollViewer.IsVerticalScrollChainingEnabled="True"
+                            MenuItemsSource="{x:Bind ViewModel.ProfileTabs}"
+                            SelectedItem="{x:Bind ViewModel.SelectedTab, Mode=TwoWay}"
+                            IsBackButtonVisible="Collapsed"
+                            Margin="{x:Bind PageMargin}"
+                            IsSettingsVisible="False"
+                            PaneDisplayMode="Top"
+                            x:Name="navView"
+                            Grid.Row="1">
 
-                <!--<NavigationView.MenuItems>
-                    <NavigationViewItem Icon="People" Content="Medias"/>
-                    <NavigationViewItem Icon="Play" Content="Reels"/>
-                    <NavigationViewItem Icon="Account" Content="Tags"/>
-                </NavigationView.MenuItems>-->
-
-                <muxc:NavigationView.MenuItemTemplate>
+                <NavigationView.MenuItemTemplate>
                     <DataTemplate x:DataType="viewmodels:MenuItemModel">
-                        <muxc:NavigationViewItem Icon="{x:Bind Icon}" Content="{x:Bind Text}"/>
+                        <NavigationViewItem Icon="{x:Bind Icon}" Content="{x:Bind Text}"/>
                     </DataTemplate>
-                </muxc:NavigationView.MenuItemTemplate>
+                </NavigationView.MenuItemTemplate>
 
                 <ListView ItemsSource="{x:Bind ViewModel.ItemsSource, Mode=OneWay}"
                           ScrollViewer.IsVerticalScrollChainingEnabled="True"
@@ -270,7 +264,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </muxc:NavigationView>
+            </NavigationView>
         </Grid>
     </ScrollViewer>
 

@@ -65,7 +65,7 @@
                  Margin="0,0,0,8" 
                  PlaceholderText="{x:Bind Resources:LanguageManager.Instance.General.SearchPlaceHolder}"/>
 
-        <muxc:NavigationView ScrollViewer.IsVerticalScrollChainingEnabled="True"
+        <NavigationView ScrollViewer.IsVerticalScrollChainingEnabled="True"
                         MenuItemsSource="{x:Bind ViewModel.MenuItems}"
                         SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}"
                         IsBackButtonVisible="Collapsed"
@@ -81,12 +81,12 @@
                     <NavigationViewItem Icon="Account" Content="Tags"/>
                 </NavigationView.MenuItems>-->
 
-            <muxc:NavigationView.MenuItemTemplate>
+            <NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="viewmodels:MenuItemModel">
-                    <muxc:NavigationViewItem Icon="{x:Bind Icon}" 
+                    <NavigationViewItem Icon="{x:Bind Icon}" 
                                              Content="{x:Bind Text}"/>
                 </DataTemplate>
-            </muxc:NavigationView.MenuItemTemplate>
+            </NavigationView.MenuItemTemplate>
 
             <ListView ItemTemplateSelector="{StaticResource SearchItemTemplateSelector}"
                       ItemsSource="{x:Bind ViewModel.SearchResults, Mode=OneWay}"
@@ -129,7 +129,7 @@
                 </ListView.ItemContainerStyle>
 
             </ListView>
-        </muxc:NavigationView>
+        </NavigationView>
 
         <!--<syncfusion:SfTabControl Grid.Row="1"
                                  HighlightOnSelection="True"
