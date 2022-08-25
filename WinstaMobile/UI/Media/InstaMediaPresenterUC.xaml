@@ -35,10 +35,9 @@
 
     </UserControl.Resources>
 
-    <StackPanel Padding="8" CornerRadius="{StaticResource ControlCornerRadius}">
-        <StackPanel.Background>
-            <Media:RevealBackgroundBrush Color="{ThemeResource SystemRevealBaseLowColor}"/>
-        </StackPanel.Background>
+    <StackPanel Background="{ThemeResource SystemControlBackgroundBaseLowBrush}"
+                CornerRadius="{StaticResource ControlCornerRadius}"
+                Padding="8">
 
         <!--#region Media Heading Region-->
         <Grid Margin="0,0,0,5">
