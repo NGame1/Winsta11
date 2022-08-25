@@ -118,7 +118,6 @@
                         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
                         <Setter Property="MinWidth" Value="0" />
                         <Setter Property="FocusVisualMargin" Value="-7,-3,-7,-3" />
-                        <Setter Property="CornerRadius" Value="{StaticResource ControlCornerRadius}" />
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="ToggleSwitch">
@@ -230,7 +229,6 @@
                                     Margin="0,0,1,0"
                                     HorizontalAlignment="Center"
                                     Background="{ThemeResource ToggleSwitchKnobFillOn}"
-                                    BackgroundSizing="OuterBorderEdge"
                                     BorderBrush="{ThemeResource ToggleSwitchKnobStrokeOn}"
                                     CornerRadius="7"
                                     Opacity="0"

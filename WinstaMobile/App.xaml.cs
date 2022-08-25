@@ -42,6 +42,7 @@ using WinstaMobile.Views.Directs;
 using WinstaMobile.Views.Media;
 using WinstaMobile.Views.Profiles;
 using WinstaMobile.Views.Search;
+using WinstaMobile.Views.Settings;
 #nullable enable
 
 namespace WinstaMobile
@@ -158,7 +159,8 @@ namespace WinstaMobile
             serviceCollection.AddTransient<ISearchView>(x => new SearchView());
 
             //Settings View
-            //serviceCollection.AddTransient<ISettingsView>(x => new SettingsView());
+            serviceCollection.AddTransient<IAccountSettings>(x => new AccountSettings());
+            serviceCollection.AddTransient<ISettingsView>(x => new SettingsView());
         }
 
         DisplayRequest CreateDisplayRequestInstance(IServiceProvider arg)
