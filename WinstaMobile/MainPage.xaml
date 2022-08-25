@@ -39,7 +39,7 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <!--<Setter Target="PaneHeadStk.Margin" Value="0,40,0,0"/>-->
+                        <Setter Target="PaneHeadStk.Margin" Value="0,40,0,0"/>
                         <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
                         <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
                         <Setter Target="AppTitleLeftBorder.Width" Value="86" />
