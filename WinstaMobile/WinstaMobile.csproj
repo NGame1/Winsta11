@@ -293,6 +293,9 @@
     <Compile Include="Views\Media\ImageViewerPage.xaml.cs">
       <DependentUpon>ImageViewerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Media\IncrementalInstaMediaView.xaml.cs">
+      <DependentUpon>IncrementalInstaMediaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Profiles\UserProfileView.xaml.cs">
       <DependentUpon>UserProfileView.xaml</DependentUpon>
     </Compile>
@@ -668,6 +671,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Media\ImageViewerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Media\IncrementalInstaMediaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
