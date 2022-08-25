@@ -107,8 +107,8 @@ namespace ViewModels
 #if !WINDOWS_UWP15063
             FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, typeof(ISettingsView)) { Icon = new AnimatedIcon { Source = new AnimatedSettingsVisualSource() } });
 #else   
-            MenuItems.Add(new(LanguageManager.Instance.General.Settings, "\uE713", typeof(ISettingsView)));
-            //FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, "\uE713", typeof(ISettingsView)));
+            //MenuItems.Add(new(LanguageManager.Instance.General.Settings, "\uE713", typeof(ISettingsView)));
+            FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, "\uE713", typeof(ISettingsView)));
 #endif
             ToggleNavigationViewPane = new(ToggleNavigationPane);
             _themeListener.ThemeChanged += MainPageViewModel_ThemeChanged;
