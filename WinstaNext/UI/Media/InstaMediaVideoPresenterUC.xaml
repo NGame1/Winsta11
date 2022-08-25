@@ -36,7 +36,9 @@
                           AutoPlay="False">
 
                 <MediaElement.TransportControls>
-                    <MediaTransportControls IsVolumeButtonVisible="False"
+                    <MediaTransportControls IsCompactOverlayButtonVisible="False"
+                                            IsRepeatButtonVisible="False"
+                                            IsVolumeButtonVisible="False"
                                             IsZoomButtonVisible="False"
                                             IsCompact="True"/>
                 </MediaElement.TransportControls>

@@ -154,6 +154,16 @@
     <Compile Include="UI\Comments\InstaCommentPresenterUC.xaml.cs">
       <DependentUpon>InstaCommentPresenterUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Controls\CompositionControl.cs" />
+    <Compile Include="UI\Controls\ExpandableSettingControl.xaml.cs">
+      <DependentUpon>ExpandableSettingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\ExpandableSettingHeaderControl.xaml.cs">
+      <DependentUpon>ExpandableSettingHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\NavigationSettingContent.xaml.cs">
+      <DependentUpon>NavigationSettingContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\NoCastButtonMediaTransportControls.cs" />
     <Compile Include="UI\Directs\ChatListView.cs" />
     <Compile Include="UI\Directs\GiphyPanelUC.xaml.cs">
@@ -507,6 +517,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Comments\InstaCommentPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\ExpandableSettingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\ExpandableSettingHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\NavigationSettingContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
