@@ -12,8 +12,8 @@
     xmlns:local="using:WinstaMobile.Views"
     x:Class="WinstaMobile.Views.HomeView"
     xmlns:Resources="using:Resources" 
-    xmlns:VM="using:ViewModels"
-    mc:Ignorable="d">
+    xmlns:VM="using:ViewModels" xmlns:Media="using:Microsoft.UI.Xaml.Media"
+                mc:Ignorable="d">
 
     <local:BasePage.Resources>
         <DataTemplate x:Key="BroadcastTemplate" x:DataType="stories:WinstaStoryItem">
@@ -97,7 +97,6 @@
         </Muxc:RefreshContainer>
 
         <Button CommandParameter="{x:Bind FeedPostsList, Mode=OneWay}" 
-                Background="{StaticResource SystemRevealBaseLowColor}"
                 Command="{x:Bind ViewModel.GoTopCommand}"
                 FontFamily="{StaticResource FluentIcons}"
                 Style="{StaticResource CircleButtonStyle}"
@@ -107,6 +106,10 @@
                 FontSize="16"
                 Margin="0,12"
                 Height="45"
-                Width="45"/>
+                Width="45">
+            <Button.Background>
+                <Media:RevealBackgroundBrush Color="{ThemeResource SystemRevealBaseLowColor}"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </local:BasePage>
