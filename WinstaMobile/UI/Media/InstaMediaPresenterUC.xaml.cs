@@ -200,12 +200,12 @@ namespace WinstaMobile.UI.Media
             if (lottieAnimationView.Name == nameof(LikeAnimationPlayer))
             {
                 await LoadAnimation(lottieAnimationView, 
-                    await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Lottie/Dislike.json", UriKind.RelativeOrAbsolute)));
+                    await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Lottie/like.json", UriKind.RelativeOrAbsolute)));
             }
             else
             {
                 await LoadAnimation(lottieAnimationView,
-                    await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Lottie/Like.json", UriKind.RelativeOrAbsolute)));
+                    await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Lottie/Dislike.json", UriKind.RelativeOrAbsolute)));
             }
         }
 

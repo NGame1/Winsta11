@@ -52,7 +52,7 @@
                               IsItemClickEnabled="True"
                               SelectionMode="None"
                               x:Name="StoriesList"
-                              Padding="0,16,8,16">
+                              Padding="0,0,8,16">
 
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">

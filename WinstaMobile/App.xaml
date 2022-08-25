@@ -33,10 +33,10 @@
                         <Setter Property="FontSize" Value="14"/>
                     </Style>
 
-                    <Style TargetType="HyperlinkButton" BasedOn="{StaticResource TextBlockButtonStyle}">
+                    <!--<Style TargetType="HyperlinkButton" BasedOn="{StaticResource TextBlockButtonStyle}">
                         <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
                         <Setter Property="FontWeight" Value="SemiLight"/>
-                    </Style>
+                    </Style>-->
 
                     <Style x:Key="CircleButtonStyle" TargetType="Button">
                         <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
