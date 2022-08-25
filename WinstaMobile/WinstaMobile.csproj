@@ -296,6 +296,9 @@
     <Compile Include="Views\Media\IncrementalInstaMediaView.xaml.cs">
       <DependentUpon>IncrementalInstaMediaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Media\MediaLikersView.xaml.cs">
+      <DependentUpon>MediaLikersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Media\SingleInstaMediaView.xaml.cs">
       <DependentUpon>SingleInstaMediaView.xaml</DependentUpon>
     </Compile>
@@ -678,6 +681,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Media\IncrementalInstaMediaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Media\MediaLikersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
