@@ -302,6 +302,12 @@
     <Compile Include="Views\Media\SingleInstaMediaView.xaml.cs">
       <DependentUpon>SingleInstaMediaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Profiles\UserFollowersView.xaml.cs">
+      <DependentUpon>UserFollowersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Profiles\UserFollowingsView.xaml.cs">
+      <DependentUpon>UserFollowingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Profiles\UserProfileView.xaml.cs">
       <DependentUpon>UserProfileView.xaml</DependentUpon>
     </Compile>
@@ -689,6 +695,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Media\SingleInstaMediaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Profiles\UserFollowersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Profiles\UserFollowingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
