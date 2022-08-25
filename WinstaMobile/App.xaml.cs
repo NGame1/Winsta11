@@ -141,7 +141,7 @@ namespace WinstaMobile
             serviceCollection.AddTransient<IHomeView>(x => new HomeView());
 
             //Media Views
-            //serviceCollection.AddTransient<IExploreView>(x => new ExploreView());
+            serviceCollection.AddTransient<IExploreView>(x => new ExploreView());
             serviceCollection.AddTransient<IImageViewerPage>(x => new ImageViewerPage());
             //serviceCollection.AddTransient<IIncrementalInstaMediaView>(x => new IncrementalInstaMediaView());
             //serviceCollection.AddTransient<IMediaLikersView>(x => new MediaLikersView());
