@@ -121,10 +121,10 @@
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
                         <Setter Property="Margin" Value="2"/>
-                        <!--<Setter Property="Padding" Value="{StaticResource ExpanderContentPadding}" />-->
-                        <Setter Property="Background" Value="{ThemeResource SystemRevealBaseLowColor}"/>
-                        <Setter Property="BorderBrush" Value="{ThemeResource SystemRevealBaseLowColor}" />
-                        <!--<Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />-->
+                        <Setter Property="Padding" Value="{StaticResource ExpanderContentPadding}" />
+                        <Setter Property="Background" Value="{ThemeResource ExpanderHeaderBackground}"/>
+                        <Setter Property="BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+                        <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
                     </Style>
                 </ListView.ItemContainerStyle>
 
