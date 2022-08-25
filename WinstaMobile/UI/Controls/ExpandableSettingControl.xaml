@@ -17,8 +17,8 @@
         <converters:NullToBooleanConverter x:Key="NullToFalseConverter" IsInverted="True"/>
 
         <Style x:Key="GridSettingBlockStyle" TargetType="Grid">
-            <Setter Property="BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
-            <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
+            <!--<Setter Property="BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />-->
+            <!--<Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />-->
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="MinHeight" Value="{StaticResource ExpanderMinHeight}" />
             <Setter Property="Padding" Value="{StaticResource ExpanderContentPadding}" />

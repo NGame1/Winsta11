@@ -82,8 +82,12 @@ namespace ViewModels.Settings
         void AccountSettingsNavigate()
         {
             var AccountSettings = AppCore.Container.GetService<IAccountSettings>();
+#if !WINDOWS_UWP15063
             var transitionInfo = new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight };
             NavigationService.Navigate(AccountSettings, transitionInfo);
+#else
+            NavigationService.Navigate(AccountSettings);
+#endif
         }
 
         async Task SetDownloadsFolderAsync()

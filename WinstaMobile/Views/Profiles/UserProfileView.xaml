@@ -208,7 +208,7 @@
 
             </Grid>
 
-            <NavigationView ScrollViewer.IsVerticalScrollChainingEnabled="True"
+            <muxc:NavigationView ScrollViewer.IsVerticalScrollChainingEnabled="True"
                             MenuItemsSource="{x:Bind ViewModel.ProfileTabs}"
                             SelectedItem="{x:Bind ViewModel.SelectedTab, Mode=TwoWay}"
                             IsBackButtonVisible="Collapsed"
@@ -218,11 +218,11 @@
                             x:Name="navView"
                             Grid.Row="1">
 
-                <NavigationView.MenuItemTemplate>
+                <muxc:NavigationView.MenuItemTemplate>
                     <DataTemplate x:DataType="viewmodels:MenuItemModel">
-                        <NavigationViewItem Icon="{x:Bind Icon}" Content="{x:Bind Text}"/>
+                        <muxc:NavigationViewItem Icon="{x:Bind Icon}" Content="{x:Bind Text}"/>
                     </DataTemplate>
-                </NavigationView.MenuItemTemplate>
+                </muxc:NavigationView.MenuItemTemplate>
 
                 <ListView ItemsSource="{x:Bind ViewModel.ItemsSource, Mode=OneWay}"
                           ScrollViewer.IsVerticalScrollChainingEnabled="True"
@@ -264,7 +264,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </NavigationView>
+            </muxc:NavigationView>
         </Grid>
     </ScrollViewer>
 
