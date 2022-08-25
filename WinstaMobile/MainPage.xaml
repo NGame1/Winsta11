@@ -202,10 +202,8 @@
 
             <muxc:NavigationView.MenuItemTemplate>
                 <DataTemplate>
-                    <muxc:NavigationViewItem Icon="{Binding Icon}"
-                                             Content="{Binding Text}">
-
-                    </muxc:NavigationViewItem>
+                    <muxc:NavigationViewItem Content="{Binding Text}"
+                                             Icon="{Binding Icon}"/>
                 </DataTemplate>
             </muxc:NavigationView.MenuItemTemplate>
 

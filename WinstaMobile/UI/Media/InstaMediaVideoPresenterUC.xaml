@@ -30,9 +30,9 @@
                     <MediaTransportControls IsVolumeButtonVisible="False"
                                             IsZoomButtonVisible="False"
                                             IsCompact="True">
-                        <MediaTransportControls.Style>
+                        <!--<MediaTransportControls.Style>
                             <Style TargetType="MediaTransportControls"/>
-                        </MediaTransportControls.Style>
+                        </MediaTransportControls.Style>-->
                     </MediaTransportControls>
                 </MediaElement.TransportControls>
 
