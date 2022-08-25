@@ -19,7 +19,7 @@
     xmlns:Winsta="using:WinstaMobile" 
     xmlns:lottieUwp="using:LottieUWP"
     mc:Ignorable="d"
-    MaxWidth="800"
+    MaxWidth="1200"
     d:DesignHeight="300"
     d:DesignWidth="400">
 
