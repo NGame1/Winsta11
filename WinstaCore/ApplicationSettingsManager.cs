@@ -55,7 +55,7 @@ namespace WinstaCore
             {
                 return await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(nameof(DownloadsFolder));
             }
-            return await KnownFolders.PicturesLibrary.CreateFolderAsync("Winsta", CreationCollisionOption.OpenIfExists);
+            return await KnownFolders.PicturesLibrary.CreateFolderAsync("WingoTag", CreationCollisionOption.OpenIfExists);
         }
 
         public void SetDownloadsFolderAsync(StorageFolder? folder = null)
