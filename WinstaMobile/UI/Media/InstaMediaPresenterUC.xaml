@@ -44,7 +44,7 @@
 
     <StackPanel Background="{ThemeResource SystemControlBackgroundBaseLowBrush}"
                 CornerRadius="{StaticResource ControlCornerRadius}"
-                Padding="8">
+                Padding="8,5">
         <!--<StackPanel.Background>
             <Media:RevealBackgroundBrush Color="#50000000"/>
         </StackPanel.Background>-->
@@ -159,7 +159,8 @@
 
         <!--#region Media presentation region-->
 
-        <Grid SizeChanged="Presenter_SizeChanged">
+        <Grid SizeChanged="Presenter_SizeChanged"
+              Margin="0,5,0,5">
 
             <local:InstaMediaImagePresenterUC x:Load="{x:Bind ViewModel.ImagePresenterLoaded}"
                                               Media="{x:Bind Media, Mode=OneWay}" 
@@ -308,7 +309,7 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <Grid>
+        <Grid Margin="0,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
