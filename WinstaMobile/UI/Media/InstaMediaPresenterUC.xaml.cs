@@ -6,11 +6,14 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Devices.Input;
+using Windows.Foundation;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media.Imaging;
 using WinstaCore;
 using WinstaMobile.ViewModels.Media;
 using WinstaNext.Helpers;
@@ -86,6 +89,7 @@ namespace WinstaMobile.UI.Media
                 default:
                     break;
             }
+            Presenter_SizeChanged(null, null);
         }
 
         private void Gallery_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -163,6 +167,7 @@ namespace WinstaMobile.UI.Media
 
         private void Presenter_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            if (Media == null) return;
             var parentelement = (ViewModel.NavigationService.Content as FrameworkElement);
             FrameworkElement targetElement = null;
             switch (Media.MediaType)
@@ -180,8 +185,10 @@ namespace WinstaMobile.UI.Media
             }
             if (targetElement == null) return;
             if (string.IsNullOrEmpty(Media.Height)) return;
-            var minwidth = parentelement.ActualWidth < e.NewSize.Width ?
-                parentelement.ActualWidth : e.NewSize.Width;
+            var minwidth = parentelement.ActualWidth;
+            if (e != null)
+                minwidth = parentelement.ActualWidth < e.NewSize.Width ?
+                           parentelement.ActualWidth : e.NewSize.Width;
             var s = ControlSizeHelper.CalculateSizeInBox(Media.Width, int.Parse(Media.Height),
                 parentelement.ActualHeight - 150, minwidth);
             targetElement.Width = s.Width;
@@ -194,12 +201,18 @@ namespace WinstaMobile.UI.Media
             args.Handled = true;
         }
 
+        private void videoPresenter_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            if (Media.Play && ApplicationSettingsManager.Instance.GetAutoPlay())
+                videoPresenter.mediaPlayer.Play();
+        }
+
         private async void AnimationPlayer_Loaded(object sender, RoutedEventArgs e)
         {
             LottieUWP.LottieAnimationView lottieAnimationView = (LottieUWP.LottieAnimationView)sender;
             if (lottieAnimationView.Name == nameof(LikeAnimationPlayer))
             {
-                await LoadAnimation(lottieAnimationView, 
+                await LoadAnimation(lottieAnimationView,
                     await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Lottie/like.json", UriKind.RelativeOrAbsolute)));
             }
             else

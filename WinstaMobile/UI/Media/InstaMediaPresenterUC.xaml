@@ -10,13 +10,12 @@
     x:Class="WinstaMobile.UI.Media.InstaMediaPresenterUC"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:Muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:generic="using:WinstaMobile.UI.Generic"
-    xmlns:Media="using:Microsoft.UI.Xaml.Media"
     xmlns:flyouts="using:WinstaMobile.UI.Flyouts"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:Media="using:Microsoft.UI.Xaml.Media"
     xmlns:local="using:WinstaMobile.UI.Media"
     xmlns:Resources="using:Resources" 
-    xmlns:Winsta="using:WinstaMobile" 
     xmlns:lottieUwp="using:LottieUWP"
     mc:Ignorable="d"
     MaxWidth="1200"
@@ -29,7 +28,15 @@
 
         <Converters:CaptionToMarkdownConverter x:Key="CaptionToMarkdownConverter"/>
 
-        <GenericConverters:NullToBooleanConverter IsInverted="True" x:Key="NullToBooleanConverter"/>
+        <Converters:CoAuthorLoadConverter x:Key="CoAuthorLoadConverter"/>
+        <Converters:CoAuthorLoadConverter x:Key="InvertedCoAuthorLoadConverter"
+                                          IsInverted="True"/>
+
+        <Converters:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
+
+        <GenericConverters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+        <GenericConverters:NullToBooleanConverter x:Key="InvertedNullToBooleanConverter"
+                                                  IsInverted="True"/>
 
         <GenericConverters:TextToFlowDirectionConverter x:Key="TextToFlowDirectionConverter"/>
 
@@ -38,9 +45,12 @@
     <StackPanel Background="{ThemeResource SystemControlBackgroundBaseLowBrush}"
                 CornerRadius="{StaticResource ControlCornerRadius}"
                 Padding="8">
+        <!--<StackPanel.Background>
+            <Media:RevealBackgroundBrush Color="#50000000"/>
+        </StackPanel.Background>-->
 
         <!--#region Media Heading Region-->
-        <Grid Margin="0,0,0,5">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -48,16 +58,33 @@
 
             <StackPanel Orientation="Horizontal"
                         Grid.Column="0">
-                <Muxc:PersonPicture Width="35" Height="35" Margin="0,0,5,0"
-                                    DisplayName="{x:Bind Media.User.UserName}"
-                                    ProfilePicture="{x:Bind Media.User.ProfilePicture}"/>
 
-                <!--#region Authors, Hashtag info and Location-->
+                <Muxc:PersonPicture ProfilePicture="{x:Bind Media.User, Converter={StaticResource InstaUserProfilePictureConverter}}"
+                                    x:Load="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource NullToBooleanConverter}}"
+                                    DisplayName="{x:Bind Media.User.UserName}"
+                                    x:Name="UserProfilePicture"
+                                    Margin="0,0,5,0"
+                                    Height="35"
+                                    Width="35"/>
+
+                <Muxc:PersonPicture ProfilePicture="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource InstaUserProfilePictureConverter}}"
+                                    DisplayName="{x:Bind Media.FollowHashtagInfo.Name}"
+                                    x:Load="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource InvertedNullToBooleanConverter}}"
+                                    x:Name="HashtagProfilePicture"
+                                    Margin="0,0,5,0"
+                                    Height="35"
+                                    Width="35"/>
+
+                <!--#region Authors, CoAuthorsProducers, Hashtag info and Location-->
                 <StackPanel Margin="0,0,5,0">
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel x:Load="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource NullToBooleanConverter}}"
+                                Orientation="Horizontal"
+                                x:Name="Userstack">
 
-                        <HyperlinkButton FontWeight="SemiBold"
+                        <HyperlinkButton x:Load="{x:Bind ViewModel.Media, Converter={StaticResource InvertedCoAuthorLoadConverter}}"
+                                         x:Name="OneUserNameHyperlinkButton"
+                                         FontWeight="SemiBold"
                                          Padding="0">
                             <TextBlock Text="{x:Bind Media.User.UserName}"/>
                             <i:Interaction.Behaviors>
@@ -69,12 +96,40 @@
 
                         </HyperlinkButton>
 
+                        <local:CoAuthorUserProviderUC x:Load="{x:Bind ViewModel.Media, Converter={StaticResource CoAuthorLoadConverter}}"
+                                                      NavigateToUserCommand="{x:Bind ViewModel.NavigateToUserCommand}"
+                                                      x:Name="CoAuthorAvailableText"
+                                                      Media="{x:Bind Media}">
+
+                        </local:CoAuthorUserProviderUC>
+
                         <!--<TextBlock>
                             <Run Text="&amp;"/>
                             <Hyperlink>
                                 <Run Text="{x:Bind Media.CoAuthorsProducers[0].UserName}"/>
                             </Hyperlink>
                         </TextBlock>-->
+                    </StackPanel>
+
+                    <StackPanel x:Load="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource InvertedNullToBooleanConverter}}"
+                                Orientation="Horizontal"
+                                x:Name="Hashtagstack">
+
+                        <HyperlinkButton x:Load="{x:Bind ViewModel.Media, Converter={StaticResource InvertedCoAuthorLoadConverter}}"
+                                         x:Name="HashtagNameHyperlinkButton"
+                                         FontWeight="SemiBold"
+                                         Padding="0">
+                            <TextBlock>
+                                <Run Text="#"/>
+                                <Run Text="{x:Bind Media.FollowHashtagInfo.Name}"/>
+                            </TextBlock>
+                            <i:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="Click">
+                                    <core:InvokeCommandAction Command="{x:Bind ViewModel.NavigateToHashtagCommand}"
+                                                              CommandParameter="{x:Bind Media.FollowHashtagInfo.Name}"/>
+                                </core:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </HyperlinkButton>
                     </StackPanel>
 
                     <HyperlinkButton Padding="0">
@@ -120,6 +175,7 @@
             </local:InstaMediaImagePresenterUC>
 
             <local:InstaMediaVideoPresenterUC x:Load="{x:Bind ViewModel.VideoPresenterLoaded}"
+                                              MediaEnded="videoPresenter_MediaEnded"
                                               Media="{x:Bind Media, Mode=OneWay}" 
                                               x:FieldModifier="public"
                                               x:Name="videoPresenter"
@@ -145,7 +201,7 @@
                 </i:Interaction.Behaviors>
 
             </local:InstaMediaCarouselPresenterUC>
-
+            
             <lottieUwp:LottieAnimationView x:Load="{x:Bind ViewModel.LoadLikeAnimation}"
                                            Loaded="AnimationPlayer_Loaded"
                                            x:Name="LikeAnimationPlayer"
@@ -173,12 +229,12 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Margin="0,3" Grid.Column="0" Orientation="Horizontal">
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
                 <generic:LikeButtonControl IsLiked="{x:Bind Media.HasLiked, Mode=TwoWay}"
                                            Command="{x:Bind ViewModel.LikeMediaCommand}"
                                            Margin="0,0,5,0"/>
 
-                <Button x:Load="{x:Bind ViewModel.Media.CommentsCount, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"
+                <Button x:Load="{x:Bind ViewModel.Media.CommentsCount, Converter={StaticResource InvertedNullToBooleanConverter}, Mode=OneWay}"
                         FontFamily="{StaticResource FluentSystemIconsRegular}"
                         Command="{x:Bind ViewModel.NavigateToCommentsCommand}"
                         Style="{StaticResource FontIconButtonStyle}"
@@ -228,7 +284,7 @@
 
         </controls:MarkdownTextBlock>
 
-        <HyperlinkButton x:Load="{x:Bind ViewModel.Media.CommentsCount, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"
+        <HyperlinkButton x:Load="{x:Bind ViewModel.Media.CommentsCount, Converter={StaticResource InvertedNullToBooleanConverter}, Mode=OneWay}"
                          Command="{x:Bind ViewModel.NavigateToCommentsCommand}"
                          x:Name="CommentsHyperlinkButton"
                          Padding="0">
@@ -243,15 +299,16 @@
                 <DataTemplate x:DataType="models:InstaComment">
                     <StackPanel>
                         <TextBlock Text="{x:Bind User.UserName}"
-                                   Margin="0,0,0,2"/>
-                        <TextBlock Text="{x:Bind Text}" TextWrapping="Wrap"
-                                   Margin="0,0,0,2"/>
+                                   Margin="0,0,2,0"/>
+                        <TextBlock Text="{x:Bind Text}" 
+                                   TextWrapping="Wrap"
+                                   Margin="0,0,2,0"/>
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <Grid Margin="0,3">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -259,7 +316,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Muxc:PersonPicture ProfilePicture="{x:Bind Me.ProfilePicture}"
+            <Muxc:PersonPicture ProfilePicture="{x:Bind Me, Converter={StaticResource InstaUserProfilePictureConverter}}"
                                 DisplayName="{x:Bind Me.UserName}"
                                 Height="30"
                                 Width="30"/>
@@ -274,7 +331,6 @@
                         <core:InvokeCommandAction Command="{x:Bind ViewModel.CommentboxKeyDownCommand}"/>
                     </core:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
-
             </TextBox>
 
             <Button IsEnabled="{x:Bind ViewModel.IsSendCommentButtonEnabled}"
