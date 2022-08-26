@@ -163,6 +163,8 @@ namespace Resources
     {
         ResourceLoader _resource = new("Settings");
 
+        public string AccountSettings { get => _resource.GetString(nameof(AccountSettings)); }
+        public string AccountSettingsDescription { get => _resource.GetString(nameof(AccountSettingsDescription)); }
         public string Autoplay { get => _resource.GetString(nameof(Autoplay)); }
         public string AutoplayDescription { get => _resource.GetString(nameof(AutoplayDescription)); }
         public string Browse { get => _resource.GetString(nameof(Browse)); }
