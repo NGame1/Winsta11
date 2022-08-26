@@ -6,8 +6,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:models="using:InstagramApiSharp.Classes.Models"
     xmlns:TemplateSelectors="using:TemplateSelectors"
-    xmlns:local="using:WinstaMobile.UI.Media"
-    mc:Ignorable="d"
+    xmlns:local="using:WinstaMobile.UI.Media" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+             mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
 
@@ -39,11 +39,11 @@
 
         </FlipView>
 
-        <!--<muxc:PipsPager SelectedPageIndex="{Binding Path=SelectedIndex, ElementName=Gallery, Mode=TwoWay}"
+        <muxc:PipsPager SelectedPageIndex="{Binding Path=SelectedIndex, ElementName=Gallery, Mode=TwoWay}"
                         NumberOfPages="{x:Bind Media.Carousel.Count}"
                         HorizontalAlignment="Center"
                         x:Name="FlipViewPipsPager"
-                        Margin="0,12,0,0"/>-->
+                        Margin="0,12,0,0"/>
 
     </StackPanel>
 </UserControl>
