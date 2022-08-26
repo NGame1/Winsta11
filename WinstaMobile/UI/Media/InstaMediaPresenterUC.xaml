@@ -42,12 +42,12 @@
 
     </UserControl.Resources>
 
-    <StackPanel Background="{ThemeResource SystemControlBackgroundBaseLowBrush}"
+    <StackPanel 
                 CornerRadius="{StaticResource ControlCornerRadius}"
                 Padding="8,5">
-        <!--<StackPanel.Background>
+        <StackPanel.Background>
             <Media:RevealBackgroundBrush Color="#50000000"/>
-        </StackPanel.Background>-->
+        </StackPanel.Background>
 
         <!--#region Media Heading Region-->
         <Grid>
@@ -266,7 +266,7 @@
                          Padding="0">
             <TextBlock FontWeight="SemiBold" FontSize="13">
                     <Run Text="{x:Bind Media.LikesCount}"/>
-                    <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Likes}"/>
+                    <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Likes, Mode=OneTime}"/>
             </TextBlock>
         </HyperlinkButton>
 
@@ -291,7 +291,7 @@
                          Padding="0">
             <TextBlock>
                 <Run Text="{x:Bind Media.CommentsCount}"/>
-                <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Comments}"/>
+                <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Comments, Mode=OneTime}"/>
             </TextBlock>
         </HyperlinkButton>
 
@@ -322,7 +322,7 @@
                                 Height="30"
                                 Width="30"/>
 
-            <TextBox PlaceholderText="{x:Bind Resources:LanguageManager.Instance.Instagram.CommentPlaceholder}"
+            <TextBox PlaceholderText="{x:Bind Resources:LanguageManager.Instance.Instagram.CommentPlaceholder, Mode=OneTime}"
                      Text="{x:Bind ViewModel.CommentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      x:Name="txtCooment"
                      Margin="5,0,0,0" 

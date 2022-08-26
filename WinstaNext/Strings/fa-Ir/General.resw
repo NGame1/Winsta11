@@ -163,7 +163,7 @@
     <value>زبان</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>Switch between different languages to make app easier to use. For applying this change, You'll need to restart the application.</value>
+    <value>انتخاب یک زبان از میان زبان های مختلف جهت ساده سازی استفاده از برنامه. این تغییر به به طور کامل در اجرای بعدی برنامه اعمال خواهد شد.</value>
   </data>
   <data name="Light" xml:space="preserve">
     <value>روشن</value>

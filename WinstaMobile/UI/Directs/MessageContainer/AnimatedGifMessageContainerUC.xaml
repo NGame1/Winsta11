@@ -37,13 +37,13 @@
 
         </muxc:PersonPicture>
 
-        <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+        <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneTime}"
                     CornerRadius="{StaticResource ControlCornerRadius}">
-            <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+            <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneTime}"
                         CornerRadius="{StaticResource ControlCornerRadius}"
                         Padding="{StaticResource MessageBubblePadding}"
                         Margin="{StaticResource MessageBubbleVertical}">
-                <Image Source="{x:Bind DirectItem.AnimatedMedia.Media.Url, Mode=OneWay}" MaxHeight="100"/>
+                <Image Source="{x:Bind DirectItem.AnimatedMedia.Media.Url, Mode=OneTime}" MaxHeight="100"/>
             </StackPanel>
             <ItemsControl x:Load="{x:Bind DirectItem.Reactions.Emojis.Count, Converter={StaticResource IntToIsEnabledConverter}, Mode=OneWay}"
                           ItemsSource="{x:Bind DirectItem.Reactions.Emojis, Mode=OneWay}"

@@ -30,7 +30,7 @@
                   Grid.Row="1">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="classes:GiphyItem">
-                    <Image Source="{x:Bind Images.FixedHeight.Url, Mode=OneWay}" 
+                    <Image Source="{x:Bind Images.FixedHeight.Url}" 
                            MaxHeight="120"
                            MaxWidth="120"/>
                 </DataTemplate>

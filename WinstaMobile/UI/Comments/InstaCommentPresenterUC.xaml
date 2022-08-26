@@ -101,7 +101,7 @@
                         <HyperlinkButton Command="{x:Bind ReplyCommand}"
                                          Margin="5,0,0,0">
                             <TextBlock>
-                                <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Reply}"/>
+                                <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Reply, Mode=OneTime}"/>
                             </TextBlock>
                         </HyperlinkButton>
 
@@ -125,12 +125,12 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <HyperlinkButton Content="{x:Bind Resources:LanguageManager.Instance.Instagram.LoadMoreComments}"
+            <HyperlinkButton Content="{x:Bind Resources:LanguageManager.Instance.Instagram.LoadMoreComments, Mode=OneTime}"
                              x:Load="{x:Bind Comment.HasMoreTailChildComments}"
                              Command="{x:Bind LoadMoreCommentsCommand}"
                              x:Name="LoadMoreReplies"/>
 
-            <HyperlinkButton Content="{x:Bind Resources:LanguageManager.Instance.Instagram.LoadMoreComments}"
+            <HyperlinkButton Content="{x:Bind Resources:LanguageManager.Instance.Instagram.LoadMoreComments, Mode=OneTime}"
                              x:Load="{x:Bind Comment.HasMoreHeadChildComments}"
                              Command="{x:Bind LoadMoreCommentsCommand}"
                              x:Name="LoadMoreHeadReplies"/>

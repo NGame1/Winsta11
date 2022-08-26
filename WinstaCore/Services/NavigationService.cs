@@ -27,6 +27,9 @@ namespace WinstaCore.Services
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        void OnPropertyChanged(string propertName)
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertName));
+
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             CanGoBack = Frame.CanGoBack;

@@ -38,14 +38,14 @@
 
         </muxc:PersonPicture>
 
-        <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+        <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneTime}"
                     CornerRadius="{StaticResource ControlCornerRadius}">
 
             <Image HorizontalAlignment="{x:Bind DirectItem.UserId, Converter={StaticResource UserIdToHorizontalAlignmentConverter}, Mode=OneWay}"
                    x:Name="imgMedia"
                    MaxWidth="185"/>
 
-            <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+            <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneTime}"
                         CornerRadius="{StaticResource ControlCornerRadius}"
                         Padding="{StaticResource MessageBubblePadding}"
                         Background="#80B00000">

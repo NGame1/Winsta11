@@ -64,12 +64,12 @@
                               x:Name="replyTip">
 
                 <muxc:TeachingTip.IconSource>
-                    <muxc:FontIconSource Glyph="{x:Bind Constants:FluentRegularFontCharacters.Reply}"
+                    <muxc:FontIconSource Glyph="{x:Bind Constants:FluentRegularFontCharacters.Reply, Mode=OneTime}"
                                                      FontFamily="{StaticResource FluentSystemIconsRegular}"/>
                 </muxc:TeachingTip.IconSource>
             </muxc:TeachingTip>
 
-            <TextBox PlaceholderText="{x:Bind Resources:LanguageManager.Instance.Instagram.CommentPlaceholder}"
+            <TextBox PlaceholderText="{x:Bind Resources:LanguageManager.Instance.Instagram.CommentPlaceholder, Mode=OneTime}"
                      Text="{x:Bind ViewModel.CommentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      AcceptsReturn="True"
                      x:Name="txtCooment"

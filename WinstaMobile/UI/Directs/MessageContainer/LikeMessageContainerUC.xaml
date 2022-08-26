@@ -38,7 +38,7 @@
 
         <StackPanel Padding="{StaticResource MessageBubblePadding}"
                     Margin="{StaticResource MessageBubbleHorizontal}"
-                    MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+                    MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth}"
                     CornerRadius="{StaticResource ControlCornerRadius}">
 
             <TextBlock FontFamily="{StaticResource FluentIcons}"

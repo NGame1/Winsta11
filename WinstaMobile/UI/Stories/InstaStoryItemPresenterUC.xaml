@@ -134,7 +134,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBox Text="{x:Bind ReplyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     PlaceholderText="{x:Bind Resources:LanguageManager.Instance.Instagram.ReplyPlaceholder}"
+                     PlaceholderText="{x:Bind Resources:LanguageManager.Instance.Instagram.ReplyPlaceholder, Mode=OneTime}"
                      LostFocus="Element_LostFocus"
                      GotFocus="Element_GotFocus"
                      AcceptsReturn="False"

@@ -34,7 +34,7 @@ namespace ViewModels.Media
                 await lst.SmoothScrollIntoViewWithItemAsync(TargetMedia,
                       disableAnimation: true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;

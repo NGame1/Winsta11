@@ -38,7 +38,7 @@
 
         </muxc:PersonPicture>
 
-        <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+        <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneTime}"
                     CornerRadius="{StaticResource ControlCornerRadius}">
 
             <TextBlock Text="{x:Bind DirectItem.StoryShare.Title, Mode=OneWay}"/>
@@ -48,7 +48,7 @@
                    x:Name="imgMedia"
                    MaxWidth="185"/>
 
-            <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+            <StackPanel MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneTime}"
                         CornerRadius="{StaticResource ControlCornerRadius}"
                         Padding="{StaticResource MessageBubblePadding}"
                         Background="#80B00000"

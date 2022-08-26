@@ -37,7 +37,7 @@
         </muxc:PersonPicture>
 
         <StackPanel Padding="{StaticResource MessageBubblePadding}"
-                    MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneWay}"
+                    MaxWidth="{x:Bind ViewsDirect:DirectThreadView.MessageBubbleMaxWidth, Mode=OneTime}"
                     Background="#80B00000"
                     CornerRadius="{StaticResource ControlCornerRadius}">
             <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.Instagram.UnsupportedMessageType}"

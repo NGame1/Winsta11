@@ -244,7 +244,11 @@ namespace WinstaCore
             {
                 if (users != null)
                 {
-                    return JsonConvert.DeserializeObject<Dictionary<string, string>>(users.ToString());
+                    var str = users.ToString();
+                    var res =  JsonConvert.DeserializeObject<Dictionary<string, string>>(str);
+                    if (res != null)
+                        return res;
+                    else return new Dictionary<string, string>();
                 }
                 else
                 {

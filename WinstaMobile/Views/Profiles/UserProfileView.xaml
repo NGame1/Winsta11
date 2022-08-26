@@ -92,7 +92,7 @@
                                 <HyperlinkButton Margin="0,0,5,0">
                                     <TextBlock>
                                         <Run Text="{x:Bind ViewModel.User.MediaCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
-                                        <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Posts}"/>
+                                        <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Posts, Mode=OneTime}"/>
                                     </TextBlock>
                                 </HyperlinkButton>
 
@@ -100,7 +100,7 @@
                                                  Margin="0,0,5,0">
                                     <TextBlock>
                                         <Run Text="{x:Bind ViewModel.User.FollowerCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
-                                        <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Followers}"/>
+                                        <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Followers, Mode=OneTime}"/>
                                     </TextBlock>
                                 </HyperlinkButton>
 
@@ -108,7 +108,7 @@
                                                  Margin="0,0,5,0">
                                     <TextBlock>
                                         <Run Text="{x:Bind ViewModel.User.FollowingCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
-                                        <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Followings}"/>
+                                        <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Followings, Mode=OneTime}"/>
                                     </TextBlock>
                                 </HyperlinkButton>
                             </StackPanel>
@@ -117,7 +117,7 @@
                                        TextAlignment="Center"
                                        Margin="0,0,5,0">
                                 <Run Text="{x:Bind ViewModel.User.UserName}"/>
-                                <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.IsFollowingYou}"/>
+                                <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.IsFollowingYou, Mode=OneTime}"/>
                             </TextBlock>
 
                         </StackPanel>
@@ -188,7 +188,7 @@
                     </ListView.ItemContainerStyle>
 
                     <ListView.Header>
-                        <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Highlights}"
+                        <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Highlights, Mode=OneTime}"
                                    RenderTransformOrigin="0.5,0.5" 
                                    Margin="-30,0,16,0">
                             <TextBlock.RenderTransform>
