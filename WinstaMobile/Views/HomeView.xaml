@@ -12,8 +12,8 @@
     xmlns:local="using:WinstaMobile.Views"
     x:Class="WinstaMobile.Views.HomeView"
     xmlns:Resources="using:Resources" 
-    xmlns:VM="using:ViewModels" xmlns:Media="using:Microsoft.UI.Xaml.Media"
-                mc:Ignorable="d">
+    xmlns:VM="using:ViewModels"
+    mc:Ignorable="d">
 
     <local:BasePage.Resources>
         <DataTemplate x:Key="BroadcastTemplate" x:DataType="stories:WinstaStoryItem">

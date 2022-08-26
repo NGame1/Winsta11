@@ -505,6 +505,10 @@
     <Content Include="..\WinstaNext\Assets\Wide310x150Logo.scale-400.png">
       <Link>Assets\Wide310x150Logo.scale-400.png</Link>
     </Content>
+    <Content Include="..\WinstaNext\Templates\ToastNotification.xml">
+      <Link>Templates\ToastNotification.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
