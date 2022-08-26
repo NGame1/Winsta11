@@ -284,6 +284,12 @@
     <Compile Include="Views\Account\TwoFactorAuthView.xaml.cs">
       <DependentUpon>TwoFactorAuthView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Activities\ActivitiesView.xaml.cs">
+      <DependentUpon>ActivitiesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Activities\FollowRequestsView.xaml.cs">
+      <DependentUpon>FollowRequestsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\Comments\CommentLikersView.xaml.cs">
       <DependentUpon>CommentLikersView.xaml</DependentUpon>
@@ -694,6 +700,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Account\TwoFactorAuthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Activities\ActivitiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Activities\FollowRequestsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -38,6 +38,7 @@ using WinstaCore.Utils;
 using WinstaMobile;
 using WinstaMobile.Views;
 using WinstaMobile.Views.Account;
+using WinstaMobile.Views.Activities;
 using WinstaMobile.Views.Directs;
 using WinstaMobile.Views.Media;
 using WinstaMobile.Views.Profiles;
@@ -132,7 +133,8 @@ namespace WinstaMobile
             serviceCollection.AddTransient<IChallengeRequiredView>(x => new ChallengeRequiredView());
 
             //Activities View
-            //serviceCollection.AddTransient<IActivitiesView>(x => new ActivitiesView());
+            serviceCollection.AddTransient<IActivitiesView>(x => new ActivitiesView());
+            serviceCollection.AddTransient<IFollowRequestsView>(x => new FollowRequestsView());
 
             //Directs View
             serviceCollection.AddTransient<IDirectsListView>(x => new DirectsListView());
