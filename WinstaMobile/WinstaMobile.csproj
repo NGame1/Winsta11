@@ -238,6 +238,9 @@
     <Compile Include="UI\Generic\SaveButtonControl.xaml.cs">
       <DependentUpon>SaveButtonControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Media\CoAuthorUserProviderUC.xaml.cs">
+      <DependentUpon>CoAuthorUserProviderUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Media\InstaMediaCarouselPresenterUC.xaml.cs">
       <DependentUpon>InstaMediaCarouselPresenterUC.xaml</DependentUpon>
     </Compile>
@@ -627,6 +630,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Generic\SaveButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Media\CoAuthorUserProviderUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
