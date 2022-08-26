@@ -1,22 +1,22 @@
 ﻿using InstagramApiSharp.API;
-using InstagramApiSharp.Classes;
 using InstagramApiSharp.Classes.Models;
+using InstagramApiSharp.Classes;
 using InstagramApiSharp.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using PropertyChanged;
 using System;
 using System.Threading.Tasks;
+using WinstaCore.Services;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using WinstaCore.Services;
-using WinstaNext.Views.Profiles;
+using WinstaMobile.Views.Profiles;
 #nullable enable
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace WinstaNext.UI.Stories
+namespace WinstaMobile.UI.Stories
 {
     [AddINotifyPropertyChangedInterface]
     public sealed partial class InstaStoryItemPresenterUC : UserControl

@@ -1,14 +1,86 @@
-﻿<Page
-    x:Class="WinstaMobile.Views.Stories.StoryCarouselView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WinstaMobile.Views.Stories"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+﻿<views:BasePage
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="WinstaMobile.Views.Stories.StoryCarouselView"
+    xmlns:storiesView="using:WinstaMobile.Views.Stories"
+    xmlns:TemplateSelectors="using:TemplateSelectors"
+    xmlns:models="using:Abstractions.Stories"
+    xmlns:views="using:WinstaMobile.Views"
+    xmlns:VM="using:ViewModels.Stories"
+    mc:Ignorable="d">
+
+    <views:BasePage.Resources>
+        
+        <DataTemplate x:DataType="models:WinstaStoryItem" 
+                      x:Key="StoryTemplate">
+
+            <storiesView:StoryItemView StoryRoot="{x:Bind Mode=OneWay}"
+                                       ItemsEnded="StoryItemView_ItemsEnded"/>
+
+        </DataTemplate>
+
+        <DataTemplate x:DataType="models:WinstaStoryItem" 
+                      x:Key="LiveTemplate">
+
+            <storiesView:LivePlayerView StoryRoot="{x:Bind Mode=OneWay}"/>
+
+        </DataTemplate>
+
+        <DataTemplate x:DataType="models:WinstaStoryItem" 
+                      x:Key="HashtagStoryTemplate">
+
+            <storiesView:HashtagStoryItemView StoryRoot="{x:Bind Mode=OneWay}"/>
+
+        </DataTemplate>
+
+        <DataTemplate x:DataType="models:WinstaStoryItem" 
+                      x:Key="HighlightTemplate">
+
+            <storiesView:StoryItemView StoryRoot="{x:Bind Mode=OneWay}"
+                                       ItemsEnded="StoryItemView_ItemsEnded"/>
+
+        </DataTemplate>
+
+        <TemplateSelectors:WinstaStoryItemTemplateSelector x:Key="WinstaStoryItemTemplateSelector"
+                           HashtagStoryTemplate="{StaticResource HashtagStoryTemplate}"
+                           HighlightTemplate="{StaticResource HighlightTemplate}"
+                           StoryTemplate="{StaticResource StoryTemplate}"
+                           LiveTemplate="{StaticResource LiveTemplate}"/>
+
+    </views:BasePage.Resources>
+
+    <views:BasePage.DataContext>
+        <VM:StoryCarouselViewModel x:Name="ViewModel"/>
+    </views:BasePage.DataContext>
 
     <Grid>
+        <controls:Carousel ItemsSource="{x:Bind ViewModel.Stories, Mode=OneWay}"
+                           SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}"
+                           ItemTemplateSelector="{StaticResource WinstaStoryItemTemplateSelector}"
+                           Height="{x:Bind ViewModel.PageHeight, Mode=OneWay}"
+                           Width="{x:Bind ViewModel.PageWidth, Mode=OneWay}"
+                           Orientation="Horizontal"
+                           InvertPositive="True"
+                           ItemDepth="250"
+                           ItemMargin="1"
+                           ItemRotationX="0"
+                           ItemRotationY="0"
+                           ItemRotationZ ="0"
+                           x:Name="carousel">
 
+            <controls:Carousel.ItemContainerStyle>
+                <Style TargetType="controls:CarouselItem">
+                    <Setter Property="IsFocusEngagementEnabled" Value="True"/>
+                </Style>
+            </controls:Carousel.ItemContainerStyle>
+
+            <controls:Carousel.EasingFunction>
+                <CubicEase EasingMode="EaseOut"/>
+            </controls:Carousel.EasingFunction>
+
+        </controls:Carousel>
     </Grid>
-</Page>
+</views:BasePage>

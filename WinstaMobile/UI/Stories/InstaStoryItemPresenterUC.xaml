@@ -1,0 +1,167 @@
+﻿<UserControl x:DefaultBindMode="OneWay" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:stickersview="using:WinstaMobile.UI.Stories.StickersView" 
+    xmlns:StoriesConverters="using:WinstaNext.Converters.Stories"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    x:Class="WinstaMobile.UI.Stories.InstaStoryItemPresenterUC"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Converters="using:WinstaNext.Converters.Media"
+    xmlns:stories="using:WinstaMobile.UI.Flyouts.Stories"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:generic="using:WinstaMobile.UI.Generic"
+    xmlns:Resources="using:Resources" 
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <!--<DataTemplate x:Key="ImageTemplate" x:DataType="models:InstaStoryItem">
+            <local:StoryMediaPlayerTemplatedControl Story="{x:Bind Mode=OneWay}"/>
+        </DataTemplate>-->
+
+        <!--<TemplateSelectors:CarouselMediaTemplateSelector x:Key="CarouselMediaTemplateSelector"/>-->
+
+        <StoriesConverters:StoryItemImageConverter x:Key="StoryItemImageConverter"/>
+        <StoriesConverters:StoryItemVideoConverter x:Key="StoryItemVideoConverter"/>
+        <Converters:MediaDateTimeconverter x:Key="MediaDateTimeconverter"/>
+        <Converters:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="#01000000"
+              Grid.RowSpan="3"
+              Grid.Row="0">
+
+            <Image Source="{x:Bind Story, Converter={StaticResource StoryItemImageConverter}, Mode=OneWay}"
+                   PointerReleased="Element_PointerReleased"
+                   PointerPressed="Element_PointerPressed"
+                   ImageOpened="imageviewer_ImageOpened"
+                   x:Load="{x:Bind LoadImage}"
+                   x:Name="imageviewer"
+                   Stretch="Fill"/>
+
+            <MediaElement PosterSource="{x:Bind Story, Converter={StaticResource StoryItemImageConverter}, Mode=OneWay}"
+                          Source="{x:Bind Story, Converter={StaticResource StoryItemVideoConverter}, Mode=OneWay}"
+                          PointerReleased="Element_PointerReleased"
+                          PointerPressed="Element_PointerPressed"
+                          MediaEnded="videoplayer_MediaEnded"
+                          x:Load="{x:Bind LoadVideo}"
+                          x:Name="videoplayer"
+                          AutoPlay="False"
+                          Stretch="Fill"/>
+            <stickersview:StickersViewGrid Presenter="{x:Bind presenterUC}"
+                                           HorizontalAlignment="Stretch" 
+                                           VerticalAlignment="Stretch"
+                                           x:Name="StickersViewGrid"/>
+        </Grid>
+
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0.5,0"
+                                     EndPoint="0.5,1">
+                    <GradientStop Color="#A0000000" 
+                                  Offset="0"/>
+                    <GradientStop Color="#00000000"
+                                  Offset="0.8"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="0"
+                        Padding="5">
+                <muxc:PersonPicture ProfilePicture="{x:Bind Story.User, Converter={StaticResource InstaUserProfilePictureConverter}}" 
+                                    DisplayName="{x:Bind Story.User.UserName}"
+                                    Margin="0,0,5,0"
+                                    Height="35"
+                                    Width="35"/>
+
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+
+                        <HyperlinkButton CommandParameter="{x:Bind Story.User}"
+                                         Command="{x:Bind NavigateToUserProfileCommand}"
+                                         HorizontalAlignment="Stretch"
+                                         Margin="0,0,5,0"
+                                         Padding="0">
+                            <HyperlinkButton.Content>
+                                <TextBlock Text="{x:Bind Story.User.UserName}"
+                                           TextTrimming="CharacterEllipsis"
+                                           TextAlignment="Center"
+                                           TextWrapping="Wrap"
+                                           MaxLines="1"/>
+                            </HyperlinkButton.Content>
+                        </HyperlinkButton>
+
+                        <FontIcon Glyph="&#x02AC;" 
+                                  FontSize="12"
+                                  Margin="0,0,5,0"
+                                  Foreground="SkyBlue" 
+                                  Visibility="{x:Bind Story.User.IsVerified}"
+                                  FontFamily="{StaticResource FluentSystemIconsFilled}"/>
+
+                        <TextBlock Text="{x:Bind Story.TakenAt, Converter={StaticResource MediaDateTimeconverter}, Mode=OneWay}"
+                                   Margin="0,0,5,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="2" Padding="8,3">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
+                    <GradientStop Color="#A0000000" Offset="0"/>
+                    <GradientStop Color="#00000000" Offset="0.8"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Text="{x:Bind ReplyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     PlaceholderText="{x:Bind Resources:LanguageManager.Instance.Instagram.ReplyPlaceholder}"
+                     LostFocus="Element_LostFocus"
+                     GotFocus="Element_GotFocus"
+                     AcceptsReturn="False"
+                     Grid.Column="0"/>
+
+            <generic:LikeButtonControl IsLiked="{x:Bind Story.HasLiked, Mode=TwoWay}"
+                                       Command="{x:Bind LikeStoryCommand}"
+                                       Margin="3,0,0,0"
+                                       Grid.Column="1"/>
+
+            <Button Command="{x:Bind ReplyStoryCommand, Mode=OneWay}" 
+                    FontFamily="{StaticResource FluentIcons}" 
+                    Content="&#xE122;"
+                    Margin="3,0,0,0"
+                    Grid.Column="2"/>
+
+            <Button FontFamily="{StaticResource FluentIcons}"
+                    Content="&#xE10C;"
+                    Margin="3,0,0,0"
+                    Grid.Column="3">
+                <Button.Flyout>
+                    <stories:InstaStoryItemFlyout Opened="InstaStoryItemFlyout_Opened"
+                                                  Closed="InstaStoryItemFlyout_Closed"
+                                                  StoryItem="{x:Bind Story}"/>
+                </Button.Flyout>
+            </Button>
+
+        </Grid>
+    </Grid>
+</UserControl>
