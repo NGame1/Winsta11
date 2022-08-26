@@ -1,4 +1,5 @@
-﻿using WinstaCore.Interfaces.Views.Settings;
+﻿using Resources;
+using WinstaCore.Interfaces.Views.Settings;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -9,7 +10,7 @@ namespace WinstaMobile.Views.Settings
     /// </summary>
     public sealed partial class AccountSettings : BasePage, IAccountSettings
     {
-        public override string PageHeader { get; protected set; } = "Account Settings";
+        public override string PageHeader { get; protected set; } = LanguageManager.Instance.Settings.AccountSettings;
 
         public AccountSettings()
         {

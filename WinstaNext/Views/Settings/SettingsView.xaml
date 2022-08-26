@@ -29,9 +29,9 @@
                 </TransitionCollection>
             </StackPanel.ChildrenTransitions>
 
-            <controls:NavigationSettingContent Title="Account Settings"
+            <controls:NavigationSettingContent Title="{x:Bind Resources:LanguageManager.Instance.Settings.AccountSettings, Mode=OneTime}"
                                                Command="{x:Bind ViewModel.AccountSettingsNavigateCommand}"
-                                               Description="Manipulate your Instagram's account settings.">
+                                               Description="{x:Bind Resources:LanguageManager.Instance.Settings.AccountSettingsDescription, Mode=OneTime}">
                 <controls:NavigationSettingContent.Icon>
                     <FontIcon FontFamily="{StaticResource FluentSystemIconsRegular}" Glyph="&#xF5BE;" />
                 </controls:NavigationSettingContent.Icon>
