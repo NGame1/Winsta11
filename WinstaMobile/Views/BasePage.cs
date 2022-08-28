@@ -11,7 +11,7 @@ namespace WinstaMobile.Views
 
         public abstract string PageHeader { get; protected set; }
 
-        public Thickness PageMargin { get => new(12, 12, 12, 0); }
+        public Thickness PageMargin { get => new(0); }
 
         public BaseViewModel PageViewModel { get; private set; }
         
