@@ -1,7 +1,5 @@
 ﻿using Resources;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using WinstaNext.Converters;
 
 namespace WinstaCore.Enums
 {
