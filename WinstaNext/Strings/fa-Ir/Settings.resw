@@ -141,6 +141,15 @@
   <data name="ForceThreeColumnsDescription" xml:space="preserve">
     <value>پروفایل های کاربران، هشتگ ها و... را به صورت سه ستونه نمایش داده شود.</value>
   </data>
+  <data name="High" xml:space="preserve">
+    <value>بالا</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>پایین</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>متوسط</value>
+  </data>
   <data name="PlaybackQuality" xml:space="preserve">
     <value>کیفیت پخش</value>
   </data>

@@ -171,6 +171,9 @@ namespace Resources
         public string DownloadLocation { get => _resource.GetString(nameof(DownloadLocation)); }
         public string ForceThreeColumns { get => _resource.GetString(nameof(ForceThreeColumns)); }
         public string ForceThreeColumnsDescription { get => _resource.GetString(nameof(ForceThreeColumnsDescription)); }
+        public string High { get => _resource.GetString(nameof(High)); }
+        public string Low { get => _resource.GetString(nameof(Low)); }
+        public string Medium { get => _resource.GetString(nameof(Medium)); }
         public string PlaybackQuality { get => _resource.GetString(nameof(PlaybackQuality)); }
         public string PlaybackQualityDescription { get => _resource.GetString(nameof(PlaybackQualityDescription)); }
         public string PrivateAccount { get => _resource.GetString(nameof(PrivateAccount)); }

@@ -141,6 +141,15 @@
   <data name="ForceThreeColumnsDescription" xml:space="preserve">
     <value>Forcibly show users, hashtags and etc. views with three columns</value>
   </data>
+  <data name="High" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
   <data name="PlaybackQuality" xml:space="preserve">
     <value>Playback quality</value>
   </data>

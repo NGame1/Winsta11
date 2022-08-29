@@ -165,7 +165,8 @@ namespace ViewModels
                 {
                     var DirectsText = LanguageManager.Instance.Instagram.Directs;
                     var menu = MenuItems.FirstOrDefault(x => x.Text == DirectsText);
-                    menu.Badge = count.ToString();
+                    if (menu != null)
+                        menu.Badge = count.ToString();
                 }, null);
             }
         }

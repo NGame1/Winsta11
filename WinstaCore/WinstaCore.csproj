@@ -246,6 +246,10 @@
       <Project>{ecc0defb-3034-44c2-a4b6-aa443f07d942}</Project>
       <Name>InstagramApiSharp.UWP</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{6ff6e373-2336-47c5-9e08-3ee537de2e76}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
