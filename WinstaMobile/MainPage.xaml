@@ -40,8 +40,8 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="PaneHeadStk.Margin" Value="0,40,0,0"/>
-                        <Setter Target="ScrollViewerContent.Margin" Value="0"/>
+                        <!--<Setter Target="PaneHeadStk.Margin" Value="0,40,0,0"/>-->
+                        <Setter Target="ScrollViewerContent.Margin" Value="6,0,6,0"/>
                         <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
                         <Setter Target="AppTitleLeftBorder.Width" Value="86" />
                     </VisualState.Setters>
@@ -51,7 +51,7 @@
                         <AdaptiveTrigger MinWindowWidth="{x:Bind NavigationView.CompactModeThresholdWidth, Mode=OneWay}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ScrollViewerContent.Margin" Value="0"/>
+                        <Setter Target="ScrollViewerContent.Margin" Value="6,0,6,0"/>
                         <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
                         <Setter Target="AppTitleLeftBorder.Width" Value="48" />
                     </VisualState.Setters>
@@ -61,7 +61,7 @@
                         <AdaptiveTrigger MinWindowWidth="{x:Bind NavigationView.ExpandedModeThresholdWidth, Mode=OneWay}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ScrollViewerContent.Margin" Value="0"/>
+                        <Setter Target="ScrollViewerContent.Margin" Value="6,0,6,0"/>
                         <Setter Target="ContentFrame.Padding" Value="0,0,0,0"/>
                         <Setter Target="AppTitleLeftBorder.Width" Value="48" />
                     </VisualState.Setters>
