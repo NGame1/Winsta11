@@ -19,6 +19,7 @@ using WinstaCore.Constants;
 using WinstaCore.Interfaces.Views.Profiles;
 using WinstaCore.Interfaces.Views.Medias;
 using WinstaCore.Services;
+using Windows.UI.Xaml.Data;
 #nullable enable
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
@@ -118,78 +119,78 @@ namespace WinstaMobile.UI.Stories.StickersView
                     this.Children.Add(rect);
                 }
             }
-            //if (StoryItem.StoryPolls.Any())
-            //{
-            //    for (int i = 0; i < StoryItem.StoryPolls.Count; i++)
-            //    {
-            //        var poll = StoryItem.StoryPolls.ElementAt(i);
-            //        var rect = new Grid() { CornerRadius = new(14) };
-            //        var pollSticker = new PollStickerUC();
-            //        rect.Children.Add(pollSticker);
-            //        SetStickerPosition(ref rect, poll.Height, poll.Width, poll.X, poll.Y, poll.Rotation);
-            //        this.Children.Add(rect);
-            //        pollSticker.SetBinding(PollStickerUC.PollProperty, new Binding()
-            //        {
-            //            Source = poll,
-            //            Mode = BindingMode.OneWay,
-            //            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            //        });
-            //    }
-            //}
-            //if (StoryItem.StoryQuestions.Any())
-            //{
-            //    for (int i = 0; i < StoryItem.StoryQuestions.Count; i++)
-            //    {
-            //        var question = StoryItem.StoryQuestions.ElementAt(i);
-            //        var rect = new Grid() { CornerRadius = new(14) };
-            //        var questionSticker = new QuestionStickerUC();
-            //        rect.Children.Add(questionSticker);
-            //        SetStickerPosition(ref rect, question.Height, question.Width, question.X, question.Y, question.Rotation);
-            //        this.Children.Add(rect);
-            //        questionSticker.SetBinding(QuestionStickerUC.QuestionProperty, new Binding()
-            //        {
-            //            Source = question,
-            //            Mode = BindingMode.OneWay,
-            //            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            //        });
-            //    }
-            //}
-            //if (StoryItem.StorySliders.Any())
-            //{
-            //    for (int i = 0; i < StoryItem.StorySliders.Count; i++)
-            //    {
-            //        var slider = StoryItem.StorySliders.ElementAt(i);
-            //        var rect = new Grid() { CornerRadius = new(5) };
-            //        var slidernSticker = new SliderStickerUC();
-            //        rect.Children.Add(slidernSticker);
-            //        SetStickerPosition(ref rect, slider.Height, slider.Width, slider.X, slider.Y, slider.Rotation);
-            //        this.Children.Add(rect);
-            //        slidernSticker.SetBinding(SliderStickerUC.SliderProperty, new Binding()
-            //        {
-            //            Source = slider,
-            //            Mode = BindingMode.OneWay,
-            //            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            //        });
-            //    }
-            //}
-            //if (StoryItem.StoryQuizs.Any())
-            //{
-            //    for (int i = 0; i < StoryItem.StoryQuizs.Count; i++)
-            //    {
-            //        var quiz = StoryItem.StoryQuizs.ElementAt(i);
-            //        var rect = new Grid() { CornerRadius = new(5) };
-            //        var quizSticker = new QuizStickerUC();
-            //        rect.Children.Add(quizSticker);
-            //        SetStickerPosition(ref rect, quiz.Height, quiz.Width, quiz.X, quiz.Y, quiz.Rotation);
-            //        this.Children.Add(rect);
-            //        quizSticker.SetBinding(QuizStickerUC.QuizProperty, new Binding()
-            //        {
-            //            Source = quiz,
-            //            Mode = BindingMode.OneWay,
-            //            UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            //        });
-            //    }
-            //}
+            if (StoryItem.StoryPolls.Any())
+            {
+                for (int i = 0; i < StoryItem.StoryPolls.Count; i++)
+                {
+                    var poll = StoryItem.StoryPolls.ElementAt(i);
+                    var rect = new Grid() { CornerRadius = new(14) };
+                    var pollSticker = new PollStickerUC();
+                    rect.Children.Add(pollSticker);
+                    SetStickerPosition(ref rect, poll.Height, poll.Width, poll.X, poll.Y, poll.Rotation);
+                    this.Children.Add(rect);
+                    pollSticker.SetBinding(PollStickerUC.PollProperty, new Binding()
+                    {
+                        Source = poll,
+                        Mode = BindingMode.OneWay,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    });
+                }
+            }
+            if (StoryItem.StoryQuestions.Any())
+            {
+                for (int i = 0; i < StoryItem.StoryQuestions.Count; i++)
+                {
+                    var question = StoryItem.StoryQuestions.ElementAt(i);
+                    var rect = new Grid() { CornerRadius = new(14) };
+                    var questionSticker = new QuestionStickerUC();
+                    rect.Children.Add(questionSticker);
+                    SetStickerPosition(ref rect, question.Height, question.Width, question.X, question.Y, question.Rotation);
+                    this.Children.Add(rect);
+                    questionSticker.SetBinding(QuestionStickerUC.QuestionProperty, new Binding()
+                    {
+                        Source = question,
+                        Mode = BindingMode.OneWay,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    });
+                }
+            }
+            if (StoryItem.StorySliders.Any())
+            {
+                for (int i = 0; i < StoryItem.StorySliders.Count; i++)
+                {
+                    var slider = StoryItem.StorySliders.ElementAt(i);
+                    var rect = new Grid() { CornerRadius = new(5) };
+                    var slidernSticker = new SliderStickerUC();
+                    rect.Children.Add(slidernSticker);
+                    SetStickerPosition(ref rect, slider.Height, slider.Width, slider.X, slider.Y, slider.Rotation);
+                    this.Children.Add(rect);
+                    slidernSticker.SetBinding(SliderStickerUC.SliderProperty, new Binding()
+                    {
+                        Source = slider,
+                        Mode = BindingMode.OneWay,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    });
+                }
+            }
+            if (StoryItem.StoryQuizs.Any())
+            {
+                for (int i = 0; i < StoryItem.StoryQuizs.Count; i++)
+                {
+                    var quiz = StoryItem.StoryQuizs.ElementAt(i);
+                    var rect = new Grid() { CornerRadius = new(5) };
+                    var quizSticker = new QuizStickerUC();
+                    rect.Children.Add(quizSticker);
+                    SetStickerPosition(ref rect, quiz.Height, quiz.Width, quiz.X, quiz.Y, quiz.Rotation);
+                    this.Children.Add(rect);
+                    quizSticker.SetBinding(QuizStickerUC.QuizProperty, new Binding()
+                    {
+                        Source = quiz,
+                        Mode = BindingMode.OneWay,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    });
+                }
+            }
         }
 
         void Media_Tapped(object sender, TappedRoutedEventArgs e)
