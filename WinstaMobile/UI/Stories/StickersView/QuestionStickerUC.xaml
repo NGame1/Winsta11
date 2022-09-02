@@ -1,0 +1,54 @@
+﻿<UserControl x:DefaultBindMode="OneWay"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    x:Class="WinstaMobile.UI.Stories.StickersView.QuestionStickerUC"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:stories="using:WinstaNext.Converters.Stories"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <stories:PollStickerColorConverter x:Key="PollStickerColorConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid Background="{x:Bind Question.QuestionSticker.BackgroundColor}"
+              Margin="0,18,0,0"
+              BorderThickness="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Ellipse HorizontalAlignment="Center"
+                     VerticalAlignment="Top"
+                     Margin="0,-22,0,0" 
+                     Stroke="Black" 
+                     Height="40" 
+                     Width="40">
+
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="{x:Bind Question.QuestionSticker.ProfilePicUrl}"/>
+                </Ellipse.Fill>
+
+            </Ellipse>
+
+            <TextBlock Foreground="{x:Bind Question.QuestionSticker.TextColor}"
+                       FontFamily="{StaticResource AvenyInstagramMediumFont}"
+                       Text="{x:Bind Question.QuestionSticker.Question}"
+                       TextAlignment="Center"
+                       Margin="14,14,14,0"
+                       TextWrapping="Wrap"
+                       FontSize="16"
+                       Grid.Row="1"/>
+
+            <TextBox LostFocus="TextBox_LostFocus"
+                     GotFocus="TextBox_GotFocus"
+                     KeyDown="TextBox_KeyDown"
+                     Background="LightGray"
+                     Margin="12,16,12,12"
+                     Grid.Row="2"/>
+        </Grid>
+    </Grid>
+</UserControl>
