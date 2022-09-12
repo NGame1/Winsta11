@@ -177,6 +177,9 @@
   <data name="Explore" xml:space="preserve">
     <value>اکسپلور</value>
   </data>
+  <data name="FacebookLogin" xml:space="preserve">
+    <value>ورود با حساب Facebook</value>
+  </data>
   <data name="FailureToastNotification" xml:space="preserve">
     <value>دانلود ناموفق بود.</value>
   </data>

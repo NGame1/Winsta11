@@ -137,6 +137,9 @@
     <Compile Include="..\WinstaNext\Helpers\NotifyHelper.cs">
       <Link>Helpers\NotifyHelper.cs</Link>
     </Compile>
+    <Compile Include="..\WinstaNext\Helpers\UserAgentHelper.cs">
+      <Link>Helpers\UserAgentHelper.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>

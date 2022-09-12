@@ -1,8 +1,17 @@
-﻿using Windows.System;
+﻿using InstagramApiSharp.Helpers;
+using System;
+using Windows.System;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
+using Windows.Web.Http.Filters;
+using Windows.Web.Http;
 using WinstaCore.Interfaces.Views.Accounts;
+using WinstaCore.Helpers;
+using InstagramApiSharp.API;
+using InstagramApiSharp.Classes;
+using System.Xml.Linq;
+using System.Text;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -41,5 +50,12 @@ namespace WinstaMobile.Views.Account
             InputPane.TryHide();
             ViewModel.LoginCommand.Execute(null);
         }
+
+        private void webV_NavigationCompleted(Windows.UI.Xaml.Controls.WebView sender, Windows.UI.Xaml.Controls.WebViewNavigationCompletedEventArgs args)
+        {
+            if (InstaFbHelper.IsLoggedInFromUrl(args.Uri.ToString()))
+                ViewModel.CompleteLoginWithFacebook(args.Uri.ToString(), InstaFbHelper.FacebookAddress);
+        }
+
     }
 }

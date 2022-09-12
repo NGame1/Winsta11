@@ -143,6 +143,7 @@
     <Compile Include="Helpers\DownloadUploadHelper\UploadHelper.cs" />
     <Compile Include="Helpers\NotifyHelper.cs" />
     <Compile Include="Helpers\StringCipher.cs" />
+    <Compile Include="Helpers\UserAgentHelper.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

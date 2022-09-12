@@ -88,6 +88,7 @@ namespace Resources
         public string EditPost { get => _resource.GetString(nameof(EditPost)); }
         public string EnableCommenting { get => _resource.GetString(nameof(EnableCommenting)); }
         public string Explore { get => _resource.GetString(nameof(Explore)); }
+        public string FacebookLogin { get => _resource.GetString(nameof(FacebookLogin)); }
         public string FailureToastNotification { get => _resource.GetString(nameof(FailureToastNotification)); }
         public string Feed { get => _resource.GetString(nameof(Feed)); }
         public string Follow { get => _resource.GetString(nameof(Follow)); }

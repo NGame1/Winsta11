@@ -42,7 +42,13 @@
                     HorizontalAlignment="Stretch" 
                     Margin="12,12,12,0"
                     Grid.Row="3" />
-            
+
+            <HyperlinkButton Content="{x:Bind Resources:LanguageManager.Instance.Instagram.FacebookLogin}"
+                             Command="{x:Bind ViewModel.FacebookLoginCommand}"
+                             CommandParameter="{x:Bind webV, Mode=OneWay}"
+                             HorizontalAlignment="Center"
+                             Margin="0,12,0,0"/>
+
         </StackPanel>
 
         <!-- Background="#A0000000" -->
@@ -63,5 +69,21 @@
                            Margin="0,12"/>
             </StackPanel>
         </Grid>
+
+        <Grid Visibility="{x:Bind ViewModel.FacebookLoginVisibility, Mode=OneWay}"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+
+            <WebView NavigationCompleted="webV_NavigationCompleted"
+                     x:Name="webV"/>
+
+            <Button Command="{x:Bind ViewModel.FacebookLoginCommand}"
+                    CommandParameter="{x:Bind webV, Mode=OneWay}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Content="X"/>
+            
+        </Grid>
+
     </Grid>
 </views:BasePage>
