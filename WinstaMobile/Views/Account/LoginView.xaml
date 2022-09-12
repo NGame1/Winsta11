@@ -77,7 +77,7 @@
             <WebView NavigationCompleted="webV_NavigationCompleted"
                      x:Name="webV"/>
 
-            <Button Command="{x:Bind ViewModel.FacebookLoginCommand}"
+            <Button Command="{x:Bind ViewModel.HideFacebookLoginGridCommand}"
                     CommandParameter="{x:Bind webV, Mode=OneWay}"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"

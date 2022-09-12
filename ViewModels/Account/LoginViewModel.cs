@@ -27,12 +27,14 @@ namespace ViewModels.Account
         public string Password { get; set; }
         public AsyncRelayCommand LoginCommand { get; }
         public RelayCommand<WebView> FacebookLoginCommand { get; }
+        public RelayCommand HideFacebookLoginGridCommand { get; }
 
         public Visibility FacebookLoginVisibility { get; set; } = Visibility.Collapsed;
 
         public LoginViewModel()
         {
             Api = AppCore.Container.GetService<IInstaApi>();
+            HideFacebookLoginGridCommand = new(HideFacebookLoginGrid);
             FacebookLoginCommand = new(LoginWithFacebook);
             LoginCommand = new(LoginAsync);
         }
@@ -135,7 +137,10 @@ namespace ViewModels.Account
             }
             FacebookLoginVisibility = Visibility.Collapsed;
         }
-
+        void HideFacebookLoginGrid()
+        {
+            FacebookLoginVisibility = Visibility.Collapsed;
+        }
         private string GetUriCookies(Uri targetUri)
         {
             var httpBaseProtocolFilter = new HttpBaseProtocolFilter();
