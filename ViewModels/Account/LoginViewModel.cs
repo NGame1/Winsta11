@@ -98,14 +98,7 @@ namespace ViewModels.Account
         {
             FacebookLoginVisibility = Visibility.Visible;
             DeleteFacebookCookies();
-            var init = DateTime.UtcNow.ToUnixTimeMiliSeconds();
-            var url = "https://m.facebook.com/v2.3/dialog/oauth?app_id=124024574287414&cbt=$INIT$&e2e={\"init\":$INIT$}&sso=chrome_custom_tab&scope=email&state={\"0_auth_logger_id\":\"$LOGGERID$\"}&redirect_uri=fbconnect://cct.com.instagram.android&response_type=token,signed_request,graph_domain,granted_scopes&return_scopes=true";
-            url = url.Replace("$INIT$", init.ToString());
-            url = url.Replace("$LOGGERID$", Guid.NewGuid().ToString());
-            url = url.Replace("$CHALLENGE$", "");
-
-            var destinationUri = new Uri(url);
-            //Microsoft.UI.Xaml.Controls.we
+            var destinationUri = InstaFbHelper.GetFacebookLoginUri();
             webView.Source = destinationUri;
             //webView.Navigate(facebookLoginUri);
         }
