@@ -17,6 +17,7 @@ using InstagramApiSharp.Helpers;
 using System.Text;
 using Windows.UI.Xaml;
 using InstagramApiSharp;
+using System.Diagnostics;
 
 namespace ViewModels.Account
 {
@@ -97,11 +98,16 @@ namespace ViewModels.Account
         {
             FacebookLoginVisibility = Visibility.Visible;
             DeleteFacebookCookies();
-            var facebookLoginUri = InstaFbHelper.GetFacebookLoginUri();
-            var userAgent = Api.GetCurrentDevice().GenerateFacebookUserAgent(Api);
-            var userAgent2 = InstaFbHelper.GetFacebookUserAgent();
-            WebViewUserAgentHelper.SetUserAgent(userAgent);
-            webView.Navigate(facebookLoginUri);
+            var init = DateTime.UtcNow.ToUnixTimeMiliSeconds();
+            var url = "https://m.facebook.com/v2.3/dialog/oauth?app_id=124024574287414&cbt=$INIT$&e2e={\"init\":$INIT$}&sso=chrome_custom_tab&scope=email&state={\"0_auth_logger_id\":\"$LOGGERID$\"}&redirect_uri=fbconnect://cct.com.instagram.android&response_type=token,signed_request,graph_domain,granted_scopes&return_scopes=true";
+            url = url.Replace("$INIT$", init.ToString());
+            url = url.Replace("$LOGGERID$", Guid.NewGuid().ToString());
+            url = url.Replace("$CHALLENGE$", "");
+
+            var destinationUri = new Uri(url);
+            //Microsoft.UI.Xaml.Controls.we
+            webView.Source = destinationUri;
+            //webView.Navigate(facebookLoginUri);
         }
 
         public async void CompleteLoginWithFacebook(string html, Uri url)
@@ -141,6 +147,7 @@ namespace ViewModels.Account
         {
             FacebookLoginVisibility = Visibility.Collapsed;
         }
+
         private string GetUriCookies(Uri targetUri)
         {
             var httpBaseProtocolFilter = new HttpBaseProtocolFilter();

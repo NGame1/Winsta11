@@ -18,56 +18,59 @@
         <VM:LoginViewModel x:Name="ViewModel"/>
     </views:BasePage.DataContext>
 
-    <Grid Background="#80000000" MinWidth="300" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="12">
-        <StackPanel Padding="24,32">
-            <StackPanel HorizontalAlignment="Center"
+    <Grid>
+        <Grid Background="#80000000" MinWidth="300" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="12">
+            <StackPanel Padding="24,32">
+                <StackPanel HorizontalAlignment="Center"
                         Orientation="Horizontal"
                         Margin="0,0,0,12"
                         Grid.Row="0">
-                <Image Source="/Assets/Square44x44Logo.scale-200.png" Width="32" Height="32" Grid.Column="0"/>
-                <TextBlock VerticalAlignment="Center" Text="{x:Bind Resources:LanguageManager.Instance.General.ApplicationName}" FontSize="18" TextAlignment="Center" Grid.Column="1"/>
-            </StackPanel>
-            
-            <TextBox Margin="12,12,12,0" Text="{x:Bind ViewModel.UserIdentifier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="{x:Bind Resources:LanguageManager.Instance.General.UserIdentifier}" x:Name="txtUserIdentifier" Grid.Row="1" KeyDown="txtUserIdentifier_KeyDown"/>
+                    <Image Source="/Assets/Square44x44Logo.scale-200.png" Width="32" Height="32" Grid.Column="0"/>
+                    <TextBlock VerticalAlignment="Center" Text="{x:Bind Resources:LanguageManager.Instance.General.ApplicationName}" FontSize="18" TextAlignment="Center" Grid.Column="1"/>
+                </StackPanel>
 
-            <PasswordBox Password="{x:Bind ViewModel.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Margin="12,12,12,0" Text="{x:Bind ViewModel.UserIdentifier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="{x:Bind Resources:LanguageManager.Instance.General.UserIdentifier}" x:Name="txtUserIdentifier" Grid.Row="1" KeyDown="txtUserIdentifier_KeyDown"/>
+
+                <PasswordBox Password="{x:Bind ViewModel.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Header="{x:Bind Resources:LanguageManager.Instance.General.Password}" 
                          KeyDown="txtPassword_KeyDown"
                          x:Name="txtPassword" 
                          Margin="12,12,12,0"
                          Grid.Row="2"/>
 
-            <Button Content="{x:Bind Resources:LanguageManager.Instance.General.Login}"
+                <Button Content="{x:Bind Resources:LanguageManager.Instance.General.Login}"
                     Command="{x:Bind ViewModel.LoginCommand}"
                     HorizontalAlignment="Stretch" 
                     Margin="12,12,12,0"
                     Grid.Row="3" />
 
-            <HyperlinkButton Content="{x:Bind Resources:LanguageManager.Instance.Instagram.FacebookLogin}"
+                <HyperlinkButton Content="{x:Bind Resources:LanguageManager.Instance.Instagram.FacebookLogin}"
                              Command="{x:Bind ViewModel.FacebookLoginCommand}"
                              CommandParameter="{x:Bind webV, Mode=OneWay}"
                              HorizontalAlignment="Center"
                              Margin="0,12,0,0"/>
 
-        </StackPanel>
+            </StackPanel>
 
-        <!-- Background="#A0000000" -->
-        <Grid Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}"
+            <!-- Background="#A0000000" -->
+            <Grid Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}"
               HorizontalAlignment="Stretch" 
               VerticalAlignment="Stretch">
 
-            <Grid.Background>
-                <brushes:BackdropBlurBrush FallbackColor="Black"
+                <Grid.Background>
+                    <brushes:BackdropBlurBrush FallbackColor="Black"
                                            Opacity="0.99"
                                            Amount="8"/>
-            </Grid.Background>
-            
-            <StackPanel VerticalAlignment="Center">
-                <ProgressRing />
-                <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}"
+                </Grid.Background>
+
+                <StackPanel VerticalAlignment="Center">
+                    <ProgressRing />
+                    <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}"
                            TextAlignment="Center"
                            Margin="0,12"/>
-            </StackPanel>
+                </StackPanel>
+            </Grid>
+
         </Grid>
 
         <Grid Visibility="{x:Bind ViewModel.FacebookLoginVisibility, Mode=OneWay}"
@@ -75,6 +78,8 @@
               VerticalAlignment="Stretch">
 
             <WebView NavigationCompleted="webV_NavigationCompleted"
+                     PermissionRequested="webV_PermissionRequested"
+                     UnsupportedUriSchemeIdentified="webV_UnsupportedUriSchemeIdentified"
                      x:Name="webV"/>
 
             <Button Command="{x:Bind ViewModel.HideFacebookLoginGridCommand}"
@@ -82,8 +87,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Content="X"/>
-            
-        </Grid>
 
+        </Grid>
     </Grid>
 </views:BasePage>
