@@ -36,6 +36,13 @@ namespace Core.Collections.IncrementalSources.Directs
             InsertItem(-2, new(msg, me));
         }
 
+        public void InsertNewMessage(InstaDirectInboxItem msg, InstaUserShort? user)
+        {
+            if(user == null)
+                user = AppCore.Container.GetService<InstaUserShort>();
+            InsertItem(-2, new(msg, user));
+        }
+
         public void InsertNewLikeMessage()
         {
             var me = AppCore.Container.GetService<InstaUserShort>();

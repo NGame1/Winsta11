@@ -19,6 +19,13 @@ using WinstaCore.Helpers.ExtensionMethods;
 using Windows.Storage;
 using System.Text.RegularExpressions;
 using WinstaCore.Constants;
+using InstagramApiSharp.Enums;
+using InstagramApiSharp.API.RealTime;
+using System.Collections.Generic;
+using System.Linq;
+using InstagramApiSharp;
+using Windows.System.Threading;
+using System.Threading;
 #nullable enable
 
 namespace WinstaNext.ViewModels.Directs
@@ -51,9 +58,11 @@ namespace WinstaNext.ViewModels.Directs
 
         public Visibility GifPanelVisibility { get; set; } = Visibility.Collapsed;
 
+        static ThreadPoolTimer Timer { get; set; }
+
         public DirectThreadViewModel(InstaDirectInboxThread directThread)
         {
-            if (DirectThread != null && DirectThread.ThreadId == directThread.ThreadId) return;
+            //if (DirectThread != null && DirectThread.ThreadId == directThread.ThreadId) return;
             RepliedMessage = null;
             DirectThread = directThread;
             Instance = new(DirectThread);
@@ -68,6 +77,42 @@ namespace WinstaNext.ViewModels.Directs
             SendMessageCommand = new(SendMessageAsync);
             OpenEmojisPanelCommand = new(OpenEmojisPanel);
             CurrentVM = this;
+            try
+            {
+                Timer?.Cancel();
+            }
+            finally
+            {
+                Timer = ThreadPoolTimer.CreatePeriodicTimer(Timer_Tick, TimeSpan.FromSeconds(10));
+            }
+        }
+
+        bool refreshing = false;
+        private async void Timer_Tick(ThreadPoolTimer timer)
+        {
+            if (refreshing) return;
+            refreshing = true;
+            using var Api = AppCore.Container.GetService<IInstaApi>();
+            try
+            {
+                var res = await Api.MessagingProcessor.GetDirectInboxThreadAsync(ThreadId, PaginationParameters.MaxPagesToLoad(1));
+                if (!res.Succeeded) return;
+                var id = ThreadItems.LastOrDefault().ItemId;
+                var Index = res.Value.Items.FindIndex(x => x.ItemId == id);
+                if (Index == res.Value.Items.Count - 1) return;
+                res.Value.Items.Skip(Index + 1).ToList().ForEach(Item =>
+                {
+                    UIContext.Post(new SendOrPostCallback((x) =>
+                    {
+                        var user = DirectThread.Users.FirstOrDefault(x => x.Pk == Item.UserId);
+                        ThreadItems.InsertNewMessage(Item, user);
+                    }), null);
+                });
+            }
+            finally
+            {
+                refreshing = false;
+            }
         }
 
         void GifPanelShowHide()
