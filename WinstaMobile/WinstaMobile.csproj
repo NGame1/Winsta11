@@ -27,6 +27,7 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <PackageCertificateThumbprint>0CB198E63AFF7948C77E02433E0115EABC1CB086</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -545,6 +546,7 @@
       <Link>Templates\ToastNotification.xml</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>

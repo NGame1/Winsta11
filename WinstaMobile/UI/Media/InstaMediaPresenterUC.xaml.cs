@@ -48,13 +48,13 @@ namespace WinstaMobile.UI.Media
             Me = App.Container.GetService<InstaUserShort>();
         }
 
-        ~InstaMediaPresenterUC()
-        {
-            Me = null;
-            ViewModel = null;
-            if (Dispatcher != null && Dispatcher.HasThreadAccess)
-                Media = null;
-        }
+        //~InstaMediaPresenterUC()
+        //{
+        //    Me = null;
+        //    ViewModel = null;
+        //    if (Dispatcher != null && Dispatcher.HasThreadAccess)
+        //        Media = null;
+        //}
 
         bool eventRegistered = false;
         private void OnMediaChanged()
