@@ -348,7 +348,11 @@ namespace WinstaBackgroundHelpers.Push
             _outboundWriter?.DetachStream();
             _outboundWriter?.Dispose();
             _outboundWriter = null;
-            Log($"[{_instaApi.GetLoggedUser().UserName}] " + "Stopped pinging push server");
+            try
+            {
+                Log($"[{_instaApi.GetLoggedUser().UserName}] " + "Stopped pinging push server");
+            }
+            catch (Exception) { Log("[NULL!] Stopped pinging push server"); }
             Retry();
         }
         [MethodImpl(MethodImplOptions.NoOptimization | MethodImplOptions.NoInlining)]
