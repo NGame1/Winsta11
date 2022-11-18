@@ -1,4 +1,5 @@
-﻿using Windows.System;
+﻿using InstagramApiSharp.Helpers;
+using Windows.System;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
@@ -40,6 +41,28 @@ namespace WinstaNext.Views.Account
             if (e.Key != VirtualKey.Enter) return;
             InputPane.TryHide();
             ViewModel.LoginCommand.Execute(null);
+        }
+
+        private void webV_NavigationCompleted(Windows.UI.Xaml.Controls.WebView sender, Windows.UI.Xaml.Controls.WebViewNavigationCompletedEventArgs args)
+        {
+            if (InstaFbHelper.IsLoggedInFromUrl(args.Uri.ToString()))
+                ViewModel.CompleteLoginWithFacebook(args.Uri.ToString(), InstaFbHelper.FacebookAddress);
+        }
+
+        private void webV_PermissionRequested(Windows.UI.Xaml.Controls.WebView sender, Windows.UI.Xaml.Controls.WebViewPermissionRequestedEventArgs args)
+        {
+            args.PermissionRequest.Deny();
+        }
+
+        private void webV_UnsupportedUriSchemeIdentified(Windows.UI.Xaml.Controls.WebView sender, Windows.UI.Xaml.Controls.WebViewUnsupportedUriSchemeIdentifiedEventArgs args)
+        {
+            if (args.Uri.Scheme.StartsWith("fbconnect"))
+            {
+                args.Handled = true;
+                ViewModel.CompleteLoginWithFacebook(args.Uri.ToString(), InstaFbHelper.FacebookAddress);
+            }
+
+            //if (InstaFbHelper.IsLoggedInFromUrl(args.Uri.ToString()))
         }
     }
 }

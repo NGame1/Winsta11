@@ -34,7 +34,16 @@
 
             <PasswordBox Password="{x:Bind ViewModel.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txtPassword" Header="{x:Bind Resources:LanguageManager.Instance.General.Password}" Grid.Row="2" KeyDown="txtPassword_KeyDown"/>
 
-            <Button Command="{x:Bind ViewModel.LoginCommand}" HorizontalAlignment="Stretch" Content="{x:Bind Resources:LanguageManager.Instance.General.Login}" Grid.Row="3" />
+            <Button Content="{x:Bind Resources:LanguageManager.Instance.General.Login}" 
+                    Command="{x:Bind ViewModel.LoginCommand}"
+                    HorizontalAlignment="Stretch" 
+                    Grid.Row="3" />
+
+            <HyperlinkButton Content="{x:Bind Resources:LanguageManager.Instance.Instagram.FacebookLogin}"
+                             Command="{x:Bind ViewModel.FacebookLoginCommand}"
+                             CommandParameter="{x:Bind webV, Mode=OneWay}"
+                             HorizontalAlignment="Center"
+                             Margin="0,12,0,0"/>
         </StackPanel>
 
         <!-- Background="#A0000000" -->
@@ -49,6 +58,23 @@
                 <muxc:ProgressRing IsIndeterminate="True" />
                 <TextBlock Margin="0,12" Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}" TextAlignment="Center"/>
             </StackPanel>
+        </Grid>
+        
+        <Grid Visibility="{x:Bind ViewModel.FacebookLoginVisibility, Mode=OneWay}"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+
+            <WebView NavigationCompleted="webV_NavigationCompleted"
+                     PermissionRequested="webV_PermissionRequested"
+                     UnsupportedUriSchemeIdentified="webV_UnsupportedUriSchemeIdentified"
+                     x:Name="webV"/>
+
+            <Button Command="{x:Bind ViewModel.HideFacebookLoginGridCommand}"
+                    CommandParameter="{x:Bind webV, Mode=OneWay}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Content="X"/>
+
         </Grid>
     </Grid>
 </views:BasePage>
