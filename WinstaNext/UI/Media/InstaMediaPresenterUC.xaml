@@ -35,6 +35,7 @@
 
         <Converters:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
 
+        <GenericConverters:InvertBoolConverter x:Key="InvertBoolConverter"/>
         <GenericConverters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
         <GenericConverters:NullToBooleanConverter x:Key="InvertedNullToBooleanConverter"
                                                   IsInverted="True"/>
@@ -233,7 +234,7 @@
                 <generic:LikeButtonControl IsLiked="{x:Bind Media.HasLiked, Mode=TwoWay}"
                                            Command="{x:Bind ViewModel.LikeMediaCommand}"/>
 
-                <Button x:Load="{x:Bind ViewModel.Media.CommentsCount, Converter={StaticResource InvertedNullToBooleanConverter}, Mode=OneWay}"
+                <Button x:Load="{x:Bind ViewModel.Media.IsCommentsDisabled, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}"
                         FontFamily="{StaticResource FluentSystemIconsRegular}"
                         Command="{x:Bind ViewModel.NavigateToCommentsCommand}"
                         Style="{StaticResource FontIconButtonStyle}"
@@ -280,7 +281,7 @@
 
         </controls:MarkdownTextBlock>
 
-        <HyperlinkButton x:Load="{x:Bind ViewModel.Media.CommentsCount, Converter={StaticResource InvertedNullToBooleanConverter}, Mode=OneWay}"
+        <HyperlinkButton x:Load="{x:Bind ViewModel.Media.IsCommentsDisabled, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}"
                          Command="{x:Bind ViewModel.NavigateToCommentsCommand}"
                          x:Name="CommentsHyperlinkButton"
                          Padding="0">

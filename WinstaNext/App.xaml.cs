@@ -85,8 +85,8 @@ namespace WinstaNext
         private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
             e.SetObserved();
-            var stack = Environment.StackTrace;
-            MessageDialogHelper.Show(e.Exception.Message);
+            var ex = e.Exception;
+            MessageDialogHelper.Show(ex.Message);
         }
 
         public void SetContainer()
