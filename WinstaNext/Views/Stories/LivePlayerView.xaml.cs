@@ -2,12 +2,18 @@
 using FFmpegInteropX;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Extensions.DependencyInjection;
+using MinistaLivePlayback.Models;
 using PropertyChanged;
 using System;
+using System.Threading.Tasks;
+using Windows.Media.Core;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using WinstaCore.Helpers;
 using WinstaCore.Services;
 using WinstaNext.Helpers;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -40,29 +46,79 @@ namespace WinstaNext.Views.Stories
         {
             get => StoryRoot.Broadcast;
         }
+        
+        FFmpegMediaSource MediaSource { get; set; }
+        MediaStreamSource MediaStreamSource { get; set; }
 
         public LivePlayerView()
         {
             this.InitializeComponent();
+            CodecChecker.CodecRequired += CodecChecker_CodecRequired;
+        }
+
+        private async void CodecChecker_CodecRequired(object sender, CodecRequiredEventArgs args)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                CoreDispatcherPriority.Normal,
+                new DispatchedHandler(async () =>
+                {
+                    await AskUserInstallCodec(args);
+                }));
+        }
+
+        async Task AskUserInstallCodec(CodecRequiredEventArgs args)
+        {
+            // show message box to user
+
+            // then open store page
+            await args.OpenStorePageAsync();
+
+            // wait for app window to be re-activated
+            var tcs = new TaskCompletionSource<object>();
+            WindowActivatedEventHandler handler = (s, e) =>
+            {
+                if (e.WindowActivationState != CoreWindowActivationState.Deactivated)
+                {
+                    tcs.TrySetResult(null);
+                }
+            };
+            Window.Current.Activated += handler;
+            await tcs.Task;
+            Window.Current.Activated -= handler;
+
+            // now refresh codec checker, so next file might use HW acceleration (if codec was really installed)
+            await CodecChecker.RefreshAsync();
         }
 
         async void OnLiveChanged()
         {
-            var config = new MediaSourceConfig()
+            SetSize(MediaSource.CurrentVideoStream);
+            var Config = new MediaSourceConfig()
             {
-                VideoDecoderMode = VideoDecoderMode.ForceFFmpegSoftwareDecoder
+                //VideoDecoderMode = VideoDecoderMode.ForceFFmpegSoftwareDecoder
             };
-            var ms = await FFmpegMediaSource.CreateFromUriAsync(Live.DashAbrPlaybackUrl, config);
-            var source = ms.GetMediaStreamSource();
-            mediaPlayerElement.SetMediaStreamSource(source);
-            SetSize(ms.CurrentVideoStream);
+            Config.ReadAheadBufferEnabled = true;
+            
+            // Optionally, configure buffer size (max duration and byte size)
+            Config.ReadAheadBufferDuration = TimeSpan.FromSeconds(30);
+            Config.ReadAheadBufferSize = 50 * 1024 * 1024;
+            
+            Config.FFmpegOptions.Add("stimeout", 1000000);
+            Config.FFmpegOptions.Add("timeout", 1000000);
+            Config.FFmpegOptions.Add("reconnect", 1);
+            Config.FFmpegOptions.Add("reconnect_streamed", 1);
+            Config.FFmpegOptions.Add("reconnect_on_network_error", 1);
+
+            MediaSource = await FFmpegMediaSource.CreateFromUriAsync(Live.RtmpPlaybackUrl, Config);
+            MediaStreamSource = MediaSource.GetMediaStreamSource();
+            mediaPlayerElement.SetMediaStreamSource(MediaStreamSource);
         }
 
         void SetSize(VideoStreamInfo props)
         {
             var nav = App.Container.GetService<NavigationService>();
+            if(nav.Content is FrameworkElement parentFrame)
             {
-                var parentFrame = (FrameworkElement)nav.Content;
                 var size = ControlSizeHelper.CalculateSizeInBox(props.PixelWidth, props.PixelHeight, parentFrame.ActualHeight, parentFrame.ActualWidth);
                 PageHeight = size.Height;
                 PageWidth = size.Width;
