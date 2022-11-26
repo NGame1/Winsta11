@@ -284,7 +284,7 @@ namespace WinstaCore
         void RemoveUser(string pk)
         {
             var users = GetUsersList();
-            if (!users.ContainsKey(pk))
+            if (users.ContainsKey(pk))
                 users.Remove(pk);
             SetUsersList(users);
         }

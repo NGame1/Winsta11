@@ -2,6 +2,7 @@
 using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Collections;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,8 +34,9 @@ namespace Core.Collections.IncrementalSources.Comments
                                    cancellationToken: cancellationToken,
                                    targetCommentId: TargetCommentId);
 
-                if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
-                    throw result.Info.Exception;
+                if (!result.Succeeded && result.Info.Exception is Exception ex && ex is not TaskCanceledException)
+                    throw ex;
+                else if (!result.Succeeded && result.Info.Exception == null) return null;
 
                 HasMoreAvailable = result.Value.MoreHeadLoadAvailable;
                 

@@ -138,6 +138,8 @@ namespace Resources
         public string Unsend { get => _resource.GetString(nameof(Unsend)); }
         public string UnsupportedMessageType { get => _resource.GetString(nameof(UnsupportedMessageType)); }
         public string UserNotFound { get => _resource.GetString(nameof(UserNotFound)); }
+        public string UploadFeed { get => _resource.GetString(nameof(UploadFeed)); }
+        public string UploadStory { get => _resource.GetString(nameof(UploadStory)); }
         public string VerificationCode { get => _resource.GetString(nameof(VerificationCode)); }
         public string VerificationMethod { get => _resource.GetString(nameof(VerificationMethod)); }
         public string ViewProfile { get => _resource.GetString(nameof(ViewProfile)); }
