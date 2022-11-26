@@ -9,6 +9,7 @@ using WinstaCore;
 using Abstractions.Stories;
 using Windows.UI.Xaml.Controls;
 using WinstaCore.Helpers.ExtensionMethods;
+using System;
 
 namespace ViewModels
 {
@@ -27,8 +28,15 @@ namespace ViewModels
         {
             Medias = new(FeedMedia);
             Stories = new(FeedStories);
+            Medias.OnError = ErrorHandler;
+            Stories.OnError = ErrorHandler;
             RefreshCommand = new(RefreshAsync);
             GoTopCommand = new(GoToTopAsync);
+        }
+
+        void ErrorHandler(Exception exception)
+        {
+            
         }
 
         async Task GoToTopAsync(ListView list)

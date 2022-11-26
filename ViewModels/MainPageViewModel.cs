@@ -40,13 +40,22 @@ using System.Threading.Tasks;
 #endif
 using InstagramApiSharp.Classes;
 using WinstaCore.Interfaces.Views.Accounts;
+using System;
+using Windows.Storage.Pickers;
+using System.IO;
+using WinstaCore.Converters.FileConverters;
+using WinstaCore.Services;
+using WinstaCore.Models.ConfigureDelays;
+using static System.Net.WebRequestMethods;
+using WinstaCore.Interfaces.Views.Medias.Upload;
+#nullable enable
 
 namespace ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
         ThemeListener _themeListener;
-        public string SearchQuery { get; set; }
+        public string SearchQuery { get; set; } = string.Empty;
         public string WindowTitle { get; set; } = LanguageManager.Instance.General.ApplicationName;
         public bool IsNavigationViewPaneOpened { get; set; }
 
@@ -56,6 +65,8 @@ namespace ViewModels
         public RelayCommand<AutoSuggestBoxSuggestionChosenEventArgs> SearchBoxSuggestionChosenCommand { get; }
         public RelayCommand<NavigationEventArgs> FrameNavigatedCommand { get; }
         public RelayCommand<object> NavigateToUserProfileCommand { get; }
+        public AsyncRelayCommand<object?> UploadStoryCommand { get; set; }
+        public AsyncRelayCommand<object?> UploadPostCommand { get; set; }
 
         /// <summary>
         /// Items at the top of the NavigationView.
@@ -76,17 +87,20 @@ namespace ViewModels
         /// Gets or sets the selected menu item in the NavitationView.
         /// </summary>
         [OnChangedMethod(nameof(SelectedMenuItemChanged))]
-        public MenuItemModel SelectedMenuItem { get; set; }
+        public MenuItemModel? SelectedMenuItem { get; set; }
 
         public Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode NavigationViewDisplayMode { get; set; }
 
         [OnChangedMethod(nameof(OnInstaUserChanged))]
-        public InstaUserShort InstaUser { get; private set; }
+        public InstaUserShort? InstaUser { get; private set; }
 
-        IInstaApi PushClientApi { get; set; }
+        IInstaApi? PushClientApi { get; set; }
 
-        public static MainPageViewModel mainPageViewModel = null;
-        SystemNavigationManager SystemNavigationManager = null;
+        public static MainPageViewModel? mainPageViewModel = null;
+        SystemNavigationManager? SystemNavigationManager = null;
+
+        public event EventHandler? ForceLogout;
+
         public MainPageViewModel()
         {
             mainPageViewModel = this;
@@ -94,6 +108,8 @@ namespace ViewModels
             SearchBoxTextChangedCommand = new(SearchBoxTextChanged);
             SearchBoxQuerySubmittedCommand = new(SearchBoxQuerySubmitted);
             SearchBoxSuggestionChosenCommand = new(SearchBoxSuggestionChosen);
+            UploadPostCommand = new(UploadPostAsync);
+            UploadStoryCommand = new(UploadStoryAsync);
 
             FrameNavigatedCommand = new(FrameNavigated);
             NavigateToUserProfileCommand = new(NavigateToUserProfile);
@@ -103,6 +119,8 @@ namespace ViewModels
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Activities, "\uE006", typeof(IActivitiesView)));
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Explore, "\uF6FA", typeof(IExploreView)));
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Directs, "\uE15F", typeof(IDirectsListView)));
+            MenuItems.Add(new(LanguageManager.Instance.Instagram.UploadFeed, "\uE11C", command: UploadPostCommand));
+            MenuItems.Add(new(LanguageManager.Instance.Instagram.UploadStory, "\uE11C", command: UploadStoryCommand));
 
 #if !WINDOWS_UWP15063
             FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, typeof(ISettingsView)) { Icon = new AnimatedIcon { Source = new AnimatedSettingsVisualSource() } });
@@ -110,6 +128,7 @@ namespace ViewModels
             //MenuItems.Add(new(LanguageManager.Instance.General.Settings, "\uE713", typeof(ISettingsView)));
             FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, "\uE713", typeof(ISettingsView)));
 #endif
+
             ToggleNavigationViewPane = new(ToggleNavigationPane);
             _themeListener.ThemeChanged += MainPageViewModel_ThemeChanged;
 
@@ -125,6 +144,55 @@ namespace ViewModels
             SystemNavigationManager = SystemNavigationManager.GetForCurrentView();
             SystemNavigationManager.BackRequested += MainPageViewModel_BackRequested;
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
+        }
+
+        async Task UploadPostAsync(object? obj)
+        {
+            try
+            {
+                FileOpenPicker fop = new()
+                {
+                    SuggestedStartLocation = PickerLocationId.PicturesLibrary,
+                    ViewMode = PickerViewMode.Thumbnail,
+                };
+                //fop.FileTypeFilter.Add(".jpg");
+                //fop.FileTypeFilter.Add(".png");
+                //fop.FileTypeFilter.Add(".bmp");
+                fop.FileTypeFilter.Add(".mp4");
+                var file = await fop.PickSingleFileAsync();
+                if (file == null) return;
+                var MediaCropperView = AppCore.Container.GetService<IMediaCropperView>();
+                NavigationService.Navigate(MediaCropperView, file);
+                return;
+                //using IInstaApi Api = AppCore.Container.GetService<IInstaApi>();
+                //Api.SetConfigureMediaDelay(new ImageConfigureMediaDelay());
+                //var props = await file.Properties.GetImagePropertiesAsync();
+                //var upload = new InstaImageUpload
+                //{
+                //    ImageBytes = await ImageFileConverter.ConvertImageToJpegAsync(file),
+                //    Width = (int)props.Width,
+                //    Height = (int)props.Height
+                //};
+                //var res = await Api.MediaProcessor.UploadPhotoAsync(upload, string.Empty);
+                //if (res.Succeeded)
+                //{
+                //    var SingleInstaMediaView = AppCore.Container.GetService<ISingleInstaMediaView>();
+                //    NavigationService.Navigate(SingleInstaMediaView, res.Value);
+                //}
+                //else
+                //{
+                //    throw res.Info.Exception;
+                //}
+            }
+            finally
+            {
+                SelectMenuItem(null);
+            }
+        }
+
+        async Task UploadStoryAsync(object? obj)
+        {
+
         }
 
         private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs args)
@@ -184,6 +252,7 @@ namespace ViewModels
 
         public void StopPushClient()
         {
+            if (PushClientApi == null) return;
             PushClientApi.PushClient.MessageReceived -= PushClient_MessageReceived;
             PushClientApi.PushClient.Shutdown();
             PushClientApi.Dispose();
@@ -191,6 +260,8 @@ namespace ViewModels
 
         public void RemoveNavigationEvents()
         {
+            if (SystemNavigationManager == null)
+                SystemNavigationManager = SystemNavigationManager.GetForCurrentView();
             SystemNavigationManager.BackRequested -= MainPageViewModel_BackRequested;
             SystemNavigationManager = null;
         }
@@ -221,8 +292,18 @@ namespace ViewModels
                 var syncres = await Api.PushProcessor.RegisterPushAsync();
                 if (!syncres.Succeeded)
                 {
+                    if (syncres.Info.ResponseType == ResponseType.LoginRequired)
+                    {
+                        //Logout user
+                        ApplicationSettingsManager.Instance.RemoveUser(Api.GetLoggedUser().LoggedInUser.Pk);
+                        if (ApplicationSettingsManager.Instance.GetUsersList().Any())
+                            ForceLogout?.Invoke(this, EventArgs.Empty);
+                        else NavigationService.Navigate(AppCore.Container.GetService<ILoginView>());
+                        return;
+                    }
                     if (syncres.Info.ResponseType == ResponseType.ChallengeRequired)
-                    {// handle birthday challenge
+                    {
+                        // handle birthday challenge
                         if (syncres.Info.Challenge != null)
                         {
                             var challenge = await Api.GetChallengeRequireVerifyMethodAsync();
@@ -294,15 +375,17 @@ namespace ViewModels
             }
         }
 
-        void NavigateToUserProfile(object obj)
+        void NavigateToUserProfile(object? obj)
         {
+            if (obj == null) return;
             var IUserProfileView = AppCore.Container.GetService<IUserProfileView>();
             NavigationService.Navigate(IUserProfileView, obj);
         }
 
         bool SuggestionChosen = false;
-        private void SearchBoxSuggestionChosen(AutoSuggestBoxSuggestionChosenEventArgs arg)
+        private void SearchBoxSuggestionChosen(AutoSuggestBoxSuggestionChosenEventArgs? arg)
         {
+            if (arg == null) return;
             SuggestionChosen = true;
             var user = (InstaUser)arg.SelectedItem;
             var IUserProfileView = AppCore.Container.GetService<IUserProfileView>();
@@ -310,7 +393,7 @@ namespace ViewModels
             SearchQuery = string.Empty;
         }
 
-        private void SearchBoxQuerySubmitted(AutoSuggestBoxQuerySubmittedEventArgs arg)
+        private void SearchBoxQuerySubmitted(AutoSuggestBoxQuerySubmittedEventArgs? arg)
         {
             if (SuggestionChosen) { SuggestionChosen = false; return; }
             if (string.IsNullOrEmpty(SearchQuery)) return;
@@ -319,10 +402,10 @@ namespace ViewModels
             SearchQuery = string.Empty;
         }
 
-        Stopwatch stopwatch = null;
-        private async Task SearchBoxTextChanged(AutoSuggestBoxTextChangedEventArgs arg)
+        Stopwatch? stopwatch = null;
+        private async Task SearchBoxTextChanged(AutoSuggestBoxTextChangedEventArgs? arg)
         {
-            if (arg.Reason != AutoSuggestionBoxTextChangeReason.UserInput) return;
+            if (arg == null || arg.Reason != AutoSuggestionBoxTextChangeReason.UserInput) return;
             if (stopwatch == null)
                 stopwatch = Stopwatch.StartNew();
             else stopwatch.Restart();
@@ -350,9 +433,10 @@ namespace ViewModels
         }
 
         bool ignoreSetMenuItem = false;
-        private void FrameNavigated(NavigationEventArgs obj)
+        void SelectMenuItem(object? obj)
         {
-            switch (obj.Content)
+            if (obj == null) obj = NavigationService.Content;
+            switch (obj)
             {
                 case IHomeView:
                     SelectedMenuItem = MenuItems.FirstOrDefault(x => x.View == typeof(IHomeView));
@@ -371,6 +455,12 @@ namespace ViewModels
             }
         }
 
+        private void FrameNavigated(NavigationEventArgs? obj)
+        {
+            if (obj == null) return;
+            SelectMenuItem(obj.Content);
+        }
+
         private void MainPageViewModel_ThemeChanged(ThemeListener sender)
         {
             UIContext.Post(new SendOrPostCallback(ApplyThemeForTitleBarButtons), null);
@@ -386,6 +476,10 @@ namespace ViewModels
                 var page = (IView)AppCore.Container.GetService(SelectedMenuItem.View);
                 NavigationService.Navigate(page);
             }
+            else if (SelectedMenuItem.Command != null)
+            {
+                SelectedMenuItem.Command.Execute(null);
+            }
         }
 
         void SetupTitlebar(CoreApplicationViewTitleBar coreTitleBar)
@@ -396,7 +490,7 @@ namespace ViewModels
             ApplyThemeForTitleBarButtons();
         }
 
-        private void ApplyThemeForTitleBarButtons(object noUse = null)
+        private void ApplyThemeForTitleBarButtons(object? noUse = null)
         {
             ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
             var theme = ApplicationSettingsManager.Instance.GetTheme();

@@ -58,7 +58,7 @@ namespace WinstaNext.ViewModels.Directs
 
         public Visibility GifPanelVisibility { get; set; } = Visibility.Collapsed;
 
-        static ThreadPoolTimer Timer { get; set; }
+        static ThreadPoolTimer? Timer { get; set; }
 
         public DirectThreadViewModel(InstaDirectInboxThread directThread)
         {
