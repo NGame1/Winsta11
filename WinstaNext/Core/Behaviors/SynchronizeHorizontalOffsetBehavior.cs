@@ -25,7 +25,7 @@ namespace WinstaNext.Core.Behaviors
 
         private static void SourceChangedCallBack(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            SynchronizeVerticalOffsetBehavior SynchronizeVerticalOffsetBehavior = d as SynchronizeVerticalOffsetBehavior;
+            if(d is not SynchronizeVerticalOffsetBehavior SynchronizeVerticalOffsetBehavior) return;
             var source = GetSource(d);
             if (SynchronizeVerticalOffsetBehavior != null && source != null)
             {

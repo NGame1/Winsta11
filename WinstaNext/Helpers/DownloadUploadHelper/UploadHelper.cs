@@ -8,7 +8,7 @@ namespace WinstaNext.Helpers.DownloadUploadHelper
 {
     public static class UploadHelper
     {
-        public static async Task<InstaMedia> UploadImageAsync(InstaImageUpload image, string caption, InstaLocationShort location = null)
+        public static async Task<InstaMedia> UploadImageAsync(InstaImageUpload image, string caption, InstaLocationShort? location = null)
         {
             using (var Api = AppCore.Container.GetService<IInstaApi>())
             {

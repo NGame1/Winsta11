@@ -324,6 +324,12 @@
   <data name="UnsupportedMessageType" xml:space="preserve">
     <value>این نوع پیام دایرکت هنوز در وینگو تگ پشتیبانی نمیشود.</value>
   </data>
+  <data name="UploadFeed" xml:space="preserve">
+    <value>آپلود پست</value>
+  </data>
+  <data name="UploadStory" xml:space="preserve">
+    <value>آپلود استوری</value>
+  </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>کاربر یافت نشد.</value>
   </data>

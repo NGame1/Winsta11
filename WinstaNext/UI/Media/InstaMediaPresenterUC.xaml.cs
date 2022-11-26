@@ -7,6 +7,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using WinstaCore;
+using WinstaCore.Helpers;
 using WinstaNext.Helpers;
 using WinstaNext.ViewModels.Media;
 
@@ -38,14 +39,6 @@ namespace WinstaNext.UI.Media
         {
             this.InitializeComponent();
             Me = App.Container.GetService<InstaUserShort>();
-        }
-
-        ~InstaMediaPresenterUC()
-        {
-            Me = null;
-            ViewModel = null;
-            if (Dispatcher != null && Dispatcher.HasThreadAccess)
-                Media = null;
         }
 
         bool eventRegistered = false;

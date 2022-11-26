@@ -324,6 +324,12 @@
   <data name="UnsupportedMessageType" xml:space="preserve">
     <value>This direct message type is not supported by Wingo Tag yet.</value>
   </data>
+  <data name="UploadFeed" xml:space="preserve">
+    <value>Upload a post</value>
+  </data>
+  <data name="UploadStory" xml:space="preserve">
+    <value>Upload a Story</value>
+  </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>User not found</value>
   </data>

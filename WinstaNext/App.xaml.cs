@@ -29,6 +29,7 @@ using WinstaCore.Interfaces.Views.Accounts;
 using WinstaCore.Interfaces.Views.Activities;
 using WinstaCore.Interfaces.Views.Directs;
 using WinstaCore.Interfaces.Views.Medias;
+using WinstaCore.Interfaces.Views.Medias.Upload;
 using WinstaCore.Interfaces.Views.Profiles;
 using WinstaCore.Interfaces.Views.Search;
 using WinstaCore.Interfaces.Views.Settings;
@@ -38,6 +39,7 @@ using WinstaNext.Views.Account;
 using WinstaNext.Views.Activities;
 using WinstaNext.Views.Directs;
 using WinstaNext.Views.Media;
+using WinstaNext.Views.Media.Upload;
 using WinstaNext.Views.Profiles;
 using WinstaNext.Views.Search;
 using WinstaNext.Views.Settings;
@@ -145,6 +147,7 @@ namespace WinstaNext
             serviceCollection.AddTransient<IIncrementalInstaMediaView>(x => new IncrementalInstaMediaView());
             serviceCollection.AddTransient<IMediaLikersView>(x => new MediaLikersView());
             serviceCollection.AddTransient<ISingleInstaMediaView>(x => new SingleInstaMediaView());
+            serviceCollection.AddTransient<IMediaCropperView>(x => new MediaCropperView());
 
             //Profile Views
             serviceCollection.AddTransient<IHashtagProfileView>(x => new HashtagProfileView());

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -7,6 +8,9 @@ using WinstaNext.Views;
 using WinstaCore.Interfaces.Views;
 using Microsoft.Toolkit.Uwp;
 using System.Reflection.Metadata;
+using Windows.System;
+using WinstaNext.Services;
+using WinstaCore;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -29,7 +33,17 @@ namespace WinstaNext
             NavigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.LeftCompact;
             Window.Current.SetTitleBar(AppTitleBar);
             Loaded += MainPage_Loaded;
+            ViewModel.ForceLogout += ViewModel_ForceLogout;
             //SizeChanged += MainPage_SizeChanged;
+        }
+
+        async void ViewModel_ForceLogout(object sender, System.EventArgs e)
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                var list = ApplicationSettingsManager.Instance.GetUsersList();
+                AccountManagementService.SwitchToUser(list.FirstOrDefault().Key);
+            });
         }
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)

@@ -29,7 +29,7 @@ namespace WinstaNext.Services
             var frame = new Frame();
             Window.Current.Content = frame;
             frame.Navigate(typeof(LoginView));
-            var nav = App.Container.GetService<NavigationService>();
+            var nav = AppCore.Container.GetService<NavigationService>();
             nav.SetNavigationFrame(frame);
         }
 
@@ -43,7 +43,7 @@ namespace WinstaNext.Services
                 frame.FlowDirection = FlowDirection.RightToLeft;
             Window.Current.Content = frame;
             frame.Navigate(typeof(MainPage));
-            var nav = App.Container.GetService<NavigationService>();
+            var nav = AppCore.Container.GetService<NavigationService>();
             nav.SetNavigationFrame(frame);
         }
     }
