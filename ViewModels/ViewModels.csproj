@@ -144,6 +144,7 @@
     <Compile Include="Media\IncrementalInstaMediaViewModel.cs" />
     <Compile Include="Media\MediaLikersViewModel.cs" />
     <Compile Include="Media\Upload\FeedMediaUploadVM.cs" />
+    <Compile Include="Media\Upload\VideoTranscoder.cs" />
     <Compile Include="MenuItemModel.cs" />
     <Compile Include="Profiles\HashtagProfileViewModel.cs" />
     <Compile Include="Profiles\PlaceProfileViewModel.cs" />
