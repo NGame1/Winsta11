@@ -27,5 +27,11 @@ namespace WinstaNext.Views.Media.Upload
             ViewModel.BeginLoading(file, slider);
             base.OnNavigatedTo(e);
         }
+
+        private void CommandBar_Closing(object sender, object e)
+        {
+            if (sender is CommandBar commandBar)
+                commandBar.IsOpen = true;
+        }
     }
 }

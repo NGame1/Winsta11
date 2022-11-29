@@ -39,23 +39,23 @@
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <Ellipse Fill="Red"
+                                <Ellipse Fill="White"
                                          Grid.Row="1"
-                                         Width="10"
-                                         Height="10"
+                                         Width="15"
+                                         Height="15"
                                          >
                                     <Ellipse.RenderTransform>
-                                        <TranslateTransform X="-1" />
+                                        <TranslateTransform X="-2" />
                                     </Ellipse.RenderTransform>
                                 </Ellipse>
-                                <Rectangle Width="2"
-                                           Height="88"
+                                <Rectangle Width="4"
+                                           Height="86"
                                            Grid.Row="0"
-                                           Fill="Red"
+                                           Fill="White"
                                            RenderTransformOrigin="0.5 0.5"
                                            StrokeThickness="1">
                                     <Rectangle.RenderTransform>
-                                        <TranslateTransform X="-1" />
+                                        <TranslateTransform X="-2" />
                                     </Rectangle.RenderTransform>
                                 </Rectangle>
                             </Grid>
