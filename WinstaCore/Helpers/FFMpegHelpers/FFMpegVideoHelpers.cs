@@ -1,4 +1,5 @@
 ﻿using FFmpegInteropX;
+using Windows.Foundation;
 
 namespace WinstaCore.Helpers.FFMpegHelpers
 {
@@ -15,6 +16,16 @@ namespace WinstaCore.Helpers.FFMpegHelpers
         public static void CropVideo(this FFmpegMediaSource source, int width, int height, int x, int y)
         {
             source.SetFFmpegVideoFilters($"crop=w={width}:h={height}:x={x}:y={y}");
+        }
+
+        /// <summary>
+        /// Crop the input video to given dimensions.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="r">The cropping rect</param>
+        public static void CropVideo(this FFmpegMediaSource source, Rect r)
+        {
+            source.SetFFmpegVideoFilters($"crop=w={r.Width}:h={r.Height}:x={r.X}:y={r.Y}");
         }
 
         /// <summary>
