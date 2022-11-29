@@ -346,6 +346,9 @@
     <Compile Include="Views\Media\SingleInstaMediaView.xaml.cs">
       <DependentUpon>SingleInstaMediaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Media\Upload\FeedUploaderView.xaml.cs">
+      <DependentUpon>FeedUploaderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Media\Upload\MediaCropperView.xaml.cs">
       <DependentUpon>MediaCropperView.xaml</DependentUpon>
     </Compile>
@@ -723,6 +726,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Media\Upload\FeedUploaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Media\Upload\MediaCropperView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -834,7 +841,7 @@
       <Version>2.8.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.1</Version>
+      <Version>13.0.2</Version>
     </PackageReference>
     <PackageReference Include="NodaTime">
       <Version>3.1.5</Version>

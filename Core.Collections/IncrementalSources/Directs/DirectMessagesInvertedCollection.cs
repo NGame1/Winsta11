@@ -4,6 +4,7 @@ using InstagramApiSharp.Helpers;
 using Microsoft.Toolkit.Uwp;
 using System;
 using WinstaCore;
+#nullable enable
 
 namespace Core.Collections.IncrementalSources.Directs
 {
@@ -38,8 +39,7 @@ namespace Core.Collections.IncrementalSources.Directs
 
         public void InsertNewMessage(InstaDirectInboxItem msg, InstaUserShort? user)
         {
-            if(user == null)
-                user = AppCore.Container.GetService<InstaUserShort>();
+            user ??= AppCore.Container.GetService<InstaUserShort>();
             InsertItem(-2, new(msg, user));
         }
 

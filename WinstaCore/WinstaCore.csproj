@@ -165,6 +165,7 @@
     <Compile Include="Interfaces\Views\Medias\IIncrementalInstaMediaView.cs" />
     <Compile Include="Interfaces\Views\Medias\IMediaLikersView.cs" />
     <Compile Include="Interfaces\Views\Medias\ISingleInstaMediaView.cs" />
+    <Compile Include="Interfaces\Views\Medias\Upload\IFeedUploaderView.cs" />
     <Compile Include="Interfaces\Views\Medias\Upload\IMediaCropperView.cs" />
     <Compile Include="Interfaces\Views\Medias\Upload\IVideoMediaRangeSlider.cs" />
     <Compile Include="Interfaces\Views\Profiles\IHashtagProfileView.cs" />

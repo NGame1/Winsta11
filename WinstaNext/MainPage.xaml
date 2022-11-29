@@ -51,7 +51,7 @@
                 </VisualState>
                 <VisualState x:Name="WideState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{x:Bind NavigationView.CompactModeThresholdWidth, Mode=OneWay}" />
+                        <AdaptiveTrigger MinWindowWidth="{x:Bind NavView.CompactModeThresholdWidth, Mode=OneWay}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
@@ -61,7 +61,7 @@
                 </VisualState>
                 <VisualState x:Name="UltraWideState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{x:Bind NavigationView.ExpandedModeThresholdWidth, Mode=OneWay}" />
+                        <AdaptiveTrigger MinWindowWidth="{x:Bind NavView.ExpandedModeThresholdWidth, Mode=OneWay}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="ScrollViewerContent.Margin" Value="12,0,12,0"/>
@@ -120,7 +120,7 @@
 
         <!-- Navigation view -->
         <muxc:NavigationView XYFocusRight="{x:Bind ContentFrame}"
-            Name="NavigationView"
+            Name="NavView"
             BackRequested="NavigationView_BackRequested"
             IsTitleBarAutoPaddingEnabled="False"
             IsSettingsVisible="False"
@@ -235,7 +235,7 @@
             <!--<ScrollViewer x:Name="MainScrollViewer"
                 HorizontalScrollMode="Disabled">-->
             <Grid x:Name="ScrollViewerContent">
-                <Frame XYFocusLeft="{x:Bind NavigationView}"
+                <Frame XYFocusLeft="{x:Bind NavView}"
                        Navigated="ContentFrame_Navigated"
                        Name="ContentFrame">
                     <i:Interaction.Behaviors>

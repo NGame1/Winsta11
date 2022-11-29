@@ -8,8 +8,8 @@ namespace WinstaNext.Converters.Stories
 {
     public class StoryBorderColorConverter : IValueConverter
     {
-        public GradientBrush CloseFriends { get; set; }
-        public GradientBrush NormalStory { get; set; }
+        public GradientBrush? CloseFriends { get; set; }
+        public GradientBrush? NormalStory { get; set; }
 
         public object? Convert(object value, Type targetType, object parameter, string language)
         {

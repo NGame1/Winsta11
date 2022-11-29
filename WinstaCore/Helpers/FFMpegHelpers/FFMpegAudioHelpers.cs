@@ -30,5 +30,38 @@ namespace WinstaCore.Helpers.FFMpegHelpers
         {
             source.SetFFmpegAudioFilters($"acontrast=contrast={contrast}");
         }
+
+        /// <summary>
+        /// Adjust audio tempo
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="tempo">the audio tempo. If not specified then the filter will assume nominal 1.0 tempo. Tempo must be in the [0.5, 100.0] range.</param>
+        /// <exception cref="ArgumentOutOfRangeException">throw ArgumentOutOfRangeException when the tempo value is lower than 0.5 or higher than 100.</exception>
+        public static void Tempo(this FFmpegMediaSource source, double tempo = 1.0)
+        {
+            if (tempo < 0.5 || tempo > 100)
+                throw new ArgumentOutOfRangeException(nameof(tempo));
+            source.SetFFmpegAudioFilters($"atempo={tempo}");
+        }
+
+        /// <summary>
+        /// Adjust the input audio volume
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="volume">Set audio volume expression. Output values are clipped to the maximum value (default is 1.0)</param>
+        public static void Volume(this FFmpegMediaSource source, double volume = 1.0)
+        {
+            source.SetFFmpegAudioFilters($"volume=volume={volume}");
+        }
+
+        /// <summary>
+        /// Adjust the input audio volume in Decibels unit
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="volumeChange">Set audio volume change in db. Output values are clipped to the maximum value (default is 0.0)</param>
+        public static void VolumeByDecibels(this FFmpegMediaSource source, double volumeChange = 0.0)
+        {
+            source.SetFFmpegAudioFilters($"volume=volume={volumeChange}dB:precision=fixed");
+        }
     }
 }

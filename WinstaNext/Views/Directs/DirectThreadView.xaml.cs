@@ -100,7 +100,7 @@ namespace WinstaNext.Views.Directs
             else if (clipboardContent.Contains(StandardDataFormats.Bitmap))
             {
                 var stream = await clipboardContent.GetBitmapAsync();
-                var imageBytes = await FileConverter.ConvertToBytesArray(await stream.OpenReadAsync());
+                var imageBytes = await FileConverter.ToBytesAsync(await stream.OpenReadAsync());
                 var sf = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("tempfile.bmp", CreationCollisionOption.GenerateUniqueName);
                 await FileIO.WriteBytesAsync(sf, imageBytes);
                 //imageBytes = await ImageFileConverter.ConvertImageToJpegAsync(sf);

@@ -30,7 +30,7 @@ namespace WinstaNext
         public MainPage()
         {
             this.InitializeComponent();
-            NavigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.LeftCompact;
+            NavView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.LeftCompact;
             Window.Current.SetTitleBar(AppTitleBar);
             Loaded += MainPage_Loaded;
             ViewModel.ForceLogout += ViewModel_ForceLogout;
@@ -59,21 +59,21 @@ namespace WinstaNext
             SearchBox.Focus(FocusState.Keyboard);
 
             // Workaround for a bug where opening the window in compact display mode will misalign the content layout.
-            NavigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto;
+            NavView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto;
 
-            if(Window.Current.Bounds.Width < NavigationView.CompactModeThresholdWidth)
+            if(Window.Current.Bounds.Width < NavView.CompactModeThresholdWidth)
                 VisualStateManager.GoToState(this, "NarrowState", useTransitions: true);
-            else if (Window.Current.Bounds.Width  < NavigationView.ExpandedModeThresholdWidth)
+            else if (Window.Current.Bounds.Width  < NavView.ExpandedModeThresholdWidth)
                 VisualStateManager.GoToState(this, "WideState", useTransitions: true);
             else VisualStateManager.GoToState(this, "UltraWideState", useTransitions: true);
 
             ViewModel.SelectedMenuItem = ViewModel.MenuItems.FirstOrDefault();
         }
 
-        private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            //UpdateVisualState();
-        }
+        //private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
+        //{
+        //    UpdateVisualState();
+        //}
 
         private void NavigationView_DisplayModeChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewDisplayModeChangedEventArgs args)
         {
@@ -147,8 +147,8 @@ namespace WinstaNext
         {
             if (e.Content is BasePage page)
             {
-                NavigationView.Header = page.PageHeader;
-                NavigationView.AlwaysShowHeader = !string.IsNullOrEmpty(page.PageHeader);
+                NavView.Header = page.PageHeader;
+                NavView.AlwaysShowHeader = !string.IsNullOrEmpty(page.PageHeader);
             }
         }
 

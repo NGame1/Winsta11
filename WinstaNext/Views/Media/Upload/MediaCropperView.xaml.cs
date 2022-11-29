@@ -28,7 +28,7 @@ namespace WinstaNext.Views.Media.Upload
             base.OnNavigatedTo(e);
         }
 
-        private void CommandBar_Closing(object sender, object e)
+        void CommandBar_Closing(object sender, object e)
         {
             if (sender is CommandBar commandBar)
                 commandBar.IsOpen = true;

@@ -4,19 +4,15 @@ using Microsoft.Toolkit.Uwp.UI.Controls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Media.Core;
-using Windows.Media.Editing;
 using Windows.Media.MediaProperties;
 using Windows.Media.Playback;
 using Windows.Media.Transcoding;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using Windows.System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
@@ -129,7 +125,6 @@ namespace ViewModels.Media.Upload
             };
             IDictionary<string, object> encodingProperties = await File.Properties.RetrievePropertiesAsync(encodingPropertiesToRetrieve);
             uint frameRateX1000 = (uint)encodingProperties["System.Video.FrameRate"];
-
             VideoMediaRangeSlider.MediaElement.Pause();
             VideoMediaRangeSlider.MediaElement.Source = null; ;
             FFMediaSource = null;
@@ -144,6 +139,8 @@ namespace ViewModels.Media.Upload
             FFMediaSource = await FFmpegMediaSource.CreateFromStreamAsync(fileStream);
 
             FFMediaSource.CropVideo(Rect);
+            //FFMediaSource.Scale((int)Rect.Width, (int)Rect.Height);
+
             StreamSource = FFMediaSource.GetMediaStreamSource();
 
             var folder = await ApplicationSettingsManager.Instance.GetDownloadsFolderAsync();
@@ -151,6 +148,7 @@ namespace ViewModels.Media.Upload
 
             var profile = MediaEncodingProfile.CreateMp4(VideoEncodingQuality.HD720p);
             profile.Video.Bitrate = (uint)FFMediaSource.CurrentVideoStream.Bitrate;
+            profile.Video.Subtype = "H264";
             profile.Video.Height = (uint)Math.Abs(Rect.Height);
             profile.Video.Width = (uint)Math.Abs(Rect.Width);
             profile.Video.FrameRate.Numerator = frameRateX1000 / 1000;
@@ -180,13 +178,15 @@ namespace ViewModels.Media.Upload
                     TranscodeCancellationToken = new CancellationTokenSource();
                     IProgress<double> progress = new Progress<double>((newValue) =>
                     {
-                        UIContext.Post(async (val) =>
+                        UIContext.Post((val) =>
                         {
                             Progress = Convert.ToInt16(newValue);
                             if (newValue == 100)
                             {
                                 //SetVisibility(nameof(PrimarybarVisibilithy));
-                                await new MessageDialog("Transcode Complete.").ShowAsync();
+                                var uploader = AppCore.Container.GetService<IFeedUploaderView>();
+                                NavigationService.Navigate(uploader, file);
+                                //await new MessageDialog("Transcode Complete.").ShowAsync();
                             }
                         }, null);
                         Debug.WriteLine(newValue);

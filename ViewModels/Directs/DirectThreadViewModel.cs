@@ -222,8 +222,8 @@ namespace WinstaNext.ViewModels.Directs
             var vp = await file.Properties.GetVideoPropertiesAsync();
             var thumb = await file.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.VideosView);
             var openFile = await file.OpenReadAsync();
-            var imageBytes = await FileConverter.ConvertToBytesArray(thumb);
-            var bytes = await FileConverter.ConvertToBytesArray(openFile);
+            var imageBytes = await FileConverter.ToBytesAsync(thumb);
+            var bytes = await FileConverter.ToBytesAsync(openFile);
 
             using (var Api = AppCore.Container.GetService<IInstaApi>())
             {

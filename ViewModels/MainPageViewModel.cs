@@ -54,7 +54,7 @@ namespace ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-        ThemeListener _themeListener;
+        readonly ThemeListener _themeListener = new();
         public string SearchQuery { get; set; } = string.Empty;
         public string WindowTitle { get; set; } = LanguageManager.Instance.General.ApplicationName;
         public bool IsNavigationViewPaneOpened { get; set; }
@@ -113,7 +113,6 @@ namespace ViewModels
 
             FrameNavigatedCommand = new(FrameNavigated);
             NavigateToUserProfileCommand = new(NavigateToUserProfile);
-            _themeListener = new();
             SetupTitlebar(CoreApplication.GetCurrentView().TitleBar);
             MenuItems.Add(new(LanguageManager.Instance.General.Home, "\uE10F", typeof(IHomeView)));
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Activities, "\uE006", typeof(IActivitiesView)));
@@ -192,7 +191,7 @@ namespace ViewModels
 
         async Task UploadStoryAsync(object? obj)
         {
-
+            await Task.Delay(1);
         }
 
         private void CoreWindow_KeyDown(CoreWindow sender, KeyEventArgs args)
@@ -260,8 +259,7 @@ namespace ViewModels
 
         public void RemoveNavigationEvents()
         {
-            if (SystemNavigationManager == null)
-                SystemNavigationManager = SystemNavigationManager.GetForCurrentView();
+            SystemNavigationManager ??= SystemNavigationManager.GetForCurrentView();
             SystemNavigationManager.BackRequested -= MainPageViewModel_BackRequested;
             SystemNavigationManager = null;
         }
@@ -435,7 +433,7 @@ namespace ViewModels
         bool ignoreSetMenuItem = false;
         void SelectMenuItem(object? obj)
         {
-            if (obj == null) obj = NavigationService.Content;
+            obj ??= NavigationService.Content;
             switch (obj)
             {
                 case IHomeView:
@@ -476,10 +474,7 @@ namespace ViewModels
                 var page = (IView)AppCore.Container.GetService(SelectedMenuItem.View);
                 NavigationService.Navigate(page);
             }
-            else if (SelectedMenuItem.Command != null)
-            {
-                SelectedMenuItem.Command.Execute(null);
-            }
+            else SelectedMenuItem.Command?.Execute(null);
         }
 
         void SetupTitlebar(CoreApplicationViewTitleBar coreTitleBar)

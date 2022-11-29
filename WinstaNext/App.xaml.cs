@@ -148,6 +148,7 @@ namespace WinstaNext
             serviceCollection.AddTransient<IMediaLikersView>(x => new MediaLikersView());
             serviceCollection.AddTransient<ISingleInstaMediaView>(x => new SingleInstaMediaView());
             serviceCollection.AddTransient<IMediaCropperView>(x => new MediaCropperView());
+            serviceCollection.AddTransient<IFeedUploaderView>(x => new FeedUploaderView());
 
             //Profile Views
             serviceCollection.AddTransient<IHashtagProfileView>(x => new HashtagProfileView());

@@ -82,7 +82,7 @@ namespace WinstaCore.Converters.FileConverters
                     encoder.SetPixelData(decoder.BitmapPixelFormat, decoder.BitmapAlphaMode, decoder.OrientedPixelWidth, decoder.OrientedPixelHeight, decoder.DpiX, decoder.DpiY, detachedPixelData);
                     await encoder.FlushAsync();
                     await imageWriteableStream.FlushAsync();
-                    return await FileConverter.ConvertToBytesArray(imageWriteableStream.CloneStream());
+                    return await FileConverter.ToBytesAsync(imageWriteableStream.CloneStream());
                 }
                 //Mvx.TaggedTrace(MvxTraceLevel.Diagnostic, "ImageService", $"Final image size now: {jpegImageSize}");
             }
