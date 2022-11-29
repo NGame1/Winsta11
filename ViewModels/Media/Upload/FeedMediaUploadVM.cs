@@ -1,31 +1,208 @@
 ﻿using FFmpegInteropX;
+using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.Media.Core;
+using Windows.Media.Editing;
+using Windows.Media.MediaProperties;
 using Windows.Media.Playback;
+using Windows.Media.Transcoding;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.System;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using WinstaCore;
+using WinstaCore.Converters.FileConverters;
 using WinstaCore.Helpers;
 using WinstaCore.Helpers.FFMpegHelpers;
 using WinstaCore.Interfaces.Views.Medias.Upload;
+#nullable enable
 
 namespace ViewModels.Media.Upload
 {
     public class FeedMediaUploadVM : BaseViewModel
     {
-        StorageFile File { get; set; }
-        FFmpegMediaSource FFMediaSource { get; set; }
+        StorageFile? File { get; set; }
+        FFmpegMediaSource? FFMediaSource { get; set; }
+        MediaStreamSource? StreamSource { get; set; }
 
-        public MediaPlaybackItem VideoMedia { get; private set; }
-        IVideoMediaRangeSlider VideoMediaRangeSlider { get; set; }
+        public MediaPlaybackItem? VideoMedia { get; private set; }
+        IVideoMediaRangeSlider? VideoMediaRangeSlider { get; set; }
+
+        public AsyncRelayCommand<ImageCropper> CropCommand { get; set; }
+        public AsyncRelayCommand<ImageCropper> CropDoneCommand { get; set; }
+        public AsyncRelayCommand ExportVideoCommand { get; set; }
+        public RelayCommand CancelTranscodeCommand { get; set; }
+        public RelayCommand PlayCommand { get; set; }
+        public RelayCommand PauseCommand { get; set; }
+
+        public Visibility PrimarybarVisibilithy { get; set; } = Visibility.Visible;
+        public Visibility CropbarVisibilithy { get; set; } = Visibility.Collapsed;
+
+        public int Progress { get; set; } = 0;
+
+        Rect Rect { get; set; } = new(0, 0, 1, 1);
+
+        CancellationTokenSource? TranscodeCancellationToken { get; set; } = null;
 
         public FeedMediaUploadVM()
         {
+            CancelTranscodeCommand = new(CancelTranscode);
+            ExportVideoCommand = new(ExportVideoAsync);
+            CropDoneCommand = new(CropDoneAsync);
+            CropCommand = new(CropAsync);
+            PauseCommand = new(Pause);
+            PlayCommand = new(Play);
+        }
 
+        void Pause()
+        {
+            if (VideoMedia == null) return;
+            VideoMediaRangeSlider?.MediaElement?.Pause();
+        }
+
+        async void Play()
+        {
+            if (VideoMedia == null)
+                await CreateMediaPlaybackItemAsync(Rect);
+            VideoMediaRangeSlider?.MediaElement?.Play();
+        }
+
+        void CancelTranscode()
+        {
+            TranscodeCancellationToken?.Cancel();
+        }
+
+        void SetVisibility(string propertyName)
+        {
+            var Properties = this.GetType().GetProperties();
+            foreach (var property in Properties)
+            {
+                if (property.PropertyType != typeof(Visibility)) continue;
+                if (property.Name == propertyName)
+                    property.SetValue(this, Visibility.Visible);
+                else property.SetValue(this, Visibility.Collapsed);
+            }
+        }
+
+        async Task CropDoneAsync(ImageCropper? obj)
+        {
+            if (obj == null || VideoMediaRangeSlider == null) return;
+            SetVisibility(nameof(PrimarybarVisibilithy));
+            Rect = obj.CroppedRegion;
+            obj.Source = null;
+            VideoMediaRangeSlider.MediaElement.Pause();
+            //var current = VideoMediaRangeSlider.MediaElement.Position;
+            await CreateMediaPlaybackItemAsync(Rect);
+            //VideoMedia.StartTime.Add(current);
+            //VideoMediaRangeSlider.MediaElement.Position = current;
+        }
+
+        public async Task CropAsync(ImageCropper? obj)
+        {
+            if (obj == null) return;
+            SetVisibility(nameof(CropbarVisibilithy));
+            if (VideoMediaRangeSlider == null) return;
+            var thumb = await ExtractVideoThumbnailsAsync(VideoMediaRangeSlider.MediaElement.Position);
+            if (thumb == null) return;
+            await obj.LoadImageFromFile(thumb);
+        }
+
+        async Task ExportVideoAsync()
+        {
+            //SetVisibility(nameof(ExportingVisibilithy));
+            Progress = 0;
+            if (File == null || VideoMediaRangeSlider == null) return;
+            List<string> encodingPropertiesToRetrieve = new()
+            {
+                "System.Video.FrameRate"
+            };
+            IDictionary<string, object> encodingProperties = await File.Properties.RetrievePropertiesAsync(encodingPropertiesToRetrieve);
+            uint frameRateX1000 = (uint)encodingProperties["System.Video.FrameRate"];
+
+            VideoMediaRangeSlider.MediaElement.Pause();
+            VideoMediaRangeSlider.MediaElement.Source = null; ;
+            FFMediaSource = null;
+            StreamSource = null;
+            VideoMedia = null;
+
+            var start = VideoMediaRangeSlider.RangeMin;
+            var startTime = TimeSpan.FromMilliseconds(start);
+            var end = VideoMediaRangeSlider.RangeMax;
+            var endTime = TimeSpan.FromMilliseconds(end);
+            var fileStream = await File.OpenReadAsync();
+            FFMediaSource = await FFmpegMediaSource.CreateFromStreamAsync(fileStream);
+
+            FFMediaSource.CropVideo(Rect);
+            StreamSource = FFMediaSource.GetMediaStreamSource();
+
+            var folder = await ApplicationSettingsManager.Instance.GetDownloadsFolderAsync();
+            var file = await folder.CreateFileAsync("Test.Mp4", CreationCollisionOption.ReplaceExisting);
+
+            var profile = MediaEncodingProfile.CreateMp4(VideoEncodingQuality.HD720p);
+            profile.Video.Bitrate = (uint)FFMediaSource.CurrentVideoStream.Bitrate;
+            profile.Video.Height = (uint)Math.Abs(Rect.Height);
+            profile.Video.Width = (uint)Math.Abs(Rect.Width);
+            profile.Video.FrameRate.Numerator = frameRateX1000 / 1000;
+            profile.Video.FrameRate.Denominator = 1;
+            profile.Audio.Bitrate = (uint)FFMediaSource.CurrentAudioStream.Bitrate;
+            profile.Audio.SampleRate = (uint)FFMediaSource.CurrentAudioStream.SampleRate;
+            profile.Audio.BitsPerSample = (uint)FFMediaSource.CurrentAudioStream.BitsPerSample;
+            profile.Audio.ChannelCount = (uint)FFMediaSource.CurrentAudioStream.Channels;
+
+            var transcoder = new MediaTranscoder
+            {
+                AlwaysReencode = true,
+                TrimStartTime = startTime,
+                TrimStopTime = endTime,
+                HardwareAccelerationEnabled = true,
+                VideoProcessingAlgorithm = MediaVideoProcessingAlgorithm.MrfCrf444
+            };
+            var result = await transcoder
+                .PrepareMediaStreamSourceTranscodeAsync(
+                StreamSource,
+                await file.OpenAsync(FileAccessMode.ReadWrite),
+                profile);
+            if (result.CanTranscode)
+            {
+                try
+                {
+                    TranscodeCancellationToken = new CancellationTokenSource();
+                    IProgress<double> progress = new Progress<double>((newValue) =>
+                    {
+                        UIContext.Post(async (val) =>
+                        {
+                            Progress = Convert.ToInt16(newValue);
+                            if (newValue == 100)
+                            {
+                                //SetVisibility(nameof(PrimarybarVisibilithy));
+                                await new MessageDialog("Transcode Complete.").ShowAsync();
+                            }
+                        }, null);
+                        Debug.WriteLine(newValue);
+                    });
+                    var transcodeProgress = result.TranscodeAsync().AsTask(TranscodeCancellationToken.Token, progress);
+                    await transcodeProgress;
+                }
+                catch (Exception ex)
+                {
+                    var exce = ex;
+                }
+                finally
+                {
+                    //await Launcher.LaunchFolderAsync(await file.GetParentAsync());
+                }
+            }
         }
 
         public async void BeginLoading(StorageFile file, IVideoMediaRangeSlider videoMediaRangeSlider)
@@ -50,14 +227,16 @@ namespace ViewModels.Media.Upload
             }
         }
 
-        void StopMediaPlayback()
+        public void StopMediaPlayback()
         {
+            if (VideoMediaRangeSlider == null) return;
             VideoMediaRangeSlider.MediaElement.Stop();
             VideoMediaRangeSlider.MediaElement.Source = null;
         }
 
         void StartMediaPlayback()
         {
+            if (VideoMediaRangeSlider == null) return;
             VideoMediaRangeSlider.MediaElement.SetPlaybackSource(VideoMedia);
             VideoMediaRangeSlider.MediaElement.Play();
         }
@@ -70,22 +249,54 @@ namespace ViewModels.Media.Upload
 
         async Task CreateMediaPlaybackItemAsync()
         {
+            if (File == null) return;
             var fileStream = await File.OpenReadAsync();
             FFMediaSource = await FFmpegMediaSource.CreateFromStreamAsync(fileStream);
+            if (NavigationService.Content is not FrameworkElement) return;
+            var cvs = FFMediaSource.CurrentVideoStream;
+            Rect = new(0, 0, cvs.PixelWidth, cvs.PixelHeight);
             VideoMedia = FFMediaSource.CreateMediaPlaybackItem();
             StartMediaPlayback();
         }
 
-        async Task CreateMediaPlaybackItemAsync(TimeSpan start, TimeSpan end)
+        async Task CreateMediaPlaybackItemAsync(Rect rect)
         {
+            if (File == null) return;
+            var fileStream = await File.OpenReadAsync();
+            FFMediaSource = await FFmpegMediaSource.CreateFromStreamAsync(fileStream);
+            if (NavigationService.Content is not FrameworkElement) return;
+            FFMediaSource.CropVideo(rect);
+            VideoMedia = FFMediaSource.CreateMediaPlaybackItem();
+            StartMediaPlayback();
+        }
+
+        public async Task CreateMediaPlaybackItemAsync(TimeSpan start, TimeSpan end)
+        {
+            if (File == null) return;
             var fileStream = await File.OpenReadAsync();
             FFMediaSource = await FFmpegMediaSource.CreateFromStreamAsync(fileStream);
             VideoMedia = FFMediaSource.CreateMediaPlaybackItem(start, end - start);
             StartMediaPlayback();
         }
 
+        async Task<StorageFile?> ExtractVideoThumbnailsAsync(TimeSpan captureTime)
+        {
+            if (File == null) return null;
+            var fileStream = await File.OpenReadAsync();
+            var frameGrabber = await FrameGrabber.CreateFromStreamAsync(fileStream);
+            if (NavigationService.Content is not FrameworkElement) return null;
+            var inmemoryStream = new InMemoryRandomAccessStream();
+            var frame = await frameGrabber.ExtractVideoFrameAsync(captureTime);
+            await frame.EncodeAsJpegAsync(inmemoryStream);
+            var bytes = await FileConverter.ToBytesAsync(inmemoryStream);
+            var file = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("Crop.jog", CreationCollisionOption.OpenIfExists);
+            await FileIO.WriteBytesAsync(file, bytes);
+            return file;
+        }
+
         async Task ExtractVideoThumbnailsAsync(Action<ImageSource> AddImageToSlider)
         {
+            if (File == null || VideoMediaRangeSlider == null) return;
             var fileStream = await File.OpenReadAsync();
             var frameGrabber = await FrameGrabber.CreateFromStreamAsync(fileStream);
             var duration = frameGrabber.Duration;
