@@ -82,26 +82,12 @@ namespace WinstaCore.Converters.FileConverters
                     encoder.SetPixelData(decoder.BitmapPixelFormat, decoder.BitmapAlphaMode, decoder.OrientedPixelWidth, decoder.OrientedPixelHeight, decoder.DpiX, decoder.DpiY, detachedPixelData);
                     await encoder.FlushAsync();
                     await imageWriteableStream.FlushAsync();
-                    return await Convert(imageWriteableStream.CloneStream());
+                    return await FileConverter.ConvertToBytesArray(imageWriteableStream.CloneStream());
                 }
                 //Mvx.TaggedTrace(MvxTraceLevel.Diagnostic, "ImageService", $"Final image size now: {jpegImageSize}");
             }
             //stopwatch.Stop();
             //Mvx.TaggedTrace(MvxTraceLevel.Diagnostic, "ImageService", $"Time spent optimizing image: {stopwatch.Elapsed}");
-        }
-
-        static async Task<byte[]> Convert(IRandomAccessStream s)
-        {
-            var dr = new DataReader(s.GetInputStreamAt(0));
-            var bytes = new byte[s.Size];
-            await dr.LoadAsync((uint)s.Size);
-            dr.ReadBytes(bytes);
-            return bytes;
-        }
-
-        public static async Task<byte[]> ConvertToBytesArray(IRandomAccessStream stream)
-        {
-            return await Convert(stream);
         }
 
     }
