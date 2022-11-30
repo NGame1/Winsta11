@@ -119,7 +119,7 @@ namespace ViewModels
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Explore, "\uF6FA", typeof(IExploreView)));
             MenuItems.Add(new(LanguageManager.Instance.Instagram.Directs, "\uE15F", typeof(IDirectsListView)));
             MenuItems.Add(new(LanguageManager.Instance.Instagram.UploadFeed, "\uE11C", command: UploadPostCommand));
-            MenuItems.Add(new(LanguageManager.Instance.Instagram.UploadStory, "\uE11C", command: UploadStoryCommand));
+            //MenuItems.Add(new(LanguageManager.Instance.Instagram.UploadStory, "\uE11C", command: UploadStoryCommand));
 
 #if !WINDOWS_UWP15063
             FooterMenuItems.Add(new(LanguageManager.Instance.General.Settings, typeof(ISettingsView)) { Icon = new AnimatedIcon { Source = new AnimatedSettingsVisualSource() } });

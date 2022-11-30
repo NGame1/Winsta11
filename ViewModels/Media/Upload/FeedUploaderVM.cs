@@ -15,6 +15,7 @@ using Windows.Storage.Streams;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore;
 using WinstaCore.Converters.FileConverters;
+using WinstaCore.Interfaces.Views.Medias;
 using WinstaCore.Models.ConfigureDelays;
 #nullable enable
 
@@ -75,6 +76,8 @@ namespace ViewModels.Media.Upload
                 var result = await task;
                 if (!result.Succeeded)
                     throw new Exception(result.Info.Message);
+                var mediaView = AppCore.Container.GetService<ISingleInstaMediaView>();
+                NavigationService.Navigate(mediaView, result.Value);
             }
             catch (Exception)
             {
