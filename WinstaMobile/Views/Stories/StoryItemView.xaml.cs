@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using WinstaCore.Helpers;
 using WinstaCore.Services;
 using WinstaMobile.UI.Stories;
 using WinstaNext.Helpers;

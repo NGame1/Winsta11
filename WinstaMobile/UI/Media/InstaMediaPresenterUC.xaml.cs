@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Imaging;
 using WinstaCore;
+using WinstaCore.Helpers;
 using WinstaMobile.ViewModels.Media;
 using WinstaNext.Helpers;
 
