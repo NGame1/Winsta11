@@ -4,10 +4,15 @@ using Microsoft.Toolkit.Uwp.UI.Controls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Media.Core;
+using Windows.Media.Editing;
+using Windows.Media.Effects;
 using Windows.Media.MediaProperties;
 using Windows.Media.Playback;
 using Windows.Media.Transcoding;
@@ -35,8 +40,14 @@ namespace ViewModels.Media.Upload
         public MediaPlaybackItem? VideoMedia { get; private set; }
         IVideoMediaRangeSlider? VideoMediaRangeSlider { get; set; }
 
+#if !WINDOWS_UWP15063
         public AsyncRelayCommand<ImageCropper> CropCommand { get; set; }
         public AsyncRelayCommand<ImageCropper> CropDoneCommand { get; set; }
+#else
+        public AsyncRelayCommand<ImageCropper.UWP.ImageCropper> CropCommand { get; set; }
+        public AsyncRelayCommand<ImageCropper.UWP.ImageCropper> CropDoneCommand { get; set; }
+#endif
+
         public AsyncRelayCommand ExportVideoCommand { get; set; }
         public RelayCommand CancelTranscodeCommand { get; set; }
         public RelayCommand PlayCommand { get; set; }
@@ -91,12 +102,31 @@ namespace ViewModels.Media.Upload
             }
         }
 
+#if !WINDOWS_UWP15063
         async Task CropDoneAsync(ImageCropper? obj)
+#else
+        async Task CropDoneAsync(ImageCropper.UWP.ImageCropper? obj)
+#endif
         {
             if (obj == null || VideoMediaRangeSlider == null) return;
             SetVisibility(nameof(PrimarybarVisibilithy));
+
+#if !WINDOWS_UWP15063
             Rect = obj.CroppedRegion;
             obj.Source = null;
+#else
+            var dp = new DataPackage();
+
+            var croprect = obj.GetType().GetRuntimeFields().FirstOrDefault(x=>x.Name == "_currentCroppedRect");
+            if (croprect == null)
+            {
+                await new MessageDialog(nameof(croprect)).ShowAsync();
+                return;
+            }
+            var value = croprect.GetValue(obj);
+            Rect = (Rect)value;
+            obj.SourceImage = null;
+#endif
             VideoMediaRangeSlider.MediaElement.Pause();
             //var current = VideoMediaRangeSlider.MediaElement.Position;
             await CreateMediaPlaybackItemAsync(Rect);
@@ -104,7 +134,11 @@ namespace ViewModels.Media.Upload
             //VideoMediaRangeSlider.MediaElement.Position = current;
         }
 
-        public async Task CropAsync(ImageCropper? obj)
+#if !WINDOWS_UWP15063
+        async Task CropAsync(ImageCropper? obj)
+#else
+        async Task CropAsync(ImageCropper.UWP.ImageCropper? obj)
+#endif
         {
             if (obj == null) return;
             SetVisibility(nameof(CropbarVisibilithy));
@@ -138,7 +172,11 @@ namespace ViewModels.Media.Upload
             var fileStream = await File.OpenReadAsync();
             FFMediaSource = await FFmpegMediaSource.CreateFromStreamAsync(fileStream);
 
+//#if !WINDOWS_UWP15063
+            var rect = Rect;
+            Rect = new((rect.X - 1), (rect.Y - 1), (rect.Width - 1), (rect.Height - 1));
             FFMediaSource.CropVideo(Rect);
+//#endif
             //FFMediaSource.Scale((int)Rect.Width, (int)Rect.Height);
 
             StreamSource = FFMediaSource.GetMediaStreamSource();
@@ -166,6 +204,16 @@ namespace ViewModels.Media.Upload
                 HardwareAccelerationEnabled = true,
                 VideoProcessingAlgorithm = MediaVideoProcessingAlgorithm.MrfCrf444
             };
+
+//#if WINDOWS_UWP15063
+//            Rect = new Rect((int)(Rect.X - 1), (int)(Rect.Y - 1), (int)(Rect.Width - 1), (int)(Rect.Height - 1));
+//            var videoEffect = new VideoTransformEffectDefinition()
+//            {
+//                CropRectangle = Rect,
+//            };
+//            transcoder.AddVideoEffect(videoEffect.ActivatableClassId, true, videoEffect.Properties);
+//#endif
+
             var result = await transcoder
                 .PrepareMediaStreamSourceTranscodeAsync(
                 StreamSource,

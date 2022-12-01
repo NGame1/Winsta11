@@ -46,7 +46,6 @@ using System.IO;
 using WinstaCore.Converters.FileConverters;
 using WinstaCore.Services;
 using WinstaCore.Models.ConfigureDelays;
-using static System.Net.WebRequestMethods;
 using WinstaCore.Interfaces.Views.Medias.Upload;
 #nullable enable
 
