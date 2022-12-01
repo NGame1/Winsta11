@@ -224,10 +224,10 @@
   </ItemGroup>-->
   <ItemGroup>
     <PackageReference Include="FFmpegInteropX">
-      <Version>1.0.0</Version>
+      <Version>1.1.0-pre38</Version>
     </PackageReference>
     <PackageReference Include="FFmpegInteropX.FFmpegUWP">
-      <Version>4.2.200</Version>
+      <Version>5.1.100</Version>
     </PackageReference>
     <PackageReference Include="Fody">
       <Version>6.6.4</Version>
