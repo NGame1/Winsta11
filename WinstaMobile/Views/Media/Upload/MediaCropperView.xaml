@@ -1,0 +1,135 @@
+﻿<Page
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    x:Class="WinstaNext.Views.Media.Upload.MediaCropperView"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:brushes="using:Microsoft.Toolkit.Uwp.UI.Media"
+    xmlns:mtuc="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:local="using:WinstaNext.Views.Media.Upload"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:VM="using:ViewModels.Media.Upload" 
+    xmlns:crop="using:ImageCropper.UWP"
+    xmlns:Resources="using:Resources" 
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <VM:FeedMediaUploadVM x:Name="ViewModel"/>
+    </Page.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <MediaElement AreTransportControlsEnabled="False"
+                      x:Name="mediaElement"
+                      IsLooping="True"
+                      Grid.RowSpan="2"
+                      Grid.Row="0"/>
+
+        <crop:ImageCropper Height="{x:Bind mediaElement.Height, Mode=OneWay}"
+                           Width="{x:Bind mediaElement.Width, Mode=OneWay}"
+                           MinCroppedPixelLength="300"
+                           Background="Transparent"
+                           SourceImage="{x:Null}"
+                           x:Name="ImgCropper"
+                           Grid.RowSpan="2"
+                           Grid.Row="0"/>
+
+        <local:VideoMediaRangeSlider MediaElement="{x:Bind mediaElement}"
+                                     Margin="20,0,20,20"
+                                     x:Name="slider"
+                                     Opacity="0.8"
+                                     Grid.Row="1"/>
+
+        <CommandBar Visibility="{x:Bind ViewModel.PrimarybarVisibilithy, Mode=OneWay}"
+                    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True"
+                    OverflowButtonVisibility="Collapsed"
+                    HorizontalContentAlignment="Center"
+                    IsDynamicOverflowEnabled="True"
+                    DefaultLabelPosition="Bottom"
+                    HorizontalAlignment="Center"
+                    Closing="CommandBar_Closing"
+                    ClosedDisplayMode="Compact"
+                    UseLayoutRounding="True"
+                    VerticalAlignment="Top"
+                    IsSticky="True"
+                    IsOpen="True"
+                    Margin="20">
+            <CommandBar.PrimaryCommands>
+
+                <AppBarButton CommandParameter="{x:Bind ImgCropper, Mode=OneWay}"
+                              Command="{x:Bind ViewModel.CropCommand}"
+                              Label="Crop" 
+                              Icon="Crop"/>
+
+                <AppBarSeparator/>
+
+                <AppBarButton Command="{x:Bind ViewModel.PauseCommand}"
+                              Label="Pause"
+                              Icon="Pause"/>
+
+                <AppBarButton Command="{x:Bind ViewModel.PlayCommand}"
+                              Label="Play"
+                              Icon="Play"/>
+
+                <AppBarSeparator/>
+
+                <AppBarButton Command="{x:Bind ViewModel.ExportVideoCommand}"
+                              Label="Export"
+                              Icon="Accept"/>
+
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+
+        <CommandBar Visibility="{x:Bind ViewModel.CropbarVisibilithy, Mode=OneWay}"
+                    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True"
+                    OverflowButtonVisibility="Collapsed"
+                    HorizontalContentAlignment="Center"
+                    IsDynamicOverflowEnabled="True"
+                    DefaultLabelPosition="Bottom"
+                    HorizontalAlignment="Center"
+                    Closing="CommandBar_Closing"
+                    ClosedDisplayMode="Compact"
+                    UseLayoutRounding="True"
+                    VerticalAlignment="Top"
+                    IsSticky="True"
+                    IsOpen="True"
+                    Margin="20">
+            <CommandBar.PrimaryCommands>
+
+                <AppBarButton CommandParameter="{x:Bind ImgCropper, Mode=OneWay}"
+                              Command="{x:Bind ViewModel.CropDoneCommand}"
+                              Label="Accept"
+                              Icon="Accept"/>
+
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+
+        <Grid x:Load="{x:Bind ViewModel.ExportVideoCommand.IsRunning, Mode=OneWay}"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch" 
+              x:Name="GridProccessing">
+            <Grid.Background>
+                <brushes:BackdropBlurBrush FallbackColor="Black"
+                                           Opacity="0.99"
+                                           Amount="8"/>
+            </Grid.Background>
+            <StackPanel VerticalAlignment="Center">
+                <muxc:ProgressRing Value="{x:Bind ViewModel.Progress, Mode=OneWay}" 
+                                   IsIndeterminate="False"/>
+
+                <TextBlock TextAlignment="Center"
+                           Margin="0,12">
+                    <Run Text="{x:Bind ViewModel.Progress, Mode=OneWay}"/>
+                    <Run Text="%"/>
+                </TextBlock>
+                
+                <Button Content="{x:Bind Resources:LanguageManager.Instance.General.Cancel}"
+                        Command="{x:Bind ViewModel.CancelTranscodeCommand}"
+                        HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

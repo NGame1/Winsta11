@@ -1,0 +1,66 @@
+﻿<views:BasePage
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    x:Class="WinstaNext.Views.Media.Upload.FeedUploaderView"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:brushes="using:Microsoft.Toolkit.Uwp.UI.Media" 
+    xmlns:local="using:WinstaNext.Views.Media.Upload"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:VM="using:ViewModels.Media.Upload"
+    xmlns:views="using:WinstaMobile.Views"
+    xmlns:Resources="using:Resources"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <VM:FeedUploaderVM x:Name="ViewModel"/>
+    </Page.DataContext>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Thumbnail-->
+
+            <!--Caption-->
+            <TextBox Text="{x:Bind ViewModel.CaptionText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 PlaceholderText="Write a caption"
+                 AcceptsReturn="True"
+                 Margin="0,12"
+                 Height="100" 
+                 Grid.Row="1"
+                 />
+
+            <Button Content="{x:Bind Resources:LanguageManager.Instance.Instagram.UploadFeed}"
+                    Command="{x:Bind ViewModel.UploadCommand}"
+                    Grid.Row="2"/>
+
+        </Grid>
+        <!-- Background="#A0000000" -->
+        <Grid x:Load="{x:Bind ViewModel.IsLoading, Mode=OneWay}"
+              HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch"
+              x:Name="UploadGrid"
+              Grid.Row="0"
+              Grid.RowSpan="5">
+            <Grid.Background>
+                <brushes:BackdropBlurBrush FallbackColor="Black"
+                                           Opacity="0.99"
+                                           Amount="8"/>
+            </Grid.Background>
+
+            <StackPanel VerticalAlignment="Center">
+                <muxc:ProgressRing IsIndeterminate="True" />
+                <TextBlock Margin="0,12" Text="{x:Bind Resources:LanguageManager.Instance.General.Loading}" TextAlignment="Center"/>
+
+                <Button Content="{x:Bind Resources:LanguageManager.Instance.General.Cancel}"
+                    Command="{x:Bind ViewModel.CancelCommand}"
+                    HorizontalAlignment="Center"/>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</views:BasePage>
