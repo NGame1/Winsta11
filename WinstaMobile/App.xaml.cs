@@ -30,6 +30,7 @@ using WinstaCore.Interfaces.Views.Accounts;
 using WinstaCore.Interfaces.Views.Activities;
 using WinstaCore.Interfaces.Views.Directs;
 using WinstaCore.Interfaces.Views.Medias;
+using WinstaCore.Interfaces.Views.Medias.Upload;
 using WinstaCore.Interfaces.Views.Profiles;
 using WinstaCore.Interfaces.Views.Search;
 using WinstaCore.Interfaces.Views.Settings;
@@ -44,6 +45,7 @@ using WinstaMobile.Views.Media;
 using WinstaMobile.Views.Profiles;
 using WinstaMobile.Views.Search;
 using WinstaMobile.Views.Settings;
+using WinstaNext.Views.Media.Upload;
 #nullable enable
 
 namespace WinstaMobile
@@ -149,6 +151,8 @@ namespace WinstaMobile
             serviceCollection.AddTransient<IIncrementalInstaMediaView>(x => new IncrementalInstaMediaView());
             serviceCollection.AddTransient<IMediaLikersView>(x => new MediaLikersView());
             serviceCollection.AddTransient<ISingleInstaMediaView>(x => new SingleInstaMediaView());
+            serviceCollection.AddTransient<IMediaCropperView>(x => new MediaCropperView());
+            serviceCollection.AddTransient<IFeedUploaderView>(x => new FeedUploaderView());
 
             //Profile Views
             //serviceCollection.AddTransient<IHashtagProfileView>(x => new HashtagProfileView());

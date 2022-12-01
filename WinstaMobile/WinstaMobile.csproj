@@ -126,9 +126,6 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\WinstaNext\Helpers\ControlSizeHelper.cs">
-      <Link>Helpers\ControlSizeHelper.cs</Link>
-    </Compile>
     <Compile Include="..\WinstaNext\Helpers\DownloadUploadHelper\DownloadHelper.cs">
       <Link>Helpers\DownloadUploadHelper\DownloadHelper.cs</Link>
     </Compile>
@@ -342,6 +339,15 @@
     </Compile>
     <Compile Include="Views\Media\SingleInstaMediaView.xaml.cs">
       <DependentUpon>SingleInstaMediaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Media\Upload\FeedUploaderView.xaml.cs">
+      <DependentUpon>FeedUploaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Media\Upload\MediaCropperView.xaml.cs">
+      <DependentUpon>MediaCropperView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Media\Upload\VideoMediaRangeSlider.xaml.cs">
+      <DependentUpon>VideoMediaRangeSlider.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Profiles\UserFollowersView.xaml.cs">
       <DependentUpon>UserFollowersView.xaml</DependentUpon>
@@ -804,6 +810,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Media\Upload\FeedUploaderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Media\Upload\MediaCropperView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Media\Upload\VideoMediaRangeSlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Profiles\UserFollowersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -847,15 +865,18 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FFmpegInteropX">
-      <Version>1.0.1</Version>
+      <Version>1.0.0</Version>
     </PackageReference>
     <PackageReference Include="FFmpegInteropX.FFmpegUWP">
-      <Version>5.0.0</Version>
+      <Version>4.2.200</Version>
     </PackageReference>
     <PackageReference Include="Fody">
-      <Version>6.6.3</Version>
+      <Version>6.6.4</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="ImageCropper.UWP">
+      <Version>1.3.0</Version>
     </PackageReference>
     <PackageReference Include="LottieUWP">
       <Version>2.8.2</Version>
@@ -867,13 +888,13 @@
       <Version>6.2.14</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp">
-      <Version>4.0.0</Version>
+      <Version>5.0.0-preview.gb86cb1c4cb</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
-      <Version>4.0.0</Version>
+      <Version>5.0.0-preview.gb86cb1c4cb</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>4.0.0</Version>
+      <Version>5.0.0-preview.gb86cb1c4cb</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.7.3</Version>
