@@ -115,8 +115,6 @@ namespace ViewModels.Media.Upload
             Rect = obj.CroppedRegion;
             obj.Source = null;
 #else
-            var dp = new DataPackage();
-
             var croprect = obj.GetType().GetRuntimeFields().FirstOrDefault(x=>x.Name == "_currentCroppedRect");
             if (croprect == null)
             {
@@ -337,7 +335,7 @@ namespace ViewModels.Media.Upload
             var frame = await frameGrabber.ExtractVideoFrameAsync(captureTime);
             await frame.EncodeAsJpegAsync(inmemoryStream);
             var bytes = await FileConverter.ToBytesAsync(inmemoryStream);
-            var file = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("Crop.jog", CreationCollisionOption.OpenIfExists);
+            var file = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("Crop.jpg", CreationCollisionOption.OpenIfExists);
             await FileIO.WriteBytesAsync(file, bytes);
             return file;
         }
@@ -366,12 +364,12 @@ namespace ViewModels.Media.Upload
             //VideoMediaRangeSlider.MediaElement.Height = size.Height;
             VideoMediaRangeSlider.MediaElement.Width = size.Width;
             var imagesCount = (element.ActualWidth - 40) / thumbnailSize.Width;
-            imagesCount += (duration.TotalSeconds % imagesCount) == 0 ? 0 : 1;
-            int skipTime = Convert.ToInt32(duration.TotalSeconds / imagesCount);
-            for (int i = 0; i < duration.TotalSeconds; i += skipTime)
+            imagesCount += (duration.TotalMilliseconds % imagesCount) == 0 ? 0 : 1;
+            int skipTime = Convert.ToInt32(duration.TotalMilliseconds / imagesCount);
+            for (int i = 0; i < duration.TotalMilliseconds; i += skipTime)
             {
                 var inmemoryStream = new InMemoryRandomAccessStream();
-                var frame = await frameGrabber.ExtractVideoFrameAsync(TimeSpan.FromSeconds(i));
+                var frame = await frameGrabber.ExtractVideoFrameAsync(TimeSpan.FromMilliseconds(i));
                 await frame.EncodeAsJpegAsync(inmemoryStream);
                 //We should add all frames to VideoMediaRangeSlider
                 var bmp = new BitmapImage { };
