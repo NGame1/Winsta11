@@ -1,24 +1,18 @@
-﻿using FFmpegInteropX;
-using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.Toolkit.Uwp.UI.Controls;
+﻿using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Media.Core;
 using Windows.Media.Editing;
 using Windows.Media.Effects;
 using Windows.Media.MediaProperties;
-using Windows.Media.Playback;
 using Windows.Media.Transcoding;
 using Windows.Storage;
-using Windows.Storage.Streams;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
@@ -26,7 +20,6 @@ using Windows.UI.Xaml.Media.Imaging;
 using WinstaCore;
 using WinstaCore.Converters.FileConverters;
 using WinstaCore.Helpers;
-using WinstaCore.Helpers.FFMpegHelpers;
 using WinstaCore.Interfaces.Views.Medias.Upload;
 #nullable enable
 
@@ -67,24 +60,6 @@ namespace ViewModels.Media.Upload
             PlayCommand = new(Play);
         }
 
-        void Pause()
-        {
-            if (StreamSource == null) return;
-            VideoMediaRangeSlider?.MediaElement?.Pause();
-        }
-
-        async void Play()
-        {
-            if (StreamSource == null)
-                await CreateMediaPlaybackItemAsync(Rect);
-            VideoMediaRangeSlider?.MediaElement?.Play();
-        }
-
-        void CancelTranscode()
-        {
-            TranscodeCancellationToken?.Cancel();
-        }
-
         void SetVisibility(string propertyName)
         {
             var Properties = this.GetType().GetProperties();
@@ -97,6 +72,7 @@ namespace ViewModels.Media.Upload
             }
         }
 
+        #region Crop
         async Task CropDoneAsync(ImageCropper.UWP.ImageCropper? obj)
         {
             if (obj == null || VideoMediaRangeSlider == null) return;
@@ -130,6 +106,13 @@ namespace ViewModels.Media.Upload
             if (thumb == null) return;
             await obj.LoadImageFromFile(thumb);
         }
+        #endregion
+
+        #region Export Video 
+        void CancelTranscode()
+        {
+            TranscodeCancellationToken?.Cancel();
+        }
 
         async Task ExportVideoAsync()
         {
@@ -160,7 +143,7 @@ namespace ViewModels.Media.Upload
             {
                 CropRectangle = Rect,
             };
-            
+
             var vidProps = clip.GetVideoEncodingProperties();
             AudioEncodingProperties? audioProps = null;
             if (clip.EmbeddedAudioTracks.Any())
@@ -188,11 +171,8 @@ namespace ViewModels.Media.Upload
             StreamSource = Composition.GenerateMediaStreamSource();
             var transcoder = new MediaTranscoder
             {
-                AlwaysReencode = true,
                 TrimStartTime = startTime,
                 TrimStopTime = endTime,
-                HardwareAccelerationEnabled = true,
-                VideoProcessingAlgorithm = MediaVideoProcessingAlgorithm.MrfCrf444
             };
             transcoder.AddVideoEffect(videoEffect.ActivatableClassId, true, videoEffect.Properties);
             var result = await transcoder
@@ -233,6 +213,7 @@ namespace ViewModels.Media.Upload
                 }
             }
         }
+        #endregion
 
         public async void BeginLoading(StorageFile file, IVideoMediaRangeSlider videoMediaRangeSlider)
         {
@@ -255,30 +236,16 @@ namespace ViewModels.Media.Upload
             }
         }
 
-        public void StopMediaPlayback()
-        {
-            if (VideoMediaRangeSlider == null) return;
-            VideoMediaRangeSlider.MediaElement.Stop();
-            VideoMediaRangeSlider.MediaElement.Source = null;
-        }
-
-        void StartMediaPlayback()
-        {
-            if (VideoMediaRangeSlider == null) return;
-            VideoMediaRangeSlider.MediaElement.SetMediaStreamSource(StreamSource);
-            VideoMediaRangeSlider.MediaElement.Play();
-        }
-
         //async void VideoMediaRangeSlider_ValueChanged(object sender, EventArgs e)
         //{
         //    await CreateMediaPlaybackItemAsync(TimeSpan.FromMilliseconds(VideoMediaRangeSlider.RangeMin), TimeSpan.FromMilliseconds(VideoMediaRangeSlider.RangeMax));
         //    StartMediaPlayback();
         //}
 
+        #region Create and control playback media
         async Task CreateMediaPlaybackItemAsync()
         {
             if (File == null) return;
-            Composition?.Clone();
             Composition = null;
             StreamSource = null;
             Composition = new MediaComposition();
@@ -311,6 +278,36 @@ namespace ViewModels.Media.Upload
             StartMediaPlayback();
         }
 
+        public void StopMediaPlayback()
+        {
+            if (VideoMediaRangeSlider == null) return;
+            VideoMediaRangeSlider.MediaElement.Stop();
+            VideoMediaRangeSlider.MediaElement.Source = null;
+        }
+
+        void StartMediaPlayback()
+        {
+            if (VideoMediaRangeSlider == null) return;
+            VideoMediaRangeSlider.MediaElement.SetMediaStreamSource(StreamSource);
+            VideoMediaRangeSlider.MediaElement.Play();
+        }
+
+        void Pause()
+        {
+            if (StreamSource == null) return;
+            VideoMediaRangeSlider?.MediaElement?.Pause();
+        }
+
+        async void Play()
+        {
+            if (StreamSource == null)
+                await CreateMediaPlaybackItemAsync(Rect);
+            VideoMediaRangeSlider?.MediaElement?.Play();
+        }
+
+        #endregion
+
+        #region Extract Thumbnail
         async Task<StorageFile?> ExtractVideoThumbnailsAsync(TimeSpan captureTime)
         {
             if (Composition == null) return null;
@@ -356,12 +353,11 @@ namespace ViewModels.Media.Upload
             {
                 try
                 {
-                    using (var thumb = await Composition.GetThumbnailAsync(TimeSpan.FromMilliseconds(i), 85, 85, VideoFramePrecision.NearestFrame))
-                    {
-                        var bmp = new BitmapImage { };
-                        await bmp.SetSourceAsync(thumb.CloneStream());
-                        AddImageToSlider?.Invoke(bmp);
-                    }
+                    var thumb = await ExtractVideoThumbnailsAsync(TimeSpan.FromMilliseconds(i));
+                    if (thumb == null) continue;
+                    var bmp = new BitmapImage { };
+                    await bmp.SetSourceAsync(await thumb.OpenAsync(FileAccessMode.Read));
+                    AddImageToSlider?.Invoke(bmp);
                 }
                 catch (Exception)
                 {
@@ -369,5 +365,6 @@ namespace ViewModels.Media.Upload
                 }
             }
         }
+        #endregion
     }
 }
