@@ -1095,6 +1095,7 @@
     <PRIResource Include="..\WinstaNext\Strings\en-US\General.resw">
       <Link>Strings\en-US\General.resw</Link>
     </PRIResource>
+    <!--<Content Include="..\Libs\FFmpeg\Windows10\$(PlatformTarget)\bin\*.dll" />-->
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

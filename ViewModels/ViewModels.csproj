@@ -144,6 +144,7 @@
     <Compile Include="Media\ExploreViewModel.cs" />
     <Compile Include="Media\IncrementalInstaMediaViewModel.cs" />
     <Compile Include="Media\MediaLikersViewModel.cs" />
+    <Compile Include="Media\Upload\FeedMediaUploadMobileVM.cs" />
     <Compile Include="Media\Upload\FeedMediaUploadVM.cs" />
     <Compile Include="Media\Upload\FeedUploaderVM.cs" />
     <Compile Include="Media\Upload\VideoTranscoder.cs" />

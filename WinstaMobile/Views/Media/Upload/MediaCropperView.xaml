@@ -14,7 +14,7 @@
     mc:Ignorable="d">
 
     <Page.DataContext>
-        <VM:FeedMediaUploadVM x:Name="ViewModel"/>
+        <VM:FeedMediaUploadMobileVM x:Name="ViewModel"/>
     </Page.DataContext>
     
     <Grid>
@@ -37,7 +37,7 @@
                            Grid.RowSpan="2"
                            Grid.Row="0"/>
 
-        <local:VideoMediaRangeSlider MediaElement="{x:Bind mediaElement}"
+        <local:VideoMediaRangeSlider MediaElement="{x:Bind mediaElement,Mode=OneWay}"
                                      Margin="20,0,20,20"
                                      x:Name="slider"
                                      Opacity="0.8"
