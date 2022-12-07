@@ -91,7 +91,7 @@ namespace WinstaCore
         {
             var App = AppCore.Container.GetService<IWinstaApp>();
             var users = GetUsersList();
-            List<IInstaApi> apis = new List<IInstaApi>();
+            List<IInstaApi> apis = new();
             for (int i = 0; i < users.Count; i++)
             {
                 var user = users.ElementAt(i);
