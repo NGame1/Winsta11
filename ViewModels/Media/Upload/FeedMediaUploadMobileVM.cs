@@ -13,6 +13,7 @@ using Windows.Media.Effects;
 using Windows.Media.MediaProperties;
 using Windows.Media.Transcoding;
 using Windows.Storage;
+using Windows.UI.Composition;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
@@ -113,12 +114,14 @@ namespace ViewModels.Media.Upload
         {
             TranscodeCancellationToken?.Cancel();
         }
-
+        async Task ShowMessageAsync(string message) => await Task.Delay(500);
+        //async Task ShowMessageAsync(string message) => await new MessageDialog(message).ShowAsync();
         async Task ExportVideoAsync()
         {
             //SetVisibility(nameof(ExportingVisibilithy));
             Progress = 0;
             if (File == null || VideoMediaRangeSlider == null) return;
+            await ShowMessageAsync("ExportVideoAsync");
             List<string> encodingPropertiesToRetrieve = new()
             {
                 "System.Video.FrameRate"
@@ -143,8 +146,9 @@ namespace ViewModels.Media.Upload
             {
                 CropRectangle = Rect,
             };
-
-            var vidProps = clip.GetVideoEncodingProperties();
+            await ShowMessageAsync($"MediaClip created for file. start: {startTime}, end: {endTime}, rect: {Rect.X}, {Rect.Y}, {Rect.Width}, {Rect.Height}");
+            var vidProps = await File.Properties.GetVideoPropertiesAsync();
+            //var audioProps = await File.Properties.GetMusicPropertiesAsync();
             AudioEncodingProperties? audioProps = null;
             if (clip.EmbeddedAudioTracks.Any())
             {
@@ -168,18 +172,21 @@ namespace ViewModels.Media.Upload
                 profile.Audio.ChannelCount = audioProps.ChannelCount;
             }
             Composition.Clips.Add(clip);
+            await ShowMessageAsync("Media Clip added to the Composition.");
             StreamSource = Composition.GenerateMediaStreamSource();
             var transcoder = new MediaTranscoder
             {
                 TrimStartTime = startTime,
                 TrimStopTime = endTime,
             };
+            await ShowMessageAsync("Transcoder Initialized.");
             transcoder.AddVideoEffect(videoEffect.ActivatableClassId, true, videoEffect.Properties);
             var result = await transcoder
                 .PrepareMediaStreamSourceTranscodeAsync(
                 StreamSource,
                 await file.OpenAsync(FileAccessMode.ReadWrite),
                 profile);
+            await ShowMessageAsync("result.CanTranscode: " + result.CanTranscode);
             if (result.CanTranscode)
             {
                 try
@@ -212,6 +219,10 @@ namespace ViewModels.Media.Upload
                     //await Launcher.LaunchFolderAsync(await file.GetParentAsync());
                 }
             }
+            else
+            {
+                await ShowMessageAsync(result.FailureReason.ToString());
+            }
         }
         #endregion
 
@@ -225,8 +236,27 @@ namespace ViewModels.Media.Upload
                 VideoMediaRangeSlider = videoMediaRangeSlider;
                 //videoMediaRangeSlider.MinimumValueChanged += VideoMediaRangeSlider_ValueChanged;
                 //videoMediaRangeSlider.MaximumValueChanged += VideoMediaRangeSlider_ValueChanged;
-                await CreateMediaPlaybackItemAsync();
+
+                var vidprops = await File.Properties.GetVideoPropertiesAsync();
+                Rect = new(0, 0, vidprops.Width, vidprops.Height);
+
+                Composition = new MediaComposition();
+                var clip = await MediaClip.CreateFromFileAsync(File);
+                await ShowMessageAsync("");
+                if (NavigationService.Content is not FrameworkElement) return;
+                var rect = Rect;
+                Rect = new((int)(rect.X), (int)(rect.Y), (int)(rect.Width - 1), (int)(rect.Height - 1));
+                var videoEffect = new VideoTransformEffectDefinition()
+                {
+                    CropRectangle = Rect,
+                };
+                Composition.Clips.Add(clip);
+                await ShowMessageAsync("");
+                StreamSource = Composition.GenerateMediaStreamSource();
+                //await CreateMediaPlaybackItemAsync();
+                await ShowMessageAsync("");
                 await ExtractVideoThumbnailsAsync(videoMediaRangeSlider.AddImageToSlider);
+                await ShowMessageAsync("");
                 StartMediaPlayback();
             }
             catch (Exception)
@@ -246,25 +276,28 @@ namespace ViewModels.Media.Upload
         async Task CreateMediaPlaybackItemAsync()
         {
             if (File == null) return;
-            Composition = null;
-            StreamSource = null;
-            Composition = new MediaComposition();
-            var clip = await MediaClip.CreateFromFileAsync(File);
-            var cvs = clip.GetVideoEncodingProperties();
-            if (NavigationService.Content is not FrameworkElement) return;
-            Rect = new(0, 0, cvs.Width, cvs.Height);
-            Composition.Clips.Add(clip);
-            StreamSource = Composition.GenerateMediaStreamSource();
+            var vidprops = await File.Properties.GetVideoPropertiesAsync();
+            Rect = new(0, 0, vidprops.Width, vidprops.Height);
+            await CreateMediaPlaybackItemAsync(Rect);
+            //Composition = null;
+            //StreamSource = null;
+            //Composition = new MediaComposition();
+            //var clip = await MediaClip.CreateFromFileAsync(File);
+            //if (NavigationService.Content is not FrameworkElement) return;
+            //Composition.Clips.Add(clip);
+            //StreamSource = Composition.GenerateMediaStreamSource();
         }
 
         async Task CreateMediaPlaybackItemAsync(Rect rect)
         {
             if (VideoMediaRangeSlider == null || File == null) { await new MessageDialog("Shit!").ShowAsync(); return; }
+            await ShowMessageAsync("");
             StopMediaPlayback();
             Composition = null;
             StreamSource = null;
             Composition = new MediaComposition();
             var clip = await MediaClip.CreateFromFileAsync(File);
+            await ShowMessageAsync("");
             if (NavigationService.Content is not FrameworkElement) return;
             Rect = new((int)(rect.X), (int)(rect.Y), (int)(rect.Width - 1), (int)(rect.Height - 1));
             var videoEffect = new VideoTransformEffectDefinition()
@@ -273,8 +306,11 @@ namespace ViewModels.Media.Upload
             };
             //clip.VideoEffectDefinitions.Add(videoEffect);
             Composition.Clips.Add(clip);
+            await ShowMessageAsync("");
             StreamSource = Composition.GenerateMediaStreamSource();
+            await ShowMessageAsync("");
             VideoMediaRangeSlider.MediaElement.AddVideoEffect(videoEffect.ActivatableClassId, true, videoEffect.Properties);
+            await ShowMessageAsync("");
             StartMediaPlayback();
         }
 
