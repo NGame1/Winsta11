@@ -8,7 +8,7 @@ Unofficial Instagram client for Windows devices family
 <svg align="center" fill="none" viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
   <foreignObject width="100%" height="100%">
     <div xmlns="http://www.w3.org/1999/xhtml">
-      <a href="ms-windows-store://pdp/?ProductId=9PCGHZQSJ9KD">
+      <a href="https://apps.microsoft.com/store/detail/wingo-tag-preview/9PCGHZQSJ9KD">
         <img src="https://get.microsoft.com/images/en-us%20dark.svg" width="200px" alt="Download Wingo Tag Preview" />
       </a>
     </div>
