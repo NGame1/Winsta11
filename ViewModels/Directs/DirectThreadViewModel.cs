@@ -26,6 +26,7 @@ using System.Linq;
 using InstagramApiSharp;
 using Windows.System.Threading;
 using System.Threading;
+using Windows.UI.Popups;
 #nullable enable
 
 namespace WinstaNext.ViewModels.Directs
@@ -278,6 +279,10 @@ namespace WinstaNext.ViewModels.Directs
                     ThreadItems.InsertNewTextMessage(result.Value, MessageText);
                     MessageText = string.Empty;
                     RepliedMessage = null;
+                }
+                else
+                {
+                    await new MessageDialog(result.Info.Message).ShowAsync();
                 }
             }
         }
