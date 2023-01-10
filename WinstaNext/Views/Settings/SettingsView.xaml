@@ -29,6 +29,17 @@
                 </TransitionCollection>
             </StackPanel.ChildrenTransitions>
 
+            <controls:NavigationSettingContent Title="{x:Bind Resources:LanguageManager.Instance.Settings.ApplicationSettings, Mode=OneTime}"
+                                               Command="{x:Bind ViewModel.ApplicationSettingsNavigateCommand}"
+                                               Description="{x:Bind Resources:LanguageManager.Instance.Settings.AccountSettingsDescription, Mode=OneTime}">
+                <controls:NavigationSettingContent.Icon>
+                    <FontIcon FontFamily="{StaticResource FluentSystemIconsRegular}" Glyph="&#xF588;" />
+                </controls:NavigationSettingContent.Icon>
+                <TextBlock FontFamily="{StaticResource FluentSystemIconsRegular}"
+                           Text="&#xF2B1;"
+                           FontSize="18"/>
+            </controls:NavigationSettingContent>
+            
             <controls:NavigationSettingContent Title="{x:Bind Resources:LanguageManager.Instance.Settings.AccountSettings, Mode=OneTime}"
                                                Command="{x:Bind ViewModel.AccountSettingsNavigateCommand}"
                                                Description="{x:Bind Resources:LanguageManager.Instance.Settings.AccountSettingsDescription, Mode=OneTime}">
@@ -39,95 +50,6 @@
                            Text="&#xF2B1;"
                            FontSize="18"/>
             </controls:NavigationSettingContent>
-            
-            <controls:ExpandableSettingControl 
-                Title="{x:Bind Resources:LanguageManager.Instance.Settings.Autoplay}"
-                Description="{x:Bind Resources:LanguageManager.Instance.Settings.AutoplayDescription}">
-                <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xE102;" />
-                </controls:ExpandableSettingControl.Icon>
-                <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" 
-                              IsOn="{x:Bind ViewModel.AutoPlayEnabled, Mode=TwoWay}"/>
-            </controls:ExpandableSettingControl>
-            
-            <controls:ExpandableSettingControl 
-                Title="{x:Bind Resources:LanguageManager.Instance.Settings.RemoveFeedAds}"
-                Description="{x:Bind Resources:LanguageManager.Instance.Settings.RemoveFeedAdsDescription}">
-                <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xE733;" />
-                </controls:ExpandableSettingControl.Icon>
-                <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" 
-                              IsOn="{x:Bind ViewModel.RemoveFeedAds, Mode=TwoWay}"/>
-            </controls:ExpandableSettingControl>
-
-            <controls:ExpandableSettingControl 
-                Title="{x:Bind Resources:LanguageManager.Instance.Settings.ForceThreeColumns}"
-                Description="{x:Bind Resources:LanguageManager.Instance.Settings.ForceThreeColumnsDescription}">
-                <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xE80A;" />
-                </controls:ExpandableSettingControl.Icon>
-                <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" 
-                              IsOn="{x:Bind ViewModel.ForceThreeColumns, Mode=TwoWay}"/>
-            </controls:ExpandableSettingControl>
-
-            <controls:ExpandableSettingControl 
-            Title="{x:Bind Resources:LanguageManager.Instance.General.Language}"
-            Description="{x:Bind Resources:LanguageManager.Instance.General.LanguageDescription}">
-                <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xF2B7;" />
-                </controls:ExpandableSettingControl.Icon>
-                <ComboBox 
-                DisplayMemberPath="DisplayName"
-                ItemsSource="{x:Bind ViewModel.AvailableLanguages}"
-                SelectedValue="{x:Bind ViewModel.Language, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-
-                </ComboBox>
-            </controls:ExpandableSettingControl>
-
-            <controls:ExpandableSettingControl
-            Title="{x:Bind Resources:LanguageManager.Instance.General.AppTheme}"
-            Description="{x:Bind Resources:LanguageManager.Instance.General.AppThemeDescription}">
-                <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xE790;" />
-                </controls:ExpandableSettingControl.Icon>
-                <controls:ExpandableSettingControl.ExpandableContent>
-                    <StackPanel Padding="12" Spacing="4" Margin="42,0,6,0">
-                        <RadioButton
-                        Content="{x:Bind Resources:LanguageManager.Instance.General.Light}"
-                        IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Light', Converter={StaticResource EnumToBooleanConverter}}"/>
-                        <RadioButton
-                        Content="{x:Bind Resources:LanguageManager.Instance.General.Dark}"
-                        IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Dark', Converter={StaticResource EnumToBooleanConverter}}"/>
-                        <RadioButton
-                        Content="{x:Bind Resources:LanguageManager.Instance.General.System}"
-                        IsChecked="{x:Bind ViewModel.Theme, Mode=TwoWay, ConverterParameter='Default', Converter={StaticResource EnumToBooleanConverter}}"/>
-                    </StackPanel>
-                </controls:ExpandableSettingControl.ExpandableContent>
-            </controls:ExpandableSettingControl>
-            
-            <controls:ExpandableSettingControl 
-                      Title="{x:Bind Resources:LanguageManager.Instance.Settings.PlaybackQuality}"
-                      Description="{x:Bind Resources:LanguageManager.Instance.Settings.PlaybackQualityDescription}">
-                          <controls:ExpandableSettingControl.Icon>
-                              <FontIcon Glyph="&#xF2B7;" />
-                          </controls:ExpandableSettingControl.Icon>
-                          <ComboBox ItemsSource="{x:Bind ViewModel.AvailableQualities}"
-                                    SelectedValue="{x:Bind ViewModel.PlaybackQuality, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </controls:ExpandableSettingControl>
-            
-            <controls:ExpandableSettingControl
-            Title="{x:Bind Resources:LanguageManager.Instance.Settings.DownloadLocation}">
-                <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xE896;" />
-                </controls:ExpandableSettingControl.Icon>
-                <controls:ExpandableSettingControl.ExpandableContent>
-                    <StackPanel Padding="12" Spacing="4" Margin="42,0,6,0">
-                        <TextBlock Text="{x:Bind ViewModel.DownloadsPath, Mode=OneWay}"/>
-                        <Button Content="{x:Bind Resources:LanguageManager.Instance.Settings.Browse}"
-                                Command="{x:Bind ViewModel.SetDownloadsFolderCommand}"/>
-                    </StackPanel>
-                </controls:ExpandableSettingControl.ExpandableContent>
-            </controls:ExpandableSettingControl>
         </StackPanel>
     </ScrollViewer>
 </views:BasePage>
