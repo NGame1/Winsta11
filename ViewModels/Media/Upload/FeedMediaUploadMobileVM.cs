@@ -1,4 +1,5 @@
-﻿using Microsoft.Toolkit.Mvvm.Input;
+﻿#if WINDOWS_UWP15063
+using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -404,3 +405,4 @@ namespace ViewModels.Media.Upload
         #endregion
     }
 }
+#endif
