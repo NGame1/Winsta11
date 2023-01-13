@@ -123,6 +123,12 @@
   <data name="AccountSettingsDescription" xml:space="preserve">
     <value>ویرایش تنظیمات حساب کاربری اینستاگرام</value>
   </data>
+  <data name="ApplicationSettings" xml:space="preserve">
+    <value>تنظیمات برنامه</value>
+  </data>
+  <data name="ApplicationSettingsDescription" xml:space="preserve">
+    <value>ویرایش تنظیمات اختصاصی برنامه</value>
+  </data>
   <data name="Autoplay" xml:space="preserve">
     <value>پخش خودکار</value>
   </data>

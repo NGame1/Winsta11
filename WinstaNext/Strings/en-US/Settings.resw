@@ -123,6 +123,12 @@
   <data name="AccountSettingsDescription" xml:space="preserve">
     <value>Manipulate your Instagram's account settings.</value>
   </data>
+  <data name="ApplicationSettings" xml:space="preserve">
+    <value>Application Settings</value>
+  </data>
+  <data name="ApplicationSettingsDescription" xml:space="preserve">
+    <value>Manipulate application's specific settings.</value>
+  </data>
   <data name="Autoplay" xml:space="preserve">
     <value>Auto Play</value>
   </data>

@@ -126,10 +126,16 @@
   <data name="DeleteStoryContent" xml:space="preserve">
     <value>Are you sure you want to delete the story?</value>
   </data>
+  <data name="ForceLogout" xml:space="preserve">
+    <value>We detected an error while trying to log you out. {0} If you are experiencing problems using the application, Please click yes to forcibly log out.</value>
+  </data>
   <data name="LeaveConfirmTitle" xml:space="preserve">
     <value>Leave?</value>
   </data>
   <data name="LeaveGroupContent" xml:space="preserve">
     <value>Are you sure you want to leave the group?</value>
+  </data>
+  <data name="LogoutConfirmation" xml:space="preserve">
+    <value>Are you sure you want to logout from your account?</value>
   </data>
 </root>

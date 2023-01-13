@@ -126,10 +126,16 @@
   <data name="DeleteStoryContent" xml:space="preserve">
     <value>آیا مطمئنید که میخواهید استوری را حذف نمائید؟</value>
   </data>
+  <data name="ForceLogout" xml:space="preserve">
+    <value>خطایی در خروج شما رخ داده است. {0} اگر در استفاده از برنامه با مشکلاتی مواجه هستید و قصد ورود مجدد دارید دکمه بله را جهت خروج بزنید.</value>
+  </data>
   <data name="LeaveConfirmTitle" xml:space="preserve">
     <value>خروج؟</value>
   </data>
   <data name="LeaveGroupContent" xml:space="preserve">
     <value>آیا مطمئنید که میخواهید از گروه خارج شوید؟</value>
+  </data>
+  <data name="LogoutConfirmation" xml:space="preserve">
+    <value>آیا مطمئنید که میخواهید از حساب کاربری خود خارج شوید؟</value>
   </data>
 </root>

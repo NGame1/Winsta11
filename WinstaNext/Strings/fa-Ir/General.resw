@@ -174,6 +174,9 @@
   <data name="Login" xml:space="preserve">
     <value>ورود</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>خروج</value>
+  </data>
   <data name="Message" xml:space="preserve">
     <value>پیام</value>
   </data>
