@@ -71,13 +71,13 @@ namespace WinstaNext.UI.Generic
             {
                 GlyphFont = (FontFamily)App.Current.Resources["FluentSystemIconsRegular"];
                 //GlyphForeground = (SolidColorBrush)App.Current.Resources.ThemeDictionaries["ApplicationForegroundThemeBrush"];
-                Glyph = "\u0363";
+                Glyph = "\uE6FC";
             }
             else
             {
                 GlyphFont = (FontFamily)App.Current.Resources["FluentSystemIconsFilled"];
                 //GlyphForeground = new SolidColorBrush(Colors.Red);
-                Glyph = "\u036F";
+                Glyph = "\uE709";
             }
         }
     }
