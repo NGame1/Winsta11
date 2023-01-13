@@ -100,6 +100,8 @@ namespace ViewModels
 
         public event EventHandler? ForceLogout;
 
+        public void RaiseForceLogoutEvent()=> ForceLogout?.Invoke(this, EventArgs.Empty);
+
         public MainPageViewModel()
         {
             mainPageViewModel = this;

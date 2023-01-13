@@ -41,6 +41,7 @@ namespace Resources
         public string Light { get => _resource.GetString(nameof(Light)); }
         public string Loading { get => _resource.GetString(nameof(Loading)); }
         public string Login { get => _resource.GetString(nameof(Login)); }
+        public string Logout { get => _resource.GetString(nameof(Logout)); }
         public string Message { get => _resource.GetString(nameof(Message)); }
         public string More { get => _resource.GetString(nameof(More)); }
         public string Off { get => _resource.GetString(nameof(Off)); }
@@ -155,8 +156,10 @@ namespace Resources
         public string DeleteConfirmTitle { get => _resource.GetString(nameof(DeleteConfirmTitle)); }
         public string DeleteDirectThreadContent { get => _resource.GetString(nameof(DeleteDirectThreadContent)); }
         public string DeleteStoryContent { get => _resource.GetString(nameof(DeleteStoryContent)); }
+        public string ForceLogout { get => _resource.GetString(nameof(ForceLogout)); }
         public string LeaveConfirmTitle { get => _resource.GetString(nameof(LeaveConfirmTitle)); }
         public string LeaveGroupContent { get => _resource.GetString(nameof(LeaveGroupContent)); }
+        public string LogoutConfirmation { get => _resource.GetString(nameof(LogoutConfirmation)); }
 
         internal MessagesStrings() { }
     }
@@ -168,6 +171,8 @@ namespace Resources
 
         public string AccountSettings { get => _resource.GetString(nameof(AccountSettings)); }
         public string AccountSettingsDescription { get => _resource.GetString(nameof(AccountSettingsDescription)); }
+        public string ApplicationSettings { get => _resource.GetString(nameof(ApplicationSettings)); }
+        public string ApplicationSettingsDescription { get => _resource.GetString(nameof(ApplicationSettingsDescription)); }
         public string Autoplay { get => _resource.GetString(nameof(Autoplay)); }
         public string AutoplayDescription { get => _resource.GetString(nameof(AutoplayDescription)); }
         public string Browse { get => _resource.GetString(nameof(Browse)); }

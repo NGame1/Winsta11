@@ -158,6 +158,7 @@
     <Compile Include="Search\SearchViewModel.cs" />
     <Compile Include="ServiceProviderExtensions.cs" />
     <Compile Include="Settings\AccountSettingsViewModel.cs" />
+    <Compile Include="Settings\ApplicationSettingsVM.cs" />
     <Compile Include="Settings\SettingsViewModel.cs" />
     <Compile Include="Stories\StoryCarouselViewModel.cs" />
     <EmbeddedResource Include="Properties\ViewModels.rd.xml" />
