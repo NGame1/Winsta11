@@ -41,6 +41,17 @@
                                     IsOn="{x:Bind ViewModel.IsPrivate, Mode=TwoWay}"/>
             </controls:ExpandableSettingControl>
             
+            <controls:NavigationSettingContent Title="{x:Bind Resources:LanguageManager.Instance.General.Logout, Mode=OneTime}"
+                                               Command="{x:Bind ViewModel.LogoutCommand}"
+                                               Description="{x:Bind Resources:LanguageManager.Instance.General.Logout, Mode=OneTime}"
+                                               IsEnabled="{x:Bind ViewModel.LogoutCommand.IsRunning, Converter={StaticResource InvertBoolConverter}, Mode=OneWay}">
+                <controls:NavigationSettingContent.Icon>
+                    <FontIcon FontFamily="{StaticResource FluentSystemIconsRegular}" Glyph="&#xE0C4;" />
+                </controls:NavigationSettingContent.Icon>
+                <TextBlock FontFamily="{StaticResource FluentSystemIconsRegular}"
+                           Text="&#xF2B1;"
+                           FontSize="18"/>
+            </controls:NavigationSettingContent>
         </StackPanel>
     </ScrollViewer>
 </views:BasePage>
