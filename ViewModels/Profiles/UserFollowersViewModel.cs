@@ -7,12 +7,17 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore.Interfaces.Views.Profiles;
 using WinstaCore;
+using PropertyChanged;
 
 namespace ViewModels.Profiles
 {
-    public class UserFollowersViewModel : BaseViewModel
+    [AddINotifyPropertyChangedInterface]
+    public class UserFollowersViewModel : BaseViewModelWithStopwatch
     {
         IncrementalUserFollowers UserFollowersInstance { get; set; }
+
+        [OnChangedMethod(nameof(OnSearchQuerryChanged))]
+        public string SearchQuerry { get; set; }
 
         public IncrementalLoadingCollection<IncrementalUserFollowers, InstaUserShort> UserFollowers { get; set; }
 
@@ -44,5 +49,13 @@ namespace ViewModels.Profiles
 
             base.OnNavigatedTo(e);
         }
+
+        async void OnSearchQuerryChanged()
+        {
+            if (!await EnsureTimeElapsed()) return;
+            UserFollowersInstance.SearchQuerry = SearchQuerry;
+            await UserFollowers.RefreshAsync();
+        }
+
     }
 }
