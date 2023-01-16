@@ -2,7 +2,10 @@
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
+using PropertyChanged;
 using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore;
@@ -10,9 +13,13 @@ using WinstaCore.Interfaces.Views.Profiles;
 
 namespace ViewModels.Profiles
 {
-    public class UserFollowingsViewModel : BaseViewModel
+    [AddINotifyPropertyChangedInterface]
+    public class UserFollowingsViewModel : BaseViewModelWithStopwatch
     {
         IncrementalUserFollowings UserFollowingsInstance { get; set; }
+
+        [OnChangedMethod(nameof(OnSearchQuerryChanged))]
+        public string SearchQuerry { get; set; }
 
         public IncrementalLoadingCollection<IncrementalUserFollowings, InstaUserShort> UserFollowings { get; set; }
         public RelayCommand<ItemClickEventArgs> NavigateToUserCommand { get; set; }
@@ -42,6 +49,13 @@ namespace ViewModels.Profiles
             UserFollowings = new(UserFollowingsInstance);
 
             base.OnNavigatedTo(e);
+        }
+
+        async void OnSearchQuerryChanged()
+        {
+            if (!await EnsureTimeElapsed()) return;
+            UserFollowingsInstance.SearchQuerry = SearchQuerry;
+            await UserFollowings.RefreshAsync();
         }
     }
 }

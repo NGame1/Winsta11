@@ -132,6 +132,7 @@
     <Compile Include="Activities\ActivitiesViewModel.cs" />
     <Compile Include="Activities\FollowRequestsViewModel.cs" />
     <Compile Include="BaseViewModel.cs" />
+    <Compile Include="BaseViewModelWithStopwatch.cs" />
     <Compile Include="Comments\CommentLikersViewModel.cs" />
     <Compile Include="Comments\MediaCommentsViewModel.cs" />
     <Compile Include="Dialogs\BaseDialogViewModel.cs" />

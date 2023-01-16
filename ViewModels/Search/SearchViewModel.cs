@@ -20,7 +20,7 @@ using WinstaCore.Interfaces.Views.Profiles;
 
 namespace ViewModels.Search
 {
-    public class SearchViewModel : BaseViewModel
+    public class SearchViewModel : BaseViewModelWithStopwatch
     {
         public double ViewHeight { get; set; }
         public double ViewWidth { get; set; }
@@ -151,30 +151,11 @@ namespace ViewModels.Search
             await base.OnNavigatedToAsync(e);
         }
 
-        public override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            StopTimer = Stopwatch.StartNew();
-            base.OnNavigatedTo(e);
-        }
-
-        public override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            StopTimer.Stop();
-            StopTimer = null;
-            base.OnNavigatingFrom(e);
-        }
-
-        Stopwatch StopTimer { get; set; }
         void OnSearchQueryChanged() => OnSearchQueryChanged(false);
         async void OnSearchQueryChanged(bool contexChanged)
         {
             if (SearchQuery == string.Empty) return;
-            if (!contexChanged)
-            {
-                StopTimer.Restart();
-                await Task.Delay(500);
-                if (StopTimer.ElapsedMilliseconds < 500) return;
-            }
+            if (!contexChanged && !await EnsureTimeElapsed()) return;
             if (SearchQuery == string.Empty) return;
             SearchResults.Clear();
             switch (SearchContext.ToLower())
