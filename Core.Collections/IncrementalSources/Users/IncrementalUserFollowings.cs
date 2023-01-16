@@ -32,7 +32,8 @@ namespace Core.Collections.IncrementalSources.Users
             if (!HasMoreAvailable) return new InstaUserShort[0];
             using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
             {
-                var result = await Api.UserProcessor.GetUserFollowingByIdAsync(UserId, Pagination, cancellationToken, SearchQuerry);
+                var result = await Api.UserProcessor.GetUserFollowingByIdAsync(UserId, Pagination, cancellationToken,
+                    searchQuery: SearchQuerry);
                 if (!result.Succeeded)
                 {
                     if (result.Info.Exception != null && result.Info.Exception is not TaskCanceledException)
