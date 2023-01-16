@@ -1,11 +1,10 @@
 ﻿using Core.Collections.IncrementalSources.Users;
 using InstagramApiSharp.Classes.Models;
+using InstagramApiSharp.Enums;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
 using PropertyChanged;
 using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore;
@@ -20,6 +19,9 @@ namespace ViewModels.Profiles
 
         [OnChangedMethod(nameof(OnSearchQuerryChanged))]
         public string SearchQuerry { get; set; }
+
+        [OnChangedMethod(nameof(OnOderTypeChanged))]
+        public InstaFollowOrderType OrderType { get; set; } = InstaFollowOrderType.Default;
 
         public IncrementalLoadingCollection<IncrementalUserFollowings, InstaUserShort> UserFollowings { get; set; }
         public RelayCommand<ItemClickEventArgs> NavigateToUserCommand { get; set; }
@@ -55,6 +57,12 @@ namespace ViewModels.Profiles
         {
             if (!await EnsureTimeElapsed()) return;
             UserFollowingsInstance.SearchQuerry = SearchQuerry;
+            await UserFollowings.RefreshAsync();
+        }
+
+        async void OnOderTypeChanged()
+        {
+            UserFollowingsInstance.OrderType = OrderType;
             await UserFollowings.RefreshAsync();
         }
     }
