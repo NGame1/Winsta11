@@ -34,10 +34,23 @@
 
             <ListView.Header>
                 <Grid>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
                     <TextBox Text="{x:Bind ViewModel.SearchQuerry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              PlaceholderText="{x:Bind Resources:LanguageManager.Instance.General.SearchPlaceHolder}"
                              Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
                              Margin="0,8"/>
+
+                    <ComboBox Grid.Column="1" Margin="8"
+                              xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
+                              xmlns:enums="using:InstagramApiSharp.Enums"
+                              ItemsSource="{ui:EnumValues Type=enums:InstaFollowOrderType}"
+                              Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                              SelectedItem="{x:Bind ViewModel.OrderType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </ListView.Header>
 

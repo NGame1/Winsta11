@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Navigation;
 using WinstaCore.Interfaces.Views.Profiles;
 using WinstaCore;
 using PropertyChanged;
+using InstagramApiSharp.Enums;
 
 namespace ViewModels.Profiles
 {
@@ -18,6 +19,9 @@ namespace ViewModels.Profiles
 
         [OnChangedMethod(nameof(OnSearchQuerryChanged))]
         public string SearchQuerry { get; set; }
+
+        [OnChangedMethod(nameof(OnOderTypeChanged))]
+        public InstaFollowOrderType OrderType { get; set; } = InstaFollowOrderType.Default;
 
         public IncrementalLoadingCollection<IncrementalUserFollowers, InstaUserShort> UserFollowers { get; set; }
 
@@ -54,6 +58,12 @@ namespace ViewModels.Profiles
         {
             if (!await EnsureTimeElapsed()) return;
             UserFollowersInstance.SearchQuerry = SearchQuerry;
+            await UserFollowers.RefreshAsync();
+        }
+
+        async void OnOderTypeChanged()
+        {
+            UserFollowersInstance.OrderType = OrderType;
             await UserFollowers.RefreshAsync();
         }
 

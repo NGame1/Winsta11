@@ -1,6 +1,7 @@
 ﻿using InstagramApiSharp;
 using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
+using InstagramApiSharp.Enums;
 using Microsoft.Toolkit.Collections;
 using PropertyChanged;
 using System;
@@ -17,8 +18,11 @@ namespace Core.Collections.IncrementalSources.Users
         PaginationParameters Pagination { get; set; }
         public long UserId { get; private set; } = -1;
 
-        [OnChangedMethod(nameof(OnSearchQuerryChanged))]
+        [OnChangedMethod(nameof(OnSearchQuerryOrOderTypeChanged))]
         public string SearchQuerry { get; set; } = String.Empty;
+
+        [OnChangedMethod(nameof(OnSearchQuerryOrOderTypeChanged))]
+        public InstaFollowOrderType OrderType { get; set; } = InstaFollowOrderType.Default;
 
         public IncrementalUserFollowers(long userId)
         {
@@ -34,7 +38,7 @@ namespace Core.Collections.IncrementalSources.Users
             {
                 var result = await Api.UserProcessor
                     .GetUserFollowersByIdAsync(UserId, Pagination, cancellationToken,
-                        searchQuery: SearchQuerry, mutualsfirst: true);
+                        searchQuery: SearchQuerry, mutualsfirst: true, orderBy: OrderType);
                 if (!result.Succeeded)
                 {
                     if (result.Info.Exception != null && result.Info.Exception is not TaskCanceledException)
@@ -48,7 +52,7 @@ namespace Core.Collections.IncrementalSources.Users
             }
         }
 
-        void OnSearchQuerryChanged()
+        void OnSearchQuerryOrOderTypeChanged()
         {
             Pagination = PaginationParameters.MaxPagesToLoad(1);
             HasMoreAvailable = true;
