@@ -30,7 +30,9 @@ namespace Resources
         public string Close { get => _resource.GetString(nameof(Close)); }
         public string Copy { get => _resource.GetString(nameof(Copy)); }
         public string Dark { get => _resource.GetString(nameof(Dark)); }
+        public string Default { get => _resource.GetString(nameof(Default)); }
         public string Download { get => _resource.GetString(nameof(Download)); }
+        public string EarliestFirst { get => _resource.GetString(nameof(EarliestFirst)); }
         public string Email { get => _resource.GetString(nameof(Email)); }
         public string Error { get => _resource.GetString(nameof(Error)); }
         public string Find { get => _resource.GetString(nameof(Find)); }
@@ -38,6 +40,7 @@ namespace Resources
         public bool IsRightToLeft { get => bool.Parse(_resource.GetString(nameof(IsRightToLeft))); }
         public string Language { get => _resource.GetString(nameof(Language)); }
         public string LanguageDescription { get => _resource.GetString(nameof(LanguageDescription)); }
+        public string LatestFirst { get => _resource.GetString(nameof(LatestFirst)); }
         public string Light { get => _resource.GetString(nameof(Light)); }
         public string Loading { get => _resource.GetString(nameof(Loading)); }
         public string Login { get => _resource.GetString(nameof(Login)); }

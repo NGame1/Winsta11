@@ -141,8 +141,14 @@
   <data name="Dark" xml:space="preserve">
     <value>تیره</value>
   </data>
+  <data name="Default" xml:space="preserve">
+    <value>پیشفرض</value>
+  </data>
   <data name="Download" xml:space="preserve">
     <value>دانلود...</value>
+  </data>
+  <data name="EarliestFirst" xml:space="preserve">
+    <value>ابتدا اولین ها</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>ایمیل</value>
@@ -164,6 +170,9 @@
   </data>
   <data name="LanguageDescription" xml:space="preserve">
     <value>انتخاب یک زبان از میان زبان های مختلف جهت ساده سازی استفاده از برنامه. این تغییر به به طور کامل در اجرای بعدی برنامه اعمال خواهد شد.</value>
+  </data>
+  <data name="LatestFirst" xml:space="preserve">
+    <value>ابتدا آخرین ها</value>
   </data>
   <data name="Light" xml:space="preserve">
     <value>روشن</value>

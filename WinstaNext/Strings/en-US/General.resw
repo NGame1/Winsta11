@@ -141,8 +141,14 @@
   <data name="Dark" xml:space="preserve">
     <value>Dark</value>
   </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
   <data name="Download" xml:space="preserve">
     <value>Download</value>
+  </data>
+  <data name="EarliestFirst" xml:space="preserve">
+    <value>Earliest first</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
@@ -164,6 +170,9 @@
   </data>
   <data name="LanguageDescription" xml:space="preserve">
     <value>Switch between different languages to make app easier to use. For applying this change, You'll need to restart the application.</value>
+  </data>
+  <data name="LatestFirst" xml:space="preserve">
+    <value>Latest first</value>
   </data>
   <data name="Light" xml:space="preserve">
     <value>Light</value>
