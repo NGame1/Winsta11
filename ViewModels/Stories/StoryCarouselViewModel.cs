@@ -131,7 +131,11 @@ namespace ViewModels.Stories
         {
             if (feed == null) throw new ArgumentNullException(nameof(feed));
             var me = AppCore.Container?.GetService<InstaUserShort>();
-            if (feed.User.Pk == me.Pk)
+            if (feed.User == null)
+            {
+
+            }
+            else if (feed.User.Pk == me.Pk)
             {
                 for (int i = 0; i < feed.Items.Count; i++)
                 {
@@ -148,19 +152,20 @@ namespace ViewModels.Stories
             try
             {
                 string pk = feed.User != null ? feed.User.Pk.ToString() : feed.Owner.Pk;
-                using (var Api = AppCore.Container?.GetService<IInstaApi>())
-                {
-                    if (feed.User == null)
-                    {
-                        var res = await Api.StoryProcessor.GetUsersStoriesAsHighlightsAsync(pk);
-                    }
 
-                    var result = await Api.StoryProcessor.GetUserStoryFeedAsync(feed.User.Pk);
-                    if (!result.Succeeded) return;
-                    for (int i = 0; i < result.Value.Items.Count; i++)
-                    {
-                        feed.Items.Add(result.Value.Items.ElementAt(i));
-                    }
+                using var Api = AppCore.Container?.GetService<IInstaApi>();
+
+                if (feed.User == null)
+                {
+                    //var res = await Api.StoryProcessor.GetUsersStoriesAsHighlightsAsync(pk);
+                    return;
+                }
+
+                var result = await Api.StoryProcessor.GetUserStoryFeedAsync(feed.User.Pk);
+                if (!result.Succeeded) return;
+                for (int i = 0; i < result.Value.Items.Count; i++)
+                {
+                    feed.Items.Add(result.Value.Items.ElementAt(i));
                 }
             }
             finally

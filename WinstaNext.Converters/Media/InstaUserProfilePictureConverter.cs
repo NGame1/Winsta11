@@ -10,6 +10,7 @@ namespace WinstaNext.Converters.Media
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value == null) return new BitmapImage(new Uri("ms-appx:///Assets/Icons/NoOne.png"));
+            if (value is InstaReelFeed reelFeed) value = reelFeed.User != null ? reelFeed.User : reelFeed.Owner;
             var uri = value switch
             {
                 InstaUser instaUser => !instaUser.HasAnonymousProfilePicture || (instaUser.ProfilePictureId != null && instaUser.ProfilePictureId != "unknown") ?
@@ -25,10 +26,12 @@ namespace WinstaNext.Converters.Media
 
                 InstaFollowHashtagInfo hashtagInfo => hashtagInfo.ProfilePicture,
 
+                InstaHashtagOwner hashtagOwner => hashtagOwner.ProfilePicture,
+
                 _ => "ms-appx:///Assets/Icons/NoOne.png"
 
             };
-            if(string.IsNullOrEmpty(uri)) return new BitmapImage(new Uri("ms-appx:///Assets/Icons/NoOne.png"));
+            if (string.IsNullOrEmpty(uri)) return new BitmapImage(new Uri("ms-appx:///Assets/Icons/NoOne.png"));
             return new BitmapImage(new Uri(uri, UriKind.RelativeOrAbsolute));
         }
 

@@ -6,6 +6,7 @@
     xmlns:converters="using:WinstaNext.Converters.Stories"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:stories="using:WinstaMobile.UI.Flyouts.Stories"
+    xmlns:media="using:WinstaNext.Converters.Media"
     xmlns:Muxc="using:Microsoft.UI.Xaml.Controls" 
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -26,6 +27,8 @@
                                               NormalStory="{StaticResource InstagramLogoBackgroundBrush}"
                                               x:Key="StoryBorderColorConverter"/>
 
+            <media:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
+
         </ResourceDictionary>
 
     </UserControl.Resources>
@@ -37,9 +40,9 @@
                 Margin="0,3"
                 Height="60"
                 Width="60">
-            <Muxc:PersonPicture ProfilePicture="{x:Bind ReelFeed.User.ProfilePicture}"
-                                DisplayName="{x:Bind ReelFeed.User.UserName}"
+            <Muxc:PersonPicture ProfilePicture="{x:Bind ReelFeed, Converter={StaticResource InstaUserProfilePictureConverter}}"
                                 HorizontalAlignment="Center"
+                                DisplayName="{x:Bind Title}"
                                 VerticalAlignment="Center"
                                 Height="58"
                                 Width="58"/>
@@ -50,7 +53,7 @@
                          HorizontalAlignment="Stretch"
                          Padding="0">
             <HyperlinkButton.Content>
-                <TextBlock Text="{x:Bind ReelFeed.User.UserName}"
+                <TextBlock Text="{x:Bind Title}"
                            TextTrimming="CharacterEllipsis"
                            TextAlignment="Center"
                            TextWrapping="Wrap"
