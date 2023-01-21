@@ -382,6 +382,9 @@
     <Compile Include="Views\Settings\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StaggeredHomeView.xaml.cs">
+      <DependentUpon>StaggeredHomeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Stories\HashtagStoryItemView.xaml.cs">
       <DependentUpon>HashtagStoryItemView.xaml</DependentUpon>
     </Compile>
@@ -774,6 +777,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Settings\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StaggeredHomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

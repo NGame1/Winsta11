@@ -13,7 +13,6 @@ using Windows.UI.Xaml.Controls;
 using WinstaCore.Helpers;
 using WinstaCore.Services;
 using WinstaNext.Helpers;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
