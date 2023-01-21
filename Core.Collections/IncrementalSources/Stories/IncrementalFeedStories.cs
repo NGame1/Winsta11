@@ -17,7 +17,6 @@ namespace Core.Collections.IncrementalSources.Stories
     {
         PaginationParameters Pagination { get; set; }
 
-
         [OnChangedMethod(nameof(OnRefreshRequestedChanged))]
         public bool RefreshRequested { get; set; }
 
@@ -47,7 +46,7 @@ namespace Core.Collections.IncrementalSources.Stories
                 HasMoreAvailable = Pagination.NextMaxId != null;
                 List<WinstaStoryItem> Stories = new();
 
-                var ownStories = result.Value.Items.Where(x => x.User.Pk == AppCore.Container.GetService<InstaUserShort>().Pk);
+                var ownStories = result.Value.Items.Where(x => x.User?.Pk == AppCore.Container.GetService<InstaUserShort>().Pk);
                 if (ownStories.Count() > 1)
                 {
                     var own = ownStories.FirstOrDefault();
