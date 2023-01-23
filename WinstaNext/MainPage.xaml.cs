@@ -11,6 +11,8 @@ using System.Reflection.Metadata;
 using Windows.System;
 using WinstaNext.Services;
 using WinstaCore;
+using Windows.Security.Credentials.UI;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -35,6 +37,16 @@ public sealed partial class MainPage : BasePage, IMainView
         Loaded += MainPage_Loaded;
         ViewModel.ForceLogout += ViewModel_ForceLogout;
         //SizeChanged += MainPage_SizeChanged;
+        App.Current.LeavingBackground += Current_LeavingBackground;
+    }
+
+    async void Current_LeavingBackground(object sender, Windows.ApplicationModel.LeavingBackgroundEventArgs e)
+    {
+        var content = ContentFrame.Content;
+        ContentFrame.Content = null;
+
+        await AppLock();
+        ContentFrame.Content = content;
     }
 
     async void ViewModel_ForceLogout(object sender, System.EventArgs e)
@@ -46,9 +58,11 @@ public sealed partial class MainPage : BasePage, IMainView
         });
     }
 
-    void MainPage_Loaded(object sender, RoutedEventArgs e)
+    async void MainPage_Loaded(object sender, RoutedEventArgs e)
     {
         this.Loaded -= MainPage_Loaded;
+
+        await AppLock();
 
         ViewModel.NavigationService.SetNavigationFrame(ContentFrame);
 
@@ -61,9 +75,9 @@ public sealed partial class MainPage : BasePage, IMainView
         // Workaround for a bug where opening the window in compact display mode will misalign the content layout.
         NavView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto;
 
-        if(Window.Current.Bounds.Width < NavView.CompactModeThresholdWidth)
+        if (Window.Current.Bounds.Width < NavView.CompactModeThresholdWidth)
             VisualStateManager.GoToState(this, "NarrowState", useTransitions: true);
-        else if (Window.Current.Bounds.Width  < NavView.ExpandedModeThresholdWidth)
+        else if (Window.Current.Bounds.Width < NavView.ExpandedModeThresholdWidth)
             VisualStateManager.GoToState(this, "WideState", useTransitions: true);
         else VisualStateManager.GoToState(this, "UltraWideState", useTransitions: true);
 
@@ -155,5 +169,31 @@ public sealed partial class MainPage : BasePage, IMainView
     private void NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
     {
         ViewModel.SelectedMenuItemChanged();
+    }
+
+    async Task AppLock()
+    {
+        //if (AppSettingsHelper.IsLockEnabled)
+        {
+            //if (AppSettingsHelper.LockMethod == 0)
+            {
+                if (await UserConsentVerifier.CheckAvailabilityAsync() == UserConsentVerifierAvailability.Available)
+                {
+                    if (await UserConsentVerifier.RequestVerificationAsync("Device owner verification") == UserConsentVerificationResult.Verified)
+                    {
+
+                    }
+                    else App.Current.Exit();
+                }
+                else
+                {
+                    //await MessageBox.Show("OS security is disabled. To disable application lock or change the verification method check settings -> WinstaS Settings");
+                }
+            }
+            //else
+            {
+                //await new Dialogs.AppPasscodeVerificationDialog().ShowAsync();
+            }
+        }
     }
 }

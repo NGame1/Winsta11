@@ -92,8 +92,8 @@
 
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <controls:StaggeredPanel DesiredColumnWidth="250"
-                                             HorizontalAlignment="Stretch"
+                    <controls:StaggeredPanel HorizontalAlignment="Stretch"
+                                             DesiredColumnWidth="250"
                                              ColumnSpacing="5"
                                              RowSpacing="5" />
                 </ItemsPanelTemplate>
