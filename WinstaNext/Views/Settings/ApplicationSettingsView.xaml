@@ -30,6 +30,16 @@
             </StackPanel.ChildrenTransitions>
 
             <controls:ExpandableSettingControl 
+                Title="{x:Bind Resources:LanguageManager.Instance.Settings.AppLock}"
+                Description="{x:Bind Resources:LanguageManager.Instance.Settings.AppLockDescription}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xE928;" />
+                </controls:ExpandableSettingControl.Icon>
+                <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" 
+                              IsOn="{x:Bind ViewModel.AppLockEnabled, Mode=TwoWay}"/>
+            </controls:ExpandableSettingControl>
+
+            <controls:ExpandableSettingControl 
                 Title="{x:Bind Resources:LanguageManager.Instance.Settings.Autoplay}"
                 Description="{x:Bind Resources:LanguageManager.Instance.Settings.AutoplayDescription}">
                 <controls:ExpandableSettingControl.Icon>

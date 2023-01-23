@@ -176,6 +176,8 @@ namespace Resources
         public string AccountSettingsDescription { get => _resource.GetString(nameof(AccountSettingsDescription)); }
         public string ApplicationSettings { get => _resource.GetString(nameof(ApplicationSettings)); }
         public string ApplicationSettingsDescription { get => _resource.GetString(nameof(ApplicationSettingsDescription)); }
+        public string AppLock { get => _resource.GetString(nameof(AppLock)); }
+        public string AppLockDescription { get => _resource.GetString(nameof(AppLockDescription)); }
         public string Autoplay { get => _resource.GetString(nameof(Autoplay)); }
         public string AutoplayDescription { get => _resource.GetString(nameof(AutoplayDescription)); }
         public string Browse { get => _resource.GetString(nameof(Browse)); }

@@ -6,9 +6,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using WinstaNext.Views;
 using WinstaCore.Interfaces.Views;
-using Microsoft.Toolkit.Uwp;
-using System.Reflection.Metadata;
-using Windows.System;
 using WinstaNext.Services;
 using WinstaCore;
 using Windows.Security.Credentials.UI;
@@ -42,11 +39,11 @@ public sealed partial class MainPage : BasePage, IMainView
 
     async void Current_LeavingBackground(object sender, Windows.ApplicationModel.LeavingBackgroundEventArgs e)
     {
-        var content = ContentFrame.Content;
-        ContentFrame.Content = null;
+        var content = Window.Current.Content;
+        Window.Current.Content = null;
 
         await AppLock();
-        ContentFrame.Content = content;
+        Window.Current.Content = content;
     }
 
     async void ViewModel_ForceLogout(object sender, System.EventArgs e)
@@ -173,7 +170,7 @@ public sealed partial class MainPage : BasePage, IMainView
 
     async Task AppLock()
     {
-        //if (AppSettingsHelper.IsLockEnabled)
+        if (ApplicationSettingsManager.Instance.GetAppLockEnabled())
         {
             //if (AppSettingsHelper.LockMethod == 0)
             {

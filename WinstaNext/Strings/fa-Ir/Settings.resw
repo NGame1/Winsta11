@@ -129,6 +129,12 @@
   <data name="ApplicationSettingsDescription" xml:space="preserve">
     <value>ویرایش تنظیمات اختصاصی برنامه</value>
   </data>
+  <data name="AppLock" xml:space="preserve">
+    <value>قفل برنامه</value>
+  </data>
+  <data name="AppLockDescription" xml:space="preserve">
+    <value>در صورتیکه از Windows Hello استفاده میکنید، برنامه برای احراز هویت شما پس از اجرا و هنگام خروج از حالت مینیمایز شده از شما سوال خواهد کرد.</value>
+  </data>
   <data name="Autoplay" xml:space="preserve">
     <value>پخش خودکار</value>
   </data>

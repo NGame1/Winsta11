@@ -129,6 +129,12 @@
   <data name="ApplicationSettingsDescription" xml:space="preserve">
     <value>Manipulate application's specific settings.</value>
   </data>
+  <data name="AppLock" xml:space="preserve">
+    <value>App lock</value>
+  </data>
+  <data name="AppLockDescription" xml:space="preserve">
+    <value>If you are using Windows Heelo, We will ask you to authenticate yourself on application launch and after leaving minimized state.</value>
+  </data>
   <data name="Autoplay" xml:space="preserve">
     <value>Auto Play</value>
   </data>
