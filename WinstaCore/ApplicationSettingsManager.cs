@@ -236,7 +236,7 @@ public class ApplicationSettingsManager
 
     public ApplicationLockMode SetAppLockMode(ApplicationLockMode lockMode = ApplicationLockMode.WindowsHello)
     {
-        LocalSettings.Values[AppLockMode] = lockMode;
+        LocalSettings.Values[AppLockMode] = (int)lockMode;
         return lockMode;
     }
 

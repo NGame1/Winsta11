@@ -1,5 +1,6 @@
 ﻿using Abstractions.Navigation;
 using Abstractions.Stories;
+using Microsoft.Toolkit.Uwp.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -39,6 +40,8 @@ public sealed partial class StaggeredHomeView : BasePage, IHomeView
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
         await ViewModel.Medias.LoadMoreItemsAsync(1);
+        await ViewModel.Medias.LoadMoreItemsAsync(1);
+        await ViewModel.Medias.LoadMoreItemsAsync(1);
         base.OnNavigatedTo(e);
     }
 
@@ -46,6 +49,21 @@ public sealed partial class StaggeredHomeView : BasePage, IHomeView
     {
         var stories = ViewModel.Stories;
         ViewModel.NavigationService.Navigate(typeof(StoryCarouselView), new StoryCarouselViewParameter((WinstaStoryItem)e.ClickedItem, ref stories));
+    }
+
+    private void FeedPostsList_Loaded(object sender, RoutedEventArgs e)
+    {
+        var scroll = FeedPostsList.FindDescendantOrSelf<ScrollViewer>();
+        scroll.ViewChanged += Scroll_ViewChanged;
+    }
+
+    async void Scroll_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+    {
+        var scroll = (ScrollViewer)sender;
+        if (scroll.VerticalOffset == scroll.ScrollableHeight)
+        {
+            await ViewModel.Medias.LoadMoreItemsAsync(1);
+        }
     }
 
 }
