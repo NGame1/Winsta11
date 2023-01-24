@@ -10,6 +10,7 @@ using WinstaNext.Services;
 using WinstaCore;
 using Windows.Security.Credentials.UI;
 using System.Threading.Tasks;
+using WinstaCore.Enums;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -172,7 +173,7 @@ public sealed partial class MainPage : BasePage, IMainView
     {
         if (ApplicationSettingsManager.Instance.GetAppLockEnabled())
         {
-            //if (AppSettingsHelper.LockMethod == 0)
+            if (ApplicationSettingsManager.Instance.GetAppLockMode() == ApplicationLockMode.WindowsHello)
             {
                 if (await UserConsentVerifier.CheckAvailabilityAsync() == UserConsentVerifierAvailability.Available)
                 {
@@ -182,12 +183,8 @@ public sealed partial class MainPage : BasePage, IMainView
                     }
                     else App.Current.Exit();
                 }
-                else
-                {
-                    //await MessageBox.Show("OS security is disabled. To disable application lock or change the verification method check settings -> WinstaS Settings");
-                }
             }
-            //else
+            else
             {
                 //await new Dialogs.AppPasscodeVerificationDialog().ShowAsync();
             }

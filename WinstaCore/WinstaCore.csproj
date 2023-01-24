@@ -136,6 +136,7 @@
     <Compile Include="Converters\FileConverters\ImageFileConverter.cs" />
     <Compile Include="Converters\FileConverters\VideoFileConverter.cs" />
     <Compile Include="CryptoHelper.cs" />
+    <Compile Include="Enums\ApplicationLockMode.cs" />
     <Compile Include="Enums\CropperUploadEnum.cs" />
     <Compile Include="Enums\PlaybackQualityEnum.cs" />
     <Compile Include="Helpers\AspectRatioHelper.cs" />

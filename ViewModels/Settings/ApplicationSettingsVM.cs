@@ -29,6 +29,12 @@ public class ApplicationSettingsVM : BaseViewModel
         set => ApplicationSettingsManager.Instance.SetAppLockEnabled(value);
     }
 
+    public ApplicationLockMode LockMode
+    {
+        get => ApplicationSettingsManager.Instance.GetAppLockMode();
+        set => ApplicationSettingsManager.Instance.SetAppLockMode(value);
+    }
+
     public string DownloadsPath
     {
         get; set;

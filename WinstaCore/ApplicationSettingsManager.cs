@@ -24,6 +24,7 @@ public class ApplicationSettingsManager
     string AppThemeSetting { get => "AppTheme"; }
     string AppLanguageSettings { get => "AppLanguage"; }
     string AppLockEnabled { get => "AppLockEnabled"; }
+    string AppLockMode { get => "AppLockMode"; }
     string AutoPlaySettings { get => "AutoPlay"; }
     string ForceThreeColumnsSettings { get => "ForceThreeColumns"; }
     string LastLoggedUserSettings { get => "LastLoggedUser"; }
@@ -219,6 +220,24 @@ public class ApplicationSettingsManager
     {
         LocalSettings.Values[AppLockEnabled] = enabled;
         return enabled;
+    }
+
+    public ApplicationLockMode GetAppLockMode()
+    {
+        if (LocalSettings.Values.TryGetValue(AppLockMode, out var lockmode))
+        {
+            return (ApplicationLockMode)Convert.ToInt16(lockmode);
+        }
+        else
+        {
+            return SetAppLockMode();
+        }
+    }
+
+    public ApplicationLockMode SetAppLockMode(ApplicationLockMode lockMode = ApplicationLockMode.WindowsHello)
+    {
+        LocalSettings.Values[AppLockMode] = lockMode;
+        return lockMode;
     }
 
     public bool GetRemoveFeedAds()
