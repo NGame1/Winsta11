@@ -5,80 +5,79 @@ using Windows.UI.Xaml.Media;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace WinstaNext.UI.Generic
+namespace WinstaNext.UI.Generic;
+
+[AddINotifyPropertyChangedInterface]
+public sealed partial class LikeButtonControl : Button
 {
-    [AddINotifyPropertyChangedInterface]
-    public sealed partial class LikeButtonControl : Button
+    public static readonly DependencyProperty GlyphProperty = DependencyProperty.Register(
+            nameof(Glyph),
+            typeof(string),
+            typeof(LikeButtonControl),
+            new PropertyMetadata(null));
+
+    public static readonly DependencyProperty GlyphFontProperty = DependencyProperty.Register(
+            nameof(GlyphFont),
+            typeof(FontFamily),
+            typeof(LikeButtonControl),
+            new PropertyMetadata(null));
+
+    //public static readonly DependencyProperty GlyphForegroundProperty = DependencyProperty.Register(
+    //           nameof(GlyphForeground),
+    //           typeof(SolidColorBrush),
+    //           typeof(LikeButtonControl),
+    //           new PropertyMetadata(null));
+
+    public static readonly DependencyProperty IsLikedProperty = DependencyProperty.Register(
+         "IsLiked",
+         typeof(bool),
+         typeof(LikeButtonControl),
+         new PropertyMetadata(null));
+
+    public string Glyph
     {
-        public static readonly DependencyProperty GlyphProperty = DependencyProperty.Register(
-                nameof(Glyph),
-                typeof(string),
-                typeof(LikeButtonControl),
-                new PropertyMetadata(null));
+        get { return (string)GetValue(GlyphProperty); }
+        set { SetValue(GlyphProperty, value); }
+    }
 
-        public static readonly DependencyProperty GlyphFontProperty = DependencyProperty.Register(
-                nameof(GlyphFont),
-                typeof(FontFamily),
-                typeof(LikeButtonControl),
-                new PropertyMetadata(null));
+    public FontFamily GlyphFont
+    {
+        get { return (FontFamily)GetValue(GlyphFontProperty); }
+        set { SetValue(GlyphFontProperty, value); }
+    }
 
-        //public static readonly DependencyProperty GlyphForegroundProperty = DependencyProperty.Register(
-        //           nameof(GlyphForeground),
-        //           typeof(SolidColorBrush),
-        //           typeof(LikeButtonControl),
-        //           new PropertyMetadata(null));
+    //public SolidColorBrush GlyphForeground
+    //{
+    //    get { return (SolidColorBrush)GetValue(GlyphForegroundProperty); }
+    //    set { SetValue(GlyphForegroundProperty, value); }
+    //}
 
-        public static readonly DependencyProperty IsLikedProperty = DependencyProperty.Register(
-             "IsLiked",
-             typeof(bool),
-             typeof(LikeButtonControl),
-             new PropertyMetadata(null));
+    [OnChangedMethod(nameof(OnLikedChanged))]
+    public bool IsLiked
+    {
+        get { return (bool)GetValue(IsLikedProperty); }
+        set { SetValue(IsLikedProperty, value); }
+    }
 
-        public string Glyph
+    public LikeButtonControl()
+    {
+        this.InitializeComponent();
+        OnLikedChanged();
+    }
+
+    void OnLikedChanged()
+    {
+        if (!IsLiked)
         {
-            get { return (string)GetValue(GlyphProperty); }
-            set { SetValue(GlyphProperty, value); }
+            GlyphFont = (FontFamily)App.Current.Resources["FluentSystemIconsRegular"];
+            //GlyphForeground = (SolidColorBrush)App.Current.Resources.ThemeDictionaries["ApplicationForegroundThemeBrush"];
+            Glyph = "\uE6FC";
         }
-
-        public FontFamily GlyphFont
+        else
         {
-            get { return (FontFamily)GetValue(GlyphFontProperty); }
-            set { SetValue(GlyphFontProperty, value); }
-        }
-
-        //public SolidColorBrush GlyphForeground
-        //{
-        //    get { return (SolidColorBrush)GetValue(GlyphForegroundProperty); }
-        //    set { SetValue(GlyphForegroundProperty, value); }
-        //}
-
-        [OnChangedMethod(nameof(OnLikedChanged))]
-        public bool IsLiked
-        {
-            get { return (bool)GetValue(IsLikedProperty); }
-            set { SetValue(IsLikedProperty, value); }
-        }
-
-        public LikeButtonControl()
-        {
-            this.InitializeComponent();
-            OnLikedChanged();
-        }
-
-        void OnLikedChanged()
-        {
-            if (!IsLiked)
-            {
-                GlyphFont = (FontFamily)App.Current.Resources["FluentSystemIconsRegular"];
-                //GlyphForeground = (SolidColorBrush)App.Current.Resources.ThemeDictionaries["ApplicationForegroundThemeBrush"];
-                Glyph = "\uE6FC";
-            }
-            else
-            {
-                GlyphFont = (FontFamily)App.Current.Resources["FluentSystemIconsFilled"];
-                //GlyphForeground = new SolidColorBrush(Colors.Red);
-                Glyph = "\uE709";
-            }
+            GlyphFont = (FontFamily)App.Current.Resources["FluentSystemIconsFilled"];
+            //GlyphForeground = new SolidColorBrush(Colors.Red);
+            Glyph = "\uE709";
         }
     }
 }

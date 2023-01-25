@@ -7,7 +7,7 @@
     xmlns:models="using:InstagramApiSharp.Classes.Models"
     xmlns:TemplateSelectors="using:TemplateSelectors"
     xmlns:Muxc="using:Microsoft.UI.Xaml.Controls" 
-    xmlns:stories1="using:WinstaNext.UI.Stories" 
+    xmlns:stories1="using:WinstaNext.UI.Stories"
     x:Class="WinstaNext.Views.StaggeredHomeView"
     xmlns:stories="using:Abstractions.Stories" 
     xmlns:media="using:WinstaNext.UI.Media" 
@@ -37,7 +37,10 @@
     <Grid>
         <Muxc:RefreshContainer PullDirection="TopToBottom">
             <ListView ItemsSource="{x:Bind ViewModel.Medias, Mode=OneWay}"
+                      DoubleTapped="FeedPostsList_DoubleTapped"
+                      ItemClick="FeedPostsList_ItemClick"
                       Loaded="FeedPostsList_Loaded"
+                      IsDoubleTapEnabled="True"
                       IsItemClickEnabled="True"
                       x:FieldModifier="public"
                       x:Name="FeedPostsList"
@@ -47,13 +50,15 @@
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
                         <Setter Property="IsFocusEngagementEnabled" Value="True"/>
-                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="IsDoubleTapEnabled" Value="True"/>
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="Margin" Value="0"/>
                     </Style>
                 </ListView.ItemContainerStyle>
 
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="models:InstaMedia">
-                        <media:InstaMediaTileUC Media="{x:Bind Mode=OneWay}"/>
+                        <media:StaggeredTileUC Media="{x:Bind Mode=OneWay}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
 

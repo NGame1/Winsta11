@@ -40,27 +40,8 @@
             
         </ResourceDictionary>
     </UserControl.Resources>
-    
+
     <Grid x:Name="MainGrid">
-        <!--<controls:DropShadowPanel HorizontalAlignment="Right"
-                                  VerticalAlignment="Top"
-                                  Margin="0,2.5,2.5,0"
-                                  ShadowOpacity="0.7"
-                                  Canvas.ZIndex="2"
-                                  Color="Black"
-                                  BlurRadius="8"
-                                  OffsetX="2"
-                                  OffsetY="2">-->
-            <TextBlock Text="{x:Bind Media, Converter={StaticResource InstaMediaTypeIconConverter}, Mode=OneWay}"
-                       ui:Effects.Shadow="{StaticResource CommonShadow}"
-                       FontFamily="{StaticResource FluentSystemIconsRegular}"
-                       HorizontalAlignment="Right" 
-                       VerticalAlignment="Top" 
-                       Foreground="White"
-                       x:Name="SymbolType"
-                       Opacity="0.7"
-                       FontSize="24"/>
-        <!--</controls:DropShadowPanel>-->
 
         <Image HorizontalAlignment="Center"
                VerticalAlignment="Center"
@@ -77,6 +58,16 @@
                 </core:EventTriggerBehavior>
             </i:Interaction.Behaviors>
         </Image>
+
+        <TextBlock Text="{x:Bind Media, Converter={StaticResource InstaMediaTypeIconConverter}, Mode=OneWay}"
+                       ui:Effects.Shadow="{StaticResource CommonShadow}"
+                       FontFamily="{StaticResource FluentSystemIconsRegular}"
+                       HorizontalAlignment="Right" 
+                       VerticalAlignment="Top" 
+                       Foreground="White"
+                       x:Name="SymbolType"
+                       Opacity="0.7"
+                       FontSize="24"/>
         
         <!--<Grid x:Name="RetryGrid" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Content="&#xE149;" FontFamily="/Fonts/segmdl2.ttf#Segoe MDL2 Assets" Background="Transparent" FontSize="32" Click="Retry_Click"/>

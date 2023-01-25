@@ -262,6 +262,9 @@
     <Compile Include="UI\Media\InstaMediaVideoPresenterUC.xaml.cs">
       <DependentUpon>InstaMediaVideoPresenterUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Media\StaggeredTileUC.xaml.cs">
+      <DependentUpon>StaggeredTileUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Search\HashtagSearchUC.xaml.cs">
       <DependentUpon>HashtagSearchUC.xaml</DependentUpon>
     </Compile>
@@ -621,6 +624,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Media\InstaMediaVideoPresenterUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Media\StaggeredTileUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
