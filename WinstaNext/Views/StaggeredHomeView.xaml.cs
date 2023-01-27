@@ -1,6 +1,7 @@
 ﻿using Abstractions.Navigation;
 using Abstractions.Stories;
 using InstagramApiSharp.Classes.Models;
+using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp.UI;
 using System;
 using System.Diagnostics;
@@ -28,9 +29,17 @@ public sealed partial class StaggeredHomeView : BasePage, IHomeView
 
     public RangePlayerAttribute Medias { get => ViewModel.Medias; }
 
+    public AsyncRelayCommand LoadMoreCommand { get; }
+
     public StaggeredHomeView()
     {
         this.InitializeComponent();
+        LoadMoreCommand = new(LoadMoreAsync);
+    }
+
+    async Task LoadMoreAsync()
+    {
+        await ViewModel.Medias.LoadMoreItemsAsync(1);
     }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -52,10 +61,9 @@ public sealed partial class StaggeredHomeView : BasePage, IHomeView
     async void Scroll_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
     {
         var scroll = (ScrollViewer)sender;
-        if (scroll.VerticalOffset == scroll.ScrollableHeight)
-        {
-            await ViewModel.Medias.LoadMoreItemsAsync(1);
-        }
+        if (scroll.VerticalOffset >= scroll.ScrollableHeight - 400
+            && !LoadMoreCommand.IsRunning)
+                await LoadMoreCommand.ExecuteAsync(null);
     }
 
     Stopwatch? Stopwatch { get; set; }
