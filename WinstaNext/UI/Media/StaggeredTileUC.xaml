@@ -46,18 +46,13 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
-    <!--<Grid IsDoubleTapEnabled="True">-->
-        
-        <!--<interactivity:Interaction.Behaviors>
-            <core:EventTriggerBehavior EventName="Tapped">
-                <core:InvokeCommandAction Command="{x:Bind TapCommand}"/>
-            </core:EventTriggerBehavior>
-            <core:EventTriggerBehavior EventName="DoubleTapped">
-                <core:InvokeCommandAction Command="{x:Bind DoubleTappedCommand}"/>
-            </core:EventTriggerBehavior>
-        </interactivity:Interaction.Behaviors>-->
-        
+    <Grid Background="{StaticResource NavigationViewExpandedPaneBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
         <Grid x:Name="MainGrid">
 
             <Image HorizontalAlignment="Center"
@@ -137,5 +132,10 @@
             </StackPanel>
 
         </Grid>
+
+        <Grid>
+            
+        </Grid>
+        
     </Grid>
 </UserControl>

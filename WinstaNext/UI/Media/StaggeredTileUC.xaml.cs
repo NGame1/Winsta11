@@ -26,6 +26,18 @@ public sealed partial class StaggeredTileUC : UserControl
                 typeof(StaggeredTileUC),
                 new PropertyMetadata(null));
 
+    public static readonly DependencyProperty ShowUserProperty = DependencyProperty.Register(
+                nameof(ShowUser),
+                typeof(bool),
+                typeof(StaggeredTileUC),
+                new PropertyMetadata(null));
+
+    public bool ShowUser
+    {
+        get { return (bool)GetValue(ShowUserProperty); }
+        set { SetValue(ShowUserProperty, value); }
+    }
+
     public InstaMedia Media
     {
         get { return (InstaMedia)GetValue(MediaProperty); }
