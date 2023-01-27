@@ -168,7 +168,7 @@
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
       <PrivateAssets>all</PrivateAssets>
-      <Version>3.4.1</Version>
+      <Version>4.1.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
