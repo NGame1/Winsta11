@@ -56,32 +56,36 @@ namespace ViewModels.Account
                 Api.SetUser(UserIdentifier, Password);
                 loginResult = await Api.LoginAsync();
                 
-                switch (loginResult.Value)
+                if (loginResult.Succeeded)
                 {
-                    case InstaLoginResult.Success:
-                        var state = Api.GetStateDataAsString();
-                        var loggedUser = Api.GetLoggedUser().LoggedInUser;
-                        await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName);
-                        var MainPage = AppCore.Container.GetService<IMainView>();
-                        NavigationService.Navigate(MainPage);
-                        await Api.SendRequestsAfterLoginAsync();
-                        Api.Dispose();
-                        break;
+                    switch (loginResult.Value)
+                    {
+                        case InstaLoginResult.Success:
+                            var state = Api.GetStateDataAsString();
+                            var loggedUser = Api.GetLoggedUser().LoggedInUser;
+                            await ApplicationSettingsManager.Instance.AddOrUpdateUser(loggedUser.Pk, state, loggedUser.UserName);
+                            var MainPage = AppCore.Container.GetService<IMainView>();
+                            NavigationService.Navigate(MainPage);
+                            await Api.SendRequestsAfterLoginAsync();
+                            Api.Dispose();
+                            break;
 
-                    case InstaLoginResult.TwoFactorRequired:
-                        var TwoFactorAuthView = AppCore.Container.GetService<ITwoFactorAuthView>();
-                        NavigationService.Navigate(TwoFactorAuthView, Api);
-                        break;
+                        case InstaLoginResult.TwoFactorRequired:
+                            var TwoFactorAuthView = AppCore.Container.GetService<ITwoFactorAuthView>();
+                            NavigationService.Navigate(TwoFactorAuthView, Api);
+                            break;
 
-                    case InstaLoginResult.ChallengeRequired:
-                        var ChallengeRequiredView = AppCore.Container.GetService<IChallengeRequiredView>();
-                        NavigationService.Navigate(ChallengeRequiredView, Api);
-                        break;
+                        case InstaLoginResult.ChallengeRequired:
+                            var ChallengeRequiredView = AppCore.Container.GetService<IChallengeRequiredView>();
+                            NavigationService.Navigate(ChallengeRequiredView, Api);
+                            break;
 
-                    default:
-                        FailToLogin(loginResult);
-                        return;
+                        default:
+                            FailToLogin(loginResult);
+                            return;
+                    }
                 }
+                else FailToLogin(loginResult);
             }
             finally { IsLoading = false; }
         }
