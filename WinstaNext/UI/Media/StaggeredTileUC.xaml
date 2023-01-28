@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<UserControl x:DefaultBindMode="OneWay"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,7 +14,8 @@
     x:Class="WinstaNext.UI.Media.StaggeredTileUC"
     xmlns:i="using:Microsoft.Xaml.Interactivity" 
     xmlns:generic="using:WinstaNext.UI.Generic"
-    xmlns:ui="using:Microsoft.Toolkit.Uwp.UI" 
+    xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
+    xmlns:media1="using:WinstaNext.UI.Media"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
@@ -28,15 +29,26 @@
                                  From="0" 
                                  To="1"/>
             </Storyboard>
+            
+            <Converters:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
+
+            <GenericConverters:NullToBooleanConverter x:Key="InvertedNullToBooleanConverter"
+                                                  IsInverted="True"/>
 
             <Converters:InstaMediaThumbnailConverter x:Key="InstaMediaThumbnailConverter"/>
-
+            
             <Converters:InstaMediaTypeIconConverter x:Key="InstaMediaTypeIconConverter"/>
 
+            <GenericConverters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
 
-            <uiMedia:AttachedCardShadow x:Key="CommonShadow" Offset="4"/>
+            <Converters:CoAuthorLoadConverter x:Key="InvertedCoAuthorLoadConverter"
+                                              IsInverted="True"/>
 
             <GenericConverters:InvertBoolConverter x:Key="InvertBoolConverter"/>
+            
+            <Converters:CoAuthorLoadConverter x:Key="CoAuthorLoadConverter"/>
+
+            <uiMedia:AttachedCardShadow x:Key="CommonShadow" Offset="4"/>
             
             <Style TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
                 <Setter Property="ui:Effects.Shadow" Value="{StaticResource CommonShadow}"/>
@@ -53,7 +65,9 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="MainGrid">
+        <Grid x:Name="MainGrid"
+              CornerRadius="8"
+              >
 
             <Image HorizontalAlignment="Center"
                    VerticalAlignment="Center"
@@ -66,7 +80,7 @@
                 <i:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="ImageOpened">
                         <media:ControlStoryboardAction Storyboard="{StaticResource ImageOpacityStoryBoard}"
-                                                               ControlStoryboardOption="Play"/>
+                                                       ControlStoryboardOption="Play"/>
                     </core:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
             </Image>
@@ -82,28 +96,6 @@
                        FontSize="24"
                        />
 
-            <Muxc:AnimatedVisualPlayer x:Load="{x:Bind LoadLikeAnimation}"
-                                       x:Name="LikeAnimationPlayer"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       Width="100" Height="100"
-                                       AutoPlay="True">
-
-                <lottie:LottieVisualSource UriSource="ms-appx:///Assets/Lottie/Like.json"/>
-
-            </Muxc:AnimatedVisualPlayer>
-
-            <Muxc:AnimatedVisualPlayer x:Load="{x:Bind LoadUnLikeAnimation}"
-                                       x:Name="UnLikeAnimationPlayer"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       Width="100" Height="100"
-                                       AutoPlay="True">
-
-                <lottie:LottieVisualSource UriSource="ms-appx:///Assets/Lottie/Dislike.json"/>
-
-            </Muxc:AnimatedVisualPlayer>
-            
             <StackPanel VerticalAlignment="Bottom"
                         Orientation="Horizontal"
                         Padding="5,2"
@@ -133,8 +125,132 @@
 
         </Grid>
 
-        <Grid>
+        <Grid HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch">
+
+            <Muxc:AnimatedVisualPlayer x:Load="{x:Bind ViewModel.LoadLikeAnimation}"
+                                       x:Name="LikeAnimationPlayer"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Width="100" Height="100"
+                                       AutoPlay="True">
+
+                <lottie:LottieVisualSource UriSource="ms-appx:///Assets/Lottie/Like.json"/>
+
+            </Muxc:AnimatedVisualPlayer>
+
+            <Muxc:AnimatedVisualPlayer x:Load="{x:Bind ViewModel.LoadUnLikeAnimation}"
+                                       x:Name="UnLikeAnimationPlayer"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Width="100" Height="100"
+                                       AutoPlay="True">
+
+                <lottie:LottieVisualSource UriSource="ms-appx:///Assets/Lottie/Dislike.json"/>
+
+            </Muxc:AnimatedVisualPlayer>
+
+        </Grid>
+        
+        <Grid Grid.Row="1"
+              Padding="3">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
             
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="0"
+                        Spacing="5">
+
+                <Muxc:PersonPicture Width="35" Height="35"
+                                    DisplayName="{x:Bind Media.User.UserName}"
+                                    x:Load="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource NullToBooleanConverter}}"
+                                    ProfilePicture="{x:Bind Media.User, Converter={StaticResource InstaUserProfilePictureConverter}}"
+                                    x:Name="UserProfilePicture"/>
+
+                <Muxc:PersonPicture Width="35" Height="35"
+                                    DisplayName="{x:Bind Media.FollowHashtagInfo.Name}"
+                                    ProfilePicture="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource InstaUserProfilePictureConverter}}"
+                                    x:Load="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource InvertedNullToBooleanConverter}}"
+                                    x:Name="HashtagProfilePicture"/>
+
+                <!--#region Authors, CoAuthorsProducers, Hashtag info and Location-->
+                <StackPanel>
+
+                    <StackPanel x:Load="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource NullToBooleanConverter}}"
+                                Orientation="Horizontal"
+                                x:Name="Userstack">
+
+                        <HyperlinkButton x:Load="{x:Bind ViewModel.Media, Converter={StaticResource InvertedCoAuthorLoadConverter}}"
+                                         x:Name="OneUserNameHyperlinkButton"
+                                         FontWeight="SemiBold"
+                                         Padding="0">
+                            <TextBlock Text="{x:Bind Media.User.UserName}"/>
+                            <i:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="Click">
+                                    <core:InvokeCommandAction Command="{x:Bind ViewModel.NavigateToUserCommand}"
+                                                              CommandParameter="{x:Bind Media.User}"/>
+                                </core:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+
+                        </HyperlinkButton>
+
+                        <media1:CoAuthorUserProviderUC x:Load="{x:Bind ViewModel.Media, Converter={StaticResource CoAuthorLoadConverter}}"
+                                                       NavigateToUserCommand="{x:Bind ViewModel.NavigateToUserCommand}"
+                                                       x:Name="CoAuthorAvailableText"
+                                                       Media="{x:Bind Media}">
+
+                        </media1:CoAuthorUserProviderUC>
+
+                    </StackPanel>
+
+                    <StackPanel x:Load="{x:Bind Media.FollowHashtagInfo, Converter={StaticResource InvertedNullToBooleanConverter}}"
+                                Orientation="Horizontal"
+                                x:Name="Hashtagstack">
+
+                        <HyperlinkButton x:Load="{x:Bind ViewModel.Media, Converter={StaticResource InvertedCoAuthorLoadConverter}}"
+                                         x:Name="HashtagNameHyperlinkButton"
+                                         FontWeight="SemiBold"
+                                         Padding="0">
+                            <TextBlock>
+                                <Run Text="#"/>
+                                <Run Text="{x:Bind Media.FollowHashtagInfo.Name}"/>
+                            </TextBlock>
+                            <i:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="Click">
+                                    <core:InvokeCommandAction Command="{x:Bind ViewModel.NavigateToHashtagCommand}"
+                                                              CommandParameter="{x:Bind Media.FollowHashtagInfo.Name}"/>
+                                </core:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </HyperlinkButton>
+                    </StackPanel>
+
+                    <HyperlinkButton Padding="0">
+                        <TextBlock>
+                            <Run Text="{x:Bind Media.Location.Name}"/>
+                        </TextBlock>
+                        <i:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="Click">
+                                <core:InvokeCommandAction Command="{x:Bind ViewModel.NavigateToLocationCommand}"/>
+                            </core:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
+                    </HyperlinkButton>
+                </StackPanel>
+                <!--#endregion-->
+
+            </StackPanel>
+
+            <Grid Grid.Column="1">
+                
+                <generic:LikeButtonControl IsLiked="{x:Bind Media.HasLiked, Mode=TwoWay}"
+                                           Command="{x:Bind ViewModel.LikeMediaCommand}"
+                                           BorderBrush="Transparent"
+                                           Background="Transparent"
+                                           />
+                
+            </Grid>
         </Grid>
         
     </Grid>

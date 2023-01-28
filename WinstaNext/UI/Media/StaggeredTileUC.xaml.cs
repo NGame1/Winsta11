@@ -50,9 +50,6 @@ public sealed partial class StaggeredTileUC : UserControl
     public AsyncRelayCommand TapCommand { get; set; }
     public RelayCommand DoubleTappedCommand { get; set; }
 
-    public bool LoadLikeAnimation { get => ViewModel.LoadLikeAnimation; }
-    public bool LoadUnLikeAnimation { get => ViewModel.LoadUnLikeAnimation; }
-
     public StaggeredTileUC()
     {
         this.InitializeComponent();
