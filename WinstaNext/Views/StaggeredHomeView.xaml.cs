@@ -15,6 +15,7 @@ using WinstaCore.Attributes;
 using WinstaCore.Interfaces.Views;
 using WinstaCore.Interfaces.Views.Medias;
 using WinstaCore.Services;
+using WinstaNext.Views.Stories;
 #nullable enable
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -75,4 +76,9 @@ public sealed partial class StaggeredHomeView : BasePage, IHomeView
         NavigationService.Navigate(mediaView, new IncrementalMediaViewParameter(Medias, media));
     }
 
+    private void StoriesList_ItemClick(object sender, ItemClickEventArgs e)
+    {
+        var stories = ViewModel.Stories;
+        ViewModel.NavigationService.Navigate(typeof(StoryCarouselView), new StoryCarouselViewParameter((WinstaStoryItem)e.ClickedItem, ref stories));
+    }
 }

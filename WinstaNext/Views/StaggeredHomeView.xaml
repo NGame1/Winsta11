@@ -35,7 +35,13 @@
     </local:BasePage.DataContext>
 
     <Grid>
-        <Muxc:RefreshContainer PullDirection="TopToBottom">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Muxc:RefreshContainer PullDirection="TopToBottom"
+                               Grid.Column="0">
             <ListView ItemsSource="{x:Bind ViewModel.Medias, Mode=OneWay}"
                       ItemClick="FeedPostsList_ItemClick"
                       Loaded="FeedPostsList_Loaded"
@@ -43,7 +49,7 @@
                       x:FieldModifier="public"
                       x:Name="FeedPostsList"
                       SelectionMode="None"
-                      Padding="8">
+                      Padding="0,0,16,0">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
@@ -74,5 +80,38 @@
 
             </ListView>
         </Muxc:RefreshContainer>
+
+        <ListView ItemTemplateSelector="{StaticResource WinstaStoryFeedItemTemplateSelector}"
+                  ItemsSource="{x:Bind ViewModel.Stories, Mode=OneWay}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  ScrollViewer.HorizontalScrollMode="Disabled"
+                  ScrollViewer.VerticalScrollMode="Enabled"
+                  ItemClick="StoriesList_ItemClick"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  x:Name="StoriesList"
+                  Padding="8,8,8,8"
+                  Grid.Column="1">
+
+            <ListView.ItemContainerStyle>
+                <Style BasedOn="{StaticResource ListViewStretcher}"
+                       TargetType="ListViewItem">
+                    
+                    <Setter Property="Width"
+                            Value="85"/>
+                    
+                </Style>
+            </ListView.ItemContainerStyle>
+
+            <ListView.Header>
+                <TextBlock Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Stories}"
+                           TextAlignment="Center"
+                           FontWeight="SemiBold"
+                           Margin="0,0,0,4"/>
+            </ListView.Header>
+
+        </ListView>
+
     </Grid>
 </local:BasePage>
