@@ -165,6 +165,7 @@ namespace WinstaMobile
             serviceCollection.AddTransient<ISearchView>(x => new SearchView());
 
             //Settings View
+            serviceCollection.AddTransient<IApplicationSettingsView>(x => new ApplicationSettingsView());
             serviceCollection.AddTransient<IAccountSettings>(x => new AccountSettings());
             serviceCollection.AddTransient<ISettingsView>(x => new SettingsView());
         }

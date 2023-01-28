@@ -5,10 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     x:Class="WinstaNext.Views.Settings.AccountSettings"
     xmlns:converters="using:WinstaNext.Converters"
+    xmlns:controls="using:WinstaNext.UI.Controls"
     xmlns:local="using:WinstaNext.Views.Settings"
     xmlns:views="using:WinstaNext.Views"
     xmlns:VM="using:ViewModels.Settings"
-    xmlns:Resources="using:Resources" xmlns:controls="using:WinstaNext.UI.Controls"
+    xmlns:Resources="using:Resources" 
     Margin="{x:Bind PageMargin}"
     mc:Ignorable="d">
 
