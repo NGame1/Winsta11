@@ -216,7 +216,7 @@ public class ApplicationSettingsManager
         }
     }
 
-    public bool SetAppLockEnabled(bool enabled = true)
+    public bool SetAppLockEnabled(bool enabled = false)
     {
         LocalSettings.Values[AppLockEnabled] = enabled;
         return enabled;
