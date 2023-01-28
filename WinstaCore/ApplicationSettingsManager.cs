@@ -25,6 +25,7 @@ public class ApplicationSettingsManager
     string AppLanguageSettings { get => "AppLanguage"; }
     string AppLockEnabled { get => "AppLockEnabled"; }
     string AppLockMode { get => "AppLockMode"; }
+    string ApplicationUIMode { get => "AppUiMode"; }
     string AutoPlaySettings { get => "AutoPlay"; }
     string ForceThreeColumnsSettings { get => "ForceThreeColumns"; }
     string LastLoggedUserSettings { get => "LastLoggedUser"; }
@@ -238,6 +239,24 @@ public class ApplicationSettingsManager
     {
         LocalSettings.Values[AppLockMode] = (int)lockMode;
         return lockMode;
+    }
+
+    public ApplicationUserInterfaceModel GetAppUiMode()
+    {
+        if (LocalSettings.Values.TryGetValue(ApplicationUIMode, out var uiMode))
+        {
+            return (ApplicationUserInterfaceModel)Convert.ToInt16(uiMode);
+        }
+        else
+        {
+            return SetAppUiMode();
+        }
+    }
+
+    public ApplicationUserInterfaceModel SetAppUiMode(ApplicationUserInterfaceModel uiMode = ApplicationUserInterfaceModel.List)
+    {
+        LocalSettings.Values[ApplicationUIMode] = (int)uiMode;
+        return uiMode;
     }
 
     public bool GetRemoveFeedAds()

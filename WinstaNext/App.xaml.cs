@@ -22,6 +22,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore;
+using WinstaCore.Enums;
 using WinstaCore.Helpers;
 using WinstaCore.Interfaces;
 using WinstaCore.Interfaces.Views;
@@ -139,7 +140,10 @@ sealed partial class App : Application, IWinstaApp
 
         //Main Views
         serviceCollection.AddTransient<IMainView>(x => new MainPage());
-        serviceCollection.AddTransient<IHomeView>(x => new HomeView());
+        if (ApplicationSettingsManager.Instance.GetAppUiMode() == ApplicationUserInterfaceModel.List)
+            serviceCollection.AddTransient<IHomeView>(x => new HomeView());
+        else // List View
+            serviceCollection.AddTransient<IHomeView>(x => new StaggeredHomeView());
 
         //Media Views
         serviceCollection.AddTransient<IExploreView>(x => new ExploreView());
