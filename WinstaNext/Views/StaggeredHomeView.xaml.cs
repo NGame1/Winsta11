@@ -1,6 +1,7 @@
 ﻿using Abstractions.Navigation;
 using Abstractions.Stories;
 using InstagramApiSharp.Classes.Models;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp.UI;
 using System;
@@ -12,8 +13,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using WinstaCore.Attributes;
 using WinstaCore.Interfaces.Views;
-using WinstaNext.UI.Media;
-using WinstaNext.Views.Stories;
+using WinstaCore.Interfaces.Views.Medias;
+using WinstaCore.Services;
 #nullable enable
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -63,44 +64,15 @@ public sealed partial class StaggeredHomeView : BasePage, IHomeView
         var scroll = (ScrollViewer)sender;
         if (scroll.VerticalOffset >= scroll.ScrollableHeight - 400
             && !LoadMoreCommand.IsRunning)
-                await LoadMoreCommand.ExecuteAsync(null);
+            await LoadMoreCommand.ExecuteAsync(null);
     }
 
-    Stopwatch? Stopwatch { get; set; }
-    int TapsCount { get; set; } = 0;
-    async void FeedPostsList_ItemClick(object sender, ItemClickEventArgs e)
+    void FeedPostsList_ItemClick(object sender, ItemClickEventArgs e)
     {
-        Stopwatch ??= Stopwatch.StartNew();
-        Stopwatch.Restart();
-        TapsCount++;
-        await Task.Delay(300);
-        if (Stopwatch.ElapsedMilliseconds < 300) return;
         if (e.ClickedItem is not InstaMedia media) return;
-        var container = (ListViewItem)FeedPostsList.ContainerFromItem(media);
-        if (container.ContentTemplateRoot is not StaggeredTileUC tile) return;
-
-        if (TapsCount >= 2)
-        {
-            DisposeStopwatch();
-            await tile.LikeMediaCommand.ExecuteAsync(null);
-            return;
-        }
-        else
-        {
-            DisposeStopwatch();
-            tile.NavigateToMedia(Medias);
-        }
+        var NavigationService = App.Container.GetRequiredService<NavigationService>();
+        var mediaView = App.Container.GetRequiredService<IIncrementalInstaMediaView>();
+        NavigationService.Navigate(mediaView, new IncrementalMediaViewParameter(Medias, media));
     }
 
-    private void FeedPostsList_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
-    {
-        TapsCount = 2;
-    }
-
-    void DisposeStopwatch()
-    {
-        Stopwatch?.Stop();
-        Stopwatch = null;
-        TapsCount = 0;
-    }
 }

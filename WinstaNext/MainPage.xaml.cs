@@ -171,6 +171,7 @@ public sealed partial class MainPage : BasePage, IMainView
 
     async Task AppLock()
     {
+        await Task.Delay(100);
         if (ApplicationSettingsManager.Instance.GetAppLockEnabled())
         {
             if (ApplicationSettingsManager.Instance.GetAppLockMode() == ApplicationLockMode.WindowsHello)

@@ -37,8 +37,8 @@ namespace WinstaNext.ViewModels.Media
 
         public bool IsSendCommentButtonEnabled { get => CommentText.Length != 0; }
 
-        public bool LoadLikeAnimation { get; set; }
-        public bool LoadUnLikeAnimation { get; set; }
+        public bool LoadLikeAnimation { get; set; } = false;
+        public bool LoadUnLikeAnimation { get; set; } = false;
 
         public InstaMedia Media { get; set; }
 

@@ -37,22 +37,23 @@
     <Grid>
         <Muxc:RefreshContainer PullDirection="TopToBottom">
             <ListView ItemsSource="{x:Bind ViewModel.Medias, Mode=OneWay}"
-                      DoubleTapped="FeedPostsList_DoubleTapped"
                       ItemClick="FeedPostsList_ItemClick"
                       Loaded="FeedPostsList_Loaded"
-                      IsDoubleTapEnabled="True"
                       IsItemClickEnabled="True"
                       x:FieldModifier="public"
                       x:Name="FeedPostsList"
                       SelectionMode="None"
-                      BorderThickness="1">
+                      Padding="8">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
+                        <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
+                        <Setter Property="BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+                        <Setter Property="Background" Value="{ThemeResource ExpanderHeaderBackground}"/>
                         <Setter Property="IsFocusEngagementEnabled" Value="True"/>
                         <Setter Property="IsDoubleTapEnabled" Value="True"/>
-                        <Setter Property="Padding" Value="0"/>
-                        <Setter Property="Margin" Value="0"/>
+                        <Setter Property="Padding" Value="8"/>
+                        <!--<Setter Property="Margin" Value="0"/>-->
                     </Style>
                 </ListView.ItemContainerStyle>
 
@@ -65,9 +66,9 @@
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <controls:StaggeredPanel HorizontalAlignment="Stretch"
-                                                 DesiredColumnWidth="250"
-                                                 ColumnSpacing="5"
-                                                 RowSpacing="5" />
+                                                 DesiredColumnWidth="285"
+                                                 ColumnSpacing="6"
+                                                 RowSpacing="6"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
 
