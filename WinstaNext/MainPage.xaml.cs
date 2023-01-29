@@ -169,8 +169,11 @@ public sealed partial class MainPage : BasePage, IMainView
         ViewModel.SelectedMenuItemChanged();
     }
 
+    bool _locked = false;
     async Task AppLock()
     {
+        if (_locked) return;
+        _locked = true;
         await Task.Delay(100);
         if (ApplicationSettingsManager.Instance.GetAppLockEnabled())
         {
