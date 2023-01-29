@@ -127,6 +127,71 @@
                     </StackPanel>
                 </controls:ExpandableSettingControl.ExpandableContent>
             </controls:ExpandableSettingControl>
+
+            <controls:ExpandableSettingControl
+                Title="{x:Bind Resources:LanguageManager.Instance.Settings.StaggeredView}"
+                Description="{x:Bind Resources:LanguageManager.Instance.Settings.StaggeredViewDescription}">
+                <controls:ExpandableSettingControl.Icon>
+                    <FontIcon Glyph="&#xE8A9;" />
+                </controls:ExpandableSettingControl.Icon>
+                <controls:ExpandableSettingControl.ExpandableContent>
+                    <Grid Padding="12" Margin="42,0,6,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid BorderThickness="{ThemeResource ExpanderHeaderBorderThickness}"
+                              BorderBrush="{ThemeResource ExpanderHeaderBorderBrush}"
+                              Background="{ThemeResource ExpanderHeaderBackground}"
+                              CornerRadius="8"
+                              Grid.Column="0"
+                              Padding="5"
+                              Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="ms-appx:///Assets/Settings/StaggeredView.png"
+                                   HorizontalAlignment="Stretch"
+                                   Stretch="Uniform"/>
+                            
+                            <RadioButton HorizontalAlignment="Center"
+                                         Content="Staggered View"
+                                         GroupName="UIMODE"
+                                         Margin="0,5"
+                                         Grid.Row="1"
+                                         />
+                            
+                        </Grid>
+
+                        <Grid BorderThickness="{ThemeResource ExpanderHeaderBorderThickness}"
+                              BorderBrush="{ThemeResource ExpanderHeaderBorderBrush}"
+                              Background="{ThemeResource ExpanderHeaderBackground}"
+                              CornerRadius="8"
+                              Grid.Column="1"
+                              Padding="5"
+                              Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="ms-appx:///Assets/Settings/ListView.png"
+                                   HorizontalAlignment="Stretch"
+                                   Stretch="Uniform"/>
+                            
+                            <RadioButton HorizontalAlignment="Center"
+                                         Content="List View"
+                                         GroupName="UIMODE"
+                                         Margin="0,5"
+                                         Grid.Row="1"
+                                         />
+                            
+                        </Grid>
+                        
+                    </Grid>
+                </controls:ExpandableSettingControl.ExpandableContent>
+            </controls:ExpandableSettingControl>
         </StackPanel>
     </ScrollViewer>
 </views:BasePage>
