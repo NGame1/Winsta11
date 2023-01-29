@@ -193,6 +193,8 @@ namespace Resources
         public string PrivateAccountDescription { get => _resource.GetString(nameof(PrivateAccountDescription)); }
         public string RemoveFeedAds { get => _resource.GetString(nameof(RemoveFeedAds)); }
         public string RemoveFeedAdsDescription { get => _resource.GetString(nameof(RemoveFeedAdsDescription)); }
+        public string StaggeredView { get => _resource.GetString(nameof(StaggeredView)); }
+        public string StaggeredViewDescription { get => _resource.GetString(nameof(StaggeredViewDescription)); }
     }
     
 

@@ -180,4 +180,10 @@
   <data name="RemoveFeedAdsDescription" xml:space="preserve">
     <value>Remove advertisements in home page feed from pages you didn't follow.</value>
   </data>
+  <data name="StaggeredView" xml:space="preserve">
+    <value>Staggered view</value>
+  </data>
+  <data name="StaggeredViewDescription" xml:space="preserve">
+    <value>Application will use a more modern UI to show Instagram content.</value>
+  </data>
 </root>

@@ -180,4 +180,10 @@
   <data name="RemoveFeedAdsDescription" xml:space="preserve">
     <value>حذف تبلیغات پیج هایی که فالو نکردیده اید از صفحه خانه.</value>
   </data>
+  <data name="StaggeredView" xml:space="preserve">
+    <value>نمایش مدرن</value>
+  </data>
+  <data name="StaggeredViewDescription" xml:space="preserve">
+    <value>نرم افزار به شیوه مدرن تری محتوای صفحات را به شما نمایش خواهد داد.</value>
+  </data>
 </root>
