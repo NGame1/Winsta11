@@ -29,7 +29,9 @@
                                  From="0" 
                                  To="1"/>
             </Storyboard>
-            
+
+            <GenericConverters:PossibleLargeNumbersConverter x:Key="PossibleLargeNumbersConverter"/>
+
             <Converters:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
 
             <GenericConverters:NullToBooleanConverter x:Key="InvertedNullToBooleanConverter"
@@ -96,7 +98,7 @@
                        FontSize="24"
                        />
 
-            <StackPanel VerticalAlignment="Bottom"
+            <!--<StackPanel VerticalAlignment="Bottom"
                         Orientation="Horizontal"
                         Padding="5,2"
                         Spacing="5">
@@ -121,7 +123,7 @@
                 <TextBlock Text="{x:Bind Media.LikesCount}" FontSize="18"/>
                 <Button Content="&#xE3E0;" FontSize="18" FontFamily="{StaticResource FluentSystemIconsFilled}" VerticalAlignment="Center" Padding="0" IsHitTestVisible="False" Background="Transparent" BorderBrush="Transparent"/>
                 <TextBlock Text="{x:Bind Media.CommentsCount}" FontSize="18"/>
-            </StackPanel>
+            </StackPanel>-->
 
         </Grid>
 
@@ -160,7 +162,8 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             
-            <StackPanel Orientation="Horizontal"
+            <StackPanel VerticalAlignment="Center"
+                        Orientation="Horizontal"
                         Grid.Column="0"
                         Spacing="5">
 
@@ -242,15 +245,19 @@
 
             </StackPanel>
 
-            <Grid Grid.Column="1">
+            <StackPanel Grid.Column="1">
                 
                 <generic:LikeButtonControl IsLiked="{x:Bind Media.HasLiked, Mode=TwoWay}"
                                            Command="{x:Bind ViewModel.LikeMediaCommand}"
                                            BorderBrush="Transparent"
                                            Background="Transparent"
                                            />
-                
-            </Grid>
+
+                <TextBlock Text="{x:Bind Media.LikesCount, Converter={StaticResource PossibleLargeNumbersConverter}}"
+                           TextAlignment="Center"
+                           />
+
+            </StackPanel>
         </Grid>
         
     </Grid>
