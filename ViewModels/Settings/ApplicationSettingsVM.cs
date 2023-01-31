@@ -12,6 +12,7 @@ using WinstaCore.Theme;
 using WinstaCore.Models;
 using WinstaCore;
 using WinstaCore.Enums;
+using Windows.UI.ViewManagement;
 
 namespace ViewModels.Settings;
 
@@ -33,6 +34,24 @@ public class ApplicationSettingsVM : BaseViewModel
     {
         get => ApplicationSettingsManager.Instance.GetAppLockMode();
         set => ApplicationSettingsManager.Instance.SetAppLockMode(value);
+    }
+
+    public ApplicationUserInterfaceModel UserInteractionMode
+    {
+        get => ApplicationSettingsManager.Instance.GetAppUiMode();
+        set => ApplicationSettingsManager.Instance.SetAppUiMode(value);
+    }
+
+    public bool IsListViewMode
+    {
+        get => UserInteractionMode == ApplicationUserInterfaceModel.List;
+        set => UserInteractionMode = value == false ? ApplicationUserInterfaceModel.Staggered : ApplicationUserInterfaceModel.List;
+    }
+
+    public bool IsStaggeredViewMode
+    {
+        get => UserInteractionMode == ApplicationUserInterfaceModel.Staggered;
+        set => UserInteractionMode = value == true ? ApplicationUserInterfaceModel.Staggered : ApplicationUserInterfaceModel.List;
     }
 
     public string DownloadsPath

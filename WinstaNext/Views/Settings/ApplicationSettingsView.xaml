@@ -156,7 +156,8 @@
                                    HorizontalAlignment="Stretch"
                                    Stretch="Uniform"/>
                             
-                            <RadioButton HorizontalAlignment="Center"
+                            <RadioButton IsChecked="{x:Bind ViewModel.IsStaggeredViewMode, Mode=TwoWay}"
+                                         HorizontalAlignment="Center"
                                          Content="Staggered View"
                                          GroupName="UIMODE"
                                          Margin="0,5"
@@ -179,8 +180,9 @@
                             <Image Source="ms-appx:///Assets/Settings/ListView.png"
                                    HorizontalAlignment="Stretch"
                                    Stretch="Uniform"/>
-                            
-                            <RadioButton HorizontalAlignment="Center"
+
+                            <RadioButton IsChecked="{x:Bind ViewModel.IsListViewMode, Mode=TwoWay}"
+                                         HorizontalAlignment="Center"
                                          Content="List View"
                                          GroupName="UIMODE"
                                          Margin="0,5"

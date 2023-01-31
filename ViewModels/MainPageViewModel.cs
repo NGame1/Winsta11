@@ -286,7 +286,7 @@ public class MainPageViewModel : BaseViewModelWithStopwatch
     {
         using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
         {
-            await Api.LauncherMobileConfig();
+            await Api.LauncherMobileConfigAsync();
 
             var syncres = await Api.PushProcessor.RegisterPushAsync();
             if (!syncres.Succeeded)
