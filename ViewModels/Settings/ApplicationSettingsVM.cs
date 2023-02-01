@@ -12,7 +12,6 @@ using WinstaCore.Theme;
 using WinstaCore.Models;
 using WinstaCore;
 using WinstaCore.Enums;
-using Windows.UI.ViewManagement;
 
 namespace ViewModels.Settings;
 

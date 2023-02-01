@@ -1,30 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using Microsoft.Toolkit.Uwp.UI;
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+using WinstaCore.Interfaces.Views.Medias;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace WinstaNext.Views.Media
+namespace WinstaNext.Views.Media;
+
+/// <summary>
+/// An empty page that can be used on its own or navigated to within a Frame.
+/// </summary>
+public sealed partial class IncrementalStaggeredView : BasePage, IIncrementalInstaMediaView
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class IncrementalStaggeredView : Page
+    public override string PageHeader { get; protected set; } = string.Empty;
+
+    public IncrementalStaggeredView()
     {
-        public IncrementalStaggeredView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
+    }
+
+    private void MediaPostsList_ItemClick(object sender, ItemClickEventArgs e)
+    {
+
+    }
+
+    private void MediaPostsList_Loaded(object sender, RoutedEventArgs e)
+    {
+        var scroll = MediaPostsList.FindDescendantOrSelf<ScrollViewer>();
+        if (scroll == null) return;
+        scroll.ViewChanged += Scroll_ViewChanged;
+    }
+
+    async void Scroll_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+    {
+        var scroll = (ScrollViewer)sender;
+        if (scroll.VerticalOffset >= scroll.ScrollableHeight - 400
+            && !ViewModel.MediaSource.IsLoading)
+            await ViewModel.MediaSource.LoadMoreItemsAsync(1);
     }
 }

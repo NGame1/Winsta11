@@ -1,13 +1,71 @@
-﻿<Page
+﻿<views:BasePage
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     x:Class="WinstaNext.Views.Media.IncrementalStaggeredView"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WinstaNext.Views.Media"
+    xmlns:models="using:InstagramApiSharp.Classes.Models" 
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:TemplateSelectors="using:TemplateSelectors"
+    xmlns:Muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:stories1="using:WinstaNext.UI.Stories"
+    xmlns:stories="using:Abstractions.Stories"
+    xmlns:media="using:WinstaNext.UI.Media"
+    xmlns:views="using:WinstaNext.Views" 
+    xmlns:VM="using:ViewModels.Media" 
     mc:Ignorable="d">
+    
+    <views:BasePage.DataContext>
+        <VM:IncrementalInstaMediaViewModel x:Name="ViewModel"/>
+    </views:BasePage.DataContext>
 
-    <Grid>
-        
-    </Grid>
-</Page>
+    <Muxc:RefreshContainer PullDirection="TopToBottom"
+                           Grid.Column="0">
+        <ListView ItemsSource="{x:Bind ViewModel.MediaSource, Mode=OneWay}"
+                  ItemClick="MediaPostsList_ItemClick"
+                  Loaded="MediaPostsList_Loaded"
+                  IsItemClickEnabled="True"
+                  x:Name="MediaPostsList"
+                  SelectionMode="None"
+                  Padding="0,0,16,0">
+
+            <i:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="Loaded">
+                    <core:InvokeCommandAction CommandParameter="{x:Bind MediaPostsList, Mode=OneWay}" 
+                                              Command="{x:Bind ViewModel.ListViewLoadedCommand}"/>
+                </core:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
+                    <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
+                    <Setter Property="BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+                    <Setter Property="Background" Value="{ThemeResource ExpanderHeaderBackground}"/>
+                    <Setter Property="IsFocusEngagementEnabled" Value="True"/>
+                    <Setter Property="IsDoubleTapEnabled" Value="True"/>
+                    <Setter Property="Padding" Value="8"/>
+                    <!--<Setter Property="Margin" Value="0"/>-->
+                </Style>
+            </ListView.ItemContainerStyle>
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:InstaMedia">
+                    <media:StaggeredTileUC Media="{x:Bind Mode=OneWay}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <controls:StaggeredPanel HorizontalAlignment="Stretch"
+                                             DesiredColumnWidth="285"
+                                             ColumnSpacing="6"
+                                             RowSpacing="6"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+        </ListView>
+    </Muxc:RefreshContainer>
+
+</views:BasePage>
