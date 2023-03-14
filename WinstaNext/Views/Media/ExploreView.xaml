@@ -30,7 +30,7 @@
             </core:EventTriggerBehavior>
         </interactivity:Interaction.Behaviors>
 
-        <ListView.ItemsPanel>
+        <!--<ListView.ItemsPanel>
             <ItemsPanelTemplate>
                 <ItemsWrapGrid SizeChanged="lst_SizeChanged" 
                                Loaded="ItemsWrapGrid_Loaded"
@@ -38,7 +38,7 @@
                                MaximumRowsOrColumns="10"
                                Orientation="Horizontal"/>
             </ItemsPanelTemplate>
-        </ListView.ItemsPanel>
+        </ListView.ItemsPanel>-->
 
         <ListView.ItemContainerStyle>
             <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">

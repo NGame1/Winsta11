@@ -5,6 +5,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
 using Windows.Foundation;
 using Windows.UI.Xaml.Media;
+using Microsoft.Toolkit.Uwp.UI.Controls;
+using Windows.UI.Xaml.Markup;
 
 namespace WinstaCore.Helpers.ExtensionMethods
 {
@@ -206,5 +208,52 @@ namespace WinstaCore.Helpers.ExtensionMethods
 
             return val;
         }
+
+        public static void SetListViewItemsPanel(this ListView lst)
+        {
+            var mode = ApplicationSettingsManager.Instance.GetAppUiMode();
+            switch (mode)
+            {
+                case Enums.ApplicationUserInterfaceModel.List:
+                    break;
+                case Enums.ApplicationUserInterfaceModel.Staggered:
+                    SetStaggeredView(lst);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        static void SetStaggeredView(ItemsControl itemsControl)
+        {
+            var itemsPanelTemplateXaml =
+                $@"<ItemsPanelTemplate xmlns:controls='using:Microsoft.Toolkit.Uwp.UI.Controls'
+                                       xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
+                                       xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'>
+                       <controls:StaggeredPanel HorizontalAlignment='Stretch'
+                                                DesiredColumnWidth='285'
+                                                ColumnSpacing='6'
+                                                RowSpacing='6'/>
+                   </ItemsPanelTemplate>";
+
+            itemsControl.ItemsPanel = (ItemsPanelTemplate)XamlReader.Load(itemsPanelTemplateXaml);
+        }
+
+        static void SetWrapGridView(ItemsControl itemsControl)
+        {
+            var itemsPanelTemplateXaml =
+                $@"<ItemsPanelTemplate xmlns:controls='using:Microsoft.Toolkit.Uwp.UI.Controls'
+                                       xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
+                                       xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'>
+                       <ItemsWrapGrid SizeChanged=''lst_SizeChanged'' 
+                                      Loaded=''ItemsWrapGrid_Loaded''
+                                      HorizontalAlignment=''Center''
+                                      MaximumRowsOrColumns=''10''
+                                      Orientation=''Horizontal''/>
+                   </ItemsPanelTemplate>";
+
+            itemsControl.ItemsPanel = (ItemsPanelTemplate)XamlReader.Load(itemsPanelTemplateXaml);
+        }
+
     }
 }
