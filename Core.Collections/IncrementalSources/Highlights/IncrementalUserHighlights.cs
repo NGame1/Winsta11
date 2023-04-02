@@ -10,10 +10,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Devices.Power;
 using Windows.System.Power;
-using Windows.UI.Xaml;
 using Abstractions.Stories;
 using WinstaCore;
-using Microsoft.Toolkit.Uwp.UI.Helpers;
 
 namespace Core.Collections.IncrementalSources.Highlights
 {
@@ -22,7 +20,7 @@ namespace Core.Collections.IncrementalSources.Highlights
         PaginationParameters Pagination { get; set; }
 
         public long UserId { get; private set; } = -1;
-
+        
         [OnChangedMethod(nameof(OnRefreshRequestedChanged))]
         public bool RefreshRequested { get; set; }
 
