@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Windows.Security.Credentials.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -8,6 +9,7 @@ using WinstaCore.Enums;
 using WinstaCore;
 using WinstaCore.Interfaces.Views;
 using WinstaMobile.Views;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -43,7 +45,7 @@ public sealed partial class MainPage : BasePage, IMainView
         Window.Current.Content = content;
     }
 
-    void MainPage_Loaded(object sender, RoutedEventArgs e)
+    async void MainPage_Loaded(object sender, RoutedEventArgs e)
     {
         this.Loaded -= MainPage_Loaded;
 

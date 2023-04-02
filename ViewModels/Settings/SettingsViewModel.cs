@@ -47,7 +47,7 @@ namespace ViewModels.Settings
             var transitionInfo = new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight };
             NavigationService.Navigate(applicationSettings, transitionInfo);
 #else
-            NavigationService.Navigate(AccountSettings);
+            NavigationService.Navigate(applicationSettings);
 #endif
         }
 

@@ -1,5 +1,7 @@
 ﻿using InstagramApiSharp.Classes.Models;
 using PropertyChanged;
+using System;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -36,6 +38,15 @@ namespace WinstaMobile.Views.Directs
         public DirectThreadView()
         {
             this.InitializeComponent();
+            OnDirectItemChanged();
+        }
+
+        async void CheckViewModelInstanceAsync()
+        {
+            if (ViewModel != null)
+            {
+                await new MessageDialog("CheckViewModelInstanceAsync ViewModel != null").ShowAsync();
+            }
         }
 
         ~DirectThreadView()
@@ -43,12 +54,13 @@ namespace WinstaMobile.Views.Directs
             ViewModel = null;
         }
 
-        void OnDirectItemChanged()
+        async void OnDirectItemChanged()
         {
             if (DirectThread == null) return;
             ViewModel = new(DirectThread);
             ViewModel.ThreadId = DirectThread.ThreadId;
             lst.ItemsSource = ViewModel.ThreadItems;
+            await new MessageDialog("OnDirectItemChanged").ShowAsync();
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)

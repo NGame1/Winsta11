@@ -254,10 +254,13 @@ namespace WinstaNext.ViewModels.Directs
 
         async Task SendMessageAsync()
         {
+            await new MessageDialog("SendMessageAsync: " + SendMessageCommand.IsRunning).ShowAsync();
             if (SendMessageCommand.IsRunning) return;
             using (var Api = AppCore.Container.GetService<IInstaApi>())
             {
+                await new MessageDialog("Api Instance is ready.").ShowAsync();
                 IResult<InstaDirectRespondPayload> result;
+                await new MessageDialog("RepliedMessage is null: " + (RepliedMessage == null).ToString()).ShowAsync();
                 if (RepliedMessage == null)
                 {
                     if (Regex.Match(MessageText, RegexConstants.WebUrlRegex) is Match match && match.Groups.Count > 1)
@@ -274,6 +277,7 @@ namespace WinstaNext.ViewModels.Directs
                 {
                     result = await Api.MessagingProcessor.ReplyDirectMessageAsync(ThreadId, MessageText, RepliedMessage.ItemId, RepliedMessage.UserId, RepliedMessage.ClientContext, RepliedMessage.ItemType.ToString()); ;
                 }
+                await new MessageDialog("Result: " + result.Succeeded).ShowAsync();
                 if (result.Succeeded)
                 {
                     ThreadItems.InsertNewTextMessage(result.Value, MessageText);
