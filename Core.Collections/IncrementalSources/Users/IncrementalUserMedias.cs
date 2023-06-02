@@ -26,7 +26,7 @@ namespace Core.Collections.IncrementalSources.Users
             if (!HasMoreAvailable) return null;
             using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
             {
-                var result = await Api.UserProcessor.GetUserMediaByIdAsync(UserId, Pagination, cancellationToken);
+                var result = await Api.UserProcessor.GetUserMediaByIdAsync(UserId, Pagination, cancellationToken, false);
                 if (!result.Succeeded)
                 {
                     if (result.Info.Exception != null && result.Info.Exception is not TaskCanceledException)

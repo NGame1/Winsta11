@@ -52,28 +52,26 @@ public sealed partial class StaggeredHomeView : BasePage, IHomeView
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
-        if (_pagesLoaded >= 3 || e.NavigationMode != NavigationMode.New) return;
+        if (e.NavigationMode != NavigationMode.New) return;
         try
         {
             await LoadMoreMediaAsync();
-            if (_pagesLoaded >= 3) return;
             await LoadMoreMediaAsync();
-            if (_pagesLoaded >= 3) return;
             await LoadMoreMediaAsync();
-            if (_pagesLoaded >= 3) return;
             base.OnNavigatedTo(e);
+
+            await Task.Delay(1000);
+            RefreshContainer_RefreshRequested(null, null);
         }
         catch (Exception) { }
     }
 
     protected override void OnNavigatedFrom(NavigationEventArgs e)
     {
-        
     }
 
     protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
     {
-
     }
 
     private void FeedPostsList_Loaded(object sender, RoutedEventArgs e)
@@ -107,6 +105,5 @@ public sealed partial class StaggeredHomeView : BasePage, IHomeView
 
     private void RefreshContainer_RefreshRequested(Microsoft.UI.Xaml.Controls.RefreshContainer sender, Microsoft.UI.Xaml.Controls.RefreshRequestedEventArgs args)
     {
-
     }
 }
