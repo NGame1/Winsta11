@@ -40,7 +40,8 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Muxc:RefreshContainer PullDirection="TopToBottom"
+        <Muxc:RefreshContainer RefreshRequested="RefreshContainer_RefreshRequested"
+                               PullDirection="TopToBottom"
                                Grid.Column="0">
             <ListView ItemsSource="{x:Bind ViewModel.Medias, Mode=OneWay}"
                       ItemClick="FeedPostsList_ItemClick"

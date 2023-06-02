@@ -31,24 +31,49 @@ public sealed partial class StaggeredHomeView : BasePage, IHomeView
 
     public AsyncRelayCommand LoadMoreCommand { get; }
 
+    private int _pagesLoaded = 0;
+
     public StaggeredHomeView()
     {
         this.InitializeComponent();
         LoadMoreCommand = new(LoadMoreAsync);
     }
 
-    async Task LoadMoreAsync()
+    async Task LoadMoreMediaAsync()
     {
         await ViewModel.Medias.LoadMoreItemsAsync(1);
+        _pagesLoaded++;
+    }
+
+    async Task LoadMoreAsync()
+    {
+        await LoadMoreMediaAsync();
     }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
-        if (e.NavigationMode != NavigationMode.New) return;
-        await ViewModel.Medias.LoadMoreItemsAsync(1);
-        await ViewModel.Medias.LoadMoreItemsAsync(1);
-        await ViewModel.Medias.LoadMoreItemsAsync(1);
-        base.OnNavigatedTo(e);
+        if (_pagesLoaded >= 3 || e.NavigationMode != NavigationMode.New) return;
+        try
+        {
+            await LoadMoreMediaAsync();
+            if (_pagesLoaded >= 3) return;
+            await LoadMoreMediaAsync();
+            if (_pagesLoaded >= 3) return;
+            await LoadMoreMediaAsync();
+            if (_pagesLoaded >= 3) return;
+            base.OnNavigatedTo(e);
+        }
+        catch (Exception) { }
+    }
+
+    protected override void OnNavigatedFrom(NavigationEventArgs e)
+    {
+        
+    }
+
+    protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+    {
+
     }
 
     private void FeedPostsList_Loaded(object sender, RoutedEventArgs e)
@@ -78,5 +103,10 @@ public sealed partial class StaggeredHomeView : BasePage, IHomeView
     {
         var stories = ViewModel.Stories;
         ViewModel.NavigationService.Navigate(typeof(StoryCarouselView), new StoryCarouselViewParameter((WinstaStoryItem)e.ClickedItem, ref stories));
+    }
+
+    private void RefreshContainer_RefreshRequested(Microsoft.UI.Xaml.Controls.RefreshContainer sender, Microsoft.UI.Xaml.Controls.RefreshRequestedEventArgs args)
+    {
+
     }
 }
