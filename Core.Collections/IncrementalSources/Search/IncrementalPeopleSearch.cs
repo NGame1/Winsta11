@@ -31,7 +31,7 @@ namespace Core.Collections.IncrementalSources.Search
 
             using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
             {
-                var result = await Api.DiscoverProcessor.SearchPeopleAsync(SearchQuerry, pagination,
+                var result = await Api.DiscoverProcessor.SearchPeopleAsync(SearchQuerry, pagination, count: 20,
                              cancellationToken: cancellationToken);
                 if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
                     throw result.Info.Exception;

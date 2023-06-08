@@ -53,7 +53,7 @@
                 Title="{x:Bind Resources:LanguageManager.Instance.Settings.RemoveFeedAds}"
                 Description="{x:Bind Resources:LanguageManager.Instance.Settings.RemoveFeedAdsDescription}">
                 <controls:ExpandableSettingControl.Icon>
-                    <FontIcon Glyph="&#xE733;" />
+                    <FontIcon Glyph="&#xF140;"  />
                 </controls:ExpandableSettingControl.Icon>
                 <ToggleSwitch Style="{StaticResource RightAlignedToggleSwitchStyle}" 
                               IsOn="{x:Bind ViewModel.RemoveFeedAds, Mode=TwoWay}"/>

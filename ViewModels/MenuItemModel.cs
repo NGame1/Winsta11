@@ -33,7 +33,7 @@ namespace ViewModels
             Icon = new FontIcon
             {
                 Glyph = glyph,
-                FontFamily = new("Segoe Fluent Icons")
+                //FontFamily = new("Segoe Fluent Icons")
                 //FontFamily = (FontFamily)App.Current.Resources["FluentIcons"]
             };
             Text = text;

@@ -27,7 +27,7 @@ public sealed partial class ExploreView : BasePage, IExploreView
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
-        lst.SetListViewItemsPanel();
+        //lst.SetListViewItemsPanel();
         base.OnNavigatedTo(e);
     }
 

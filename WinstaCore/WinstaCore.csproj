@@ -150,6 +150,7 @@
     <Compile Include="Helpers\FFMpegHelpers\FFMpegVideoHelpers.cs" />
     <Compile Include="Helpers\MessageDialogHelper.cs" />
     <Compile Include="Helpers\MultiViewing\ViewLifetimeControl.cs" />
+    <Compile Include="Helpers\OSVersionHelper.cs" />
     <Compile Include="Helpers\WebViewUserAgentHelper.cs" />
     <Compile Include="Interfaces\IWinstaApp.cs" />
     <Compile Include="Interfaces\Views\Accounts\IChallengeRequiredView.cs" />
