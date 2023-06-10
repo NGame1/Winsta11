@@ -408,8 +408,7 @@ public class MainPageViewModel : BaseViewModelWithStopwatch
         try
         {
             using IInstaApi Api = AppCore.Container.GetService<IInstaApi>();
-            var result = await Api.DiscoverProcessor.SearchPeopleAsync(SearchQuery,
-               PaginationParameters.MaxPagesToLoad(1));
+            var result = await Api.DiscoverProcessor.TypeaheadSearchAsync(SearchQuery);
             if (result.Succeeded)
             {
                 SearchResults.Clear();

@@ -35,7 +35,7 @@ namespace Core.Collections.IncrementalSources.Search
                              cancellationToken: cancellationToken);
                 if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
                     throw result.Info.Exception;
-                HasMoreAvailable = result.Value.HasMoreAvailable;
+                HasMoreAvailable = false;
                 return result.Value.Users;
             }
         }
