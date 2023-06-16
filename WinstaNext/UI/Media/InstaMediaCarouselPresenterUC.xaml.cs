@@ -54,6 +54,8 @@ namespace WinstaNext.UI.Media
 
         NavigationService NavigationService { get; }
 
+        public event EventHandler<SelectionChangedEventArgs> GallerySelectionChanged;
+
         public InstaMediaCarouselPresenterUC()
         {
             NavigationService = App.Container.GetService<NavigationService>();
@@ -62,6 +64,7 @@ namespace WinstaNext.UI.Media
         
         private void Gallery_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            GallerySelectionChanged?.Invoke(sender, e);
             SetFlipViewSize();
         }
 

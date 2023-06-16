@@ -187,6 +187,7 @@
             </local:InstaMediaVideoPresenterUC>
 
             <local:InstaMediaCarouselPresenterUC x:Load="{x:Bind ViewModel.CarouselPresenterLoaded}"
+                                                 GallerySelectionChanged="Gallery_SelectionChanged"
                                                  Media="{x:Bind Media, Mode=OneWay}" 
                                                  x:Name="carouselPresenter" 
                                                  x:FieldModifier="public">
@@ -200,26 +201,41 @@
             </local:InstaMediaCarouselPresenterUC>
 
             <Muxc:AnimatedVisualPlayer x:Load="{x:Bind ViewModel.LoadLikeAnimation}"
-                                   x:Name="LikeAnimationPlayer"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Width="100" Height="100"
-                                   AutoPlay="True">
+                                       x:Name="LikeAnimationPlayer"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Width="100" Height="100"
+                                       AutoPlay="True">
 
                 <lottie:LottieVisualSource UriSource="ms-appx:///Assets/Lottie/Like.json"/>
 
             </Muxc:AnimatedVisualPlayer>
 
             <Muxc:AnimatedVisualPlayer x:Load="{x:Bind ViewModel.LoadUnLikeAnimation}"
-                                   x:Name="UnLikeAnimationPlayer"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Width="100" Height="100"
-                                   AutoPlay="True">
+                                       x:Name="UnLikeAnimationPlayer"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Width="100" Height="100"
+                                       AutoPlay="True">
 
                 <lottie:LottieVisualSource UriSource="ms-appx:///Assets/Lottie/Dislike.json"/>
 
             </Muxc:AnimatedVisualPlayer>
+
+            <Grid x:Name="UserTagsGrid" x:Load="{x:Bind AnyUserTags, Mode=OneWay}" SizeChanged="Presenter_SizeChanged" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid x:Name="TagShowHide" Height="25" Width="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="12">
+                    <Ellipse Fill="{StaticResource SystemColorBackgroundBrush}"/>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="&#xEA8C;" FontFamily="Segoe MDL2 Assets" FontSize="10"/>
+                    <i:Interaction.Behaviors>
+                        <i:BehaviorCollection>
+                            <core:EventTriggerBehavior EventName="Tapped">
+                                <core:InvokeCommandAction Command="{x:Bind ShowUserTagsCommand}"/>
+                            </core:EventTriggerBehavior>
+                        </i:BehaviorCollection>
+                    </i:Interaction.Behaviors>
+                </Grid>
+            </Grid>
+            
         </Grid>
         <!--#endregion-->
 
