@@ -13,12 +13,13 @@ using WinstaCore;
 
 namespace Core.Collections.IncrementalSources.Stories
 {
+    [AddINotifyPropertyChangedInterface]
     public class IncrementalFeedStories : IIncrementalSource<WinstaStoryItem>
     {
         PaginationParameters Pagination { get; set; }
 
         [OnChangedMethod(nameof(OnRefreshRequestedChanged))]
-        public bool RefreshRequested { get; set; }
+        public bool RefreshRequested { get; set; } = false;
 
         public IncrementalFeedStories()
         {
@@ -68,7 +69,7 @@ namespace Core.Collections.IncrementalSources.Stories
                 {
                     Stories.Add(new(result.Value.HashtagStories.ElementAt(i)));
                 }
-
+                RefreshRequested = false;
                 return Stories;
             }
             finally { }
@@ -76,6 +77,8 @@ namespace Core.Collections.IncrementalSources.Stories
 
         void OnRefreshRequestedChanged()
         {
+            if (!RefreshRequested) return;
+            HasMoreAvailable = true;
             Pagination = PaginationParameters.MaxPagesToLoad(1);
             RefreshRequested = true;
         }

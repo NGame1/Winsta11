@@ -161,6 +161,7 @@
     <Compile Include="Settings\AccountSettingsViewModel.cs" />
     <Compile Include="Settings\ApplicationSettingsVM.cs" />
     <Compile Include="Settings\SettingsViewModel.cs" />
+    <Compile Include="StaggeredHomeViewModel.cs" />
     <Compile Include="Stories\StoryCarouselViewModel.cs" />
     <EmbeddedResource Include="Properties\ViewModels.rd.xml" />
   </ItemGroup>

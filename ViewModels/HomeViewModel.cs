@@ -45,11 +45,12 @@ public class HomeViewModel : BaseViewModel
         await list.SmoothScrollIntoViewWithIndexAsync(0);
     }
 
-    private async Task RefreshAsync()
+    public virtual async Task RefreshAsync()
     {
         FeedMedia.RefreshRequested = true;
         FeedStories.RefreshRequested = true;
         await Stories.RefreshAsync();
         await Medias.RefreshAsync();
+        await Stories.LoadMoreItemsAsync(1);
     }
 }

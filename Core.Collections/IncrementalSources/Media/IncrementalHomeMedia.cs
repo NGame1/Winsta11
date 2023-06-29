@@ -3,6 +3,7 @@ using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
 using Microsoft.Toolkit.Collections;
 using Microsoft.Toolkit.Uwp.UI.Helpers;
+using PropertyChanged;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -19,6 +20,7 @@ namespace Core.Collections.IncrementalSources.Media
 {
     public class IncrementalHomeMedia : IIncrementalSource<InstaMedia>
     {
+        [OnChangedMethod(nameof(OnRefreshRequestedChanged))]
         public bool RefreshRequested { get; set; } = false;
 
         public bool IsDark { get; set; } = false;
@@ -69,6 +71,13 @@ namespace Core.Collections.IncrementalSources.Media
             var seenarr = src.Take(seenMedias);
             var mediaids = seenarr.Select(x => x.InstaIdentifier).ToArray();
             return mediaids;
+        }
+
+        void OnRefreshRequestedChanged()
+        {
+            if (!RefreshRequested) return;
+            Pagination = PaginationParameters.MaxPagesToLoad(1);
+            RefreshRequested = true;
         }
 
     }

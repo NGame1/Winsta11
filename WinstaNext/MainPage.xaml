@@ -34,7 +34,7 @@
     <Page.DataContext>
         <VM:MainPageViewModel x:Name="ViewModel"/>
     </Page.DataContext>
-    
+
     <Grid Background="Transparent">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
