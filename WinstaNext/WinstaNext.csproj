@@ -131,6 +131,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WinstaListView.xaml.cs">
+      <DependentUpon>WinstaListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\Profiles\InstaFriendshipShortStatusButtonConverter.cs" />
     <Compile Include="Converters\Profiles\UserInfoToButtonConverter.cs" />
     <Compile Include="Core\Behaviors\SynchronizeHorizontalOffsetBehavior.cs" />
@@ -480,6 +483,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\WinstaListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ExtendedSplashScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

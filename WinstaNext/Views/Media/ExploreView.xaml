@@ -8,19 +8,23 @@
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 x:Class="WinstaNext.Views.Media.ExploreView"
                 xmlns:media="using:WinstaNext.UI.Media" 
-                xmlns:VM="using:ViewModels.Media"
+                xmlns:VM="using:ViewModels.Media" 
+                xmlns:controls="using:WinstaNext.Controls"
                 mc:Ignorable="d">
 
-    <Page.DataContext>
+    <views:BasePage.DataContext>
         <VM:ExploreViewModel x:Name="ViewModel"/>
-    </Page.DataContext>
+    </views:BasePage.DataContext>
 
-    <ListView ItemsSource="{x:Bind ViewModel.ExploreMedias, Mode=OneWay}"
+    <controls:WinstaListView Medias="{x:Bind ViewModel.ExploreMedias, Mode=OneWay}"
+                             x:Name="wlst"/>
+    <!--<ListView ItemsSource="{x:Bind ViewModel.ExploreMedias, Mode=OneWay}"
               ScrollViewer.IsVerticalScrollChainingEnabled="True"
               ScrollViewer.VerticalScrollBarVisibility="Auto"
               ScrollViewer.HorizontalScrollMode="Disabled"
               SizeChanged="lst_SizeChanged"
               IsItemClickEnabled="True"
+              Visibility="Collapsed"
               SelectionMode="None"
               x:Name="lst">
 
@@ -52,5 +56,5 @@
                 <media:InstaMediaTileUC Media="{x:Bind Mode=OneWay}"/>
             </DataTemplate>
         </ListView.ItemTemplate>
-    </ListView>
+    </ListView>-->
 </views:BasePage>

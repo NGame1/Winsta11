@@ -1,0 +1,63 @@
+﻿<UserControl
+    x:Class="WinstaNext.Controls.WinstaListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinstaNext.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:InstagramApiSharp.Classes.Models" 
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:media="using:WinstaNext.UI.Media"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <ListView ItemsSource="{x:Bind Medias, Mode=OneWay}"
+              SizeChanged="FeedPostsList_SizeChanged"
+              ItemClick="FeedPostsList_ItemClick"
+              Loaded="FeedPostsList_Loaded"
+              IsItemClickEnabled="True"
+              x:FieldModifier="public"
+              x:Name="FeedPostsList"
+              SelectionMode="None"
+              Padding="0,0,16,0">
+
+        <ListView.Resources>
+            <DataTemplate x:Key="StaggeredTile" x:DataType="models:InstaMedia">
+                <media:StaggeredTileUC Media="{x:Bind Mode=OneWay}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="ListTile" x:DataType="models:InstaMedia">
+                <media:InstaMediaTileUC Media="{x:Bind Mode=OneWay}"/>
+            </DataTemplate>
+        </ListView.Resources>
+        
+        <ListView.ItemTemplateSelector>
+            <local:MediaTileTemplateSelector ListTileTemplate="{StaticResource ListTile}"
+                                             StaggeredTileTemplate="{StaticResource StaggeredTile}">
+
+            </local:MediaTileTemplateSelector>
+        </ListView.ItemTemplateSelector>
+        
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
+                <Setter Property="BorderThickness" Value="{ThemeResource ExpanderHeaderBorderThickness}" />
+                <Setter Property="BorderBrush" Value="{ThemeResource ExpanderHeaderBorderBrush}" />
+                <Setter Property="Background" Value="{ThemeResource ExpanderHeaderBackground}"/>
+                <Setter Property="IsFocusEngagementEnabled" Value="True"/>
+                <Setter Property="IsDoubleTapEnabled" Value="True"/>
+                <Setter Property="Padding" Value="8"/>
+                <!--<Setter Property="Margin" Value="0"/>-->
+            </Style>
+        </ListView.ItemContainerStyle>
+
+        <ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <controls:StaggeredPanel HorizontalAlignment="Stretch"
+                                         DesiredColumnWidth="285"
+                                         ColumnSpacing="6"
+                                         RowSpacing="6"/>
+            </ItemsPanelTemplate>
+        </ListView.ItemsPanel>
+
+    </ListView>
+</UserControl>

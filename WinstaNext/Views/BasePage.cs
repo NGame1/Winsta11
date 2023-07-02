@@ -24,7 +24,7 @@ namespace WinstaNext.Views
             base.OnNavigatedTo(e);
             if (this.DataContext is not BaseViewModel vm)
                 throw new ArgumentException();
-            PageViewModel = vm;
+            PageViewModel ??= vm;
             try
             {
                 PageViewModel.IsLoading = true;
@@ -38,6 +38,7 @@ namespace WinstaNext.Views
         protected override async void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
+            PageViewModel ??= this.DataContext as BaseViewModel;
             PageViewModel.OnNavigatedFrom(e);
             await PageViewModel.OnNavigatedFromAsync(e);
         }
@@ -45,6 +46,7 @@ namespace WinstaNext.Views
         protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
+            PageViewModel ??= this.DataContext as BaseViewModel;
             PageViewModel.IsLoading = true;
             try
             {

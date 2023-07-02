@@ -15,7 +15,7 @@ namespace ViewModels.Media
     public class ExploreViewModel : BaseViewModel
     {
         IncrementalExploreMedia ExploreInstance { get; set; }
-
+        
         public RangePlayerAttribute ExploreMedias { get; set; }
 
         public RelayCommand<ItemClickEventArgs> NavigateToMediaCommand { get; set; }

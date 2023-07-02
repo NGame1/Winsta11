@@ -59,9 +59,6 @@ public sealed partial class StaggeredHomeView : BasePage, IHomeView
             await LoadMoreMediaAsync();
             await LoadMoreMediaAsync();
             base.OnNavigatedTo(e);
-
-            await Task.Delay(1000);
-            RefreshContainer_RefreshRequested(null, null);
         }
         catch (Exception) { }
     }

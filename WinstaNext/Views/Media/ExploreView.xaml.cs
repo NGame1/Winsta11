@@ -1,4 +1,6 @@
 ﻿using Resources;
+using System.Threading.Tasks;
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -25,10 +27,17 @@ public sealed partial class ExploreView : BasePage, IExploreView
         this.InitializeComponent();
     }
 
-    protected override void OnNavigatedTo(NavigationEventArgs e)
+    protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
-        //lst.SetListViewItemsPanel();
-        base.OnNavigatedTo(e);
+        if (e.NavigationMode != NavigationMode.New) return;
+        if (ApplicationSettingsManager.Instance.GetAppUiMode() == WinstaCore.Enums.ApplicationUserInterfaceModel.List) return;
+        try
+        {
+            
+            await wlst.Medias?.LoadMoreItemsAsync(1);
+            base.OnNavigatedTo(e);
+        }
+        catch (Exception) { }
     }
 
     private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
@@ -38,16 +47,16 @@ public sealed partial class ExploreView : BasePage, IExploreView
 
     private void lst_SizeChanged(object sender, SizeChangedEventArgs e)
     {
-        if (WrapGrid == null) return;
-        if (!ApplicationSettingsManager.Instance.GetForceThreeColumns())
-        {
-            WrapGrid.ItemHeight = WrapGrid.ItemWidth = 185;
-            WrapGrid.SizeChanged -= lst_SizeChanged;
-            lst.SizeChanged -= lst_SizeChanged;
-            return;
-        }
-        var width = e.NewSize.Width / 3f;
-        WrapGrid.ItemHeight = WrapGrid.ItemWidth = width;
+        //if (WrapGrid == null) return;
+        //if (!ApplicationSettingsManager.Instance.GetForceThreeColumns())
+        //{
+        //    WrapGrid.ItemHeight = WrapGrid.ItemWidth = 185;
+        //    WrapGrid.SizeChanged -= lst_SizeChanged;
+        //    lst.SizeChanged -= lst_SizeChanged;
+        //    return;
+        //}
+        //var width = e.NewSize.Width / 3f;
+        //WrapGrid.ItemHeight = WrapGrid.ItemWidth = width;
     }
 
 }
