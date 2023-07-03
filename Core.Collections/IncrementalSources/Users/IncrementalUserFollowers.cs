@@ -6,6 +6,7 @@ using Microsoft.Toolkit.Collections;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using WinstaCore;
@@ -39,6 +40,12 @@ namespace Core.Collections.IncrementalSources.Users
                 var result = await Api.UserProcessor
                     .GetUserFollowersByIdAsync(UserId, Pagination, cancellationToken,
                         searchQuery: SearchQuerry, mutualsfirst: true, orderBy: OrderType);
+                result.Value.ForEach(x =>
+                {
+                    if (UserId == Api.GetLoggedUser().LoggedInUser.Pk
+                        && x.Pk != Api.GetLoggedUser().LoggedInUser.Pk)
+                            x.CloseButton = true;
+                });
                 if (!result.Succeeded)
                 {
                     if (result.Info.Exception != null && result.Info.Exception is not TaskCanceledException)

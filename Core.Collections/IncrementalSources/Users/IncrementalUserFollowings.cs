@@ -6,6 +6,7 @@ using Microsoft.Toolkit.Collections;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using WinstaCore;
@@ -38,6 +39,18 @@ public class IncrementalUserFollowings : IIncrementalSource<InstaUserShort>
         {
             var result = await Api.UserProcessor.GetUserFollowingByIdAsync(UserId, Pagination, cancellationToken,
                 searchQuery: SearchQuerry, orderBy: OrderType);
+            if (UserId == Api.GetLoggedUser().LoggedInUser.Pk)
+            {
+                var r1 = await Api.UserProcessor.GetFriendshipStatusesAsync(result.Value.Select(x => x.Pk).ToArray());
+                if (r1.Succeeded)
+                {
+                    result.Value.ForEach(x =>
+                    {
+                        if (x.Pk != Api.GetLoggedUser().LoggedInUser.Pk)
+                            x.CloseButton = r1.Value.Find(y => y.Pk == x.Pk).Following;
+                    });
+                }
+            }
             if (!result.Succeeded)
             {
                 if (result.Info.Exception != null && result.Info.Exception is not TaskCanceledException)

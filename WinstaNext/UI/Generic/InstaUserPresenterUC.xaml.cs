@@ -47,6 +47,8 @@ namespace WinstaNext.UI.Generic
             set { SetValue(UserProperty, value); }
         }
 
+        public event EventHandler<RoutedEventArgs> RemoveButtonClick;
+
         void OnUserShortChanged()
         {
             User = new(UserShort);
@@ -55,6 +57,11 @@ namespace WinstaNext.UI.Generic
         public InstaUserPresenterUC()
         {
             this.InitializeComponent();
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            RemoveButtonClick?.Invoke(sender, e);
         }
     }
 }

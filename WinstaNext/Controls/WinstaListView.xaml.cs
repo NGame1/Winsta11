@@ -56,7 +56,7 @@ namespace WinstaNext.Controls
         internal ScrollViewer? Scroll { get; private set; }
 
         private ApplicationUserInterfaceModel ApplicationUiMode { get; set; }
-        private ItemsWrapGrid WrapGrid { get; set; }
+        private ItemsWrapGrid? WrapGrid { get; set; }
 
         public WinstaListView()
         {
@@ -66,6 +66,7 @@ namespace WinstaNext.Controls
 
         async Task LoadMoreMediaAsync()
         {
+            if(Medias == null) { await Task.Delay(1000);return; }
             await Medias?.LoadMoreItemsAsync(1);
         }
 

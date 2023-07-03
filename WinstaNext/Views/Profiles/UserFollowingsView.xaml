@@ -67,6 +67,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="Models:InstaUserShort">
                     <generic:InstaUserPresenterUC 
+                                    RemoveButtonClick="InstaUserPresenterUC_RemoveButtonClick"
                                     UserShort="{x:Bind Mode=OneWay}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
