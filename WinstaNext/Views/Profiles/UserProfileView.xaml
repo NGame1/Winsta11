@@ -83,7 +83,7 @@
                                 <TextBlock Text="{x:Bind ViewModel.User.UserName}" 
                                            FontWeight="SemiBold"/>
 
-                                <FontIcon Glyph="&#x02AC;" 
+                                <FontIcon Glyph="&#xE320;" 
                                           FontSize="12"
                                           Foreground="SkyBlue" 
                                           Visibility="{x:Bind ViewModel.User.IsVerified, Mode=OneWay}"

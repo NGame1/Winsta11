@@ -37,7 +37,7 @@
                    Text="{x:Bind User.UserName}"
                    TextTrimming="CharacterEllipsis"/>
 
-                    <FontIcon Glyph="&#x02AC;" 
+                    <FontIcon Glyph="&#xE320;" 
                       FontSize="12"
                       Foreground="SkyBlue" 
                       Visibility="{x:Bind User.IsVerified, Mode=OneWay}"

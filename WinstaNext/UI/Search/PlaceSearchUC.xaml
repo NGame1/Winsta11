@@ -31,7 +31,7 @@
                         TextWrapping="Wrap" 
                         MaxWidth="80"
                         MaxLines="1"/>
-            <!--<FontIcon Glyph="&#x02AC;" FontFamily="{StaticResource FluentSystemIconsFilled}" Foreground="SkyBlue" Visibility="{x:Bind Hashtag.IsVerified}" FontSize="12"/>-->
+            <!--<FontIcon Glyph="&#xE320;" FontFamily="{StaticResource FluentSystemIconsFilled}" Foreground="SkyBlue" Visibility="{x:Bind Hashtag.IsVerified}" FontSize="12"/>-->
         </StackPanel>
 
         <TextBlock Text="{x:Bind Place.Subtitle}" 

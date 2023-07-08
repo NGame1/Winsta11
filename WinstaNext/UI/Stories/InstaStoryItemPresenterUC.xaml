@@ -1,5 +1,4 @@
 ﻿<UserControl x:DefaultBindMode="OneWay" 
-    xmlns:TemplateSelectors="using:WinstaNext.Models.TemplateSelectors.Media" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:stickersview="using:WinstaNext.UI.Stories.StickersView" 
@@ -107,7 +106,7 @@
                             </HyperlinkButton.Content>
                         </HyperlinkButton>
 
-                        <FontIcon Glyph="&#x02AC;" 
+                        <FontIcon Glyph="&#xE320;" 
                                   FontSize="12"
                                   Foreground="SkyBlue" 
                                   Visibility="{x:Bind Story.User.IsVerified}"

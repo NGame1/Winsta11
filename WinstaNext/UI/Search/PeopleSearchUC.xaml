@@ -44,7 +44,7 @@
             <FontIcon FontFamily="{StaticResource FluentSystemIconsFilled}"
                       Visibility="{x:Bind User.IsVerified, Mode=OneWay}"
                       Foreground="SkyBlue"
-                      Glyph="&#x02AC;" 
+                      Glyph="&#xE320;" 
                       FontSize="12"/>
 
         </StackPanel>

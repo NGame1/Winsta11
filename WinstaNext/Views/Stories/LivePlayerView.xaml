@@ -53,7 +53,7 @@
                                 </HyperlinkButton.Content>
                             </HyperlinkButton>
 
-                            <FontIcon Glyph="&#x02AC;" 
+                            <FontIcon Glyph="&#xE320;" 
                                   FontSize="12"
                                   Foreground="SkyBlue" 
                                   Visibility="{x:Bind Live.BroadcastOwner.IsVerified}"
