@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Windows.Security.Credentials.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -43,7 +45,7 @@ public sealed partial class MainPage : BasePage, IMainView
         Window.Current.Content = content;
     }
 
-    void MainPage_Loaded(object sender, RoutedEventArgs e)
+    async void MainPage_Loaded(object sender, RoutedEventArgs e)
     {
         this.Loaded -= MainPage_Loaded;
 
