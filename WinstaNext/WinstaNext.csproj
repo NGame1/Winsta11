@@ -370,11 +370,17 @@
     <Compile Include="Views\Profiles\HashtagProfileView.xaml.cs">
       <DependentUpon>HashtagProfileView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Profiles\ProfileView.xaml.cs">
+      <DependentUpon>ProfileView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Profiles\UserFollowersView.xaml.cs">
       <DependentUpon>UserFollowersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Profiles\UserFollowingsView.xaml.cs">
       <DependentUpon>UserFollowingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Profiles\UserProfileEditView.xaml.cs">
+      <DependentUpon>UserProfileEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Profiles\UserProfileView.xaml.cs">
       <DependentUpon>UserProfileView.xaml</DependentUpon>
@@ -775,11 +781,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Profiles\ProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Profiles\UserFollowersView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Profiles\UserFollowingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Profiles\UserProfileEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

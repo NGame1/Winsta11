@@ -54,6 +54,7 @@ public class GeneralStrings
     public string Password { get => _resource.GetString(nameof(Password)); }
     public string Phone { get => _resource.GetString(nameof(Phone)); }
     public string Register { get => _resource.GetString(nameof(Register)); }
+    public string Save { get => _resource.GetString(nameof(Save)); }
     public string Search { get => _resource.GetString(nameof(Search)); }
     public string SearchPlaceHolder { get => _resource.GetString(nameof(SearchPlaceHolder)); }
     public string Settings { get => _resource.GetString(nameof(Settings)); }
@@ -89,9 +90,11 @@ public class InstagramStrings
     public string Directs { get => _resource.GetString(nameof(Directs)); }
     public string DisableCommenting { get => _resource.GetString(nameof(DisableCommenting)); }
     public string EditProfile { get => _resource.GetString(nameof(EditProfile)); }
+    public string EditUser { get => _resource.GetString(nameof(EditUser)); }
     public string EditPost { get => _resource.GetString(nameof(EditPost)); }
     public string EnableCommenting { get => _resource.GetString(nameof(EnableCommenting)); }
     public string Explore { get => _resource.GetString(nameof(Explore)); }
+    public string ExternalUrl { get => _resource.GetString(nameof(ExternalUrl)); }
     public string FacebookLogin { get => _resource.GetString(nameof(FacebookLogin)); }
     public string FailureToastNotification { get => _resource.GetString(nameof(FailureToastNotification)); }
     public string Feed { get => _resource.GetString(nameof(Feed)); }
@@ -100,6 +103,7 @@ public class InstagramStrings
     public string Followers { get => _resource.GetString(nameof(Followers)); }
     public string Following { get => _resource.GetString(nameof(Following)); }
     public string Followings { get => _resource.GetString(nameof(Followings)); }
+    public string FullName { get => _resource.GetString(nameof(FullName)); }
     public string Hashtags { get => _resource.GetString(nameof(Hashtags)); }
     public string Highlights { get => _resource.GetString(nameof(Highlights)); }
     public string IGTV { get => _resource.GetString(nameof(IGTV)); }

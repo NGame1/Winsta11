@@ -111,7 +111,9 @@ namespace ViewModels.Profiles
             if (User.Pk == AppCore.Container.GetService<InstaUserShort>().Pk)
             {
                 //Edit profile
-                throw new NotImplementedException();
+                var userProfileEdit = AppCore.Container.GetService<IUserProfileEditView>();
+                NavigationService.Navigate(userProfileEdit);
+                return;
             }
             if (User.FriendshipStatus == null)
                 throw new ArgumentNullException(nameof(User.FriendshipStatus));

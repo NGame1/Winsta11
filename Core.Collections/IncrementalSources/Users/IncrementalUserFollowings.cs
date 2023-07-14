@@ -35,33 +35,31 @@ public class IncrementalUserFollowings : IIncrementalSource<InstaUserShort>
     public async Task<IEnumerable<InstaUserShort>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken cancellationToken = default)
     {
         if (!HasMoreAvailable) return new InstaUserShort[0];
-        using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
+        using IInstaApi Api = AppCore.Container.GetService<IInstaApi>();
+        var result = await Api.UserProcessor.GetUserFollowingByIdAsync(UserId, Pagination, cancellationToken,
+            searchQuery: SearchQuerry, orderBy: OrderType);
+        if (UserId == Api.GetLoggedUser().LoggedInUser.Pk)
         {
-            var result = await Api.UserProcessor.GetUserFollowingByIdAsync(UserId, Pagination, cancellationToken,
-                searchQuery: SearchQuerry, orderBy: OrderType);
-            if (UserId == Api.GetLoggedUser().LoggedInUser.Pk)
+            var r1 = await Api.UserProcessor.GetFriendshipStatusesAsync(result.Value.Select(x => x.Pk).ToArray());
+            if (r1.Succeeded)
             {
-                var r1 = await Api.UserProcessor.GetFriendshipStatusesAsync(result.Value.Select(x => x.Pk).ToArray());
-                if (r1.Succeeded)
+                result.Value.ForEach(x =>
                 {
-                    result.Value.ForEach(x =>
-                    {
-                        if (x.Pk != Api.GetLoggedUser().LoggedInUser.Pk)
-                            x.CloseButton = r1.Value.Find(y => y.Pk == x.Pk).Following;
-                    });
-                }
+                    if (x.Pk != Api.GetLoggedUser().LoggedInUser.Pk)
+                        x.CloseButton = r1.Value.Find(y => y.Pk == x.Pk).Following;
+                });
             }
-            if (!result.Succeeded)
-            {
-                if (result.Info.Exception != null && result.Info.Exception is not TaskCanceledException)
-                    throw result.Info.Exception;
-                else if (result.Info.Exception != null)
-                    throw result.Info.Exception;
-                else return null;
-            }
-            HasMoreAvailable = !string.IsNullOrEmpty(result.Value.NextMaxId);
-            return result.Value;
         }
+        if (!result.Succeeded)
+        {
+            if (result.Info.Exception != null && result.Info.Exception is not TaskCanceledException)
+                throw result.Info.Exception;
+            else if (result.Info.Exception != null)
+                throw result.Info.Exception;
+            else return null;
+        }
+        HasMoreAvailable = !string.IsNullOrEmpty(result.Value.NextMaxId);
+        return result.Value;
     }
 
     void OnSearchQuerryOrOderTypeChanged()

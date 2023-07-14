@@ -1,6 +1,8 @@
 ﻿using Core.Collections;
 using Core.Collections.IncrementalSources.Search;
+using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
+using InstagramApiSharp.Enums;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Uwp;
 using PropertyChanged;
@@ -12,6 +14,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Foundation;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -68,23 +71,27 @@ namespace ViewModels.Search
             UsersList.CollectionChanged += UsersList_CollectionChanged;
         }
 
-        void ListViewItemClick(ItemClickEventArgs e)
+        async void ListViewItemClick(ItemClickEventArgs e)
         {
+            using IInstaApi Api = AppCore.Container.GetService<IInstaApi>();
             switch (e.ClickedItem)
             {
                 case InstaUser user:
                     var UserProfileView = AppCore.Container.GetService<IUserProfileView>();
                     NavigationService.Navigate(UserProfileView, user);
+                    await Api.DiscoverProcessor.RegisterRecentSearchClickAsync(user.UserName, InstaSearchType.User, user.Pk.ToString());
                     break;
 
                 case InstaHashtag hashtag:
                     var HashtagProfileView = AppCore.Container.GetService<IHashtagProfileView>();
                     NavigationService.Navigate(HashtagProfileView, hashtag);
+                    await Api.DiscoverProcessor.RegisterRecentSearchClickAsync(hashtag.Name, InstaSearchType.Hashtag, hashtag.Id.ToString());
                     break;
 
                 case InstaPlace place:
                     var PlaceProfileView = AppCore.Container.GetService<IPlaceProfileView>();
                     NavigationService.Navigate(PlaceProfileView, place);
+                    await Api.DiscoverProcessor.RegisterRecentSearchClickAsync(place.Title, InstaSearchType.Place, place.Location.Pk.ToString());
                     break;
 
                 default:

@@ -171,11 +171,17 @@
   <data name="EditProfile" xml:space="preserve">
     <value>Edit profile</value>
   </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Edit user profile</value>
+  </data>
   <data name="EnableCommenting" xml:space="preserve">
     <value>Enable commenting</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Explore</value>
+  </data>
+  <data name="ExternalUrl" xml:space="preserve">
+    <value>External url</value>
   </data>
   <data name="FacebookLogin" xml:space="preserve">
     <value>Login with Facebook</value>
@@ -200,6 +206,9 @@
   </data>
   <data name="Followings" xml:space="preserve">
     <value>Followings</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Full name</value>
   </data>
   <data name="Hashtags" xml:space="preserve">
     <value>Tags</value>

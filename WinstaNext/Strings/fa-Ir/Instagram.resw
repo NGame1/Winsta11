@@ -171,11 +171,17 @@
   <data name="EditProfile" xml:space="preserve">
     <value>ویرایش پروفایل</value>
   </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>ویرایش اطلاعات کاربری</value>
+  </data>
   <data name="EnableCommenting" xml:space="preserve">
     <value>فعالسازی کامنت ها</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>اکسپلور</value>
+  </data>
+  <data name="ExternalUrl" xml:space="preserve">
+    <value>لینک خارجی</value>
   </data>
   <data name="FacebookLogin" xml:space="preserve">
     <value>ورود با حساب Facebook</value>
@@ -200,6 +206,9 @@
   </data>
   <data name="Followings" xml:space="preserve">
     <value>دنبال شونده ها</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>نام کامل</value>
   </data>
   <data name="Hashtags" xml:space="preserve">
     <value>هشتگ</value>

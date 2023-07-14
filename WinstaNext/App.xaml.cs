@@ -155,6 +155,7 @@ sealed partial class App : Application, IWinstaApp
         serviceCollection.AddTransient<IFeedUploaderView>(x => new FeedUploaderView());
 
         //Profile Views
+        serviceCollection.AddTransient<IUserProfileEditView>(x => new UserProfileEditView());
         serviceCollection.AddTransient<IHashtagProfileView>(x => new HashtagProfileView());
         serviceCollection.AddTransient<IUserFollowingsView>(x => new UserFollowingsView());
         serviceCollection.AddTransient<IUserFollowersView>(x => new UserFollowersView());

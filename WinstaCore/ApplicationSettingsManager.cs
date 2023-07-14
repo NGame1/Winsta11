@@ -398,7 +398,7 @@ public class ApplicationSettingsManager
         }
         catch (Exception)
         {
-            throw;
+
         }
     }
 

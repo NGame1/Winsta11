@@ -150,6 +150,7 @@
     <Compile Include="Media\Upload\FeedUploaderVM.cs" />
     <Compile Include="Media\Upload\VideoTranscoder.cs" />
     <Compile Include="MenuItemModel.cs" />
+    <Compile Include="Profiles\EditUserProfileViewModel.cs" />
     <Compile Include="Profiles\HashtagProfileViewModel.cs" />
     <Compile Include="Profiles\PlaceProfileViewModel.cs" />
     <Compile Include="Profiles\UserFollowersViewModel.cs" />

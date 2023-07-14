@@ -9,6 +9,7 @@
     xmlns:models="using:InstagramApiSharp.Classes.Models" 
     xmlns:profiles="using:WinstaNext.UI.Flyouts.Profiles"
     xmlns:Converters1="using:WinstaNext.Converters.Media"
+    xmlns:media1="using:Microsoft.Toolkit.Uwp.UI.Media"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="WinstaNext.Views.Profiles.UserProfileView"
     xmlns:behaviors="using:WinstaNext.Core.Behaviors"
@@ -20,11 +21,11 @@
     xmlns:VM="using:ViewModels.Profiles"
     xmlns:views="using:WinstaNext.Views"
     xmlns:viewmodels="using:ViewModels"
-    xmlns:Resources="using:Resources"
+    xmlns:Resources="using:Resources" 
     mc:Ignorable="d">
 
     <views:BasePage.Resources>
-        
+
         <Converters:PossibleLargeNumbersConverter x:Key="PossibleLargeNumbersConverter"/>
 
         <Converters:TextToFlowDirectionConverter x:Key="TextToFlowDirectionConverter"/>
@@ -40,7 +41,7 @@
         <Converters1:InstaUserProfilePictureConverter x:Key="InstaUserProfilePictureConverter"/>
 
         <ProfilesConverters:UserInfoToButtonConverter x:Key="UserInfoToButtonConverter"/>
-        
+
     </views:BasePage.Resources>
 
     <views:BasePage.DataContext>
@@ -68,14 +69,125 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                
+
                 <StackPanel Spacing="5" Grid.Row="0">
-                    <StackPanel Spacing="5" Orientation="Horizontal">
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid VerticalAlignment="Center" 
+                              Grid.RowSpan="3"
+                              Grid.Column="0">
+                            <Rectangle Width="120" Height="120"
+                                       RadiusX="8" RadiusY="8">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="{x:Bind ViewModel.User, Converter={StaticResource InstaUserProfilePictureConverter}}"
+                                                Stretch="Fill"/>
+                                </Rectangle.Fill>
+                                <Rectangle.ContextFlyout>
+                                    <profiles:UserProfileMenuFlyout StoriesAndLives="{x:Bind ViewModel.StoriesAndLives, Mode=OneWay}"
+                                                                    User="{x:Bind ViewModel.User, Mode=OneWay}"/>
+                                </Rectangle.ContextFlyout>
+                            </Rectangle>
+
+                            <muxc:PersonPicture ProfilePicture="{x:Bind ViewModel.User, Converter={StaticResource InstaUserProfilePictureConverter}}" 
+                                                DisplayName="{x:Bind ViewModel.User.UserName}"
+                                                Width="120" Height="120">
+                                <muxc:PersonPicture.ContextFlyout>
+                                    <profiles:UserProfileMenuFlyout StoriesAndLives="{x:Bind ViewModel.StoriesAndLives, Mode=OneWay}"
+                                        User="{x:Bind ViewModel.User, Mode=OneWay}"/>
+                                </muxc:PersonPicture.ContextFlyout>
+                            </muxc:PersonPicture>
+                        </Grid>
+
+                        <Grid HorizontalAlignment="Stretch"
+                              Grid.RowSpan="1"
+                              Grid.Column="1"
+                              Margin="8,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Spacing="5"
+                                        Grid.Row="0"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Center">
+                                <TextBlock Text="{x:Bind ViewModel.User.UserName}" 
+                                           FontWeight="SemiBold"/>
+
+                                <FontIcon FontSize="12"
+                                          Glyph="&#xE320;" 
+                                          Foreground="SkyBlue" 
+                                          FontFamily="{StaticResource FluentSystemIconsFilled}"
+                                          Visibility="{x:Bind ViewModel.User.IsVerified, Mode=OneWay}"/>
+                            </StackPanel>
+                            <TextBlock Text="{x:Bind ViewModel.User.FullName}"
+                                       HorizontalAlignment="Center"
+                                       Grid.Row="1"/>
+                        </Grid>
+
+                        <Grid Grid.Column="1"
+                              Grid.Row="1"
+                              Margin="8,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <HyperlinkButton HorizontalAlignment="Center"
+                                             Grid.Column="0">
+                                <TextBlock TextAlignment="Center">
+                                        <Run Text="{x:Bind ViewModel.User.MediaCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
+                                        <LineBreak/>
+                                        <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Posts}"/>
+                                </TextBlock>
+                            </HyperlinkButton>
+
+                            <HyperlinkButton Command="{x:Bind ViewModel.NavigateToFollowersCommand}"
+                                             HorizontalAlignment="Center"
+                                             Grid.Column="1">
+                                <TextBlock TextAlignment="Center">
+                                        <Run Text="{x:Bind ViewModel.User.FollowerCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
+                                        <LineBreak/>
+                                        <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Followers}"/>
+                                </TextBlock>
+                            </HyperlinkButton>
+
+                            <HyperlinkButton Command="{x:Bind ViewModel.NavigateToFollowingsCommand}"
+                                             HorizontalAlignment="Center"
+                                             Grid.Column="2">
+                                <TextBlock TextAlignment="Center">
+                                        <Run Text="{x:Bind ViewModel.User.FollowingCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
+                                        <LineBreak/>
+                                        <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Followings}"/>
+                                </TextBlock>
+                            </HyperlinkButton>
+                        </Grid>
+
+
+                        <Button Content="{x:Bind ViewModel.User.FriendshipStatus, Converter={StaticResource UserInfoToButtonConverter}, Mode=OneWay}"
+                                Command="{x:Bind ViewModel.FollowButtonCommand}"
+                                Style="{StaticResource AccentButtonStyle}"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                Margin="8,0"/>
+
+                    </Grid>
+                    
+                    <!--<StackPanel Spacing="5" Orientation="Horizontal">
                         <muxc:PersonPicture ProfilePicture="{x:Bind ViewModel.User, Converter={StaticResource InstaUserProfilePictureConverter}}" 
                                             DisplayName="{x:Bind ViewModel.User.UserName}">
                             <muxc:PersonPicture.ContextFlyout>
                                 <profiles:UserProfileMenuFlyout StoriesAndLives="{x:Bind ViewModel.StoriesAndLives, Mode=OneWay}"
-                                                                User="{x:Bind ViewModel.User, Mode=OneWay}"/> 
+                                                                User="{x:Bind ViewModel.User, Mode=OneWay}"/>
                             </muxc:PersonPicture.ContextFlyout>
                         </muxc:PersonPicture>
                         <StackPanel VerticalAlignment="Center">
@@ -122,14 +234,14 @@
                                 <Run Text="{x:Bind ViewModel.User.UserName}"/>
                                 <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.IsFollowingYou}"/>
                             </TextBlock>
-                            
+
                         </StackPanel>
 
                         <Button Content="{x:Bind ViewModel.User.FriendshipStatus, Converter={StaticResource UserInfoToButtonConverter}, Mode=OneWay}"
                                 Command="{x:Bind ViewModel.FollowButtonCommand}"
                                 Style="{StaticResource AccentButtonStyle}"/>
 
-                    </StackPanel>
+                    </StackPanel>-->
 
                     <controls:MarkdownTextBlock FlowDirection="{x:Bind ViewModel.User.Biography, Converter={StaticResource TextToFlowDirectionConverter}, Mode=OneWay}"
                                                 Text="{x:Bind ViewModel.User.Biography, Converter={StaticResource CaptionToMarkdownConverter}, Mode=OneWay}" 

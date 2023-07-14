@@ -213,6 +213,9 @@
   <data name="Register" xml:space="preserve">
     <value>ثبت نام</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>ذخیره</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>جستجو</value>
   </data>
