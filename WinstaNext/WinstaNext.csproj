@@ -370,9 +370,6 @@
     <Compile Include="Views\Profiles\HashtagProfileView.xaml.cs">
       <DependentUpon>HashtagProfileView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Profiles\ProfileView.xaml.cs">
-      <DependentUpon>ProfileView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Profiles\UserFollowersView.xaml.cs">
       <DependentUpon>UserFollowersView.xaml</DependentUpon>
     </Compile>
@@ -780,10 +777,6 @@
     <Page Include="Views\Profiles\HashtagProfileView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Profiles\ProfileView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Profiles\UserFollowersView.xaml">
       <Generator>MSBuild:Compile</Generator>

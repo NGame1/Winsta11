@@ -1,5 +1,6 @@
 ﻿using InstagramApiSharp.Classes.Models;
 using PropertyChanged;
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -35,6 +36,8 @@ namespace WinstaMobile.UI.Generic
             set { SetValue(UserProperty, value); }
         }
 
+        public event EventHandler<RoutedEventArgs> RemoveButtonClick;
+
         void OnUserShortChanged()
         {
             User = new(UserShort);
@@ -43,6 +46,11 @@ namespace WinstaMobile.UI.Generic
         public InstaUserPresenterUC()
         {
             this.InitializeComponent();
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            RemoveButtonClick?.Invoke(sender, e);
         }
     }
 }

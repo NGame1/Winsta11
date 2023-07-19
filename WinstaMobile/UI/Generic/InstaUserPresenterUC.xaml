@@ -9,15 +9,21 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <StackPanel Orientation="Horizontal">
-        <muxc:PersonPicture Width="40" Height="40" Margin="0,0,4,0"
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Orientation="Horizontal">
+            <muxc:PersonPicture Width="40" Height="40" Margin="0,0,4,0"
                             DisplayName="{x:Bind User.FullName}"
                             ProfilePicture="{x:Bind User.ProfilePicture}"/>
 
-        <StackPanel VerticalAlignment="Center"
+            <StackPanel VerticalAlignment="Center"
                     Margin="0,0,4,0">
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,2">
-                <TextBlock FontWeight="SemiBold" 
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,2">
+                    <TextBlock FontWeight="SemiBold" 
                            HorizontalAlignment="Stretch"
                            IsTextSelectionEnabled="False"
                            TextWrapping="NoWrap"
@@ -25,20 +31,30 @@
                            Text="{x:Bind User.UserName}"
                            TextTrimming="CharacterEllipsis"/>
 
-                <FontIcon Glyph="&#x02AC;" 
+                    <FontIcon Glyph="&#x02AC;" 
                           Margin="0,0,0,2"
                           FontSize="12"
                           Foreground="SkyBlue" 
                           Visibility="{x:Bind User.IsVerified, Mode=OneWay}"
                           FontFamily="{StaticResource FluentSystemIconsFilled}"/>
-            </StackPanel>
+                </StackPanel>
 
-            <TextBlock Margin="0,0,0,2"
+                <TextBlock Margin="0,0,0,2"
                        HorizontalAlignment="Stretch"
                        IsTextSelectionEnabled="False"
                        TextWrapping="NoWrap"
                        Text="{x:Bind User.FullName}"
                        TextTrimming="CharacterEllipsis"/>
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+
+        <Button x:Load="{x:Bind UserShort.CloseButton.Value, Mode=OneWay}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="btnRemove_Click"
+                x:Name="btnRemove"
+                Grid.Column="1"
+                Content="X"/>
+    </Grid>
+
 </UserControl>
