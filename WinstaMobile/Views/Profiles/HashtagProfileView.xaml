@@ -1,0 +1,231 @@
+﻿<views:BasePage x:Name="thisUc" x:DefaultBindMode="OneWay" NavigationCacheMode="Enabled"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:ProfilesConverters="using:WinstaMobile.Converters.Profiles"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity" 
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    x:Class="WinstaMobile.Views.Profiles.HashtagProfileView"
+    xmlns:profiles="using:WinstaMobile.UI.Flyouts.Profiles"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="using:InstagramApiSharp.Classes.Models" 
+    xmlns:Converters1="using:WinstaNext.Converters.Media"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:behaviors="using:WinstaMobile.Core.Behaviors"
+    xmlns:Abstractions="using:Abstractions.Stories"
+    xmlns:Converters="using:WinstaNext.Converters"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:stories="using:WinstaMobile.UI.Stories"
+    xmlns:media="using:WinstaMobile.UI.Media" 
+    xmlns:views="using:WinstaMobile.Views"
+    xmlns:VM="using:ViewModels.Profiles"
+    xmlns:viewmodels="using:ViewModels"
+    xmlns:Resources="using:Resources"
+    mc:Ignorable="d">
+
+    <views:BasePage.Resources>
+
+        <Converters:PossibleLargeNumbersConverter x:Key="PossibleLargeNumbersConverter"/>
+
+        <Converters:TextToFlowDirectionConverter x:Key="TextToFlowDirectionConverter"/>
+
+        <Converters1:CaptionToMarkdownConverter x:Key="CaptionToMarkdownConverter"/>
+
+    </views:BasePage.Resources>
+
+    <views:BasePage.DataContext>
+        <VM:HashtagProfileViewModel x:Name="ViewModel"/>
+    </views:BasePage.DataContext>
+
+    <ScrollViewer x:Name="mainScroll"
+                  HorizontalScrollMode="Disabled" 
+                  IsVerticalScrollChainingEnabled="True"
+                  VerticalScrollBarVisibility="Hidden"
+                  HorizontalScrollBarVisibility="Disabled">
+
+        <interactivity:Interaction.Behaviors>
+            <behaviors:SynchronizeVerticalOffsetBehavior Source="{x:Bind ViewModel.ListViewScroll, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </interactivity:Interaction.Behaviors>
+
+        <Grid ScrollViewer.IsVerticalScrollChainingEnabled="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Margin="{x:Bind PageMargin}">
+                <StackPanel Grid.Row="0">
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid VerticalAlignment="Center" 
+                              Grid.RowSpan="3"
+                              Grid.Column="0">
+                            <Rectangle Width="120" Height="120"
+                                       RadiusX="8" RadiusY="8">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="{x:Bind ViewModel.Hashtag.ProfilePicture}"
+                                                Stretch="Fill"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+                            <muxc:PersonPicture ProfilePicture="{x:Bind ViewModel.Hashtag.ProfilePicture}" 
+                                                DisplayName="{x:Bind ViewModel.Hashtag.Name}"
+                                                Width="120" Height="120"/>
+                        </Grid>
+
+                        <Grid HorizontalAlignment="Stretch"
+                              Grid.RowSpan="1"
+                              Grid.Column="1"
+                              Margin="8,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Center">
+                                <TextBlock Text="{x:Bind ViewModel.Hashtag.Name}" 
+                                           FontWeight="SemiBold"/>
+                            </StackPanel>
+                            <TextBlock Text="{x:Bind ViewModel.Hashtag.Subtitle}"
+                                       HorizontalAlignment="Center"
+                                       Grid.Row="1"/>
+                        </Grid>
+
+                        <Grid Grid.Column="1"
+                              Grid.Row="1"
+                              Margin="8,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <HyperlinkButton HorizontalAlignment="Center"
+                                             Grid.Column="0">
+                                <TextBlock TextAlignment="Center">
+                                    <Run Text="{x:Bind ViewModel.Hashtag.MediaCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
+                                    <LineBreak/>
+                                    <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Posts}"/>
+                                </TextBlock>
+                            </HyperlinkButton>
+
+                        </Grid>
+
+                        <Button Visibility="{x:Bind ViewModel.Hashtag.AllowFollowing, Mode=OneWay}"
+                                Content="{x:Bind ViewModel.FollowBtnContent, Mode=OneWay}"
+                                Command="{x:Bind ViewModel.FollowButtonCommand}"
+                                Style="{StaticResource AccentButtonStyle}"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                Margin="8,0"/>
+
+                    </Grid>
+                    <!--<StackPanel Spacing="5" Orientation="Horizontal">
+                        <muxc:PersonPicture DisplayName="{x:Bind ViewModel.Hashtag.Name}"/>
+
+                        <StackPanel VerticalAlignment="Center">
+                            <StackPanel Spacing="5" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="{x:Bind ViewModel.Hashtag.Name}" 
+                                           FontWeight="SemiBold"/>
+                            </StackPanel>
+
+                            <TextBlock Text="{x:Bind ViewModel.Hashtag.Subtitle}"
+                                       HorizontalAlignment="Center"/>
+
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                <HyperlinkButton>
+                                    <TextBlock>
+                                        <Run Text="{x:Bind ViewModel.Hashtag.MediaCount, Converter={StaticResource PossibleLargeNumbersConverter}}"/>
+                                        <Run Text="{x:Bind Resources:LanguageManager.Instance.Instagram.Posts}"/>
+                                    </TextBlock>
+                                </HyperlinkButton>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Button Visibility="{x:Bind ViewModel.Hashtag.AllowFollowing, Mode=OneWay}"
+                                Content="{x:Bind ViewModel.FollowBtnContent, Mode=OneWay}"
+                                Command="{x:Bind ViewModel.FollowButtonCommand}"
+                                Style="{StaticResource AccentButtonStyle}"/>
+
+                    </StackPanel>-->
+
+                </StackPanel>
+            </Grid>
+
+            <muxc:NavigationView ScrollViewer.IsVerticalScrollChainingEnabled="True"
+                                 MenuItemsSource="{x:Bind ViewModel.ProfileTabs}"
+                                 SelectedItem="{x:Bind ViewModel.SelectedTab, Mode=TwoWay}"
+                                 IsBackButtonVisible="Collapsed"
+                                 Margin="{x:Bind PageMargin}"
+                                 IsSettingsVisible="False"
+                                 PaneDisplayMode="Top"
+                                 x:Name="navView"
+                                 Grid.Row="1">
+
+                <!--<NavigationView.MenuItems>
+                    <NavigationViewItem Icon="People" Content="Medias"/>
+                    <NavigationViewItem Icon="Play" Content="Reels"/>
+                    <NavigationViewItem Icon="Account" Content="Tags"/>
+                </NavigationView.MenuItems>-->
+
+                <muxc:NavigationView.MenuItemTemplate>
+                    <DataTemplate x:DataType="viewmodels:MenuItemModel">
+                        <muxc:NavigationViewItem Icon="{x:Bind Icon}" Content="{x:Bind Text}"/>
+                    </DataTemplate>
+                </muxc:NavigationView.MenuItemTemplate>
+
+                <ListView ItemsSource="{x:Bind ViewModel.ItemsSource, Mode=OneWay}"
+                          ScrollViewer.IsVerticalScrollChainingEnabled="True"
+                          Height="{x:Bind ViewModel.ViewHeight, Mode=OneWay}"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          ScrollViewer.HorizontalScrollMode="Disabled"
+                          SizeChanged="lst_SizeChanged"
+                          IsItemClickEnabled="True"
+                          SelectionMode="None"
+                          Loaded="lst_Loaded"
+                          x:Name="lst">
+
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="ItemClick">
+                            <core:InvokeCommandAction Command="{x:Bind ViewModel.NavigateToMediaCommand}"/>
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid SizeChanged="lst_SizeChanged" 
+                                           Loaded="ItemsWrapGrid_Loaded"
+                                           HorizontalAlignment="Center"
+                                           MaximumRowsOrColumns="10"
+                                           Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewStretcher}">
+                            <Setter Property="Margin" Value="4"/>
+                            <Setter Property="Padding" Value="0"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:InstaMedia">
+                            <media:InstaMediaTileUC Media="{x:Bind Mode=OneWay}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </muxc:NavigationView>
+        </Grid>
+    </ScrollViewer>
+
+</views:BasePage>

@@ -24,6 +24,13 @@ namespace WinstaMobile.Views.Profiles
         public UserProfileView()
         {
             this.InitializeComponent();
+            // ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+        }
+
+        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ViewModel.User))
+                PageHeader = ViewModel.User == null ? string.Empty : ViewModel.User.UserName;
         }
 
         private void lst_Loaded(object sender, RoutedEventArgs e)

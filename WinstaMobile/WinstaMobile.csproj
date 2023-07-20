@@ -349,6 +349,9 @@
     <Compile Include="Views\Media\Upload\VideoMediaRangeSlider.xaml.cs">
       <DependentUpon>VideoMediaRangeSlider.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Profiles\HashtagProfileView.xaml.cs">
+      <DependentUpon>HashtagProfileView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Profiles\UserFollowersView.xaml.cs">
       <DependentUpon>UserFollowersView.xaml</DependentUpon>
     </Compile>
@@ -824,6 +827,10 @@
     <Page Include="Views\Media\Upload\VideoMediaRangeSlider.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Profiles\HashtagProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Profiles\UserFollowersView.xaml">
       <SubType>Designer</SubType>

@@ -155,7 +155,7 @@ namespace WinstaMobile
             serviceCollection.AddTransient<IFeedUploaderView>(x => new FeedUploaderView());
 
             //Profile Views
-            //serviceCollection.AddTransient<IHashtagProfileView>(x => new HashtagProfileView());
+            serviceCollection.AddTransient<IHashtagProfileView>(x => new HashtagProfileView());
             serviceCollection.AddTransient<IUserFollowingsView>(x => new UserFollowingsView());
             serviceCollection.AddTransient<IUserFollowersView>(x => new UserFollowersView());
             //serviceCollection.AddTransient<IPlaceProfileView>(x => new PlaceProfileView());
