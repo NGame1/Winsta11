@@ -16,7 +16,7 @@ namespace WinstaNext.Views.Profiles
     [AddINotifyPropertyChangedInterface]
     public sealed partial class HashtagProfileView : BasePage, IHashtagProfileView
     {
-        public override string PageHeader { get; protected set; }
+        public override string PageHeader { get; protected set; } = string.Empty;
 
         ItemsWrapGrid? WrapGrid { get; set; }
         public HashtagProfileView()
