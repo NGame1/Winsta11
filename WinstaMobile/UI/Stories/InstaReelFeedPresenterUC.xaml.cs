@@ -1,11 +1,12 @@
-﻿using Abstractions.Stories;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using WinstaCore.Interfaces.Views.Profiles;
 using Microsoft.Toolkit.Mvvm.Input;
+using Windows.UI.Xaml.Controls;
+using System.ComponentModel;
+using Abstractions.Stories;
+using WinstaCore.Services;
 using PropertyChanged;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using WinstaCore.Interfaces.Views.Profiles;
-using WinstaCore.Services;
 #nullable enable
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
@@ -13,7 +14,7 @@ using WinstaCore.Services;
 namespace WinstaMobile.UI.Stories;
 
 [AddINotifyPropertyChangedInterface]
-public sealed partial class InstaReelFeedPresenterUC : UserControl
+public sealed partial class InstaReelFeedPresenterUC : UserControl, INotifyPropertyChanged
 {
     public static readonly DependencyProperty ReelFeedProperty = DependencyProperty.Register(
          nameof(ReelFeed),
@@ -21,6 +22,9 @@ public sealed partial class InstaReelFeedPresenterUC : UserControl
          typeof(InstaReelFeedPresenterUC),
          new PropertyMetadata(null));
 
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    [AlsoNotifyFor(nameof(Title))]
     public WinstaReelFeed ReelFeed
     {
         get { return (WinstaReelFeed)GetValue(ReelFeedProperty); }
