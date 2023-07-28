@@ -17,6 +17,8 @@ using WinstaCore;
 using WinstaCore.Interfaces.Views.Medias;
 using WinstaCore.Interfaces.Views.Profiles;
 using Mapster;
+using Microsoft.Toolkit.Uwp.UI.Controls;
+using Windows.Foundation;
 
 namespace ViewModels.Profiles
 {
@@ -103,7 +105,7 @@ namespace ViewModels.Profiles
                         throw result.Info.Exception;
                     }
                     var hasht = result.Value.Adapt<InstaHashtag>();
-                    Hashtag = hasht;
+                    SetHashtag(hasht);
                 }
             }
             else if (e.Parameter is InstaHashtag hashtag)
@@ -119,7 +121,7 @@ namespace ViewModels.Profiles
                         throw result.Info.Exception;
                     }
                     var hasht = result.Value.Adapt<InstaHashtag>();
-                    Hashtag = hasht;
+                    SetHashtag(hasht);
                 }
             }
             else
@@ -128,16 +130,32 @@ namespace ViewModels.Profiles
                     NavigationService.GoBack();
                 throw new ArgumentOutOfRangeException(nameof(e.Parameter));
             }
-            SetFollowButtonContent();
-            ReelsInstance = new(Hashtag.Name);
-            RecentInstance = new(Hashtag.Name);
-            TopMediasInstance = new(Hashtag.Name);
-            ReelsMedias = new(ReelsInstance);
-            RecentMedias = new(RecentInstance);
-            TopMedias = new(TopMediasInstance);
-            CreateProfileTabs();
+
             ListViewScroll.ChangeView(null, 0, null);
             await base.OnNavigatedToAsync(e);
+        }
+
+        void SetHashtag(InstaHashtag hashtag)
+        {
+            UIContext.Post((e) =>
+            {
+                try
+                {
+                    Hashtag = hashtag;
+                }
+                catch { }
+                finally
+                {
+                    SetFollowButtonContent();
+                    ReelsInstance = new(Hashtag.Name);
+                    RecentInstance = new(Hashtag.Name);
+                    TopMediasInstance = new(Hashtag.Name);
+                    ReelsMedias = new(ReelsInstance);
+                    RecentMedias = new(RecentInstance);
+                    TopMedias = new(TopMediasInstance);
+                    CreateProfileTabs();
+                }
+            }, null);
         }
 
         void ONSelectedTabChanged()
