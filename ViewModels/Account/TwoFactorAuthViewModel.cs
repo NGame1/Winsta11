@@ -125,13 +125,30 @@ namespace ViewModels.Account
             finally { IsLoading = false; }
         }
 
+        async Task DelayAndCheck(int delayInSeconds)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(delayInSeconds));
+            await Api.Check2FATrustedNotificationAsync().ConfigureAwait(false);
+        }
+
         async Task SendVerificationCodeSMSAsync()
         {
             if (SendVerificationCodeSMSCommand.IsRunning) return;
             try
             {
+                await DelayAndCheck(9);
+
+                await DelayAndCheck(4); // lets wait 4 seconds and try again
+
+                await DelayAndCheck(5); // 5 seconds delay
+
+                await DelayAndCheck(5); // 5 seconds delay
+
+                await Task.Delay(4000); // 4 seconds delay before sending SendTwoFactorLoginSMSAsync
+
                 IsLoading = true;
                 var result = await Api.SendTwoFactorLoginSMSAsync();
+                await DelayAndCheck(1);
                 if (!result.Succeeded)
                 {
                     await MessageDialogHelper.ShowAsync(result.Info.Message);
