@@ -16,8 +16,8 @@ using Windows.UI.Xaml.Controls;
 using InstagramApiSharp.Helpers;
 using System.Text;
 using Windows.UI.Xaml;
+using InstagramApiSharp.Enums;
 using InstagramApiSharp;
-using System.Diagnostics;
 
 namespace ViewModels.Account
 {
@@ -46,15 +46,41 @@ namespace ViewModels.Account
             await base.OnNavigatedToAsync(e);
         }
 
+        async Task<IResult<InstaLoginResult>> NewLoginMethodAsync()
+        {
+            IsLoading = true;
+            try
+            {
+                Api.SetUser(UserIdentifier, Password);
+                Api.SetApiVersion(InstaApiVersionType.Version290);
+                await Api.QeSync();
+
+                await Task.Delay(1000);
+
+                var res = await Api.LoginProcessor.ProcessLoginClientDataAndRedirectAsync();
+
+                res = await Api.LoginProcessor.BloksLoginCpTextInputTypeAheadAsync();
+
+                await Task.Delay(TimeSpan.FromSeconds(ExtensionHelper.Rnd.Next(3, 6)));
+
+                return await Api.LoginProcessor.BloksSendLoginRequestAsync();
+
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
         async Task LoginAsync()
         {
             if (LoginCommand.IsRunning) return;
-            IResult<InstaLoginResult> loginResult;
             try
             {
                 IsLoading = true;
-                Api.SetUser(UserIdentifier, Password);
-                loginResult = await Api.LoginAsync();
+                //Api.SetUser(UserIdentifier, Password);
+                //loginResult = await Api.LoginAsync();
+                var loginResult = await NewLoginMethodAsync();
                 // Shit type of error !
                 if (!loginResult.Succeeded && loginResult.Value == InstaLoginResult.Success)
                 {
@@ -70,6 +96,8 @@ namespace ViewModels.Account
                         var MainPage = AppCore.Container.GetService<IMainView>();
                         NavigationService.Navigate(MainPage);
                         await Api.SendRequestsAfterLoginAsync();
+                        await Api.LauncherMobileConfigAsync(false);
+                        await Api.LauncherMobileConfigAsync(true);
                         Api.Dispose();
                         break;
 
