@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Navigation;
 using WinstaCore.Interfaces.Views;
 using WinstaCore;
 using WinstaCore.Interfaces.Views.Accounts;
+using WinstaCore.Helpers;
 
 namespace ViewModels.Account
 {
@@ -57,7 +58,10 @@ namespace ViewModels.Account
                 {
                     if (challenge.Value.FlowRenderType == InstaChallengeFlowRenderType.Unknown)
                     {
+                        var xMidHeader = Api.GetLoggedUser().XMidHeader;
+
                         var url = Api.ChallengeLoginInfo.Url;
+
                         ChallengeUrl = new(url);
                         UnknownChaalenge = true;
                     }
@@ -66,7 +70,11 @@ namespace ViewModels.Account
                         if (challenge.Value.StepData != null)
                         {
                             NormalChallenge = true;
-
+                            if (challenge.Value.IsUnvettedDelta || challenge.Value.StepData.IsNewDeltaUI() ||
+                                challenge.Value.IsHackedLock)
+                            {
+                                await Api.GetDeltaChallengeAsync();
+                            }
                             if (!string.IsNullOrEmpty(challenge.Value.StepData.PhoneNumber))
                             {
                                 PhoneAuthenticationVisible = true;
