@@ -35,32 +35,34 @@ namespace WinstaMobile.UI.Directs.MessageContainer
             base.OnDirectItemChanged();
             if (DirectItem.MediaShare.MediaType == InstaMediaType.Image)
             {
-                vidMedia.Visibility = Visibility.Collapsed;
+                //vidMedia.Visibility = Visibility.Collapsed;
                 imgMedia.Source = new BitmapImage(new(DirectItem.MediaShare.Images[0].Uri));
             }
             else if (DirectItem.MediaShare.MediaType == InstaMediaType.Video)
             {
-                imgMedia.Visibility = Visibility.Collapsed;
-                vidMedia.PosterSource = new BitmapImage(new(DirectItem.MediaShare.Images[0].Uri));
-                vidMedia.SetPlaybackSource(
-                    MediaSource.CreateFromUri(
-                        new Uri(DirectItem.MediaShare.Videos[0].Uri, UriKind.RelativeOrAbsolute)));
+                imgMedia.Source = new BitmapImage(new(DirectItem.MediaShare.Images[0].Uri));
+                //imgMedia.Visibility = Visibility.Collapsed;
+                //vidMedia.PosterSource = new BitmapImage(new(DirectItem.MediaShare.Images[0].Uri));
+                //vidMedia.SetPlaybackSource(
+                //    MediaSource.CreateFromUri(
+                //        new Uri(DirectItem.MediaShare.Videos[0].Uri, UriKind.RelativeOrAbsolute)));
             }
             else
             {
                 var firstSlide = DirectItem.MediaShare.Carousel[0];
                 if (firstSlide.MediaType == InstaMediaType.Image)
                 {
-                    vidMedia.Visibility = Visibility.Collapsed;
+                    //vidMedia.Visibility = Visibility.Collapsed;
                     imgMedia.Source = new BitmapImage(new(firstSlide.Images[0].Uri));
                 }
                 else if (firstSlide.MediaType == InstaMediaType.Video)
                 {
-                    imgMedia.Visibility = Visibility.Collapsed;
-                    vidMedia.PosterSource = new BitmapImage(new(firstSlide.Images[0].Uri));
-                    vidMedia.SetPlaybackSource(
-                        MediaSource.CreateFromUri(
-                            new Uri(firstSlide.Videos[0].Uri, UriKind.RelativeOrAbsolute)));
+                    imgMedia.Source = new BitmapImage(new(firstSlide.Images[0].Uri));
+                    //imgMedia.Visibility = Visibility.Collapsed;
+                    //vidMedia.PosterSource = new BitmapImage(new(firstSlide.Images[0].Uri));
+                    //vidMedia.SetPlaybackSource(
+                    //    MediaSource.CreateFromUri(
+                    //        new Uri(firstSlide.Videos[0].Uri, UriKind.RelativeOrAbsolute)));
                 }
             }
         }

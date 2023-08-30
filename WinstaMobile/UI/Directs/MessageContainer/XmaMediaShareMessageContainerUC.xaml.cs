@@ -33,16 +33,17 @@ namespace WinstaMobile.UI.Directs.MessageContainer
             base.OnDirectItemChanged();
             if (DirectItem.XmaMediaShare[0].PreviewUrlMimeType.ToLower() == "image/jpeg")
             {
-                vidMedia.Visibility = Visibility.Collapsed;
+                //vidMedia.Visibility = Visibility.Collapsed;
                 imgMedia.Source = new BitmapImage(new(DirectItem.XmaMediaShare[0].PreviewUrlInfo.Uri));
             }
             else
             {
-                imgMedia.Visibility = Visibility.Collapsed;
-                vidMedia.PosterSource = new BitmapImage(new(DirectItem.XmaMediaShare[0].PreviewUrlInfo.Uri));
-                vidMedia.SetPlaybackSource(
-                    MediaSource.CreateFromUri(
-                        new Uri(DirectItem.XmaMediaShare[0].PlayableUrl, UriKind.RelativeOrAbsolute)));
+                imgMedia.Source = new BitmapImage(new(DirectItem.XmaMediaShare[0].PreviewUrlInfo.Uri));
+                //imgMedia.Visibility = Visibility.Collapsed;
+                //vidMedia.PosterSource = new BitmapImage(new(DirectItem.XmaMediaShare[0].PreviewUrlInfo.Uri));
+                //vidMedia.SetPlaybackSource(
+                //    MediaSource.CreateFromUri(
+                //        new Uri(DirectItem.XmaMediaShare[0].PlayableUrl, UriKind.RelativeOrAbsolute)));
             }
         }
 

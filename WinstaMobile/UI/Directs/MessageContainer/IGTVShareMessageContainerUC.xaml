@@ -68,19 +68,19 @@
                         </muxc:PersonPicture>
 
                         <HyperlinkButton CommandParameter="{x:Bind DirectItem.FelixShareMedia.User.UserName, Mode=OneWay}"
-                                     Content="{x:Bind DirectItem.FelixShareMedia.User.UserName, Mode=OneWay}"
-                                     Command="{x:Bind NavigateUserProfileCommand}"
-                                     VerticalAlignment="Center"
-                                     FontWeight="SemiBold"
-                                     Grid.Column="1"/>
+                                         Content="{x:Bind DirectItem.FelixShareMedia.User.UserName, Mode=OneWay}"
+                                         Command="{x:Bind NavigateUserProfileCommand}"
+                                         VerticalAlignment="Center"
+                                         FontWeight="SemiBold"
+                                         Grid.Column="1"/>
                     </StackPanel>
 
                     <Button Style="{StaticResource FontIconButtonStyle}"
-                        Command="{x:Bind NavigateToMediaCommand}"
-                        BorderBrush="Transparent"
-                        Background="Transparent"
-                        Content="&#xE09B;"
-                        Grid.Column="1"/>
+                            Command="{x:Bind NavigateToMediaCommand}"
+                            BorderBrush="Transparent"
+                            Background="Transparent"
+                            Content="&#xE09B;"
+                            Grid.Column="1"/>
                 </Grid>
 
                 <Image Source="{x:Bind DirectItem.FelixShareMedia.Images[0].Uri, Mode=OneWay}" 
@@ -88,14 +88,14 @@
                        x:Name="imgMedia"
                        MaxWidth="185"/>
 
-                <MediaElement PosterSource="{x:Bind DirectItem.FelixShareMedia.Images[0].Uri, Mode=OneWay}" 
+                <!--<MediaElement PosterSource="{x:Bind DirectItem.FelixShareMedia.Images[0].Uri, Mode=OneWay}" 
                               AreTransportControlsEnabled="False" 
                               Tapped="imgMedia_Tapped"
                               x:Name="vidMedia"
                               IsLooping="True"
-                              AutoPlay="True"
+                              AutoPlay="False"
                               IsMuted="True"
-                              Width="185"/>
+                              Width="185"/>-->
             </StackPanel>
             <ItemsControl x:Load="{x:Bind DirectItem.Reactions.Emojis.Count, Converter={StaticResource IntToIsEnabledConverter}, Mode=OneWay}"
                           ItemsSource="{x:Bind DirectItem.Reactions.Emojis, Mode=OneWay}"

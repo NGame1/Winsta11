@@ -34,14 +34,14 @@ namespace WinstaMobile.UI.Directs.MessageContainer
             base.OnDirectItemChanged();
             if (DirectItem.Clip.MediaType == InstaMediaType.Image)
             {
-                vidMedia.Visibility = Visibility.Collapsed;
+                //vidMedia.Visibility = Visibility.Collapsed;
             }
             else
             {
-                imgMedia.Visibility = Visibility.Collapsed;
-                vidMedia.SetPlaybackSource(
-                    MediaSource.CreateFromUri(
-                        new Uri(DirectItem.Clip.Videos[0].Uri, UriKind.RelativeOrAbsolute)));
+                //imgMedia.Visibility = Visibility.Collapsed;
+                //vidMedia.SetPlaybackSource(
+                //    MediaSource.CreateFromUri(
+                //        new Uri(DirectItem.Clip.Videos[0].Uri, UriKind.RelativeOrAbsolute)));
             }
         }
 

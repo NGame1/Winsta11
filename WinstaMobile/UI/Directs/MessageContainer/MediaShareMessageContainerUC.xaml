@@ -87,13 +87,13 @@
                        Tapped="imgMedia_Tapped"
                        MaxWidth="185"/>
 
-                <MediaElement AreTransportControlsEnabled="False" 
+                <!--<MediaElement AreTransportControlsEnabled="False" 
                               Tapped="imgMedia_Tapped"
                               x:Name="vidMedia"
                               IsLooping="True"
-                              AutoPlay="True"
+                              AutoPlay="False"
                               IsMuted="True"
-                              Width="185"/>
+                              Width="185"/>-->
             </StackPanel>
             <ItemsControl x:Load="{x:Bind DirectItem.Reactions.Emojis.Count, Converter={StaticResource IntToIsEnabledConverter}, Mode=OneWay}"
                           ItemsSource="{x:Bind DirectItem.Reactions.Emojis, Mode=OneWay}"
