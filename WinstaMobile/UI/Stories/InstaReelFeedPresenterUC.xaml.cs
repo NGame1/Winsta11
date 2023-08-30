@@ -17,12 +17,12 @@ namespace WinstaMobile.UI.Stories;
 public sealed partial class InstaReelFeedPresenterUC : UserControl, INotifyPropertyChanged
 {
     public static readonly DependencyProperty ReelFeedProperty = DependencyProperty.Register(
-         nameof(ReelFeed),
-         typeof(WinstaReelFeed),
-         typeof(InstaReelFeedPresenterUC),
-         new PropertyMetadata(null));
+           nameof(ReelFeed),
+           typeof(WinstaReelFeed),
+           typeof(InstaReelFeedPresenterUC),
+           new PropertyMetadata(null));
 
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     [AlsoNotifyFor(nameof(Title))]
     public WinstaReelFeed ReelFeed

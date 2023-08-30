@@ -24,6 +24,7 @@ using WinstaCore.Interfaces.Views.Profiles;
 using WinstaMobile.UI.Media;
 using WinstaMobile.Views.Comments;
 using Microsoft.Identity.Client;
+using WinstaMobile.UI.Dialogs;
 
 namespace WinstaMobile.ViewModels.Media
 {
@@ -277,12 +278,12 @@ namespace WinstaMobile.ViewModels.Media
 
         async Task ShareMediaAsync()
         {
-            //var threads = await UserSelectionDialog.SelectDirectThreads();
-            //if (!threads.Any()) return;
-            //using var Api = App.Container.GetService<IInstaApi>();
-            //var result = await Api.MessagingProcessor.ShareMediaToThreadAsync(Media.Pk, Media.MediaType, string.Empty, threadIds: threads.Select(x => x.ThreadId).ToArray());
-            //if (!result.Succeeded)
-            //    await MessageDialogHelper.ShowAsync(result.Info.Message);
+            var threads = await UserSelectionDialog.SelectDirectThreads();
+            if (!threads.Any()) return;
+            using var Api = App.Container.GetService<IInstaApi>();
+            var result = await Api.MessagingProcessor.ShareMediaToThreadAsync(Media.Pk, Media.MediaType, string.Empty, threadIds: threads.Select(x => x.ThreadId).ToArray());
+            if (!result.Succeeded)
+                await MessageDialogHelper.ShowAsync(result.Info.Message);
         }
 
         async void UnloadLikeAnimation()
