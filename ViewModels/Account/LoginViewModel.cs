@@ -53,15 +53,15 @@ namespace ViewModels.Account
             {
                 Api.SetUser(UserIdentifier, Password);
                 Api.SetApiVersion(InstaApiVersionType.Version290);
-                await Api.QeSync();
+                await Api.LauncherMobileConfigAsync();
 
                 await Task.Delay(1000);
 
-                var res = await Api.LoginProcessor.ProcessLoginClientDataAndRedirectAsync();
+                await Api.LoginProcessor.ProcessLoginClientDataAndRedirectAsync();
 
-                res = await Api.LoginProcessor.BloksLoginCpTextInputTypeAheadAsync();
+                await Api.LoginProcessor.BloksLoginCpTextInputTypeAheadAsync();
 
-                await Task.Delay(TimeSpan.FromSeconds(ExtensionHelper.Rnd.Next(3, 6)));
+                await Task.Delay(TimeSpan.FromSeconds(ExtensionHelper.Rnd.Next(6, 10)));
 
                 return await Api.LoginProcessor.BloksSendLoginRequestAsync();
 
