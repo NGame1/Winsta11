@@ -46,7 +46,7 @@ namespace ViewModels.Account
             await base.OnNavigatedToAsync(e);
         }
 
-        async Task<IResult<InstaLoginResult>> NewLoginMethodAsync()
+        async Task<IResult<InstaLoginResult>> NewLoginMethodAsync(bool retry = false)
         {
             IsLoading = true;
             try
@@ -63,7 +63,13 @@ namespace ViewModels.Account
 
                 await Task.Delay(TimeSpan.FromSeconds(ExtensionHelper.Rnd.Next(6, 10)));
 
-                return await Api.LoginProcessor.BloksSendLoginRequestAsync();
+                var result = await Api.LoginProcessor.BloksSendLoginRequestAsync();
+                if (!retry && !result.Succeeded && result.Info.Exception != null && result.Info.Exception.Message == "'json' is empty")
+                {
+                    await Task.Delay(1000);
+                    await NewLoginMethodAsync(true);
+                }
+                return result;
 
             }
             finally
