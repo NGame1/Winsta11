@@ -49,10 +49,10 @@ namespace ViewModels.Account
         async Task<IResult<InstaLoginResult>> NewLoginMethodAsync(bool retry = false)
         {
             IsLoading = true;
+            Api.SetUser(UserIdentifier, Password);
+            Api.SetApiVersion(InstaApiVersionType.Version290);
             try
             {
-                Api.SetUser(UserIdentifier, Password);
-                Api.SetApiVersion(InstaApiVersionType.Version290);
                 await Api.LauncherMobileConfigAsync();
 
                 await Task.Delay(1000);
@@ -61,7 +61,7 @@ namespace ViewModels.Account
 
                 await Api.LoginProcessor.BloksLoginCpTextInputTypeAheadAsync();
 
-                await Task.Delay(TimeSpan.FromSeconds(ExtensionHelper.Rnd.Next(6, 10)));
+                await Task.Delay(TimeSpan.FromSeconds(ExtensionHelper.Rnd.Next(4, 6)));
 
                 var result = await Api.LoginProcessor.BloksSendLoginRequestAsync();
                 if (!retry && !result.Succeeded && result.Info.Exception != null && result.Info.Exception.Message == "'json' is empty")
@@ -110,6 +110,11 @@ namespace ViewModels.Account
                     case InstaLoginResult.TwoFactorRequired:
                         var TwoFactorAuthView = AppCore.Container.GetService<ITwoFactorAuthView>();
                         NavigationService.Navigate(TwoFactorAuthView, Api);
+                        break;
+
+                    case InstaLoginResult.TwoFactorLogin:
+                        var TFAV = AppCore.Container.GetService<ITwoFactorAuthView>();
+                        NavigationService.Navigate(TFAV, Api);
                         break;
 
                     case InstaLoginResult.ChallengeRequired:
