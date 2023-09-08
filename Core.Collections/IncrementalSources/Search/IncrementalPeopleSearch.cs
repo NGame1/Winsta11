@@ -5,6 +5,7 @@ using Microsoft.Toolkit.Collections;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using WinstaCore;
@@ -25,18 +26,33 @@ namespace Core.Collections.IncrementalSources.Search
         }
 
         bool HasMoreAvailable = true;
+        bool _isLoading = false;
         public async Task<IEnumerable<InstaUser>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken cancellationToken = default)
         {
             if (!HasMoreAvailable) return null;
-
-            using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
+            while (_isLoading)
             {
-                var result = await Api.DiscoverProcessor.SearchPeopleAsync(SearchQuerry, pagination, count: 20,
+                await Task.Delay(200);
+            }
+            try
+            {
+                var currentNextMaxId = pagination.NextMaxId;
+                _isLoading = true;
+                using IInstaApi Api = AppCore.Container.GetService<IInstaApi>();
+                var result = await Api.DiscoverProcessor.SearchPeopleAsync(SearchQuerry, pagination,
                              cancellationToken: cancellationToken);
                 if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
                     throw result.Info.Exception;
-                HasMoreAvailable = false;
-                return result.Value.Users;
+                HasMoreAvailable = result.Value.HasMoreAvailable;
+                if (currentNextMaxId == pagination.NextMaxId)
+                {
+                    return null;
+                }
+                return result.Value.Users.Distinct();
+            }
+            finally
+            {
+                _isLoading = false;
             }
         }
 
