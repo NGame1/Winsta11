@@ -244,6 +244,8 @@ namespace ViewModels.Account
                         var MainPage = AppCore.Container.GetService<IMainView>();
                         NavigationService.Navigate(MainPage);
                         await Api.SendRequestsAfterLoginAsync();
+                        await Api.LauncherMobileConfigAsync(false);
+                        await Api.LauncherMobileConfigAsync(true);
                         Api.Dispose();
                         break;
 
