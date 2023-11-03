@@ -142,6 +142,7 @@
     <Compile Include="Directs\GiphyViewModel.cs" />
     <Compile Include="HomeViewModel.cs" />
     <Compile Include="MainPageViewModel.cs" />
+    <Compile Include="Media\ExploreMediaLoadVM.cs" />
     <Compile Include="Media\ExploreViewModel.cs" />
     <Compile Include="Media\IncrementalInstaMediaViewModel.cs" />
     <Compile Include="Media\MediaLikersViewModel.cs" />

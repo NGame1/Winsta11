@@ -12,6 +12,7 @@ namespace Core.Collections.IncrementalSources.Media
     public class IncrementalExploreMedia : IIncrementalSource<InstaMedia>
     {
         PaginationParameters Pagination { get; set; }
+        public InstaChannel Channel { get; private set; }
 
         public IncrementalExploreMedia()
         {
@@ -22,14 +23,13 @@ namespace Core.Collections.IncrementalSources.Media
         public async Task<IEnumerable<InstaMedia>> GetPagedItemsAsync(int pageIndex, int pageSize, CancellationToken cancellationToken = default)
         {
             if (nomoreitems) return null;
-            using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
-            {
-                var result = await Api.FeedProcessor.GetTopicalExploreFeedAsync(Pagination, cancellationToken);
-                if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
-                    throw result.Info.Exception;
-                if (!result.Value.MoreAvailable) nomoreitems = true;
-                return result.Value.Medias;
-            }
+            using IInstaApi Api = AppCore.Container.GetService<IInstaApi>();
+            var result = await Api.FeedProcessor.GetTopicalExploreFeedAsync(Pagination, cancellationToken);
+            if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
+                throw result.Info.Exception;
+            if (!result.Value.MoreAvailable) nomoreitems = true;
+            Channel = result.Value.Channel;
+            return result.Value.Medias;
         }
 
     }

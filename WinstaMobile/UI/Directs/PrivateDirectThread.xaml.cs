@@ -1,4 +1,9 @@
 ﻿using InstagramApiSharp.Classes.Models;
+using Mapster;
+using Microsoft.Extensions.DependencyInjection;
+using PropertyChanged;
+using System.ComponentModel;
+using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -6,7 +11,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace WinstaMobile.UI.Directs
 {
-    public sealed partial class PrivateDirectThread : UserControl
+    public sealed partial class PrivateDirectThread : UserControl, INotifyPropertyChanged
     {
         public static readonly DependencyProperty DirectThreadProperty = DependencyProperty.Register(
                nameof(DirectThread),
@@ -14,6 +19,9 @@ namespace WinstaMobile.UI.Directs
                typeof(PrivateDirectThread),
                new PropertyMetadata(null));
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [OnChangedMethod(nameof(OnThreadChanged))]
         public InstaDirectInboxThread DirectThread
         {
             get { return (InstaDirectInboxThread)GetValue(DirectThreadProperty); }
@@ -24,5 +32,14 @@ namespace WinstaMobile.UI.Directs
         {
             this.InitializeComponent();
         }
+        
+        void OnThreadChanged()
+        {
+            if (!DirectThread.IsGroup && (DirectThread.Users == null || !DirectThread.Users.Any()))
+            {
+                DirectThread.Users.Add(App.Container.GetService<InstaUserShort>().Adapt<InstaUserShortFriendship>());
+            }
+        }
+
     }
 }

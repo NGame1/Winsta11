@@ -221,7 +221,7 @@ namespace WinstaMobile
             var api = InstaApiBuilder
                 .CreateBuilder()
 #if DEBUG
-                .UseLogger(new DebugLogger(LogLevel.All))
+                //.UseLogger(new DebugLogger(LogLevel.All))
 #endif
                 .Build();
             if (!string.IsNullOrEmpty(_session))

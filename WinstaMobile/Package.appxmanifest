@@ -10,7 +10,7 @@
   <Identity
     Name="7482MahStudios.WinstaPreview"
     Publisher="CN=983BF5D2-5CC3-402A-B46D-46C1F70449F9"
-    Version="0.7.410.0" />
+    Version="0.7.500.0" />
 
   <mp:PhoneIdentity PhoneProductId="7fc1e870-47ff-4311-a19e-d43a663200b4" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

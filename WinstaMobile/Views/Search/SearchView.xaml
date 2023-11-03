@@ -65,14 +65,14 @@
                  PlaceholderText="{x:Bind Resources:LanguageManager.Instance.General.SearchPlaceHolder}"/>
 
         <muxc:NavigationView ScrollViewer.IsVerticalScrollChainingEnabled="True"
-                        MenuItemsSource="{x:Bind ViewModel.MenuItems}"
-                        SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}"
-                        IsBackButtonVisible="Collapsed"
-                        Margin="{x:Bind PageMargin}"
-                        IsSettingsVisible="False"
-                        PaneDisplayMode="Top"
-                        x:Name="navView"
-                        Grid.Row="1">
+                             MenuItemsSource="{x:Bind ViewModel.MenuItems}"
+                             SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=TwoWay}"
+                             IsBackButtonVisible="Collapsed"
+                             Margin="{x:Bind PageMargin}"
+                             IsSettingsVisible="False"
+                             PaneDisplayMode="Top"
+                             x:Name="navView"
+                             Grid.Row="1">
 
             <!--<NavigationView.MenuItems>
                     <NavigationViewItem Icon="People" Content="Medias"/>

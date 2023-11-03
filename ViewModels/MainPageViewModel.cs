@@ -11,7 +11,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using InstagramApiSharp.API;
 using InstagramApiSharp.Classes.Models;
-using System.Diagnostics;
 using InstagramApiSharp;
 using InstagramApiSharp.API.Push;
 using WinstaBackgroundHelpers.Push;
@@ -286,7 +285,6 @@ public class MainPageViewModel : BaseViewModelWithStopwatch
     {
         using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
         {
-            await Api.LauncherMobileConfigAsync();
             var syncres = await Api.PushProcessor.RegisterPushAsync();
             if (!syncres.Succeeded)
             {
