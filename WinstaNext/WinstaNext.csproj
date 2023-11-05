@@ -1025,6 +1025,13 @@
     <PRIResource Include="Strings\fa-Ir\Messages.resw" />
     <PRIResource Include="Strings\fa-Ir\Settings.resw" />
     <PRIResource Include="Strings\fa-Ir\Units.resw" />
+    <PRIResource Include="Strings\pt-BR\General.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+    <PRIResource Include="Strings\pt-BR\Instagram.resw" />
+    <PRIResource Include="Strings\pt-BR\Messages.resw" />
+    <PRIResource Include="Strings\pt-BR\Settings.resw" />
+    <PRIResource Include="Strings\pt-BR\Units.resw" />
     <None Include="WinstaNext_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
