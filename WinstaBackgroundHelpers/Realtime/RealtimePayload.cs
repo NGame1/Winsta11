@@ -70,7 +70,7 @@ namespace InstagramApiSharp.API.RealTime
         private static async Task<byte[]> ToThrift()
         {
             var device = InstaApi.GetCurrentDevice();
-            var cookies = InstaApi.HttpRequestProcessor.HttpHandler.CookieContainer.GetCookies(InstaApi.HttpRequestProcessor.Client.BaseAddress);
+            var cookies= InstaApi.GetCookies();
             var sessionId = cookies["sessionid"]?.Value ?? string.Empty;
             await WriteString(CLIENT_ID, device.DeviceGuid.ToString().Substring(0, 20));
 

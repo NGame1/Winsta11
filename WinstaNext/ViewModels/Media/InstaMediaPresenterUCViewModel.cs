@@ -182,7 +182,7 @@ namespace WinstaNext.ViewModels.Media
                     if (!liked)
                     {
                         result = await Api.MediaProcessor.LikeMediaAsync(Media.InstaIdentifier,
-                                 Media.InventorySource,
+                                 Media,
                                  isCarouselBumpedPost: Media.MediaType == InstaMediaType.Carousel,
                                  exploreSourceToken: exploreSourceToken,
                                  containerModule: containerModule,
@@ -192,7 +192,7 @@ namespace WinstaNext.ViewModels.Media
                     else
                     {
                         result = await Api.MediaProcessor.UnLikeMediaAsync(Media.InstaIdentifier,
-                                 Media.InventorySource,
+                                 Media,
                                  isCarouselBumpedPost: Media.MediaType == InstaMediaType.Carousel,
                                  exploreSourceToken: exploreSourceToken,
                                  containerModule: containerModule,

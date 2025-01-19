@@ -30,7 +30,7 @@ namespace Core.Collections.IncrementalSources.Search
             if (!HasMoreAvailable) return null;
             using (IInstaApi Api = AppCore.Container.GetService<IInstaApi>())
             {
-                var result = await Api.HashtagProcessor.SearchHashtagAsync(SearchQuerry);
+                var result = await Api.HashtagProcessor.SearchHashtagAsync(SearchQuerry, pagination);
                 if (!result.Succeeded && result.Info.Exception is not TaskCanceledException)
                     throw result.Info.Exception;
                 HasMoreAvailable = false;

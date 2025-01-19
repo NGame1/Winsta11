@@ -16,8 +16,6 @@ using Windows.UI.Xaml.Controls;
 using InstagramApiSharp.Helpers;
 using System.Text;
 using Windows.UI.Xaml;
-using InstagramApiSharp.Enums;
-using InstagramApiSharp;
 
 namespace ViewModels.Account
 {
@@ -42,40 +40,7 @@ namespace ViewModels.Account
 
         public override async Task OnNavigatedToAsync(NavigationEventArgs e)
         {
-            await Api.SendRequestsBeforeLoginAsync();
             await base.OnNavigatedToAsync(e);
-        }
-
-        async Task<IResult<InstaLoginResult>> NewLoginMethodAsync(bool retry = false)
-        {
-            IsLoading = true;
-            Api.SetUser(UserIdentifier, Password);
-            Api.SetApiVersion(InstaApiVersionType.Version290);
-            try
-            {
-                await Api.LauncherMobileConfigAsync();
-
-                await Task.Delay(1000);
-
-                await Api.LoginProcessor.ProcessLoginClientDataAndRedirectAsync();
-
-                await Api.LoginProcessor.BloksLoginCpTextInputTypeAheadAsync();
-
-                await Task.Delay(TimeSpan.FromSeconds(ExtensionHelper.Rnd.Next(4, 6)));
-
-                var result = await Api.LoginProcessor.BloksSendLoginRequestAsync();
-                if (!retry && !result.Succeeded && result.Info.Exception != null && result.Info.Exception.Message == "'json' is empty")
-                {
-                    await Task.Delay(1000);
-                    await NewLoginMethodAsync(true);
-                }
-                return result;
-
-            }
-            finally
-            {
-                IsLoading = false;
-            }
         }
 
         async Task LoginAsync()
@@ -84,9 +49,14 @@ namespace ViewModels.Account
             try
             {
                 IsLoading = true;
-                //Api.SetUser(UserIdentifier, Password);
-                //loginResult = await Api.LoginAsync();
-                var loginResult = await NewLoginMethodAsync();
+                Api.SetUser(UserIdentifier, Password);
+                var testResult = await Api.SendRequestsBeforeLoginAsync();
+                if(!testResult.Succeeded)
+                {
+                    await MessageDialogHelper.ShowAsync(testResult.Info.Message, "Login Error");
+                    return;
+                }
+                var loginResult = await Api.LoginAsync();
                 // Shit type of error !
                 if (!loginResult.Succeeded && loginResult.Value == InstaLoginResult.Success)
                 {
